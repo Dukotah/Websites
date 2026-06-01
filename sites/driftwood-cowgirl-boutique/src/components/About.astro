@@ -1,0 +1,32 @@
+---
+import { config } from '../config';
+---
+
+<section class="section" id="about">
+  <div class="container about">
+    <div>
+      <p class="eyebrow">Who we are</p>
+      <h2>{config.about.heading}</h2>
+    </div>
+    <p class="about__body">{config.about.body}</p>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    gap: 1rem 3rem;
+    grid-template-columns: 1fr 1.4fr;
+    align-items: start;
+  }
+  .about__body {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  @media (max-width: 720px) {
+    .about {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
