@@ -5,13 +5,14 @@
  *   - email (placeholder — confirm with the owner)
  *   - exact boutique hours (mirrored from Horse N Around Trail Rides)
  *   - phone is the shared location/sign-in line; confirm it's the one they want
- * Everything else is from public listings (address, vibe, products, socials).
+ * Everything else is from public listings (address, products, socials).
  */
 
 export interface Service {
+  /** Key into the icon set in src/components/Services.astro */
+  icon: 'apparel' | 'jewelry' | 'horse' | 'wave' | 'art' | 'gift';
   title: string;
   description: string;
-  icon?: string;
 }
 
 export interface BusinessHours {
@@ -22,12 +23,12 @@ export interface BusinessHours {
 export const config = {
   name: 'Driftwood Cowgirl Boutique',
 
-  tagline: 'A beachy boutique with a boho western flare on the Sonoma Coast.',
+  tagline: 'Western and beachy clothing, jewelry, and gifts in Bodega, California.',
 
   seoDescription:
-    'Driftwood Cowgirl Boutique in Bodega, CA — a beachy, boho-western shop with ' +
-    'coastal cowgirl apparel, jewelry, and gifts from local brands and artists. ' +
-    'Home base for Horse N Around Trail Rides.',
+    'Driftwood Cowgirl Boutique in Bodega, CA. Western and beach-inspired clothing, ' +
+    'jewelry, and gifts, plus work from local artists. The check-in spot for Horse N ' +
+    'Around Trail Rides.',
 
   area: 'Bodega, California',
 
@@ -44,63 +45,55 @@ export const config = {
   },
 
   hero: {
-    heading: 'Coastal cowgirl style, straight from the Sonoma Coast.',
+    heading: 'A little western, a little beachy.',
     subheading:
-      'A beachy little boutique with a boho-western soul — apparel, jewelry, and ' +
-      'gifts you won’t find anywhere else, plus pieces from local brands and artists. ' +
-      'Saddle up and stop in.',
-    ctaText: 'Visit the shop',
+      'Clothing, jewelry, and gifts on a coastal ranch outside Bodega Bay — and the ' +
+      'check-in spot for Horse N Around Trail Rides. Come browse before your ride.',
+    ctaText: 'Plan your visit',
     ctaHref: '#contact',
   },
 
   about: {
-    heading: 'Where the coast meets the country',
+    heading: 'About the shop',
     body:
-      'Tucked into a coastal cattle ranch just up the road from Bodega Bay, Driftwood ' +
-      'Cowgirl Boutique is where salt air meets western charm. We’re also the home base ' +
-      'and check-in spot for Horse N Around Trail Rides, so you can browse boho-western ' +
-      'finds before (or after) you hit the trail and the beach on horseback. We love ' +
-      'championing local makers, so much of what’s on our shelves comes from artists and ' +
-      'brands right here on the Sonoma Coast.',
+      'Driftwood Cowgirl Boutique sits on a coastal cattle ranch just outside Bodega Bay. ' +
+      'We carry western and beach-inspired clothing, jewelry, and gifts, along with work ' +
+      'from artists and small brands here on the Sonoma Coast. The shop is also where you ' +
+      'check in for Horse N Around Trail Rides, so you can stop in before or after a ride ' +
+      'along the ranch trails and the beach.',
   },
 
-  servicesHeading: 'What you’ll find in the shop',
+  servicesHeading: 'What we carry',
   services: [
     {
-      icon: '👢',
-      title: 'Boho-western apparel',
-      description:
-        'Coastal cowgirl tops, tees, and layers with that easy beachy-meets-western feel.',
+      icon: 'apparel',
+      title: 'Clothing',
+      description: 'Western and beach-inspired tops, tees, and layers for everyday wear.',
     },
     {
-      icon: '💍',
+      icon: 'jewelry',
       title: 'Jewelry & accessories',
-      description:
-        'Turquoise, leather, and handmade pieces to finish off any coastal cowgirl look.',
+      description: 'Turquoise, leather, and handmade pieces.',
     },
     {
-      icon: '🐴',
+      icon: 'horse',
       title: 'Horse N Around merch',
-      description:
-        'Signature Horse N Around tank tops and sweatshirts — a keepsake from your ride.',
+      description: 'Tank tops and sweatshirts from the trail-ride crew.',
     },
     {
-      icon: '🌊',
-      title: 'Bodega Bay keepsakes',
-      description:
-        'Local souvenirs and gifts to remember your trip to the Sonoma Coast.',
+      icon: 'wave',
+      title: 'Bodega Bay souvenirs',
+      description: 'Gifts and keepsakes from the Sonoma Coast.',
     },
     {
-      icon: '🎨',
-      title: 'Local makers',
-      description:
-        'Goods from Sonoma Coast artists and small brands — always something new to discover.',
+      icon: 'art',
+      title: 'Local artists',
+      description: 'Goods from makers and small brands around the area.',
     },
     {
-      icon: '🎁',
-      title: 'Gifts for everyone',
-      description:
-        'One-of-a-kind finds for the cowgirls, beach lovers, and free spirits in your life.',
+      icon: 'gift',
+      title: 'Gifts',
+      description: 'Cards, small gifts, and finds for any occasion.',
     },
   ] satisfies Service[],
 
@@ -111,7 +104,7 @@ export const config = {
   ] satisfies BusinessHours[],
 
   theme: {
-    brand: '#b85c38', // sunset terracotta — warm western/coastal
+    brand: '#b85c38', // sunset terracotta
     brandDark: '#8f4527',
   },
 };
