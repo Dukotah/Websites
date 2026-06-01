@@ -5,6 +5,7 @@ and deployed on [Vercel](https://vercel.com). Each business gets its own
 self-contained folder under `sites/` — they share nothing at runtime, so one
 site can never break another.
 
+
 ## Repository layout
 
 ```
