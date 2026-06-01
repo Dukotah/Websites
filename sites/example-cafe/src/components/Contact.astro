@@ -1,0 +1,100 @@
+---
+import { config } from '../config';
+
+const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const mapHref = `https://maps.google.com/?q=${encodeURIComponent(config.contact.address)}`;
+---
+
+<section class="section" id="contact">
+  <div class="container contact">
+    <div>
+      <p class="eyebrow">Get in touch</p>
+      <h2>Come see us or give us a call</h2>
+      <ul class="contact__list">
+        <li>
+          <span class="contact__label">Phone</span>
+          <a href={telHref}>{config.contact.phone}</a>
+        </li>
+        <li>
+          <span class="contact__label">Email</span>
+          <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>
+        </li>
+        <li>
+          <span class="contact__label">Address</span>
+          <a href={mapHref} target="_blank" rel="noopener">{config.contact.address}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact__hours">
+      <h3>Opening hours</h3>
+      <table>
+        <tbody>
+          {
+            config.hours.map((row) => (
+              <tr>
+                <th scope="row">{row.day}</th>
+                <td>{row.hours}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: start;
+  }
+  .contact__list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .contact__label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+  .contact__list a {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .contact__hours {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .contact__hours h3 {
+    margin-top: 0;
+  }
+  .contact__hours table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .contact__hours th {
+    text-align: left;
+    font-weight: 600;
+    padding: 0.4rem 0;
+  }
+  .contact__hours td {
+    text-align: right;
+    color: var(--text-muted);
+    padding: 0.4rem 0;
+  }
+  @media (max-width: 720px) {
+    .contact {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
