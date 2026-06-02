@@ -1,0 +1,48 @@
+---
+import { config } from '../config';
+---
+
+<section class="section section--alt" id="services">
+  <div class="container">
+    <p class="eyebrow">What we do</p>
+    <h2>{config.servicesHeading}</h2>
+    <div class="grid">
+      {
+        config.services.map((service) => (
+          <article class="card">
+            {service.icon && <div class="card__icon">{service.icon}</div>}
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin-top: 2rem;
+  }
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    box-shadow: var(--shadow);
+  }
+  .card__icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .card h3 {
+    margin-bottom: 0.35rem;
+  }
+  .card p {
+    color: var(--text-muted);
+    margin: 0;
+  }
+</style>
