@@ -19,8 +19,27 @@ npm run preview      # preview the production build
 ## Editing content
 
 Almost everything on the page is driven from **`src/config.ts`** — business
-name, tagline, hours, address, the "what's inside" cards, the "Our Story"
-copy, and the brand colors. Change that one file to update most of the site.
+name, tagline, hours, address, the "what's inside" list, the "Our Story"
+copy, the photo paths, and the brand colors. Change that one file to update
+most of the site.
+
+## Photos
+
+The layout is photo-driven. Committed SVG illustrations stand in until real
+photography is added, and every image falls back to a placeholder if it fails
+to load. The "The Birds" section already uses a freely-licensed Wikimedia photo
+of the actual Potter Schoolhouse.
+
+To pull real, licensed photos of Bodega into `public/images/` (run from the repo
+root, on a machine with internet access):
+
+```bash
+npm run fetch-photos -- bodega-country-store
+```
+
+That reads `photos.json`, downloads images, and writes `public/images/CREDITS.md`
+with attribution. Then point `images.hero` / `images.story` in `src/config.ts`
+at the downloaded files. Best of all: drop in the store's **own** photos.
 
 ## Sections
 

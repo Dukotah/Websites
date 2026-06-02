@@ -5,80 +5,64 @@ const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
 
 <header class="header">
   <div class="container header__inner">
-    <a href="#top" class="header__brand">
-      <span class="header__sun" aria-hidden="true">☀</span>
-      <span>{config.name}</span>
-    </a>
+    <a href="#top" class="header__brand">{config.name}</a>
     <nav class="header__nav" aria-label="Primary">
       <a href="#story">Our Story</a>
       <a href="#inside">What's Inside</a>
       <a href="#visit">Visit</a>
-      <a href={telHref} class="btn header__cta">Call {config.contact.phone}</a>
+      <a href={telHref} class="header__call">{config.contact.phone}</a>
     </nav>
   </div>
 </header>
 
 <style>
   .header {
-    position: sticky;
-    top: 0;
+    position: absolute;
+    inset: 0 0 auto 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
   }
   .header__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    min-height: 68px;
+    min-height: 76px;
   }
   .header__brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 800;
-    font-size: 1.15rem;
-    color: var(--ink);
-    letter-spacing: -0.01em;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #fff;
+    letter-spacing: 0.01em;
   }
   .header__brand:hover {
     text-decoration: none;
   }
-  .header__sun {
-    color: var(--brand);
-    font-size: 1.3rem;
-    line-height: 1;
-  }
   .header__nav {
     display: flex;
     align-items: center;
-    gap: 1.75rem;
+    gap: 2rem;
   }
   .header__nav a {
-    color: var(--text);
-    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 500;
+    font-size: 0.95rem;
   }
-  .header__nav a:not(.header__cta):hover {
-    color: var(--brand-dark);
+  .header__nav a:hover {
+    color: #fff;
     text-decoration: none;
   }
-  .header__cta {
-    color: #fff;
-    font-size: 0.9rem;
-    padding: 0.6rem 1.1rem;
+  .header__call {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
   }
-  .header__cta:hover {
-    color: #fff;
+  .header__call:hover {
+    background: rgba(255, 255, 255, 0.12);
   }
-  /* On small screens, hide text links and keep the call button. */
   @media (max-width: 720px) {
-    .header__nav a:not(.header__cta) {
+    .header__nav a:not(.header__call) {
       display: none;
-    }
-    .header__brand span:last-child {
-      font-size: 1.05rem;
     }
   }
 </style>

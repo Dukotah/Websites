@@ -13,11 +13,9 @@ const socials = [
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <strong><span aria-hidden="true">☀</span> {config.name}</strong>
-      <p class="footer__muted">{config.contact.address}</p>
-      <p class="footer__muted">
-        <a href={telHref}>{config.contact.phone}</a>
-      </p>
+      <strong>{config.name}</strong>
+      <p>{config.contact.address}</p>
+      <p><a href={telHref}>{config.contact.phone}</a></p>
     </div>
 
     {
@@ -34,16 +32,16 @@ const socials = [
   </div>
 
   <div class="container footer__base">
-    <p class="footer__muted">© {year} {config.name}. All rights reserved.</p>
-    <p class="footer__muted">{config.area} · {config.established}</p>
+    <p>© {year} {config.name}</p>
+    <p>{config.area} · {config.established}</p>
   </div>
 </footer>
 
 <style>
   .footer {
     background: var(--ink);
-    color: #fff;
-    padding-block: 3rem 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding-block: 3.5rem 2rem;
   }
   .footer__inner {
     display: flex;
@@ -53,17 +51,16 @@ const socials = [
     justify-content: space-between;
   }
   .footer__brand strong {
-    font-size: 1.2rem;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #fff;
   }
-  .footer__brand strong span {
-    color: var(--brand);
-  }
-  .footer__muted {
-    color: rgba(255, 255, 255, 0.65);
-    margin: 0.35rem 0 0;
+  .footer__brand p {
+    margin: 0.4rem 0 0;
     font-size: 0.92rem;
   }
-  .footer__muted a {
+  .footer__brand a {
     color: rgba(255, 255, 255, 0.85);
   }
   .footer__social {
@@ -72,15 +69,20 @@ const socials = [
   }
   .footer__social a {
     color: #fff;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 0.92rem;
   }
   .footer__base {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 2rem;
     justify-content: space-between;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.85rem;
+  }
+  .footer__base p {
+    margin: 0;
   }
 </style>

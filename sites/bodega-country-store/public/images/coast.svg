@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the Sonoma coast near Bodega">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9dcc2"/>
+      <stop offset="0.55" stop-color="#e7c98f"/>
+      <stop offset="1" stop-color="#d8a85f"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7a8f7e"/>
+      <stop offset="1" stop-color="#5d7468"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+
+  <!-- low sun -->
+  <circle cx="1180" cy="360" r="120" fill="#f2d9a0" opacity="0.85"/>
+
+  <!-- distant headland -->
+  <path d="M0,560 C260,500 460,540 700,512 C980,480 1200,520 1600,470 L1600,640 L0,640 Z" fill="#a9b39a"/>
+  <!-- sea band -->
+  <rect x="0" y="600" width="1600" height="120" fill="url(#sea)"/>
+  <!-- foreground rolling hill -->
+  <path d="M0,700 C300,610 560,690 860,650 C1140,612 1360,700 1600,640 L1600,1000 L0,1000 Z" fill="#3f5446"/>
+  <!-- nearer ridge -->
+  <path d="M0,820 C360,760 620,840 920,800 C1220,762 1420,840 1600,800 L1600,1000 L0,1000 Z" fill="#2c3e34"/>
+
+  <!-- tiny white church on the hill, a nod to Bodega -->
+  <g fill="#f3efe6">
+    <rect x="742" y="676" width="26" height="40"/>
+    <polygon points="742,676 755,652 768,676"/>
+    <rect x="751" y="640" width="8" height="16"/>
+  </g>
+</svg>

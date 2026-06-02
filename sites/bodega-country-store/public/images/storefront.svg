@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the Bodega Country Store">
+  <rect width="1200" height="900" fill="#e7ddc8"/>
+
+  <!-- ground -->
+  <rect x="0" y="720" width="1200" height="180" fill="#cabd9f"/>
+
+  <!-- store building -->
+  <rect x="230" y="250" width="740" height="470" fill="#b24a39"/>
+  <!-- false front -->
+  <rect x="210" y="210" width="780" height="70" fill="#9e3f30"/>
+  <!-- roof line -->
+  <rect x="210" y="200" width="780" height="16" fill="#7f3225"/>
+
+  <!-- porch overhang -->
+  <rect x="250" y="470" width="700" height="18" fill="#5c4631"/>
+  <g fill="#6b5238">
+    <rect x="268" y="488" width="16" height="232"/>
+    <rect x="916" y="488" width="16" height="232"/>
+  </g>
+
+  <!-- door -->
+  <rect x="556" y="520" width="88" height="200" fill="#3f3326"/>
+  <rect x="556" y="520" width="88" height="200" fill="none" stroke="#2c2419" stroke-width="6"/>
+
+  <!-- windows -->
+  <g fill="#dfe6e0" stroke="#3f3326" stroke-width="6">
+    <rect x="330" y="520" width="150" height="150"/>
+    <rect x="720" y="520" width="150" height="150"/>
+  </g>
+  <g stroke="#3f3326" stroke-width="5">
+    <line x1="405" y1="520" x2="405" y2="670"/>
+    <line x1="330" y1="595" x2="480" y2="595"/>
+    <line x1="795" y1="520" x2="795" y2="670"/>
+    <line x1="720" y1="595" x2="870" y2="595"/>
+  </g>
+
+  <!-- sign band -->
+  <rect x="360" y="300" width="480" height="86" fill="#f1ead9"/>
+  <text x="600" y="360" text-anchor="middle" font-family="Georgia, serif" font-size="46" fill="#b24a39" font-style="italic">Country Store</text>
+
+  <!-- awning stripes -->
+  <g>
+    <rect x="250" y="452" width="700" height="20" fill="#3f5446"/>
+  </g>
+</svg>

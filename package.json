@@ -1,0 +1,10 @@
+{
+  "name": "websites",
+  "private": true,
+  "type": "module",
+  "description": "A monorepo of independent Astro websites for local businesses, deployed on Vercel.",
+  "scripts": {
+    "new-site": "node scripts/new-site.mjs",
+    "fetch-photos": "node scripts/fetch-photos.mjs"
+  }
+}
