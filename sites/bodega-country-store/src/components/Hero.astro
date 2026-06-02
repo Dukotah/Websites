@@ -16,7 +16,7 @@ const { images } = config;
   </div>
 
   <div class="container hero__inner">
-    <p class="hero__eyebrow">{[config.established, config.area].filter(Boolean).join(' · ')}</p>
+    <p class="hero__eyebrow">{config.established} · {config.area}</p>
     <h1 class="hero__title">{config.hero.heading}</h1>
     <p class="hero__sub">{config.hero.subheading}</p>
 

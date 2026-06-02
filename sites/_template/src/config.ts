@@ -1,16 +1,16 @@
 /**
  * Site configuration — edit THIS file first when starting a new site.
  *
- * Almost everything visible on the page (business name, contact details, hours,
- * services, colors) is driven from here, so you can get a new client most of the
+ * Almost everything visible on the page (name, contact, hours, services,
+ * photos, colors) is driven from here, so you can get a new client most of the
  * way done without touching the layout or components.
+ *
+ * Tip: see sites/bodega-country-store for a fully filled-in example.
  */
 
 export interface Service {
   title: string;
   description: string;
-  /** Optional emoji or short icon shown above the title. */
-  icon?: string;
 }
 
 export interface BusinessHours {
@@ -31,6 +31,9 @@ export const config = {
 
   /** The town/area served — helps with local SEO. */
   area: 'Your Town, ST',
+
+  /** A short badge line shown in the hero (e.g. "Est. 1998"). Leave '' to hide. */
+  established: 'Est. 2000',
 
   contact: {
     phone: '(555) 555-5555',
@@ -53,30 +56,58 @@ export const config = {
     ctaHref: '#contact',
   },
 
-  /** The "About" / story section. */
-  about: {
-    heading: 'About us',
-    body:
-      "Two or three sentences about the business — who they are, how long they've " +
-      'been around, and why customers trust them. Keep it warm and human.',
+  /** Short list shown as understated meta under the hero. Keep to 3–5 items. */
+  highlights: ['Friendly service', 'Locally owned', 'Fair prices'],
+
+  /**
+   * Photos. Point these at images in public/images/.
+   * Defaults are committed SVG placeholders so the page looks finished before
+   * real photography is added; images fall back to a placeholder if they fail
+   * to load. Run `npm run fetch-photos -- <this-folder>` (with a photos.json)
+   * to pull freely-licensed photos, or just drop the client's own in.
+   */
+  images: {
+    hero: '/images/hero.svg',
+    heroAlt: 'Photo of the business or the area it serves.',
+
+    story: '/images/about.svg',
+    storyAlt: 'A photo for the about/story section.',
+    storyCaption: '',
+    storyCredit: '',
+
+    placeholder: '/images/hero.svg',
   },
 
-  /** Services / offerings shown as cards. Add or remove freely. */
+  /** The "About" / story section. `body` is an array of paragraphs. */
+  about: {
+    heading: 'About us',
+    body: [
+      "Two or three sentences about the business — who they are, how long they've " +
+        'been around, and why customers trust them. Keep it warm and human.',
+      'A second short paragraph can add detail: what makes them different, the people ' +
+        'behind it, or the area they serve.',
+    ],
+    /** Optional signature line under the story. Leave '' to hide. */
+    signature: '',
+  },
+
+  /** Services / offerings shown as a clean numbered list. Add or remove freely. */
   servicesHeading: 'What we offer',
   services: [
     {
-      icon: '⭐',
       title: 'Service one',
       description: 'A sentence describing this service and why it matters.',
     },
     {
-      icon: '🛠️',
       title: 'Service two',
       description: 'A sentence describing this service and why it matters.',
     },
     {
-      icon: '💬',
       title: 'Service three',
+      description: 'A sentence describing this service and why it matters.',
+    },
+    {
+      title: 'Service four',
       description: 'A sentence describing this service and why it matters.',
     },
   ] satisfies Service[],
@@ -88,13 +119,16 @@ export const config = {
     { day: 'Sunday', hours: 'Closed' },
   ] satisfies BusinessHours[],
 
+  /** A short note under the hours (holidays, seasonal changes). Leave '' to hide. */
+  hoursNote: '',
+
   /**
    * Brand colors. Change these two and the whole site re-themes.
-   * Use any valid CSS color.
+   * `brand` is buttons/accents; `brandDark` is headings + dark sections.
    */
   theme: {
-    brand: '#2563eb', // primary / buttons / accents
-    brandDark: '#1e40af', // hover states, darker accents
+    brand: '#c2683a', // primary / buttons / accents
+    brandDark: '#243b53', // headings, hover states, dark sections
   },
 };
 

@@ -3,16 +3,16 @@ import { config } from '../config';
 const pad = (n: number) => String(n + 1).padStart(2, '0');
 ---
 
-<section class="section section--alt" id="services">
+<section class="section section--alt" id="inside">
   <div class="container">
     <div class="offerings__head">
-      <p class="eyebrow">What we do</p>
-      <h2>{config.servicesHeading}</h2>
+      <p class="eyebrow">Stocked &amp; ready</p>
+      <h2>{config.offeringsHeading}</h2>
     </div>
 
     <ul class="offerings__list">
       {
-        config.services.map((item, i) => (
+        config.offerings.map((item, i) => (
           <li class="offering">
             <span class="offering__num">{pad(i)}</span>
             <div>

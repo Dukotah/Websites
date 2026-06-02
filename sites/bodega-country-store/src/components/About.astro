@@ -11,7 +11,7 @@ const { images } = config;
           src={images.story}
           alt={images.storyAlt}
           loading="lazy"
-          onerror="this.onerror=null;this.src='/images/about.svg'"
+          onerror="this.onerror=null;this.src='/images/storefront.svg'"
         />
       </span>
       {(images.storyCaption || images.storyCredit) && (
@@ -26,7 +26,7 @@ const { images } = config;
       <p class="eyebrow">Our story</p>
       <h2>{config.about.heading}</h2>
       {config.about.body.map((para) => <p>{para}</p>)}
-      {config.about.signature && <p class="story__sign">{config.about.signature}</p>}
+      <p class="story__sign">— The Bodega Country Store</p>
     </div>
   </div>
 </section>
