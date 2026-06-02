@@ -2,6 +2,7 @@
 import { config } from '../config';
 
 const year = new Date().getFullYear();
+const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
 const socials = [
   { label: 'Facebook', href: config.social.facebook },
   { label: 'Instagram', href: config.social.instagram },
@@ -11,9 +12,10 @@ const socials = [
 
 <footer class="footer">
   <div class="container footer__inner">
-    <div>
+    <div class="footer__brand">
       <strong>{config.name}</strong>
-      <p class="footer__muted">{config.contact.address}</p>
+      <p>{config.contact.address}</p>
+      <p><a href={telHref}>{config.contact.phone}</a></p>
     </div>
 
     {
@@ -27,38 +29,60 @@ const socials = [
         </nav>
       )
     }
+  </div>
 
-    <p class="footer__muted">© {year} {config.name}. All rights reserved.</p>
+  <div class="container footer__base">
+    <p>© {year} {config.name}</p>
+    <p>{[config.area, config.established].filter(Boolean).join(' · ')}</p>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: var(--text);
-    color: #fff;
-    padding-block: 2.5rem;
+    background: var(--ink);
+    color: rgba(255, 255, 255, 0.7);
+    padding-block: 3.5rem 2rem;
   }
   .footer__inner {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem 2rem;
-    align-items: center;
+    gap: 1.5rem 2rem;
+    align-items: flex-start;
     justify-content: space-between;
   }
-  .footer strong {
-    font-size: 1.1rem;
+  .footer__brand strong {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #fff;
   }
-  .footer__muted {
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0.25rem 0 0;
-    font-size: 0.9rem;
+  .footer__brand p {
+    margin: 0.4rem 0 0;
+    font-size: 0.92rem;
+  }
+  .footer__brand a {
+    color: rgba(255, 255, 255, 0.85);
   }
   .footer__social {
     display: flex;
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
   .footer__social a {
     color: #fff;
     font-weight: 500;
+    font-size: 0.92rem;
+  }
+  .footer__base {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.85rem;
+  }
+  .footer__base p {
+    margin: 0;
   }
 </style>

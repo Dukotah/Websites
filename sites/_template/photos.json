@@ -1,0 +1,7 @@
+{
+  "_comment": "Used by `npm run fetch-photos -- <this-folder>`. Add Wikimedia Commons files and/or categories, then point the image paths in src/config.ts at the downloaded files. See sites/bodega-country-store/photos.json for a working example.",
+  "outDir": "public/images",
+  "width": 1600,
+  "sources": [],
+  "categories": []
+}

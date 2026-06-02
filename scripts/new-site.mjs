@@ -13,7 +13,7 @@
  */
 
 import { cp, readFile, writeFile, access } from 'node:fs/promises';
-import { join, dirname } from 'node:path';
+import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -36,7 +36,12 @@ if (exists) {
   process.exit(1);
 }
 
-await cp(src, dest, { recursive: true });
+// Don't copy local-only / generated folders from the template.
+const SKIP = new Set(['node_modules', 'dist', '.astro', '.vercel']);
+await cp(src, dest, {
+  recursive: true,
+  filter: (source) => !SKIP.has(basename(source)),
+});
 
 // Set the package name.
 const pkgPath = join(dest, 'package.json');

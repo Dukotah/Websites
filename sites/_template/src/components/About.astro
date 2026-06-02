@@ -1,32 +1,83 @@
 ---
 import { config } from '../config';
+const { images } = config;
 ---
 
-<section class="section" id="about">
-  <div class="container about">
-    <div>
-      <p class="eyebrow">Who we are</p>
+<section class="section" id="story">
+  <div class="container story">
+    <figure class="story__media">
+      <span class="story__frame">
+        <img
+          src={images.story}
+          alt={images.storyAlt}
+          loading="lazy"
+          onerror="this.onerror=null;this.src='/images/about.svg'"
+        />
+      </span>
+      {(images.storyCaption || images.storyCredit) && (
+        <figcaption>
+          {images.storyCaption}
+          {images.storyCredit && <span class="story__credit"> · {images.storyCredit}</span>}
+        </figcaption>
+      )}
+    </figure>
+
+    <div class="story__copy">
+      <p class="eyebrow">Our story</p>
       <h2>{config.about.heading}</h2>
+      {config.about.body.map((para) => <p>{para}</p>)}
+      {config.about.signature && <p class="story__sign">{config.about.signature}</p>}
     </div>
-    <p class="about__body">{config.about.body}</p>
   </div>
 </section>
 
 <style>
-  .about {
+  .story {
     display: grid;
-    gap: 1rem 3rem;
-    grid-template-columns: 1fr 1.4fr;
-    align-items: start;
+    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
-  .about__body {
-    font-size: 1.1rem;
-    color: var(--text-muted);
+  .story__media {
     margin: 0;
   }
-  @media (max-width: 720px) {
-    .about {
+  .story__frame {
+    display: block;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-alt);
+    aspect-ratio: 4 / 3;
+    box-shadow: var(--shadow);
+  }
+  .story__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .story__media figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .story__credit {
+    opacity: 0.8;
+  }
+  .story__copy p:not(.eyebrow) {
+    color: var(--text-muted);
+    font-size: 1.08rem;
+  }
+  .story__sign {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--brand-dark) !important;
+    margin-top: 1.25rem;
+  }
+  @media (max-width: 800px) {
+    .story {
       grid-template-columns: 1fr;
+    }
+    .story__media {
+      order: -1;
     }
   }
 </style>

@@ -6,12 +6,20 @@ const { images } = config;
 <section class="section" id="story">
   <div class="container story">
     <figure class="story__media">
-      <img
-        src={images.story}
-        alt={images.storyAlt}
-        loading="lazy"
-        onerror={`this.onerror=null;this.src='${images.placeholder}'`}
-      />
+      <span class="story__frame">
+        <img
+          src={images.story}
+          alt={images.storyAlt}
+          loading="lazy"
+          onerror="this.onerror=null;this.src='/images/storefront.svg'"
+        />
+      </span>
+      {(images.storyCaption || images.storyCredit) && (
+        <figcaption>
+          {images.storyCaption}
+          {images.storyCredit && <span class="story__credit"> · {images.storyCredit}</span>}
+        </figcaption>
+      )}
     </figure>
 
     <div class="story__copy">
@@ -32,6 +40,9 @@ const { images } = config;
   }
   .story__media {
     margin: 0;
+  }
+  .story__frame {
+    display: block;
     border-radius: var(--radius);
     overflow: hidden;
     background: var(--bg-alt);
@@ -42,6 +53,14 @@ const { images } = config;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .story__media figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .story__credit {
+    opacity: 0.8;
   }
   .story__copy p:not(.eyebrow) {
     color: var(--text-muted);
