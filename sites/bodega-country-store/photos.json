@@ -1,0 +1,15 @@
+{
+  "outDir": "public/images",
+  "width": 1800,
+  "sources": [
+    {
+      "file": "Bodega , California, USA - Village of Bodega Bay - Potter School House (17110 Bodega Ln, Bodega, CA 94922) - panoramio.jpg",
+      "as": "schoolhouse.jpg"
+    },
+    { "file": "Bodega Harbor from Bodega Head.jpg", "as": "coast-photo.jpg" }
+  ],
+  "categories": [
+    { "name": "Bodega, California", "limit": 8 },
+    { "name": "Bodega Bay", "limit": 4 }
+  ]
+}

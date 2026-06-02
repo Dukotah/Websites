@@ -9,17 +9,27 @@ Vercel which folder to build, so one repo can power many independent live sites.
 1. Sign up / log in at [vercel.com](https://vercel.com) (free Hobby plan is fine).
 2. Install the Vercel GitHub app and give it access to this repository.
 
-## For each new site
+## Fastest: the Deploy button
+
+The repo `README.md` has a **Deploy** button for each site. It opens Vercel with
+the repo and the site's **Root Directory** already filled in, so you just click
+through. To add a button for a new site, copy one in the README and change the
+`root-directory=` and `project-name=` values to match the new folder:
+
+```
+https://vercel.com/new/clone?repository-url=https://github.com/dukotah/websites&root-directory=sites/<folder>&project-name=<folder>
+```
+
+## Or set it up by hand
 
 1. In Vercel, click **Add New… → Project**.
 2. Pick this GitHub repo (`dukotah/websites`).
 3. **Set the Root Directory** to the site's folder, e.g. `sites/joes-plumbing`.
    This is the most important step — without it, Vercel tries to build the whole
    repo and fails.
-4. Framework Preset should auto-detect as **Astro**. Leave the build settings at
-   their defaults:
-   - Build command: `astro build` (auto)
-   - Output directory: `dist` (auto)
+4. Framework Preset should auto-detect as **Astro**. Each site also ships a
+   `vercel.json` pinning the build command (`astro build`) and output (`dist`),
+   so the defaults are correct.
 5. Click **Deploy**. In ~1 minute you get a live URL like
    `joes-plumbing.vercel.app`.
 

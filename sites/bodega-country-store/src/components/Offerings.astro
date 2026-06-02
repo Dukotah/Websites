@@ -1,63 +1,85 @@
 ---
 import { config } from '../config';
+const pad = (n: number) => String(n + 1).padStart(2, '0');
 ---
 
 <section class="section section--alt" id="inside">
   <div class="container">
-    <p class="eyebrow">Stocked & ready</p>
-    <h2 class="offerings__heading">{config.offeringsHeading}</h2>
-    <div class="grid">
+    <div class="offerings__head">
+      <p class="eyebrow">Stocked &amp; ready</p>
+      <h2>{config.offeringsHeading}</h2>
+    </div>
+
+    <ul class="offerings__list">
       {
-        config.offerings.map((item) => (
-          <article class="card">
-            {item.icon && <div class="card__icon" aria-hidden="true">{item.icon}</div>}
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </article>
+        config.offerings.map((item, i) => (
+          <li class="offering">
+            <span class="offering__num">{pad(i)}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 </section>
 
 <style>
-  .offerings__heading {
+  .offerings__head {
+    max-width: 40ch;
+    margin-bottom: 2.5rem;
+  }
+  .offerings__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .offering {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.75rem 2rem 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  /* Vertical divider between the two columns. */
+  .offering:nth-child(odd) {
+    border-right: 1px solid var(--border);
+    padding-right: 2.5rem;
+  }
+  .offering:nth-child(even) {
+    padding-left: 2.5rem;
+  }
+  .offering__num {
     font-family: var(--serif);
-    max-width: 18ch;
+    font-size: 0.95rem;
+    color: var(--brand);
+    padding-top: 0.25rem;
+    min-width: 1.5rem;
   }
-  .grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    margin-top: 2.5rem;
+  .offering h3 {
+    margin-bottom: 0.35rem;
   }
-  .card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 2rem 1.85rem;
-    box-shadow: var(--shadow);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-  }
-  .card__icon {
-    width: 52px;
-    height: 52px;
-    display: grid;
-    place-items: center;
-    font-size: 1.6rem;
-    border-radius: 14px;
-    background: color-mix(in srgb, var(--brand) 14%, #fff);
-    margin-bottom: 1rem;
-  }
-  .card h3 {
-    margin-bottom: 0.45rem;
-  }
-  .card p {
+  .offering p {
     color: var(--text-muted);
     margin: 0;
+    font-size: 0.98rem;
+  }
+  @media (max-width: 720px) {
+    .offerings__list {
+      grid-template-columns: 1fr;
+    }
+    .offering,
+    .offering:nth-child(odd) {
+      border-right: 0;
+      padding: 1.5rem 0;
+    }
+    .offering:nth-child(even) {
+      padding-left: 0;
+    }
   }
 </style>

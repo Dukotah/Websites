@@ -1,40 +1,75 @@
 # Websites
 
-A collection of websites for local businesses, built with [Astro](https://astro.build)
-and deployed on [Vercel](https://vercel.com). Each business gets its own
-self-contained folder under `sites/` — they share nothing at runtime, so one
-site can never break another.
+A collection of independent websites for local businesses, built with
+[Astro](https://astro.build) and deployed on [Vercel](https://vercel.com). Each
+business gets its own self-contained folder under `sites/` — they share nothing
+at runtime, so one site can never break another, and each deploys as its own
+Vercel project.
 
 ## Repository layout
 
 ```
 websites/
-├── sites/                ← one folder per client website
-│   ├── _template/        ← starter you copy to begin a new site
-│   └── example-cafe/     ← a complete, working example to learn from
-├── shared/               ← assets/snippets you reuse across sites (optional)
+├── sites/                    ← one folder per client website
+│   ├── _template/            ← starter you copy to begin a new site
+│   ├── example-cafe/         ← a simple, complete example
+│   └── bodega-country-store/ ← a richer, photo-driven example
+├── scripts/                  ← repo helpers (scaffold a site, fetch photos)
+│   ├── new-site.mjs
+│   └── fetch-photos.mjs
+├── shared/                   ← optional assets/snippets you reuse (not auto-imported)
 └── docs/
-    ├── new-site-checklist.md   ← step-by-step for starting a new site
-    └── deploy-to-vercel.md     ← how to put a site live on Vercel
+    ├── new-site-checklist.md ← step-by-step for starting a new site
+    └── deploy-to-vercel.md   ← how to put a site live on Vercel
 ```
+
+## The sample sites
+
+| Site | Folder | Deploy |
+| --- | --- | --- |
+| The Corner Cup (example café) | `sites/example-cafe` | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dukotah/websites&root-directory=sites/example-cafe&project-name=example-cafe) |
+| Bodega Country Store | `sites/bodega-country-store` | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dukotah/websites&root-directory=sites/bodega-country-store&project-name=bodega-country-store) |
+
+> The **Deploy** buttons import the repo into Vercel with the site's **Root
+> Directory** pre-filled — the one setting that makes a monorepo work. See
+> [`docs/deploy-to-vercel.md`](docs/deploy-to-vercel.md) for the full walkthrough
+> and custom domains.
 
 ## Starting a new site
 
-The short version (full details in [`docs/new-site-checklist.md`](docs/new-site-checklist.md)):
+Use the scaffolding script (copies the template and wires up the name):
 
 ```bash
-# 1. Copy the template to a new folder named after the business
-cp -r sites/_template sites/joes-plumbing
+npm run new-site -- joes-plumbing "Joe's Plumbing"
 
-# 2. Install dependencies and start the dev server
 cd sites/joes-plumbing
 npm install
-npm run dev          # opens http://localhost:4321
+npm run dev          # http://localhost:4321
 ```
 
 Then edit **`src/config.ts`** — that one file holds the business name, phone,
 address, hours, colors, and services. Most of a new site is filled in there
-before you touch any layout.
+before you touch any layout. Full steps in
+[`docs/new-site-checklist.md`](docs/new-site-checklist.md).
+
+## Adding real photos
+
+Photos make or break these pages. Two ways to get them in:
+
+1. **Drop in the client's own photos** — put them in the site's `public/images/`
+   and point the image paths in `src/config.ts` at them. (Best for real clients.)
+2. **Pull freely-licensed photos** of the location from Wikimedia Commons:
+
+   ```bash
+   npm run fetch-photos -- bodega-country-store
+   ```
+
+   This reads `sites/<site>/photos.json`, downloads the images into the site's
+   `public/images/`, and writes a `CREDITS.md` with attribution. Then point the
+   `images` paths in `src/config.ts` at the downloaded files.
+
+> Note: the photo fetcher needs normal internet access — run it on your machine,
+> not inside a restricted CI/sandbox.
 
 ## Running a site locally
 
@@ -46,17 +81,10 @@ npm run build        # production build into dist/
 npm run preview      # preview the production build
 ```
 
-## Deploying to Vercel
-
-Each site is a **separate Vercel project pointing at this same repo**, with its
-**Root Directory** set to that site's folder (e.g. `sites/joes-plumbing`).
-Push to GitHub and Vercel rebuilds automatically. Full walkthrough in
-[`docs/deploy-to-vercel.md`](docs/deploy-to-vercel.md).
-
 ## Why this structure?
 
-- **One repo, many sites** — everything in one place, easy to manage with Claude.
-- **Each site is independent** — its own dependencies and build; no shared
-  breakage, and you can use a different stack for a site later if you ever need to.
+- **One repo, many sites** — everything in one place, easy to manage.
+- **Each site is independent** — its own dependencies, build, and Vercel
+  project; no shared breakage. You could even use a different stack for one site.
 - **Astro by default** — fast-loading and SEO-friendly, which is what local
-  businesses actually need to get found on Google. Free to host on Vercel.
+  businesses need to get found on Google. Free to host on Vercel.

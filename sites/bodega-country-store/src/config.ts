@@ -12,8 +12,6 @@
 export interface Offering {
   title: string;
   description: string;
-  /** Optional emoji or short icon shown above the title. */
-  icon?: string;
 }
 
 export interface BusinessHours {
@@ -26,7 +24,7 @@ export const config = {
   name: 'Bodega Country Store',
 
   /** One-line description used for SEO and the hero subtitle. */
-  tagline: "It's always sunny in Bodega — a historic country store on the Sonoma Coast.",
+  tagline: "A historic country store on the Sonoma Coast — since the 1850s.",
 
   /** Longer description for the <meta> description tag (SEO). ~150 chars. */
   seoDescription:
@@ -38,7 +36,7 @@ export const config = {
   area: 'Bodega, California',
 
   /** A short, memorable line shown as a badge in the hero. */
-  established: 'Serving the coast since the 1850s',
+  established: 'Est. 1850s',
 
   contact: {
     phone: '(707) 377-4080',
@@ -58,75 +56,93 @@ export const config = {
     heading: "It's always sunny in Bodega.",
     subheading:
       'A historic country store on the Sonoma Coast — fresh local produce, a stocked ' +
-      'deli, real coffee, good wine, and a little Hollywood history under one roof. ' +
-      'Stop in on your way to the beach.',
+      'deli, real coffee, good wine, and a little Hollywood history under one roof.',
     ctaText: 'Plan your visit',
     ctaHref: '#visit',
   },
 
-  /** Quick "what's inside" pills shown beneath the hero. */
-  highlights: ['Local Produce', 'Deli & Sandwiches', 'Taylor Lane Coffee', 'Cheese & Wine', 'Gifts & Antiques'],
+  /** Short list of what's inside, shown as understated meta in the hero. */
+  highlights: ['Deli & Sandwiches', 'Local Produce', 'Taylor Lane Coffee', 'Cheese & Wine'],
+
+  /**
+   * Photography. Point these at real photos in public/images/.
+   * Defaults are committed SVG placeholders (so the page looks finished before
+   * real photography is added) except `landmark`, which uses a freely-licensed
+   * Wikimedia photo of the actual filming location. Every photo falls back to a
+   * placeholder if it fails to load. Run `node scripts/fetch-photos.mjs
+   * bodega-country-store` to pull real, licensed Bodega photos locally.
+   */
+  images: {
+    hero: '/images/coast.svg',
+    heroAlt: 'The Sonoma Coast near Bodega, California.',
+
+    story: '/images/storefront.svg',
+    storyAlt: 'The historic Bodega Country Store on Bodega Highway.',
+
+    // Verified Wikimedia Commons photo of the Potter Schoolhouse — the building
+    // from "The Birds", a short walk from the store. Falls back to the SVG below.
+    landmark:
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Bodega_,_California,_USA_-_Village_of_Bodega_Bay_-_Potter_School_House_(17110_Bodega_Ln,_Bodega,_CA_94922)_-_panoramio.jpg',
+    landmarkAlt: 'The Potter Schoolhouse in Bodega, featured in Hitchcock’s “The Birds.”',
+    landmarkCredit: 'Photo: Wikimedia Commons / Panoramio (CC BY 3.0)',
+
+    placeholder: '/images/coast.svg',
+  },
 
   /** The "Our Story" section — supports multiple paragraphs. */
   about: {
-    heading: 'A landmark on the Sonoma Coast since the 1850s',
+    heading: 'A landmark on the coast since the 1850s',
     body: [
       'The Bodega Country Store has anchored the little town of Bodega since the 1850s, ' +
         'back when this was Bodega Corners and the building was the McCaughey Brothers ' +
         'Mercantile. More than a century and a half later, it still does what a country ' +
         'store should — feed the neighbors, welcome the travelers, and keep the lights on ' +
         'at the edge of the coast.',
-      'We stock the good stuff from right around here: produce from Andy’s, ' +
-        'Taylor Lane coffee, local cheese and dairy, Panizzera meats, Freestone Ranch beef, ' +
-        'plus plenty of organic, vegan, and gluten-free options. Grab a sandwich and a ' +
-        'bottle of wine and you’ve got the makings of a perfect coast-side picnic.',
+      'We stock the good stuff from right around here: produce from Andy’s, Taylor Lane ' +
+        'coffee, local cheese and dairy, Panizzera meats, and Freestone Ranch beef, plus ' +
+        'plenty of organic, vegan, and gluten-free options. Grab a sandwich and a bottle ' +
+        'of wine and you’ve got the makings of a perfect coast-side picnic.',
     ],
   },
 
-  /** What you'll find inside — shown as cards. */
+  /** What you'll find inside — shown as a clean editorial list. */
   offeringsHeading: "What's inside",
   offerings: [
     {
-      icon: '🥪',
       title: 'Deli & sandwiches',
       description:
         'Gourmet sandwiches and salads made to order — the perfect grab-and-go for the ' +
         'beach, the trail, or the drive up Highway 1.',
     },
     {
-      icon: '🥬',
       title: 'Local produce',
       description:
-        "Fresh fruit and vegetables from Andy’s Produce and nearby growers, with " +
-        'organic, vegan, and gluten-free options throughout the store.',
+        "Fresh fruit and vegetables from Andy’s Produce and nearby growers, with organic, " +
+        'vegan, and gluten-free options throughout the store.',
     },
     {
-      icon: '☕',
       title: 'Taylor Lane coffee',
       description:
         'Locally roasted Taylor Lane coffee to go — exactly what you need before a foggy ' +
         'morning on the Sonoma Coast.',
     },
     {
-      icon: '🧀',
       title: 'Cheese & dairy',
       description:
         'A rotating selection of local cheeses and dairy, ready to pair with a bottle ' +
         'from our wine shelf.',
     },
     {
-      icon: '🍷',
       title: 'Beer & wine',
       description:
         'Sonoma County wines and local brews — pick up a bottle for tonight or a case ' +
         'for the weekend.',
     },
     {
-      icon: '🎁',
-      title: 'Gifts & antiques',
+      title: 'Gifts & sundries',
       description:
-        'Greeting cards, gifts, and country-store treasures you won’t find anywhere ' +
-        'else on the coast.',
+        'Greeting cards, gifts, and the everyday country-store basics you forgot to ' +
+        'pack for the coast.',
     },
   ] satisfies Offering[],
 
@@ -135,10 +151,9 @@ export const config = {
     eyebrow: 'A piece of film history',
     heading: 'You may recognize the place',
     body:
-      'Bodega and the country store sit at the heart of Alfred Hitchcock’s 1963 ' +
+      'Bodega and its little schoolhouse sit at the heart of Alfred Hitchcock’s 1963 ' +
       'classic, "The Birds." Film fans make the pilgrimage from all over the world — ' +
-      'and leave with a sandwich, a souvenir, and a story. Come see the landmark for ' +
-      'yourself.',
+      'and leave with a sandwich, a souvenir, and a story. Come see it for yourself.',
     note: 'Featured in Alfred Hitchcock’s "The Birds" (1963)',
   },
 
@@ -152,11 +167,11 @@ export const config = {
 
   /**
    * Brand colors. Change these two and the whole site re-themes.
-   * Warm "always sunny" gold against the cool Sonoma coast.
+   * A muted coastal palette — warm gold against deep evergreen.
    */
   theme: {
-    brand: '#e08a1e', // sunny coastal gold
-    brandDark: '#b86c0c', // hover states, darker accents
+    brand: '#c97b1f', // muted coastal gold
+    brandDark: '#1f3b34', // deep evergreen — headings, dark sections
   },
 };
 

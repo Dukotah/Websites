@@ -1,74 +1,64 @@
 ---
 import { config } from '../config';
+const { images } = config;
 ---
 
 <section class="section" id="story">
-  <div class="container about">
-    <div class="about__intro">
+  <div class="container story">
+    <figure class="story__media">
+      <img
+        src={images.story}
+        alt={images.storyAlt}
+        loading="lazy"
+        onerror={`this.onerror=null;this.src='${images.placeholder}'`}
+      />
+    </figure>
+
+    <div class="story__copy">
       <p class="eyebrow">Our story</p>
       <h2>{config.about.heading}</h2>
-    </div>
-    <div class="about__body">
       {config.about.body.map((para) => <p>{para}</p>)}
-      <div class="about__stats">
-        <div class="stat">
-          <span class="stat__num">1850s</span>
-          <span class="stat__label">Serving the coast</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num">100%</span>
-          <span class="stat__label">Local at heart</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num">Daily</span>
-          <span class="stat__label">Open every day</span>
-        </div>
-      </div>
+      <p class="story__sign">— The Bodega Country Store</p>
     </div>
   </div>
 </section>
 
 <style>
-  .about {
+  .story {
     display: grid;
-    gap: 1.5rem 4rem;
-    grid-template-columns: 1fr 1.45fr;
-    align-items: start;
+    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
-  .about__intro h2 {
-    font-family: var(--serif);
+  .story__media {
+    margin: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-alt);
+    aspect-ratio: 4 / 3;
+    box-shadow: var(--shadow);
   }
-  .about__body p {
-    font-size: 1.12rem;
+  .story__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .story__copy p:not(.eyebrow) {
     color: var(--text-muted);
+    font-size: 1.08rem;
   }
-  .about__stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    margin-top: 2rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--border);
-  }
-  .stat {
-    display: flex;
-    flex-direction: column;
-  }
-  .stat__num {
+  .story__sign {
     font-family: var(--serif);
-    font-size: 1.9rem;
-    font-weight: 800;
-    color: var(--brand-dark);
-    line-height: 1;
+    font-style: italic;
+    color: var(--brand-dark) !important;
+    margin-top: 1.25rem;
   }
-  .stat__label {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-top: 0.35rem;
-  }
-  @media (max-width: 760px) {
-    .about {
+  @media (max-width: 800px) {
+    .story {
       grid-template-columns: 1fr;
+    }
+    .story__media {
+      order: -1;
     }
   }
 </style>

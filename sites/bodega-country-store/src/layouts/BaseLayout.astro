@@ -41,6 +41,9 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- The landmark photo is served from Wikimedia; warm up the connection. -->
+    <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
+    <link rel="dns-prefetch" href="https://commons.wikimedia.org" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
 

@@ -5,12 +5,15 @@ A repeatable process for taking a local business from "no/bad website" to live.
 ## 1. Set up the project
 
 ```bash
-# From the repo root. Name the folder after the business (lowercase, dashes).
-cp -r sites/_template sites/joes-plumbing
+# From the repo root. Scaffolds the folder and sets the business name.
+npm run new-site -- joes-plumbing "Joe's Plumbing"
+
 cd sites/joes-plumbing
 npm install
 npm run dev        # preview at http://localhost:4321
 ```
+
+(Prefer to do it by hand? `cp -r sites/_template sites/joes-plumbing` works too.)
 
 ## 2. Gather the business details
 
@@ -43,7 +46,11 @@ This one file holds nearly all the content. Update:
 ## 4. Polish
 
 - [ ] Replace `public/favicon.svg` with the client's logo/initial
-- [ ] Add real photos if you have them
+- [ ] Add real photos — drop the client's own into `public/images/`, or pull
+      freely-licensed ones of their location:
+      `npm run fetch-photos -- joes-plumbing` (needs a `photos.json`; see
+      `sites/bodega-country-store/photos.json` for an example), then point the
+      image paths in `src/config.ts` at them.
 - [ ] Read the page top to bottom on desktop and mobile (browser dev tools)
 - [ ] Check every link and the phone "tap to call" works
 - [ ] Set the real domain in `astro.config.mjs` (`site:`)
