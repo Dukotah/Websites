@@ -1,0 +1,61 @@
+---
+import { config } from '../config';
+const { landmark } = config;
+---
+
+<section class="landmark" id="landmark">
+  <div class="container landmark__inner">
+    <div class="landmark__copy">
+      <p class="eyebrow eyebrow--light">{landmark.eyebrow}</p>
+      <h2>{landmark.heading}</h2>
+      <p class="landmark__body">{landmark.body}</p>
+      <p class="landmark__note">
+        <span class="landmark__bird" aria-hidden="true">🐦‍⬛</span>
+        {landmark.note}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .landmark {
+    position: relative;
+    background:
+      radial-gradient(90% 120% at 90% 10%, color-mix(in srgb, var(--brand) 30%, transparent), transparent 60%),
+      var(--ink);
+    color: #fff;
+    overflow: hidden;
+  }
+  .landmark__inner {
+    padding-block: clamp(3.5rem, 9vw, 6.5rem);
+  }
+  .landmark__copy {
+    max-width: 56ch;
+  }
+  .eyebrow--light {
+    color: color-mix(in srgb, var(--brand) 60%, #fff);
+  }
+  .landmark h2 {
+    font-family: var(--serif);
+    color: #fff;
+  }
+  .landmark__body {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.82);
+  }
+  .landmark__note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 1.25rem 0 0;
+    padding: 0.55rem 1.1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .landmark__bird {
+    font-size: 1.2rem;
+  }
+</style>

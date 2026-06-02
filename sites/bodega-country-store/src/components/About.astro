@@ -1,0 +1,74 @@
+---
+import { config } from '../config';
+---
+
+<section class="section" id="story">
+  <div class="container about">
+    <div class="about__intro">
+      <p class="eyebrow">Our story</p>
+      <h2>{config.about.heading}</h2>
+    </div>
+    <div class="about__body">
+      {config.about.body.map((para) => <p>{para}</p>)}
+      <div class="about__stats">
+        <div class="stat">
+          <span class="stat__num">1850s</span>
+          <span class="stat__label">Serving the coast</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">100%</span>
+          <span class="stat__label">Local at heart</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">Daily</span>
+          <span class="stat__label">Open every day</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    gap: 1.5rem 4rem;
+    grid-template-columns: 1fr 1.45fr;
+    align-items: start;
+  }
+  .about__intro h2 {
+    font-family: var(--serif);
+  }
+  .about__body p {
+    font-size: 1.12rem;
+    color: var(--text-muted);
+  }
+  .about__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .stat__num {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--brand-dark);
+    line-height: 1;
+  }
+  .stat__label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+  }
+  @media (max-width: 760px) {
+    .about {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
