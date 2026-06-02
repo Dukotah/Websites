@@ -1,11 +1,11 @@
 # Site template
 
-A single-page Astro starter for a local business. Copy this whole folder to
-start a new site:
+A polished, photo-driven single-page Astro starter for a local business.
+Don't copy this by hand — scaffold from the repo root:
 
 ```bash
-cp -r sites/_template sites/<business-name>
-cd sites/<business-name>
+npm run new-site -- <business-slug> "Business Name"
+cd sites/<business-slug>
 npm install
 npm run dev      # http://localhost:4321
 ```
@@ -13,11 +13,14 @@ npm run dev      # http://localhost:4321
 ## What to edit
 
 1. **`src/config.ts`** — start here. Business name, contact info, hours,
-   services, and brand colors all live in this one file. Most of a new site is
-   done by filling this in.
-2. **`public/favicon.svg`** — swap in the client's logo/initial.
-3. **`astro.config.mjs`** — set `site` to the real domain before going live.
-4. The components in `src/components/` if you need to change layout or add
+   services, photos, and brand colors all live in this one file. Most of a new
+   site is done by filling this in.
+2. **`public/images/`** — drop in real photos and point `images` in
+   `config.ts` at them (or run `npm run fetch-photos -- <business-slug>`).
+   Until then, committed SVG placeholders keep the page looking finished.
+3. **`public/favicon.svg`** — swap in the client's logo/initial.
+4. **`astro.config.mjs`** — set `site` to the real domain before going live.
+5. The components in `src/components/` if you need to change layout or add
    sections.
 
 ## Structure

@@ -2,99 +2,166 @@
 import { config } from '../config';
 
 const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
-const mapHref = `https://maps.google.com/?q=${encodeURIComponent(config.contact.address)}`;
+const mapQuery = encodeURIComponent(`${config.name}, ${config.contact.address}`);
+const mapHref = `https://maps.google.com/?q=${mapQuery}`;
+const mapEmbed = `https://maps.google.com/maps?q=${mapQuery}&output=embed`;
 ---
 
 <section class="section" id="contact">
-  <div class="container contact">
-    <div>
+  <div class="container visit">
+    <div class="visit__info">
       <p class="eyebrow">Get in touch</p>
-      <h2>Come see us or give us a call</h2>
-      <ul class="contact__list">
+      <h2>Come see us</h2>
+      <p class="visit__lead">
+        Stop by, give us a call, or send a note — we’d love to help.
+      </p>
+
+      <ul class="visit__list">
         <li>
-          <span class="contact__label">Phone</span>
+          <span class="visit__label">Address</span>
+          <a href={mapHref} target="_blank" rel="noopener">{config.contact.address}</a>
+        </li>
+        <li>
+          <span class="visit__label">Phone</span>
           <a href={telHref}>{config.contact.phone}</a>
         </li>
         <li>
-          <span class="contact__label">Email</span>
+          <span class="visit__label">Email</span>
           <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>
         </li>
-        <li>
-          <span class="contact__label">Address</span>
-          <a href={mapHref} target="_blank" rel="noopener">{config.contact.address}</a>
-        </li>
       </ul>
+
+      <div class="visit__hours">
+        <h3>Hours</h3>
+        <table>
+          <tbody>
+            {
+              config.hours.map((row) => (
+                <tr>
+                  <th scope="row">{row.day}</th>
+                  <td>{row.hours}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        {config.hoursNote && <p class="visit__note">{config.hoursNote}</p>}
+      </div>
+
+      <a href={mapHref} target="_blank" rel="noopener" class="btn visit__cta">Get directions</a>
     </div>
 
-    <div class="contact__hours">
-      <h3>Opening hours</h3>
-      <table>
-        <tbody>
-          {
-            config.hours.map((row) => (
-              <tr>
-                <th scope="row">{row.day}</th>
-                <td>{row.hours}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+    <div class="visit__map">
+      <iframe
+        src={mapEmbed}
+        title={`Map to ${config.name}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
     </div>
   </div>
 </section>
 
 <style>
-  .contact {
+  .visit {
     display: grid;
-    gap: 2.5rem;
-    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    grid-template-columns: 1fr 1fr;
     align-items: start;
   }
-  .contact__list {
+  .visit__info h2 {
+    font-family: var(--serif);
+  }
+  .visit__lead {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 46ch;
+  }
+  .visit__list {
     list-style: none;
     padding: 0;
-    margin: 1.5rem 0 0;
+    margin: 1.75rem 0 0;
     display: grid;
-    gap: 1rem;
+    gap: 1.1rem;
   }
-  .contact__label {
+  .visit__label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     color: var(--text-muted);
+    margin-bottom: 0.15rem;
   }
-  .contact__list a {
+  .visit__list a {
     font-size: 1.1rem;
     font-weight: 600;
+    color: var(--ink);
   }
-  .contact__hours {
+  .visit__list a:hover {
+    color: var(--brand-dark);
+  }
+  .visit__hours {
+    margin-top: 2rem;
     background: var(--bg-alt);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.5rem;
+    padding: 1.5rem 1.75rem;
   }
-  .contact__hours h3 {
+  .visit__hours h3 {
     margin-top: 0;
+    margin-bottom: 0.5rem;
   }
-  .contact__hours table {
+  .visit__hours table {
     width: 100%;
     border-collapse: collapse;
   }
-  .contact__hours th {
+  .visit__hours th {
     text-align: left;
-    font-weight: 600;
-    padding: 0.4rem 0;
+    font-weight: 700;
+    padding: 0.35rem 0;
   }
-  .contact__hours td {
+  .visit__hours td {
     text-align: right;
-    color: var(--text-muted);
-    padding: 0.4rem 0;
+    color: var(--brand-dark);
+    font-weight: 600;
+    padding: 0.35rem 0;
   }
-  @media (max-width: 720px) {
-    .contact {
+  .visit__note {
+    margin: 0.75rem 0 0;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+  .visit__cta {
+    margin-top: 1.75rem;
+  }
+  .visit__map {
+    position: sticky;
+    top: 90px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    min-height: 420px;
+    height: 100%;
+  }
+  .visit__map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    border: 0;
+    display: block;
+  }
+  @media (max-width: 820px) {
+    .visit {
       grid-template-columns: 1fr;
+    }
+    .visit__map {
+      position: static;
+      min-height: 320px;
+    }
+    .visit__map iframe {
+      min-height: 320px;
     }
   }
 </style>

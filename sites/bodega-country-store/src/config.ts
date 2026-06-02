@@ -73,14 +73,20 @@ export const config = {
    * bodega-country-store` to pull real, licensed Bodega photos locally.
    */
   images: {
-    hero: '/images/coast.svg',
-    heroAlt: 'The Sonoma Coast near Bodega, California.',
+    // Verified, freely-licensed Wikimedia Commons photos of Bodega. Each one
+    // falls back to a committed SVG illustration if it can't load. To use your
+    // own photos instead, drop them in public/images/ and swap the paths.
+    hero:
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Bodega_Harbor_from_Bodega_Head.jpg',
+    heroAlt: 'Bodega Harbor on the Sonoma Coast, seen from Bodega Head.',
 
-    story: '/images/storefront.svg',
-    storyAlt: 'The historic Bodega Country Store on Bodega Highway.',
+    story:
+      'https://commons.wikimedia.org/wiki/Special:FilePath/St._Teresa_of_Avila,_Bodega_,_CA.JPG',
+    storyAlt: 'St. Teresa of Avila Church, a Bodega landmark since 1860.',
+    storyCaption: 'St. Teresa of Avila Church — a Bodega landmark since 1860.',
+    storyCredit: 'Photo: Wikimedia Commons (CC BY-SA)',
 
-    // Verified Wikimedia Commons photo of the Potter Schoolhouse — the building
-    // from "The Birds", a short walk from the store. Falls back to the SVG below.
+    // The Potter Schoolhouse — the building from "The Birds", steps from the store.
     landmark:
       'https://commons.wikimedia.org/wiki/Special:FilePath/Bodega_,_California,_USA_-_Village_of_Bodega_Bay_-_Potter_School_House_(17110_Bodega_Ln,_Bodega,_CA_94922)_-_panoramio.jpg',
     landmarkAlt: 'The Potter Schoolhouse in Bodega, featured in Hitchcock’s “The Birds.”',

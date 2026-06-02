@@ -1,41 +1,112 @@
 ---
 import { config } from '../config';
+const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const { images } = config;
 ---
 
 <section class="hero" id="top">
+  <div class="hero__media">
+    <img
+      src={images.hero}
+      alt={images.heroAlt}
+      onerror={`this.onerror=null;this.src='${images.placeholder}'`}
+      fetchpriority="high"
+    />
+    <span class="hero__scrim" aria-hidden="true"></span>
+  </div>
+
   <div class="container hero__inner">
-    <p class="eyebrow">{config.area}</p>
-    <h1>{config.hero.heading}</h1>
+    <p class="hero__eyebrow">{[config.established, config.area].filter(Boolean).join(' · ')}</p>
+    <h1 class="hero__title">{config.hero.heading}</h1>
     <p class="hero__sub">{config.hero.subheading}</p>
+
     <div class="hero__actions">
       <a href={config.hero.ctaHref} class="btn">{config.hero.ctaText}</a>
-      <a href={`tel:${config.contact.phone.replace(/[^+\d]/g, '')}`} class="btn btn--ghost">
-        {config.contact.phone}
-      </a>
+      <a href={telHref} class="hero__phone">{config.contact.phone}</a>
     </div>
+
+    <p class="hero__meta">
+      {config.highlights.join('   ·   ')}
+    </p>
   </div>
 </section>
 
 <style>
   .hero {
-    background:
-      radial-gradient(1200px 400px at 70% -10%, color-mix(in srgb, var(--brand) 14%, transparent), transparent),
-      var(--bg-alt);
-    border-bottom: 1px solid var(--border);
+    position: relative;
+    color: #fff;
+    isolation: isolate;
+    min-height: min(88vh, 760px);
+    display: flex;
+    align-items: flex-end;
+  }
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--brand-dark);
+  }
+  .hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 25, 22, 0.25) 0%,
+      rgba(20, 25, 22, 0.35) 45%,
+      rgba(20, 25, 22, 0.82) 100%
+    );
   }
   .hero__inner {
-    padding-block: clamp(3.5rem, 10vw, 7rem);
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
     max-width: 760px;
   }
+  .hero__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: color-mix(in srgb, var(--brand) 55%, #fff);
+    margin-bottom: 1rem;
+  }
+  .hero__title {
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.25);
+  }
   .hero__sub {
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    max-width: 60ch;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 56ch;
+    margin-bottom: 1.75rem;
   }
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
+    align-items: center;
+    gap: 1.25rem 1.5rem;
+  }
+  .hero__phone {
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 2px;
+  }
+  .hero__phone:hover {
+    text-decoration: none;
+    border-color: #fff;
+  }
+  .hero__meta {
+    margin: 2rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.82);
   }
 </style>

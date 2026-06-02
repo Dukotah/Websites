@@ -48,8 +48,12 @@ npm run dev          # http://localhost:4321
 ```
 
 Then edit **`src/config.ts`** — that one file holds the business name, phone,
-address, hours, colors, and services. Most of a new site is filled in there
-before you touch any layout. Full steps in
+address, hours, colors, services, and photo paths. Most of a new site is filled
+in there before you touch any layout.
+
+New sites start from the same polished, photo-driven design as the
+Bodega example. For the fast start-to-live loop, follow the
+[**launch playbook**](docs/launch-playbook.md); for the detailed checklist see
 [`docs/new-site-checklist.md`](docs/new-site-checklist.md).
 
 ## Adding real photos

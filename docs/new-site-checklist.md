@@ -33,15 +33,18 @@ Before writing anything, collect:
 
 This one file holds nearly all the content. Update:
 
-- [ ] `name`, `tagline`, `area`
+- [ ] `name`, `tagline`, `area`, `established`
 - [ ] `seoDescription` (mention the town — helps local search)
 - [ ] `contact` (phone / email / address)
 - [ ] `social` links (leave `''` to hide one)
-- [ ] `hero` heading + call-to-action
-- [ ] `about` story
-- [ ] `services` cards
-- [ ] `hours`
+- [ ] `hero` heading + call-to-action, and `highlights`
+- [ ] `images` (point at real photos, or leave the placeholders)
+- [ ] `about` story (`body` is an array of paragraphs)
+- [ ] `services` (title + description each) and `servicesHeading`
+- [ ] `hours` and optional `hoursNote`
 - [ ] `theme.brand` / `theme.brandDark` colors
+
+> For the fast end-to-end loop, see [`launch-playbook.md`](launch-playbook.md).
 
 ## 4. Polish
 

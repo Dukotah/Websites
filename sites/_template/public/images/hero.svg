@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder hero image">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ccd6dd"/>
+      <stop offset="1" stop-color="#aebcc6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="1230" cy="300" r="110" fill="#e9eef1" opacity="0.7"/>
+  <path d="M0,640 C300,580 560,640 880,610 C1180,582 1380,640 1600,600 L1600,1000 L0,1000 Z" fill="#8ba0a8"/>
+  <path d="M0,760 C360,700 620,770 920,735 C1220,700 1420,775 1600,740 L1600,1000 L0,1000 Z" fill="#5f7480"/>
+  <g fill="#42525b">
+    <rect x="690" y="650" width="220" height="160"/>
+    <polygon points="690,650 800,590 910,650"/>
+  </g>
+  <text x="800" y="930" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#e9eef1" opacity="0.65">Add a hero photo in public/images/</text>
+</svg>
