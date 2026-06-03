@@ -5,6 +5,7 @@
   "description": "A monorepo of independent Astro websites for local businesses, deployed on Vercel.",
   "scripts": {
     "new-site": "node scripts/new-site.mjs",
-    "fetch-photos": "node scripts/fetch-photos.mjs"
+    "fetch-photos": "node scripts/fetch-photos.mjs",
+    "generate-prospects": "node scripts/generate-prospects.mjs"
   }
 }

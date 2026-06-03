@@ -29,6 +29,7 @@ websites/
 | --- | --- | --- |
 | The Corner Cup (example café) | `sites/example-cafe` | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dukotah/websites&root-directory=sites/example-cafe&project-name=example-cafe) |
 | Bodega Country Store | `sites/bodega-country-store` | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dukotah/websites&root-directory=sites/bodega-country-store&project-name=bodega-country-store) |
+| Demo gallery (all outreach prospects) | `sites/demo-gallery` | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dukotah/websites&root-directory=sites/demo-gallery&project-name=demo-gallery) |
 
 > The **Deploy** buttons import the repo into Vercel with the site's **Root
 > Directory** pre-filled — the one setting that makes a monorepo work. See
@@ -55,6 +56,22 @@ New sites start from the same polished, photo-driven design as the
 Bodega example. For the fast start-to-live loop, follow the
 [**launch playbook**](docs/launch-playbook.md); for the detailed checklist see
 [`docs/new-site-checklist.md`](docs/new-site-checklist.md).
+
+## Automated outreach demos
+
+To build many demo sites at once from a CRM export — one shareable link per
+prospect, for cold outreach — use the **demo gallery** pipeline:
+
+```bash
+npm run generate-prospects -- data/prospects.csv
+```
+
+This renders every business as its own page at `demos.yourdomain.com/p/<slug>`
+inside one app (`sites/demo-gallery/`), so a single deploy hosts all of them.
+**No API keys required** — the agent writes the copy, and photos come free from
+the business's own online images → Wikimedia Commons → a built-in category
+library. When a prospect converts, graduate them to a standalone site with
+`npm run new-site`. Full walkthrough: [`docs/outreach-pipeline.md`](docs/outreach-pipeline.md).
 
 ## Adding real photos
 

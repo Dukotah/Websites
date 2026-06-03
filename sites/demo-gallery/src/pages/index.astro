@@ -1,0 +1,103 @@
+---
+import '../styles/global.css';
+import type { ProspectConfig } from '../types';
+
+// Internal index of every generated demo — this is YOUR dashboard, not a
+// prospect-facing page. Each card links to that prospect's /p/<slug> demo.
+const modules = import.meta.glob<ProspectConfig>('../data/prospects/*.json', {
+  eager: true,
+  import: 'default',
+});
+
+const prospects = Object.entries(modules)
+  .map(([path, config]) => ({
+    slug: path.split('/').pop()!.replace(/\.json$/, ''),
+    config,
+  }))
+  .sort((a, b) => a.config.name.localeCompare(b.config.name));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Demo gallery — {prospects.length} prospect sites</title>
+  </head>
+  <body>
+    <main class="container" style="padding-block: 3rem;">
+      <p class="eyebrow">Outreach demos</p>
+      <h1>{prospects.length} prospect {prospects.length === 1 ? 'site' : 'sites'}</h1>
+      <p style="color: var(--text-muted); max-width: 60ch;">
+        Each card is a generated demo you can drop into an outreach email. This
+        index page is for you — add <code>noindex</code> stays on it.
+      </p>
+
+      <ul class="grid">
+        {
+          prospects.map(({ slug, config }) => (
+            <li class="card">
+              <span class="card__swatch" style={`background:${config.theme.brand}`} />
+              <div>
+                <h2>{config.name}</h2>
+                <p class="card__meta">{config.area}</p>
+                <a href={`/p/${slug}`}>View demo →</a>
+                <code class="card__link">/p/{slug}</code>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        prospects.length === 0 && (
+          <p style="color: var(--text-muted);">
+            No prospects yet. Run <code>npm run generate-prospects</code> from the
+            repo root to create some from a CSV.
+          </p>
+        )
+      }
+    </main>
+
+    <style>
+      .grid {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0 0;
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      }
+      .card {
+        display: flex;
+        gap: 1rem;
+        padding: 1.25rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--bg-alt);
+      }
+      .card__swatch {
+        flex: 0 0 auto;
+        width: 8px;
+        border-radius: 999px;
+      }
+      .card h2 {
+        margin: 0 0 0.2rem;
+        font-size: 1.15rem;
+      }
+      .card__meta {
+        margin: 0 0 0.6rem;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+      .card__link {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+      }
+    </style>
+  </body>
+</html>

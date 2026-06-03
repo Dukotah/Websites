@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import type { ProspectConfig } from '../types';
+
+interface Props {
+  config: ProspectConfig;
+  title?: string;
+  description?: string;
+}
+
+const { config } = Astro.props;
+const title = Astro.props.title ?? config.name;
+const description = Astro.props.description ?? config.seoDescription;
+
+const fullTitle =
+  title === config.name ? `${config.name} — ${config.area}` : `${title} | ${config.name}`;
+
+// Structured data so the business shows up nicely in local Google searches.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: config.name,
+  description: config.seoDescription,
+  telephone: config.contact.phone,
+  email: config.contact.email,
+  address: config.contact.address,
+  areaServed: config.area,
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph (link previews on social / messaging) -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="business.business" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="theme-color" content={config.theme.brand} />
+
+    <!-- Brand colors injected per prospect -->
+    <style
+      is:inline
+      set:html={`:root{--brand:${config.theme.brand};--brand-dark:${config.theme.brandDark};}`}
+    ></style>
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
