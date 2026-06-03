@@ -2,12 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Hero from '../../components/Hero.astro';
+import HeroSplit from '../../components/HeroSplit.astro';
+import HeroEditorial from '../../components/HeroEditorial.astro';
 import About from '../../components/About.astro';
 import Services from '../../components/Services.astro';
 import Sections from '../../components/Sections.astro';
 import Contact from '../../components/Contact.astro';
 import Footer from '../../components/Footer.astro';
-import type { Prospect, ProspectConfig } from '../../types';
+import type { ProspectConfig } from '../../types';
 
 // One static page per prospect JSON in src/data/prospects/.
 // Add a file there (e.g. via the generator) and a new /p/<slug> appears.
@@ -24,15 +26,35 @@ export async function getStaticPaths() {
 }
 
 const { config } = Astro.props as { config: ProspectConfig };
+const layout = config.layout ?? 'classic';
+
+// The hero silhouette varies by layout…
+const HeroComponent = layout === 'split' ? HeroSplit : layout === 'editorial' ? HeroEditorial : Hero;
+
+// …and so does the order of the body blocks between hero and contact.
+const ORDER: Record<string, Array<'about' | 'services' | 'sections'>> = {
+  classic: ['about', 'services', 'sections'],
+  split: ['services', 'about', 'sections'],
+  editorial: ['sections', 'about', 'services'],
+};
+const order = ORDER[layout] ?? ORDER.classic;
 ---
 
 <BaseLayout config={config}>
   <Header config={config} />
   <main>
-    <Hero config={config} />
-    <About config={config} />
-    <Services config={config} />
-    <Sections sections={config.sections} />
+    <HeroComponent config={config} />
+    {
+      order.map((block) =>
+        block === 'about' ? (
+          <About config={config} />
+        ) : block === 'services' ? (
+          <Services config={config} />
+        ) : (
+          <Sections sections={config.sections} />
+        ),
+      )
+    }
     <Contact config={config} />
   </main>
   <Footer config={config} />

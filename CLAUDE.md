@@ -22,10 +22,21 @@ find photos, and launch them so the user gets live demo links to email.
 No keys, no external setup beyond the one-time Vercel connection. Do this:
 
 1. **Locate the CSV.** Save/confirm it under `data/` (e.g. `data/leads.csv`).
-   Required header: `name`; optional: `category, city, state, phone, email,
-   address, established`. Sparse rows are fine. Known `category` values (drive
-   theme + fallback art): `towing, cafe, plumbing, salon, landscaping,
-   auto-repair`; anything else uses a neutral default.
+   Required header: `name`; optional: `website` (or `existing_website`),
+   `category, city, state, phone, email, address, established`. **The `website`
+   column is the single biggest quality lever** — the generator scrapes it for
+   real facts and the business's own photos. Sparse rows are fine. Known
+   `category` values (drive theme + fallback art): `towing, cafe, plumbing,
+   salon, landscaping, auto-repair`; anything else uses a neutral default.
+
+   > The generator now does the research step for you when a `website` is given:
+   > `scripts/lib/scrape-site.mjs` pulls the real name, phone, address, hours,
+   > about-story, services, reviews, and photos off their existing site, and
+   > `scripts/lib/images.mjs` downloads their actual photos (logo/icon-filtered).
+   > Your job shifts from "write everything" to "verify the scrape + polish the
+   > prose the script couldn't fully write." Sites lacking research or real
+   > photos are auto-flagged `needs-review` on the dashboard — never send those
+   > as-is.
 
 2. **RESEARCH each business first — this is the job, not an optional polish.**
    Every site must feel custom and be *accurate*. Generic template copy is a
@@ -52,20 +63,23 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
    > `curl` to image hosts is blocked in this environment, note it and rely on
    > tiers 2–3. Never invent that a photo is theirs when it isn't.
 
-4. **Build each site — aim for bespoke, not a filled-in template.** Write each
-   `sites/demo-gallery/src/data/prospects/<slug>.json` directly (schema =
-   `src/types.ts`). Every site should:
-   - **Pick a `design` kit** that fits the business: `bold` (Oswald — towing,
-     auto, trades), `elegant` (Fraunces — winery, cafe, salon, boutique), or
-     `clean` (Inter — modern). This alone makes a winery look unlike a tow shop.
-   - **Compose 4–6 `sections`** from the research — `stats`, `steps`,
-     `testimonials` (use REAL review quotes), `list` (menu / wine list /
-     services), `faq`, `cta`. Different businesses → different section sets.
-     A flat hero+about+services page is the old, cookie-cutter bar — don't ship it.
-   - Set a `theme` (brand + brandDark) and write all copy from research.
-   See `the-hole-thing.json` (bold) and `honey-hole-winery.json` (elegant) for
-   the quality bar. `npm run generate-prospects` can bulk-scaffold structure, but
-   then you MUST deepen each one — never leave template copy or a sectionless site.
+4. **Build each site — bespoke, not a filled-in template.** Two paths, same bar:
+   - **Bulk scaffold (research-driven):** `npm run generate-prospects -- data/<file>.csv`.
+     With a `website` column it scrapes each business's real facts + photos,
+     writes copy from them, varies the `layout`, emits depth `sections`, and
+     flags weak sites `needs-review`.
+   - **Custom:** write `sites/demo-gallery/src/data/prospects/<slug>.json`
+     directly (schema = `src/types.ts`).
+   Either way, every site must:
+   - **Pick a `design` kit** (font): `bold` (Oswald — towing/auto/trades),
+     `elegant` (Fraunces — winery/cafe/salon), or `clean` (Inter).
+   - **Pick a `layout`** (hero + section order): `classic` / `split` / `editorial`.
+   - **Compose 4–6 `sections`** from research — `stats`, `steps`, `testimonials`
+     (REAL quotes), `list` (menu / wine list / services), `faq`, `cta`.
+   - Set `theme` and write all copy from research.
+   Then open the dashboard and fix every `needs-review`. See `the-hole-thing.json`
+   (bold) and `honey-hole-winery.json` (elegant) for the bar. Never ship template
+   copy or a sectionless page.
 
 5. **Sanity-check the build:**
    ```bash

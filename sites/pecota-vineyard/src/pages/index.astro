@@ -1,0 +1,278 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WineCard from '../components/WineCard.astro';
+import { config } from '../config';
+import hero from '../assets/images/grapes-spring.jpg';
+import jeffRenee from '../assets/images/jeff-renee.jpg';
+import awards from '../assets/images/award-winning.jpg';
+
+const featured = config.wines.slice(0, 4);
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__bg">
+      <Image src={hero} alt="Backlit grapevine leaves in spring at Pecota Vineyard" widths={[768, 1280, 1920]} sizes="100vw" loading="eager" fetchpriority="high" />
+    </div>
+    <div class="container hero__inner reveal">
+      <span class="kicker hero__kicker">{config.hero.kicker}</span>
+      <h1>{config.hero.heading}</h1>
+      <p class="hero__sub">{config.hero.subheading}</p>
+      <div class="hero__actions">
+        <a href={config.hero.ctaHref} class="btn">{config.hero.ctaText}</a>
+        <a href="/story/" class="btn btn--on-ink">Our story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="section">
+    <div class="container intro">
+      <div>
+        <span class="kicker">A family micro-winery</span>
+        <h2>Two acres in the Sierra foothills</h2>
+      </div>
+      <div class="intro__body">
+        <p>{config.story.paragraphs[0]}</p>
+        <p>Estate grown and bottled in Shingle Springs, El Dorado County — just {`275–300`} cases a year, each one handcrafted with patience and care.</p>
+        <a href="/story/" class="textlink">Read our story →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sustainability -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+        <span class="kicker">Sustainably grown</span>
+        <h2>{config.sustainability.heading}</h2>
+        <p>{config.sustainability.body}</p>
+      </div>
+      <div class="grid-4">
+        {config.sustainability.points.map((pt) => (
+          <div class="feature">
+            <h3>{pt.title}</h3>
+            <p>{pt.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured wines -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head section__head--row">
+        <div>
+          <span class="kicker">From our cellar</span>
+          <h2>A few of our wines</h2>
+        </div>
+        <a href="/wines/" class="btn btn--ghost">See all wines</a>
+      </div>
+      <div class="grid-4">
+        {featured.map((wine) => <WineCard wine={wine} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Story teaser -->
+  <section class="section section--alt">
+    <div class="container split">
+      <div class="split__media reveal">
+        <Image src={jeffRenee} alt="Jeff and Renée Pecota toasting with a glass of wine in the vineyard" widths={[480, 760, 1000]} sizes="(max-width:900px) 100vw, 520px" loading="lazy" />
+      </div>
+      <div class="split__copy">
+        <span class="kicker">Meet the makers</span>
+        <h2>{config.story.heading}</h2>
+        <p>{config.story.paragraphs[1]}</p>
+        <p class="split__sign">{config.story.signoff}</p>
+        <a href="/story/" class="btn btn--ghost">More about us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards band -->
+  <section class="section section--ink awards">
+    <div class="container split">
+      <div class="split__copy">
+        <span class="kicker">Recognized</span>
+        <h2>Award-winning, small-batch wines</h2>
+        <p>Our wines have earned medals at California competitions — not bad for two acres and a self-taught winemaker. Taste the difference that hands-on, sustainable farming makes.</p>
+        <a href="/visit/" class="btn btn--on-ink">How to buy</a>
+      </div>
+      <div class="split__media reveal">
+        <Image src={awards} alt="A lineup of award-winning Pecota Vineyard bottles with competition medals" widths={[480, 760, 1000]} sizes="(max-width:900px) 100vw, 520px" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta">
+    <div class="container container--narrow cta__inner">
+      <h2>Taste what two acres can do</h2>
+      <p>We’re a tiny family operation without a public tasting room — but we’d love to get a bottle in your hands. Give us a call to purchase or ask about current releases.</p>
+      <a href={`tel:${telDigits}`} class="btn">Call {config.contact.phone}</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: min(80vh, 680px);
+    display: flex;
+    align-items: flex-end;
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero__bg :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(20, 14, 12, 0.15) 0%, rgba(20, 14, 12, 0.35) 45%, rgba(20, 14, 12, 0.82) 100%);
+  }
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+    padding-block: clamp(2.5rem, 7vw, 5rem);
+    max-width: 760px;
+  }
+  .hero__kicker {
+    color: #f1d9b8;
+  }
+  .hero h1 {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero__sub {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 44ch;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.75rem;
+  }
+
+  /* Intro */
+  .intro {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .intro__body p {
+    font-size: 1.12rem;
+    color: var(--text-muted);
+  }
+  .textlink {
+    font-weight: 600;
+  }
+
+  /* Generic grids */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .feature {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .feature h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+  .feature p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .section__head--row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: none;
+  }
+
+  /* Split sections */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .split__media :global(img) {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .split__copy p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+  }
+  .section--ink .split__copy p {
+    color: rgba(243, 236, 225, 0.82);
+  }
+  .split__sign {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--brand);
+  }
+
+  /* CTA */
+  .cta__inner {
+    text-align: center;
+  }
+  .cta__inner p {
+    font-size: 1.12rem;
+    color: var(--text-muted);
+    margin-bottom: 1.75rem;
+  }
+
+  @media (max-width: 900px) {
+    .intro {
+      grid-template-columns: 1fr;
+    }
+    .grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .split {
+      grid-template-columns: 1fr;
+    }
+    .awards .split__media {
+      order: -1;
+    }
+  }
+  @media (max-width: 520px) {
+    .section__head--row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
