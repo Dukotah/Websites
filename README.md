@@ -56,6 +56,22 @@ Bodega example. For the fast start-to-live loop, follow the
 [**launch playbook**](docs/launch-playbook.md); for the detailed checklist see
 [`docs/new-site-checklist.md`](docs/new-site-checklist.md).
 
+## Automated outreach demos
+
+To build many demo sites at once from a CRM export — one shareable link per
+prospect, for cold outreach — use the **demo gallery** pipeline:
+
+```bash
+npm run generate-prospects -- data/prospects.csv
+```
+
+This renders every business as its own page at `demos.yourdomain.com/p/<slug>`
+inside one app (`sites/demo-gallery/`), so a single deploy hosts all of them.
+Copy (tagline, hero, about, services) is written by the Claude API when
+`ANTHROPIC_API_KEY` is set, with a built-in fallback otherwise. When a prospect
+converts, graduate them to a standalone site with `npm run new-site`. Full
+walkthrough: [`docs/outreach-pipeline.md`](docs/outreach-pipeline.md).
+
 ## Adding real photos
 
 Photos make or break these pages. Two ways to get them in:

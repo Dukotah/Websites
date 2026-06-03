@@ -1,0 +1,83 @@
+{
+  "name": "Redwood Towing & Recovery",
+  "tagline": "Towing you can count on in Eureka.",
+  "seoDescription": "Redwood Towing & Recovery — trusted towing serving Eureka, CA. Call today for friendly, reliable service.",
+  "area": "Eureka, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 555-0142",
+    "email": "dispatch@redwoodtowing.com",
+    "address": "1820 Broadway, Eureka, CA 95501"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Towing done right.",
+    "subheading": "Serving Eureka, CA with honest work and a friendly face.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "24/7 dispatch",
+    "Fast response",
+    "Fully insured"
+  ],
+  "images": {
+    "hero": "/images/hero.svg",
+    "heroAlt": "Redwood Towing & Recovery in Eureka, CA",
+    "story": "/images/about.svg",
+    "storyAlt": "About Redwood Towing & Recovery",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/hero.svg"
+  },
+  "about": {
+    "heading": "About us",
+    "body": [
+      "Redwood Towing & Recovery is a locally owned towing proudly serving Eureka, CA. We treat every customer like a neighbor — because most of them are.",
+      "Reliable work, fair prices, and people who pick up the phone. That's what's kept folks coming back to us."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we offer",
+  "services": [
+    {
+      "title": "Light & heavy-duty towing",
+      "description": "Professional light & heavy-duty towing for Eureka and nearby."
+    },
+    {
+      "title": "Roadside assistance",
+      "description": "Professional roadside assistance for Eureka and nearby."
+    },
+    {
+      "title": "Jump starts & lockouts",
+      "description": "Professional jump starts & lockouts for Eureka and nearby."
+    },
+    {
+      "title": "Accident recovery",
+      "description": "Professional accident recovery for Eureka and nearby."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "9:00 AM – 2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "theme": {
+    "brand": "#d4452a",
+    "brandDark": "#1f2933"
+  }
+}

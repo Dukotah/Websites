@@ -1,0 +1,83 @@
+{
+  "name": "Vasquez Plumbing Co",
+  "tagline": "Plumbing you can count on in Santa Rosa.",
+  "seoDescription": "Vasquez Plumbing Co — trusted plumbing serving Santa Rosa, CA. Call today for friendly, reliable service.",
+  "area": "Santa Rosa, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 555-0119",
+    "email": "office@vasquezplumbing.com",
+    "address": "3300 Industrial Dr, Santa Rosa, CA 95403"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Plumbing done right.",
+    "subheading": "Serving Santa Rosa, CA with honest work and a friendly face.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Licensed & insured",
+    "Upfront pricing",
+    "Emergency service"
+  ],
+  "images": {
+    "hero": "/images/hero.svg",
+    "heroAlt": "Vasquez Plumbing Co in Santa Rosa, CA",
+    "story": "/images/about.svg",
+    "storyAlt": "About Vasquez Plumbing Co",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/hero.svg"
+  },
+  "about": {
+    "heading": "About us",
+    "body": [
+      "Vasquez Plumbing Co is a locally owned plumbing proudly serving Santa Rosa, CA. We treat every customer like a neighbor — because most of them are.",
+      "Reliable work, fair prices, and people who pick up the phone. That's what's kept folks coming back to us."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we offer",
+  "services": [
+    {
+      "title": "Leak detection & repair",
+      "description": "Professional leak detection & repair for Santa Rosa and nearby."
+    },
+    {
+      "title": "Drain cleaning",
+      "description": "Professional drain cleaning for Santa Rosa and nearby."
+    },
+    {
+      "title": "Water heaters",
+      "description": "Professional water heaters for Santa Rosa and nearby."
+    },
+    {
+      "title": "Repipes & remodels",
+      "description": "Professional repipes & remodels for Santa Rosa and nearby."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "9:00 AM – 2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "theme": {
+    "brand": "#1f6feb",
+    "brandDark": "#16324f"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "name": "The Tin Cup Coffee House",
+  "tagline": "Cafe you can count on in Petaluma.",
+  "seoDescription": "The Tin Cup Coffee House — trusted cafe serving Petaluma, CA. Call today for friendly, reliable service.",
+  "area": "Petaluma, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 555-0188",
+    "email": "hello@tincupcoffee.com",
+    "address": "45 Kentucky St, Petaluma, CA 94952"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Cafe done right.",
+    "subheading": "Serving Petaluma, CA with honest work and a friendly face.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Locally roasted",
+    "Fresh daily",
+    "Cozy atmosphere"
+  ],
+  "images": {
+    "hero": "/images/hero.svg",
+    "heroAlt": "The Tin Cup Coffee House in Petaluma, CA",
+    "story": "/images/about.svg",
+    "storyAlt": "About The Tin Cup Coffee House",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/hero.svg"
+  },
+  "about": {
+    "heading": "About us",
+    "body": [
+      "The Tin Cup Coffee House is a locally owned cafe proudly serving Petaluma, CA. We treat every customer like a neighbor — because most of them are.",
+      "Reliable work, fair prices, and people who pick up the phone. That's what's kept folks coming back to us."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we offer",
+  "services": [
+    {
+      "title": "Espresso & pour-over",
+      "description": "Professional espresso & pour-over for Petaluma and nearby."
+    },
+    {
+      "title": "Fresh-baked pastries",
+      "description": "Professional fresh-baked pastries for Petaluma and nearby."
+    },
+    {
+      "title": "Breakfast & lunch",
+      "description": "Professional breakfast & lunch for Petaluma and nearby."
+    },
+    {
+      "title": "Catering & to-go",
+      "description": "Professional catering & to-go for Petaluma and nearby."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "9:00 AM – 2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "theme": {
+    "brand": "#c2683a",
+    "brandDark": "#3b2f2a"
+  }
+}
