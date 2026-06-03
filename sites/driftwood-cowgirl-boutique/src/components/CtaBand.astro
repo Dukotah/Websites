@@ -1,0 +1,75 @@
+---
+import { config } from '../config';
+
+const tel = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+---
+
+<section class="cta">
+  <!-- repeating dune silhouette across the band -->
+  <svg class="cta__dunes" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 90 C 240 60 360 100 600 78 C 880 52 1040 100 1440 70 L1440 120 L0 120 Z" fill="rgba(0,0,0,0.12)" />
+  </svg>
+  <div class="container cta__inner">
+    <div>
+      <h2>Come say hello in Bodega</h2>
+      <p>Open seven days a week on Bodega Highway. Stop in to shop or to check in for a trail ride.</p>
+    </div>
+    <div class="cta__actions">
+      <a href="#contact" class="btn cta__btn">Hours &amp; directions</a>
+      <a href={tel} class="cta__call">{config.contact.phone}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(120deg, var(--brand), var(--brand-dark));
+    color: #fff7f0;
+  }
+  .cta__dunes {
+    position: absolute;
+    inset: auto 0 0 0;
+    width: 100%;
+    height: 120px;
+  }
+  .cta__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+  .cta h2 {
+    color: #fff;
+    margin-bottom: 0.35rem;
+  }
+  .cta p {
+    margin: 0;
+    color: rgba(255, 247, 240, 0.92);
+    max-width: 46ch;
+  }
+  .cta__actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .cta__btn {
+    background: #fff;
+    color: var(--brand-dark);
+  }
+  .cta__btn:hover {
+    background: #fff7f0;
+    color: var(--brand-dark);
+  }
+  .cta__call {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+</style>

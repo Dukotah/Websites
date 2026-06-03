@@ -1,0 +1,135 @@
+---
+import { config } from '../config';
+
+const tel = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+---
+
+<section class="hero" id="top">
+  <!-- Custom-drawn coastal ranch scene (no stock photos). -->
+  <svg
+    class="hero__scene"
+    viewBox="0 0 1440 820"
+    preserveAspectRatio="xMidYMid slice"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fdf3e6" />
+        <stop offset="45%" stop-color="#f8d9b9" />
+        <stop offset="80%" stop-color="#eaa980" />
+        <stop offset="100%" stop-color="#e0916b" />
+      </linearGradient>
+      <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fff4dd" />
+        <stop offset="55%" stop-color="#f7cf8f" />
+        <stop offset="100%" stop-color="#f7cf8f" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+
+    <rect width="1440" height="820" fill="url(#sky)" />
+    <circle cx="1010" cy="300" r="230" fill="url(#sun)" />
+    <circle cx="1010" cy="300" r="96" fill="#fdeccb" />
+
+    <!-- birds -->
+    <g stroke="#7c5234" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.65">
+      <path d="M250 150 q12 -10 24 0 q12 -10 24 0" />
+      <path d="M330 185 q9 -8 18 0 q9 -8 18 0" />
+      <path d="M205 205 q9 -8 18 0 q9 -8 18 0" />
+    </g>
+
+    <!-- ocean -->
+    <rect x="0" y="455" width="1440" height="90" fill="#b9cfc7" />
+    <g stroke="#a8c2b9" stroke-width="3" opacity="0.7">
+      <line x1="120" y1="485" x2="260" y2="485" />
+      <line x1="520" y1="500" x2="690" y2="500" />
+      <line x1="980" y1="490" x2="1130" y2="490" />
+    </g>
+
+    <!-- rolling hills, back to front -->
+    <path d="M0 520 C 300 470 600 545 900 498 C 1150 460 1440 522 1440 522 L1440 820 L0 820 Z" fill="#d8a979" />
+    <path d="M0 605 C 350 548 520 615 760 578 C 1050 535 1250 602 1440 578 L1440 820 L0 820 Z" fill="#bf8451" />
+    <path d="M0 700 C 250 652 470 712 700 676 C 1010 632 1230 706 1440 682 L1440 820 L0 820 Z" fill="#7c5234" />
+
+    <!-- foreground dune grasses -->
+    <g stroke="#5b3a23" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.92">
+      <path d="M150 815 Q 145 720 120 660" />
+      <path d="M150 815 Q 152 730 150 655" />
+      <path d="M150 815 Q 158 725 185 665" />
+      <path d="M150 815 Q 165 745 205 700" />
+      <path d="M1290 815 Q 1285 725 1255 665" />
+      <path d="M1290 815 Q 1292 735 1295 660" />
+      <path d="M1290 815 Q 1298 730 1325 670" />
+      <path d="M1290 815 Q 1305 748 1340 705" />
+    </g>
+  </svg>
+
+  <div class="hero__scrim"></div>
+
+  <div class="container hero__content">
+    <p class="eyebrow">{config.area}</p>
+    <h1>{config.hero.heading}</h1>
+    <p class="hero__sub">{config.hero.subheading}</p>
+    <div class="hero__actions">
+      <a href={config.hero.ctaHref} class="btn">{config.hero.ctaText}</a>
+      <a href={tel} class="btn btn--ghost">Call {config.contact.phone}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: clamp(540px, 78vh, 760px);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero__scene {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(253, 250, 245, 0.94) 0%,
+      rgba(253, 250, 245, 0.78) 36%,
+      rgba(253, 250, 245, 0) 68%
+    );
+  }
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    padding-block: clamp(2rem, 6vw, 4rem);
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+  }
+  .hero__sub {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 52ch;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+  @media (max-width: 640px) {
+    .hero__scrim {
+      background: linear-gradient(
+        180deg,
+        rgba(253, 250, 245, 0.92) 0%,
+        rgba(253, 250, 245, 0.7) 45%,
+        rgba(253, 250, 245, 0.15) 100%
+      );
+    }
+  }
+</style>

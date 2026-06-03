@@ -1,0 +1,67 @@
+---
+import { config } from '../config';
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="#top" class="header__brand">{config.name}</a>
+    <nav class="header__nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href={`tel:${config.contact.phone.replace(/[^+\d]/g, '')}`} class="btn header__cta">
+        Call {config.contact.phone}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 64px;
+  }
+  .header__brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text);
+  }
+  .header__brand:hover {
+    text-decoration: none;
+  }
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .header__nav a {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .header__cta {
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 0.55rem 1rem;
+  }
+  .header__cta:hover {
+    color: #fff;
+  }
+  /* On small screens, hide text links and keep the call button. */
+  @media (max-width: 640px) {
+    .header__nav a:not(.header__cta) {
+      display: none;
+    }
+  }
+</style>

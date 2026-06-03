@@ -1,0 +1,64 @@
+---
+import { config } from '../config';
+
+const year = new Date().getFullYear();
+const socials = [
+  { label: 'Facebook', href: config.social.facebook },
+  { label: 'Instagram', href: config.social.instagram },
+  { label: 'Reviews', href: config.social.google },
+].filter((s) => s.href);
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div>
+      <strong>{config.name}</strong>
+      <p class="footer__muted">{config.contact.address}</p>
+    </div>
+
+    {
+      socials.length > 0 && (
+        <nav class="footer__social" aria-label="Social media">
+          {socials.map((s) => (
+            <a href={s.href} target="_blank" rel="noopener">
+              {s.label}
+            </a>
+          ))}
+        </nav>
+      )
+    }
+
+    <p class="footer__muted">© {year} {config.name}. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--text);
+    color: #fff;
+    padding-block: 2.5rem;
+  }
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer strong {
+    font-size: 1.1rem;
+  }
+  .footer__muted {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+  }
+  .footer__social {
+    display: flex;
+    gap: 1.25rem;
+  }
+  .footer__social a {
+    color: #fff;
+    font-weight: 500;
+  }
+</style>

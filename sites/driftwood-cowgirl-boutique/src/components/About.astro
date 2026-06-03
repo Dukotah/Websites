@@ -1,0 +1,106 @@
+---
+import { config } from '../config';
+---
+
+<section class="section" id="about">
+  <div class="container about">
+    <div class="about__text">
+      <p class="eyebrow">Who we are</p>
+      <h2>{config.about.heading}</h2>
+      <p class="about__body">{config.about.body}</p>
+      <ul class="about__chips">
+        <li>On a coastal cattle ranch</li>
+        <li>Trail-ride check-in</li>
+        <li>Local makers welcome</li>
+      </ul>
+    </div>
+
+    <!-- Hand-drawn "postcard" illustration. -->
+    <figure class="postcard">
+      <svg viewBox="0 0 400 300" role="img" aria-label="Illustration of the Sonoma Coast at sunset">
+        <defs>
+          <linearGradient id="pcSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fdf3e6" />
+            <stop offset="60%" stop-color="#f6cfa5" />
+            <stop offset="100%" stop-color="#e89a6f" />
+          </linearGradient>
+          <clipPath id="pcClip"><rect width="400" height="300" rx="14" /></clipPath>
+        </defs>
+        <g clip-path="url(#pcClip)">
+          <rect width="400" height="300" fill="url(#pcSky)" />
+          <circle cx="290" cy="120" r="46" fill="#fdeccb" />
+          <g stroke="#7c5234" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6">
+            <path d="M70 70 q7 -6 14 0 q7 -6 14 0" />
+            <path d="M120 92 q5 -5 10 0 q5 -5 10 0" />
+          </g>
+          <rect x="0" y="168" width="400" height="40" fill="#b9cfc7" />
+          <path d="M0 188 C 110 168 190 200 280 182 C 340 170 400 190 400 190 L400 300 L0 300 Z" fill="#d8a979" />
+          <path d="M0 220 C 120 200 200 232 300 214 C 350 205 400 222 400 222 L400 300 L0 300 Z" fill="#bf8451" />
+          <path d="M0 252 C 110 236 210 262 320 246 C 360 240 400 252 400 252 L400 300 L0 300 Z" fill="#7c5234" />
+          <g stroke="#5b3a23" stroke-width="2.5" fill="none" stroke-linecap="round">
+            <path d="M48 300 Q46 258 36 232" />
+            <path d="M48 300 Q50 262 50 230" />
+            <path d="M48 300 Q56 260 70 236" />
+          </g>
+        </g>
+        <rect x="2" y="2" width="396" height="296" rx="13" fill="none" stroke="#fdfaf5" stroke-width="4" />
+      </svg>
+      <figcaption>Bodega · Sonoma Coast</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    gap: 2.5rem 3rem;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+  }
+  .about__body {
+    font-size: 1.12rem;
+    color: var(--text-muted);
+    margin: 0 0 1.5rem;
+  }
+  .about__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .about__chips li {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--brand-dark);
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+  }
+  .postcard {
+    margin: 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .postcard svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .postcard figcaption {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    padding: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+  @media (max-width: 720px) {
+    .about {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
