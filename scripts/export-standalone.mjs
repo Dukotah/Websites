@@ -16,7 +16,13 @@ const DIST = join(ROOT, 'sites', 'demo-gallery', 'dist');
 const OUT = join(ROOT, 'proof');
 
 const mime = (f) =>
-  f.endsWith('.svg') ? 'image/svg+xml' : f.endsWith('.png') ? 'image/png' : 'application/octet-stream';
+  f.endsWith('.svg')
+    ? 'image/svg+xml'
+    : f.endsWith('.png')
+      ? 'image/png'
+      : f.endsWith('.woff2')
+        ? 'font/woff2'
+        : 'application/octet-stream';
 
 async function dataUri(absPath) {
   const buf = await readFile(absPath);
@@ -35,6 +41,17 @@ async function inline(html) {
   for (const ref of refs) {
     const uri = await dataUri(join(DIST, ref.replace(/^\//, '')));
     html = html.replaceAll(`"${ref}"`, `"${uri}"`);
+  }
+  // 3) Inline the latin font subsets so fonts render in a standalone file.
+  //    (Non-latin subsets are unicode-range gated and not needed for English.)
+  const fonts = new Set(
+    [...html.matchAll(/url\((\/_astro\/[^)]+\.woff2)\)/g)]
+      .map((m) => m[1])
+      .filter((u) => /-latin-/.test(u) && !/-latin-ext-/.test(u)),
+  );
+  for (const ref of fonts) {
+    const uri = await dataUri(join(DIST, ref.replace(/^\//, '')));
+    html = html.replaceAll(`url(${ref})`, `url(${uri})`);
   }
   return html;
 }

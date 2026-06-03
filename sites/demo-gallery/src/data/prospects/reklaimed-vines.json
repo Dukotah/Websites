@@ -62,6 +62,55 @@
     { "day": "Sun", "hours": "Open — call ahead" }
   ],
   "hoursNote": "Hours shift seasonally — give us a call at (717) 363-2090 to confirm before you head out.",
+  "design": "elegant",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        { "value": "All 7 of us", "label": "Family who bottles it" },
+        { "value": "Whole-fruit", "label": "How our fruit wines are made" },
+        { "value": "County's only", "label": "Winery in Huntingdon" }
+      ]
+    },
+    {
+      "type": "list",
+      "eyebrow": "What we pour",
+      "heading": "Made and bottled by hand",
+      "groups": [
+        {
+          "title": "Wines",
+          "items": [
+            { "name": "Whole-fruit wines", "note": "our signature" },
+            { "name": "Dry wines" }
+          ]
+        },
+        {
+          "title": "And a little extra",
+          "items": [
+            { "name": "Wine slushies" },
+            { "name": "Small-batch wine jelly" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Before you stop in",
+      "items": [
+        { "q": "Are you really family-run?", "a": "Truly — Kristi, Charles, and their five kids make and hand-bottle every wine we sell." },
+        { "q": "Can I just walk in?", "a": "Give us a call first at (717) 363-2090 — our hours shift with the seasons." },
+        { "q": "Where are you?", "a": "On William Penn Highway in Huntingdon, sharing a tasting room with Defiant Distillery." }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Taste Huntingdon County's only winery.",
+      "text": "Hand-bottled, whole-fruit wines from one family who'd love to pour you a glass.",
+      "buttonText": "Call (717) 363-2090",
+      "buttonHref": "tel:7173632090"
+    }
+  ],
   "theme": {
     "brand": "#7a5230",
     "brandDark": "#241c16"

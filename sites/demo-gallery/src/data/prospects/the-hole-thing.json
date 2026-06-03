@@ -226,6 +226,7 @@
     "Using stock art — swap in real photos from their Instagram (@holethingtattoo) or Yelp",
     "Owner name not confirmed on site — verify before asserting in copy"
   ],
+  "design": "bold",
   "theme": {
     "brand": "#c2185b",
     "brandDark": "#1a1620"

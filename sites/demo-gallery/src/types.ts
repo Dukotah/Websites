@@ -233,6 +233,13 @@ export interface ProspectConfig {
   category?: string;
 
   /**
+   * Legacy "design kit" font hint from the prior system. Superseded by the v2
+   * art-direction engine (which derives the font); kept optional so older
+   * prospect JSON still type-checks.
+   */
+  design?: string;
+
+  /**
    * Quality status surfaced on the dashboard. Omit and the dashboard infers it
    * (e.g. still on stock art → needs-review). `flags` are human-readable reasons.
    */
