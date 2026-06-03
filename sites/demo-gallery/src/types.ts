@@ -98,6 +98,15 @@ export interface ProspectConfig {
   sections?: Section[];
 
   /**
+   * Visual design kit — switches the display font + heading treatment so a
+   * winery doesn't look like a tow company. Defaults to 'elegant'.
+   *   elegant → Fraunces serif (winery / cafe / salon / boutique)
+   *   bold    → Oswald condensed (towing / auto / trades / bold brands)
+   *   clean   → Inter (modern, minimal)
+   */
+  design?: 'elegant' | 'bold' | 'clean';
+
+  /**
    * Quality status surfaced on the dashboard. Omit and the dashboard infers it
    * (e.g. still on stock art → needs-review). `flags` are human-readable reasons.
    */

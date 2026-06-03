@@ -165,6 +165,7 @@
     "Using stock art — swap in real photos from their Yelp (65) or Instagram",
     "Email not publicly listed — confirm with owner"
   ],
+  "design": "bold",
   "theme": {
     "brand": "#c2185b",
     "brandDark": "#1a1620"
