@@ -1,0 +1,70 @@
+{
+  "name": "Honey Hole Winery",
+  "tagline": "Family-made wine, mead, and slushies in the Poconos — since 1996.",
+  "seoDescription": "Honey Hole Winery — family-owned in Drums, PA since 1996. 40+ wines and meads, wine slushies, food trucks, and pet-friendly outdoor seating in the Poconos.",
+  "area": "Drums, PA",
+  "established": "Est. 1996",
+  "contact": {
+    "phone": "(570) 262-9808",
+    "email": "",
+    "address": "2 Honey Hole Rd, Drums, PA 18222"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/HoneyHoleWinery/",
+    "instagram": "https://www.instagram.com/honeyholewinery/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Forty wines, one family, zero pretense.",
+    "subheading": "A family-owned winery and tasting bar in Drums, PA — pouring 40-plus wines and meads, wine slushies, and a pet-friendly patio in the heart of the Poconos since 1996.",
+    "ctaText": "Plan a visit",
+    "ctaHref": "#contact"
+  },
+  "highlights": ["Family-owned since 1996", "40+ wines & meads", "Pet-friendly patio"],
+  "images": {
+    "hero": "/images/library/winery/hero.svg",
+    "heroAlt": "Honey Hole Winery tasting bar in Drums, PA",
+    "story": "/images/library/winery/story.svg",
+    "storyAlt": "Honey Hole Winery patio and vines",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/winery/hero.svg"
+  },
+  "about": {
+    "heading": "A Poconos family winery since 1996",
+    "body": [
+      "John and Patricia Weimer planted Honey Hole's first vines in 1997 and poured their first signature blends in 1999 — and they've spent their lives since perfecting the craft. What started as a labor of love is now one of the friendliest tasting bars in the Poconos.",
+      "Today you'll find more than forty wines and meads on the list, from light and sweet to bold and dry, plus our famous wine slushies. Bring the dog, grab a seat on the patio, catch a food truck, and stay a while — that's the whole idea."
+    ],
+    "signature": "— John & Patricia Weimer"
+  },
+  "servicesHeading": "What's on the list",
+  "services": [
+    {
+      "title": "40+ wines & meads",
+      "description": "From light and sweet to bold and dry — plus traditional meads — all made and bottled right here."
+    },
+    {
+      "title": "Wine slushies",
+      "description": "Our warm-weather favorite, and the reason a lot of folks first find us."
+    },
+    {
+      "title": "Tastings & tasting bar",
+      "description": "Pull up to the bar and work your way through the list with people who love to talk wine."
+    },
+    {
+      "title": "Patio, pups & food trucks",
+      "description": "Pet-friendly outdoor seating with rotating food trucks and local honey and treats to take home."
+    }
+  ],
+  "hours": [
+    { "day": "Mon", "hours": "Closed" },
+    { "day": "Tue – Fri", "hours": "11:00 AM – 7:00 PM" },
+    { "day": "Sat – Sun", "hours": "11:00 AM – 5:00 PM" }
+  ],
+  "hoursNote": "Outdoor seating opens up in the warmer months — check our Facebook for food-truck nights.",
+  "theme": {
+    "brand": "#9b2d3a",
+    "brandDark": "#2b1a22"
+  }
+}

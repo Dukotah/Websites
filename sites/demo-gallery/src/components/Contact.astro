@@ -26,10 +26,12 @@ const mapEmbed = `https://maps.google.com/maps?q=${mapQuery}&output=embed`;
           <span class="visit__label">Phone</span>
           <a href={telHref}>{config.contact.phone}</a>
         </li>
-        <li>
-          <span class="visit__label">Email</span>
-          <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>
-        </li>
+        {config.contact.email && (
+          <li>
+            <span class="visit__label">Email</span>
+            <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>
+          </li>
+        )}
       </ul>
 
       <div class="visit__hours">

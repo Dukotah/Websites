@@ -1,0 +1,43 @@
+---
+const { items = [] } = Astro.props as { items: { value: string; label: string }[] };
+---
+
+<section class="section stats">
+  <div class="container stats__grid">
+    {
+      items.map((it) => (
+        <div class="stat">
+          <div class="stat__value">{it.value}</div>
+          <div class="stat__label">{it.label}</div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .stats {
+    background: var(--brand-dark);
+    color: #fff;
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+  }
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 2rem 1.5rem;
+    text-align: center;
+  }
+  .stat__value {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1;
+    color: #fff;
+  }
+  .stat__label {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--brand) 45%, #fff);
+  }
+</style>

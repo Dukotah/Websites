@@ -1,0 +1,70 @@
+{
+  "name": "Smitty's Towing",
+  "tagline": "The Central Coast's largest towing and recovery fleet — family-run since 1992.",
+  "seoDescription": "Smitty's Towing — light to heavy-duty towing and recovery across Santa Barbara County since 1992. 24/7 roadside help in Goleta, Buellton, Lompoc & Santa Maria.",
+  "area": "Santa Barbara County, CA",
+  "established": "Est. 1992",
+  "contact": {
+    "phone": "(805) 683-8982",
+    "email": "dispatch@smittystow.com",
+    "address": "5755 Thornwood Dr, Goleta, CA 93117"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/smittystowing1/",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "From a flat tire to a flipped big rig.",
+    "subheading": "Light, medium, and heavy-duty towing and recovery across Santa Barbara County, 24/7 — backed by a fleet of over fifty trucks and 360° rotators.",
+    "ctaText": "Call dispatch",
+    "ctaHref": "#contact"
+  },
+  "highlights": ["Family-run since 1992", "Fleet of 50+ trucks", "24/7 dispatch"],
+  "images": {
+    "hero": "/images/library/towing/hero.svg",
+    "heroAlt": "Smitty's Towing heavy-duty wrecker on the job in Santa Barbara County",
+    "story": "/images/library/towing/story.svg",
+    "storyAlt": "Smitty's Towing recovery fleet",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/towing/hero.svg"
+  },
+  "about": {
+    "heading": "Built on the Central Coast since 1992",
+    "body": [
+      "Smitty's opened in 1992 to fill a real gap on the Central Coast: a towing outfit that could handle the heavy, awkward jobs nobody else wanted to touch. We started in heavy-duty recovery, added light-duty towing the very next year, and never looked back.",
+      "Today we run one of the largest towing and recovery fleets in Central California — over fifty trucks, from light service vehicles to heavy wreckers and 360° rotators — out of yards in Goleta, Buellton, Lompoc, and Santa Maria. Whatever the situation, day or night, we've got the truck and the crew for it."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we handle",
+  "services": [
+    {
+      "title": "Light & medium-duty towing",
+      "description": "Cars, trucks, and vans moved safely on flatbeds and wheel-lifts, anywhere in Santa Barbara County."
+    },
+    {
+      "title": "Heavy-duty recovery & rotators",
+      "description": "Overturned big rigs, heavy equipment, and water recoveries handled by 360° rotators and operators who've seen it all."
+    },
+    {
+      "title": "24/7 roadside assistance",
+      "description": "Flat tires, jump starts, lockouts, and fuel delivery — one call gets a truck rolling, any hour of the night."
+    },
+    {
+      "title": "Motorcycle & EV towing",
+      "description": "Specialized, damage-free transport for motorcycles, plus manufacturer-authorized towing for electric vehicles."
+    },
+    {
+      "title": "Secure impound & storage",
+      "description": "Gated, inside storage yards across the county keep recovered and impounded vehicles safe."
+    }
+  ],
+  "hours": [{ "day": "Every day", "hours": "Open 24 hours" }],
+  "hoursNote": "Emergency dispatch never closes — call (805) 683-8982 any time.",
+  "theme": {
+    "brand": "#d4452a",
+    "brandDark": "#1f2933"
+  }
+}

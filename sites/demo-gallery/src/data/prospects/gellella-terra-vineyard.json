@@ -1,0 +1,69 @@
+{
+  "name": "Gellella Terra Vineyard",
+  "tagline": "Small-batch wines and small plates, following a family legacy from Tito, Italy.",
+  "seoDescription": "Gellella Terra Vineyard in Muncy, PA — family-owned, small-batch dry, sweet and dessert wines with paired small plates, carrying on a winemaking legacy from Tito, Italy.",
+  "area": "Muncy, PA",
+  "established": "",
+  "contact": {
+    "phone": "(570) 546-9315",
+    "email": "",
+    "address": "411 Gardner Rd, Muncy, PA 17756"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/GellellaTerraVineyard/",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "An Italian winemaking legacy, rooted in Muncy.",
+    "subheading": "A family-owned vineyard carrying on generations of winemaking from Tito, Italy — small-batch dry, sweet, and dessert wines, poured alongside thoughtful small plates and a charming view.",
+    "ctaText": "Reserve a tasting",
+    "ctaHref": "#contact"
+  },
+  "highlights": ["Family-owned & operated", "Small-batch, handcrafted", "Legacy from Tito, Italy"],
+  "images": {
+    "hero": "/images/library/winery/hero.svg",
+    "heroAlt": "Gellella Terra Vineyard in Muncy, PA",
+    "story": "/images/library/winery/story.svg",
+    "storyAlt": "Gellella Terra Vineyard view and tasting space",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/winery/hero.svg"
+  },
+  "about": {
+    "heading": "Generations in the making",
+    "body": [
+      "Gellella Terra carries on a long family legacy of winemakers from Tito, in southern Italy — brought to the rolling countryside of Muncy, Pennsylvania. It's a small, family-owned and operated vineyard where the wines are still made by hand, in small batches.",
+      "Come for a tasting and you'll find dry, sweet, and dessert wines paired with delicious small plates, a relaxed tasting space, and a charming view worth lingering over. Tastings and tours are by reservation, so every visit feels personal."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we offer",
+  "services": [
+    {
+      "title": "Small-batch wines",
+      "description": "Handcrafted dry, sweet, and dessert wines made in small lots, the old-family way."
+    },
+    {
+      "title": "Tastings & tours",
+      "description": "Reserved tastings and vineyard tours, plus wine-appreciation sessions for groups."
+    },
+    {
+      "title": "Wine & small plates",
+      "description": "Thoughtful small plates paired to the wines, meant to be enjoyed slowly with the view."
+    },
+    {
+      "title": "Private events",
+      "description": "By-appointment group tastings and gatherings in an intimate, family setting."
+    }
+  ],
+  "hours": [
+    { "day": "Fri", "hours": "5:00 PM – 8:00 PM" },
+    { "day": "Sat – Sun", "hours": "2:00 PM – 5:00 PM" }
+  ],
+  "hoursNote": "Reservations required for tastings and events — call (570) 546-9315.",
+  "theme": {
+    "brand": "#9c4722",
+    "brandDark": "#2a1d18"
+  }
+}
