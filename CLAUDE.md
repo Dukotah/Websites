@@ -52,13 +52,20 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
    > `curl` to image hosts is blocked in this environment, note it and rely on
    > tiers 2–3. Never invent that a photo is theirs when it isn't.
 
-4. **Build each site.** Two equally valid paths:
-   - **Best (custom):** write each `sites/demo-gallery/src/data/prospects/
-     <slug>.json` directly with your researched copy (schema = `src/types.ts`).
-   - **Bulk scaffold:** run `npm run generate-prospects -- data/<file>.csv` to
-     seed structure + template copy + photo tiers, THEN rewrite the copy fields
-     (`tagline`, `hero`, `about.body`, `services`) per business from research.
-     Do not leave template copy in a site you send.
+4. **Build each site — aim for bespoke, not a filled-in template.** Write each
+   `sites/demo-gallery/src/data/prospects/<slug>.json` directly (schema =
+   `src/types.ts`). Every site should:
+   - **Pick a `design` kit** that fits the business: `bold` (Oswald — towing,
+     auto, trades), `elegant` (Fraunces — winery, cafe, salon, boutique), or
+     `clean` (Inter — modern). This alone makes a winery look unlike a tow shop.
+   - **Compose 4–6 `sections`** from the research — `stats`, `steps`,
+     `testimonials` (use REAL review quotes), `list` (menu / wine list /
+     services), `faq`, `cta`. Different businesses → different section sets.
+     A flat hero+about+services page is the old, cookie-cutter bar — don't ship it.
+   - Set a `theme` (brand + brandDark) and write all copy from research.
+   See `the-hole-thing.json` (bold) and `honey-hole-winery.json` (elegant) for
+   the quality bar. `npm run generate-prospects` can bulk-scaffold structure, but
+   then you MUST deepen each one — never leave template copy or a sectionless site.
 
 5. **Sanity-check the build:**
    ```bash

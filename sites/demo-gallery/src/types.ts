@@ -24,6 +24,12 @@ export interface BusinessHours {
 export type Section =
   | { type: 'stats'; items: { value: string; label: string }[] }
   | {
+      type: 'steps';
+      eyebrow?: string;
+      heading?: string;
+      items: { title: string; description: string }[];
+    }
+  | {
       type: 'testimonials';
       eyebrow?: string;
       heading?: string;

@@ -63,6 +63,60 @@
     { "day": "Sat – Sun", "hours": "11:00 AM – 5:00 PM" }
   ],
   "hoursNote": "Outdoor seating opens up in the warmer months — check our Facebook for food-truck nights.",
+  "design": "elegant",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        { "value": "1996", "label": "Family-owned since" },
+        { "value": "40+", "label": "Wines & meads on the list" },
+        { "value": "Pet-friendly", "label": "Patio & food trucks" }
+      ]
+    },
+    {
+      "type": "list",
+      "eyebrow": "Tastings",
+      "heading": "What's pouring",
+      "intro": "Light and sweet to bold and dry — and a few things that aren't wine at all.",
+      "groups": [
+        {
+          "title": "Wines",
+          "items": [
+            { "name": "Sweet & fruit wines" },
+            { "name": "Dry reds" },
+            { "name": "Dry whites" },
+            { "name": "Seasonal releases" }
+          ]
+        },
+        {
+          "title": "Beyond the vine",
+          "items": [
+            { "name": "Traditional meads" },
+            { "name": "Wine slushies", "note": "warm-weather favorite" },
+            { "name": "Local honey & treats" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Planning your visit",
+      "items": [
+        { "q": "Do I need a reservation?", "a": "Nope — pull up to the tasting bar and we'll pour. For larger groups, a quick call helps us get ready." },
+        { "q": "Can I bring my dog?", "a": "Absolutely — the patio is pet-friendly, so the whole family's welcome." },
+        { "q": "Is there food?", "a": "Rotating food trucks visit in the warmer months — check our Facebook for the lineup before you come." },
+        { "q": "When are you open?", "a": "Tuesday–Friday 11–7 and weekends 11–5. Closed Mondays." }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Come taste the Poconos.",
+      "text": "Forty-plus wines and meads, a pet-friendly patio, and a family that's glad you stopped by.",
+      "buttonText": "Call (570) 262-9808",
+      "buttonHref": "tel:5702629808"
+    }
+  ],
   "theme": {
     "brand": "#9b2d3a",
     "brandDark": "#2b1a22"
