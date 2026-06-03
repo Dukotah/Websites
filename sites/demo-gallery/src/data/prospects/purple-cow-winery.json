@@ -20,14 +20,18 @@
     "ctaText": "Come hang out",
     "ctaHref": "#contact"
   },
-  "highlights": ["Family-owned & operated", "Made & bottled on-site", "Live music & farm animals"],
+  "highlights": [
+    "Family-owned & operated",
+    "Made & bottled on-site",
+    "Live music & farm animals"
+  ],
   "images": {
-    "hero": "/images/library/winery/hero.svg",
-    "heroAlt": "Purple Cow Winery, a former dairy farm in Bloomsburg, PA",
-    "story": "/images/library/winery/story.svg",
-    "storyAlt": "Purple Cow Winery farmhouse and grounds",
+    "hero": "/images/purple-cow-winery/hero.jpg",
+    "heroAlt": "Purple Cow Winery in Bloomsburg, PA",
+    "story": "/images/purple-cow-winery/story.jpg",
+    "storyAlt": "Inside Purple Cow Winery",
     "storyCaption": "",
-    "storyCredit": "",
+    "storyCredit": "Photo: Christian Ferrer",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "about": {
@@ -58,9 +62,18 @@
     }
   ],
   "hours": [
-    { "day": "Fri", "hours": "3:00 PM – 8:00 PM" },
-    { "day": "Sat", "hours": "12:00 PM – 8:00 PM" },
-    { "day": "Sun", "hours": "12:00 PM – 5:00 PM" }
+    {
+      "day": "Fri",
+      "hours": "3:00 PM – 8:00 PM"
+    },
+    {
+      "day": "Sat",
+      "hours": "12:00 PM – 8:00 PM"
+    },
+    {
+      "day": "Sun",
+      "hours": "12:00 PM – 5:00 PM"
+    }
   ],
   "hoursNote": "Closed Monday–Thursday. Check our Facebook for live-music nights and seasonal events.",
   "design": "elegant",
@@ -68,9 +81,18 @@
     {
       "type": "stats",
       "items": [
-        { "value": "Dairy farm", "label": "What we used to be" },
-        { "value": "On-site", "label": "Made & bottled here" },
-        { "value": "Weekends", "label": "Live music on the lawn" }
+        {
+          "value": "Dairy farm",
+          "label": "What we used to be"
+        },
+        {
+          "value": "On-site",
+          "label": "Made & bottled here"
+        },
+        {
+          "value": "Weekends",
+          "label": "Live music on the lawn"
+        }
       ]
     },
     {
@@ -81,17 +103,29 @@
         {
           "title": "House wines",
           "items": [
-            { "name": "Purple Haze" },
-            { "name": "Udder Chaos" },
-            { "name": "Sweet & dry selections" }
+            {
+              "name": "Purple Haze"
+            },
+            {
+              "name": "Udder Chaos"
+            },
+            {
+              "name": "Sweet & dry selections"
+            }
           ]
         },
         {
           "title": "On the farm",
           "items": [
-            { "name": "Live music weekends" },
-            { "name": "Corn hole & giant Connect Four" },
-            { "name": "Friendly farm animals" }
+            {
+              "name": "Live music weekends"
+            },
+            {
+              "name": "Corn hole & giant Connect Four"
+            },
+            {
+              "name": "Friendly farm animals"
+            }
           ]
         }
       ]
@@ -101,9 +135,18 @@
       "eyebrow": "Good to know",
       "heading": "Plan your hang",
       "items": [
-        { "q": "Is it family-friendly?", "a": "Very — open space, lawn games, and farm animals make it an easy afternoon for all ages." },
-        { "q": "Is there live music?", "a": "Most weekends. Check our Facebook for who's playing before you head out." },
-        { "q": "When are you open?", "a": "Friday 3–8, Saturday 12–8, and Sunday 12–5." }
+        {
+          "q": "Is it family-friendly?",
+          "a": "Very — open space, lawn games, and farm animals make it an easy afternoon for all ages."
+        },
+        {
+          "q": "Is there live music?",
+          "a": "Most weekends. Check our Facebook for who's playing before you head out."
+        },
+        {
+          "q": "When are you open?",
+          "a": "Friday 3–8, Saturday 12–8, and Sunday 12–5."
+        }
       ]
     },
     {
@@ -117,5 +160,22 @@
   "theme": {
     "brand": "#6a4a8f",
     "brandDark": "#221a2e"
-  }
+  },
+  "galleryImages": [
+    {
+      "src": "/images/purple-cow-winery/story.jpg",
+      "alt": "Purple Cow Winery in Bloomsburg, PA — photo 2"
+    },
+    {
+      "src": "/images/purple-cow-winery/photo-2.jpg",
+      "alt": "Purple Cow Winery in Bloomsburg, PA — photo 3"
+    },
+    {
+      "src": "/images/purple-cow-winery/photo-3.jpg",
+      "alt": "Purple Cow Winery in Bloomsburg, PA — photo 4"
+    }
+  ],
+  "flags": [
+    "Includes area/stock photos from Wikimedia (credited) — replace with the business’s own before sending"
+  ]
 }

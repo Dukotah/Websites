@@ -20,14 +20,18 @@
     "ctaText": "Plan a visit",
     "ctaHref": "#contact"
   },
-  "highlights": ["Family-owned since 1996", "40+ wines & meads", "Pet-friendly patio"],
+  "highlights": [
+    "Family-owned since 1996",
+    "40+ wines & meads",
+    "Pet-friendly patio"
+  ],
   "images": {
-    "hero": "/images/library/winery/hero.svg",
-    "heroAlt": "Honey Hole Winery tasting bar in Drums, PA",
-    "story": "/images/library/winery/story.svg",
-    "storyAlt": "Honey Hole Winery patio and vines",
+    "hero": "/images/honey-hole-winery/hero.jpg",
+    "heroAlt": "Honey Hole Winery in Drums, PA",
+    "story": "/images/honey-hole-winery/story.jpg",
+    "storyAlt": "Inside Honey Hole Winery",
     "storyCaption": "",
-    "storyCredit": "",
+    "storyCredit": "Photo: Christian Ferrer",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "about": {
@@ -58,9 +62,18 @@
     }
   ],
   "hours": [
-    { "day": "Mon", "hours": "Closed" },
-    { "day": "Tue – Fri", "hours": "11:00 AM – 7:00 PM" },
-    { "day": "Sat – Sun", "hours": "11:00 AM – 5:00 PM" }
+    {
+      "day": "Mon",
+      "hours": "Closed"
+    },
+    {
+      "day": "Tue – Fri",
+      "hours": "11:00 AM – 7:00 PM"
+    },
+    {
+      "day": "Sat – Sun",
+      "hours": "11:00 AM – 5:00 PM"
+    }
   ],
   "hoursNote": "Outdoor seating opens up in the warmer months — check our Facebook for food-truck nights.",
   "design": "elegant",
@@ -68,9 +81,18 @@
     {
       "type": "stats",
       "items": [
-        { "value": "1996", "label": "Family-owned since" },
-        { "value": "40+", "label": "Wines & meads on the list" },
-        { "value": "Pet-friendly", "label": "Patio & food trucks" }
+        {
+          "value": "1996",
+          "label": "Family-owned since"
+        },
+        {
+          "value": "40+",
+          "label": "Wines & meads on the list"
+        },
+        {
+          "value": "Pet-friendly",
+          "label": "Patio & food trucks"
+        }
       ]
     },
     {
@@ -82,18 +104,33 @@
         {
           "title": "Wines",
           "items": [
-            { "name": "Sweet & fruit wines" },
-            { "name": "Dry reds" },
-            { "name": "Dry whites" },
-            { "name": "Seasonal releases" }
+            {
+              "name": "Sweet & fruit wines"
+            },
+            {
+              "name": "Dry reds"
+            },
+            {
+              "name": "Dry whites"
+            },
+            {
+              "name": "Seasonal releases"
+            }
           ]
         },
         {
           "title": "Beyond the vine",
           "items": [
-            { "name": "Traditional meads" },
-            { "name": "Wine slushies", "note": "warm-weather favorite" },
-            { "name": "Local honey & treats" }
+            {
+              "name": "Traditional meads"
+            },
+            {
+              "name": "Wine slushies",
+              "note": "warm-weather favorite"
+            },
+            {
+              "name": "Local honey & treats"
+            }
           ]
         }
       ]
@@ -103,10 +140,22 @@
       "eyebrow": "Good to know",
       "heading": "Planning your visit",
       "items": [
-        { "q": "Do I need a reservation?", "a": "Nope — pull up to the tasting bar and we'll pour. For larger groups, a quick call helps us get ready." },
-        { "q": "Can I bring my dog?", "a": "Absolutely — the patio is pet-friendly, so the whole family's welcome." },
-        { "q": "Is there food?", "a": "Rotating food trucks visit in the warmer months — check our Facebook for the lineup before you come." },
-        { "q": "When are you open?", "a": "Tuesday–Friday 11–7 and weekends 11–5. Closed Mondays." }
+        {
+          "q": "Do I need a reservation?",
+          "a": "Nope — pull up to the tasting bar and we'll pour. For larger groups, a quick call helps us get ready."
+        },
+        {
+          "q": "Can I bring my dog?",
+          "a": "Absolutely — the patio is pet-friendly, so the whole family's welcome."
+        },
+        {
+          "q": "Is there food?",
+          "a": "Rotating food trucks visit in the warmer months — check our Facebook for the lineup before you come."
+        },
+        {
+          "q": "When are you open?",
+          "a": "Tuesday–Friday 11–7 and weekends 11–5. Closed Mondays."
+        }
       ]
     },
     {
@@ -120,5 +169,22 @@
   "theme": {
     "brand": "#9b2d3a",
     "brandDark": "#2b1a22"
-  }
+  },
+  "galleryImages": [
+    {
+      "src": "/images/honey-hole-winery/story.jpg",
+      "alt": "Honey Hole Winery in Drums, PA — photo 2"
+    },
+    {
+      "src": "/images/honey-hole-winery/photo-2.jpg",
+      "alt": "Honey Hole Winery in Drums, PA — photo 3"
+    },
+    {
+      "src": "/images/honey-hole-winery/photo-3.jpg",
+      "alt": "Honey Hole Winery in Drums, PA — photo 4"
+    }
+  ],
+  "flags": [
+    "Includes area/stock photos from Wikimedia (credited) — replace with the business’s own before sending"
+  ]
 }

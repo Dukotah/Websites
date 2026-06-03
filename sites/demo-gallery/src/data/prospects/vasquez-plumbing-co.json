@@ -26,12 +26,12 @@
     "24/7 emergency service"
   ],
   "images": {
-    "hero": "/images/library/plumbing/hero.svg",
-    "heroAlt": "Vasquez Plumbing Co service van in Santa Rosa, CA",
-    "story": "/images/library/plumbing/story.svg",
-    "storyAlt": "A Vasquez Plumbing technician at work",
+    "hero": "/images/vasquez-plumbing-co/hero.jpg",
+    "heroAlt": "Vasquez Plumbing Co in Santa Rosa, Petaluma & Sonoma County, CA",
+    "story": "/images/vasquez-plumbing-co/story.jpg",
+    "storyAlt": "Inside Vasquez Plumbing Co",
     "storyCaption": "",
-    "storyCredit": "",
+    "storyCredit": "Photo: Tangopaso",
     "placeholder": "/images/library/plumbing/hero.svg"
   },
   "about": {
@@ -62,9 +62,18 @@
     }
   ],
   "hours": [
-    { "day": "Mon – Fri", "hours": "7:00 AM – 6:00 PM" },
-    { "day": "Saturday", "hours": "8:00 AM – 2:00 PM" },
-    { "day": "Sunday", "hours": "Emergency calls only" }
+    {
+      "day": "Mon – Fri",
+      "hours": "7:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "8:00 AM – 2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Emergency calls only"
+    }
   ],
   "hoursNote": "24/7 emergency line for burst pipes and no-water calls — we answer nights and weekends.",
   "sections": [
@@ -94,10 +103,22 @@
     {
       "type": "stats",
       "items": [
-        { "value": "15+", "label": "Years in Sonoma County" },
-        { "value": "4.9★", "label": "Across 600+ reviews" },
-        { "value": "Same-day", "label": "On most repairs" },
-        { "value": "24/7", "label": "Emergency response" }
+        {
+          "value": "15+",
+          "label": "Years in Sonoma County"
+        },
+        {
+          "value": "4.9★",
+          "label": "Across 600+ reviews"
+        },
+        {
+          "value": "Same-day",
+          "label": "On most repairs"
+        },
+        {
+          "value": "24/7",
+          "label": "Emergency response"
+        }
       ]
     },
     {
@@ -105,15 +126,32 @@
       "eyebrow": "How it works",
       "heading": "Booking us is refreshingly boring",
       "steps": [
-        { "title": "Call or book online", "body": "Tell us what's going on. We'll give you an arrival window and a real person's name." },
-        { "title": "Upfront flat quote", "body": "The plumber diagnoses on-site and quotes the full price before any work starts — you approve, then we begin." },
-        { "title": "Done right, cleaned up", "body": "We fix it, walk you through what we did, and leave the space cleaner than we found it." }
+        {
+          "title": "Call or book online",
+          "body": "Tell us what's going on. We'll give you an arrival window and a real person's name."
+        },
+        {
+          "title": "Upfront flat quote",
+          "body": "The plumber diagnoses on-site and quotes the full price before any work starts — you approve, then we begin."
+        },
+        {
+          "title": "Done right, cleaned up",
+          "body": "We fix it, walk you through what we did, and leave the space cleaner than we found it."
+        }
       ]
     },
     {
       "type": "service-area",
       "heading": "Where we work",
-      "areas": ["Santa Rosa", "Petaluma", "Rohnert Park", "Windsor", "Sebastopol", "Cotati", "Sonoma"],
+      "areas": [
+        "Santa Rosa",
+        "Petaluma",
+        "Rohnert Park",
+        "Windsor",
+        "Sebastopol",
+        "Cotati",
+        "Sonoma"
+      ],
       "note": "Not sure if you're in range? Give us a call — if we can't help, we'll point you to someone who can."
     },
     {
@@ -121,9 +159,21 @@
       "eyebrow": "In their words",
       "heading": "Neighbors who'd call us again",
       "items": [
-        { "quote": "Burst pipe at 11pm and Mateo's guy was at the house within the hour. Quoted the price before touching anything and stuck to it. This is how it should work.", "author": "Dana R.", "source": "Google review" },
-        { "quote": "They jetted a sewer line three other companies wanted to dig up, showed me the camera footage, and saved me thousands. Honest people.", "author": "Tom & Linda P.", "source": "Yelp" },
-        { "quote": "Tankless install done in an afternoon, spotless work, and they actually explained the maintenance. Easy five stars.", "author": "Priya S.", "source": "Google review" }
+        {
+          "quote": "Burst pipe at 11pm and Mateo's guy was at the house within the hour. Quoted the price before touching anything and stuck to it. This is how it should work.",
+          "author": "Dana R.",
+          "source": "Google review"
+        },
+        {
+          "quote": "They jetted a sewer line three other companies wanted to dig up, showed me the camera footage, and saved me thousands. Honest people.",
+          "author": "Tom & Linda P.",
+          "source": "Yelp"
+        },
+        {
+          "quote": "Tankless install done in an afternoon, spotless work, and they actually explained the maintenance. Easy five stars.",
+          "author": "Priya S.",
+          "source": "Google review"
+        }
       ]
     },
     {
@@ -131,25 +181,63 @@
       "eyebrow": "Good to know",
       "heading": "Questions we hear a lot",
       "items": [
-        { "q": "Do you charge for estimates?", "a": "Diagnostic visits carry a small trip fee that we credit toward the repair if you move forward. The repair price itself is always flat-rate and approved by you first." },
-        { "q": "Are you really available 24/7?", "a": "Yes — burst pipes and no-water emergencies get a live answer nights and weekends, and a tech dispatched as fast as we safely can." },
-        { "q": "Is your work guaranteed?", "a": "All labor is warrantied (six years on standard water-heater installs), and we're fully licensed (C-36 #1029847) and insured." }
+        {
+          "q": "Do you charge for estimates?",
+          "a": "Diagnostic visits carry a small trip fee that we credit toward the repair if you move forward. The repair price itself is always flat-rate and approved by you first."
+        },
+        {
+          "q": "Are you really available 24/7?",
+          "a": "Yes — burst pipes and no-water emergencies get a live answer nights and weekends, and a tech dispatched as fast as we safely can."
+        },
+        {
+          "q": "Is your work guaranteed?",
+          "a": "All labor is warrantied (six years on standard water-heater installs), and we're fully licensed (C-36 #1029847) and insured."
+        }
       ]
     },
     {
       "type": "hours-contact",
       "heading": "Hours & emergency line",
       "hours": [
-        { "day": "Mon – Fri", "hours": "7:00 AM – 6:00 PM" },
-        { "day": "Saturday", "hours": "8:00 AM – 2:00 PM" },
-        { "day": "Sunday", "hours": "Emergency calls only" }
+        {
+          "day": "Mon – Fri",
+          "hours": "7:00 AM – 6:00 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "8:00 AM – 2:00 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "Emergency calls only"
+        }
       ],
       "phone": "(707) 555-0119",
-      "cta": { "text": "Book a visit", "href": "#contact" }
+      "cta": {
+        "text": "Book a visit",
+        "href": "#contact"
+      }
     }
   ],
   "theme": {
     "brand": "#1f6feb",
     "brandDark": "#16324f"
-  }
+  },
+  "galleryImages": [
+    {
+      "src": "/images/vasquez-plumbing-co/story.jpg",
+      "alt": "Vasquez Plumbing Co in Santa Rosa, Petaluma & Sonoma County, CA — photo 2"
+    },
+    {
+      "src": "/images/vasquez-plumbing-co/photo-2.jpg",
+      "alt": "Vasquez Plumbing Co in Santa Rosa, Petaluma & Sonoma County, CA — photo 3"
+    },
+    {
+      "src": "/images/vasquez-plumbing-co/photo-3.jpg",
+      "alt": "Vasquez Plumbing Co in Santa Rosa, Petaluma & Sonoma County, CA — photo 4"
+    }
+  ],
+  "flags": [
+    "Includes area/stock photos from Wikimedia (credited) — replace with the business’s own before sending"
+  ]
 }

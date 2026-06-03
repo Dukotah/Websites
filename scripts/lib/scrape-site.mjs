@@ -246,22 +246,51 @@ function extractParagraphs(html) {
     .filter((t) => !/(cookie|privacy policy|all rights reserved|terms of service)/i.test(t));
 }
 
+// Many builder CDNs (GoDaddy/wsimg, Wix, Squarespace, Cloudinary, Shopify)
+// append a transform path after the real file, e.g.
+//   …/IMG_1920.jpeg/:/cr=t:0%25,…/fx-gs   (the /:/… part, often grayscale).
+// Strip it so we download the clean, full-resolution original.
+function cleanImageUrl(u) {
+  if (!u) return u;
+  let s = u.trim().replace(/^["']|["']$/g, '');
+  s = s.split('/:/')[0]; // wsimg / isteam transform suffix
+  return s;
+}
+
 function extractImages(html, base) {
   const out = [];
-  // <img src> and srcset (take the first/largest candidate from srcset).
+  const push = (u) => {
+    const abs = absolutize(cleanImageUrl(u), base);
+    if (abs) out.push(abs);
+  };
+  // Pick the largest URL out of a srcset/“url 1x, url 2x” list.
+  const fromSrcset = (set) => set?.split(',').pop()?.trim().split(/\s+/)[0];
+
+  // <img> and friends — including the lazy-load attributes builder sites use
+  // (data-src, data-srcset, data-srcsetlazy, data-srclazy, data-original).
   for (const tag of html.match(/<img\b[^>]*>/gi) ?? []) {
-    let src = attr(tag, 'src') || attr(tag, 'data-src');
-    const srcset = attr(tag, 'srcset') || attr(tag, 'data-srcset');
-    if (srcset) {
-      const last = srcset.split(',').pop()?.trim().split(/\s+/)[0];
-      if (last) src = last;
-    }
-    if (src) out.push(absolutize(src, base));
+    const srcset =
+      attr(tag, 'srcset') || attr(tag, 'data-srcset') ||
+      attr(tag, 'data-srcsetlazy') || attr(tag, 'data-lazy-srcset');
+    const src =
+      fromSrcset(srcset) || attr(tag, 'src') || attr(tag, 'data-src') ||
+      attr(tag, 'data-srclazy') || attr(tag, 'data-original') || attr(tag, 'data-lazy');
+    if (src) push(src);
+  }
+  // Any element carrying a lazy srcset/src (builder sites use <div data-srcsetlazy>).
+  for (const m of html.matchAll(/\bdata-(?:srcset(?:lazy)?|src(?:lazy)?|original)\s*=\s*["']([^"']+)["']/gi)) {
+    const u = fromSrcset(m[1]) || m[1];
+    if (u) push(u);
   }
   // Inline background-image styles.
-  for (const m of html.matchAll(/background-image\s*:\s*url\((["']?)([^"')]+)\1\)/gi)) {
-    out.push(absolutize(m[2], base));
-  }
+  for (const m of html.matchAll(/background-image\s*:\s*url\((["']?)([^"')]+)\1\)/gi)) push(m[2]);
+
+  // Fallback: harvest URLs from known image CDNs anywhere in the markup/JSON
+  // config blobs (catches builder sites that embed images in scripts).
+  const CDN =
+    /(?:https?:)?\/\/[^"'\\\s)]*(?:wsimg\.com|wixstatic\.com|squarespace-cdn\.com|cloudinary\.com|shopify\.com|cdn\.[^/"']+)\/[^"'\\\s)]+/gi;
+  for (const m of html.match(CDN) ?? []) push(m);
+
   return out;
 }
 

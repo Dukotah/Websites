@@ -21,12 +21,16 @@
     "ctaText": "Plan your visit",
     "ctaHref": "#contact"
   },
-  "highlights": ["Female-owned since 1997", "A family establishment", "Walk-ins welcome"],
+  "highlights": [
+    "Female-owned since 1997",
+    "A family establishment",
+    "Walk-ins welcome"
+  ],
   "images": {
-    "hero": "/images/library/tattoo/hero.svg",
-    "heroAlt": "The Hole Thing tattoo and piercing shop in Santa Rosa",
-    "story": "/images/library/tattoo/story.svg",
-    "storyAlt": "Inside The Hole Thing shop on Santa Rosa Avenue",
+    "hero": "/images/the-hole-thing/hero.jpg",
+    "heroAlt": "The Hole Thing in Santa Rosa, CA",
+    "story": "/images/the-hole-thing/story.jpg",
+    "storyAlt": "Inside The Hole Thing",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/tattoo/hero.svg"
@@ -59,10 +63,22 @@
     }
   ],
   "hours": [
-    { "day": "Monday", "hours": "11:00 AM – 6:00 PM" },
-    { "day": "Tuesday", "hours": "Closed" },
-    { "day": "Wed – Sat", "hours": "11:00 AM – 6:00 PM" },
-    { "day": "Sunday", "hours": "12:00 PM – 5:00 PM" }
+    {
+      "day": "Monday",
+      "hours": "11:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Tuesday",
+      "hours": "Closed"
+    },
+    {
+      "day": "Wed – Sat",
+      "hours": "11:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "12:00 PM – 5:00 PM"
+    }
   ],
   "hoursNote": "Walk-ins welcome — call ahead at (707) 570-2879 or (707) 888-1269 for a specific artist.",
   "sections": [
@@ -92,10 +108,22 @@
     {
       "type": "stats",
       "items": [
-        { "value": "1997", "label": "Serving Sonoma County since" },
-        { "value": "Cotati → SR", "label": "Santa Rosa Ave since 2005" },
-        { "value": "Female-owned", "label": "& family-run" },
-        { "value": "Walk-ins", "label": "Always welcome" }
+        {
+          "value": "1997",
+          "label": "Serving Sonoma County since"
+        },
+        {
+          "value": "Cotati → SR",
+          "label": "Santa Rosa Ave since 2005"
+        },
+        {
+          "value": "Female-owned",
+          "label": "& family-run"
+        },
+        {
+          "value": "Walk-ins",
+          "label": "Always welcome"
+        }
       ]
     },
     {
@@ -103,9 +131,21 @@
       "eyebrow": "Our story",
       "heading": "Nearly three decades of Sonoma County ink",
       "items": [
-        { "year": "1997", "title": "The Hole Thing opens in Cotati", "body": "A female-owned tattoo and piercing shop sets up in Cotati and starts building a Sonoma County following." },
-        { "year": "2005", "title": "Home to Santa Rosa Avenue", "body": "The shop moves to 324 Santa Rosa Ave — the family establishment locals know today." },
-        { "year": "Today", "title": "Sonoma County's favorite shop", "body": "Custom tattoos, expert piercings, and tooth gems, with walk-ins always welcome." }
+        {
+          "year": "1997",
+          "title": "The Hole Thing opens in Cotati",
+          "body": "A female-owned tattoo and piercing shop sets up in Cotati and starts building a Sonoma County following."
+        },
+        {
+          "year": "2005",
+          "title": "Home to Santa Rosa Avenue",
+          "body": "The shop moves to 324 Santa Rosa Ave — the family establishment locals know today."
+        },
+        {
+          "year": "Today",
+          "title": "Sonoma County's favorite shop",
+          "body": "Custom tattoos, expert piercings, and tooth gems, with walk-ins always welcome."
+        }
       ]
     },
     {
@@ -113,9 +153,21 @@
       "eyebrow": "Meet the artists",
       "heading": "The people behind the needle",
       "members": [
-        { "name": "Selena", "role": "Tattoo Artist", "bio": "Resident tattoo artist — browse her portfolio in-shop or book a free consultation." },
-        { "name": "Ana", "role": "Tattoo Artist", "bio": "Resident tattoo artist taking custom work and walk-ins." },
-        { "name": "Lucas Valtenbergs", "role": "American Traditional", "bio": "Bold lines and classic American Traditional tattooing." }
+        {
+          "name": "Selena",
+          "role": "Tattoo Artist",
+          "bio": "Resident tattoo artist — browse her portfolio in-shop or book a free consultation."
+        },
+        {
+          "name": "Ana",
+          "role": "Tattoo Artist",
+          "bio": "Resident tattoo artist taking custom work and walk-ins."
+        },
+        {
+          "name": "Lucas Valtenbergs",
+          "role": "American Traditional",
+          "bio": "Bold lines and classic American Traditional tattooing."
+        }
       ]
     },
     {
@@ -127,27 +179,50 @@
         {
           "title": "Piercings",
           "items": [
-            { "name": "Earlobe & cartilage" },
-            { "name": "Septum & nostril" },
-            { "name": "Navel & body piercings" },
-            { "name": "Jewelry changes & downsizes" }
+            {
+              "name": "Earlobe & cartilage"
+            },
+            {
+              "name": "Septum & nostril"
+            },
+            {
+              "name": "Navel & body piercings"
+            },
+            {
+              "name": "Jewelry changes & downsizes"
+            }
           ]
         },
         {
           "title": "Tattoos",
           "items": [
-            { "name": "Custom, original work" },
-            { "name": "American Traditional" },
-            { "name": "Walk-in pieces" },
-            { "name": "Free consultations", "note": "browse artist portfolios" }
+            {
+              "name": "Custom, original work"
+            },
+            {
+              "name": "American Traditional"
+            },
+            {
+              "name": "Walk-in pieces"
+            },
+            {
+              "name": "Free consultations",
+              "note": "browse artist portfolios"
+            }
           ]
         },
         {
           "title": "Also at the shop",
           "items": [
-            { "name": "Tooth gems" },
-            { "name": "Kids' first ear piercings" },
-            { "name": "Quality body jewelry" }
+            {
+              "name": "Tooth gems"
+            },
+            {
+              "name": "Kids' first ear piercings"
+            },
+            {
+              "name": "Quality body jewelry"
+            }
           ]
         }
       ]
@@ -206,13 +281,28 @@
       "type": "hours-contact",
       "heading": "Hours & how to reach us",
       "hours": [
-        { "day": "Monday", "hours": "11:00 AM – 6:00 PM" },
-        { "day": "Tuesday", "hours": "Closed" },
-        { "day": "Wed – Sat", "hours": "11:00 AM – 6:00 PM" },
-        { "day": "Sunday", "hours": "12:00 PM – 5:00 PM" }
+        {
+          "day": "Monday",
+          "hours": "11:00 AM – 6:00 PM"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Wed – Sat",
+          "hours": "11:00 AM – 6:00 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "12:00 PM – 5:00 PM"
+        }
       ],
       "phone": "(707) 570-2879",
-      "cta": { "text": "Plan your visit", "href": "#contact" }
+      "cta": {
+        "text": "Plan your visit",
+        "href": "#contact"
+      }
     },
     {
       "type": "cta",
@@ -223,12 +313,18 @@
     }
   ],
   "flags": [
-    "Using stock art — swap in real photos from their Instagram (@holethingtattoo) or Yelp",
     "Owner name not confirmed on site — verify before asserting in copy"
   ],
   "design": "bold",
   "theme": {
     "brand": "#c2185b",
     "brandDark": "#1a1620"
-  }
+  },
+  "galleryImages": [
+    {
+      "src": "/images/the-hole-thing/story.jpg",
+      "alt": "The Hole Thing in Santa Rosa, CA — photo 2"
+    }
+  ],
+  "website": "https://holething.net/"
 }

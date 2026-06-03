@@ -20,14 +20,18 @@
     "ctaText": "Visit the winery",
     "ctaHref": "#contact"
   },
-  "highlights": ["Crafting since 2002", "25+ small-batch wines", "PA-grown fruit"],
+  "highlights": [
+    "Crafting since 2002",
+    "25+ small-batch wines",
+    "PA-grown fruit"
+  ],
   "images": {
-    "hero": "/images/library/winery/hero.svg",
+    "hero": "/images/kog-hill-winery/hero.jpg",
     "heroAlt": "Kog Hill Winery in Morgantown, PA",
-    "story": "/images/library/winery/story.svg",
-    "storyAlt": "Kog Hill Winery tasting room",
+    "story": "/images/kog-hill-winery/story.jpg",
+    "storyAlt": "Inside Kog Hill Winery",
     "storyCaption": "",
-    "storyCredit": "",
+    "storyCredit": "Photo: Christian Ferrer",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "about": {
@@ -58,8 +62,14 @@
     }
   ],
   "hours": [
-    { "day": "Fri – Sun", "hours": "12:00 PM – 5:00 PM" },
-    { "day": "Mon – Thu", "hours": "Closed" }
+    {
+      "day": "Fri – Sun",
+      "hours": "12:00 PM – 5:00 PM"
+    },
+    {
+      "day": "Mon – Thu",
+      "hours": "Closed"
+    }
   ],
   "hoursNote": "",
   "design": "elegant",
@@ -67,9 +77,18 @@
     {
       "type": "stats",
       "items": [
-        { "value": "2002", "label": "Crafting since" },
-        { "value": "25+", "label": "Small-batch wines" },
-        { "value": "PA-grown", "label": "Local fruit, every bottle" }
+        {
+          "value": "2002",
+          "label": "Crafting since"
+        },
+        {
+          "value": "25+",
+          "label": "Small-batch wines"
+        },
+        {
+          "value": "PA-grown",
+          "label": "Local fruit, every bottle"
+        }
       ]
     },
     {
@@ -81,17 +100,29 @@
         {
           "title": "Classic varietals",
           "items": [
-            { "name": "Cabernet Franc" },
-            { "name": "Grüner Veltliner" },
-            { "name": "Dry reds & whites" }
+            {
+              "name": "Cabernet Franc"
+            },
+            {
+              "name": "Grüner Veltliner"
+            },
+            {
+              "name": "Dry reds & whites"
+            }
           ]
         },
         {
           "title": "Specialty pours",
           "items": [
-            { "name": "Toasted Marshmallow" },
-            { "name": "Pumpkin Spice" },
-            { "name": "Seasonal releases" }
+            {
+              "name": "Toasted Marshmallow"
+            },
+            {
+              "name": "Pumpkin Spice"
+            },
+            {
+              "name": "Seasonal releases"
+            }
           ]
         }
       ]
@@ -101,9 +132,18 @@
       "eyebrow": "Good to know",
       "heading": "Before you visit",
       "items": [
-        { "q": "When are you open?", "a": "Friday through Sunday, 12–5. Closed Monday through Thursday." },
-        { "q": "Who runs the winery?", "a": "Julie and Bob, who took the reins in 2022 and kept the small-batch, artisan spirit going." },
-        { "q": "Do you do tastings?", "a": "Yes — come work your way through the list and find your bottle." }
+        {
+          "q": "When are you open?",
+          "a": "Friday through Sunday, 12–5. Closed Monday through Thursday."
+        },
+        {
+          "q": "Who runs the winery?",
+          "a": "Julie and Bob, who took the reins in 2022 and kept the small-batch, artisan spirit going."
+        },
+        {
+          "q": "Do you do tastings?",
+          "a": "Yes — come work your way through the list and find your bottle."
+        }
       ]
     },
     {
@@ -117,5 +157,22 @@
   "theme": {
     "brand": "#6d3a6b",
     "brandDark": "#241a26"
-  }
+  },
+  "galleryImages": [
+    {
+      "src": "/images/kog-hill-winery/story.jpg",
+      "alt": "Kog Hill Winery in Morgantown, PA — photo 2"
+    },
+    {
+      "src": "/images/kog-hill-winery/photo-2.jpg",
+      "alt": "Kog Hill Winery in Morgantown, PA — photo 3"
+    },
+    {
+      "src": "/images/kog-hill-winery/photo-3.jpg",
+      "alt": "Kog Hill Winery in Morgantown, PA — photo 4"
+    }
+  ],
+  "flags": [
+    "Includes area/stock photos from Wikimedia (credited) — replace with the business’s own before sending"
+  ]
 }

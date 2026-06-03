@@ -58,13 +58,16 @@ async function searchCommons(query, width) {
  *
  * @returns {Promise<Array<{path,credit,license,source,alt}>>}
  */
-export async function getRealPhotos(row, { destDir, slug, max = 2, width = 1600 } = {}) {
+export async function getRealPhotos(row, { destDir, slug, max = 2, width = 1600, startIndex = 0, queries: queryOverride } = {}) {
   const town = [row.city, row.state].filter(Boolean).join(', ');
-  const queries = [
-    [row.name, town].filter(Boolean).join(' '),
-    [row.category, town].filter(Boolean).join(' '),
-    town,
-  ].filter((q) => q && q.trim().length > 1);
+  const queries = (queryOverride?.length
+    ? queryOverride
+    : [
+        [row.name, town].filter(Boolean).join(' '),
+        [row.category, town].filter(Boolean).join(' '),
+        town,
+      ]
+  ).filter((q) => q && q.trim().length > 1);
 
   let candidates = [];
   for (const q of queries) {
@@ -84,7 +87,8 @@ export async function getRealPhotos(row, { destDir, slug, max = 2, width = 1600 
       const img = await fetch(src, { headers: { 'User-Agent': UA } });
       if (!img.ok) throw new Error(`download ${img.status}`);
       const ext = (info.mime.split('/')[1] || 'jpg').replace('jpeg', 'jpg');
-      const fileName = `${saved.length === 0 ? 'hero' : saved.length === 1 ? 'story' : `photo-${saved.length}`}.${ext}`;
+      const idx = startIndex + saved.length;
+      const fileName = `${idx === 0 ? 'hero' : idx === 1 ? 'story' : `photo-${idx}`}.${ext}`;
       await writeFile(join(outDir, fileName), Buffer.from(await img.arrayBuffer()));
 
       const meta = info.extmetadata ?? {};

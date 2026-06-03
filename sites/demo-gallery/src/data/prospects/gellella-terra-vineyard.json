@@ -20,14 +20,18 @@
     "ctaText": "Reserve a tasting",
     "ctaHref": "#contact"
   },
-  "highlights": ["Family-owned & operated", "Small-batch, handcrafted", "Legacy from Tito, Italy"],
+  "highlights": [
+    "Family-owned & operated",
+    "Small-batch, handcrafted",
+    "Legacy from Tito, Italy"
+  ],
   "images": {
-    "hero": "/images/library/winery/hero.svg",
+    "hero": "/images/gellella-terra-vineyard/hero.jpg",
     "heroAlt": "Gellella Terra Vineyard in Muncy, PA",
-    "story": "/images/library/winery/story.svg",
-    "storyAlt": "Gellella Terra Vineyard view and tasting space",
+    "story": "/images/gellella-terra-vineyard/story.jpg",
+    "storyAlt": "Inside Gellella Terra Vineyard",
     "storyCaption": "",
-    "storyCredit": "",
+    "storyCredit": "Photo: Christian Ferrer",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "about": {
@@ -58,8 +62,14 @@
     }
   ],
   "hours": [
-    { "day": "Fri", "hours": "5:00 PM – 8:00 PM" },
-    { "day": "Sat – Sun", "hours": "2:00 PM – 5:00 PM" }
+    {
+      "day": "Fri",
+      "hours": "5:00 PM – 8:00 PM"
+    },
+    {
+      "day": "Sat – Sun",
+      "hours": "2:00 PM – 5:00 PM"
+    }
   ],
   "hoursNote": "Reservations required for tastings and events — call (570) 546-9315.",
   "design": "elegant",
@@ -67,9 +77,18 @@
     {
       "type": "stats",
       "items": [
-        { "value": "Tito, Italy", "label": "Where the legacy began" },
-        { "value": "Small-batch", "label": "Handcrafted, the old way" },
-        { "value": "By reservation", "label": "Intimate tastings" }
+        {
+          "value": "Tito, Italy",
+          "label": "Where the legacy began"
+        },
+        {
+          "value": "Small-batch",
+          "label": "Handcrafted, the old way"
+        },
+        {
+          "value": "By reservation",
+          "label": "Intimate tastings"
+        }
       ]
     },
     {
@@ -81,17 +100,29 @@
         {
           "title": "Wines",
           "items": [
-            { "name": "Dry wines" },
-            { "name": "Sweet wines" },
-            { "name": "Dessert wines" }
+            {
+              "name": "Dry wines"
+            },
+            {
+              "name": "Sweet wines"
+            },
+            {
+              "name": "Dessert wines"
+            }
           ]
         },
         {
           "title": "At the tasting",
           "items": [
-            { "name": "Paired small plates" },
-            { "name": "Vineyard tours" },
-            { "name": "Wine-appreciation sessions" }
+            {
+              "name": "Paired small plates"
+            },
+            {
+              "name": "Vineyard tours"
+            },
+            {
+              "name": "Wine-appreciation sessions"
+            }
           ]
         }
       ]
@@ -101,9 +132,18 @@
       "eyebrow": "Good to know",
       "heading": "Before you reserve",
       "items": [
-        { "q": "Do I need a reservation?", "a": "Yes — tastings and tours are by reservation, so every visit stays personal. Call (570) 546-9315." },
-        { "q": "Are there small plates?", "a": "Yes, thoughtfully paired to the wines and meant to be enjoyed slowly." },
-        { "q": "Can you host a group?", "a": "We do by-appointment group tastings and private gatherings in an intimate setting." }
+        {
+          "q": "Do I need a reservation?",
+          "a": "Yes — tastings and tours are by reservation, so every visit stays personal. Call (570) 546-9315."
+        },
+        {
+          "q": "Are there small plates?",
+          "a": "Yes, thoughtfully paired to the wines and meant to be enjoyed slowly."
+        },
+        {
+          "q": "Can you host a group?",
+          "a": "We do by-appointment group tastings and private gatherings in an intimate setting."
+        }
       ]
     },
     {
@@ -117,5 +157,22 @@
   "theme": {
     "brand": "#9c4722",
     "brandDark": "#2a1d18"
-  }
+  },
+  "galleryImages": [
+    {
+      "src": "/images/gellella-terra-vineyard/story.jpg",
+      "alt": "Gellella Terra Vineyard in Muncy, PA — photo 2"
+    },
+    {
+      "src": "/images/gellella-terra-vineyard/photo-2.jpg",
+      "alt": "Gellella Terra Vineyard in Muncy, PA — photo 3"
+    },
+    {
+      "src": "/images/gellella-terra-vineyard/photo-3.jpg",
+      "alt": "Gellella Terra Vineyard in Muncy, PA — photo 4"
+    }
+  ],
+  "flags": [
+    "Includes area/stock photos from Wikimedia (credited) — replace with the business’s own before sending"
+  ]
 }
