@@ -68,10 +68,10 @@ npm run generate-prospects -- data/prospects.csv
 
 This renders every business as its own page at `demos.yourdomain.com/p/<slug>`
 inside one app (`sites/demo-gallery/`), so a single deploy hosts all of them.
-Copy (tagline, hero, about, services) is written by the Claude API when
-`ANTHROPIC_API_KEY` is set, with a built-in fallback otherwise. When a prospect
-converts, graduate them to a standalone site with `npm run new-site`. Full
-walkthrough: [`docs/outreach-pipeline.md`](docs/outreach-pipeline.md).
+**No API keys required** — the agent writes the copy, and photos come free from
+the business's own online images → Wikimedia Commons → a built-in category
+library. When a prospect converts, graduate them to a standalone site with
+`npm run new-site`. Full walkthrough: [`docs/outreach-pipeline.md`](docs/outreach-pipeline.md).
 
 ## Adding real photos
 

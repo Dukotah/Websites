@@ -47,47 +47,39 @@ This writes one `sites/demo-gallery/src/data/prospects/<slug>.json` per row and
 a `data/outreach-links.json` manifest (`name`, `email`, `link`) you can
 mail-merge from. The slug comes from the business name.
 
-### Keys (all optional — the script degrades gracefully)
+### No API keys required
 
-Copy `.env.example` to `.env` and fill in what you have:
+The pipeline runs fully free. Copy (tagline/hero/about/services) comes from a
+built-in per-category template that the agent personalizes per business; photos
+come from the free chain below. The only **optional** env vars are
+`GALLERY_BASE_URL` (prefixes the outreach links with your live domain so they're
+click-ready) and `ANTHROPIC_API_KEY` (auto-writes copy instead of the template).
+See `.env.example`.
 
-```bash
-cp .env.example .env
-set -a && . ./.env && set +a               # load into your shell
-npm run generate-prospects -- data/prospects.csv
-```
+### Photos — the free, key-free chain
 
-| Variable | Effect when set | When unset |
-| --- | --- | --- |
-| `ANTHROPIC_API_KEY` | Claude writes tagline/hero/about/services | Per-category template copy |
-| `GOOGLE_MAPS_API_KEY` | Real photos + address/phone/hours/website-check from Google | SVG placeholder art |
-| `ANTHROPIC_MODEL` | Override model (default `claude-sonnet-4-6`) | default |
-| `GALLERY_BASE_URL` | Prefixes outreach links, e.g. `https://demos.yourdomain.com` | links are relative `/p/<slug>` |
+Each prospect's hero + story image is resolved in priority order:
 
-The Claude system prompt is cached, so generating many rows in one run is cheap.
+1. **The business's own photos already online** *(best — done by the agent)*.
+   When run conversationally, the agent web-searches the business and, if it
+   finds clearly-theirs photos, downloads them into
+   `sites/demo-gallery/public/images/<slug>/` as `hero.<ext>` / `story.<ext>`.
+   The generator auto-detects anything there and uses it first.
+2. **Wikimedia Commons** *(free, no key)* — `scripts/lib/photos.mjs` searches by
+   business name → category + town → town, downloads CC-licensed matches, and
+   captures attribution. Best-effort: skipped silently if the environment can't
+   reach Commons. Add `--no-photos` to the generate command to skip this step.
+3. **Built-in category library** — polished, theme-matched art shipped in
+   `sites/demo-gallery/public/images/library/<category>/`. Always works, no
+   network. Regenerate with `node scripts/build-image-library.mjs`.
 
-### Google Places enrichment + photos
+The run prints which tier each prospect used, and `data/outreach-links.json`
+records it as `photoSource`. CSV can be sparse — even just `name,category,city`.
 
-With `GOOGLE_MAPS_API_KEY` set (a Google Maps Platform key with **Places API
-(New)** enabled), each row is looked up by name + whatever location it has, and
-the generator pulls:
-
-- **Real storefront photos** → downloaded to
-  `sites/demo-gallery/public/images/<slug>/` and used as the hero + story images
-  (with photographer attribution captured in the story caption).
-- **Address, phone, and real opening hours** → fill any blanks the CSV left.
-- **Existing-website check** → recorded per prospect in
-  `data/outreach-links.json` as `hasWebsite`, and the run prints how many
-  prospects have **no** website (your hottest "needs a site" leads).
-
-This means your CSV can be sparse — even just `name,category,city` per row —
-and Google fills in the rest. CSV values always win when present; Google only
-fills gaps.
-
-> **Attribution:** Google Places photos carry author attribution and usage
-> terms. The generator stores the photographer name in the story caption. For
-> production outreach, review Google's Places photo policy; for a prospect's
-> hot lead, their own uploaded photos are ideal.
+> **Attribution & rights:** Wikimedia images carry CC license + author info
+> (captured in the story caption). A business's own photos used in a demo you're
+> pitching *to that business* are low-risk; still, swap in their supplied photos
+> once they engage.
 
 ## 3. Preview locally
 

@@ -26,13 +26,13 @@
     "Emergency service"
   ],
   "images": {
-    "hero": "/images/hero.svg",
+    "hero": "/images/library/plumbing/hero.svg",
     "heroAlt": "Vasquez Plumbing Co in Santa Rosa, CA",
-    "story": "/images/about.svg",
+    "story": "/images/library/plumbing/story.svg",
     "storyAlt": "About Vasquez Plumbing Co",
     "storyCaption": "",
     "storyCredit": "",
-    "placeholder": "/images/hero.svg"
+    "placeholder": "/images/library/plumbing/hero.svg"
   },
   "about": {
     "heading": "About us",

@@ -26,13 +26,13 @@
     "Fully insured"
   ],
   "images": {
-    "hero": "/images/hero.svg",
+    "hero": "/images/library/towing/hero.svg",
     "heroAlt": "Redwood Towing & Recovery in Eureka, CA",
-    "story": "/images/about.svg",
+    "story": "/images/library/towing/story.svg",
     "storyAlt": "About Redwood Towing & Recovery",
     "storyCaption": "",
     "storyCredit": "",
-    "placeholder": "/images/hero.svg"
+    "placeholder": "/images/library/towing/hero.svg"
   },
   "about": {
     "heading": "About us",

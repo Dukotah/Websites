@@ -26,13 +26,13 @@
     "Cozy atmosphere"
   ],
   "images": {
-    "hero": "/images/hero.svg",
+    "hero": "/images/library/cafe/hero.svg",
     "heroAlt": "The Tin Cup Coffee House in Petaluma, CA",
-    "story": "/images/about.svg",
+    "story": "/images/library/cafe/story.svg",
     "storyAlt": "About The Tin Cup Coffee House",
     "storyCaption": "",
     "storyCredit": "",
-    "placeholder": "/images/hero.svg"
+    "placeholder": "/images/library/cafe/hero.svg"
   },
   "about": {
     "heading": "About us",

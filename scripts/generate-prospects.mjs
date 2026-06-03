@@ -7,27 +7,29 @@
  * ProspectConfig schema, so the gallery renders it at /p/<slug> and you can
  * paste that link into an outreach email.
  *
- * Marketing copy (tagline, hero, about, services) is written by the Claude API
- * when ANTHROPIC_API_KEY is set; otherwise a deterministic per-category
- * fallback is used so the script always produces a complete, finished page.
+ * No API keys required. Marketing copy uses a built-in per-category template by
+ * default (the agent personalizes it per business when run conversationally —
+ * see CLAUDE.md). An optional ANTHROPIC_API_KEY, if present, will have Claude
+ * write the copy, but nothing requires it.
  *
- * When GOOGLE_MAPS_API_KEY is set, each row is also enriched from Google Places
- * (New): real address, phone, opening hours, an existing-website check, and
- * actual storefront photos downloaded into the gallery's public/images. All of
- * that is best-effort — missing key or no match just falls back to placeholders.
+ * Photos are free and key-free, tried in this order per row:
+ *   1. (agent tier) the business's OWN photos found online — done by the agent
+ *      via web search before/after this script, dropped into public/images/<slug>/
+ *   2. Wikimedia Commons match (no key) — see scripts/lib/photos.mjs
+ *   3. the built-in category library art (always works, no network)
  *
  * Usage:
  *   node scripts/generate-prospects.mjs [path/to/file.csv]
  *   # defaults to data/prospects.sample.csv
  *
  * CSV columns (header row required; only `name` is required, rest optional):
- *   name, category, city, state, phone, email, address, existing_website
+ *   name, category, city, state, phone, email, address, established
  */
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { lookupPlace, placeToEnrichment, downloadPhotos } from './lib/google-places.mjs';
+import { getRealPhotos } from './lib/photos.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
@@ -213,27 +215,29 @@ function fallbackCopy(row, preset) {
 }
 
 // ---------------------------------------------------------------------------
-// Build a full ProspectConfig from a row + generated copy. `enrichment` (from
-// Google Places) and `media` (downloaded photos) are optional — when present
-// they fill gaps in the CSV and replace placeholder art with real photos.
+// Build a full ProspectConfig from a row + generated copy. `media` is any real
+// photos found (Wikimedia or agent-sourced); when empty, the category's
+// built-in library art is used so the page always looks finished.
 // ---------------------------------------------------------------------------
-function buildConfig(row, copy, preset, enrichment, media = []) {
+function buildConfig(row, copy, preset, catKey, media = []) {
   const area = [row.city, row.state].filter(Boolean).join(', ');
-  const e = enrichment ?? {};
   const [heroPhoto, storyPhoto] = media;
+  const lib = `/images/library/${catKey}`;
 
-  // CSV is authoritative; Google fills only what's blank.
-  const phone = row.phone || e.phone || '(555) 555-5555';
-  const address = row.address || e.formattedAddress || area;
+  const phone = row.phone || '(555) 555-5555';
+  const address = row.address || area;
 
-  const hours =
-    e.hours?.length
-      ? e.hours
-      : [
-          { day: 'Mon – Fri', hours: '8:00 AM – 6:00 PM' },
-          { day: 'Saturday', hours: '9:00 AM – 2:00 PM' },
-          { day: 'Sunday', hours: 'Closed' },
-        ];
+  const hours = [
+    { day: 'Mon – Fri', hours: '8:00 AM – 6:00 PM' },
+    { day: 'Saturday', hours: '9:00 AM – 2:00 PM' },
+    { day: 'Sunday', hours: 'Closed' },
+  ];
+
+  const storyCredit = storyPhoto?.credit
+    ? `Photo: ${storyPhoto.credit}`
+    : heroPhoto?.credit
+      ? `Photo: ${heroPhoto.credit}`
+      : '';
 
   return {
     name: row.name,
@@ -246,7 +250,7 @@ function buildConfig(row, copy, preset, enrichment, media = []) {
       email: row.email || `hello@${slugify(row.name)}.com`,
       address,
     },
-    social: { facebook: '', instagram: '', google: e.placeId ? `https://search.google.com/local/reviews?placeid=${e.placeId}` : '' },
+    social: { facebook: '', instagram: '', google: '' },
     hero: {
       heading: copy.heroHeading,
       subheading: copy.heroSubheading,
@@ -255,13 +259,13 @@ function buildConfig(row, copy, preset, enrichment, media = []) {
     },
     highlights: copy.highlights,
     images: {
-      hero: heroPhoto?.path ?? '/images/hero.svg',
+      hero: heroPhoto?.path ?? `${lib}/hero.svg`,
       heroAlt: `${row.name} in ${area}`,
-      story: storyPhoto?.path ?? heroPhoto?.path ?? '/images/about.svg',
+      story: storyPhoto?.path ?? heroPhoto?.path ?? `${lib}/story.svg`,
       storyAlt: `About ${row.name}`,
       storyCaption: '',
-      storyCredit: storyPhoto?.credit ? `Photo: ${storyPhoto.credit}` : '',
-      placeholder: '/images/hero.svg',
+      storyCredit,
+      placeholder: `${lib}/hero.svg`,
     },
     about: { heading: copy.aboutHeading, body: copy.aboutBody, signature: '' },
     servicesHeading: copy.servicesHeading,
@@ -272,28 +276,26 @@ function buildConfig(row, copy, preset, enrichment, media = []) {
   };
 }
 
-// Best-effort Google enrichment for one row. Returns { enrichment, media,
-// hasWebsite } — never throws (failures fall back to placeholders).
-async function enrichRow(row, slug, apiKey) {
+// Resolve the category key (so we can pick the right library art folder).
+const catKeyFor = (row) =>
+  CATEGORIES[row.category?.toLowerCase()] ? row.category.toLowerCase() : 'default';
+
+// Has the agent already dropped real photos for this slug into
+// public/images/<slug>/ (the strongest tier)? If so, use them as-is.
+async function agentDroppedPhotos(slug) {
   try {
-    const place = await lookupPlace(row, apiKey);
-    if (!place) {
-      console.log(`    · no Google match for "${row.name}"`);
-      return { enrichment: null, media: [], hasWebsite: null };
-    }
-    const enrichment = placeToEnrichment(place);
-    const media = await downloadPhotos(place, apiKey, { destDir: PUBLIC_IMAGES, slug, max: 2 });
-    const bits = [
-      `${media.length} photo${media.length === 1 ? '' : 's'}`,
-      enrichment.hours ? 'hours' : null,
-      enrichment.websiteUri ? 'has-site' : 'NO-site',
-      enrichment.rating ? `${enrichment.rating}★(${enrichment.userRatingCount})` : null,
-    ].filter(Boolean);
-    console.log(`    · Google: ${bits.join(', ')}`);
-    return { enrichment, media, hasWebsite: Boolean(enrichment.websiteUri) };
-  } catch (err) {
-    console.warn(`    · Google enrichment failed (${err.message}); using placeholders`);
-    return { enrichment: null, media: [], hasWebsite: null };
+    const files = (await readdir(join(PUBLIC_IMAGES, slug)))
+      .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f))
+      .sort();
+    const pick = (base) => files.find((f) => f.startsWith(base));
+    const hero = pick('hero') ?? files[0];
+    const story = pick('story') ?? files[1] ?? hero;
+    if (!hero) return [];
+    const media = [{ path: `/images/${slug}/${hero}`, credit: '' }];
+    if (story && story !== hero) media.push({ path: `/images/${slug}/${story}`, credit: '' });
+    return media;
+  } catch {
+    return [];
   }
 }
 
@@ -316,10 +318,10 @@ async function main() {
 
   await mkdir(OUT_DIR, { recursive: true });
   const usingClaude = Boolean(process.env.ANTHROPIC_API_KEY);
-  const googleKey = process.env.GOOGLE_MAPS_API_KEY;
+  const skipWikimedia = process.argv.includes('--no-photos');
   console.log(
-    `Generating ${rows.length} prospect site(s) — copy via ${usingClaude ? 'Claude API' : 'built-in fallback'}; ` +
-      `photos/enrichment via ${googleKey ? 'Google Places' : 'placeholders (no GOOGLE_MAPS_API_KEY)'}.\n`,
+    `Generating ${rows.length} prospect site(s) — copy via ${usingClaude ? 'Claude API' : 'built-in template'}; ` +
+      `photos: agent-supplied → ${skipWikimedia ? '(Wikimedia skipped)' : 'Wikimedia'} → library.\n`,
   );
 
   const base = process.env.GALLERY_BASE_URL?.replace(/\/$/, '') ?? '';
@@ -328,36 +330,35 @@ async function main() {
   for (const row of rows) {
     if (!row.name) continue;
     const slug = slugify(row.name);
-    const preset = CATEGORIES[row.category?.toLowerCase()] ?? CATEGORIES.default;
+    const catKey = catKeyFor(row);
+    const preset = CATEGORIES[catKey];
 
-    // Enrich from Google first so copy + config can use the richer data.
-    const { enrichment, media, hasWebsite } = googleKey
-      ? await enrichRow(row, slug, googleKey)
-      : { enrichment: null, media: [], hasWebsite: null };
+    // Photo priority: 1) photos the agent already dropped in, 2) Wikimedia,
+    // 3) built-in library (handled by buildConfig when media is empty).
+    let media = await agentDroppedPhotos(slug);
+    let source = media.length ? 'agent-supplied' : 'library';
+    if (!media.length && !skipWikimedia) {
+      try {
+        media = await getRealPhotos(row, { destDir: PUBLIC_IMAGES, slug, max: 2 });
+        if (media.length) source = 'wikimedia';
+      } catch {
+        /* best-effort; fall through to library */
+      }
+    }
 
-    const copy = await generateCopy({ ...row, _enrichment: enrichment }, preset);
-    const config = buildConfig(row, copy, preset, enrichment, media);
+    const copy = await generateCopy(row, preset);
+    const config = buildConfig(row, copy, preset, catKey, media);
     await writeFile(join(OUT_DIR, `${slug}.json`), JSON.stringify(config, null, 2) + '\n');
 
     const link = `${base}/p/${slug}`;
-    links.push({
-      name: row.name,
-      email: row.email || '',
-      link,
-      photos: media.length,
-      // Qualifier signal for "no website / shit website" targeting.
-      existingWebsite: enrichment?.websiteUri ?? row.existing_website ?? '',
-      hasWebsite,
-    });
-    console.log(`  ✓ ${row.name}  →  ${link}`);
+    links.push({ name: row.name, email: row.email || '', link, photos: media.length, photoSource: source });
+    console.log(`  ✓ ${row.name}  →  ${link}   [photos: ${source}]`);
   }
 
   // Write a links manifest you can mail-merge or paste back into the CRM.
   await writeFile(join(ROOT, 'data', 'outreach-links.json'), JSON.stringify(links, null, 2) + '\n');
-  const noSite = links.filter((l) => l.hasWebsite === false).length;
   console.log(`\nWrote ${links.length} site(s) to sites/demo-gallery/src/data/prospects/`);
   console.log('Links manifest: data/outreach-links.json');
-  if (googleKey) console.log(`Qualifier: ${noSite} prospect(s) have NO existing website (hottest leads).`);
   console.log('\nNext: cd sites/demo-gallery && npm install && npm run dev   (preview at /p/<slug>)');
   console.log('Then commit + push — Vercel rebuilds the gallery and your links go live.');
 }
