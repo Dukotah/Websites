@@ -24,35 +24,41 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
 1. **Locate the CSV.** Save/confirm it under `data/` (e.g. `data/leads.csv`).
    Required header: `name`; optional: `category, city, state, phone, email,
    address, established`. Sparse rows are fine. Known `category` values (drive
-   theme + services + fallback art): `towing, cafe, plumbing, salon,
-   landscaping, auto-repair`; anything else uses a neutral default.
+   theme + fallback art): `towing, cafe, plumbing, salon, landscaping,
+   auto-repair`; anything else uses a neutral default.
 
-2. **Photos — do the strongest tier yourself first (this is the point of being
-   an agent).** For each business, BEFORE or AFTER generating, try in order:
-   1. **The business's own photos already online.** Use web search to find the
-      business (their site, Facebook, Yelp, news). If you find good, clearly
-      theirs images, download them with `curl` into
-      `sites/demo-gallery/public/images/<slug>/` as `hero.<ext>` and
-      `story.<ext>`. The generator auto-detects and uses anything you drop there.
-   2. If you can't, the generator tries **Wikimedia Commons** (free, no key).
-   3. If that misses too, it uses the **built-in category library** art.
-   > Network access depends on the environment's policy; if web/curl is blocked,
-   > just rely on tiers 2–3. Always prefer real, clearly-theirs photos.
+2. **RESEARCH each business first — this is the job, not an optional polish.**
+   Every site must feel custom and be *accurate*. Generic template copy is a
+   last resort, never the deliverable. For each row, use web search (and Yelp,
+   Facebook, BBB, their own site, local news) to find:
+   - **Real facts**: founding year, owner/family story, the specific services
+     they actually offer, their real phone/address/hours, service area, what
+     makes them distinct (fleet size, specialties, awards, reviews).
+   - **Their real photos**: storefront, team, work, products.
+   Write the copy from this research — headline, about story, and each service
+   should reference real specifics. See `sites/demo-gallery/src/data/prospects/
+   smittys-towing.json` for the quality bar (researched, not templated).
+   > Verify before asserting. If you can't confirm a detail (e.g. exact email),
+   > leave it generic rather than inventing something that could be wrong.
 
-3. **Generate.** From the repo root:
-   ```bash
-   npm run generate-prospects -- data/<file>.csv
-   ```
-   Writes `sites/demo-gallery/src/data/prospects/<slug>.json` per row and
-   `data/outreach-links.json`. Each line prints which photo tier was used.
-   (Use `-- data/<file>.csv --no-photos` to skip the Wikimedia step.)
+3. **Photos — pull their real ones (the whole point of "real effort").** In order:
+   1. **The business's own photos online.** From the research above, download
+      good, clearly-theirs images with `curl` into
+      `sites/demo-gallery/public/images/<slug>/` as `hero.<ext>` / `story.<ext>`.
+      The generator and the gallery auto-detect anything you drop there.
+   2. If you can't, **Wikimedia Commons** (free, no key) — often town/area shots.
+   3. Else the **built-in category library** art.
+   > Web search reaches the live web even where raw downloads are blocked; if
+   > `curl` to image hosts is blocked in this environment, note it and rely on
+   > tiers 2–3. Never invent that a photo is theirs when it isn't.
 
-4. **Personalize the copy (you're the agent — make it good).** The generator
-   seeds each `<slug>.json` with solid template copy. For real sends, open each
-   prospect JSON and rewrite `tagline`, `hero.heading/subheading`, `about.body`,
-   and `services` so they sound specific to that business. Don't hand-edit
-   structure — just improve the copy fields. (An optional `ANTHROPIC_API_KEY`
-   will auto-write copy, but nothing requires it.)
+4. **Build each site.** Two equally valid paths:
+   - **Best (custom):** write each `sites/demo-gallery/src/data/prospects/
+     <slug>.json` directly with your researched copy (schema = `src/types.ts`).
+   - **Bulk scaffold:** run `npm run generate-prospects -- data/<file>.csv` to
+     seed structure + template copy + photo tiers, THEN rewrite the copy fields
+     (`tagline`, `hero`, `about.body`, `services`) per business from research.
+     Do not leave template copy in a site you send.
 
 5. **Sanity-check the build:**
    ```bash
@@ -69,8 +75,8 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
    > Production is the branch Vercel watches (`main`). If you're on a feature
    > branch, say so and ask whether to merge to `main` or push the batch there.
 
-7. **Return the links.** Read `data/outreach-links.json` and give the user a
-   clean `name → link` list. If `GALLERY_BASE_URL` is set they're full URLs.
+7. **Return the links.** Give the user a clean `name → link` list (full URLs if
+   `GALLERY_BASE_URL` is set). Live propagation takes ~1 minute after the push.
    Live propagation takes ~1 minute after the push.
 
 ## One-time setup the user owns (you can't do these)
