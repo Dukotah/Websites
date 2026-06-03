@@ -47,19 +47,47 @@ This writes one `sites/demo-gallery/src/data/prospects/<slug>.json` per row and
 a `data/outreach-links.json` manifest (`name`, `email`, `link`) you can
 mail-merge from. The slug comes from the business name.
 
-### Marketing copy: Claude API vs. fallback
+### Keys (all optional — the script degrades gracefully)
 
-The tagline, hero, about paragraphs, and service descriptions are written by the
-Claude API when an API key is present; otherwise a deterministic per-category
-template is used so you always get a complete page.
+Copy `.env.example` to `.env` and fill in what you have:
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...        # turns on Claude-written copy
-export ANTHROPIC_MODEL=claude-sonnet-4-6   # optional, this is the default
-export GALLERY_BASE_URL=https://demos.yourdomain.com   # optional, prefixes links
+cp .env.example .env
+set -a && . ./.env && set +a               # load into your shell
+npm run generate-prospects -- data/prospects.csv
 ```
 
-The system prompt is cached, so generating many rows in one run is cheap.
+| Variable | Effect when set | When unset |
+| --- | --- | --- |
+| `ANTHROPIC_API_KEY` | Claude writes tagline/hero/about/services | Per-category template copy |
+| `GOOGLE_MAPS_API_KEY` | Real photos + address/phone/hours/website-check from Google | SVG placeholder art |
+| `ANTHROPIC_MODEL` | Override model (default `claude-sonnet-4-6`) | default |
+| `GALLERY_BASE_URL` | Prefixes outreach links, e.g. `https://demos.yourdomain.com` | links are relative `/p/<slug>` |
+
+The Claude system prompt is cached, so generating many rows in one run is cheap.
+
+### Google Places enrichment + photos
+
+With `GOOGLE_MAPS_API_KEY` set (a Google Maps Platform key with **Places API
+(New)** enabled), each row is looked up by name + whatever location it has, and
+the generator pulls:
+
+- **Real storefront photos** → downloaded to
+  `sites/demo-gallery/public/images/<slug>/` and used as the hero + story images
+  (with photographer attribution captured in the story caption).
+- **Address, phone, and real opening hours** → fill any blanks the CSV left.
+- **Existing-website check** → recorded per prospect in
+  `data/outreach-links.json` as `hasWebsite`, and the run prints how many
+  prospects have **no** website (your hottest "needs a site" leads).
+
+This means your CSV can be sparse — even just `name,category,city` per row —
+and Google fills in the rest. CSV values always win when present; Google only
+fills gaps.
+
+> **Attribution:** Google Places photos carry author attribution and usage
+> terms. The generator stores the photographer name in the story caption. For
+> production outreach, review Google's Places photo policy; for a prospect's
+> hot lead, their own uploaded photos are ideal.
 
 ## 3. Preview locally
 
@@ -102,25 +130,25 @@ npm run new-site -- <slug> "Business Name"
 # into sites/<slug>/src/config.ts, add real photos, and deploy + add their domain
 ```
 
-## Photos (the honest gap)
+## Photos
 
-Generated demos use the committed SVG placeholders, which look finished but
-generic. To make a demo feel like *theirs*, best to worst:
+Photo source, best to worst:
 
-1. Pull the prospect's own photos from their Google Business Profile (Places
-   API) — a future enhancement to the generator.
-2. A curated stock image per category, committed once and referenced by the
-   generator.
-3. The SVG placeholders (current default).
-
-For a hot prospect, drop their real photos into
-`sites/demo-gallery/public/images/` and point that prospect's JSON at them.
+1. **The prospect's own Google photos** — automatic when `GOOGLE_MAPS_API_KEY`
+   is set (see above). This is the default path now.
+2. **Hand-dropped real photos** for a hot lead — drop files into
+   `sites/demo-gallery/public/images/<slug>/` and point that prospect's JSON
+   `images.hero` / `images.story` at them.
+3. **SVG placeholders** — the fallback when there's no key and no match. The
+   page still looks finished, just generic.
 
 ## Next steps / ideas
 
-- **Auto-qualify** "shit websites": have the generator fetch `existing_website`
-  and score it (no HTTPS, no mobile viewport, dead/slow, no title) so you can
-  filter and cite specifics in the email.
+- **Auto-qualify "shit websites"**: the generator already records `hasWebsite`
+  per prospect (from Google). A next step is to fetch the existing site and
+  score it (no HTTPS, no mobile viewport, dead/slow, no title) so you can cite
+  specifics in the email.
 - **Direct CRM pull**: replace the CSV step with an API client (Airtable, Google
   Sheets, HubSpot) writing the same normalized rows.
-- **Per-category stock photos** as described above.
+- **More category presets**: extend the `CATEGORIES` map in
+  `scripts/generate-prospects.mjs` with new verticals (theme + services).

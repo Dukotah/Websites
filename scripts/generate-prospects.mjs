@@ -11,20 +11,27 @@
  * when ANTHROPIC_API_KEY is set; otherwise a deterministic per-category
  * fallback is used so the script always produces a complete, finished page.
  *
+ * When GOOGLE_MAPS_API_KEY is set, each row is also enriched from Google Places
+ * (New): real address, phone, opening hours, an existing-website check, and
+ * actual storefront photos downloaded into the gallery's public/images. All of
+ * that is best-effort — missing key or no match just falls back to placeholders.
+ *
  * Usage:
  *   node scripts/generate-prospects.mjs [path/to/file.csv]
  *   # defaults to data/prospects.sample.csv
  *
- * CSV columns (header row required; extra columns are ignored):
+ * CSV columns (header row required; only `name` is required, rest optional):
  *   name, category, city, state, phone, email, address, existing_website
  */
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { lookupPlace, placeToEnrichment, downloadPhotos } from './lib/google-places.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
+const PUBLIC_IMAGES = join(ROOT, 'sites', 'demo-gallery', 'public', 'images');
 const csvPath = resolve(ROOT, process.argv[2] ?? 'data/prospects.sample.csv');
 
 // ---------------------------------------------------------------------------
@@ -132,10 +139,20 @@ async function generateCopyWithClaude(row, preset) {
     },
   ];
 
+  const e = row._enrichment;
+  const googleContext = e
+    ? `\nGoogle data (use for accuracy, don't invent beyond it):` +
+      (e.primaryType ? `\n- Type: ${e.primaryType}` : '') +
+      (e.editorialSummary ? `\n- Google summary: ${e.editorialSummary}` : '') +
+      (e.rating ? `\n- Rating: ${e.rating}/5 from ${e.userRatingCount} reviews` : '') +
+      (e.formattedAddress ? `\n- Address: ${e.formattedAddress}` : '')
+    : '';
+
   const user =
     `Business: ${row.name}\nCategory: ${row.category || 'local business'}\n` +
     `Town/area: ${row.city}${row.state ? ', ' + row.state : ''}\n` +
-    `Typical services for this category: ${preset.services.join(', ')}`;
+    `Typical services for this category: ${preset.services.join(', ')}` +
+    googleContext;
 
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -196,10 +213,28 @@ function fallbackCopy(row, preset) {
 }
 
 // ---------------------------------------------------------------------------
-// Build a full ProspectConfig from a row + generated copy.
+// Build a full ProspectConfig from a row + generated copy. `enrichment` (from
+// Google Places) and `media` (downloaded photos) are optional — when present
+// they fill gaps in the CSV and replace placeholder art with real photos.
 // ---------------------------------------------------------------------------
-function buildConfig(row, copy, preset) {
+function buildConfig(row, copy, preset, enrichment, media = []) {
   const area = [row.city, row.state].filter(Boolean).join(', ');
+  const e = enrichment ?? {};
+  const [heroPhoto, storyPhoto] = media;
+
+  // CSV is authoritative; Google fills only what's blank.
+  const phone = row.phone || e.phone || '(555) 555-5555';
+  const address = row.address || e.formattedAddress || area;
+
+  const hours =
+    e.hours?.length
+      ? e.hours
+      : [
+          { day: 'Mon – Fri', hours: '8:00 AM – 6:00 PM' },
+          { day: 'Saturday', hours: '9:00 AM – 2:00 PM' },
+          { day: 'Sunday', hours: 'Closed' },
+        ];
+
   return {
     name: row.name,
     tagline: copy.tagline,
@@ -207,11 +242,11 @@ function buildConfig(row, copy, preset) {
     area,
     established: row.established || '',
     contact: {
-      phone: row.phone || '(555) 555-5555',
+      phone,
       email: row.email || `hello@${slugify(row.name)}.com`,
-      address: row.address || area,
+      address,
     },
-    social: { facebook: '', instagram: '', google: '' },
+    social: { facebook: '', instagram: '', google: e.placeId ? `https://search.google.com/local/reviews?placeid=${e.placeId}` : '' },
     hero: {
       heading: copy.heroHeading,
       subheading: copy.heroSubheading,
@@ -220,25 +255,46 @@ function buildConfig(row, copy, preset) {
     },
     highlights: copy.highlights,
     images: {
-      hero: '/images/hero.svg',
+      hero: heroPhoto?.path ?? '/images/hero.svg',
       heroAlt: `${row.name} in ${area}`,
-      story: '/images/about.svg',
+      story: storyPhoto?.path ?? heroPhoto?.path ?? '/images/about.svg',
       storyAlt: `About ${row.name}`,
       storyCaption: '',
-      storyCredit: '',
+      storyCredit: storyPhoto?.credit ? `Photo: ${storyPhoto.credit}` : '',
       placeholder: '/images/hero.svg',
     },
     about: { heading: copy.aboutHeading, body: copy.aboutBody, signature: '' },
     servicesHeading: copy.servicesHeading,
     services: copy.services,
-    hours: [
-      { day: 'Mon – Fri', hours: '8:00 AM – 6:00 PM' },
-      { day: 'Saturday', hours: '9:00 AM – 2:00 PM' },
-      { day: 'Sunday', hours: 'Closed' },
-    ],
+    hours,
     hoursNote: '',
     theme: preset.theme,
   };
+}
+
+// Best-effort Google enrichment for one row. Returns { enrichment, media,
+// hasWebsite } — never throws (failures fall back to placeholders).
+async function enrichRow(row, slug, apiKey) {
+  try {
+    const place = await lookupPlace(row, apiKey);
+    if (!place) {
+      console.log(`    · no Google match for "${row.name}"`);
+      return { enrichment: null, media: [], hasWebsite: null };
+    }
+    const enrichment = placeToEnrichment(place);
+    const media = await downloadPhotos(place, apiKey, { destDir: PUBLIC_IMAGES, slug, max: 2 });
+    const bits = [
+      `${media.length} photo${media.length === 1 ? '' : 's'}`,
+      enrichment.hours ? 'hours' : null,
+      enrichment.websiteUri ? 'has-site' : 'NO-site',
+      enrichment.rating ? `${enrichment.rating}★(${enrichment.userRatingCount})` : null,
+    ].filter(Boolean);
+    console.log(`    · Google: ${bits.join(', ')}`);
+    return { enrichment, media, hasWebsite: Boolean(enrichment.websiteUri) };
+  } catch (err) {
+    console.warn(`    · Google enrichment failed (${err.message}); using placeholders`);
+    return { enrichment: null, media: [], hasWebsite: null };
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -260,7 +316,11 @@ async function main() {
 
   await mkdir(OUT_DIR, { recursive: true });
   const usingClaude = Boolean(process.env.ANTHROPIC_API_KEY);
-  console.log(`Generating ${rows.length} prospect site(s) — copy via ${usingClaude ? 'Claude API' : 'built-in fallback'}.\n`);
+  const googleKey = process.env.GOOGLE_MAPS_API_KEY;
+  console.log(
+    `Generating ${rows.length} prospect site(s) — copy via ${usingClaude ? 'Claude API' : 'built-in fallback'}; ` +
+      `photos/enrichment via ${googleKey ? 'Google Places' : 'placeholders (no GOOGLE_MAPS_API_KEY)'}.\n`,
+  );
 
   const base = process.env.GALLERY_BASE_URL?.replace(/\/$/, '') ?? '';
   const links = [];
@@ -269,20 +329,42 @@ async function main() {
     if (!row.name) continue;
     const slug = slugify(row.name);
     const preset = CATEGORIES[row.category?.toLowerCase()] ?? CATEGORIES.default;
-    const copy = await generateCopy(row, preset);
-    const config = buildConfig(row, copy, preset);
+
+    // Enrich from Google first so copy + config can use the richer data.
+    const { enrichment, media, hasWebsite } = googleKey
+      ? await enrichRow(row, slug, googleKey)
+      : { enrichment: null, media: [], hasWebsite: null };
+
+    const copy = await generateCopy({ ...row, _enrichment: enrichment }, preset);
+    const config = buildConfig(row, copy, preset, enrichment, media);
     await writeFile(join(OUT_DIR, `${slug}.json`), JSON.stringify(config, null, 2) + '\n');
+
     const link = `${base}/p/${slug}`;
-    links.push({ name: row.name, email: row.email || '', link });
+    links.push({
+      name: row.name,
+      email: row.email || '',
+      link,
+      photos: media.length,
+      // Qualifier signal for "no website / shit website" targeting.
+      existingWebsite: enrichment?.websiteUri ?? row.existing_website ?? '',
+      hasWebsite,
+    });
     console.log(`  ✓ ${row.name}  →  ${link}`);
   }
 
   // Write a links manifest you can mail-merge or paste back into the CRM.
   await writeFile(join(ROOT, 'data', 'outreach-links.json'), JSON.stringify(links, null, 2) + '\n');
+  const noSite = links.filter((l) => l.hasWebsite === false).length;
   console.log(`\nWrote ${links.length} site(s) to sites/demo-gallery/src/data/prospects/`);
   console.log('Links manifest: data/outreach-links.json');
+  if (googleKey) console.log(`Qualifier: ${noSite} prospect(s) have NO existing website (hottest leads).`);
   console.log('\nNext: cd sites/demo-gallery && npm install && npm run dev   (preview at /p/<slug>)');
   console.log('Then commit + push — Vercel rebuilds the gallery and your links go live.');
 }
 
-main();
+// Exported for tests; only auto-run when invoked directly (not when imported).
+export { buildConfig, slugify, parseCsv, fallbackCopy, CATEGORIES };
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main();
+}
