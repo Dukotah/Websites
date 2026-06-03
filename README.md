@@ -29,6 +29,7 @@ websites/
 | --- | --- | --- |
 | The Corner Cup (example café) | `sites/example-cafe` | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dukotah/websites&root-directory=sites/example-cafe&project-name=example-cafe) |
 | Bodega Country Store | `sites/bodega-country-store` | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dukotah/websites&root-directory=sites/bodega-country-store&project-name=bodega-country-store) |
+| Demo gallery (all outreach prospects) | `sites/demo-gallery` | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dukotah/websites&root-directory=sites/demo-gallery&project-name=demo-gallery) |
 
 > The **Deploy** buttons import the repo into Vercel with the site's **Root
 > Directory** pre-filled — the one setting that makes a monorepo work. See
