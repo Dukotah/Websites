@@ -63,6 +63,47 @@
   ],
   "hours": [{ "day": "Every day", "hours": "Open 24 hours" }],
   "hoursNote": "Emergency dispatch never closes — call (805) 683-8982 any time.",
+  "design": "bold",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        { "value": "1992", "label": "Family-run since" },
+        { "value": "50+", "label": "Trucks in the fleet" },
+        { "value": "24/7", "label": "Dispatch, every day" },
+        { "value": "4 yards", "label": "Across the county" }
+      ]
+    },
+    {
+      "type": "steps",
+      "eyebrow": "How it works",
+      "heading": "One call, and we're rolling",
+      "items": [
+        { "title": "Call dispatch", "description": "One number, any hour: (805) 683-8982. Tell us where you are and what you're driving." },
+        { "title": "Nearest truck rolls", "description": "We dispatch from the closest of four yards in Goleta, Buellton, Lompoc, or Santa Maria." },
+        { "title": "The right equipment", "description": "From flatbeds to 360° rotators — we bring the truck the job actually needs." },
+        { "title": "Back on the road", "description": "Safe recovery, fair pricing, and a tow operator who's seen it all." }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        { "q": "Do you handle heavy and commercial recovery?", "a": "Yes — we run heavy wreckers and 360° rotators for overturned big rigs, equipment, and water recoveries." },
+        { "q": "Can you tow my EV or motorcycle?", "a": "We do both — damage-free motorcycle transport and manufacturer-authorized EV towing." },
+        { "q": "How fast can you get to me?", "a": "Dispatch is 24/7 and we roll the nearest of four yards, so help is rarely far." },
+        { "q": "What area do you serve?", "a": "All of Santa Barbara County, from Goleta to Santa Maria." }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Need a tow right now?",
+      "text": "24/7 dispatch across Santa Barbara County — light-duty to heavy recovery.",
+      "buttonText": "Call (805) 683-8982",
+      "buttonHref": "tel:8056838982"
+    }
+  ],
   "theme": {
     "brand": "#d4452a",
     "brandDark": "#1f2933"

@@ -63,6 +63,57 @@
     { "day": "Sun", "hours": "12:00 PM – 5:00 PM" }
   ],
   "hoursNote": "Closed Monday–Thursday. Check our Facebook for live-music nights and seasonal events.",
+  "design": "elegant",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        { "value": "Dairy farm", "label": "What we used to be" },
+        { "value": "On-site", "label": "Made & bottled here" },
+        { "value": "Weekends", "label": "Live music on the lawn" }
+      ]
+    },
+    {
+      "type": "list",
+      "eyebrow": "Pours & play",
+      "heading": "Wine, music, and a little chaos",
+      "groups": [
+        {
+          "title": "House wines",
+          "items": [
+            { "name": "Purple Haze" },
+            { "name": "Udder Chaos" },
+            { "name": "Sweet & dry selections" }
+          ]
+        },
+        {
+          "title": "On the farm",
+          "items": [
+            { "name": "Live music weekends" },
+            { "name": "Corn hole & giant Connect Four" },
+            { "name": "Friendly farm animals" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Plan your hang",
+      "items": [
+        { "q": "Is it family-friendly?", "a": "Very — open space, lawn games, and farm animals make it an easy afternoon for all ages." },
+        { "q": "Is there live music?", "a": "Most weekends. Check our Facebook for who's playing before you head out." },
+        { "q": "When are you open?", "a": "Friday 3–8, Saturday 12–8, and Sunday 12–5." }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Come hang at the farm.",
+      "text": "House-made wine, live music, lawn games, and a few friendly animals — all on a former dairy farm.",
+      "buttonText": "Call (570) 854-6969",
+      "buttonHref": "tel:5708546969"
+    }
+  ],
   "theme": {
     "brand": "#6a4a8f",
     "brandDark": "#221a2e"

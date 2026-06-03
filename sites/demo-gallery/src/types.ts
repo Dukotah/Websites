@@ -24,6 +24,12 @@ export interface BusinessHours {
 export type Section =
   | { type: 'stats'; items: { value: string; label: string }[] }
   | {
+      type: 'steps';
+      eyebrow?: string;
+      heading?: string;
+      items: { title: string; description: string }[];
+    }
+  | {
       type: 'testimonials';
       eyebrow?: string;
       heading?: string;
@@ -96,6 +102,15 @@ export interface ProspectConfig {
 
   /** Optional rich blocks (stats, testimonials, faq, …) composed per prospect. */
   sections?: Section[];
+
+  /**
+   * Visual design kit — switches the display font + heading treatment so a
+   * winery doesn't look like a tow company. Defaults to 'elegant'.
+   *   elegant → Fraunces serif (winery / cafe / salon / boutique)
+   *   bold    → Oswald condensed (towing / auto / trades / bold brands)
+   *   clean   → Inter (modern, minimal)
+   */
+  design?: 'elegant' | 'bold' | 'clean';
 
   /**
    * Visual layout variant. Drives the hero style AND the section order, so a

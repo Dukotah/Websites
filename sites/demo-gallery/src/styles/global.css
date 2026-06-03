@@ -1,19 +1,43 @@
-/* Brand colors are injected from src/config.ts in BaseLayout.astro
-   as --brand and --brand-dark, so editing the config re-themes the site. */
+/* Self-hosted fonts (no CDN, no layout shift). Body = Inter; the display face
+   is switched per business via --display (set in BaseLayout from config.design):
+   - elegant  → Fraunces (serif, for wineries / cafes / salons)
+   - bold     → Oswald (condensed, for trades / towing / auto / bold brands)
+   - clean    → Inter (modern, minimal) */
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/fraunces';
+@import '@fontsource/oswald/400.css';
+@import '@fontsource/oswald/500.css';
+@import '@fontsource/oswald/600.css';
+@import '@fontsource/oswald/700.css';
+
+/* Brand colors (--brand / --brand-dark) and --display are injected from the
+   prospect config in BaseLayout.astro, so each site re-themes itself. */
 :root {
-  --bg: #fbf8f2;
-  --bg-alt: #f3ede1;
+  --bg: #fbf9f5;
+  --bg-alt: #f2ede4;
   --paper: #ffffff;
-  --text: #2c2a25;
-  --text-muted: #6f685c;
-  --border: #e4ddcf;
-  --ink: #20211c;
+  --text: #2b2a26;
+  --text-muted: #6c665b;
+  --border: #e6ded0;
+  --ink: #1c1d18;
   --maxw: 1140px;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
-  --radius: 4px;
-  --shadow: 0 1px 2px rgba(40, 34, 20, 0.06);
-  --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 24px;
+
+  /* Layered, soft elevation */
+  --shadow-sm: 0 1px 2px rgba(28, 29, 24, 0.06), 0 1px 1px rgba(28, 29, 24, 0.04);
+  --shadow: 0 10px 28px rgba(28, 29, 24, 0.08), 0 2px 6px rgba(28, 29, 24, 0.05);
+  --shadow-lg: 0 28px 60px rgba(28, 29, 24, 0.16), 0 8px 22px rgba(28, 29, 24, 0.08);
+
+  --font: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  /* Default display face; BaseLayout overrides per design kit. */
+  --display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  /* Back-compat: components that referenced --serif track the display face. */
+  --serif: var(--display);
 }
 
 *,
@@ -31,7 +55,7 @@ body {
   font-family: var(--font);
   color: var(--text);
   background: var(--bg);
-  line-height: 1.72;
+  line-height: 1.7;
   font-size: 1.02rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -40,12 +64,13 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--serif);
-  line-height: 1.1;
+  font-family: var(--display);
+  line-height: 1.08;
   margin: 0 0 0.5em;
   letter-spacing: -0.01em;
   color: var(--ink);
   font-weight: 600;
+  text-wrap: balance;
 }
 
 h1 {
@@ -53,16 +78,26 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-size: clamp(1.9rem, 3.8vw, 2.85rem);
 }
 
 h3 {
-  font-size: 1.18rem;
+  font-size: 1.2rem;
   font-weight: 600;
+}
+
+/* Oswald is a condensed/uppercase display — tune it when it's the active face. */
+[data-kit='bold'] h1,
+[data-kit='bold'] h2,
+[data-kit='bold'] h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  font-weight: 700;
 }
 
 p {
   margin: 0 0 1rem;
+  text-wrap: pretty;
 }
 
 a {
@@ -95,11 +130,17 @@ img {
   background: var(--bg-alt);
 }
 
+.section--dark {
+  background: var(--ink);
+  color: #fff;
+}
+
 /* A small, understated section label. */
 .eyebrow {
+  display: inline-block;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--brand);
   margin-bottom: 1rem;
@@ -109,29 +150,46 @@ img {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: var(--brand);
   color: #fff;
-  font-weight: 600;
-  font-size: 0.96rem;
+  font-weight: 700;
+  font-size: 0.98rem;
   letter-spacing: 0.01em;
-  padding: 0.9rem 1.7rem;
+  padding: 0.95rem 1.7rem;
+  min-height: 48px;
+  border: 2px solid var(--brand);
   border-radius: 999px;
-  transition: background 0.18s ease, transform 0.18s ease;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
 }
 
 .btn:hover {
   background: var(--brand-dark);
+  border-color: var(--brand-dark);
   color: #fff;
   text-decoration: none;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand) 45%, transparent);
+  outline-offset: 2px;
 }
 
 .btn--ghost {
   background: transparent;
   color: var(--ink);
-  border: 1px solid color-mix(in srgb, var(--ink) 28%, transparent);
-  padding: calc(0.9rem - 1px) calc(1.7rem - 1px);
+  border-color: color-mix(in srgb, var(--ink) 28%, transparent);
+  box-shadow: none;
 }
 
 .btn--ghost:hover {

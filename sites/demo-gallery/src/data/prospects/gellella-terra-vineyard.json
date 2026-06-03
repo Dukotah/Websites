@@ -62,6 +62,58 @@
     { "day": "Sat – Sun", "hours": "2:00 PM – 5:00 PM" }
   ],
   "hoursNote": "Reservations required for tastings and events — call (570) 546-9315.",
+  "design": "elegant",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        { "value": "Tito, Italy", "label": "Where the legacy began" },
+        { "value": "Small-batch", "label": "Handcrafted, the old way" },
+        { "value": "By reservation", "label": "Intimate tastings" }
+      ]
+    },
+    {
+      "type": "list",
+      "eyebrow": "The table",
+      "heading": "Wine & small plates",
+      "intro": "Generations of Italian winemaking, paired with food and a view worth lingering over.",
+      "groups": [
+        {
+          "title": "Wines",
+          "items": [
+            { "name": "Dry wines" },
+            { "name": "Sweet wines" },
+            { "name": "Dessert wines" }
+          ]
+        },
+        {
+          "title": "At the tasting",
+          "items": [
+            { "name": "Paired small plates" },
+            { "name": "Vineyard tours" },
+            { "name": "Wine-appreciation sessions" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Before you reserve",
+      "items": [
+        { "q": "Do I need a reservation?", "a": "Yes — tastings and tours are by reservation, so every visit stays personal. Call (570) 546-9315." },
+        { "q": "Are there small plates?", "a": "Yes, thoughtfully paired to the wines and meant to be enjoyed slowly." },
+        { "q": "Can you host a group?", "a": "We do by-appointment group tastings and private gatherings in an intimate setting." }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Reserve a tasting.",
+      "text": "An Italian winemaking legacy, small plates, and a charming view — by reservation.",
+      "buttonText": "Call (570) 546-9315",
+      "buttonHref": "tel:5705469315"
+    }
+  ],
   "theme": {
     "brand": "#9c4722",
     "brandDark": "#2a1d18"

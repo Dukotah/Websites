@@ -15,6 +15,14 @@ const description = Astro.props.description ?? config.seoDescription;
 const fullTitle =
   title === config.name ? `${config.name} — ${config.area}` : `${title} | ${config.name}`;
 
+// Design kit → display font face. Re-themes typography per business.
+const kit = config.design ?? 'elegant';
+const displayFont = {
+  elegant: "'Fraunces Variable', 'Iowan Old Style', Georgia, serif",
+  bold: "'Oswald', 'Inter Variable', sans-serif",
+  clean: "'Inter Variable', system-ui, sans-serif",
+}[kit];
+
 // Structured data so the business shows up nicely in local Google searches.
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -29,7 +37,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-kit={kit}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,10 +52,10 @@ const jsonLd = {
     <meta property="og:locale" content="en_US" />
     <meta name="theme-color" content={config.theme.brand} />
 
-    <!-- Brand colors injected per prospect -->
+    <!-- Brand colors + display font injected per prospect -->
     <style
       is:inline
-      set:html={`:root{--brand:${config.theme.brand};--brand-dark:${config.theme.brandDark};}`}
+      set:html={`:root{--brand:${config.theme.brand};--brand-dark:${config.theme.brandDark};--display:${displayFont};}`}
     ></style>
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />

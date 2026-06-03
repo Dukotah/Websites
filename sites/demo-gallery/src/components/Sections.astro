@@ -1,5 +1,6 @@
 ---
 import Stats from './Stats.astro';
+import Steps from './Steps.astro';
 import Testimonials from './Testimonials.astro';
 import Faq from './Faq.astro';
 import ListBlock from './ListBlock.astro';
@@ -13,6 +14,8 @@ const { sections = [] } = Astro.props as { sections?: Section[] };
   sections.map((s) =>
     s.type === 'stats' ? (
       <Stats items={s.items} />
+    ) : s.type === 'steps' ? (
+      <Steps eyebrow={s.eyebrow} heading={s.heading} items={s.items} />
     ) : s.type === 'testimonials' ? (
       <Testimonials eyebrow={s.eyebrow} heading={s.heading} items={s.items} />
     ) : s.type === 'faq' ? (

@@ -63,16 +63,23 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
    > `curl` to image hosts is blocked in this environment, note it and rely on
    > tiers 2–3. Never invent that a photo is theirs when it isn't.
 
-4. **Build each site.** Two equally valid paths:
-   - **Best (custom):** write each `sites/demo-gallery/src/data/prospects/
-     <slug>.json` directly with your researched copy (schema = `src/types.ts`).
-   - **Bulk scaffold (now research-driven):** run
-     `npm run generate-prospects -- data/<file>.csv`. With a `website` column it
-     scrapes each business's real facts + photos, writes copy from them, varies
-     the layout (`classic`/`split`/`editorial`), emits depth `sections` from real
-     data, and flags weak sites `needs-review`. THEN open the dashboard, fix
-     every `needs-review` item, and polish any field the script marked templated
-     (esp. `services` descriptions). Do not leave template copy in a site you send.
+4. **Build each site — bespoke, not a filled-in template.** Two paths, same bar:
+   - **Bulk scaffold (research-driven):** `npm run generate-prospects -- data/<file>.csv`.
+     With a `website` column it scrapes each business's real facts + photos,
+     writes copy from them, varies the `layout`, emits depth `sections`, and
+     flags weak sites `needs-review`.
+   - **Custom:** write `sites/demo-gallery/src/data/prospects/<slug>.json`
+     directly (schema = `src/types.ts`).
+   Either way, every site must:
+   - **Pick a `design` kit** (font): `bold` (Oswald — towing/auto/trades),
+     `elegant` (Fraunces — winery/cafe/salon), or `clean` (Inter).
+   - **Pick a `layout`** (hero + section order): `classic` / `split` / `editorial`.
+   - **Compose 4–6 `sections`** from research — `stats`, `steps`, `testimonials`
+     (REAL quotes), `list` (menu / wine list / services), `faq`, `cta`.
+   - Set `theme` and write all copy from research.
+   Then open the dashboard and fix every `needs-review`. See `the-hole-thing.json`
+   (bold) and `honey-hole-winery.json` (elegant) for the bar. Never ship template
+   copy or a sectionless page.
 
 5. **Sanity-check the build:**
    ```bash
