@@ -1,15 +1,32 @@
-/* Brand colors are injected from src/config.ts in BaseLayout.astro
-   as --brand and --brand-dark, so editing the config re-themes the site. */
+/* Self-hosted fonts (no CDN / FOUT). */
+@import '@fontsource-variable/inter';
+@import '@fontsource/oswald/400.css';
+@import '@fontsource/oswald/600.css';
+@import '@fontsource/oswald/700.css';
+
+/* Brand colors (--brand / --brand-dark) are injected from src/config.ts in
+   BaseLayout.astro, so editing the config re-themes the whole site. */
 :root {
   --bg: #ffffff;
-  --bg-alt: #f7f8fa;
-  --text: #1a1a2e;
+  --bg-alt: #f6f7f9;
+  --ink: #14181f; /* near-black for dark sections */
+  --text: #1a1f29;
   --text-muted: #5b6472;
   --border: #e6e8ec;
-  --maxw: 1080px;
-  --radius: 14px;
-  --shadow: 0 6px 24px rgba(20, 20, 40, 0.08);
-  --font: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --maxw: 1140px;
+
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 22px;
+
+  /* Soft, layered elevation */
+  --shadow-sm: 0 1px 2px rgba(20, 24, 31, 0.06), 0 1px 1px rgba(20, 24, 31, 0.04);
+  --shadow: 0 8px 24px rgba(20, 24, 31, 0.08), 0 2px 6px rgba(20, 24, 31, 0.05);
+  --shadow-lg: 0 24px 56px rgba(20, 24, 31, 0.16), 0 8px 20px rgba(20, 24, 31, 0.08);
+
+  --font: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-display: 'Oswald', var(--font);
 }
 
 *,
@@ -29,32 +46,40 @@ body {
   background: var(--bg);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
 h2,
 h3 {
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   margin: 0 0 0.5em;
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-size: clamp(2.4rem, 6vw, 4rem);
 }
-
 h2 {
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+}
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.25;
 }
 
 p {
   margin: 0 0 1rem;
+  text-wrap: pretty;
 }
 
 a {
   color: var(--brand);
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
@@ -69,50 +94,120 @@ img {
   width: 100%;
   max-width: var(--maxw);
   margin-inline: auto;
-  padding-inline: 1.25rem;
+  padding-inline: 1.5rem;
 }
 
 .section {
-  padding-block: clamp(3rem, 8vw, 6rem);
+  padding-block: clamp(3.5rem, 9vw, 7rem);
 }
-
 .section--alt {
   background: var(--bg-alt);
 }
+.section--dark {
+  background: var(--ink);
+  color: #fff;
+}
+
+.section__head {
+  max-width: 46rem;
+  margin-bottom: 2.75rem;
+}
+.section__head p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+.section--dark .section__head p {
+  color: rgba(255, 255, 255, 0.72);
+}
 
 .eyebrow {
+  display: inline-block;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--brand);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
+/* Buttons */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   background: var(--brand);
   color: #fff;
-  font-weight: 600;
-  padding: 0.85rem 1.6rem;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.95rem 1.6rem;
+  border: 2px solid var(--brand);
   border-radius: 999px;
-  transition: background 0.15s ease, transform 0.15s ease;
+  min-height: 48px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
 }
-
 .btn:hover {
   background: var(--brand-dark);
+  border-color: var(--brand-dark);
   text-decoration: none;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
-
+.btn:active {
+  transform: translateY(0);
+}
+.btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand) 45%, transparent);
+  outline-offset: 2px;
+}
 .btn--ghost {
   background: transparent;
   color: var(--brand);
-  border: 2px solid var(--brand);
-  padding: calc(0.85rem - 2px) calc(1.6rem - 2px);
+}
+.btn--ghost:hover {
+  background: color-mix(in srgb, var(--brand) 8%, transparent);
+  color: var(--brand-dark);
+}
+.btn--light {
+  background: #fff;
+  color: var(--brand);
+  border-color: #fff;
+}
+.btn--light:hover {
+  background: #fff;
+  color: var(--brand-dark);
+  border-color: #fff;
+}
+.btn--on-dark.btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.btn--on-dark.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
 }
 
-.btn--ghost:hover {
-  background: var(--brand);
-  color: #fff;
+.btn svg {
+  width: 1.05em;
+  height: 1.05em;
+}
+
+/* Subtle entrance animation, reduced-motion safe */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }

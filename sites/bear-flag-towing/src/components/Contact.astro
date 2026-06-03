@@ -1,20 +1,32 @@
 ---
 import { config } from '../config';
 
-const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
+const telHref = `tel:${telDigits}`;
 const mapHref = `https://maps.google.com/?q=${encodeURIComponent(config.contact.address)}`;
+const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(config.contact.address)}&z=15&output=embed`;
 ---
 
-<section class="section" id="contact">
+<section class="section section--dark" id="contact">
   <div class="container contact">
-    <div>
+    <div class="contact__info">
       <p class="eyebrow">Get in touch</p>
-      <h2>Come see us or give us a call</h2>
+      <h2>Call us — we’re ready to help</h2>
+      <p class="contact__lead">
+        Day or night, reach a real local dispatcher. Tap below to call, or stop by our Santa Rosa
+        location.
+      </p>
+
+      <a href={telHref} class="btn btn--light contact__call">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1L6.6 10.8Z"
+            fill="currentColor"></path>
+        </svg>
+        {config.contact.phone}
+      </a>
+
       <ul class="contact__list">
-        <li>
-          <span class="contact__label">Phone</span>
-          <a href={telHref}>{config.contact.phone}</a>
-        </li>
         <li>
           <span class="contact__label">Email</span>
           <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>
@@ -23,23 +35,25 @@ const mapHref = `https://maps.google.com/?q=${encodeURIComponent(config.contact.
           <span class="contact__label">Address</span>
           <a href={mapHref} target="_blank" rel="noopener">{config.contact.address}</a>
         </li>
+        <li>
+          <span class="contact__label">Hours</span>
+          <span class="contact__hours">
+            {config.hours.map((row) => <span>{row.day}: {row.hours}</span>)}
+          </span>
+        </li>
+        <li>
+          <span class="contact__label">License</span>
+          <span>{config.license}</span>
+        </li>
       </ul>
     </div>
 
-    <div class="contact__hours">
-      <h3>Opening hours</h3>
-      <table>
-        <tbody>
-          {
-            config.hours.map((row) => (
-              <tr>
-                <th scope="row">{row.day}</th>
-                <td>{row.hours}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+    <div class="contact__map">
+      <iframe
+        title={`Map to ${config.name}`}
+        src={mapEmbed}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
@@ -47,52 +61,62 @@ const mapHref = `https://maps.google.com/?q=${encodeURIComponent(config.contact.
 <style>
   .contact {
     display: grid;
-    gap: 2.5rem;
-    grid-template-columns: 1.2fr 1fr;
-    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .contact h2 {
+    color: #fff;
+  }
+  .contact__lead {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.08rem;
+    max-width: 44ch;
+  }
+  .contact__call {
+    font-size: 1.15rem;
+    padding: 1rem 1.8rem;
+    margin: 0.5rem 0 2rem;
   }
   .contact__list {
     list-style: none;
     padding: 0;
-    margin: 1.5rem 0 0;
+    margin: 0;
     display: grid;
-    gap: 1rem;
+    gap: 1.1rem;
+  }
+  .contact__list li {
+    display: grid;
+    gap: 0.15rem;
   }
   .contact__label {
-    display: block;
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.55);
   }
-  .contact__list a {
-    font-size: 1.1rem;
+  .contact__list a,
+  .contact__list > li > span:not(.contact__label) {
+    color: #fff;
+    font-size: 1.05rem;
     font-weight: 600;
   }
   .contact__hours {
-    background: var(--bg-alt);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
+    display: grid;
   }
-  .contact__hours h3 {
-    margin-top: 0;
+  .contact__map {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4 / 3;
   }
-  .contact__hours table {
+  .contact__map iframe {
     width: 100%;
-    border-collapse: collapse;
+    height: 100%;
+    border: 0;
+    display: block;
   }
-  .contact__hours th {
-    text-align: left;
-    font-weight: 600;
-    padding: 0.4rem 0;
-  }
-  .contact__hours td {
-    text-align: right;
-    color: var(--text-muted);
-    padding: 0.4rem 0;
-  }
-  @media (max-width: 720px) {
+  @media (max-width: 880px) {
     .contact {
       grid-template-columns: 1fr;
     }

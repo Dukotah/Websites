@@ -1,31 +1,156 @@
 ---
+import { Image } from 'astro:assets';
 import { config } from '../config';
+import hero from '../assets/images/hero.jpg';
+
+const reasons = [
+  { title: 'Available 24/7', text: 'Emergencies don’t keep business hours — and neither do we.' },
+  { title: 'Fast local response', text: 'Based right here in Santa Rosa, so help is never far away.' },
+  { title: 'Licensed & insured', text: `Operating under ${config.license} for your peace of mind.` },
+  { title: 'Careful with your vehicle', text: 'From daily drivers to classics, we treat every car like our own.' },
+];
 ---
 
-<section class="section" id="about">
-  <div class="container about">
-    <div>
-      <p class="eyebrow">Who we are</p>
-      <h2>{config.about.heading}</h2>
+<section class="section section--alt" id="why">
+  <div class="container why">
+    <div class="why__media reveal">
+      <Image
+        src={hero}
+        alt="Bear Flag Towing tow truck assisting a vehicle on the highway"
+        widths={[480, 720, 960]}
+        sizes="(max-width: 900px) 100vw, 480px"
+        loading="lazy"
+      />
+      <div class="why__badge">
+        <strong>{config.license}</strong>
+        <span>Licensed CA carrier</span>
+      </div>
     </div>
-    <p class="about__body">{config.about.body}</p>
+
+    <div class="why__copy">
+      <p class="eyebrow">Why Bear Flag Towing</p>
+      <h2>{config.about.heading}</h2>
+      {config.about.body.map((para) => <p class="why__lead">{para}</p>)}
+
+      <ul class="why__list">
+        {
+          reasons.map((r) => (
+            <li>
+              <span class="why__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="m5 13 4 4L19 7"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <div>
+                <strong>{r.title}</strong>
+                <p>{r.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </section>
 
 <style>
-  .about {
+  .why {
     display: grid;
-    gap: 1rem 3rem;
-    grid-template-columns: 1fr 1.4fr;
-    align-items: start;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
   }
-  .about__body {
-    font-size: 1.1rem;
+  .why__media {
+    position: relative;
+  }
+  .why__media :global(img) {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+  .why__badge {
+    position: absolute;
+    right: -0.75rem;
+    bottom: 1.25rem;
+    background: var(--brand);
+    color: #fff;
+    padding: 0.85rem 1.1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+  .why__badge strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+  .why__badge span {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.9;
+  }
+
+  .why__lead {
+    font-size: 1.08rem;
     color: var(--text-muted);
-    margin: 0;
   }
-  @media (max-width: 720px) {
-    .about {
+
+  .why__list {
+    list-style: none;
+    padding: 0;
+    margin: 1.75rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1.5rem;
+  }
+  .why__list li {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .why__check {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--brand) 14%, #fff);
+    color: var(--brand);
+  }
+  .why__check svg {
+    width: 16px;
+    height: 16px;
+  }
+  .why__list strong {
+    display: block;
+    font-size: 1rem;
+  }
+  .why__list p {
+    margin: 0.15rem 0 0;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 900px) {
+    .why {
+      grid-template-columns: 1fr;
+    }
+    .why__media {
+      max-width: 420px;
+    }
+  }
+  @media (max-width: 520px) {
+    .why__list {
       grid-template-columns: 1fr;
     }
   }

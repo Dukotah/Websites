@@ -7,12 +7,41 @@ interface Props {
   description?: string;
 }
 
-const {
-  title = config.name,
-  description = config.seoDescription,
-} = Astro.props;
+const { title = config.name, description = config.seoDescription } = Astro.props;
 
-const fullTitle = title === config.name ? `${config.name} — ${config.area}` : `${title} | ${config.name}`;
+const fullTitle =
+  title === config.name ? `${config.name} — 24/7 Towing in ${config.area}` : `${title} | ${config.name}`;
+
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
+const siteUrl = Astro.site?.href.replace(/\/$/, '') ?? '';
+const ogImage = `${siteUrl}/og.jpg`;
+
+// LocalBusiness structured data — helps Google show hours, phone, and area.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TowingService',
+  name: config.name,
+  description: config.seoDescription,
+  telephone: config.contact.phone,
+  email: config.contact.email,
+  url: siteUrl || undefined,
+  image: ogImage,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '121 Chestnut Street',
+    addressLocality: 'Santa Rosa',
+    addressRegion: 'CA',
+    postalCode: '95401',
+    addressCountry: 'US',
+  },
+  areaServed: config.serviceArea.map((name) => ({ '@type': 'City', name })),
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
+};
 ---
 
 <!doctype html>
@@ -23,19 +52,85 @@ const fullTitle = title === config.name ? `${config.name} — ${config.area}` : 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content={config.theme.brand} />
+    {siteUrl && <link rel="canonical" href={`${siteUrl}/`} />}
 
-    <!-- Open Graph (link previews on social / messaging) -->
+    <!-- Open Graph / Twitter (link previews on social / messaging) -->
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    {siteUrl && <meta property="og:url" content={`${siteUrl}/`} />}
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Brand colors injected from config.ts -->
     <style
       is:inline
       set:html={`:root{--brand:${config.theme.brand};--brand-dark:${config.theme.brandDark};}`}
     ></style>
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <slot />
+
+    <!-- Floating call button (mobile) -->
+    <a class="call-fab" href={`tel:${telDigits}`} aria-label={`Call ${config.name}`}>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1L6.6 10.8Z"
+          fill="currentColor"></path>
+      </svg>
+      <span>Call now</span>
+    </a>
+
+    <style>
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: var(--brand);
+        color: #fff;
+        padding: 0.6rem 1rem;
+        border-radius: 0 0 8px 0;
+        z-index: 200;
+      }
+      .skip-link:focus {
+        left: 0;
+      }
+
+      .call-fab {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 90;
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--brand);
+        color: #fff;
+        font-weight: 700;
+        padding: 0.85rem 1.25rem;
+        border-radius: 999px;
+        box-shadow: var(--shadow-lg);
+      }
+      .call-fab:hover {
+        text-decoration: none;
+        background: var(--brand-dark);
+      }
+      .call-fab svg {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+      @media (max-width: 760px) {
+        .call-fab {
+          display: inline-flex;
+        }
+      }
+    </style>
   </body>
 </html>

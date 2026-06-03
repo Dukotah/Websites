@@ -1,0 +1,98 @@
+---
+import { config } from '../config';
+---
+
+<section class="section section--alt" id="faq">
+  <div class="container faq">
+    <div class="section__head">
+      <p class="eyebrow">Good to know</p>
+      <h2>{config.faqHeading}</h2>
+    </div>
+
+    <div class="faq__list">
+      {
+        config.faq.map((item, i) => (
+          <details class="faq__item" open={i === 0}>
+            <summary>
+              <span>{item.question}</span>
+              <span class="faq__icon" aria-hidden="true" />
+            </summary>
+            <div class="faq__answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__list {
+    display: grid;
+    gap: 0.85rem;
+    max-width: 52rem;
+  }
+  .faq__item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .faq__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+    padding: 1.15rem 1.4rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq__item summary:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--brand) 40%, transparent);
+    outline-offset: -3px;
+  }
+  .faq__icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+  .faq__icon::before,
+  .faq__icon::after {
+    content: '';
+    position: absolute;
+    background: var(--brand);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .faq__icon::before {
+    top: 9px;
+    left: 0;
+    width: 20px;
+    height: 2px;
+  }
+  .faq__icon::after {
+    top: 0;
+    left: 9px;
+    width: 2px;
+    height: 20px;
+  }
+  .faq__item[open] .faq__icon::after {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  .faq__answer {
+    padding: 0 1.4rem 1.3rem;
+  }
+  .faq__answer p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+</style>

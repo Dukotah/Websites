@@ -2,6 +2,7 @@
 import { config } from '../config';
 
 const year = new Date().getFullYear();
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
 const socials = [
   { label: 'Facebook', href: config.social.facebook },
   { label: 'Instagram', href: config.social.instagram },
@@ -10,55 +11,148 @@ const socials = [
 ---
 
 <footer class="footer">
-  <div class="container footer__inner">
-    <div>
-      <strong>{config.name}</strong>
-      <p class="footer__muted">{config.contact.address}</p>
+  <div class="container footer__top">
+    <div class="footer__brand">
+      <a href="#top" class="footer__logo">
+        <span class="footer__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 2.2l2.6 5.6 6.1.8-4.5 4.1 1.2 6L12 15.9 6.6 18.7l1.2-6-4.5-4.1 6.1-.8z"
+              fill="#fff"></path>
+          </svg>
+        </span>
+        Bear Flag Towing
+      </a>
+      <p class="footer__muted">
+        Fast, reliable 24/7 towing, roadside assistance, and recovery in Santa Rosa &amp; Sonoma
+        County, California.
+      </p>
+      <p class="footer__muted">{config.license}</p>
     </div>
 
-    {
-      socials.length > 0 && (
-        <nav class="footer__social" aria-label="Social media">
-          {socials.map((s) => (
-            <a href={s.href} target="_blank" rel="noopener">
-              {s.label}
-            </a>
-          ))}
-        </nav>
-      )
-    }
+    <nav class="footer__col" aria-label="Sections">
+      <h3>Explore</h3>
+      <a href="#services">Services</a>
+      <a href="#why">Why us</a>
+      <a href="#area">Service area</a>
+      <a href="#faq">FAQ</a>
+    </nav>
 
-    <p class="footer__muted">© {year} {config.name}. All rights reserved.</p>
+    <div class="footer__col">
+      <h3>Contact</h3>
+      <a href={`tel:${telDigits}`}>{config.contact.phone}</a>
+      <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>
+      <span class="footer__muted">{config.contact.address}</span>
+      {
+        socials.length > 0 && (
+          <nav class="footer__social" aria-label="Social media">
+            {socials.map((s) => (
+              <a href={s.href} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+            ))}
+          </nav>
+        )
+      }
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {year} {config.name}. All rights reserved.</p>
+    <p>Santa Rosa, CA · Open 24 hours</p>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: var(--text);
+    background: #0e1116;
     color: #fff;
-    padding-block: 2.5rem;
+    padding-block: 3rem 1.5rem;
   }
-  .footer__inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 2rem;
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer__logo {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.55rem;
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
   }
-  .footer strong {
-    font-size: 1.1rem;
+  .footer__logo:hover {
+    text-decoration: none;
+  }
+  .footer__mark {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--brand);
+  }
+  .footer__mark svg {
+    width: 18px;
+    height: 18px;
+  }
+  .footer__brand {
+    max-width: 38ch;
   }
   .footer__muted {
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0.25rem 0 0;
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.92rem;
+    margin: 0 0 0.5rem;
+  }
+  .footer__col h3 {
+    font-family: var(--font);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0 0 0.9rem;
+  }
+  .footer__col a,
+  .footer__col span {
+    display: block;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  .footer__col a:hover {
+    color: #fff;
   }
   .footer__social {
     display: flex;
-    gap: 1.25rem;
+    gap: 1rem;
+    margin-top: 0.75rem;
   }
   .footer__social a {
-    color: #fff;
-    font-weight: 500;
+    margin: 0;
+    font-weight: 600;
+  }
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+  }
+  .footer__bottom p {
+    margin: 0;
+  }
+  @media (max-width: 760px) {
+    .footer__top {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
 </style>

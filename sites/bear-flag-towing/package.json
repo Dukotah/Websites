@@ -11,6 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource/oswald": "^5.2.8",
     "astro": "^5.4.0"
   }
 }

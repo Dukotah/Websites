@@ -1,15 +1,55 @@
 ---
+import { Image } from 'astro:assets';
 import { config } from '../config';
+import truck from '../assets/images/truck-in-action.jpg';
+
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
 ---
 
-<section class="hero" id="top">
+<section class="hero">
   <div class="container hero__inner">
-    <p class="eyebrow">{config.area}</p>
-    <h1>{config.hero.heading}</h1>
-    <p class="hero__sub">{config.hero.subheading}</p>
-    <div class="hero__actions">
-      <a href={config.hero.ctaHref} class="btn">{config.hero.ctaText}</a>
-      <a href={`tel:${config.contact.phone.replace(/[^+\d]/g, '')}`} class="btn btn--ghost">
+    <div class="hero__copy reveal">
+      <span class="hero__badge">
+        <span class="hero__dot" aria-hidden="true"></span>
+        {config.hero.badge}
+      </span>
+      <h1>{config.hero.heading}</h1>
+      <p class="hero__sub">{config.hero.subheading}</p>
+
+      <div class="hero__actions">
+        <a href={config.hero.ctaHref} class="btn">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1L6.6 10.8Z"
+              fill="currentColor"></path>
+          </svg>
+          {config.hero.ctaText}
+        </a>
+        <a href={config.hero.secondaryHref} class="btn btn--ghost">{config.hero.secondaryText}</a>
+      </div>
+
+      <ul class="hero__trust">
+        {
+          config.trustPoints.map((t) => (
+            <li>
+              <strong>{t.label}</strong>
+              <span>{t.sub}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="hero__media reveal">
+      <Image
+        src={truck}
+        alt={`${config.name} flatbed tow truck loaded with a classic car in Santa Rosa`}
+        widths={[480, 760, 1000]}
+        sizes="(max-width: 980px) 100vw, 520px"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <a href={`tel:${telDigits}`} class="hero__media-tag">
         {config.contact.phone}
       </a>
     </div>
@@ -18,24 +58,138 @@ import { config } from '../config';
 
 <style>
   .hero {
+    position: relative;
     background:
-      radial-gradient(1200px 400px at 70% -10%, color-mix(in srgb, var(--brand) 14%, transparent), transparent),
-      var(--bg-alt);
+      radial-gradient(900px 360px at 85% -5%, color-mix(in srgb, var(--brand) 16%, transparent), transparent),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
     border-bottom: 1px solid var(--border);
+    overflow: hidden;
   }
   .hero__inner {
-    padding-block: clamp(3.5rem, 10vw, 7rem);
-    max-width: 760px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding-block: clamp(2.5rem, 7vw, 5.5rem);
   }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: color-mix(in srgb, var(--brand) 12%, #fff);
+    color: var(--brand-dark);
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--brand) 22%, transparent);
+    margin-bottom: 1.25rem;
+  }
+  .hero__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__dot {
+      animation: blink 1.6s ease-in-out infinite;
+    }
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0.3;
+    }
+  }
+
   .hero__sub {
-    font-size: 1.2rem;
+    font-size: 1.18rem;
     color: var(--text-muted);
-    max-width: 60ch;
+    max-width: 38ch;
+    margin: 0;
   }
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
+    gap: 0.8rem;
+    margin-top: 1.75rem;
+  }
+
+  .hero__trust {
+    list-style: none;
+    padding: 0;
+    margin: 2.25rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+  .hero__trust strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--brand);
+    line-height: 1;
+  }
+  .hero__trust span {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .hero__media {
+    position: relative;
+  }
+  .hero__media :global(img) {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .hero__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+  }
+  .hero__media-tag {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    background: rgba(20, 24, 31, 0.82);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+  }
+  .hero__media-tag:hover {
+    text-decoration: none;
+    background: var(--brand);
+  }
+
+  @media (max-width: 980px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+    .hero__media {
+      order: -1;
+    }
+    .hero__sub {
+      max-width: 60ch;
+    }
+  }
+  @media (max-width: 520px) {
+    .hero__trust {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
   }
 </style>

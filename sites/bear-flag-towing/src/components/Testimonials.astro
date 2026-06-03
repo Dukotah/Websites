@@ -1,0 +1,100 @@
+---
+import { config } from '../config';
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Reviews</p>
+      <h2>{config.reviewsHeading}</h2>
+    </div>
+
+    <div class="reviews">
+      {
+        config.testimonials.map((t) => (
+          <figure class="review">
+            <div class="review__stars" aria-label="5 out of 5 stars">
+              {[0, 1, 2, 3, 4].map(() => (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M12 2.2l2.6 5.6 6.1.8-4.5 4.1 1.2 6L12 15.9 6.6 18.7l1.2-6-4.5-4.1 6.1-.8z"
+                    fill="currentColor"
+                  />
+                </svg>
+              ))}
+            </div>
+            <blockquote>“{t.quote}”</blockquote>
+            <figcaption>
+              <span class="review__avatar" aria-hidden="true">
+                {t.name.charAt(0)}
+              </span>
+              <span>
+                <strong>{t.name}</strong>
+                {t.detail && <em>{t.detail}</em>}
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 640px;
+  }
+  .review {
+    margin: 0;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .review__stars {
+    display: flex;
+    gap: 2px;
+    color: #f5a623;
+    margin-bottom: 0.9rem;
+  }
+  .review__stars svg {
+    width: 20px;
+    height: 20px;
+  }
+  .review blockquote {
+    margin: 0 0 1.25rem;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .review figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .review__avatar {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--brand) 14%, #fff);
+    color: var(--brand);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  .review figcaption strong {
+    display: block;
+    line-height: 1.2;
+  }
+  .review figcaption em {
+    font-style: normal;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+</style>

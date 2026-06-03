@@ -2,18 +2,28 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
 import Services from '../components/Services.astro';
+import About from '../components/About.astro';
+import Steps from '../components/Steps.astro';
+import ServiceArea from '../components/ServiceArea.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout>
   <Header />
-  <main>
+  <main id="main">
     <Hero />
-    <About />
     <Services />
+    <About />
+    <Steps />
+    <ServiceArea />
+    <Testimonials />
+    <Faq />
+    <CtaBand />
     <Contact />
   </main>
   <Footer />
