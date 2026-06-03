@@ -1,0 +1,215 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { config } from '../config';
+
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
+const mapQuery = encodeURIComponent(config.contact.address);
+const mapEmbed = `https://www.google.com/maps?q=${mapQuery}&z=13&output=embed`;
+---
+
+<BaseLayout title="Visit & Buy" description={`Visit ${config.name} and taste our wines. ${config.tastingRoom.available ? config.tastingRoom.note : config.contact.note}`}>
+  <section class="pagehead">
+    <div class="container container--narrow">
+      <span class="kicker">{config.area}</span>
+      <h1>Visit &amp; buy</h1>
+      <p>{config.contact.note}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact">
+      <div class="contact__info">
+        <span class="kicker">Get in touch</span>
+        <h2>We'd love to hear from you</h2>
+
+        {config.tastingRoom.available ? (
+          <p class="contact__lead">{config.tastingRoom.note}</p>
+        ) : (
+          <p class="contact__lead">We don't have a public tasting room, but we love sharing our wines. Reach out by phone or email to purchase wine or ask a question.</p>
+        )}
+
+        <a href={`tel:${telDigits}`} class="btn contact__call">Call {config.contact.phone}</a>
+
+        <ul class="contact__list">
+          <li>
+            <span class="contact__label">Phone</span>
+            <a href={`tel:${telDigits}`}>{config.contact.phone}</a>
+          </li>
+          {config.contact.email && (
+            <li>
+              <span class="contact__label">Email</span>
+              <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>
+            </li>
+          )}
+          <li>
+            <span class="contact__label">Address</span>
+            <span>{config.contact.address}</span>
+          </li>
+          {config.social.instagram && (
+            <li>
+              <span class="contact__label">Instagram</span>
+              <a href={config.social.instagram} target="_blank" rel="noopener">Follow us on Instagram</a>
+            </li>
+          )}
+          {config.social.facebook && (
+            <li>
+              <span class="contact__label">Facebook</span>
+              <a href={config.social.facebook} target="_blank" rel="noopener">Find us on Facebook</a>
+            </li>
+          )}
+          {config.social.yelp && (
+            <li>
+              <span class="contact__label">Yelp</span>
+              <a href={config.social.yelp} target="_blank" rel="noopener">Read our reviews on Yelp</a>
+            </li>
+          )}
+          <li>
+            <span class="contact__label">Tasting room</span>
+            {config.tastingRoom.available ? (
+              <span>Open — see hours below</span>
+            ) : (
+              <span>No public tasting room — wine sold direct</span>
+            )}
+          </li>
+        </ul>
+      </div>
+
+      <div class="contact__map">
+        <iframe
+          title={`Map showing the location of ${config.name}`}
+          src={mapEmbed}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  {config.tastingRoom.available && (
+    <section class="section section--alt">
+      <div class="container container--narrow hours">
+        <span class="kicker">Tasting room</span>
+        <h2>Hours &amp; reservations</h2>
+        {config.tastingRoom.note && <p class="hours__note">{config.tastingRoom.note}</p>}
+
+        <table class="hours__table">
+          <tbody>
+            {config.tastingRoom.hours.map((h) => (
+              <tr>
+                <td class="hours__day">{h.day}</td>
+                <td class="hours__time">{h.hours}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {config.tastingRoom.reservationRequired && config.tastingRoom.reservationLink && (
+          <a href={config.tastingRoom.reservationLink} class="btn" style="margin-top:1.5rem" target="_blank" rel="noopener">
+            Reserve a tasting
+          </a>
+        )}
+        {config.tastingRoom.reservationRequired && !config.tastingRoom.reservationLink && (
+          <p class="hours__reserve">Reservations required — call <a href={`tel:${telDigits}`}>{config.contact.phone}</a> to book.</p>
+        )}
+      </div>
+    </section>
+  )}
+
+  <section class="section section--ink">
+    <div class="container container--narrow note">
+      <h2>Must be 21 or older</h2>
+      <p>You must be of legal drinking age (21+) to purchase wine. Please enjoy our wines responsibly.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+    text-align: center;
+  }
+  .pagehead p {
+    font-size: 1.12rem;
+    color: var(--text-muted);
+    margin: 1rem auto 0;
+    max-width: 56ch;
+  }
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .contact__lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 46ch;
+  }
+  .contact__call { margin: .5rem 0 2rem; }
+  .contact__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.1rem;
+  }
+  .contact__list li {
+    display: grid;
+    gap: .15rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.1rem;
+  }
+  .contact__label {
+    font-size: .74rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-muted);
+  }
+  .contact__list a,
+  .contact__list li > span:not(.contact__label) {
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .contact__list a { color: var(--brand); }
+  .contact__map {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    aspect-ratio: 4 / 3;
+  }
+  .contact__map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .hours { text-align: left; }
+  .hours__note { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .hours__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: .5rem;
+  }
+  .hours__table tr { border-top: 1px solid var(--border); }
+  .hours__day, .hours__time {
+    padding: .9rem .4rem;
+    font-size: 1.02rem;
+  }
+  .hours__day { font-weight: 600; color: var(--ink); width: 55%; }
+  .hours__time { color: var(--text-muted); }
+  .hours__reserve {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+  .hours__reserve a { font-weight: 600; }
+  .note { text-align: center; }
+  .note p { color: rgba(243,236,225,.82); font-size: 1.05rem; margin: 0; }
+  @media (max-width: 880px) {
+    .contact { grid-template-columns: 1fr; }
+  }
+</style>

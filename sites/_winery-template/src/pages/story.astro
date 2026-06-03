@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { config } from '../config';
+---
+
+<BaseLayout title="Our Story" description={`The story of ${config.name} — ${config.tagline}`}>
+  <section class="pagehead">
+    <div class="container container--narrow">
+      <span class="kicker">{config.established} · {config.area}</span>
+      <h1>{config.story.heading}</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="split__media reveal">
+        <img
+          src="/images/about.jpg"
+          alt={`The team at ${config.name} in their vineyard`}
+          loading="eager"
+          width="800"
+          height="600"
+          onerror="this.src='/images/about.svg'"
+        />
+      </div>
+      <div class="split__copy">
+        {config.story.paragraphs.map((p) => <p>{p}</p>)}
+        <p class="sign">{config.story.signoff}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights / values section -->
+  <section class="section section--ink">
+    <div class="container">
+      <div class="section__head">
+        <span class="kicker">What we stand for</span>
+        <h2>Our winemaking philosophy</h2>
+      </div>
+      <div class="grid-highlights">
+        {config.highlights.map((h) => (
+          <div class="feature">
+            <svg class="feature__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2C8.5 2 6 5 6 8c0 2.5 1.5 4.5 4 5.5V18H8v2h8v-2h-2v-4.5C16.5 12.5 18 10.5 18 8c0-3-2.5-6-6-6z" fill="currentColor"/>
+            </svg>
+            <p>{h}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards section -->
+  {config.awards && config.awards.length > 0 && (
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <div class="section__head" style="margin-bottom:2rem">
+          <span class="kicker">Recognition</span>
+          <h2>Awards & accolades</h2>
+        </div>
+        <ul class="awards">
+          {config.awards.map((a) => (
+            <li class="award">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="award__icon">
+                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5" opacity=".5"/>
+                <path d="M10 5l1.5 3.5 3.8.5-2.8 2.5.7 3.8L10 13.5l-3.2 1.8.7-3.8L4.7 9l3.8-.5L10 5z" fill="currentColor" opacity=".9"/>
+              </svg>
+              <span>{a}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container split">
+      <div class="split__copy">
+        <span class="kicker">Visit us</span>
+        <h2>Come taste the story</h2>
+        <p>{config.tastingRoom.available ? config.tastingRoom.note : config.contact.note}</p>
+        <a href="/visit/" class="btn">Plan your visit</a>
+      </div>
+      <div class="split__media reveal">
+        <img
+          src="/images/hero.jpg"
+          alt={`Vineyard at ${config.name}`}
+          loading="lazy"
+          width="800"
+          height="600"
+          onerror="this.src='/images/hero.svg'"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+    text-align: center;
+  }
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .split__media img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .split__copy p { font-size: 1.12rem; color: var(--text-muted); }
+  .sign {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--brand);
+  }
+  .grid-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .feature {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.5rem;
+    display: flex;
+    gap: .75rem;
+    align-items: flex-start;
+  }
+  .feature__icon {
+    width: 22px;
+    height: 22px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+  .feature p {
+    margin: 0;
+    color: rgba(243,236,225,.85);
+    font-size: .98rem;
+    font-weight: 500;
+  }
+  .awards {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.1rem;
+  }
+  .award {
+    display: flex;
+    gap: .75rem;
+    align-items: flex-start;
+    border-top: 1px solid var(--border);
+    padding-top: 1.1rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .award__icon {
+    width: 22px;
+    height: 22px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+  @media (max-width: 900px) {
+    .split { grid-template-columns: 1fr; }
+    .grid-highlights { grid-template-columns: 1fr 1fr; }
+  }
+</style>

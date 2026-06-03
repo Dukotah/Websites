@@ -1,0 +1,287 @@
+[
+  {
+    "slug": "dry-creek-estate-winery",
+    "name": "Dry Creek Estate Winery",
+    "tagline": "Old-vine Zinfandel rooted in Sonoma tradition",
+    "seoDescription": "Dry Creek Estate Winery crafts bold, small-batch Zinfandel and Cabernet Sauvignon from century-old vines in Healdsburg, Sonoma County.",
+    "area": "Healdsburg, CA",
+    "established": "Est. 1974",
+    "contact": {
+      "phone": "(707) 433-2891",
+      "email": "info@drycreekestate.com",
+      "address": "4580 Dry Creek Rd, Healdsburg, CA 95448",
+      "note": "We welcome visitors by appointment — call ahead and we'll have a glass waiting."
+    },
+    "social": {
+      "facebook": "https://facebook.com/drycreekestate",
+      "instagram": "https://instagram.com/drycreekestatewinery",
+      "yelp": ""
+    },
+    "hero": {
+      "kicker": "Healdsburg · Dry Creek Valley AVA",
+      "heading": "Old-vine Zinfandel from the heart of Sonoma",
+      "subheading": "Three generations farming the same rocky benchland since 1974 — where the vines run deep and the wine runs honest.",
+      "ctaText": "Explore our wines",
+      "ctaHref": "/wines/"
+    },
+    "story": {
+      "heading": "Three generations, one valley",
+      "paragraphs": [
+        "In 1974, Frank and Loretta Marchetti planted the first Zinfandel canes in the rocky, well-drained benchland of Dry Creek Valley. The gravelly loam and warm Sonoma afternoons turned out to be perfect — the vines took hold and never looked back.",
+        "Today their grandchildren tend the same rows, now more than fifty years old. Ancient roots find moisture deep in the hillside, concentrating flavor in ways no irrigation system can replicate. We produce fewer than 400 cases a year and wouldn't have it any other way."
+      ],
+      "signoff": "— The Marchetti Family"
+    },
+    "highlights": [
+      "50-year-old estate vines",
+      "Dry-farmed benchland",
+      "Fewer than 400 cases annually"
+    ],
+    "wines": [
+      {
+        "name": "Old Vine Zinfandel",
+        "varietal": "Zinfandel",
+        "type": "Red",
+        "notes": "Intense and layered, with ripe blackberry, black pepper, and a hint of vanilla from neutral oak."
+      },
+      {
+        "name": "Petite Sirah",
+        "varietal": "Petite Sirah",
+        "type": "Red",
+        "notes": "Inky and powerful, with dark plum, blueberry, and a firm tannic structure built for aging."
+      },
+      {
+        "name": "Cabernet Sauvignon",
+        "varietal": "Cabernet Sauvignon",
+        "type": "Red",
+        "notes": "Structured and elegant, with cassis, cedar, and a long, mineral-driven finish."
+      },
+      {
+        "name": "Benchland Red Blend",
+        "varietal": "Red Wine Blend",
+        "type": "Blend",
+        "notes": "Our signature blend of Zinfandel and Petite Sirah — rich, food-friendly, and unmistakably Dry Creek."
+      },
+      {
+        "name": "Grenache Blanc",
+        "varietal": "Grenache Blanc",
+        "type": "White",
+        "notes": "Bright and aromatic, with Meyer lemon, white peach, and a clean mineral finish."
+      }
+    ],
+    "tastingRoom": {
+      "available": true,
+      "note": "We offer seated tastings in our restored 1920s barn. Reservations appreciated — walk-ins welcome when space allows.",
+      "hours": [
+        { "day": "Thu – Mon", "hours": "10:30 AM – 4:30 PM" },
+        { "day": "Tue – Wed", "hours": "Closed" }
+      ],
+      "reservationRequired": false,
+      "reservationLink": "https://drycreekestate.com/reserve"
+    },
+    "awards": [
+      "Gold Medal — San Francisco Chronicle Wine Competition 2024",
+      "Best of Class Zinfandel — California State Fair 2023",
+      "90 pts — Wine Enthusiast, Old Vine Zinfandel 2022"
+    ],
+    "wikimediaCategory": "Vineyards in Sonoma County",
+    "theme": {
+      "brand": "#7b2d42",
+      "brandDark": "#561f2e"
+    }
+  },
+  {
+    "slug": "stags-hollow-cellars",
+    "name": "Stags Hollow Cellars",
+    "tagline": "Estate Cabernet from the valley floor of Napa",
+    "seoDescription": "Stags Hollow Cellars produces estate-grown Cabernet Sauvignon and Merlot on a 12-acre Napa Valley vineyard in the Stags Leap District.",
+    "area": "Napa, CA",
+    "established": "Est. 1991",
+    "contact": {
+      "phone": "(707) 944-2020",
+      "email": "tastings@stagshollow.com",
+      "address": "5766 Silverado Trail, Napa, CA 94558",
+      "note": "Private tastings are offered by appointment only. We look forward to hosting you."
+    },
+    "social": {
+      "facebook": "",
+      "instagram": "https://instagram.com/stagshollowcellars",
+      "yelp": "https://yelp.com/biz/stags-hollow-cellars-napa"
+    },
+    "hero": {
+      "kicker": "Napa Valley · Stags Leap District",
+      "heading": "Where the Silverado Trail meets estate Cabernet",
+      "subheading": "Twelve acres of volcanic soil, morning fog off San Pablo Bay, and a singular obsession with Cabernet Sauvignon.",
+      "ctaText": "Discover our wines",
+      "ctaHref": "/wines/"
+    },
+    "story": {
+      "heading": "A hillside discovery that changed everything",
+      "paragraphs": [
+        "In 1991, Elena and Robert Whitmore were hiking the eastern hills above the Silverado Trail when they stumbled onto a south-facing bench of volcanic tuff and fractured basalt. They knew immediately — this was Cabernet country. They bought the land that autumn.",
+        "More than thirty years later, Stags Hollow Cellars remains a family estate. Our twelve acres yield roughly 1,200 cases a year. We keep things intimate by design: small lots, personal attention, and wines that speak unmistakably of this singular place."
+      ],
+      "signoff": "— Elena & Robert Whitmore"
+    },
+    "highlights": [
+      "Stags Leap District appellation",
+      "Volcanic tuff soils",
+      "Private appointment tastings"
+    ],
+    "wines": [
+      {
+        "name": "Estate Cabernet Sauvignon",
+        "varietal": "Cabernet Sauvignon",
+        "type": "Red",
+        "notes": "The flagship — cassis, dark chocolate, graphite, and seamlessly integrated tannins built for a decade in the cellar."
+      },
+      {
+        "name": "Merlot",
+        "varietal": "Merlot",
+        "type": "Red",
+        "notes": "Supple and plush, with ripe plum, mocha, and a velvety mid-palate that lingers."
+      },
+      {
+        "name": "Cabernet Franc",
+        "varietal": "Cabernet Franc",
+        "type": "Red",
+        "notes": "Floral and savory, with violet, dark cherry, and a characteristic iron-and-herb finish."
+      },
+      {
+        "name": "Whitmore Red",
+        "varietal": "Red Wine Blend",
+        "type": "Blend",
+        "notes": "A Bordeaux-inspired blend of Cabernet Sauvignon and Merlot — approachable now, rewarding with age."
+      },
+      {
+        "name": "Sauvignon Blanc",
+        "varietal": "Sauvignon Blanc",
+        "type": "White",
+        "notes": "Crisp Napa Valley Sauvignon Blanc — grapefruit zest, fresh herb, and a clean, mineral close."
+      },
+      {
+        "name": "Late Harvest Semillon",
+        "varietal": "Semillon",
+        "type": "Dessert",
+        "notes": "Honeyed and lush, with apricot, orange blossom, and bright acidity keeping every sip fresh."
+      }
+    ],
+    "tastingRoom": {
+      "available": true,
+      "note": "All tastings are by appointment. We offer a focused estate experience for groups of up to eight guests.",
+      "hours": [
+        { "day": "Mon – Sat", "hours": "10:00 AM – 4:00 PM" },
+        { "day": "Sunday", "hours": "Closed" }
+      ],
+      "reservationRequired": true,
+      "reservationLink": "https://stagshollow.com/tastings"
+    },
+    "awards": [
+      "94 pts — Wine Spectator, Estate Cabernet Sauvignon 2021",
+      "Gold Medal — Napa Valley Wine Awards 2023",
+      "Best Napa Cabernet Under $75 — San Francisco Chronicle 2022"
+    ],
+    "wikimediaCategory": "Vineyards in Napa County",
+    "theme": {
+      "brand": "#5c2340",
+      "brandDark": "#3d1629"
+    }
+  },
+  {
+    "slug": "sierra-ridge-winery",
+    "name": "Sierra Ridge Winery",
+    "tagline": "Foothill wines with altitude and attitude",
+    "seoDescription": "Sierra Ridge Winery crafts bold Rhône-style reds and Barbera from 2,400-foot vineyards in Fair Play, El Dorado County, California.",
+    "area": "Fair Play, CA",
+    "established": "Est. 2003",
+    "contact": {
+      "phone": "(530) 620-3467",
+      "email": "hello@sierraridgewinery.com",
+      "address": "7320 Perry Creek Rd, Fair Play, CA 95684",
+      "note": "Come up and taste — we're open weekends and most Friday afternoons. Call ahead if you're making a trip."
+    },
+    "social": {
+      "facebook": "https://facebook.com/sierraridgewinery",
+      "instagram": "https://instagram.com/sierraridgewinery",
+      "yelp": ""
+    },
+    "hero": {
+      "kicker": "Fair Play · El Dorado County",
+      "heading": "Big reds born at 2,400 feet",
+      "subheading": "Cool Sierra nights, warm afternoons, and volcanic red clay soils that push Rhône varieties and Barbera to their expressive best.",
+      "ctaText": "See our wines",
+      "ctaHref": "/wines/"
+    },
+    "story": {
+      "heading": "A gold country dream, harvested every fall",
+      "paragraphs": [
+        "Marcus and Diane Chen left Sacramento in 2001 looking for land with personality. The volcanic red clay ridges of Fair Play stopped them cold. Two years later they had planted Syrah, Barbera, and Grenache on twelve acres of hillside at 2,400 feet — terrain that sees genuine cold nights even in August.",
+        "The altitude is the secret. Slow ripening locks in acidity and aromatics that lower-elevation sites rarely achieve. We keep production under 600 cases and sell mostly from the tasting room, where the porch view of the Sierra foothills makes every glass taste better."
+      ],
+      "signoff": "— Marcus & Diane Chen"
+    },
+    "highlights": [
+      "2,400-ft elevation vineyards",
+      "Volcanic red clay soils",
+      "Open tasting room weekends"
+    ],
+    "wines": [
+      {
+        "name": "Syrah",
+        "varietal": "Syrah",
+        "type": "Red",
+        "notes": "Dark and aromatic, with smoked meat, black olive, violet, and cracked black pepper — a classic cool-climate Syrah."
+      },
+      {
+        "name": "Barbera",
+        "varietal": "Barbera",
+        "type": "Red",
+        "notes": "Bright and juicy, with sour cherry, plum, and a lively acidity that makes it the perfect pizza wine."
+      },
+      {
+        "name": "Grenache",
+        "varietal": "Grenache",
+        "type": "Red",
+        "notes": "Silky and spiced, with red berry, orange zest, and a long, warming finish."
+      },
+      {
+        "name": "Ridge Red GSM",
+        "varietal": "Red Wine Blend",
+        "type": "Blend",
+        "notes": "A Grenache-Syrah-Mourvèdre blend — complex, savory, and built for the dinner table."
+      },
+      {
+        "name": "Vermentino",
+        "varietal": "Vermentino",
+        "type": "White",
+        "notes": "Aromatic and textured, with lemon curd, white flowers, and a pleasantly bitter almond finish."
+      },
+      {
+        "name": "Rosé of Grenache",
+        "varietal": "Grenache",
+        "type": "Rosé",
+        "notes": "Pale salmon and bone dry, with fresh strawberry, watermelon rind, and a crisp, clean close."
+      }
+    ],
+    "tastingRoom": {
+      "available": true,
+      "note": "Pull up a chair on the porch — the Sierra view is complimentary. Seated tastings, no reservation needed on weekends.",
+      "hours": [
+        { "day": "Fri", "hours": "1:00 PM – 5:00 PM" },
+        { "day": "Sat – Sun", "hours": "11:00 AM – 5:00 PM" }
+      ],
+      "reservationRequired": false,
+      "reservationLink": ""
+    },
+    "awards": [
+      "Best of Class Syrah — El Dorado County Fair Wine Competition 2024",
+      "Gold Medal — California State Fair 2023, Barbera",
+      "Editor's Pick — Wine & Spirits Magazine, Sierra Foothills Syrah 2022"
+    ],
+    "wikimediaCategory": "Vineyards in El Dorado County",
+    "theme": {
+      "brand": "#8b3a1e",
+      "brandDark": "#612a14"
+    }
+  }
+]

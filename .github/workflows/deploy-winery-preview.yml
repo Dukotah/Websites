@@ -1,0 +1,87 @@
+name: Deploy Winery Preview
+
+on:
+  push:
+    paths:
+      - 'sites/*/src/**'
+      - 'sites/*/public/**'
+      - 'sites/*/package.json'
+      - 'sites/*/astro.config.mjs'
+      - 'sites/*/vercel.json'
+
+jobs:
+  # ── Step 1: figure out which sites actually changed ───────────────────────
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      sites: ${{ steps.changed.outputs.sites }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Find changed site folders
+        id: changed
+        run: |
+          SITES=$(
+            git diff --name-only HEAD~1 HEAD \
+              | grep '^sites/' \
+              | grep -v '^sites/_' \
+              | cut -d/ -f2 \
+              | sort -u \
+              | jq -Rsc 'split("\n") | map(select(. != ""))'
+          )
+          echo "sites=$SITES" >> "$GITHUB_OUTPUT"
+          echo "Changed sites: $SITES"
+
+  # ── Step 2: build + deploy each changed site ──────────────────────────────
+  deploy:
+    needs: detect
+    if: needs.detect.outputs.sites != '[]' && needs.detect.outputs.sites != ''
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        site: ${{ fromJson(needs.detect.outputs.sites) }}
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: sites/${{ matrix.site }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: sites/${{ matrix.site }}
+
+      - name: Build
+        run: npm run build
+        working-directory: sites/${{ matrix.site }}
+
+      - name: Deploy to Vercel (preview)
+        id: deploy
+        run: |
+          URL=$(npx vercel deploy --yes \
+            --token "$VERCEL_TOKEN" \
+            2>&1 | grep -E '^https://' | tail -1)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Deployed: $URL"
+        working-directory: sites/${{ matrix.site }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+
+      - name: Write preview URL to summary
+        run: |
+          echo "## ${{ matrix.site }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| | |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Preview URL** | ${{ steps.deploy.outputs.url }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Branch** | \`${{ github.ref_name }}\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Commit** | \`${{ github.sha }}\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "> Send this link to the client for their review." >> "$GITHUB_STEP_SUMMARY"

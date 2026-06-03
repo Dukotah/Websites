@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WineCard from '../components/WineCard.astro';
+import { config } from '../config';
+
+const reds = config.wines.filter((w) => w.type === 'Red');
+const whites = config.wines.filter((w) => w.type === 'White');
+const rosés = config.wines.filter((w) => w.type === 'Rosé');
+const blends = config.wines.filter((w) => w.type === 'Blend');
+const other = config.wines.filter((w) => w.type === 'Sparkling' || w.type === 'Dessert');
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
+---
+
+<BaseLayout title="Our Wines" description={`Explore the handcrafted, estate-grown wines of ${config.name} — ${config.tagline}`}>
+  <section class="pagehead">
+    <div class="container container--narrow">
+      <span class="kicker">{config.established} · {config.area}</span>
+      <h1>Our wines</h1>
+      <p>Each wine is grown, crafted, and bottled from estate fruit. Vintages and availability change with the seasons — call or email us for current releases and to purchase.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {reds.length > 0 && (
+        <>
+          <h2 class="winegroup">Reds</h2>
+          <div class="grid">
+            {reds.map((wine) => <WineCard wine={wine} />)}
+          </div>
+        </>
+      )}
+
+      {blends.length > 0 && (
+        <>
+          <h2 class={`winegroup${reds.length > 0 ? ' winegroup--spaced' : ''}`}>Blends</h2>
+          <div class="grid">
+            {blends.map((wine) => <WineCard wine={wine} />)}
+          </div>
+        </>
+      )}
+
+      {whites.length > 0 && (
+        <>
+          <h2 class="winegroup winegroup--spaced">Whites</h2>
+          <div class="grid">
+            {whites.map((wine) => <WineCard wine={wine} />)}
+          </div>
+        </>
+      )}
+
+      {rosés.length > 0 && (
+        <>
+          <h2 class="winegroup winegroup--spaced">Rosé</h2>
+          <div class="grid">
+            {rosés.map((wine) => <WineCard wine={wine} />)}
+          </div>
+        </>
+      )}
+
+      {other.length > 0 && (
+        <>
+          <h2 class="winegroup winegroup--spaced">Specialty</h2>
+          <div class="grid">
+            {other.map((wine) => <WineCard wine={wine} />)}
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container container--narrow buy">
+      <h2>Like to buy a bottle?</h2>
+      <p>{config.tastingRoom.available ? config.tastingRoom.note : config.contact.note}</p>
+      {config.tastingRoom.available && config.tastingRoom.reservationLink ? (
+        <a href={config.tastingRoom.reservationLink} class="btn">Reserve a tasting</a>
+      ) : (
+        <a href={`tel:${telDigits}`} class="btn">Call {config.contact.phone}</a>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+    text-align: center;
+  }
+  .pagehead p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin: 1rem auto 0;
+    max-width: 56ch;
+  }
+  .winegroup {
+    font-size: 1.6rem;
+    padding-bottom: .6rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .winegroup--spaced { margin-top: 4rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .buy { text-align: center; }
+  .buy p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.75rem; }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
