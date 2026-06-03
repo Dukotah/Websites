@@ -1,0 +1,198 @@
+/* Self-hosted fonts (no CDN / FOUT). */
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/inter';
+
+/* Brand colors (--brand / --brand-dark) are injected from src/config.ts in
+   BaseLayout.astro, so editing the config re-themes the whole site. */
+:root {
+  --bg: #fbf7f1; /* warm cream */
+  --bg-alt: #f3ece1; /* deeper cream */
+  --ink: #2a211d; /* warm near-black */
+  --text: #3a302b;
+  --text-muted: #7a6f66;
+  --border: #e7ddcf;
+  --gold: #b08738; /* subtle medal/award accent */
+  --maxw: 1180px;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(42, 33, 29, 0.06), 0 1px 1px rgba(42, 33, 29, 0.04);
+  --shadow: 0 12px 30px rgba(42, 33, 29, 0.1), 0 4px 10px rgba(42, 33, 29, 0.06);
+  --shadow-lg: 0 28px 60px rgba(42, 33, 29, 0.18);
+
+  --font: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-optical-sizing: auto;
+}
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+h3 {
+  font-size: 1.4rem;
+}
+
+p {
+  margin: 0 0 1rem;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--brand-dark);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+.container--narrow {
+  max-width: 760px;
+}
+
+.section {
+  padding-block: clamp(3.5rem, 9vw, 7rem);
+}
+.section--alt {
+  background: var(--bg-alt);
+}
+.section--ink {
+  background: var(--ink);
+  color: #f3ece1;
+}
+.section--ink h2 {
+  color: #fff;
+}
+
+.section__head {
+  max-width: 44rem;
+  margin-bottom: 3rem;
+}
+.section__head p {
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.kicker {
+  display: inline-block;
+  font-family: var(--font);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--brand);
+  margin-bottom: 1rem;
+}
+.section--ink .kicker {
+  color: var(--gold);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  padding: 0.95rem 1.8rem;
+  border: 1.5px solid var(--brand);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.btn:hover {
+  background: var(--brand-dark);
+  border-color: var(--brand-dark);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand) 40%, transparent);
+  outline-offset: 2px;
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--brand);
+}
+.btn--ghost:hover {
+  background: color-mix(in srgb, var(--brand) 8%, transparent);
+  color: var(--brand-dark);
+}
+.btn--on-ink {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.btn--on-ink:hover {
+  background: #fff;
+  color: var(--ink);
+  border-color: #fff;
+}
+
+/* Reveal on load (reduced-motion safe) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

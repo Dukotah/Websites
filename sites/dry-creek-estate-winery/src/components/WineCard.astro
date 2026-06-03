@@ -1,0 +1,119 @@
+---
+import type { Wine } from '../config';
+import { config } from '../config';
+
+interface Props {
+  wine: Wine;
+}
+const { wine } = Astro.props;
+
+// Try to resolve the wine image from public/images/. If it doesn't exist,
+// the <img> will just silently fail to load — the placeholder background shows.
+const imgSrc = `/images/${wine.image}`;
+---
+
+<article class="wine">
+  <div class="wine__media">
+    <img
+      src={imgSrc}
+      alt={`Bottle of ${config.name} ${wine.name}`}
+      loading="lazy"
+      onerror="this.style.display='none'"
+    />
+    <svg class="wine__placeholder" viewBox="0 0 60 120" fill="none" aria-hidden="true">
+      <rect x="22" y="0" width="16" height="10" rx="3" fill="currentColor" opacity=".25"/>
+      <path d="M18 10 Q15 30 15 50 L15 105 Q15 115 30 115 Q45 115 45 105 L45 50 Q45 30 42 10Z" fill="currentColor" opacity=".18"/>
+      <path d="M20 55 Q20 45 30 45 Q40 45 40 55" stroke="currentColor" stroke-width="1.5" opacity=".3" fill="none"/>
+    </svg>
+  </div>
+  <div class="wine__body">
+    <span class="wine__type" data-type={wine.type}>{wine.type}</span>
+    <h3>{wine.name}</h3>
+    <p>{wine.notes}</p>
+    {wine.price && <p class="wine__price">{wine.price}</p>}
+  </div>
+</article>
+
+<style>
+  .wine {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .wine:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+  }
+  .wine__media {
+    background: linear-gradient(160deg, #f7f1e8, #ece1d2);
+    padding: 1.75rem 1rem;
+    display: grid;
+    place-items: center;
+    min-height: 240px;
+    position: relative;
+  }
+  .wine__media img {
+    height: 200px;
+    width: auto;
+    filter: drop-shadow(0 12px 18px rgba(42, 33, 29, 0.25));
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+  .wine:hover .wine__media img {
+    transform: scale(1.04) rotate(-1deg);
+  }
+  .wine__placeholder {
+    position: absolute;
+    width: 60px;
+    height: 120px;
+    color: var(--brand);
+    opacity: 0.6;
+  }
+  .wine__body {
+    padding: 1.3rem 1.4rem 1.6rem;
+  }
+  .wine__type {
+    display: inline-block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: var(--brand);
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.7rem;
+  }
+  .wine__type[data-type='White'] {
+    color: #8a7320;
+    border-color: color-mix(in srgb, var(--gold) 45%, var(--border));
+  }
+  .wine__type[data-type='Rosé'] {
+    color: #b04060;
+    border-color: color-mix(in srgb, #b04060 30%, var(--border));
+  }
+  .wine__type[data-type='Dessert'] {
+    color: #8a7320;
+    border-color: color-mix(in srgb, var(--gold) 45%, var(--border));
+  }
+  .wine__body h3 {
+    margin: 0 0 0.4rem;
+  }
+  .wine__body p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+  .wine__price {
+    margin-top: 0.6rem !important;
+    font-weight: 600;
+    color: var(--brand) !important;
+    font-size: 1rem !important;
+  }
+</style>

@@ -1,0 +1,315 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WineCard from '../components/WineCard.astro';
+import { config } from '../config';
+
+const featured = config.wines.slice(0, 4);
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img
+        src="/images/hero.jpg"
+        alt={`Vineyard at ${config.name}`}
+        width="1920"
+        height="680"
+        loading="eager"
+        fetchpriority="high"
+        onerror="this.src='/images/hero.svg'"
+      />
+    </div>
+    <div class="container hero__inner reveal">
+      <span class="kicker hero__kicker">{config.hero.kicker}</span>
+      <h1>{config.hero.heading}</h1>
+      <p class="hero__sub">{config.hero.subheading}</p>
+      <div class="hero__actions">
+        <a href={config.hero.ctaHref} class="btn">{config.hero.ctaText}</a>
+        <a href="/story/" class="btn btn--on-ink">Our story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="section">
+    <div class="container intro">
+      <div>
+        <span class="kicker">{config.established}</span>
+        <h2>{config.story.heading}</h2>
+      </div>
+      <div class="intro__body">
+        <p>{config.story.paragraphs[0]}</p>
+        <a href="/story/" class="textlink">Read our story →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights / values -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+        <span class="kicker">{config.area}</span>
+        <h2>Why {config.name}?</h2>
+      </div>
+      <div class="grid-highlights">
+        {config.highlights.map((h) => (
+          <div class="feature">
+            <svg class="feature__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2C8.5 2 6 5 6 8c0 2.5 1.5 4.5 4 5.5V18H8v2h8v-2h-2v-4.5C16.5 12.5 18 10.5 18 8c0-3-2.5-6-6-6z" fill="currentColor"/>
+            </svg>
+            <p>{h}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured wines -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head section__head--row">
+        <div>
+          <span class="kicker">From our cellar</span>
+          <h2>A few of our wines</h2>
+        </div>
+        <a href="/wines/" class="btn btn--ghost">See all wines</a>
+      </div>
+      <div class="grid-4">
+        {featured.map((wine) => <WineCard wine={wine} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Story teaser -->
+  <section class="section section--alt">
+    <div class="container split">
+      <div class="split__media reveal">
+        <img
+          src="/images/about.jpg"
+          alt={`The team at ${config.name}`}
+          loading="lazy"
+          width="800"
+          height="600"
+          onerror="this.src='/images/about.svg'"
+        />
+      </div>
+      <div class="split__copy">
+        <span class="kicker">Meet the makers</span>
+        <h2>{config.story.heading}</h2>
+        <p>{config.story.paragraphs[config.story.paragraphs.length - 1]}</p>
+        <p class="split__sign">{config.story.signoff}</p>
+        <a href="/story/" class="btn btn--ghost">More about us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards band -->
+  {config.awards && config.awards.length > 0 && (
+    <section class="section section--ink awards">
+      <div class="container awards__inner">
+        <div class="awards__copy">
+          <span class="kicker">Recognized</span>
+          <h2>Award-winning, small-batch wines</h2>
+          <p>Our wines have earned medals and recognition at competitions across California — a testament to what passionate, hands-on farming and winemaking can achieve.</p>
+          <a href="/visit/" class="btn btn--on-ink">How to buy</a>
+        </div>
+        <ul class="awards__list">
+          {config.awards.map((a) => (
+            <li>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="award__icon">
+                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5" opacity=".5"/>
+                <path d="M10 5l1.5 3.5 3.8.5-2.8 2.5.7 3.8L10 13.5l-3.2 1.8.7-3.8L4.7 9l3.8-.5L10 5z" fill="currentColor" opacity=".9"/>
+              </svg>
+              <span>{a}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="section cta">
+    <div class="container container--narrow cta__inner">
+      <h2>Ready to taste?</h2>
+      <p>{config.tastingRoom.available ? config.tastingRoom.note : config.contact.note}</p>
+      {config.tastingRoom.available && config.tastingRoom.reservationLink ? (
+        <a href={config.tastingRoom.reservationLink} class="btn">Reserve a tasting</a>
+      ) : (
+        <a href={`tel:${telDigits}`} class="btn">Call {config.contact.phone}</a>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: min(80vh, 680px);
+    display: flex;
+    align-items: flex-end;
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(20,14,12,.15) 0%, rgba(20,14,12,.35) 45%, rgba(20,14,12,.82) 100%);
+  }
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+    padding-block: clamp(2.5rem, 7vw, 5rem);
+    max-width: 760px;
+  }
+  .hero__kicker { color: #f1d9b8; }
+  .hero h1 { color: #fff; margin-bottom: 1rem; }
+  .hero__sub {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,.9);
+    max-width: 44ch;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    margin-top: 1.75rem;
+  }
+
+  /* Intro */
+  .intro {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .intro__body p { font-size: 1.12rem; color: var(--text-muted); }
+  .textlink { font-weight: 600; }
+
+  /* Highlights */
+  .grid-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .feature {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    gap: .75rem;
+    align-items: flex-start;
+  }
+  .feature__icon {
+    width: 22px;
+    height: 22px;
+    color: var(--brand);
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+  .feature p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: .98rem;
+    font-weight: 500;
+  }
+
+  /* Generic grids */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .section__head--row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: none;
+    margin-bottom: 2rem;
+  }
+
+  /* Split sections */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .split__media img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .split__copy p { font-size: 1.1rem; color: var(--text-muted); }
+  .split__sign {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--brand);
+  }
+
+  /* Awards */
+  .awards__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .awards__copy p { font-size: 1.1rem; color: rgba(243,236,225,.82); }
+  .awards__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .awards__list li {
+    display: flex;
+    gap: .75rem;
+    align-items: flex-start;
+    color: rgba(243,236,225,.9);
+    font-size: 1rem;
+  }
+  .award__icon {
+    width: 20px;
+    height: 20px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+
+  /* CTA */
+  .cta__inner { text-align: center; }
+  .cta__inner p { font-size: 1.12rem; color: var(--text-muted); margin-bottom: 1.75rem; }
+
+  @media (max-width: 900px) {
+    .intro { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .split { grid-template-columns: 1fr; }
+    .awards__inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .section__head--row { flex-direction: column; align-items: flex-start; }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+  }
+</style>

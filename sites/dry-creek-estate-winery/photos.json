@@ -1,0 +1,32 @@
+{
+  "outDir": "public/images",
+  "width": 1600,
+  "sources": [
+    {
+      "file": "Vineyard in Northern California.jpg",
+      "as": "hero.jpg"
+    },
+    {
+      "file": "Zinfandel wine.jpg",
+      "as": "wine-old-vine-zinfandel.jpg"
+    },
+    {
+      "file": "Petite sirah wine.jpg",
+      "as": "wine-petite-sirah.jpg"
+    },
+    {
+      "file": "Cabernet sauvignon wine bottle.jpg",
+      "as": "wine-cabernet-sauvignon.jpg"
+    },
+    {
+      "file": "Grenache blanc wine bottle.jpg",
+      "as": "wine-grenache-blanc.jpg"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Vineyards in Sonoma County",
+      "limit": 4
+    }
+  ]
+}

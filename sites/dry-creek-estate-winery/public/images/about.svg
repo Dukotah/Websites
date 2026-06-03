@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9b090"/>
+      <stop offset="100%" stop-color="#a07850"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- Ground -->
+  <rect y="440" width="800" height="160" fill="#7a5c30"/>
+  <!-- Barn body -->
+  <rect x="200" y="240" width="400" height="220" fill="#8b4a30"/>
+  <!-- Barn roof -->
+  <polygon points="180,240 620,240 560,140 240,140" fill="#6b3520"/>
+  <!-- Barn door -->
+  <rect x="320" y="340" width="80" height="120" fill="#4a2010"/>
+  <rect x="400" y="340" width="80" height="120" fill="#4a2010"/>
+  <line x1="400" y1="340" x2="400" y2="460" stroke="#6b3520" stroke-width="3"/>
+  <!-- Window left -->
+  <rect x="230" y="290" width="60" height="50" rx="4" fill="#d4b880" opacity=".6"/>
+  <!-- Window right -->
+  <rect x="510" y="290" width="60" height="50" rx="4" fill="#d4b880" opacity=".6"/>
+  <!-- Vines flanking -->
+  <g fill="#5a7838">
+    <ellipse cx="120" cy="380" rx="55" ry="70"/>
+    <ellipse cx="140" cy="320" rx="40" ry="50"/>
+    <ellipse cx="680" cy="380" rx="55" ry="70"/>
+    <ellipse cx="660" cy="320" rx="40" ry="50"/>
+  </g>
+</svg>

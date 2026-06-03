@@ -1,102 +1,160 @@
 # Winery Site Automation
 
-Turn a winery lead into a live preview link in under 10 minutes. Send them the link and you've already made your pitch.
+This monorepo contains a complete pipeline for generating, deploying, and demoing winery websites as sales tools.
 
-## The full workflow
+---
 
-### 1. Add the winery to `data/wineries.json`
+## Full Workflow
 
-Open `data/wineries.json` and add a new entry. Copy the shape from an existing entry — you need:
+```
+1. Add winery to data/wineries.json
+2. Run: npm run generate-winery -- <slug>
+3. (Optional) Download photos: node scripts/fetch-photos.mjs sites/<slug>/photos.json
+4. Commit & push the new site folder
+5. GitHub Actions auto-deploys a Vercel preview
+6. Copy the preview URL → email/text the winery owner
+```
 
-- Basic info: `name`, `slug`, `tagline`, `area`, `established`
-- Contact: `phone`, `email`, `address`, `note`
-- Social: `instagram`, `facebook`, `yelp` (leave blank if unknown)
-- Hero copy, story paragraphs, highlights
-- Wine list (name, varietal, type, tasting notes)
-- Tasting room: hours, reservation policy
-- Awards and accolades
-- `wikimediaCategory` for photo fetching (e.g. `"Vineyards in Napa County"`)
-- `theme`: brand color and dark accent (match their existing branding if possible)
+---
 
-**Tip:** Most of this info is on their existing website, Google Business Profile, Yelp page, or Instagram. A 5-minute browse is usually enough.
+## Step-by-step
+
+### 1. Add winery data
+
+Edit `data/wineries.json` and add a new object. Required fields:
+
+| Field | Description |
+|-------|-------------|
+| `slug` | URL-safe identifier, e.g. `smith-family-winery` |
+| `name` | Winery display name |
+| `tagline` | Short tagline (shown in header/footer) |
+| `seoDescription` | ~150-char Google description |
+| `area` | City, CA |
+| `established` | e.g. `"Est. 2004"` |
+| `contact` | phone, email, address, note |
+| `social` | facebook, instagram, yelp (empty string if not applicable) |
+| `hero` | kicker, heading, subheading, ctaText, ctaHref |
+| `story` | heading, paragraphs (array), signoff |
+| `highlights` | Array of 3–4 short value-prop strings |
+| `wines` | Array of wine objects (name, varietal, type, notes) |
+| `tastingRoom` | available, note, hours, reservationRequired, reservationLink |
+| `awards` | Array of award strings |
+| `wikimediaCategory` | Wikimedia Commons category for vineyard photos |
+| `theme` | brand (hex), brandDark (hex) |
 
 ### 2. Generate the site
 
 ```bash
-npm run generate-winery <slug>
-# e.g.
-npm run generate-winery sierra-ridge-winery
+npm run generate-winery -- smith-family-winery
 ```
 
-This copies the `_winery-template`, writes a fully-populated `src/config.ts` with all their data, and sets up `photos.json` for image fetching.
+This will:
+- Copy `sites/_winery-template/` → `sites/smith-family-winery/`
+- Write a fully-populated `src/config.ts` from the JSON data
+- Create a `photos.json` configured for Wikimedia Commons downloads
+- Set the `package.json` name to the slug
 
-### 3. Fetch photos (optional but recommended)
+### 3. Download photos (optional but recommended)
 
 ```bash
-node scripts/fetch-photos.mjs <slug>
+node scripts/fetch-photos.mjs sites/smith-family-winery/photos.json
 ```
 
-This downloads freely-licensed images from Wikimedia Commons: vineyard landscapes for the hero/about sections, and wine bottle photos where available. After fetching, rename or move the downloaded images to match what the site expects:
-
-- `public/images/hero.jpg` — the vineyard hero photo (used on every page)
-- `public/images/about.jpg` — founders or barn/winery photo for the story section
-- `public/images/wine-<slug>.jpg` — bottle shots (auto-named by the generator)
-
-The `CREDITS.md` file saved next to the images handles attribution.
+This downloads vineyard landscape images and wine bottle photos from Wikimedia Commons into `public/images/`.
 
 ### 4. Preview locally
 
 ```bash
-cd sites/<slug>
+cd sites/smith-family-winery
 npm install
 npm run dev
+# Visit http://localhost:4321
 ```
 
-Open `http://localhost:4321` — the full site is there with the winery's real copy, wines, contact info, and colors. Check it looks good before deploying.
-
-### 5. Deploy to Vercel
-
-**Option A — Push to GitHub (recommended)**
+### 5. Commit and push
 
 ```bash
-git add sites/<slug> data/wineries.json
-git commit -m "Add <winery name> demo site"
-git push
+git add sites/smith-family-winery
+git commit -m "feat: scaffold smith-family-winery demo site"
+git push origin your-branch-name
 ```
 
-GitHub Actions automatically detects the new site, builds it, deploys to Vercel, and posts the preview URL in the **Actions → Summary** tab. Takes about 2 minutes.
+### 6. GitHub Actions auto-deploys
 
-**Prerequisites:** Set these repo secrets once:
-- `VERCEL_TOKEN` — from vercel.com/account/tokens
-- `VERCEL_ORG_ID` — from vercel.com/account (the "Team ID" or personal account ID)
+The workflow at `.github/workflows/deploy-winery-preview.yml` watches for pushes that change files under `sites/*/` (excluding template folders). For each changed site it:
 
-**Option B — Deploy manually**
+1. Installs dependencies
+2. Runs `vercel deploy --yes`
+3. Captures the preview URL
+4. Posts a summary table to the GitHub Actions job summary
 
-```bash
-cd sites/<slug>
-npm install && npm run build
-npx vercel deploy --yes
-# The URL prints to stdout
+**Required secrets** (set in repo Settings → Secrets → Actions):
+- `VERCEL_TOKEN` — your Vercel API token
+- `VERCEL_ORG_ID` — your Vercel organization/team ID
+
+### 7. Send the preview URL
+
+Once the Action completes, open the job summary (or the deploy job logs) to find the Vercel preview URL. Copy it and send it to the winery owner via email or text as a live demo link.
+
+---
+
+## Template structure
+
+```
+sites/_winery-template/
+├── astro.config.mjs
+├── package.json
+├── tsconfig.json
+├── vercel.json
+├── photos.json          ← placeholder; replaced by generate script
+├── public/
+│   ├── favicon.svg
+│   └── images/
+│       ├── hero.svg     ← SVG placeholder (replaced by downloaded photo)
+│       └── about.svg    ← SVG placeholder
+└── src/
+    ├── config.ts        ← THE file to edit; all content lives here
+    ├── components/
+    │   ├── Header.astro
+    │   ├── Footer.astro
+    │   └── WineCard.astro
+    ├── layouts/
+    │   └── BaseLayout.astro
+    ├── pages/
+    │   ├── index.astro
+    │   ├── wines.astro
+    │   ├── story.astro
+    │   └── visit.astro
+    └── styles/
+        └── global.css
 ```
 
-### 6. Send the link
+## Winery data file
 
-Copy the Vercel preview URL and send it to the winery owner:
+```
+data/
+└── wineries.json    ← Source of truth for all prospect winery data
+```
 
-> "Hi [Name], I put together a quick demo of what a modern website could look like for [Winery]. Take a look: https://xyz.vercel.app — happy to hop on a call if you want to walk through it."
+## Scripts
 
-That's your pitch. The site is already built with their wines, story, contact info, and colors. They just need to say yes.
+| Script | Usage |
+|--------|-------|
+| `npm run generate-winery -- <slug>` | Scaffold a new winery site from `data/wineries.json` |
+| `npm run new-site -- <slug>` | Scaffold from the generic `_template` (non-winery) |
+| `npm run fetch-photos` | Download Wikimedia Commons photos for a site |
 
 ---
 
 ## Customizing a generated site
 
-After generating, you can edit `sites/<slug>/src/config.ts` directly for quick copy tweaks. For layout changes, edit the `.astro` page files. The entire visual style comes from `src/styles/global.css` and the two theme colors in config — change `brand` and `brandDark` to re-theme the whole site.
+After generation, the only file you normally need to touch is:
 
-## Adding a new winery to the data file
+```
+sites/<slug>/src/config.ts
+```
 
-The `data/wineries.json` file is the single source of truth for all prospects. Keep it up to date — even if you don't generate a site immediately, having the data structured makes it fast when you're ready.
-
-## Updating an existing site
-
-Edit `data/wineries.json` with new info, then re-run the generator (you'll need to delete the old site folder first), **or** edit `src/config.ts` directly in the site folder. Either works.
+All pages are driven from that config. For deeper customization:
+- Edit individual `.astro` files under `src/pages/` or `src/components/`
+- Swap out SVG placeholders in `public/images/` with real photos
+- Change brand colors in `config.theme`
