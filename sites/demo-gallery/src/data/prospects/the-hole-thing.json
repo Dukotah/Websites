@@ -64,6 +64,107 @@
     { "day": "Sat – Sun", "hours": "12:00 PM – 5:00 PM" }
   ],
   "hoursNote": "Walk-ins welcome — call ahead for the artist you want.",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        { "value": "1997", "label": "Serving Sonoma County since" },
+        { "value": "20+ yrs", "label": "Master piercer behind the chair" },
+        { "value": "Best of North Bay", "label": "Voted, year after year" },
+        { "value": "100+", "label": "Five-star reviews" }
+      ]
+    },
+    {
+      "type": "list",
+      "eyebrow": "The full menu",
+      "heading": "Tattoos, piercings & a little sparkle",
+      "intro": "Walk in or book a free consultation — here's what we do best.",
+      "groups": [
+        {
+          "title": "Piercings",
+          "items": [
+            { "name": "Earlobe & cartilage" },
+            { "name": "Septum & nostril" },
+            { "name": "Navel & body piercings" },
+            { "name": "Jewelry changes & downsizes" }
+          ]
+        },
+        {
+          "title": "Tattoos",
+          "items": [
+            { "name": "Custom, original work" },
+            { "name": "Walk-in pieces" },
+            { "name": "Free consultations", "note": "browse artist portfolios" }
+          ]
+        },
+        {
+          "title": "Also at the shop",
+          "items": [
+            { "name": "Tooth gems" },
+            { "name": "Kids' first ear piercings" },
+            { "name": "Quality body jewelry" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "Sonoma County keeps coming back",
+      "items": [
+        {
+          "quote": "I got pierced by Kelley, who owns the shop, and she was awesome — super friendly, and I felt totally comfortable the whole time.",
+          "author": "Yelp reviewer",
+          "source": "Yelp"
+        },
+        {
+          "quote": "Such a soothing voice, and completely understanding of me being nervous. She turned the music down at my request and talked me right through it.",
+          "author": "Yelp reviewer",
+          "source": "Yelp"
+        },
+        {
+          "quote": "I've gotten four piercings from her and I'll keep going back. Incredibly knowledgeable, and answers every question without overwhelming you.",
+          "author": "Yelp reviewer",
+          "source": "Yelp"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Before you come in",
+      "items": [
+        {
+          "q": "Do you take walk-ins?",
+          "a": "Always. Walk-ins are welcome for piercings and tattoos — for a specific artist or a busy weekend, it's worth a quick call to (707) 570-2879 first."
+        },
+        {
+          "q": "Can my child get pierced here?",
+          "a": "Yes — we're a family-friendly studio and happy to do little ones' ear piercings. Bring a valid ID and we'll walk you both through it."
+        },
+        {
+          "q": "Do I need an appointment for a tattoo?",
+          "a": "Not to get started. Browse our artists' portfolios, book a free consultation, and we'll plan your piece together before you sit down."
+        },
+        {
+          "q": "Who does the piercings?",
+          "a": "Kelley, the shop's owner — 20-plus years in, and known as one of the North Bay's most careful, knowledgeable piercers."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Walk in, or let's plan it.",
+      "text": "Tattoos, piercings, and tooth gems — by some of the friendliest hands in Sonoma County.",
+      "buttonText": "Call (707) 570-2879",
+      "buttonHref": "tel:7075702879"
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Using stock art — swap in real photos from their Yelp (65) or Instagram",
+    "Email not publicly listed — confirm with owner"
+  ],
   "theme": {
     "brand": "#c2185b",
     "brandDark": "#1a1620"

@@ -16,6 +16,29 @@ export interface BusinessHours {
   hours: string;
 }
 
+/**
+ * Optional rich content blocks. Each prospect composes its OWN ordered set of
+ * these (rendered between Services and Contact), so no two sites share the same
+ * structure. Add new block types here + a component + a case in Sections.astro.
+ */
+export type Section =
+  | { type: 'stats'; items: { value: string; label: string }[] }
+  | {
+      type: 'testimonials';
+      eyebrow?: string;
+      heading?: string;
+      items: { quote: string; author: string; source?: string }[];
+    }
+  | { type: 'faq'; eyebrow?: string; heading?: string; items: { q: string; a: string }[] }
+  | {
+      type: 'list';
+      eyebrow?: string;
+      heading?: string;
+      intro?: string;
+      groups: { title: string; items: { name: string; note?: string }[] }[];
+    }
+  | { type: 'cta'; heading: string; text?: string; buttonText?: string; buttonHref?: string };
+
 export interface ProspectConfig {
   /** Business name — header, footer, browser tab. */
   name: string;
@@ -70,6 +93,16 @@ export interface ProspectConfig {
 
   hours: BusinessHours[];
   hoursNote: string;
+
+  /** Optional rich blocks rendered between Services and Contact, in order. */
+  sections?: Section[];
+
+  /**
+   * Quality status surfaced on the dashboard. Omit and the dashboard infers it
+   * (e.g. still on stock art → needs-review). `flags` are human-readable reasons.
+   */
+  status?: 'ready' | 'needs-review';
+  flags?: string[];
 
   theme: {
     brand: string;

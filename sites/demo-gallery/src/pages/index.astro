@@ -2,19 +2,43 @@
 import '../styles/global.css';
 import type { ProspectConfig } from '../types';
 
-// Internal index of every generated demo — this is YOUR dashboard, not a
-// prospect-facing page. Each card links to that prospect's /p/<slug> demo.
+// Internal dashboard of every demo — this is YOUR view, not prospect-facing.
+// It computes a quality status per demo so you can spot the ones that need a
+// human touch before you send them.
 const modules = import.meta.glob<ProspectConfig>('../data/prospects/*.json', {
   eager: true,
   import: 'default',
 });
 
+// Infer quality flags so weak demos surface themselves (plus any explicit
+// flags the agent wrote into the JSON).
+function flagsFor(config: ProspectConfig): string[] {
+  const flags = [...(config.flags ?? [])];
+  if (config.images.hero.startsWith('/images/library/')) flags.push('Stock art — no real photos yet');
+  if (!config.sections || config.sections.length === 0) flags.push('Thin — no depth sections');
+  if (config.services.some((s) => /service (one|two|three|four)/i.test(s.title)))
+    flags.push('Template copy not rewritten');
+  return flags;
+}
+
 const prospects = Object.entries(modules)
-  .map(([path, config]) => ({
-    slug: path.split('/').pop()!.replace(/\.json$/, ''),
-    config,
-  }))
-  .sort((a, b) => a.config.name.localeCompare(b.config.name));
+  .map(([path, config]) => {
+    const flags = flagsFor(config);
+    const status: 'ready' | 'needs-review' =
+      config.status ?? (flags.length ? 'needs-review' : 'ready');
+    return { slug: path.split('/').pop()!.replace(/\.json$/, ''), config, flags, status };
+  })
+  // Needs-attention first, then alphabetical.
+  .sort((a, b) =>
+    a.status !== b.status
+      ? a.status === 'needs-review'
+        ? -1
+        : 1
+      : a.config.name.localeCompare(b.config.name),
+  );
+
+const needsReview = prospects.filter((p) => p.status === 'needs-review').length;
+const ready = prospects.length - needsReview;
 ---
 
 <!doctype html>
@@ -24,27 +48,45 @@ const prospects = Object.entries(modules)
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Demo gallery — {prospects.length} prospect sites</title>
+    <title>Demo dashboard — {prospects.length} sites</title>
   </head>
   <body>
     <main class="container" style="padding-block: 3rem;">
       <p class="eyebrow">Outreach demos</p>
-      <h1>{prospects.length} prospect {prospects.length === 1 ? 'site' : 'sites'}</h1>
-      <p style="color: var(--text-muted); max-width: 60ch;">
-        Each card is a generated demo you can drop into an outreach email. This
-        index page is for you — add <code>noindex</code> stays on it.
+      <h1>{prospects.length} demo {prospects.length === 1 ? 'site' : 'sites'}</h1>
+      <p class="summary">
+        <span class="pill pill--review">{needsReview} need attention</span>
+        <span class="pill pill--ready">{ready} ready to send</span>
+      </p>
+      <p style="color: var(--text-muted); max-width: 62ch;">
+        Sorted so the ones needing a human touch come first. Flags are inferred
+        (stock art, thin content, template copy) plus anything the agent noted.
       </p>
 
       <ul class="grid">
         {
-          prospects.map(({ slug, config }) => (
-            <li class="card">
+          prospects.map(({ slug, config, flags, status }) => (
+            <li class={`card ${status === 'needs-review' ? 'card--review' : 'card--ready'}`}>
               <span class="card__swatch" style={`background:${config.theme.brand}`} />
-              <div>
-                <h2>{config.name}</h2>
+              <div class="card__body">
+                <div class="card__top">
+                  <h2>{config.name}</h2>
+                  <span class={`badge badge--${status === 'needs-review' ? 'review' : 'ready'}`}>
+                    {status === 'needs-review' ? 'Needs attention' : 'Ready'}
+                  </span>
+                </div>
                 <p class="card__meta">{config.area}</p>
-                <a href={`/p/${slug}`}>View demo →</a>
-                <code class="card__link">/p/{slug}</code>
+                {flags.length > 0 && (
+                  <ul class="card__flags">
+                    {flags.map((f) => (
+                      <li>{f}</li>
+                    ))}
+                  </ul>
+                )}
+                <div class="card__actions">
+                  <a href={`/p/${slug}`}>View demo →</a>
+                  <code class="card__link">/p/{slug}</code>
+                </div>
               </div>
             </li>
           ))
@@ -54,21 +96,39 @@ const prospects = Object.entries(modules)
       {
         prospects.length === 0 && (
           <p style="color: var(--text-muted);">
-            No prospects yet. Run <code>npm run generate-prospects</code> from the
-            repo root to create some from a CSV.
+            No prospects yet. Add a JSON to <code>src/data/prospects/</code>.
           </p>
         )
       }
     </main>
 
     <style>
+      .summary {
+        display: flex;
+        gap: 0.6rem;
+        margin: 0.5rem 0 1rem;
+      }
+      .pill {
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 0.3rem 0.8rem;
+        border-radius: 999px;
+      }
+      .pill--review {
+        background: #fde2e1;
+        color: #a12a22;
+      }
+      .pill--ready {
+        background: #def5e4;
+        color: #1f7a3d;
+      }
       .grid {
         list-style: none;
         padding: 0;
-        margin: 2rem 0 0;
+        margin: 1.5rem 0 0;
         display: grid;
         gap: 1.25rem;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
       .card {
         display: flex;
@@ -78,23 +138,68 @@ const prospects = Object.entries(modules)
         border-radius: var(--radius);
         background: var(--bg-alt);
       }
+      .card--review {
+        border-left: 4px solid #e0746b;
+      }
+      .card--ready {
+        border-left: 4px solid #4caf72;
+      }
       .card__swatch {
         flex: 0 0 auto;
         width: 8px;
         border-radius: 999px;
       }
+      .card__body {
+        flex: 1;
+      }
+      .card__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0.5rem;
+      }
       .card h2 {
         margin: 0 0 0.2rem;
-        font-size: 1.15rem;
+        font-size: 1.12rem;
+      }
+      .badge {
+        flex: 0 0 auto;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 0.2rem 0.5rem;
+        border-radius: 999px;
+      }
+      .badge--review {
+        background: #fde2e1;
+        color: #a12a22;
+      }
+      .badge--ready {
+        background: #def5e4;
+        color: #1f7a3d;
       }
       .card__meta {
         margin: 0 0 0.6rem;
         color: var(--text-muted);
         font-size: 0.9rem;
       }
+      .card__flags {
+        margin: 0 0 0.75rem;
+        padding-left: 1.1rem;
+        font-size: 0.82rem;
+        color: #9a5b2e;
+      }
+      .card__flags li {
+        margin: 0.15rem 0;
+      }
+      .card__actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
       .card__link {
-        display: block;
-        margin-top: 0.5rem;
         font-size: 0.78rem;
         color: var(--text-muted);
       }

@@ -1,0 +1,51 @@
+---
+const {
+  heading,
+  text = '',
+  buttonText = '',
+  buttonHref = '#contact',
+} = Astro.props as { heading: string; text?: string; buttonText?: string; buttonHref?: string };
+---
+
+<section class="cta">
+  <div class="container cta__inner">
+    <div>
+      <h2>{heading}</h2>
+      {text && <p>{text}</p>}
+    </div>
+    {buttonText && <a href={buttonHref} class="btn cta__btn">{buttonText}</a>}
+  </div>
+</section>
+
+<style>
+  .cta {
+    background: var(--brand);
+    color: #fff;
+    padding-block: clamp(2.5rem, 5vw, 3.5rem);
+  }
+  .cta__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+  }
+  .cta h2 {
+    color: #fff;
+    margin: 0;
+  }
+  .cta p {
+    margin: 0.5rem 0 0;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 50ch;
+  }
+  .cta__btn {
+    background: #fff;
+    color: var(--brand-dark);
+    flex: 0 0 auto;
+  }
+  .cta__btn:hover {
+    background: var(--brand-dark);
+    color: #fff;
+  }
+</style>
