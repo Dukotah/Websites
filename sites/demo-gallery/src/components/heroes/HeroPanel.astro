@@ -1,0 +1,170 @@
+---
+// HeroPanel — solid --brand or --bg-deep panel, oversized type, no photo.
+// Used when no usable photo exists. Looks distinct per business via tokens.
+import type { ProspectConfig } from '../../types';
+const { config } = Astro.props as { config: ProspectConfig };
+const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const eyebrow = [config.established, config.area].filter(Boolean).join(' · ');
+---
+
+<section class="panel-hero" id="top" data-tone="deep">
+  <div class="panel-hero__bg" aria-hidden="true"></div>
+  <div class="container panel-hero__inner">
+    {eyebrow && (
+      <p class="panel-hero__eyebrow" data-reveal data-reveal-order="0">{eyebrow}</p>
+    )}
+    <h1 class="panel-hero__title" data-reveal data-reveal-order="1">
+      {config.hero.heading}
+    </h1>
+    <p class="panel-hero__sub" data-reveal data-reveal-order="2">
+      {config.hero.subheading}
+    </p>
+    <div class="panel-hero__actions" data-reveal data-reveal-order="3">
+      <a href={config.hero.ctaHref} class="btn btn--contrast">{config.hero.ctaText}</a>
+      {config.contact.phone && (
+        <a href={telHref} class="panel-hero__phone">{config.contact.phone}</a>
+      )}
+    </div>
+    {config.highlights && config.highlights.length > 0 && (
+      <ul class="panel-hero__highlights" data-reveal data-reveal-order="4">
+        {config.highlights.map((h) => <li>{h}</li>)}
+      </ul>
+    )}
+  </div>
+  <div class="panel-hero__accent" aria-hidden="true"></div>
+</section>
+
+<style>
+  .panel-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: min(86vh, 740px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+    overflow: hidden;
+  }
+
+  /* Decorative geometric accent — drawn from brand, token-driven */
+  .panel-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 100% 110%,
+        color-mix(in srgb, var(--brand) 18%, transparent) 0%,
+        transparent 70%
+      ),
+      var(--bg-deep);
+  }
+
+  .panel-hero__accent {
+    position: absolute;
+    top: -12%;
+    right: -8%;
+    width: clamp(300px, 44vw, 600px);
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-lg);
+    border: var(--border-weight) solid color-mix(in srgb, var(--brand) 22%, transparent);
+    transform: rotate(18deg);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .panel-hero__inner {
+    position: relative;
+    z-index: 1;
+    padding-block: clamp(3.5rem, 10vw, 6rem);
+    max-width: 760px;
+  }
+
+  .panel-hero__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 1.25rem;
+  }
+
+  .panel-hero__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: clamp(2.8rem, 7vw, 5.6rem);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text-on-dark);
+    margin-bottom: 1.25rem;
+  }
+
+  .panel-hero__sub {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: var(--leading-body);
+    color: color-mix(in srgb, var(--text-on-dark) 85%, transparent);
+    max-width: 54ch;
+    margin-bottom: 2rem;
+  }
+
+  .panel-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  .btn--contrast {
+    background: var(--brand);
+    color: var(--brand-contrast);
+    border-color: var(--brand);
+  }
+  .btn--contrast:hover,
+  .btn--contrast:focus-visible {
+    background: var(--brand-dark);
+    border-color: var(--brand-dark);
+  }
+
+  .panel-hero__phone {
+    color: var(--text-on-dark);
+    font-weight: var(--fw-bold);
+    border-bottom: 1px solid color-mix(in srgb, var(--text-on-dark) 45%, transparent);
+    padding-bottom: 2px;
+    transition: border-color var(--motion-ease);
+  }
+  .panel-hero__phone:hover {
+    text-decoration: none;
+    border-color: var(--text-on-dark);
+  }
+
+  .panel-hero__highlights {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--text-on-dark) 75%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel-hero__accent { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .panel-hero__title {
+      font-size: clamp(2.2rem, 9vw, 3.2rem);
+    }
+    .panel-hero__accent {
+      width: 60vw;
+      right: -20%;
+      top: -6%;
+    }
+  }
+</style>

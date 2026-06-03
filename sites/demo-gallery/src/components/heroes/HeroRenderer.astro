@@ -1,0 +1,28 @@
+---
+/**
+ * HeroRenderer — selects the hero variant chosen by the composition engine.
+ * Spec §7. Each hero reads { config } and styles itself from the injected tokens,
+ * so the same variant looks distinct per business.
+ */
+import type { ProspectConfig, HeroVariant } from '../../types';
+import HeroCinematic from './HeroCinematic.astro';
+import HeroSplit from './HeroSplit.astro';
+import HeroEditorial from './HeroEditorial.astro';
+import HeroPanel from './HeroPanel.astro';
+import HeroCollage from './HeroCollage.astro';
+import HeroStatement from './HeroStatement.astro';
+
+interface Props {
+  config: ProspectConfig;
+  variant?: HeroVariant;
+}
+
+const { config, variant = 'split' } = Astro.props as Props;
+---
+
+{variant === 'cinematic' && <HeroCinematic config={config} />}
+{variant === 'split' && <HeroSplit config={config} />}
+{variant === 'editorial' && <HeroEditorial config={config} />}
+{variant === 'panel' && <HeroPanel config={config} />}
+{variant === 'collage' && <HeroCollage config={config} />}
+{variant === 'statement' && <HeroStatement config={config} />}

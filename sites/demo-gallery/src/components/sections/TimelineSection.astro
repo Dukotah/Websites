@@ -1,0 +1,236 @@
+---
+/**
+ * TimelineSection — vertical timeline of milestones/history.
+ * Spec §6: type 'timeline'. No client JS. Pure CSS vertical line + node.
+ */
+import type { SectionEnvelope } from '../../types';
+
+interface TimelineItem {
+  year?: string;
+  title: string;
+  body?: string;
+}
+
+interface Props extends SectionEnvelope {
+  items: TimelineItem[];
+}
+
+const {
+  items,
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'left',
+} = Astro.props as Props;
+---
+
+<section class="section timeline-section" data-tone={tone}>
+  <div class="container">
+    {(eyebrow || heading || intro) && (
+      <header class={`section-header section-header--${align}`} data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2 class="timeline-section__heading">{heading}</h2>}
+        {intro && <p class="timeline-section__intro">{intro}</p>}
+      </header>
+    )}
+
+    <ol class="timeline">
+      {items.map((item, i) => (
+        <li class="timeline-item" data-reveal data-reveal-order={i}>
+          <div class="timeline-item__node" aria-hidden="true"></div>
+          <div class="timeline-item__content">
+            {item.year && (
+              <span class="timeline-item__year">{item.year}</span>
+            )}
+            <h3 class="timeline-item__title">{item.title}</h3>
+            {item.body && (
+              <p class="timeline-item__body">{item.body}</p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline-section {
+    padding-block: var(--section-pad);
+  }
+
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  .section-header--center {
+    text-align: center;
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+  .section-header--left {
+    text-align: left;
+    max-width: 52ch;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 0.5rem;
+  }
+
+  .timeline-section__heading {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 0.75rem;
+  }
+
+  .timeline-section__intro {
+    font-size: var(--step-0);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0;
+  }
+
+  /* Timeline list ------------------------------------------------------------- */
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    max-width: 680px;
+  }
+
+  /* Vertical spine */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    left: calc(var(--_node-size) / 2 - var(--border-weight));
+    width: calc(var(--border-weight) * 2);
+    background: var(--border);
+    --_node-size: 1.5rem;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: var(--_node-size) 1fr;
+    column-gap: 1.5rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+    --_node-size: 1.5rem;
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Node (bullet) */
+  .timeline-item__node {
+    width: var(--_node-size);
+    height: var(--_node-size);
+    border-radius: var(--radius-pill);
+    background: var(--brand);
+    border: calc(var(--border-weight) * 2) solid var(--bg);
+    box-shadow: 0 0 0 calc(var(--border-weight) * 2) var(--brand);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    margin-top: 0.2rem;
+  }
+
+  .timeline-item__content {
+    padding-bottom: 0.25rem;
+  }
+
+  .timeline-item__year {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--brand);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-item__title {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: var(--fw-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 0.5rem;
+  }
+
+  .timeline-item__body {
+    font-size: var(--step-0);
+    line-height: var(--leading-body);
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 56ch;
+  }
+
+  /* Tone overrides ---------------------------------------------------------- */
+  [data-tone='alt'] {
+    background: var(--bg-alt);
+  }
+  [data-tone='deep'] {
+    background: var(--bg-deep);
+  }
+  [data-tone='deep'] .timeline-section__heading,
+  [data-tone='deep'] .timeline-item__title {
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .timeline-section__intro,
+  [data-tone='deep'] .timeline-item__body {
+    color: color-mix(in srgb, var(--text-on-dark) 75%, transparent);
+  }
+  [data-tone='deep'] .eyebrow,
+  [data-tone='deep'] .timeline-item__year {
+    color: var(--accent);
+  }
+  [data-tone='deep'] .timeline::before {
+    background: color-mix(in srgb, var(--text-on-dark) 20%, transparent);
+  }
+  [data-tone='deep'] .timeline-item__node {
+    border-color: var(--bg-deep);
+  }
+  [data-tone='brand'] {
+    background: var(--brand);
+  }
+  [data-tone='brand'] .timeline-section__heading,
+  [data-tone='brand'] .timeline-item__title {
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .timeline-section__intro,
+  [data-tone='brand'] .timeline-item__body {
+    color: color-mix(in srgb, var(--brand-contrast) 80%, transparent);
+  }
+  [data-tone='brand'] .eyebrow,
+  [data-tone='brand'] .timeline-item__year {
+    color: var(--brand-contrast);
+    opacity: 0.75;
+  }
+  [data-tone='brand'] .timeline-item__node {
+    background: var(--brand-contrast);
+    box-shadow: 0 0 0 calc(var(--border-weight) * 2) var(--brand-contrast);
+    border-color: var(--brand);
+  }
+  [data-tone='brand'] .timeline::before {
+    background: color-mix(in srgb, var(--brand-contrast) 25%, transparent);
+  }
+</style>

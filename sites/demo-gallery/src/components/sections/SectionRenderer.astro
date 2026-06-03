@@ -1,0 +1,82 @@
+---
+import type { Section } from '../../types';
+
+// Ported sections
+import StatsSection from './StatsSection.astro';
+import TestimonialsSection from './TestimonialsSection.astro';
+import FaqSection from './FaqSection.astro';
+import ListSection from './ListSection.astro';
+import CtaSection from './CtaSection.astro';
+
+// Rich sections
+import GallerySection from './GallerySection.astro';
+import FeatureSplit from './FeatureSplit.astro';
+import TimelineSection from './TimelineSection.astro';
+import MenuSection from './MenuSection.astro';
+import TeamSection from './TeamSection.astro';
+import MapSection from './MapSection.astro';
+import PressSection from './PressSection.astro';
+import BigQuoteSection from './BigQuoteSection.astro';
+import ServicesDetailed from './ServicesDetailed.astro';
+import ServiceAreaSection from './ServiceAreaSection.astro';
+import HoursContactSection from './HoursContactSection.astro';
+import ProcessSection from './ProcessSection.astro';
+import LogosStrip from './LogosStrip.astro';
+import BeforeAfter from './BeforeAfter.astro';
+import FeatureGrid from './FeatureGrid.astro';
+
+interface Props {
+  sections: Section[];
+}
+
+const { sections = [] } = Astro.props as Props;
+---
+
+{
+  sections.map((section) => {
+    switch (section.type) {
+      case 'stats':
+        return <StatsSection {...section} />;
+      case 'testimonials':
+        return <TestimonialsSection {...section} />;
+      case 'faq':
+        return <FaqSection {...section} />;
+      case 'list':
+        return <ListSection {...section} />;
+      case 'cta':
+        return <CtaSection {...section} />;
+      case 'gallery':
+        return <GallerySection {...section} />;
+      case 'feature-split':
+        return <FeatureSplit {...section} />;
+      case 'timeline':
+        return <TimelineSection {...section} />;
+      case 'menu':
+        return <MenuSection {...section} />;
+      case 'team':
+        return <TeamSection {...section} />;
+      case 'map':
+        return <MapSection {...section} />;
+      case 'press':
+        return <PressSection {...section} />;
+      case 'bigquote':
+        return <BigQuoteSection {...section} />;
+      case 'services-detailed':
+        return <ServicesDetailed {...section} />;
+      case 'service-area':
+        return <ServiceAreaSection {...section} />;
+      case 'hours-contact':
+        return <HoursContactSection {...section} />;
+      case 'process':
+        return <ProcessSection {...section} />;
+      case 'logos':
+        return <LogosStrip {...section} />;
+      case 'before-after':
+        return <BeforeAfter {...section} />;
+      case 'feature-grid':
+        return <FeatureGrid {...section} />;
+      default:
+        return null;
+    }
+  })
+}

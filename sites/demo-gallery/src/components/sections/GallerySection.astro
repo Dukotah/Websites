@@ -1,0 +1,207 @@
+---
+/**
+ * GallerySection — photo-forward CSS-only masonry/grid gallery.
+ * Spec §6: type 'gallery'. No JS. data-frame on each image cell.
+ * data-reveal on each cell (staggered via data-reveal-order).
+ */
+import type { SectionEnvelope } from '../../types';
+
+interface GalleryImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props extends SectionEnvelope {
+  images: GalleryImage[];
+}
+
+const {
+  images,
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'center',
+} = Astro.props as Props;
+---
+
+<section class="section gallery-section" data-tone={tone}>
+  <div class="container">
+    {(eyebrow || heading || intro) && (
+      <header class={`section-header section-header--${align}`} data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2 class="gallery-section__heading">{heading}</h2>}
+        {intro && <p class="gallery-section__intro">{intro}</p>}
+      </header>
+    )}
+
+    <div class="gallery-grid">
+      {images.map((img, i) => (
+        <figure
+          class="gallery-cell"
+          data-frame
+          data-reveal
+          data-reveal-order={i}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading="lazy"
+            decoding="async"
+            class="gallery-cell__img"
+          />
+          {img.caption && (
+            <figcaption class="gallery-cell__caption">{img.caption}</figcaption>
+          )}
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-section {
+    padding-block: var(--section-pad);
+  }
+
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+  .section-header--center {
+    text-align: center;
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+  .section-header--left {
+    text-align: left;
+    max-width: 52ch;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 0.5rem;
+  }
+
+  .gallery-section__heading {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 0.75rem;
+  }
+
+  .gallery-section__intro {
+    font-size: var(--step-0);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0;
+  }
+
+  /* CSS-only masonry via column-count on wider viewports */
+  .gallery-grid {
+    columns: 1;
+    column-gap: var(--grid-gap);
+  }
+
+  @media (min-width: 480px) {
+    .gallery-grid {
+      columns: 2;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .gallery-grid {
+      columns: 3;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .gallery-grid {
+      /* 4 columns for large galleries — cap at 4 regardless of count */
+      columns: min(4, var(--_col-count, 4));
+    }
+  }
+
+  .gallery-cell {
+    break-inside: avoid;
+    margin: 0 0 var(--grid-gap);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* data-frame: let global [data-frame] token-driven styles apply the frame
+     treatment; we add overflow hidden here so the frame clips cleanly. */
+  [data-frame] {
+    /* composited with global [data-frame] rules */
+  }
+
+  .gallery-cell__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    /* Tall images in masonry — let the column flow naturally */
+    transition: transform calc(var(--motion-fade) * 1.5) var(--motion-ease);
+  }
+
+  .gallery-cell:hover .gallery-cell__img {
+    transform: scale(1.03);
+  }
+
+  .gallery-cell__caption {
+    padding: 0.6rem 0.85rem;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    background: var(--surface);
+    line-height: var(--leading-body);
+    border-top: var(--border-weight) solid var(--border);
+  }
+
+  /* Tone overrides ---------------------------------------------------------- */
+  [data-tone='alt'] {
+    background: var(--bg-alt);
+  }
+  [data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .gallery-section__heading,
+  [data-tone='deep'] .gallery-section__intro {
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .gallery-cell__caption {
+    background: color-mix(in srgb, var(--bg-deep) 85%, white 15%);
+    color: var(--text-on-dark);
+    border-top-color: color-mix(in srgb, var(--text-on-dark) 20%, transparent);
+  }
+  [data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .gallery-section__heading {
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .eyebrow {
+    color: var(--brand-contrast);
+    opacity: 0.8;
+  }
+
+  /* Reduced-motion: reveal handled globally via [data-reveal] rules in global.css */
+</style>

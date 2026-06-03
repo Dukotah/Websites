@@ -1,0 +1,138 @@
+---
+/**
+ * FeatureGrid — 3–6 highlight cards (icon + label + optional note).
+ * Spec §6: type 'feature-grid'. Always-available connective section.
+ */
+import type { SectionEnvelope } from '../../types';
+
+interface Item {
+  label: string;
+  note?: string;
+  icon?: string;
+}
+interface Props extends SectionEnvelope {
+  items: Item[];
+}
+
+const {
+  items = [],
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'left',
+} = Astro.props as Props;
+---
+
+{items.length > 0 && (
+  <section class="section fg" data-tone={tone}>
+    <div class="container">
+      {(eyebrow || heading || intro) && (
+        <header class={`fg__head fg__head--${align}`} data-reveal>
+          {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+          {heading && <h2 class="fg__heading">{heading}</h2>}
+          {intro && <p class="fg__intro">{intro}</p>}
+        </header>
+      )}
+      <ul class="fg__grid">
+        {items.slice(0, 6).map((item, i) => (
+          <li class="fg__card" data-frame data-reveal data-reveal-order={i}>
+            {item.icon && <span class="fg__icon" set:html={item.icon} aria-hidden="true" />}
+            <h3 class="fg__label">{item.label}</h3>
+            {item.note && <p class="fg__note">{item.note}</p>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .fg { padding-block: var(--section-pad); }
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .fg__head { margin-bottom: 2.5rem; max-width: 56ch; }
+  .fg__head--center { text-align: center; margin-inline: auto; }
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 0.5rem;
+  }
+  .fg__heading {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 0.6rem;
+  }
+  .fg__intro {
+    font-size: var(--step-0);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0;
+  }
+  .fg__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--grid-gap);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  }
+  .fg__card {
+    background: var(--surface);
+    border: var(--border-weight) solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 1.6rem;
+    transition: transform var(--motion-fade) var(--motion-ease),
+      box-shadow var(--motion-fade) var(--motion-ease);
+  }
+  .fg__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .fg__icon {
+    display: inline-flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--brand);
+    margin-bottom: 0.9rem;
+  }
+  .fg__icon :global(svg) { width: 100%; height: 100%; }
+  .fg__label {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: var(--fw-display);
+    color: var(--text);
+    margin: 0 0 0.35rem;
+    line-height: 1.2;
+  }
+  .fg__note {
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0;
+  }
+
+  [data-tone='alt'] { background: var(--bg-alt); }
+  [data-tone='deep'] { background: var(--bg-deep); color: var(--text-on-dark); }
+  [data-tone='deep'] .fg__heading,
+  [data-tone='deep'] .fg__label { color: var(--text-on-dark); }
+  [data-tone='deep'] .fg__card {
+    background: var(--surface-2);
+    border-color: color-mix(in srgb, var(--text-on-dark) 16%, transparent);
+  }
+  [data-tone='brand'] { background: var(--brand); color: var(--brand-contrast); }
+  [data-tone='brand'] .fg__heading,
+  [data-tone='brand'] .eyebrow { color: var(--brand-contrast); }
+</style>

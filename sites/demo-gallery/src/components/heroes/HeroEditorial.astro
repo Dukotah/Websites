@@ -1,0 +1,254 @@
+---
+/**
+ * HeroEditorial — centered magazine-style typography with thin rules.
+ * Spec §7: "editorial" variant. Works without a photo (photo is optional overlay).
+ * Port + full tokenization of src/components/HeroEditorial.astro.
+ */
+import type { ProspectConfig } from '../../types';
+const { config } = Astro.props as { config: ProspectConfig };
+
+const { hero, images, contact, highlights, established, area } = config;
+const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
+const eyebrow = [established, area].filter(Boolean).join('  ·  ');
+const hasPhoto = Boolean(images?.hero);
+---
+
+<section class="ed-hero" id="top" data-has-photo={hasPhoto ? 'true' : undefined} aria-label="Hero">
+  {hasPhoto && (
+    <div class="ed-hero__media" aria-hidden="true">
+      <img
+        src={images.hero}
+        alt={images.heroAlt}
+        onerror={`this.onerror=null;this.src='${images.placeholder}'`}
+        fetchpriority="high"
+        decoding="async"
+      />
+      <span class="ed-hero__scrim" aria-hidden="true"></span>
+    </div>
+  )}
+
+  <div class="container ed-hero__inner">
+    <!-- Top thin rule -->
+    <hr class="ed-hero__rule ed-hero__rule--top" aria-hidden="true" />
+
+    <div class="ed-hero__copy" data-reveal>
+      {eyebrow && (
+        <p class="ed-hero__eyebrow">{eyebrow}</p>
+      )}
+      <h1 class="ed-hero__title">{hero.heading}</h1>
+
+      <!-- Mid rule beneath headline -->
+      <hr class="ed-hero__rule ed-hero__rule--mid" aria-hidden="true" />
+
+      {hero.subheading && (
+        <p class="ed-hero__sub">{hero.subheading}</p>
+      )}
+      <div class="ed-hero__actions">
+        <a href={hero.ctaHref} class="btn">{hero.ctaText}</a>
+        {contact.phone && (
+          <a href={telHref} class="ed-hero__phone">{contact.phone}</a>
+        )}
+      </div>
+    </div>
+
+    <!-- Bottom rule -->
+    <hr class="ed-hero__rule ed-hero__rule--bottom" aria-hidden="true" />
+  </div>
+
+  {highlights && highlights.length > 0 && (
+    <ul class="ed-hero__highlights" aria-label="Key highlights">
+      {highlights.map((h: string) => <li>{h}</li>)}
+    </ul>
+  )}
+</section>
+
+<style>
+  /* ── Base: works without a photo (bg = brand-dark) ─────────────────────── */
+  .ed-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: min(88vh, 800px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+    overflow: hidden;
+  }
+
+  /* ── Photo layer (only rendered when hasPhoto) ──────────────────────────── */
+  .ed-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--bg-deep);
+  }
+  .ed-hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
+  /* Radial scrim — darkens edges, keeps center legible */
+  .ed-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      120% 90% at 50% 45%,
+      color-mix(in srgb, var(--bg-deep) 32%, transparent) 0%,
+      color-mix(in srgb, var(--bg-deep) 68%, transparent) 100%
+    );
+  }
+
+  /* ── Content shell ──────────────────────────────────────────────────────── */
+  .ed-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    padding-block: clamp(3rem, 8vw, 6rem);
+    width: 100%;
+  }
+
+  /* ── Rules — thin editorial lines ──────────────────────────────────────── */
+  .ed-hero__rule {
+    border: none;
+    border-top: var(--border-weight) solid
+      color-mix(in srgb, var(--text-on-dark) 30%, transparent);
+    margin: 0;
+    width: 100%;
+  }
+  /* When no photo: use a brand-tinted rule instead */
+  :not([data-has-photo]) .ed-hero__rule {
+    border-top-color: color-mix(in srgb, var(--brand) 40%, var(--border));
+  }
+
+  .ed-hero__rule--top {
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .ed-hero__rule--mid {
+    margin: 1.5rem auto;
+    width: 4rem;
+    border-top-width: calc(var(--border-weight) * 2);
+    border-top-color: color-mix(in srgb, var(--brand) 55%, #fff 45%);
+  }
+  .ed-hero__rule--bottom {
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .ed-hero__copy {
+    /* data-reveal provides initial opacity/transform */
+  }
+
+  /* Eyebrow */
+  .ed-hero__eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--text-on-dark) 80%, transparent);
+    margin: 0 0 1.5rem;
+  }
+  /* Bright when photo provides contrast; muted when no photo */
+  [data-has-photo] .ed-hero__eyebrow {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  /* Headline — oversized magazine style */
+  .ed-hero__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-6);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text-on-dark);
+    margin: 0;
+    text-shadow: 0 2px 32px color-mix(in srgb, var(--bg-deep) 38%, transparent);
+  }
+
+  /* Subheading */
+  .ed-hero__sub {
+    font-family: var(--font-body);
+    font-size: var(--step-1);
+    line-height: var(--leading-body);
+    color: color-mix(in srgb, var(--text-on-dark) 88%, transparent);
+    max-width: 54ch;
+    margin: 0 auto 2rem;
+  }
+
+  /* CTA row — centered */
+  .ed-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  /* Phone link */
+  .ed-hero__phone {
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    color: var(--text-on-dark);
+    text-decoration: none;
+    border-bottom: var(--border-weight) solid
+      color-mix(in srgb, var(--text-on-dark) 45%, transparent);
+    padding-bottom: 2px;
+    transition: border-color var(--motion-fade) var(--motion-ease);
+  }
+  .ed-hero__phone:hover {
+    text-decoration: none;
+    border-color: var(--text-on-dark);
+  }
+  .ed-hero__phone:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Highlights ticker bar — pinned to bottom */
+  .ed-hero__highlights {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 1rem var(--gutter);
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 2rem;
+    background: color-mix(in srgb, var(--bg-deep) 55%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--text-on-dark) 85%, transparent);
+    z-index: 2;
+  }
+
+  /* Mobile: un-pin the highlights bar so they flow below */
+  @media (max-width: 720px) {
+    .ed-hero {
+      min-height: 70vh;
+    }
+    .ed-hero__title {
+      font-size: var(--step-4);
+    }
+    .ed-hero__highlights {
+      position: static;
+      background: var(--brand-dark);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
+</style>

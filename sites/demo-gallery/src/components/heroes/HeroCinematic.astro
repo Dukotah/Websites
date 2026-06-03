@@ -1,0 +1,190 @@
+---
+/**
+ * HeroCinematic — full-bleed photo, bottom-anchored copy over a gradient scrim.
+ * Spec §7: "cinematic" variant. Needs a strong hero image.
+ * Port + full tokenization of src/components/Hero.astro.
+ */
+import type { ProspectConfig } from '../../types';
+const { config } = Astro.props as { config: ProspectConfig };
+
+const { hero, images, contact, highlights, established, area } = config;
+const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
+const eyebrow = [established, area].filter(Boolean).join(' · ');
+---
+
+<section class="cin-hero" id="top" aria-label="Hero">
+  <div class="cin-hero__media" data-frame="editorial" aria-hidden="true">
+    <img
+      src={images.hero}
+      alt={images.heroAlt}
+      onerror={`this.onerror=null;this.src='${images.placeholder}'`}
+      fetchpriority="high"
+      decoding="async"
+    />
+    <span class="cin-hero__scrim" aria-hidden="true"></span>
+  </div>
+
+  <div class="container cin-hero__inner">
+    <div class="cin-hero__copy" data-reveal>
+      {eyebrow && (
+        <p class="cin-hero__eyebrow">{eyebrow}</p>
+      )}
+      <h1 class="cin-hero__title">{hero.heading}</h1>
+      {hero.subheading && (
+        <p class="cin-hero__sub">{hero.subheading}</p>
+      )}
+      <div class="cin-hero__actions">
+        <a href={hero.ctaHref} class="btn">{hero.ctaText}</a>
+        {contact.phone && (
+          <a href={telHref} class="cin-hero__phone">{contact.phone}</a>
+        )}
+      </div>
+    </div>
+
+    {highlights && highlights.length > 0 && (
+      <p class="cin-hero__meta" aria-label="Key highlights">
+        {highlights.join('   ·   ')}
+      </p>
+    )}
+  </div>
+</section>
+
+<style>
+  .cin-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: min(88vh, 780px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  /* Full-bleed media layer */
+  .cin-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--bg-deep);
+    /* override [data-frame] rounding — full bleed needs no radius here */
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .cin-hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  /* Scrim: bottom-heavy gradient so copy is legible */
+  .cin-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg-deep) 18%, transparent) 0%,
+      color-mix(in srgb, var(--bg-deep) 28%, transparent) 40%,
+      color-mix(in srgb, var(--bg-deep) 78%, transparent) 100%
+    );
+  }
+
+  /* Content positioned at the bottom */
+  .cin-hero__inner {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+    max-width: 760px;
+    width: 100%;
+  }
+
+  .cin-hero__copy {
+    /* data-reveal handles initial opacity/transform */
+  }
+
+  /* Eyebrow */
+  .cin-hero__eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--brand) 60%, #fff 40%);
+    margin: 0 0 var(--grid-gap);
+  }
+
+  /* Headline */
+  .cin-hero__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-5);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text-on-dark);
+    margin: 0 0 1rem;
+    text-shadow: 0 2px 24px color-mix(in srgb, var(--bg-deep) 40%, transparent);
+  }
+
+  /* Subheading */
+  .cin-hero__sub {
+    font-family: var(--font-body);
+    font-size: var(--step-1);
+    line-height: var(--leading-body);
+    color: color-mix(in srgb, var(--text-on-dark) 90%, transparent);
+    max-width: 56ch;
+    margin: 0 0 1.75rem;
+  }
+
+  /* CTA row */
+  .cin-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  /* Phone link styled for dark background */
+  .cin-hero__phone {
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    color: var(--text-on-dark);
+    text-decoration: none;
+    border-bottom: var(--border-weight) solid
+      color-mix(in srgb, var(--text-on-dark) 50%, transparent);
+    padding-bottom: 2px;
+    transition: border-color var(--motion-fade) var(--motion-ease);
+  }
+  .cin-hero__phone:hover {
+    text-decoration: none;
+    border-color: var(--text-on-dark);
+  }
+  .cin-hero__phone:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Highlights meta bar */
+  .cin-hero__meta {
+    margin: 2rem 0 0;
+    padding-top: 1.5rem;
+    border-top: var(--border-weight) solid
+      color-mix(in srgb, var(--text-on-dark) 22%, transparent);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--text-on-dark) 80%, transparent);
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .cin-hero {
+      min-height: 75vh;
+    }
+    .cin-hero__title {
+      font-size: var(--step-4);
+    }
+  }
+</style>

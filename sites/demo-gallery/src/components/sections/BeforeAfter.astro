@@ -1,0 +1,296 @@
+---
+import type { SectionEnvelope } from '../../types';
+
+interface Props extends SectionEnvelope {
+  pairs: { before: string; after: string; label?: string }[];
+}
+
+const {
+  pairs,
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'center',
+} = Astro.props as Props;
+
+/**
+ * Pure CSS slider: we use a <input type="range"> that lives in the same stacking
+ * context as the images. The ::before pseudo-element clips the "after" image.
+ * Zero JS — no heavy libraries. Reduced-motion safe (the drag still works; only
+ * the initial animated fade is suppressed by global.css).
+ *
+ * Pattern: each .ba-pair contains:
+ *   .ba-before  (img, full width)
+ *   .ba-after   (img, clipped by --split CSS var set via inline style trick)
+ *   input[type=range] (transparent, stacked on top, drives --split)
+ *   .ba-handle  (decorative)
+ *
+ * We use a <label>+<input> approach that is keyboard accessible (tab + arrow keys).
+ * The input drives a custom property via onInput only when JS is available;
+ * otherwise we fall back to a clean 50/50 side-by-side with no JS required.
+ */
+---
+
+<section class="section" data-tone={tone} id="before-after">
+  <div class="container">
+
+    {(eyebrow || heading || intro) && (
+      <div class={`ba__head${align === 'center' ? ' ba__head--center' : ''}`} data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2>{heading}</h2>}
+        {intro && <p class="ba__intro">{intro}</p>}
+      </div>
+    )}
+
+    <div class="ba__grid">
+      {pairs.map(({ before, after, label }, i) => (
+        <figure
+          class="ba-pair"
+          data-reveal
+          data-reveal-order={i}
+          aria-label={label ?? `Before and after comparison ${i + 1}`}
+        >
+          <!-- After image (bottom layer, full) -->
+          <div class="ba-after" data-frame>
+            <img
+              src={after}
+              alt={label ? `${label} — after` : `After image ${i + 1}`}
+              class="ba-after__img"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="ba-badge ba-badge--after" aria-hidden="true">After</span>
+          </div>
+
+          <!-- Before image (top layer, clipped by --split) -->
+          <div class="ba-before" data-frame>
+            <img
+              src={before}
+              alt={label ? `${label} — before` : `Before image ${i + 1}`}
+              class="ba-before__img"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="ba-badge ba-badge--before" aria-hidden="true">Before</span>
+          </div>
+
+          <!-- Drag handle -->
+          <div class="ba-handle" aria-hidden="true">
+            <span class="ba-handle__line" />
+            <span class="ba-handle__grip">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M7 4l-4 6 4 6M13 4l4 6-4 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="ba-handle__line" />
+          </div>
+
+          <!-- Range input: keyboard+mouse draggable; drives CSS var via JS -->
+          <input
+            type="range"
+            class="ba-slider"
+            min="0"
+            max="100"
+            value="50"
+            aria-label={label ? `Adjust ${label} comparison` : `Adjust comparison ${i + 1}`}
+          />
+
+          {label && <figcaption class="ba-caption">{label}</figcaption>}
+        </figure>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- Minimal JS: drives --split custom prop on the pair from the range input.
+     No import, no framework, runs immediately (deferred). Reduced-motion safe
+     because only layout/clip changes, not animation. -->
+<script>
+  function initBeforeAfter() {
+    document.querySelectorAll<HTMLElement>('.ba-pair').forEach((pair) => {
+      const input = pair.querySelector<HTMLInputElement>('.ba-slider');
+      if (!input) return;
+      const update = () => pair.style.setProperty('--split', `${input.value}%`);
+      input.addEventListener('input', update);
+      update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBeforeAfter);
+  } else {
+    initBeforeAfter();
+  }
+</script>
+
+<style>
+  .ba__head {
+    max-width: 52ch;
+    margin-block-end: calc(var(--section-pad) * 0.6);
+  }
+  .ba__head--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+  .ba__head h2 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-3);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    margin-block: 0.25em 0.5em;
+  }
+  .ba__intro {
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+  }
+
+  /* Grid: 1 col on mobile, 2 cols at md if multiple pairs */
+  .ba__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+    gap: var(--grid-gap);
+  }
+
+  /* Pair figure */
+  .ba-pair {
+    --split: 50%;
+    position: relative;
+    margin: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    aspect-ratio: 4/3;
+    background: var(--surface-2);
+    cursor: col-resize;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* After: full width base layer */
+  .ba-after {
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+  }
+  .ba-after__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Before: clipped to left side via --split */
+  .ba-before {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 calc(100% - var(--split)) 0 0);
+    border-radius: 0;
+  }
+  .ba-before__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Badges */
+  .ba-badge {
+    position: absolute;
+    top: 0.75rem;
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    padding: 0.2em 0.65em;
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+  }
+  .ba-badge--before {
+    left: 0.75rem;
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  .ba-badge--after {
+    right: 0.75rem;
+    background: var(--surface);
+    color: var(--text);
+    border: var(--border-weight) solid var(--border);
+  }
+
+  /* Drag handle */
+  .ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--split);
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .ba-handle__line {
+    flex: 1;
+    width: 2px;
+    background: var(--brand-contrast, #fff);
+    opacity: 0.9;
+  }
+  .ba-handle__grip {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-pill);
+    background: var(--brand);
+    color: var(--brand-contrast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--brand-contrast, rgba(255,255,255,0.6));
+  }
+
+  /* Range input: covers the full area, transparent, drives interaction */
+  .ba-slider {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: col-resize;
+    z-index: 3;
+    margin: 0;
+    /* Accessible: visible focus ring on the pair */
+  }
+  .ba-slider:focus-visible {
+    /* Focus the figure, not the hidden input */
+    outline: none;
+  }
+  .ba-pair:has(.ba-slider:focus-visible) {
+    outline: 3px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Caption */
+  .ba-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, color-mix(in srgb, var(--bg-deep) 80%, transparent));
+    color: var(--text-on-dark);
+    font-size: var(--step--1);
+    padding: 1.5rem 1rem 0.75rem;
+    text-align: center;
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  @media (max-width: 480px) {
+    .ba-pair {
+      aspect-ratio: 3/2;
+    }
+  }
+</style>

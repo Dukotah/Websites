@@ -1,0 +1,273 @@
+---
+import type { BusinessHours, Tone, Align } from '../../types';
+
+interface Props {
+  address: string;
+  lat?: number;
+  lng?: number;
+  hours?: BusinessHours[];
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  tone?: Tone;
+  align?: Align;
+}
+
+const {
+  address,
+  lat,
+  lng,
+  hours,
+  eyebrow = 'Find Us',
+  heading,
+  intro,
+  tone = 'default',
+  align = 'left',
+} = Astro.props;
+
+/**
+ * Build the OpenStreetMap iframe src.
+ * When lat+lng are provided we use the bounding-box embed which is most
+ * reliable without an API key. When only address is available we fall back
+ * to the search-embed form which geocodes on the client.
+ */
+function buildMapSrc(address: string, lat?: number, lng?: number): string {
+  if (lat !== undefined && lng !== undefined) {
+    // Tight bounding box (~500 m padding) around the pin
+    const pad = 0.006;
+    const bbox = `${lng - pad},${lat - pad},${lng + pad},${lat + pad}`;
+    const marker = `${lat},${lng}`;
+    return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${marker}`;
+  }
+  // Search/query embed — geocodes by address string, key-free
+  const q = encodeURIComponent(address);
+  return `https://www.openstreetmap.org/export/embed.html?query=${q}&layer=mapnik`;
+}
+
+const mapSrc = buildMapSrc(address, lat, lng);
+const hasHours = hours && hours.length > 0;
+---
+
+<section class="section" data-tone={tone} id="map">
+  <div class="container">
+
+    {(eyebrow || heading || intro) && (
+      <div class={`section-header${align === 'center' ? ' section-header--center' : ''}`} data-reveal>
+        {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+        {heading && <h2>{heading}</h2>}
+        {intro && <p class="intro">{intro}</p>}
+      </div>
+    )}
+
+    <div class="map-layout">
+
+      <!-- Static OSM embed — no API key required -->
+      <div class="map-frame" data-frame data-reveal>
+        <iframe
+          src={mapSrc}
+          title={`Map showing location of ${address}`}
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          aria-label={`Map: ${address}`}
+        ></iframe>
+      </div>
+
+      <!-- Address + hours sidebar -->
+      <div class="map-info" data-reveal data-reveal-order="1">
+
+        <div class="map-address">
+          <h3 class="map-info__label">Address</h3>
+          <address>
+            {address.split(',').map((part, i) => (
+              <span class="addr-line">{part.trim()}{i < address.split(',').length - 1 ? ',' : ''}</span>
+            ))}
+          </address>
+          <a
+            class="directions-link"
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get directions &rarr;
+          </a>
+        </div>
+
+        {hasHours && (
+          <div class="map-hours">
+            <h3 class="map-info__label">Hours</h3>
+            <table class="hours-table" aria-label="Business hours">
+              <tbody>
+                {hours!.map((row) => (
+                  <tr>
+                    <th scope="row">{row.day}</th>
+                    <td>{row.hours}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .map-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--grid-gap);
+  }
+
+  @media (min-width: 720px) {
+    .map-layout {
+      grid-template-columns: 1fr 320px;
+      align-items: start;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .map-layout {
+      grid-template-columns: 1fr 360px;
+    }
+  }
+
+  /* Map iframe */
+  .map-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: var(--border-weight) solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 720px) {
+    .map-frame {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  .map-frame iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    border-radius: inherit;
+  }
+
+  /* Info sidebar */
+  .map-info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: var(--border-weight) solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .map-info__label {
+    font-size: var(--step--1);
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 0.6rem;
+  }
+
+  [data-tone="deep"] .map-info__label,
+  [data-tone="brand"] .map-info__label {
+    color: var(--accent);
+  }
+
+  /* Address */
+  address {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    color: var(--text);
+    margin-bottom: 0.9rem;
+  }
+
+  .addr-line {
+    display: block;
+    font-size: var(--step-0);
+  }
+
+  .directions-link {
+    display: inline-block;
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    color: var(--accent);
+    letter-spacing: 0.01em;
+    transition: color var(--motion-fade) var(--motion-ease);
+  }
+
+  .directions-link:hover {
+    color: var(--brand);
+    text-decoration: underline;
+  }
+
+  /* Hours table */
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+  }
+
+  .hours-table th,
+  .hours-table td {
+    padding: 0.35rem 0;
+    border-bottom: var(--border-weight) solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .hours-table th {
+    font-weight: var(--fw-bold);
+    color: var(--text);
+    width: 40%;
+  }
+
+  .hours-table td {
+    color: var(--text-muted);
+  }
+
+  .hours-table tr:last-child th,
+  .hours-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Tone overrides for info panel */
+  [data-tone="deep"] .map-info,
+  [data-tone="brand"] .map-info {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  [data-tone="deep"] address,
+  [data-tone="deep"] .hours-table th,
+  [data-tone="brand"] address,
+  [data-tone="brand"] .hours-table th {
+    color: var(--text-on-dark);
+  }
+
+  [data-tone="deep"] .hours-table td,
+  [data-tone="brand"] .hours-table td {
+    color: var(--text-on-dark);
+    opacity: 0.75;
+  }
+
+  [data-tone="deep"] .hours-table th,
+  [data-tone="deep"] .hours-table td,
+  [data-tone="brand"] .hours-table th,
+  [data-tone="brand"] .hours-table td {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+</style>

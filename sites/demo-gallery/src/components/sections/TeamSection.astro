@@ -1,0 +1,149 @@
+---
+/**
+ * TeamSection — owner/staff cards. Spec §6: type 'team'.
+ * Renders only from real, named people.
+ */
+import type { SectionEnvelope } from '../../types';
+
+interface Member {
+  name: string;
+  role?: string;
+  photo?: string;
+  bio?: string;
+}
+interface Props extends SectionEnvelope {
+  members: Member[];
+}
+
+const {
+  members = [],
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'center',
+} = Astro.props as Props;
+
+const initials = (name: string) =>
+  name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]?.toUpperCase()).join('');
+---
+
+{members.length > 0 && (
+  <section class="section team" data-tone={tone}>
+    <div class="container">
+      <header class={`team__head team__head--${align}`} data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2 class="team__heading">{heading}</h2>}
+        {intro && <p class="team__intro">{intro}</p>}
+      </header>
+      <ul class="team__grid">
+        {members.map((m, i) => (
+          <li class="team__card" data-reveal data-reveal-order={i}>
+            <div class="team__photo" data-frame>
+              {m.photo ? (
+                <img src={m.photo} alt={`${m.name}${m.role ? ', ' + m.role : ''}`} loading="lazy" decoding="async" />
+              ) : (
+                <span class="team__initials" aria-hidden="true">{initials(m.name)}</span>
+              )}
+            </div>
+            <h3 class="team__name">{m.name}</h3>
+            {m.role && <p class="team__role">{m.role}</p>}
+            {m.bio && <p class="team__bio">{m.bio}</p>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .team { padding-block: var(--section-pad); }
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .team__head { margin-bottom: 2.75rem; max-width: 54ch; }
+  .team__head--center { text-align: center; margin-inline: auto; }
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 0.5rem;
+  }
+  .team__heading {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 0.6rem;
+  }
+  .team__intro {
+    font-size: var(--step-0);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0;
+  }
+  .team__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: calc(var(--grid-gap) * 1.4);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  }
+  .team__card { text-align: center; }
+  .team__photo {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    max-width: 220px;
+    background: color-mix(in srgb, var(--brand) 12%, var(--surface));
+    display: grid;
+    place-items: center;
+  }
+  .team__photo img { width: 100%; height: 100%; object-fit: cover; }
+  .team__initials {
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    font-weight: var(--fw-display);
+    color: var(--brand);
+  }
+  .team__name {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: var(--fw-display);
+    color: var(--text);
+    margin: 0;
+  }
+  .team__role {
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0.25rem 0 0.5rem;
+  }
+  .team__bio {
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0;
+  }
+
+  [data-tone='alt'] { background: var(--bg-alt); }
+  [data-tone='deep'] { background: var(--bg-deep); color: var(--text-on-dark); }
+  [data-tone='deep'] .team__heading,
+  [data-tone='deep'] .team__name { color: var(--text-on-dark); }
+  [data-tone='deep'] .team__bio { color: color-mix(in srgb, var(--text-on-dark) 80%, transparent); }
+  [data-tone='brand'] { background: var(--brand); color: var(--brand-contrast); }
+  [data-tone='brand'] .team__heading,
+  [data-tone='brand'] .team__name { color: var(--brand-contrast); }
+</style>

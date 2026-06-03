@@ -1,0 +1,233 @@
+---
+// HeroCollage — 2–3 photo collage + headline.
+// Draws from config.images.hero first, then config.galleryImages.
+// Graceful: renders with 1 image (single wide), 2 (primary + aside), or 3.
+import type { ProspectConfig } from '../../types';
+const { config } = Astro.props as { config: ProspectConfig };
+const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const eyebrow = [config.established, config.area].filter(Boolean).join(' · ');
+
+// Collect real images: primary hero first, then gallery extras.
+type ImgSlot = { src: string; alt: string };
+const allImages: ImgSlot[] = [];
+if (config.images?.hero) {
+  allImages.push({ src: config.images.hero, alt: config.images.heroAlt ?? config.name });
+}
+for (const gi of config.galleryImages ?? []) {
+  if (allImages.length >= 3) break;
+  if (gi.src && gi.src !== config.images?.hero) allImages.push(gi);
+}
+// Cap to 3; always have at least the placeholder so layout doesn't break.
+const images = allImages.slice(0, 3);
+if (images.length === 0) {
+  images.push({ src: config.images?.placeholder ?? '', alt: config.name });
+}
+const count = images.length; // 1 | 2 | 3
+---
+
+<section class="collage-hero" id="top" data-count={count}>
+  <!-- Collage grid — CSS handles layout by data-count -->
+  <div class="collage-hero__media" aria-hidden="true">
+    {images.map((img, i) => (
+      <div class="collage-hero__frame" data-frame data-index={i}>
+        <img
+          src={img.src}
+          alt={img.alt}
+          onerror={`this.onerror=null;this.src='${config.images?.placeholder ?? ''}'`}
+          fetchpriority={i === 0 ? 'high' : 'auto'}
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+      </div>
+    ))}
+    <span class="collage-hero__scrim" aria-hidden="true"></span>
+  </div>
+
+  <!-- Text layer sits over the collage -->
+  <div class="container collage-hero__inner">
+    {eyebrow && (
+      <p class="collage-hero__eyebrow" data-reveal data-reveal-order="0">{eyebrow}</p>
+    )}
+    <h1 class="collage-hero__title" data-reveal data-reveal-order="1">
+      {config.hero.heading}
+    </h1>
+    <p class="collage-hero__sub" data-reveal data-reveal-order="2">
+      {config.hero.subheading}
+    </p>
+    <div class="collage-hero__actions" data-reveal data-reveal-order="3">
+      <a href={config.hero.ctaHref} class="btn">{config.hero.ctaText}</a>
+      {config.contact.phone && (
+        <a href={telHref} class="collage-hero__phone">{config.contact.phone}</a>
+      )}
+    </div>
+  </div>
+
+  {config.highlights && config.highlights.length > 0 && (
+    <ul class="collage-hero__highlights">
+      {config.highlights.map((h) => <li>{h}</li>)}
+    </ul>
+  )}
+</section>
+
+<style>
+  .collage-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: min(88vh, 760px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  /* ── Collage grid ── */
+  .collage-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    display: grid;
+    gap: 3px;
+    background: var(--bg-deep);
+  }
+
+  /* 1 image: single full-bleed */
+  .collage-hero[data-count="1"] .collage-hero__media {
+    grid-template-columns: 1fr;
+  }
+
+  /* 2 images: primary 62% | aside 38% */
+  .collage-hero[data-count="2"] .collage-hero__media {
+    grid-template-columns: 62fr 38fr;
+  }
+
+  /* 3 images: primary 55% | right column 45% split into 2 rows */
+  .collage-hero[data-count="3"] .collage-hero__media {
+    grid-template-columns: 55fr 45fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .collage-hero[data-count="3"] .collage-hero__frame:first-child {
+    grid-row: 1 / 3;
+  }
+
+  .collage-hero__frame {
+    overflow: hidden;
+    background: var(--bg-deep);
+  }
+  .collage-hero__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s var(--motion-ease);
+  }
+  .collage-hero__frame:hover img {
+    transform: scale(1.03);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .collage-hero__frame img { transition: none; }
+    .collage-hero__frame:hover img { transform: none; }
+  }
+
+  /* Scrim so text reads over any photo combination */
+  .collage-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(15, 18, 20, 0.12) 0%,
+      rgba(15, 18, 20, 0.28) 40%,
+      rgba(15, 18, 20, 0.78) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* ── Copy layer ── */
+  .collage-hero__inner {
+    position: relative;
+    z-index: 1;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+    max-width: 680px;
+  }
+
+  .collage-hero__eyebrow {
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--brand) 60%, #fff);
+    margin-bottom: 1rem;
+  }
+
+  .collage-hero__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .collage-hero__sub {
+    font-size: clamp(1.02rem, 1.8vw, 1.25rem);
+    line-height: var(--leading-body);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 52ch;
+    margin-bottom: 1.75rem;
+  }
+
+  .collage-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  .collage-hero__phone {
+    color: #fff;
+    font-weight: var(--fw-bold);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 2px;
+    transition: border-color var(--motion-ease);
+  }
+  .collage-hero__phone:hover {
+    text-decoration: none;
+    border-color: #fff;
+  }
+
+  /* Highlights bar */
+  .collage-hero__highlights {
+    position: relative;
+    z-index: 1;
+    list-style: none;
+    margin: 0;
+    padding: 1rem var(--gutter);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.4rem 2rem;
+    background: rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(4px);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  /* Collapse to single column on narrow screens */
+  @media (max-width: 640px) {
+    .collage-hero[data-count="2"] .collage-hero__media,
+    .collage-hero[data-count="3"] .collage-hero__media {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+    /* Show only primary photo on very small screens */
+    .collage-hero__frame:not(:first-child) {
+      display: none;
+    }
+    .collage-hero[data-count="3"] .collage-hero__frame:first-child {
+      grid-row: auto;
+    }
+  }
+</style>

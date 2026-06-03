@@ -1,0 +1,187 @@
+---
+/**
+ * HeroSplit — text panel + photo, side by side. Stacks vertically on mobile.
+ * Spec §7: "split" variant. Needs a hero image.
+ * Port + full tokenization of src/components/HeroSplit.astro.
+ */
+import type { ProspectConfig } from '../../types';
+const { config } = Astro.props as { config: ProspectConfig };
+
+const { hero, images, contact, highlights, established, area } = config;
+const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
+const eyebrow = [established, area].filter(Boolean).join(' · ');
+---
+
+<section class="spl-hero" id="top" aria-label="Hero">
+  <!-- Text panel -->
+  <div class="spl-hero__panel">
+    <div class="spl-hero__copy" data-reveal>
+      {eyebrow && (
+        <p class="spl-hero__eyebrow">{eyebrow}</p>
+      )}
+      <h1 class="spl-hero__title">{hero.heading}</h1>
+      {hero.subheading && (
+        <p class="spl-hero__sub">{hero.subheading}</p>
+      )}
+      <div class="spl-hero__actions">
+        <a href={hero.ctaHref} class="btn">{hero.ctaText}</a>
+        {contact.phone && (
+          <a href={telHref} class="spl-hero__phone">{contact.phone}</a>
+        )}
+      </div>
+      {highlights && highlights.length > 0 && (
+        <ul class="spl-hero__highlights" aria-label="Key highlights" data-reveal-stagger>
+          {highlights.map((h: string) => <li>{h}</li>)}
+        </ul>
+      )}
+    </div>
+  </div>
+
+  <!-- Photo panel -->
+  <div class="spl-hero__media" data-frame={images.hero ? 'editorial' : undefined} aria-hidden="true">
+    <img
+      src={images.hero}
+      alt={images.heroAlt}
+      onerror={`this.onerror=null;this.src='${images.placeholder}'`}
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+</section>
+
+<style>
+  .spl-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: min(84vh, 740px);
+    overflow: hidden;
+  }
+
+  /* Text panel — brand-dark surface */
+  .spl-hero__panel {
+    background: var(--brand-dark);
+    color: var(--text-on-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .spl-hero__copy {
+    max-width: 44ch;
+  }
+
+  /* Eyebrow */
+  .spl-hero__eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--brand) 70%, #fff 30%);
+    margin: 0 0 1.25rem;
+  }
+
+  /* Headline */
+  .spl-hero__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-4);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text-on-dark);
+    margin: 0 0 1.25rem;
+  }
+
+  /* Subheading */
+  .spl-hero__sub {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: var(--leading-body);
+    color: color-mix(in srgb, var(--text-on-dark) 85%, transparent);
+    max-width: 44ch;
+    margin: 0 0 1.9rem;
+  }
+
+  /* CTA row */
+  .spl-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  /* Phone link */
+  .spl-hero__phone {
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    color: var(--text-on-dark);
+    text-decoration: none;
+    border-bottom: var(--border-weight) solid
+      color-mix(in srgb, var(--text-on-dark) 45%, transparent);
+    padding-bottom: 2px;
+    transition: border-color var(--motion-fade) var(--motion-ease);
+  }
+  .spl-hero__phone:hover {
+    text-decoration: none;
+    border-color: var(--text-on-dark);
+  }
+  .spl-hero__phone:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Highlights strip */
+  .spl-hero__highlights {
+    list-style: none;
+    margin: 2.25rem 0 0;
+    padding: 1.5rem 0 0;
+    border-top: var(--border-weight) solid
+      color-mix(in srgb, var(--text-on-dark) 20%, transparent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--text-on-dark) 80%, transparent);
+  }
+
+  /* Photo panel */
+  .spl-hero__media {
+    background: var(--brand-dark);
+    /* override [data-frame] rounding — full-height panel needs no radius */
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: hidden;
+  }
+  .spl-hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Mobile: stack vertically, photo first */
+  @media (max-width: 840px) {
+    .spl-hero {
+      grid-template-columns: 1fr;
+    }
+    .spl-hero__media {
+      order: -1;
+      min-height: 44vh;
+    }
+    .spl-hero__copy {
+      max-width: none;
+    }
+    .spl-hero__title {
+      font-size: var(--step-3);
+    }
+  }
+</style>

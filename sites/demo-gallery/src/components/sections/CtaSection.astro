@@ -1,0 +1,134 @@
+---
+import type { Section } from '../../types';
+
+type Props = Extract<Section, { type: 'cta' }>;
+
+const {
+  heading,
+  text,
+  buttonText,
+  buttonHref = '#contact',
+  tone = 'brand',
+  align = 'left',
+} = Astro.props as Props;
+---
+
+<section class="section cta" data-tone={tone}>
+  <div class="container cta__inner" data-align={align}>
+    <div class="cta__content">
+      <h2>{heading}</h2>
+      {text && <p>{text}</p>}
+    </div>
+    {buttonText && (
+      <a href={buttonHref} class="btn cta__btn">
+        {buttonText}
+      </a>
+    )}
+  </div>
+</section>
+
+<style>
+  .section[data-tone='default'] {
+    background: var(--bg);
+    color: var(--text);
+  }
+  .section[data-tone='alt'] {
+    background: var(--bg-alt);
+    color: var(--text);
+  }
+  .section[data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  .section[data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+
+  .cta {
+    padding-block: var(--section-pad);
+  }
+
+  .cta__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--section-pad);
+  }
+  .cta__inner[data-align='center'] {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cta__content {
+    flex: 1 1 auto;
+    min-width: 200px;
+  }
+
+  .cta h2 {
+    margin: 0;
+    font-size: var(--step-3);
+    font-weight: var(--fw-display);
+    font-family: var(--font-display);
+    color: currentColor;
+  }
+
+  .cta p {
+    margin: 0.5rem 0 0;
+    color: currentColor;
+    opacity: 0.95;
+    font-size: var(--step-0);
+    max-width: 50ch;
+  }
+
+  .cta__btn {
+    flex: 0 0 auto;
+    background: var(--surface);
+    color: var(--text);
+    font-weight: var(--fw-bold);
+    padding: 0.85rem 1.75rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 200ms ease;
+  }
+  .section[data-tone='brand'] .cta__btn {
+    background: var(--brand-contrast);
+    color: var(--brand);
+  }
+  .section[data-tone='deep'] .cta__btn {
+    background: var(--text-on-dark);
+    color: var(--bg-deep);
+  }
+
+  .cta__btn:hover {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+  .section[data-tone='brand'] .cta__btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+  }
+  .section[data-tone='deep'] .cta__btn:hover {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  @media (max-width: 640px) {
+    .cta__inner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .cta__inner[data-align='center'] {
+      align-items: center;
+    }
+    .cta__btn {
+      width: 100%;
+    }
+    .cta__inner[data-align='center'] .cta__btn {
+      width: auto;
+    }
+  }
+</style>

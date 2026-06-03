@@ -1,0 +1,182 @@
+---
+import type { Tone, Align } from '../../types';
+
+interface Props {
+  quote: string;
+  author?: string;
+  source?: string;
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  tone?: Tone;
+  align?: Align;
+}
+
+const {
+  quote,
+  author,
+  source,
+  eyebrow,
+  heading,
+  intro,
+  tone = 'deep',
+  align = 'center',
+} = Astro.props;
+---
+
+<section class="section bigquote-section" data-tone={tone} id="bigquote">
+  <div class="container">
+
+    {(eyebrow || heading || intro) && (
+      <div class={`section-header${align === 'center' ? ' section-header--center' : ''}`} data-reveal>
+        {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+        {heading && <h2>{heading}</h2>}
+        {intro && <p class="intro">{intro}</p>}
+      </div>
+    )}
+
+    <figure class="bigquote" data-reveal>
+      <!-- Decorative oversized quotation mark — purely visual, aria-hidden -->
+      <span class="bigquote__glyph" aria-hidden="true">&ldquo;</span>
+
+      <blockquote class="bigquote__text">
+        <p>{quote}</p>
+      </blockquote>
+
+      {(author || source) && (
+        <figcaption class="bigquote__attribution">
+          {author && <span class="bigquote__author">{author}</span>}
+          {author && source && <span class="bigquote__sep" aria-hidden="true"> &mdash; </span>}
+          {source && <cite class="bigquote__source">{source}</cite>}
+        </figcaption>
+      )}
+    </figure>
+
+  </div>
+</section>
+
+<style>
+  /* Pull-quote section gets its own padding tweak for the dramatic effect */
+  .bigquote-section {
+    padding-block: clamp(4rem, 10vw, 8rem);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle radial glow behind the quote (uses brand color at very low opacity) */
+  .bigquote-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, var(--brand) 0%, transparent 70%);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .bigquote {
+    margin: 0 auto;
+    max-width: 44ch;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+  }
+
+  /* Oversized opening quotation mark */
+  .bigquote__glyph {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 15vw, 10rem);
+    line-height: 0.7;
+    color: var(--brand);
+    opacity: 0.3;
+    user-select: none;
+    /* Nudge upward so the text nestles under it naturally */
+    margin-bottom: -0.2em;
+  }
+
+  /* When section is 'deep' or 'brand', the glyph uses accent for contrast */
+  [data-tone="deep"] .bigquote__glyph,
+  [data-tone="brand"] .bigquote__glyph {
+    color: var(--accent);
+    opacity: 0.4;
+  }
+
+  .bigquote__text {
+    margin: 0;
+  }
+
+  .bigquote__text p {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: clamp(var(--step-2), 4vw, var(--step-4));
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text);
+    margin: 0;
+  }
+
+  [data-tone="deep"] .bigquote__text p,
+  [data-tone="brand"] .bigquote__text p {
+    color: var(--text-on-dark);
+  }
+
+  /* Rule divider above attribution */
+  .bigquote__attribution {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding-top: clamp(1rem, 2vw, 1.5rem);
+    border-top: var(--border-weight) solid var(--border);
+    width: 40%;
+    font-style: normal;
+  }
+
+  [data-tone="deep"] .bigquote__attribution,
+  [data-tone="brand"] .bigquote__attribution {
+    border-top-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .bigquote__author {
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--text-muted);
+  }
+
+  [data-tone="deep"] .bigquote__author,
+  [data-tone="brand"] .bigquote__author {
+    color: var(--text-on-dark);
+    opacity: 0.75;
+  }
+
+  .bigquote__sep {
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  .bigquote__source {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  [data-tone="deep"] .bigquote__source,
+  [data-tone="brand"] .bigquote__source {
+    color: var(--text-on-dark);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 600px) {
+    .bigquote__attribution {
+      width: 80%;
+    }
+  }
+</style>

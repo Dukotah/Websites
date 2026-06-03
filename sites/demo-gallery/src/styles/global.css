@@ -1,21 +1,94 @@
-/* Brand colors are injected from src/config.ts in BaseLayout.astro
-   as --brand and --brand-dark, so editing the config re-themes the site. */
+/**
+ * global.css — structural reset + token consumption.
+ *
+ * All visual-identity (color, font, radius, spacing, motion) tokens are
+ * injected per-site by BaseLayout via artDirectionToCss(). This file only:
+ *   1. Provides FALLBACK values for every token (so the page looks intact even
+ *      if the injected block somehow doesn't arrive).
+ *   2. Keeps structural / reset rules that are site-agnostic.
+ *   3. Defines the hard reduced-motion block (spec §5.2).
+ *   4. Provides base styles for [data-tone], [data-frame], [data-reveal].
+ */
+
+/* ── 1. Token fallbacks ───────────────────────────────────────────────────── */
 :root {
-  --bg: #fbf8f2;
-  --bg-alt: #f3ede1;
-  --paper: #ffffff;
-  --text: #2c2a25;
-  --text-muted: #6f685c;
-  --border: #e4ddcf;
-  --ink: #20211c;
-  --maxw: 1140px;
-  --gutter: clamp(1.25rem, 4vw, 2.5rem);
-  --radius: 4px;
-  --shadow: 0 1px 2px rgba(40, 34, 20, 0.06);
-  --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  /* color */
+  --brand:            #2b2b2b;
+  --brand-dark:       #141414;
+  --brand-contrast:   #ffffff;
+  --accent:           #b6794a;
+  --accent-contrast:  #ffffff;
+  --bg:               #f6f4f1;
+  --bg-alt:           #ece8e2;
+  --bg-deep:          #141414;
+  --surface:          #ffffff;
+  --surface-2:        #f3f0eb;
+  --text:             #1d1c1a;
+  --text-muted:       #5f5b54;
+  --text-on-dark:     #f4f1ec;
+  --border:           #e2ddd4;
+  --ring:             #b6794a;
+
+  /* fonts */
+  --font-display:     Georgia, 'Times New Roman', serif;
+  --font-body:        system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --fw-display:       600;
+  --fw-body:          400;
+  --fw-bold:          700;
+  --tracking-display: -0.02em;
+  --tracking-eyebrow: 0.2em;
+  --leading-display:  1.08;
+  --leading-body:     1.65;
+
+  /* modular type scale (fallback — matching "geometric" scale at ratio 1.25) */
+  --step--1: clamp(0.8rem,  0.72vw + 0.4rem, 0.85rem);
+  --step-0:  clamp(1rem,    0.3vw  + 0.5rem, 1.06rem);
+  --step-1:  clamp(1.25rem, 1.04vw + 0.63rem, 1.33rem);
+  --step-2:  clamp(1.56rem, 1.3vw  + 0.78rem, 1.66rem);
+  --step-3:  clamp(1.95rem, 1.63vw + 0.98rem, 2.07rem);
+  --step-4:  clamp(2.44rem, 2.03vw + 1.22rem, 2.59rem);
+  --step-5:  clamp(3.05rem, 2.54vw + 1.53rem, 3.24rem);
+  --step-6:  clamp(3.81rem, 3.18vw + 1.91rem, 4.05rem);
+
+  /* shape */
+  --radius:         4px;
+  --radius-lg:      8px;
+  --radius-pill:    999px;
+  --border-weight:  1px;
+  --shadow-sm:      0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:      0 4px 12px rgba(0,0,0,.1);
+  --shadow-lg:      0 10px 30px rgba(0,0,0,.12);
+  --frame-style:    soft;
+
+  /* density */
+  --section-pad: clamp(3.5rem, 8vw, 6rem);
+  --gutter:      clamp(1.25rem, 4vw, 2.25rem);
+  --maxw:        1140px;
+  --grid-gap:    clamp(1.25rem, 2.5vw, 2rem);
+
+  /* motion */
+  --motion-fade: 190ms;
+  --motion-rise: 10px;
+  --motion-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* decoration */
+  --pattern-opacity: 0.02;
 }
 
+/* ── 2. Hard reduced-motion block (spec §5.2) — MUST come before animations ─ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── 3. Reset / structural ──────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -28,50 +101,49 @@ html {
 
 body {
   margin: 0;
-  font-family: var(--font);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: var(--fw-body);
+  line-height: var(--leading-body);
   color: var(--text);
   background: var(--bg);
-  line-height: 1.72;
-  font-size: 1.02rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-h1,
-h2,
-h3 {
-  font-family: var(--serif);
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--text);
   margin: 0 0 0.5em;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  font-weight: 600;
 }
 
-h1 {
-  font-size: clamp(2.6rem, 6vw, 4.6rem);
-}
-
-h2 {
-  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
-}
-
-h3 {
-  font-size: 1.18rem;
-  font-weight: 600;
-}
+h1 { font-size: var(--step-5); }
+h2 { font-size: var(--step-4); }
+h3 { font-size: var(--step-3); }
+h4 { font-size: var(--step-2); }
+h5 { font-size: var(--step-1); }
+h6 { font-size: var(--step-0); }
 
 p {
-  margin: 0 0 1rem;
+  margin: 0 0 1em;
 }
 
 a {
-  color: var(--brand-dark);
+  color: var(--accent);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 img {
@@ -80,6 +152,7 @@ img {
   display: block;
 }
 
+/* ── 4. Layout utilities ────────────────────────────────────────────────────── */
 .container {
   width: 100%;
   max-width: var(--maxw);
@@ -88,65 +161,210 @@ img {
 }
 
 .section {
-  padding-block: clamp(4rem, 9vw, 7.5rem);
+  padding-block: var(--section-pad);
+  background: var(--bg);
+  color: var(--text);
 }
 
-.section--alt {
+/* ── 5. Tone surfaces [data-tone] ──────────────────────────────────────────── */
+[data-tone="default"] {
+  background: var(--bg);
+  color: var(--text);
+}
+
+[data-tone="alt"] {
   background: var(--bg-alt);
+  color: var(--text);
 }
 
-/* A small, understated section label. */
+[data-tone="deep"] {
+  background: var(--bg-deep);
+  color: var(--text-on-dark);
+}
+
+[data-tone="deep"] h1,
+[data-tone="deep"] h2,
+[data-tone="deep"] h3,
+[data-tone="deep"] h4 {
+  color: var(--text-on-dark);
+}
+
+[data-tone="brand"] {
+  background: var(--brand);
+  color: var(--brand-contrast);
+}
+
+[data-tone="brand"] h1,
+[data-tone="brand"] h2,
+[data-tone="brand"] h3,
+[data-tone="brand"] h4 {
+  color: var(--brand-contrast);
+}
+
+/* ── 6. Media frame wrappers [data-frame] (spec §5.1) ───────────────────────── */
+[data-frame] {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+[data-frame="soft"] {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+[data-frame="sharp"] {
+  border-radius: 0;
+  border: var(--border-weight) solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+[data-frame="editorial"] {
+  border-radius: var(--radius);
+  border-bottom: var(--border-weight) solid var(--border);
+  box-shadow: none;
+}
+
+[data-frame="pill"] {
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-frame="framed"] {
+  border-radius: var(--radius);
+  border: var(--border-weight) solid var(--border);
+  box-shadow: var(--shadow-md);
+  padding: 4px;
+}
+
+/* ── 7. Reveal animation [data-reveal] / [data-revealed] (spec §5.2) ───────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--motion-rise));
+  transition:
+    opacity var(--motion-fade) var(--motion-ease),
+    transform var(--motion-fade) var(--motion-ease);
+}
+
+[data-reveal][data-revealed] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger for child elements in expressive mode */
+[data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(var(--motion-rise));
+  transition:
+    opacity var(--motion-fade) var(--motion-ease),
+    transform var(--motion-fade) var(--motion-ease);
+}
+
+[data-reveal-stagger][data-revealed] > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal-stagger][data-revealed] > *:nth-child(1) { transition-delay: 0ms; }
+[data-reveal-stagger][data-revealed] > *:nth-child(2) { transition-delay: 60ms; }
+[data-reveal-stagger][data-revealed] > *:nth-child(3) { transition-delay: 120ms; }
+[data-reveal-stagger][data-revealed] > *:nth-child(4) { transition-delay: 180ms; }
+[data-reveal-stagger][data-revealed] > *:nth-child(5) { transition-delay: 240ms; }
+[data-reveal-stagger][data-revealed] > *:nth-child(6) { transition-delay: 300ms; }
+
+/* ── 8. Shared component primitives ─────────────────────────────────────────── */
+
+/* Eyebrow label */
 .eyebrow {
+  display: block;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.72rem;
-  font-weight: 700;
+  letter-spacing: var(--tracking-eyebrow);
+  font-size: var(--step--1);
+  font-weight: var(--fw-bold);
+  font-family: var(--font-body);
   color: var(--brand);
-  margin-bottom: 1rem;
-  font-family: var(--font);
+  margin-bottom: 0.75rem;
 }
 
+[data-tone="deep"] .eyebrow,
+[data-tone="brand"] .eyebrow {
+  color: var(--accent);
+}
+
+/* Button */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: var(--brand);
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.96rem;
+  color: var(--brand-contrast);
+  font-family: var(--font-body);
+  font-weight: var(--fw-bold);
+  font-size: var(--step-0);
   letter-spacing: 0.01em;
-  padding: 0.9rem 1.7rem;
-  border-radius: 999px;
-  transition: background 0.18s ease, transform 0.18s ease;
+  padding: 0.85em 1.6em;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background var(--motion-fade) var(--motion-ease),
+    transform var(--motion-fade) var(--motion-ease);
 }
 
 .btn:hover {
   background: var(--brand-dark);
-  color: #fff;
+  color: var(--brand-contrast);
   text-decoration: none;
   transform: translateY(-1px);
 }
 
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
 .btn--ghost {
   background: transparent;
-  color: var(--ink);
-  border: 1px solid color-mix(in srgb, var(--ink) 28%, transparent);
-  padding: calc(0.9rem - 1px) calc(1.7rem - 1px);
+  color: var(--text);
+  border: var(--border-weight) solid var(--border);
 }
 
 .btn--ghost:hover {
-  background: var(--ink);
-  color: #fff;
-  border-color: var(--ink);
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
 }
 
-/* Respect users who prefer reduced motion. */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
+.btn--accent {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.btn--accent:hover {
+  background: var(--brand-dark);
+  color: var(--brand-contrast);
+}
+
+/* Section header block */
+.section-header {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.section-header--center {
+  text-align: center;
+  max-width: 40ch;
+  margin-inline: auto;
+}
+
+.section-header .intro {
+  font-size: var(--step-1);
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+[data-tone="deep"] .section-header .intro,
+[data-tone="brand"] .section-header .intro {
+  color: var(--text-on-dark);
+  opacity: 0.8;
 }

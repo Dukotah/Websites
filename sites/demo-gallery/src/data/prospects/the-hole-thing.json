@@ -1,40 +1,41 @@
 {
   "name": "The Hole Thing",
-  "tagline": "Santa Rosa's female-owned tattoo & piercing studio — Best of North Bay since 1997.",
-  "seoDescription": "The Hole Thing — female-owned tattoo, piercing & tooth gem studio on Santa Rosa Ave since 1997. Best of North Bay, walk-ins welcome in Sonoma County.",
+  "category": "tattoo",
+  "tagline": "Sonoma County's favorite tattoo & piercing shop since 1997.",
+  "seoDescription": "The Hole Thing — Sonoma County's favorite female-owned tattoo, piercing & tooth-gem shop on Santa Rosa Ave since 1997. A family establishment, walk-ins welcome.",
   "area": "Santa Rosa, CA",
-  "established": "Est. 1997",
+  "established": "1997",
   "contact": {
     "phone": "(707) 570-2879",
     "email": "info@holething.net",
     "address": "324 Santa Rosa Ave, Santa Rosa, CA 95404"
   },
   "social": {
-    "facebook": "",
+    "facebook": "https://www.facebook.com/139204319446835",
     "instagram": "https://www.instagram.com/holethingtattoo/",
     "google": ""
   },
   "hero": {
-    "heading": "Ink, piercings, and a little sparkle.",
-    "subheading": "Santa Rosa's female-owned, locally loved tattoo and body-piercing studio since 1997 — custom tattoos, expert piercings, and tooth gems, walk-ins welcome.",
+    "heading": "Sonoma County's favorite shop.",
+    "subheading": "A female-owned, family tattoo and body-piercing shop on Santa Rosa Avenue since 1997 — custom tattoos, expert piercings, and tooth gems. Walk-ins always welcome.",
     "ctaText": "Plan your visit",
     "ctaHref": "#contact"
   },
-  "highlights": ["Female-owned since 1997", "Voted Best of North Bay", "Walk-ins welcome"],
+  "highlights": ["Female-owned since 1997", "A family establishment", "Walk-ins welcome"],
   "images": {
     "hero": "/images/library/tattoo/hero.svg",
-    "heroAlt": "The Hole Thing tattoo and piercing studio in Santa Rosa",
+    "heroAlt": "The Hole Thing tattoo and piercing shop in Santa Rosa",
     "story": "/images/library/tattoo/story.svg",
-    "storyAlt": "Inside The Hole Thing studio",
+    "storyAlt": "Inside The Hole Thing shop on Santa Rosa Avenue",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/tattoo/hero.svg"
   },
   "about": {
-    "heading": "Sonoma County's studio since 1997",
+    "heading": "A family shop, Sonoma County born",
     "body": [
-      "The Hole Thing has been Santa Rosa's female-owned home for tattoos and piercings since 1997, settling into our Santa Rosa Avenue studio in 2005. Two-plus decades in, we're proud to be a name locals trust — and to have been voted Best of North Bay year after year.",
-      "Our owner is one of the industry's most experienced piercers, with 20+ years behind the needle, alongside a roster of tattoo artists whose portfolios you're welcome to browse. Walk-ins are always welcome, consultations are free, and yes — we're family-friendly and happy to do little ones' ear piercings too."
+      "The Hole Thing started in 1997 in Cotati and moved to our Santa Rosa Avenue home in 2005. Nearly three decades in, we take pride in being a family establishment — female-owned, locally loved, and a name Sonoma County trusts for ink and piercings alike.",
+      "Walk-ins are always welcome and consultations are free. Browse our artists' portfolios, settle on a piece, and sit down with people who'll talk you through every step — first-timers and nervous grown-ups included. Yes, we do tooth gems too."
     ],
     "signature": ""
   },
@@ -42,42 +43,85 @@
   "services": [
     {
       "title": "Custom tattoos",
-      "description": "Original work and walk-ins from artists with portfolios you can browse first — free consultations, any time."
+      "description": "Original work and walk-in pieces from resident artists — including American Traditional — with portfolios you're welcome to browse before you book. Free consultations, any time."
     },
     {
       "title": "Body piercing",
-      "description": "Ears, septum, and everything beyond — done by one of the North Bay's most experienced piercers, 20+ years in."
+      "description": "Ears, nostril, septum, navel and beyond, plus jewelry changes and downsizes — done carefully by experienced piercers who keep it calm and clean."
     },
     {
       "title": "Tooth gems",
-      "description": "A quick, painless little sparkle — Sonoma County's go-to spot for tooth gems."
+      "description": "A quick, painless little sparkle. We're Sonoma County's go-to spot for tooth gems — in and out in a few minutes."
     },
     {
       "title": "Kids' & first piercings",
-      "description": "Family-friendly and gentle with first-timers, so little ones (and nervous grown-ups) are in good hands."
+      "description": "Family-friendly and gentle with first-timers, so little ones (and anyone nervous) are in good, patient hands."
     }
   ],
   "hours": [
-    { "day": "Mon", "hours": "11:00 AM – 6:00 PM" },
-    { "day": "Tue", "hours": "Closed" },
-    { "day": "Wed – Fri", "hours": "11:00 AM – 6:00 PM" },
-    { "day": "Sat – Sun", "hours": "12:00 PM – 5:00 PM" }
+    { "day": "Monday", "hours": "11:00 AM – 6:00 PM" },
+    { "day": "Tuesday", "hours": "Closed" },
+    { "day": "Wed – Sat", "hours": "11:00 AM – 6:00 PM" },
+    { "day": "Sunday", "hours": "12:00 PM – 5:00 PM" }
   ],
-  "hoursNote": "Walk-ins welcome — call ahead for the artist you want.",
+  "hoursNote": "Walk-ins welcome — call ahead at (707) 570-2879 or (707) 888-1269 for a specific artist.",
   "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Ink, piercings & a little sparkle",
+      "items": [
+        {
+          "title": "Custom tattoos",
+          "description": "Original work and walk-in pieces from resident artists — including American Traditional — with portfolios you're welcome to browse before you book. Free consultations, any time."
+        },
+        {
+          "title": "Body piercing",
+          "description": "Ears, nostril, septum, navel and beyond, plus jewelry changes and downsizes — done carefully by experienced piercers who keep it calm and clean."
+        },
+        {
+          "title": "Tooth gems",
+          "description": "A quick, painless little sparkle. We're Sonoma County's go-to spot for tooth gems — in and out in a few minutes."
+        },
+        {
+          "title": "Kids' & first piercings",
+          "description": "Family-friendly and gentle with first-timers, so little ones (and anyone nervous) are in good, patient hands."
+        }
+      ]
+    },
     {
       "type": "stats",
       "items": [
         { "value": "1997", "label": "Serving Sonoma County since" },
-        { "value": "20+ yrs", "label": "Master piercer behind the chair" },
-        { "value": "Best of North Bay", "label": "Voted, year after year" },
-        { "value": "100+", "label": "Five-star reviews" }
+        { "value": "Cotati → SR", "label": "Santa Rosa Ave since 2005" },
+        { "value": "Female-owned", "label": "& family-run" },
+        { "value": "Walk-ins", "label": "Always welcome" }
+      ]
+    },
+    {
+      "type": "timeline",
+      "eyebrow": "Our story",
+      "heading": "Nearly three decades of Sonoma County ink",
+      "items": [
+        { "year": "1997", "title": "The Hole Thing opens in Cotati", "body": "A female-owned tattoo and piercing shop sets up in Cotati and starts building a Sonoma County following." },
+        { "year": "2005", "title": "Home to Santa Rosa Avenue", "body": "The shop moves to 324 Santa Rosa Ave — the family establishment locals know today." },
+        { "year": "Today", "title": "Sonoma County's favorite shop", "body": "Custom tattoos, expert piercings, and tooth gems, with walk-ins always welcome." }
+      ]
+    },
+    {
+      "type": "team",
+      "eyebrow": "Meet the artists",
+      "heading": "The people behind the needle",
+      "members": [
+        { "name": "Selena", "role": "Tattoo Artist", "bio": "Resident tattoo artist — browse her portfolio in-shop or book a free consultation." },
+        { "name": "Ana", "role": "Tattoo Artist", "bio": "Resident tattoo artist taking custom work and walk-ins." },
+        { "name": "Lucas Valtenbergs", "role": "American Traditional", "bio": "Bold lines and classic American Traditional tattooing." }
       ]
     },
     {
       "type": "list",
       "eyebrow": "The full menu",
-      "heading": "Tattoos, piercings & a little sparkle",
+      "heading": "Everything you can get done here",
       "intro": "Walk in or book a free consultation — here's what we do best.",
       "groups": [
         {
@@ -93,6 +137,7 @@
           "title": "Tattoos",
           "items": [
             { "name": "Custom, original work" },
+            { "name": "American Traditional" },
             { "name": "Walk-in pieces" },
             { "name": "Free consultations", "note": "browse artist portfolios" }
           ]
@@ -108,22 +153,27 @@
       ]
     },
     {
+      "type": "bigquote",
+      "quote": "I got pierced by the owner and she was awesome — super friendly, and I felt totally comfortable the whole time.",
+      "author": "Yelp reviewer"
+    },
+    {
       "type": "testimonials",
       "eyebrow": "In their words",
       "heading": "Sonoma County keeps coming back",
       "items": [
-        {
-          "quote": "I got pierced by Kelley, who owns the shop, and she was awesome — super friendly, and I felt totally comfortable the whole time.",
-          "author": "Yelp reviewer",
-          "source": "Yelp"
-        },
         {
           "quote": "Such a soothing voice, and completely understanding of me being nervous. She turned the music down at my request and talked me right through it.",
           "author": "Yelp reviewer",
           "source": "Yelp"
         },
         {
-          "quote": "I've gotten four piercings from her and I'll keep going back. Incredibly knowledgeable, and answers every question without overwhelming you.",
+          "quote": "I've gotten four piercings here and I'll keep going back. Incredibly knowledgeable, and answers every question without overwhelming you.",
+          "author": "Yelp reviewer",
+          "source": "Yelp"
+        },
+        {
+          "quote": "Family-friendly and so gentle with my daughter's first ear piercing. We won't go anywhere else.",
           "author": "Yelp reviewer",
           "source": "Yelp"
         }
@@ -140,17 +190,29 @@
         },
         {
           "q": "Can my child get pierced here?",
-          "a": "Yes — we're a family-friendly studio and happy to do little ones' ear piercings. Bring a valid ID and we'll walk you both through it."
+          "a": "Yes — we're a family-friendly shop and happy to do little ones' ear piercings. Bring a valid ID and we'll walk you both through it."
         },
         {
           "q": "Do I need an appointment for a tattoo?",
           "a": "Not to get started. Browse our artists' portfolios, book a free consultation, and we'll plan your piece together before you sit down."
         },
         {
-          "q": "Who does the piercings?",
-          "a": "Kelley, the shop's owner — 20-plus years in, and known as one of the North Bay's most careful, knowledgeable piercers."
+          "q": "Where are you, and when are you open?",
+          "a": "324 Santa Rosa Ave, Santa Rosa. Open Mon and Wed–Sat 11–6, Sun 12–5, closed Tuesdays."
         }
       ]
+    },
+    {
+      "type": "hours-contact",
+      "heading": "Hours & how to reach us",
+      "hours": [
+        { "day": "Monday", "hours": "11:00 AM – 6:00 PM" },
+        { "day": "Tuesday", "hours": "Closed" },
+        { "day": "Wed – Sat", "hours": "11:00 AM – 6:00 PM" },
+        { "day": "Sunday", "hours": "12:00 PM – 5:00 PM" }
+      ],
+      "phone": "(707) 570-2879",
+      "cta": { "text": "Plan your visit", "href": "#contact" }
     },
     {
       "type": "cta",
@@ -160,10 +222,9 @@
       "buttonHref": "tel:7075702879"
     }
   ],
-  "status": "needs-review",
   "flags": [
-    "Using stock art — swap in real photos from their Yelp (65) or Instagram",
-    "Email not publicly listed — confirm with owner"
+    "Using stock art — swap in real photos from their Instagram (@holethingtattoo) or Yelp",
+    "Owner name not confirmed on site — verify before asserting in copy"
   ],
   "theme": {
     "brand": "#c2185b",

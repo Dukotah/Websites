@@ -1,0 +1,113 @@
+---
+import type { Section } from '../../types';
+
+type Props = Extract<Section, { type: 'stats' }>;
+
+const {
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'left',
+  items = [],
+} = Astro.props as Props;
+---
+
+<section class="section" data-tone={tone}>
+  <div class="container">
+    {(eyebrow || heading || intro) && (
+      <div class="stats__head" data-align={align}>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2>{heading}</h2>}
+        {intro && <p class="stats__intro">{intro}</p>}
+      </div>
+    )}
+
+    <div class="stats__grid">
+      {
+        items.map((item, i) => (
+          <div class="stat" data-reveal data-reveal-order={i}>
+            <div class="stat__value">{item.value}</div>
+            <div class="stat__label">{item.label}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .section[data-tone='default'] {
+    background: var(--bg);
+    color: var(--text);
+  }
+  .section[data-tone='alt'] {
+    background: var(--bg-alt);
+    color: var(--text);
+  }
+  .section[data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  .section[data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+
+  .stats__head {
+    margin-bottom: var(--section-pad);
+  }
+  .stats__head[data-align='left'] {
+    text-align: left;
+    max-width: 50ch;
+  }
+  .stats__head[data-align='center'] {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stats__intro {
+    color: var(--text-muted);
+    font-size: var(--step-0);
+    margin: 0.5rem 0 0;
+  }
+  .section[data-tone='deep'] .stats__intro,
+  .section[data-tone='brand'] .stats__intro {
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--grid-gap);
+    text-align: center;
+  }
+
+  .stat {
+    padding: var(--section-pad) 0;
+  }
+
+  .stat__value {
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    font-weight: var(--fw-display);
+    line-height: var(--leading-display);
+    color: currentColor;
+  }
+
+  .stat__label {
+    margin-top: 0.5rem;
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: var(--fw-body);
+  }
+  .section[data-tone='deep'] .stat__label,
+  .section[data-tone='brand'] .stat__label {
+    color: inherit;
+    opacity: 0.8;
+  }
+</style>

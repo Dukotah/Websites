@@ -1,0 +1,162 @@
+---
+import type { SectionEnvelope } from '../../types';
+
+interface Props extends SectionEnvelope {
+  steps: { title: string; body?: string }[];
+}
+
+const {
+  steps,
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'center',
+} = Astro.props as Props;
+---
+
+<section class="section" data-tone={tone} id="process">
+  <div class="container">
+
+    {(eyebrow || heading || intro) && (
+      <div class={`process__head${align === 'center' ? ' process__head--center' : ''}`} data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2>{heading}</h2>}
+        {intro && <p class="process__intro">{intro}</p>}
+      </div>
+    )}
+
+    <ol class="process__steps" role="list">
+      {steps.map((step, i) => (
+        <li class="process__step" data-reveal data-reveal-order={i}>
+          <div class="process__badge" aria-hidden="true">
+            <span class="process__num">{String(i + 1).padStart(2, '0')}</span>
+          </div>
+          <div class="process__connector" aria-hidden="true" />
+          <div class="process__body">
+            <h3 class="process__title">{step.title}</h3>
+            {step.body && <p class="process__desc">{step.body}</p>}
+          </div>
+        </li>
+      ))}
+    </ol>
+
+  </div>
+</section>
+
+<style>
+  .process__head {
+    max-width: 52ch;
+    margin-block-end: calc(var(--section-pad) * 0.6);
+  }
+  .process__head--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .process__head h2 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-3);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    margin-block: 0.25em 0.5em;
+  }
+
+  .process__intro {
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+  }
+
+  /* Step list — vertical track */
+  .process__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: var(--grid-gap);
+    position: relative;
+  }
+
+  /* Horizontal connector line between steps (desktop) */
+  @media (min-width: 640px) {
+    .process__steps {
+      --track-y: 2rem; /* vertical centre of the badge */
+    }
+    .process__step:not(:last-child) .process__connector {
+      display: block;
+    }
+  }
+
+  .process__step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .process__connector {
+    display: none;
+    position: absolute;
+    top: 2rem; /* badge radius */
+    left: calc(100% + var(--grid-gap) * 0.5 - 1px);
+    width: calc(var(--grid-gap));
+    height: var(--border-weight, 1px);
+    background: var(--border);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .process__badge {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--brand);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-md);
+    flex-shrink: 0;
+  }
+
+  .process__num {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-1);
+    color: var(--brand-contrast);
+    line-height: 1;
+    letter-spacing: var(--tracking-display);
+  }
+
+  .process__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-1);
+    color: var(--text);
+    margin: 0 0 0.3em;
+    line-height: var(--leading-display);
+  }
+
+  .process__desc {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    line-height: var(--leading-body);
+    margin: 0;
+  }
+
+  @media (max-width: 639px) {
+    .process__steps {
+      grid-template-columns: 1fr;
+      gap: calc(var(--grid-gap) * 1.25);
+    }
+    .process__step {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+    .process__badge {
+      margin-top: 0.1rem;
+    }
+  }
+</style>

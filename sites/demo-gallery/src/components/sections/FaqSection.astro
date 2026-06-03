@@ -1,0 +1,152 @@
+---
+import type { Section } from '../../types';
+
+type Props = Extract<Section, { type: 'faq' }>;
+
+const {
+  eyebrow = 'Good to know',
+  heading = 'Common questions',
+  intro,
+  tone = 'default',
+  align = 'left',
+  items = [],
+} = Astro.props as Props;
+---
+
+<section class="section" data-tone={tone}>
+  <div class="container faq__container">
+    {(eyebrow || heading || intro) && (
+      <div class="faq__head" data-align={align}>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2>{heading}</h2>}
+        {intro && <p class="faq__intro">{intro}</p>}
+      </div>
+    )}
+
+    <div class="faq__list">
+      {
+        items.map((item, i) => (
+          <details class="faq__item" open={i === 0} data-reveal data-reveal-order={i}>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .section[data-tone='default'] {
+    background: var(--bg);
+    color: var(--text);
+  }
+  .section[data-tone='alt'] {
+    background: var(--bg-alt);
+    color: var(--text);
+  }
+  .section[data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  .section[data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+
+  .faq__container {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: var(--section-pad);
+    align-items: start;
+  }
+
+  .faq__head {
+    position: sticky;
+    top: var(--section-pad);
+  }
+  .faq__head[data-align='center'] {
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+
+  .faq__intro {
+    color: var(--text-muted);
+    font-size: var(--step-0);
+    margin: 0.5rem 0 0;
+  }
+  .section[data-tone='deep'] .faq__intro,
+  .section[data-tone='brand'] .faq__intro {
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  .faq__list {
+    width: 100%;
+  }
+
+  .faq__item {
+    border-bottom: var(--border-weight) solid var(--border);
+    padding: 1.1rem 0;
+  }
+  .section[data-tone='deep'] .faq__item,
+  .section[data-tone='brand'] .faq__item {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .faq__item summary {
+    cursor: pointer;
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .section[data-tone='deep'] .faq__item summary,
+  .section[data-tone='brand'] .faq__item summary {
+    color: currentColor;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary::after {
+    content: '+';
+    color: var(--accent);
+    font-weight: var(--fw-body);
+    font-size: 1.4rem;
+    line-height: 1;
+    flex: 0 0 auto;
+    margin-top: -0.2rem;
+  }
+
+  .faq__item[open] summary::after {
+    content: '–';
+  }
+
+  .faq__item p {
+    margin: 0.85rem 0 0;
+    color: var(--text-muted);
+    font-size: var(--step-0);
+    line-height: var(--leading-body);
+  }
+  .section[data-tone='deep'] .faq__item p,
+  .section[data-tone='brand'] .faq__item p {
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 760px) {
+    .faq__container {
+      grid-template-columns: 1fr;
+    }
+    .faq__head {
+      position: static;
+      grid-column: 1;
+    }
+  }
+</style>

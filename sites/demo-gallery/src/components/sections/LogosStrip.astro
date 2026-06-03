@@ -1,0 +1,162 @@
+---
+import type { SectionEnvelope } from '../../types';
+
+interface Props extends SectionEnvelope {
+  items: { label: string; logo?: string }[];
+}
+
+const {
+  items,
+  eyebrow,
+  heading,
+  intro,
+  tone = 'alt',
+  align = 'center',
+} = Astro.props as Props;
+---
+
+<section class="section section--logos" data-tone={tone} id="logos">
+  <div class="container">
+
+    {(eyebrow || heading || intro) && (
+      <div class={`logos__head${align === 'center' ? ' logos__head--center' : ''}`} data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2>{heading}</h2>}
+        {intro && <p class="logos__intro">{intro}</p>}
+      </div>
+    )}
+
+    <ul class="logos__strip" role="list" data-reveal data-reveal-order="1">
+      {items.map(({ label, logo }) => (
+        <li class="logos__item">
+          {logo ? (
+            <div class="logos__frame" data-frame>
+              <img
+                src={logo}
+                alt={label}
+                class="logos__img"
+                loading="lazy"
+                decoding="async"
+                width="120"
+                height="60"
+              />
+            </div>
+          ) : (
+            <div class="logos__wordmark" aria-label={label}>
+              <span>{label}</span>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+<style>
+  .section--logos {
+    --_pad-v: calc(var(--section-pad) * 0.55);
+    padding-block: var(--_pad-v);
+  }
+
+  .logos__head {
+    max-width: 52ch;
+    margin-block-end: calc(var(--section-pad) * 0.45);
+  }
+  .logos__head--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+  .logos__head h2 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-2);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    margin-block: 0.25em 0.5em;
+  }
+  .logos__intro {
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+  }
+
+  /* Strip */
+  .logos__strip {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--grid-gap) * 1.25);
+    border-top: var(--border-weight) solid var(--border);
+    border-bottom: var(--border-weight) solid var(--border);
+    padding-block: calc(var(--grid-gap) * 1.25);
+  }
+
+  .logos__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Logo image frame */
+  .logos__frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: var(--border-weight) solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--motion-fade) var(--motion-ease),
+                transform var(--motion-fade) var(--motion-ease);
+  }
+  .logos__frame:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .logos__img {
+    max-width: 120px;
+    max-height: 56px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* Desaturate by default; full color on hover for subtle interactivity */
+    filter: grayscale(0.6) opacity(0.85);
+    transition: filter var(--motion-fade) var(--motion-ease);
+  }
+  .logos__frame:hover .logos__img {
+    filter: grayscale(0) opacity(1);
+  }
+
+  /* Text-only wordmark (no logo provided) */
+  .logos__wordmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65em 1.25em;
+    border: var(--border-weight) solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+  .logos__wordmark span {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .logos__strip {
+      gap: var(--grid-gap);
+    }
+  }
+</style>

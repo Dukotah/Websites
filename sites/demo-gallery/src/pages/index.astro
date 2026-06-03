@@ -1,44 +1,37 @@
 ---
 import '../styles/global.css';
 import type { ProspectConfig } from '../types';
+import { resolveArtDirection } from '../lib/art-direction';
+import { composePage } from '../lib/compose';
+import { scoreProspect } from '../lib/score';
 
-// Internal dashboard of every demo — this is YOUR view, not prospect-facing.
-// It computes a quality status per demo so you can spot the ones that need a
-// human touch before you send them.
+// Internal dashboard of every demo — YOUR view, not prospect-facing. It scores
+// each demo (spec §10) so you can tell a genuinely strong, unique site from a
+// generic one at a glance.
 const modules = import.meta.glob<ProspectConfig>('../data/prospects/*.json', {
   eager: true,
   import: 'default',
 });
 
-// Infer quality flags so weak demos surface themselves (plus any explicit
-// flags the agent wrote into the JSON).
-function flagsFor(config: ProspectConfig): string[] {
-  const flags = [...(config.flags ?? [])];
-  if (config.images.hero.startsWith('/images/library/')) flags.push('Stock art — no real photos yet');
-  if (!config.sections || config.sections.length === 0) flags.push('Thin — no depth sections');
-  if (config.services.some((s) => /service (one|two|three|four)/i.test(s.title)))
-    flags.push('Template copy not rewritten');
-  return flags;
-}
-
 const prospects = Object.entries(modules)
   .map(([path, config]) => {
-    const flags = flagsFor(config);
-    const status: 'ready' | 'needs-review' =
-      config.status ?? (flags.length ? 'needs-review' : 'ready');
-    return { slug: path.split('/').pop()!.replace(/\.json$/, ''), config, flags, status };
+    const slug = path.split('/').pop()!.replace(/\.json$/, '');
+    const ad = resolveArtDirection(config);
+    const plan = composePage(config, ad);
+    const s = scoreProspect(config, ad, plan);
+    return { slug, config, ad, plan, ...s };
   })
-  // Needs-attention first, then alphabetical.
-  .sort((a, b) =>
-    a.status !== b.status
-      ? a.status === 'needs-review'
-        ? -1
-        : 1
-      : a.config.name.localeCompare(b.config.name),
-  );
+  // Worst score first — the ones needing work surface to the top.
+  .sort((a, b) => a.score - b.score);
 
-const needsReview = prospects.filter((p) => p.status === 'needs-review').length;
-const ready = prospects.length - needsReview;
+const avg = prospects.length
+  ? Math.round(prospects.reduce((n, p) => n + p.score, 0) / prospects.length)
+  : 0;
+const gradeCounts = prospects.reduce<Record<string, number>>((acc, p) => {
+  acc[p.grade] = (acc[p.grade] ?? 0) + 1;
+  return acc;
+}, {});
+const GRADES = ['A', 'B', 'C', 'D', 'F'];
 ---
 
 <!doctype html>
@@ -48,41 +41,63 @@ const ready = prospects.length - needsReview;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Demo dashboard — {prospects.length} sites</title>
+    <title>Demo dashboard — {prospects.length} sites · avg {avg}</title>
   </head>
   <body>
     <main class="container" style="padding-block: 3rem;">
       <p class="eyebrow">Outreach demos</p>
       <h1>{prospects.length} demo {prospects.length === 1 ? 'site' : 'sites'}</h1>
       <p class="summary">
-        <span class="pill pill--review">{needsReview} need attention</span>
-        <span class="pill pill--ready">{ready} ready to send</span>
+        <span class="pill pill--avg">Avg score {avg}</span>
+        {GRADES.map((g) =>
+          gradeCounts[g] ? (
+            <span class={`pill grade grade--${g}`}>{gradeCounts[g]} × {g}</span>
+          ) : null,
+        )}
       </p>
-      <p style="color: var(--text-muted); max-width: 62ch;">
-        Sorted so the ones needing a human touch come first. Flags are inferred
-        (stock art, thin content, template copy) plus anything the agent noted.
+      <p class="lede">
+        Scored on real photos, copy authenticity, section richness, contact
+        completeness, identity strength, trust signals & SEO. Sorted worst-first.
       </p>
 
       <ul class="grid">
         {
-          prospects.map(({ slug, config, flags, status }) => (
-            <li class={`card ${status === 'needs-review' ? 'card--review' : 'card--ready'}`}>
-              <span class="card__swatch" style={`background:${config.theme.brand}`} />
+          prospects.map(({ slug, config, ad, score, grade, flags }) => (
+            <li class="card" style={`--spine:${ad.palette.brand}`}>
               <div class="card__body">
                 <div class="card__top">
                   <h2>{config.name}</h2>
-                  <span class={`badge badge--${status === 'needs-review' ? 'review' : 'ready'}`}>
-                    {status === 'needs-review' ? 'Needs attention' : 'Ready'}
-                  </span>
+                  <span class={`gradechip grade--${grade}`}>{grade}</span>
                 </div>
                 <p class="card__meta">{config.area}</p>
+
+                <div class="identity" title={`font: ${ad.fontId} · shape: ${ad.shape} · ${ad.category}`}>
+                  <span class="swatches" aria-hidden="true">
+                    <span style={`background:${ad.palette.brand}`} />
+                    <span style={`background:${ad.palette.accent}`} />
+                    <span style={`background:${ad.palette.bg}`} />
+                    <span style={`background:${ad.palette.bgDeep}`} />
+                  </span>
+                  <span class="identity__tags">
+                    <code>{ad.fontPairing.mood}</code>
+                    <code>{ad.shape}</code>
+                    <code>{ad.category}</code>
+                  </span>
+                </div>
+
+                <div class="scorebar" aria-label={`Score ${score} of 100`}>
+                  <span class={`scorebar__fill grade--${grade}`} style={`width:${score}%`} />
+                  <span class="scorebar__num">{score}</span>
+                </div>
+
                 {flags.length > 0 && (
                   <ul class="card__flags">
-                    {flags.map((f) => (
+                    {flags.slice(0, 4).map((f) => (
                       <li>{f}</li>
                     ))}
                   </ul>
                 )}
+
                 <div class="card__actions">
                   <a href={`/p/${slug}`}>View demo →</a>
                   <code class="card__link">/p/{slug}</code>
@@ -105,22 +120,25 @@ const ready = prospects.length - needsReview;
     <style>
       .summary {
         display: flex;
-        gap: 0.6rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         margin: 0.5rem 0 1rem;
       }
+      .lede {
+        color: var(--text-muted);
+        max-width: 64ch;
+      }
       .pill {
-        font-size: 0.82rem;
-        font-weight: 600;
+        font-size: 0.8rem;
+        font-weight: 700;
         padding: 0.3rem 0.8rem;
         border-radius: 999px;
+        background: var(--bg-alt);
+        color: var(--text);
       }
-      .pill--review {
-        background: #fde2e1;
-        color: #a12a22;
-      }
-      .pill--ready {
-        background: #def5e4;
-        color: #1f7a3d;
+      .pill--avg {
+        background: #e6edf7;
+        color: #1f3a63;
       }
       .grid {
         list-style: none;
@@ -128,29 +146,17 @@ const ready = prospects.length - needsReview;
         margin: 1.5rem 0 0;
         display: grid;
         gap: 1.25rem;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       }
       .card {
-        display: flex;
-        gap: 1rem;
-        padding: 1.25rem;
         border: 1px solid var(--border);
-        border-radius: var(--radius);
-        background: var(--bg-alt);
-      }
-      .card--review {
-        border-left: 4px solid #e0746b;
-      }
-      .card--ready {
-        border-left: 4px solid #4caf72;
-      }
-      .card__swatch {
-        flex: 0 0 auto;
-        width: 8px;
-        border-radius: 999px;
+        border-left: 5px solid var(--spine);
+        border-radius: 10px;
+        background: var(--surface, #fff);
+        overflow: hidden;
       }
       .card__body {
-        flex: 1;
+        padding: 1.25rem;
       }
       .card__top {
         display: flex;
@@ -159,35 +165,88 @@ const ready = prospects.length - needsReview;
         gap: 0.5rem;
       }
       .card h2 {
-        margin: 0 0 0.2rem;
+        margin: 0 0 0.15rem;
         font-size: 1.12rem;
       }
-      .badge {
+      .card__meta {
+        margin: 0 0 0.75rem;
+        color: var(--text-muted);
+        font-size: 0.88rem;
+      }
+      .gradechip {
         flex: 0 0 auto;
+        width: 1.9rem;
+        height: 1.9rem;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: #fff;
+      }
+      .grade--A { background: #1f9d57; }
+      .grade--B { background: #5aa736; }
+      .grade--C { background: #c79a18; }
+      .grade--D { background: #d2702a; }
+      .grade--F { background: #c23b32; }
+      .grade.pill { color: #fff; }
+
+      .identity {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 0.85rem;
+      }
+      .swatches {
+        display: inline-flex;
+        flex: 0 0 auto;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .swatches span {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+      .identity__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+      }
+      .identity__tags code {
         font-size: 0.68rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        padding: 0.2rem 0.5rem;
+        background: var(--bg-alt);
+        color: var(--text-muted);
+        padding: 0.12rem 0.4rem;
+        border-radius: 4px;
+      }
+      .scorebar {
+        position: relative;
+        height: 1.25rem;
+        background: var(--bg-alt);
+        border-radius: 999px;
+        overflow: hidden;
+        margin-bottom: 0.85rem;
+      }
+      .scorebar__fill {
+        position: absolute;
+        inset: 0 auto 0 0;
         border-radius: 999px;
       }
-      .badge--review {
-        background: #fde2e1;
-        color: #a12a22;
-      }
-      .badge--ready {
-        background: #def5e4;
-        color: #1f7a3d;
-      }
-      .card__meta {
-        margin: 0 0 0.6rem;
-        color: var(--text-muted);
-        font-size: 0.9rem;
+      .scorebar__num {
+        position: absolute;
+        right: 0.6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: var(--text);
       }
       .card__flags {
         margin: 0 0 0.75rem;
         padding-left: 1.1rem;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         color: #9a5b2e;
       }
       .card__flags li {
@@ -200,7 +259,7 @@ const ready = prospects.length - needsReview;
         gap: 0.5rem;
       }
       .card__link {
-        font-size: 0.78rem;
+        font-size: 0.76rem;
         color: var(--text-muted);
       }
     </style>

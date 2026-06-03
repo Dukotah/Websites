@@ -1,0 +1,144 @@
+---
+import type { Section } from '../../types';
+
+type Props = Extract<Section, { type: 'list' }>;
+
+const {
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'left',
+  groups = [],
+} = Astro.props as Props;
+---
+
+<section class="section" data-tone={tone}>
+  <div class="container">
+    {(eyebrow || heading || intro) && (
+      <div class="list__head" data-align={align}>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2>{heading}</h2>}
+        {intro && <p class="list__intro">{intro}</p>}
+      </div>
+    )}
+
+    <div class="list__groups">
+      {
+        groups.map((group, i) => (
+          <div class="list__group" data-reveal data-reveal-order={i}>
+            <h3 class="list__title">{group.title}</h3>
+            <ul class="list__items">
+              {group.items.map((item) => (
+                <li>
+                  <span class="list__name">{item.name}</span>
+                  {item.note && <span class="list__note">{item.note}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .section[data-tone='default'] {
+    background: var(--bg);
+    color: var(--text);
+  }
+  .section[data-tone='alt'] {
+    background: var(--bg-alt);
+    color: var(--text);
+  }
+  .section[data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  .section[data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+
+  .list__head {
+    max-width: 50ch;
+    margin-bottom: var(--section-pad);
+  }
+  .list__head[data-align='center'] {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .list__intro {
+    color: var(--text-muted);
+    font-size: var(--step-0);
+    margin: 0.5rem 0 0;
+  }
+  .section[data-tone='deep'] .list__intro,
+  .section[data-tone='brand'] .list__intro {
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  .list__groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--section-pad);
+  }
+
+  .list__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    color: var(--text);
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--accent);
+    margin: 0 0 0.75rem 0;
+    font-size: var(--step-1);
+  }
+  .section[data-tone='deep'] .list__title,
+  .section[data-tone='brand'] .list__title {
+    color: currentColor;
+  }
+
+  .list__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .list__items li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px dotted var(--border);
+    font-size: var(--step-0);
+  }
+  .section[data-tone='deep'] .list__items li,
+  .section[data-tone='brand'] .list__items li {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .list__name {
+    font-weight: var(--fw-bold);
+    color: var(--text);
+  }
+  .section[data-tone='deep'] .list__name,
+  .section[data-tone='brand'] .list__name {
+    color: currentColor;
+  }
+
+  .list__note {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    text-align: right;
+    flex: 0 0 auto;
+  }
+  .section[data-tone='deep'] .list__note,
+  .section[data-tone='brand'] .list__note {
+    color: inherit;
+    opacity: 0.8;
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+/**
+ * ServiceAreaSection — towns/areas served as chips. Spec §6: type 'service-area'.
+ */
+import type { SectionEnvelope } from '../../types';
+
+interface Props extends SectionEnvelope {
+  areas: string[];
+  note?: string;
+}
+
+const {
+  areas = [],
+  note,
+  eyebrow = 'Service area',
+  heading,
+  intro,
+  tone = 'alt',
+  align = 'left',
+} = Astro.props as Props;
+---
+
+{areas.length > 0 && (
+  <section class="section area" data-tone={tone}>
+    <div class="container">
+      <header class={`area__head area__head--${align}`} data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2 class="area__heading">{heading}</h2>}
+        {intro && <p class="area__intro">{intro}</p>}
+      </header>
+      <ul class="area__chips" data-reveal data-reveal-order="1">
+        {areas.map((a) => (
+          <li class="area__chip">{a}</li>
+        ))}
+      </ul>
+      {note && <p class="area__note" data-reveal data-reveal-order="2">{note}</p>}
+    </div>
+  </section>
+)}
+
+<style>
+  .area { padding-block: var(--section-pad); }
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .area__head { margin-bottom: 1.75rem; max-width: 56ch; }
+  .area__head--center { text-align: center; margin-inline: auto; }
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 0.5rem;
+  }
+  .area__heading {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 0.6rem;
+  }
+  .area__intro {
+    font-size: var(--step-0);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0;
+  }
+  .area__chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.7rem;
+  }
+  .area__chip {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    color: var(--text);
+    background: var(--surface);
+    border: var(--border-weight) solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .area__note {
+    margin: 1.5rem 0 0;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+  }
+
+  [data-tone='alt'] { background: var(--bg-alt); }
+  [data-tone='deep'] { background: var(--bg-deep); color: var(--text-on-dark); }
+  [data-tone='deep'] .area__heading { color: var(--text-on-dark); }
+  [data-tone='deep'] .area__chip {
+    background: var(--surface-2);
+    color: var(--text-on-dark);
+    border-color: color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+  }
+  [data-tone='brand'] { background: var(--brand); color: var(--brand-contrast); }
+  [data-tone='brand'] .area__heading,
+  [data-tone='brand'] .eyebrow { color: var(--brand-contrast); }
+  [data-tone='brand'] .area__chip {
+    background: color-mix(in srgb, var(--brand-contrast) 14%, transparent);
+    color: var(--brand-contrast);
+    border-color: color-mix(in srgb, var(--brand-contrast) 30%, transparent);
+  }
+</style>

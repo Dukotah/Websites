@@ -1,0 +1,245 @@
+---
+/**
+ * FeatureSplit — alternating image + copy rows (zig-zag per row).
+ * Spec §6: type 'feature-split'. No client JS. Image side flips each row.
+ */
+import type { SectionEnvelope } from '../../types';
+
+interface SplitRow {
+  heading: string;
+  body: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+interface Props extends SectionEnvelope {
+  rows: SplitRow[];
+}
+
+const {
+  rows,
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'left',
+} = Astro.props as Props;
+---
+
+<section class="section feature-split" data-tone={tone}>
+  <div class="container">
+    {(eyebrow || heading || intro) && (
+      <header class={`section-header section-header--${align}`} data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2 class="feature-split__heading">{heading}</h2>}
+        {intro && <p class="feature-split__intro">{intro}</p>}
+      </header>
+    )}
+
+    <div class="split-rows">
+      {rows.map((row, i) => (
+        <div class={`split-row split-row--${i % 2 === 0 ? 'img-left' : 'img-right'}`}>
+          {row.image && (
+            <figure class="split-row__media" data-frame data-reveal data-reveal-order={0}>
+              <img
+                src={row.image}
+                alt={row.imageAlt ?? row.heading}
+                loading="lazy"
+                decoding="async"
+                class="split-row__img"
+              />
+            </figure>
+          )}
+          <div
+            class={`split-row__copy${!row.image ? ' split-row__copy--full' : ''}`}
+            data-reveal
+            data-reveal-order={1}
+          >
+            <h3 class="split-row__title">{row.heading}</h3>
+            <p class="split-row__body">{row.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-split {
+    padding-block: var(--section-pad);
+  }
+
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  .section-header--center {
+    text-align: center;
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+  .section-header--left {
+    text-align: left;
+    max-width: 52ch;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 0.5rem;
+  }
+
+  .feature-split__heading {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 0.75rem;
+  }
+
+  .feature-split__intro {
+    font-size: var(--step-0);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0;
+  }
+
+  /* Row layout ---------------------------------------------------------------- */
+  .split-rows {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--section-pad) * 0.75);
+  }
+
+  .split-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--grid-gap);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .split-row {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Image-left row: media col 1, copy col 2 (natural DOM order) */
+    .split-row--img-left .split-row__media {
+      order: 0;
+    }
+    .split-row--img-left .split-row__copy {
+      order: 1;
+    }
+
+    /* Image-right row: copy col 1, media col 2 */
+    .split-row--img-right .split-row__media {
+      order: 1;
+    }
+    .split-row--img-right .split-row__copy {
+      order: 0;
+    }
+  }
+
+  /* Media -------------------------------------------------------------------- */
+  .split-row__media {
+    margin: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: var(--surface);
+    aspect-ratio: 4 / 3;
+  }
+
+  .split-row__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform calc(var(--motion-fade) * 1.4) var(--motion-ease);
+  }
+
+  .split-row__media:hover .split-row__img {
+    transform: scale(1.04);
+  }
+
+  /* Copy --------------------------------------------------------------------- */
+  .split-row__copy {
+    padding-block: 0.5rem;
+  }
+
+  .split-row__copy--full {
+    grid-column: 1 / -1;
+  }
+
+  .split-row__title {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 1rem;
+  }
+
+  .split-row__body {
+    font-size: var(--step-0);
+    line-height: var(--leading-body);
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 54ch;
+  }
+
+  /* Separator between rows */
+  .split-row + .split-row {
+    padding-top: calc(var(--section-pad) * 0.25);
+    border-top: var(--border-weight) solid var(--border);
+  }
+
+  /* Tone overrides ---------------------------------------------------------- */
+  [data-tone='alt'] {
+    background: var(--bg-alt);
+  }
+  [data-tone='deep'] {
+    background: var(--bg-deep);
+  }
+  [data-tone='deep'] .feature-split__heading,
+  [data-tone='deep'] .split-row__title {
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .feature-split__intro,
+  [data-tone='deep'] .split-row__body {
+    color: color-mix(in srgb, var(--text-on-dark) 75%, transparent);
+  }
+  [data-tone='deep'] .eyebrow {
+    color: var(--accent);
+  }
+  [data-tone='deep'] .split-row + .split-row {
+    border-top-color: color-mix(in srgb, var(--text-on-dark) 15%, transparent);
+  }
+  [data-tone='brand'] {
+    background: var(--brand);
+  }
+  [data-tone='brand'] .feature-split__heading,
+  [data-tone='brand'] .split-row__title {
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .feature-split__intro,
+  [data-tone='brand'] .split-row__body {
+    color: color-mix(in srgb, var(--brand-contrast) 80%, transparent);
+  }
+  [data-tone='brand'] .eyebrow {
+    color: var(--brand-contrast);
+    opacity: 0.75;
+  }
+</style>

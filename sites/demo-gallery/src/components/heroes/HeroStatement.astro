@@ -1,0 +1,163 @@
+---
+// HeroStatement — huge display type + keyline + CTA, ultra-minimal.
+// Designed for luxury / editorial fonts; no photo required.
+// The keyline (horizontal rule) is the primary visual gesture.
+import type { ProspectConfig } from '../../types';
+const { config } = Astro.props as { config: ProspectConfig };
+const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const eyebrow = [config.established, config.area].filter(Boolean).join(' · ');
+---
+
+<section class="stmt-hero" id="top">
+  <div class="container stmt-hero__inner">
+    <!-- Top metadata line -->
+    {eyebrow && (
+      <p class="stmt-hero__eyebrow" data-reveal data-reveal-order="0">{eyebrow}</p>
+    )}
+
+    <!-- Keyline above the heading — the defining gesture -->
+    <div class="stmt-hero__rule" aria-hidden="true" data-reveal data-reveal-order="1"></div>
+
+    <h1 class="stmt-hero__title" data-reveal data-reveal-order="2">
+      {config.hero.heading}
+    </h1>
+
+    <!-- Keyline below the heading -->
+    <div class="stmt-hero__rule stmt-hero__rule--thin" aria-hidden="true" data-reveal data-reveal-order="3"></div>
+
+    <div class="stmt-hero__foot" data-reveal data-reveal-order="4">
+      <p class="stmt-hero__sub">{config.hero.subheading}</p>
+      <div class="stmt-hero__actions">
+        <a href={config.hero.ctaHref} class="btn">{config.hero.ctaText}</a>
+        {config.contact.phone && (
+          <a href={telHref} class="stmt-hero__phone">{config.contact.phone}</a>
+        )}
+      </div>
+    </div>
+
+    {config.highlights && config.highlights.length > 0 && (
+      <ul class="stmt-hero__highlights" data-reveal data-reveal-order="5">
+        {config.highlights.map((h) => <li>{h}</li>)}
+      </ul>
+    )}
+  </div>
+</section>
+
+<style>
+  .stmt-hero {
+    background: var(--bg);
+    color: var(--text);
+    min-height: min(82vh, 720px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .stmt-hero__inner {
+    padding-block: clamp(4rem, 12vw, 8rem);
+  }
+
+  .stmt-hero__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  /* Primary keyline — thick, brand-colored */
+  .stmt-hero__rule {
+    height: 3px;
+    background: var(--brand);
+    border: none;
+    margin: 0 0 1.75rem;
+    width: clamp(3rem, 8vw, 7rem);
+    transform-origin: left center;
+  }
+
+  /* Secondary keyline — thin, muted */
+  .stmt-hero__rule--thin {
+    height: 1px;
+    background: var(--border);
+    width: 100%;
+    margin: 1.75rem 0 2.5rem;
+  }
+
+  .stmt-hero__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text);
+    margin: 0;
+    /* Allow very long business names to wrap gracefully */
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Foot: subheading + actions in a flex row on wide screens */
+  .stmt-hero__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1.5rem 3rem;
+  }
+
+  .stmt-hero__sub {
+    font-size: clamp(1rem, 1.8vw, 1.22rem);
+    line-height: var(--leading-body);
+    color: var(--text-muted);
+    max-width: 52ch;
+    margin: 0;
+    flex: 1 1 280px;
+  }
+
+  .stmt-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    flex-shrink: 0;
+    padding-top: 0.15rem; /* optical align with first line of sub */
+  }
+
+  .stmt-hero__phone {
+    color: var(--text);
+    font-weight: var(--fw-bold);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: border-color var(--motion-ease), color var(--motion-ease);
+  }
+  .stmt-hero__phone:hover {
+    text-decoration: none;
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .stmt-hero__highlights {
+    list-style: none;
+    margin: 3rem 0 0;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .stmt-hero__title {
+      font-size: clamp(2.4rem, 10vw, 3.5rem);
+    }
+    .stmt-hero__foot {
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+  }
+</style>

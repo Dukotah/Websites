@@ -1,0 +1,191 @@
+---
+import type { BusinessHours, SectionEnvelope } from '../../types';
+
+interface Props extends SectionEnvelope {
+  hours: BusinessHours[];
+  phone?: string;
+  cta?: { text: string; href: string };
+}
+
+const {
+  hours,
+  phone,
+  cta,
+  eyebrow,
+  heading,
+  intro,
+  tone = 'alt',
+  align = 'left',
+} = Astro.props as Props;
+
+/** Split hours into two columns at the midpoint */
+const mid = Math.ceil(hours.length / 2);
+const col1 = hours.slice(0, mid);
+const col2 = hours.slice(mid);
+---
+
+<section class="section" data-tone={tone} id="hours-contact">
+  <div class="container">
+    <div class={`hc__layout${align === 'center' ? ' hc__layout--center' : ''}`}>
+
+      <!-- Header column -->
+      <div class="hc__header" data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2>{heading}</h2>}
+        {intro && <p class="hc__intro">{intro}</p>}
+
+        {phone && (
+          <a class="hc__phone" href={`tel:${phone.replace(/\D/g, '')}`} aria-label={`Call us at ${phone}`}>
+            {phone}
+          </a>
+        )}
+
+        {cta && (
+          <a class="hc__cta btn" href={cta.href}>
+            {cta.text}
+          </a>
+        )}
+      </div>
+
+      <!-- Hours table -->
+      <div class="hc__hours" data-reveal data-reveal-order="1">
+        <dl class="hours-grid">
+          {col1.map(({ day, hours: h }) => (
+            <div class="hours-row">
+              <dt class="hours-row__day">{day}</dt>
+              <dd class="hours-row__val">{h}</dd>
+            </div>
+          ))}
+        </dl>
+        {col2.length > 0 && (
+          <dl class="hours-grid">
+            {col2.map(({ day, hours: h }) => (
+              <div class="hours-row">
+                <dt class="hours-row__day">{day}</dt>
+                <dd class="hours-row__val">{h}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .hc__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gap);
+    align-items: start;
+  }
+  .hc__layout--center {
+    text-align: center;
+    justify-items: center;
+  }
+
+  .hc__header h2 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-3);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    margin-block: 0.25em 0.5em;
+  }
+
+  .hc__intro {
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin-block-end: 1.5rem;
+  }
+
+  .hc__phone {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-2);
+    color: var(--brand);
+    text-decoration: none;
+    margin-block-end: 1.25rem;
+    transition: color var(--motion-fade) var(--motion-ease);
+  }
+  .hc__phone:hover,
+  .hc__phone:focus-visible {
+    color: var(--accent);
+    outline-offset: 3px;
+    outline: 2px solid var(--ring);
+  }
+
+  .hc__cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65em 1.5em;
+    background: var(--brand);
+    color: var(--brand-contrast);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    transition: background var(--motion-fade) var(--motion-ease),
+                box-shadow var(--motion-fade) var(--motion-ease);
+    box-shadow: var(--shadow-sm);
+  }
+  .hc__cta:hover,
+  .hc__cta:focus-visible {
+    background: var(--brand-dark);
+    box-shadow: var(--shadow-md);
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Hours grid */
+  .hc__hours {
+    display: flex;
+    gap: var(--grid-gap);
+  }
+
+  .hours-grid {
+    flex: 1;
+    margin: 0;
+    padding: var(--grid-gap);
+    background: var(--surface);
+    border: var(--border-weight) solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.55em 0;
+    border-bottom: var(--border-weight) solid var(--border);
+  }
+  .hours-row:last-child {
+    border-bottom: none;
+  }
+
+  .hours-row__day {
+    font-weight: var(--fw-bold);
+    color: var(--text);
+    font-size: var(--step--1);
+  }
+  .hours-row__val {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .hc__layout {
+      grid-template-columns: 1fr;
+    }
+    .hc__hours {
+      flex-direction: column;
+    }
+  }
+</style>
