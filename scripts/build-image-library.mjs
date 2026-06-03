@@ -27,6 +27,7 @@ const PALETTES = {
   landscaping: ['#3aa050', '#22321f', '#bfe06a'],
   'auto-repair': ['#e8961f', '#23272e', '#f4d35e'],
   tattoo: ['#c2185b', '#1a1620', '#e8a0c0'],
+  winery: ['#8e3b4a', '#2b1a22', '#d9a05b'],
   default: ['#c2683a', '#243b53', '#e0b074'],
 };
 

@@ -1,0 +1,69 @@
+{
+  "name": "Kog Hill Winery",
+  "tagline": "Small-batch, artisan wines from Pennsylvania fruit — Morgantown, PA.",
+  "seoDescription": "Kog Hill Winery in Morgantown, PA — 25+ small-batch artisan wines from Pennsylvania-grown fruit, from Cabernet Franc to Toasted Marshmallow. Open Fri–Sun.",
+  "area": "Morgantown, PA",
+  "established": "Est. 2002",
+  "contact": {
+    "phone": "(610) 913-6609",
+    "email": "",
+    "address": "105 Twin County Rd, Morgantown, PA 19543"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/KogHillWinery/",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Twenty-five wines, made in small batches.",
+    "subheading": "An artisan Pennsylvania winery in Morgantown, crafting everything from classic Cabernet Franc to a Toasted Marshmallow you have to taste to believe — all from locally grown fruit.",
+    "ctaText": "Visit the winery",
+    "ctaHref": "#contact"
+  },
+  "highlights": ["Crafting since 2002", "25+ small-batch wines", "PA-grown fruit"],
+  "images": {
+    "hero": "/images/library/winery/hero.svg",
+    "heroAlt": "Kog Hill Winery in Morgantown, PA",
+    "story": "/images/library/winery/story.svg",
+    "storyAlt": "Kog Hill Winery tasting room",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/winery/hero.svg"
+  },
+  "about": {
+    "heading": "Artisan wines since 2002",
+    "body": [
+      "Kog Hill was founded in 2002 on a simple idea: make genuinely good wine from Pennsylvania-grown fruit. Two decades on, that principle still guides every small, hand-crafted batch that leaves the cellar.",
+      "In 2022, Julie and Bob took the reins and kept the artisan spirit going — today the list runs more than twenty-five wines deep, side by side with the classics: Cabernet Franc and Grüner Veltliner next to playful pours like Toasted Marshmallow and Pumpkin Spice. There's something here for the purist and the curious alike."
+    ],
+    "signature": "— Julie & Bob"
+  },
+  "servicesHeading": "What we pour",
+  "services": [
+    {
+      "title": "Small-batch wines",
+      "description": "More than 25 artisan wines, made in small lots from Pennsylvania-grown fruit."
+    },
+    {
+      "title": "Classic varietals",
+      "description": "Cabernet Franc, Grüner Veltliner, and other dry standards for the traditionalist."
+    },
+    {
+      "title": "Specialty pours",
+      "description": "Toasted Marshmallow, Pumpkin Spice, and other seasonal favorites that keep things fun."
+    },
+    {
+      "title": "Tastings",
+      "description": "Weekend tastings where you can work through the list and find your bottle."
+    }
+  ],
+  "hours": [
+    { "day": "Fri – Sun", "hours": "12:00 PM – 5:00 PM" },
+    { "day": "Mon – Thu", "hours": "Closed" }
+  ],
+  "hoursNote": "",
+  "theme": {
+    "brand": "#6d3a6b",
+    "brandDark": "#241a26"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "name": "ReKlaimed Vines",
+  "tagline": "Huntingdon County's only winery — family-made, hand-bottled, whole-fruit wines.",
+  "seoDescription": "ReKlaimed Vines — a family-owned winery in Huntingdon, PA. Hand-bottled dry and whole-fruit wines, slushies, and wine jelly, made by Kristi, Charles and their five kids.",
+  "area": "Huntingdon, PA",
+  "established": "",
+  "contact": {
+    "phone": "(717) 363-2090",
+    "email": "",
+    "address": "9002 William Penn Hwy, Huntingdon, PA 16652"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/reklaimedvines",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Hand-bottled by one family — all seven of us.",
+    "subheading": "Huntingdon County's only winery: a family-owned and operated Central Pennsylvania label where every wine is made and hand-bottled by Kristi, Charles, and their five kids.",
+    "ctaText": "Come taste",
+    "ctaHref": "#contact"
+  },
+  "highlights": ["Family-owned & operated", "Hand-bottled, every batch", "Huntingdon County's only winery"],
+  "images": {
+    "hero": "/images/library/winery/hero.svg",
+    "heroAlt": "ReKlaimed Vines winery in Huntingdon, PA",
+    "story": "/images/library/winery/story.svg",
+    "storyAlt": "ReKlaimed Vines tasting room",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/winery/hero.svg"
+  },
+  "about": {
+    "heading": "A true family winery",
+    "body": [
+      "ReKlaimed Vines is a small, family-owned and operated winery in Central Pennsylvania — and proudly Huntingdon County's only one. Together with their five children, Kristi and Charles make and hand-bottle every single wine they sell.",
+      "Our fruit wines are made from the whole fruit, which we believe is the secret to their bright, true-to-the-orchard taste. Stop in — you'll find dry wines and fruit wines, slushies, and even wine jelly, and Kristi and Charles will make you feel right at home."
+    ],
+    "signature": "— Kristi & Charles"
+  },
+  "servicesHeading": "What we make",
+  "services": [
+    {
+      "title": "Whole-fruit wines",
+      "description": "Fruit wines pressed from the whole fruit for a brighter, truer flavor — our signature."
+    },
+    {
+      "title": "Dry wines",
+      "description": "A hand-crafted lineup of dry wines for the traditional palate."
+    },
+    {
+      "title": "Wine slushies & jelly",
+      "description": "Warm-weather slushies and small-batch wine jelly to take a little home with you."
+    },
+    {
+      "title": "Tasting room",
+      "description": "A welcoming room shared with Defiant Distillery, where the whole family says hello."
+    }
+  ],
+  "hours": [
+    { "day": "Fri – Sat", "hours": "Open — call ahead" },
+    { "day": "Sun", "hours": "Open — call ahead" }
+  ],
+  "hoursNote": "Hours shift seasonally — give us a call at (717) 363-2090 to confirm before you head out.",
+  "theme": {
+    "brand": "#7a5230",
+    "brandDark": "#241c16"
+  }
+}
