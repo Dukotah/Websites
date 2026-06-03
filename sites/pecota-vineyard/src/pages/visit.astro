@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { config } from '../config';
+
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
+const mapEmbed =
+  'https://www.google.com/maps?q=Shingle%20Springs%2C%20CA&z=11&output=embed';
+---
+
+<BaseLayout title="Visit & Buy" description="How to buy Pecota Vineyard wine. A small family micro-winery in Shingle Springs, El Dorado County, CA — call us to purchase or ask about current releases.">
+  <section class="pagehead">
+    <div class="container container--narrow">
+      <span class="kicker">{config.contact.location}</span>
+      <h1>Visit &amp; buy</h1>
+      <p>{config.contact.note}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact">
+      <div class="contact__info">
+        <span class="kicker">Get in touch</span>
+        <h2>We’d love to hear from you</h2>
+        <p class="contact__lead">The best way to buy our wine or ask a question is to give us a call. We’re a hands-on family operation and happy to help.</p>
+
+        <a href={`tel:${telDigits}`} class="btn contact__call">Call {config.contact.phone}</a>
+
+        <ul class="contact__list">
+          <li>
+            <span class="contact__label">Phone</span>
+            <a href={`tel:${telDigits}`}>{config.contact.phone}</a>
+          </li>
+          <li>
+            <span class="contact__label">Area</span>
+            <span>{config.contact.location}</span>
+          </li>
+          {config.social.instagram && (
+            <li>
+              <span class="contact__label">Instagram</span>
+              <a href={config.social.instagram} target="_blank" rel="noopener">@pecotavineyard</a>
+            </li>
+          )}
+          <li>
+            <span class="contact__label">Tasting room</span>
+            <span>No public tasting room — wine sold direct.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="contact__map">
+        <iframe title="Map of Shingle Springs, California" src={mapEmbed} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="container container--narrow note">
+      <h2>Must be 21 or older</h2>
+      <p>You must be of legal drinking age (21+) to purchase wine. Please enjoy our wines responsibly.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+    text-align: center;
+  }
+  .pagehead p {
+    font-size: 1.12rem;
+    color: var(--text-muted);
+    margin: 1rem auto 0;
+    max-width: 56ch;
+  }
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .contact__lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 46ch;
+  }
+  .contact__call {
+    margin: 0.5rem 0 2rem;
+  }
+  .contact__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.1rem;
+  }
+  .contact__list li {
+    display: grid;
+    gap: 0.15rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.1rem;
+  }
+  .contact__label {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+  .contact__list a,
+  .contact__list li > span:not(.contact__label) {
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .contact__list a {
+    color: var(--brand);
+  }
+  .contact__map {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    aspect-ratio: 4 / 3;
+  }
+  .contact__map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .note {
+    text-align: center;
+  }
+  .note p {
+    color: rgba(243, 236, 225, 0.82);
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  @media (max-width: 880px) {
+    .contact {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

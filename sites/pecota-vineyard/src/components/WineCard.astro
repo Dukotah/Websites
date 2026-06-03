@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Wine } from '../config';
+
+interface Props {
+  wine: Wine;
+}
+const { wine } = Astro.props;
+
+const imported = import.meta.glob<{ default: ImageMetadata }>('../assets/images/wine-*.jpg', {
+  eager: true,
+});
+const images: Record<string, ImageMetadata> = {};
+for (const [p, mod] of Object.entries(imported)) images[p.split('/').pop()!] = mod.default;
+const img = images[wine.image];
+---
+
+<article class="wine">
+  <div class="wine__media">
+    {img && (
+      <Image src={img} alt={`Bottle of Pecota Vineyard ${wine.name}`} widths={[220, 360]} sizes="(max-width:600px) 45vw, 260px" loading="lazy" />
+    )}
+  </div>
+  <div class="wine__body">
+    <span class="wine__type" data-type={wine.type}>{wine.type}</span>
+    <h3>{wine.name}</h3>
+    <p>{wine.notes}</p>
+  </div>
+</article>
+
+<style>
+  .wine {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .wine:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+  }
+  .wine__media {
+    background: linear-gradient(160deg, #f7f1e8, #ece1d2);
+    padding: 1.75rem 1rem;
+    display: grid;
+    place-items: center;
+    min-height: 240px;
+  }
+  .wine__media :global(img) {
+    height: 220px;
+    width: auto;
+    filter: drop-shadow(0 12px 18px rgba(42, 33, 29, 0.25));
+    transition: transform 0.3s ease;
+  }
+  .wine:hover .wine__media :global(img) {
+    transform: scale(1.04) rotate(-1deg);
+  }
+  .wine__body {
+    padding: 1.3rem 1.4rem 1.6rem;
+  }
+  .wine__type {
+    display: inline-block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: var(--brand);
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.7rem;
+  }
+  .wine__type[data-type='White'] {
+    color: #8a7320;
+    border-color: color-mix(in srgb, var(--gold) 45%, var(--border));
+  }
+  .wine__body h3 {
+    margin: 0 0 0.4rem;
+  }
+  .wine__body p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+</style>

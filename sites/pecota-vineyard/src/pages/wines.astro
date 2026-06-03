@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WineCard from '../components/WineCard.astro';
+import { config } from '../config';
+
+const reds = config.wines.filter((w) => w.type === 'Red' || w.type === 'Blend');
+const whites = config.wines.filter((w) => w.type === 'White');
+const telDigits = config.contact.phone.replace(/[^+\d]/g, '');
+---
+
+<BaseLayout title="Our Wines" description="Explore the handcrafted, estate-grown wines of Pecota Vineyard — reds, whites, and our signature Running Deer red blend from Shingle Springs, CA.">
+  <section class="pagehead">
+    <div class="container container--narrow">
+      <span class="kicker">From our two acres</span>
+      <h1>Our wines</h1>
+      <p>Each wine is grown, made, and bottled on our small estate in Shingle Springs. Vintages and availability change with the seasons — call us for current releases and to purchase.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="winegroup">Reds &amp; blends</h2>
+      <div class="grid">
+        {reds.map((wine) => <WineCard wine={wine} />)}
+      </div>
+
+      <h2 class="winegroup winegroup--spaced">Whites</h2>
+      <div class="grid">
+        {whites.map((wine) => <WineCard wine={wine} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container container--narrow buy">
+      <h2>Like to buy a bottle?</h2>
+      <p>We’re a family micro-winery without a public tasting room, so wine is sold directly. Give us a call and we’ll help you find the right bottle (or case).</p>
+      <a href={`tel:${telDigits}`} class="btn">Call {config.contact.phone}</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+    text-align: center;
+  }
+  .pagehead p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin: 1rem auto 0;
+    max-width: 56ch;
+  }
+  .winegroup {
+    font-size: 1.6rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .winegroup--spaced {
+    margin-top: 4rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .buy {
+    text-align: center;
+  }
+  .buy p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.75rem;
+  }
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

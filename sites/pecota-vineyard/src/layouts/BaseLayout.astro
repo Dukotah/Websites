@@ -1,0 +1,85 @@
+---
+import { config } from '../config';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = config.seoDescription } = Astro.props;
+const fullTitle = title ? `${title} | ${config.name}` : `${config.name} — ${config.tagline}`;
+
+const siteUrl = Astro.site?.href.replace(/\/$/, '') ?? '';
+const ogImage = `${siteUrl}/og.jpg`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Winery',
+  name: config.name,
+  description: config.seoDescription,
+  telephone: config.contact.phone,
+  url: siteUrl || undefined,
+  image: ogImage,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Shingle Springs',
+    addressRegion: 'CA',
+    addressCountry: 'US',
+  },
+  sameAs: [config.social.instagram].filter(Boolean),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content={config.theme.brand} />
+    {siteUrl && <link rel="canonical" href={`${siteUrl}${Astro.url.pathname}`} />}
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {siteUrl && <meta property="og:url" content={`${siteUrl}${Astro.url.pathname}`} />}
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <style
+      is:inline
+      set:html={`:root{--brand:${config.theme.brand};--brand-dark:${config.theme.brandDark};}`}
+    ></style>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+
+    <style>
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: var(--brand);
+        color: #fff;
+        padding: 0.6rem 1rem;
+        border-radius: 0 0 8px 0;
+        z-index: 200;
+      }
+      .skip-link:focus {
+        left: 0;
+      }
+    </style>
+  </body>
+</html>
