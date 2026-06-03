@@ -22,10 +22,21 @@ find photos, and launch them so the user gets live demo links to email.
 No keys, no external setup beyond the one-time Vercel connection. Do this:
 
 1. **Locate the CSV.** Save/confirm it under `data/` (e.g. `data/leads.csv`).
-   Required header: `name`; optional: `category, city, state, phone, email,
-   address, established`. Sparse rows are fine. Known `category` values (drive
-   theme + fallback art): `towing, cafe, plumbing, salon, landscaping,
-   auto-repair`; anything else uses a neutral default.
+   Required header: `name`; optional: `website` (or `existing_website`),
+   `category, city, state, phone, email, address, established`. **The `website`
+   column is the single biggest quality lever** — the generator scrapes it for
+   real facts and the business's own photos. Sparse rows are fine. Known
+   `category` values (drive theme + fallback art): `towing, cafe, plumbing,
+   salon, landscaping, auto-repair`; anything else uses a neutral default.
+
+   > The generator now does the research step for you when a `website` is given:
+   > `scripts/lib/scrape-site.mjs` pulls the real name, phone, address, hours,
+   > about-story, services, reviews, and photos off their existing site, and
+   > `scripts/lib/images.mjs` downloads their actual photos (logo/icon-filtered).
+   > Your job shifts from "write everything" to "verify the scrape + polish the
+   > prose the script couldn't fully write." Sites lacking research or real
+   > photos are auto-flagged `needs-review` on the dashboard — never send those
+   > as-is.
 
 2. **RESEARCH each business first — this is the job, not an optional polish.**
    Every site must feel custom and be *accurate*. Generic template copy is a
@@ -55,10 +66,13 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
 4. **Build each site.** Two equally valid paths:
    - **Best (custom):** write each `sites/demo-gallery/src/data/prospects/
      <slug>.json` directly with your researched copy (schema = `src/types.ts`).
-   - **Bulk scaffold:** run `npm run generate-prospects -- data/<file>.csv` to
-     seed structure + template copy + photo tiers, THEN rewrite the copy fields
-     (`tagline`, `hero`, `about.body`, `services`) per business from research.
-     Do not leave template copy in a site you send.
+   - **Bulk scaffold (now research-driven):** run
+     `npm run generate-prospects -- data/<file>.csv`. With a `website` column it
+     scrapes each business's real facts + photos, writes copy from them, varies
+     the layout (`classic`/`split`/`editorial`), emits depth `sections` from real
+     data, and flags weak sites `needs-review`. THEN open the dashboard, fix
+     every `needs-review` item, and polish any field the script marked templated
+     (esp. `services` descriptions). Do not leave template copy in a site you send.
 
 5. **Sanity-check the build:**
    ```bash

@@ -94,8 +94,17 @@ export interface ProspectConfig {
   hours: BusinessHours[];
   hoursNote: string;
 
-  /** Optional rich blocks rendered between Services and Contact, in order. */
+  /** Optional rich blocks (stats, testimonials, faq, …) composed per prospect. */
   sections?: Section[];
+
+  /**
+   * Visual layout variant. Drives the hero style AND the section order, so a
+   * batch of sites doesn't share one silhouette. Defaults to 'classic'.
+   *   classic   — full-bleed hero, story → services → sections
+   *   split     — text-panel + photo hero, services → story → sections
+   *   editorial — centered magazine hero, sections → story → services
+   */
+  layout?: 'classic' | 'split' | 'editorial';
 
   /**
    * Quality status surfaced on the dashboard. Omit and the dashboard infers it

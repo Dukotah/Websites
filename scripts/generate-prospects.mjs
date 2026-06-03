@@ -1,35 +1,41 @@
 #!/usr/bin/env node
 /**
- * generate-prospects.mjs — turn CRM rows into demo-gallery prospect sites.
+ * generate-prospects.mjs — turn CRM rows into demo-gallery prospect sites,
+ * built from the business's REAL information, not generic template copy.
  *
  * Reads a CSV of businesses and writes one JSON per row into
- * sites/demo-gallery/src/data/prospects/<slug>.json. Each JSON matches the
- * ProspectConfig schema, so the gallery renders it at /p/<slug> and you can
- * paste that link into an outreach email.
+ * sites/demo-gallery/src/data/prospects/<slug>.json (schema = src/types.ts),
+ * so the gallery renders each at /p/<slug> for outreach.
  *
- * No API keys required. Marketing copy uses a built-in per-category template by
- * default (the agent personalizes it per business when run conversationally —
- * see CLAUDE.md). An optional ANTHROPIC_API_KEY, if present, will have Claude
- * write the copy, but nothing requires it.
- *
- * Photos are free and key-free, tried in this order per row:
- *   1. (agent tier) the business's OWN photos found online — done by the agent
- *      via web search before/after this script, dropped into public/images/<slug>/
- *   2. Wikimedia Commons match (no key) — see scripts/lib/photos.mjs
- *   3. the built-in category library art (always works, no network)
+ * PIPELINE PER ROW (this is what kills the "AI slop / cookie-cutter" problem):
+ *   1. SCRAPE their existing website (CSV `website` column) for real facts —
+ *      name, phone, address, hours, their actual story, services, reviews, and
+ *      their own photos. Key-free. (scripts/lib/scrape-site.mjs)
+ *   2. COPY from those real facts. With ANTHROPIC_API_KEY, Claude writes it;
+ *      without, we reuse their real about-text + real services verbatim and
+ *      flag anything templated for a human/agent polish pass.
+ *   3. PHOTOS, strongest source first: their scraped photos → AI-generated
+ *      gaps (only if IMAGE_API_KEY) → Wikimedia → built-in SVG library.
+ *      (scripts/lib/images.mjs)
+ *   4. LAYOUT varies per business (classic / split / editorial) so a batch
+ *      doesn't share one silhouette, and depth sections (stats, testimonials)
+ *      are emitted from the real data.
+ *   5. QUALITY GATE: a site with thin research or no real photos is marked
+ *      `needs-review` with explicit flags — template output is never silently
+ *      shipped as a finished deliverable.
  *
  * Usage:
- *   node scripts/generate-prospects.mjs [path/to/file.csv]
- *   # defaults to data/prospects.sample.csv
+ *   node scripts/generate-prospects.mjs [path/to/file.csv] [--no-photos]
  *
  * CSV columns (header row required; only `name` is required, rest optional):
- *   name, category, city, state, phone, email, address, established
+ *   name, website, category, city, state, phone, email, address, established
  */
 
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { join, dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { getRealPhotos } from './lib/photos.mjs';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { scrapeSite, stripTags } from './lib/scrape-site.mjs';
+import { acquirePhotos } from './lib/images.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
@@ -38,8 +44,8 @@ const csvPath = resolve(ROOT, process.argv[2] ?? 'data/prospects.sample.csv');
 
 // ---------------------------------------------------------------------------
 // Per-category presets: theme colors + the kind of services/highlights a
-// business in that category typically offers. Used as the deterministic
-// fallback and as hints for the Claude prompt.
+// business in that category typically offers. Used only as a LAST-RESORT
+// fallback when scraping/research turned up nothing usable.
 // ---------------------------------------------------------------------------
 const CATEGORIES = {
   towing: {
@@ -79,10 +85,37 @@ const CATEGORIES = {
   },
 };
 
+const LAYOUTS = ['classic', 'split', 'editorial'];
+
 const slugify = (s) =>
   s.toLowerCase().trim().replace(/['']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
 const titleCase = (s) => s.replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Stable per-slug hash → a layout, so a batch gets visual variety but each
+// site keeps the same layout across re-runs.
+function layoutFor(slug) {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
+  return LAYOUTS[h % LAYOUTS.length];
+}
+
+// Trim a long string to a sentence boundary near `max` chars, falling back to
+// a word boundary. Drops dangling conjunctions/prepositions and trailing
+// punctuation so a clipped line never ends on "… in Santa Barbara CA and".
+const ORPHANS = new Set(['and', 'or', 'the', 'a', 'an', 'in', 'of', 'to', 'with', 'for', 'at', 'on', '&']);
+function clip(s, max) {
+  if (!s) return '';
+  const t = s.replace(/\s+/g, ' ').trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max);
+  const stop = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+  let out = stop > max * 0.5 ? cut.slice(0, stop + 1) : cut.replace(/\s+\S*$/, '');
+  // Strip a trailing orphan word + any trailing punctuation/ellipsis.
+  const words = out.trim().replace(/[\s,;:.!?&-]+$/, '').split(' ');
+  if (words.length > 1 && ORPHANS.has(words[words.length - 1].toLowerCase())) words.pop();
+  return words.join(' ').replace(/[\s,;:&-]+$/, '').trim();
+}
 
 // Minimal CSV parser: handles quoted fields and commas inside quotes.
 function parseCsv(text) {
@@ -109,52 +142,55 @@ function parseCsv(text) {
 }
 
 // ---------------------------------------------------------------------------
-// Copy generation. Tries Claude; falls back to deterministic templates.
+// Copy generation. Tries Claude (rich real-fact prompt); otherwise reuses the
+// business's own scraped prose + services, falling back to template only for
+// fields with no real source (those get flagged for a polish pass).
 // ---------------------------------------------------------------------------
-async function generateCopy(row, preset) {
+async function generateCopy(row, preset, e) {
   if (process.env.ANTHROPIC_API_KEY) {
     try {
-      return await generateCopyWithClaude(row, preset);
+      return await generateCopyWithClaude(row, preset, e);
     } catch (err) {
-      console.warn(`  ! Claude copy failed for ${row.name} (${err.message}); using fallback`);
+      console.warn(`  ! Claude copy failed for ${row.name} (${err.message}); using research/template`);
     }
   }
-  return fallbackCopy(row, preset);
+  return researchCopy(row, preset, e);
 }
 
-async function generateCopyWithClaude(row, preset) {
+async function generateCopyWithClaude(row, preset, e) {
   const system = [
     {
       type: 'text',
       text:
-        'You are a copywriter for small local-business websites. Given a business, ' +
-        'return ONLY valid minified JSON (no markdown fences) with this exact shape:\n' +
+        'You are a copywriter for small local-business websites. Given a business ' +
+        'and the REAL facts scraped from its current site, return ONLY valid ' +
+        'minified JSON (no markdown fences) with this exact shape:\n' +
         '{"tagline":string,"seoDescription":string,"heroHeading":string,' +
         '"heroSubheading":string,"highlights":string[3],"aboutHeading":string,' +
         '"aboutBody":string[2],"servicesHeading":string,' +
-        '"services":[{"title":string,"description":string}] (exactly 4)}\n' +
-        'Voice: warm, trustworthy, concrete, local. No hype, no emoji. ' +
-        'heroHeading is a short promise (<=8 words). seoDescription <=150 chars ' +
-        'and must name the town for local SEO.',
-      // Cache the instructions so repeated rows only pay for the small user turn.
+        '"services":[{"title":string,"description":string}] (3-5)}\n' +
+        'Use ONLY the real facts provided — never invent awards, numbers, or ' +
+        'services not implied by them. Voice: warm, trustworthy, concrete, local. ' +
+        'No hype, no emoji. heroHeading is a short promise (<=8 words). ' +
+        'seoDescription <=150 chars and must name the town for local SEO.',
       cache_control: { type: 'ephemeral' },
     },
   ];
 
-  const e = row._enrichment;
-  const googleContext = e
-    ? `\nGoogle data (use for accuracy, don't invent beyond it):` +
-      (e.primaryType ? `\n- Type: ${e.primaryType}` : '') +
-      (e.editorialSummary ? `\n- Google summary: ${e.editorialSummary}` : '') +
-      (e.rating ? `\n- Rating: ${e.rating}/5 from ${e.userRatingCount} reviews` : '') +
-      (e.formattedAddress ? `\n- Address: ${e.formattedAddress}` : '')
-    : '';
+  const realFacts = e
+    ? `\nReal facts scraped from their current website (use these, don't invent beyond them):` +
+      (e.description ? `\n- Self-description: ${clip(e.description, 300)}` : '') +
+      (e.about?.length ? `\n- About text: ${clip(e.about.join(' '), 600)}` : '') +
+      (e.services?.length ? `\n- Real services listed: ${e.services.join('; ')}` : '') +
+      (e.established ? `\n- Established: ${e.established}` : '') +
+      (e.rating ? `\n- Rating: ${e.rating}/5 from ${e.reviewCount ?? 'many'} reviews` : '')
+    : '\n(No website was reachable — write careful, generic-but-plausible copy and keep claims modest.)';
 
   const user =
     `Business: ${row.name}\nCategory: ${row.category || 'local business'}\n` +
     `Town/area: ${row.city}${row.state ? ', ' + row.state : ''}\n` +
     `Typical services for this category: ${preset.services.join(', ')}` +
-    googleContext;
+    realFacts;
 
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -175,63 +211,145 @@ async function generateCopyWithClaude(row, preset) {
   const data = await res.json();
   const text = data.content?.map((b) => b.text ?? '').join('').trim();
   const json = JSON.parse(text.replace(/^```json\s*|\s*```$/g, ''));
-  return {
-    tagline: json.tagline,
-    seoDescription: json.seoDescription,
-    heroHeading: json.heroHeading,
-    heroSubheading: json.heroSubheading,
-    highlights: json.highlights,
-    aboutHeading: json.aboutHeading,
-    aboutBody: json.aboutBody,
-    servicesHeading: json.servicesHeading,
-    services: json.services,
-  };
+  return { ...json, _templated: [] }; // Claude wrote it all from real facts
 }
 
-function fallbackCopy(row, preset) {
+// Key-free copy built from scraped facts. Tracks which fields fell back to
+// template (in `_templated`) so the caller can flag the site for polish.
+function researchCopy(row, preset, e) {
   const area = [row.city, row.state].filter(Boolean).join(', ');
   const what = row.category ? row.category.replace(/-/g, ' ') : 'local business';
-  return {
-    tagline: `${titleCase(what)} you can count on in ${row.city || 'town'}.`,
-    seoDescription:
-      `${row.name} — trusted ${what} serving ${area || 'the local area'}. ` +
-      `Call today for friendly, reliable service.`.slice(0, 150),
-    heroHeading: `${titleCase(what)} done right.`,
-    heroSubheading: `Serving ${area || 'the local community'} with honest work and a friendly face.`,
-    highlights: preset.highlights,
-    aboutHeading: 'About us',
-    aboutBody: [
+  const templated = [];
+
+  // About: their OWN words (cleaned) beat anything we'd write.
+  let aboutBody;
+  const realParas = (e?.about ?? []).map((p) => stripTags(p)).filter((p) => p.length > 60);
+  if (realParas.length) {
+    aboutBody = realParas.slice(0, 2);
+  } else if (e?.description && e.description.length > 80) {
+    aboutBody = [clip(e.description, 320)];
+  } else {
+    templated.push('about');
+    aboutBody = [
       `${row.name} is a locally owned ${what} proudly serving ${area || 'the area'}. ` +
         `We treat every customer like a neighbor — because most of them are.`,
       'Reliable work, fair prices, and people who pick up the phone. ' +
         "That's what's kept folks coming back to us.",
-    ],
-    servicesHeading: 'What we offer',
-    services: preset.services.map((title) => ({
+    ];
+  }
+
+  // Services: real scraped service names beat generic presets. We only have
+  // their titles, so descriptions are light — flag for a polish pass.
+  let services;
+  if (e?.services?.length >= 3) {
+    services = e.services.slice(0, 5).map((title) => ({
+      title: titleCase(title),
+      description: `${titleCase(title)} for ${row.city || 'the local area'} and the surrounding community.`,
+    }));
+    templated.push('service-descriptions');
+  } else {
+    templated.push('services');
+    services = preset.services.map((title) => ({
       title,
       description: `Professional ${title.toLowerCase()} for ${row.city || 'the local area'} and nearby.`,
-    })),
+    }));
+  }
+
+  // Highlights: prefer concrete real facts over generic adjectives.
+  const highlights = [];
+  if (e?.established) highlights.push(`Serving since ${e.established}`);
+  if (e?.rating) highlights.push(`${e.rating}★${e.reviewCount ? ` · ${e.reviewCount} reviews` : ''}`);
+  while (highlights.length < 3) {
+    const next = preset.highlights[highlights.length] ?? preset.highlights[0];
+    if (!highlights.includes(next)) highlights.push(next);
+    else break;
+  }
+
+  const tagline = e?.description
+    ? clip(e.description, 110)
+    : `${titleCase(what)} you can count on in ${row.city || 'town'}.`;
+  if (!e?.description) templated.push('tagline');
+
+  const seoDescription = clip(
+    e?.description ||
+      `${row.name} — trusted ${what} serving ${area || 'the local area'}. Call today for friendly, reliable service.`,
+    150,
+  );
+
+  const heroHeading = e?.established
+    ? `${titleCase(what)} in ${row.city || 'town'} since ${e.established}.`
+    : `${titleCase(what)} done right.`;
+  if (!e?.established) templated.push('hero');
+
+  const heroSubheading = e?.description
+    ? clip(e.description, 170)
+    : `Serving ${area || 'the local community'} with honest work and a friendly face.`;
+
+  return {
+    tagline,
+    seoDescription,
+    heroHeading,
+    heroSubheading,
+    highlights: highlights.slice(0, 3),
+    aboutHeading: realParas.length ? `About ${row.name}` : 'About us',
+    aboutBody,
+    servicesHeading: 'What we do',
+    services,
+    _templated: templated,
   };
 }
 
+// Back-compat alias for the previous export name.
+function fallbackCopy(row, preset) {
+  return researchCopy(row, preset, null);
+}
+
+// Compose optional depth sections from REAL data only — never fabricated.
+function buildSections(row, e) {
+  const sections = [];
+
+  const stats = [];
+  if (e?.established) {
+    const yrs = new Date().getFullYear() - Number(e.established);
+    if (yrs > 0 && yrs < 200) stats.push({ value: `${yrs}+`, label: 'Years in business' });
+    else stats.push({ value: String(e.established), label: 'Serving since' });
+  }
+  if (e?.rating) stats.push({ value: `${e.rating}★`, label: e.reviewCount ? `${e.reviewCount} reviews` : 'Customer rating' });
+  if (e?.services?.length >= 3) stats.push({ value: `${e.services.length}`, label: 'Services offered' });
+  if (stats.length >= 2) sections.push({ type: 'stats', items: stats.slice(0, 4) });
+
+  if (e?.testimonials?.length) {
+    sections.push({
+      type: 'testimonials',
+      eyebrow: 'In their words',
+      heading: 'What customers say',
+      items: e.testimonials.slice(0, 3).map((t) => ({ quote: clip(t.quote, 280), author: t.author })),
+    });
+  }
+
+  return sections;
+}
+
 // ---------------------------------------------------------------------------
-// Build a full ProspectConfig from a row + generated copy. `media` is any real
-// photos found (Wikimedia or agent-sourced); when empty, the category's
-// built-in library art is used so the page always looks finished.
+// Build a full ProspectConfig from a row + copy + scraped enrichment + photos.
 // ---------------------------------------------------------------------------
-function buildConfig(row, copy, preset, catKey, media = []) {
+function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {}) {
   const area = [row.city, row.state].filter(Boolean).join(', ');
   const [heroPhoto, storyPhoto] = media;
   const lib = `/images/library/${catKey}`;
 
-  const phone = row.phone || '(555) 555-5555';
-  const address = row.address || area;
+  const phone = e?.phone || row.phone || '(555) 555-5555';
+  const address = e?.address || row.address || area;
+  const established = (e?.established || row.established || '').toString().replace(/^est\.?\s*/i, '');
 
-  const hours = [
-    { day: 'Mon – Fri', hours: '8:00 AM – 6:00 PM' },
-    { day: 'Saturday', hours: '9:00 AM – 2:00 PM' },
-    { day: 'Sunday', hours: 'Closed' },
-  ];
+  // Hours: real scraped hours beat the generic default.
+  const hours = e?.hours?.length
+    ? e.hours
+    : [
+        { day: 'Mon – Fri', hours: '8:00 AM – 6:00 PM' },
+        { day: 'Saturday', hours: '9:00 AM – 2:00 PM' },
+        { day: 'Sunday', hours: 'Closed' },
+      ];
 
   const storyCredit = storyPhoto?.credit
     ? `Photo: ${storyPhoto.credit}`
@@ -244,13 +362,17 @@ function buildConfig(row, copy, preset, catKey, media = []) {
     tagline: copy.tagline,
     seoDescription: copy.seoDescription,
     area,
-    established: row.established || '',
+    established: established ? `Est. ${established}` : '',
     contact: {
       phone,
-      email: row.email || `hello@${slugify(row.name)}.com`,
+      email: e?.email || row.email || `hello@${slugify(row.name)}.com`,
       address,
     },
-    social: { facebook: '', instagram: '', google: '' },
+    social: {
+      facebook: e?.social?.facebook || '',
+      instagram: e?.social?.instagram || '',
+      google: e?.social?.google || '',
+    },
     hero: {
       heading: copy.heroHeading,
       subheading: copy.heroSubheading,
@@ -272,8 +394,27 @@ function buildConfig(row, copy, preset, catKey, media = []) {
     services: copy.services,
     hours,
     hoursNote: '',
+    sections: extras.sections ?? [],
+    layout: extras.layout ?? 'classic',
+    status: extras.status,
+    flags: extras.flags ?? [],
     theme: preset.theme,
   };
+}
+
+// Decide ready vs needs-review from how much REAL material we got.
+function deriveStatus(row, e, media, photoSource, templated) {
+  const flags = [];
+  const realPhotos = /business-site|ai-generated/.test(photoSource);
+  if (!row.website) flags.push('No website provided — research & verify manually');
+  else if (!e) flags.push('Website unreachable — copy not built from real data');
+  else if ((e.richness ?? 0) < 35) flags.push('Thin research — verify facts & rewrite copy');
+  if (!realPhotos) flags.push(`No real/AI photos — using ${photoSource || 'stock'} art`);
+  if (templated.includes('services')) flags.push('Services are template defaults — replace with real ones');
+  if (templated.includes('service-descriptions')) flags.push('Service descriptions need a polish pass');
+  if (templated.includes('about')) flags.push('About copy is templated — rewrite from research');
+  const status = flags.length ? 'needs-review' : 'ready';
+  return { status, flags };
 }
 
 // Resolve the category key (so we can pick the right library art folder).
@@ -318,10 +459,13 @@ async function main() {
 
   await mkdir(OUT_DIR, { recursive: true });
   const usingClaude = Boolean(process.env.ANTHROPIC_API_KEY);
+  const canGenImages = Boolean(process.env.IMAGE_API_KEY);
   const skipWikimedia = process.argv.includes('--no-photos');
   console.log(
-    `Generating ${rows.length} prospect site(s) — copy via ${usingClaude ? 'Claude API' : 'built-in template'}; ` +
-      `photos: agent-supplied → ${skipWikimedia ? '(Wikimedia skipped)' : 'Wikimedia'} → library.\n`,
+    `Generating ${rows.length} prospect site(s).\n` +
+      `  Copy:   ${usingClaude ? 'Claude (from scraped real facts)' : 'scraped real facts + template fallback'}\n` +
+      `  Photos: their site → ${canGenImages ? 'AI-gen gaps → ' : '(AI-gen off, no key) '}` +
+      `${skipWikimedia ? '' : 'Wikimedia → '}library\n`,
   );
 
   const base = process.env.GALLERY_BASE_URL?.replace(/\/$/, '') ?? '';
@@ -333,39 +477,61 @@ async function main() {
     const catKey = catKeyFor(row);
     const preset = CATEGORIES[catKey];
 
-    // Photo priority: 1) photos the agent already dropped in, 2) Wikimedia,
-    // 3) built-in library (handled by buildConfig when media is empty).
-    let media = await agentDroppedPhotos(slug);
-    let source = media.length ? 'agent-supplied' : 'library';
-    if (!media.length && !skipWikimedia) {
-      try {
-        media = await getRealPhotos(row, { destDir: PUBLIC_IMAGES, slug, max: 2 });
-        if (media.length) source = 'wikimedia';
-      } catch {
-        /* best-effort; fall through to library */
-      }
+    // Accept either `website` or `existing_website` as the column header.
+    row.website = row.website || row.existing_website || '';
+
+    // 1) Scrape their existing site for real facts (best-effort, key-free).
+    let e = null;
+    if (row.website) {
+      process.stdout.write(`  · ${row.name}: scraping ${row.website} … `);
+      e = await scrapeSite(row.website);
+      console.log(e ? `ok (richness ${e.richness})` : 'unreachable');
+    }
+    // Backfill missing CSV location fields from the scrape.
+    if (e) {
+      row.city = row.city || e.city || '';
+      row.state = row.state || e.state || '';
     }
 
-    const copy = await generateCopy(row, preset);
-    const config = buildConfig(row, copy, preset, catKey, media);
+    // 2) Photos: agent-dropped → their site → AI-gen → Wikimedia → library.
+    let media = await agentDroppedPhotos(slug);
+    let photoSource = media.length ? 'agent-supplied' : '';
+    if (!media.length) {
+      const got = await acquirePhotos(row, e, { destDir: PUBLIC_IMAGES, slug, max: 2, skipWikimedia });
+      media = got.media;
+      photoSource = got.source;
+    }
+
+    // 3) Copy from real facts; 4) depth sections + layout.
+    const copy = await generateCopy(row, preset, e);
+    const sections = buildSections(row, e);
+    const layout = layoutFor(slug);
+
+    // 5) Quality gate.
+    const { status, flags } = deriveStatus(row, e, media, photoSource, copy._templated ?? []);
+
+    const config = buildConfig(row, copy, preset, catKey, media, e, { sections, layout, status, flags });
     await writeFile(join(OUT_DIR, `${slug}.json`), JSON.stringify(config, null, 2) + '\n');
 
     const link = `${base}/p/${slug}`;
-    links.push({ name: row.name, email: row.email || '', link, photos: media.length, photoSource: source });
-    console.log(`  ✓ ${row.name}  →  ${link}   [photos: ${source}]`);
+    links.push({ name: row.name, email: config.contact.email, link, status, photoSource, flags });
+    console.log(`  ✓ ${row.name}  →  ${link}   [${layout} · photos: ${photoSource} · ${status}]`);
   }
 
-  // Write a links manifest you can mail-merge or paste back into the CRM.
   await writeFile(join(ROOT, 'data', 'outreach-links.json'), JSON.stringify(links, null, 2) + '\n');
+  const review = links.filter((l) => l.status === 'needs-review').length;
   console.log(`\nWrote ${links.length} site(s) to sites/demo-gallery/src/data/prospects/`);
+  if (review) console.log(`  ${review} flagged needs-review — open the dashboard (npm run dev → /) before sending.`);
   console.log('Links manifest: data/outreach-links.json');
   console.log('\nNext: cd sites/demo-gallery && npm install && npm run dev   (preview at /p/<slug>)');
   console.log('Then commit + push — Vercel rebuilds the gallery and your links go live.');
 }
 
 // Exported for tests; only auto-run when invoked directly (not when imported).
-export { buildConfig, slugify, parseCsv, fallbackCopy, CATEGORIES };
+export { buildConfig, slugify, parseCsv, researchCopy, fallbackCopy, buildSections, layoutFor, CATEGORIES };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// Run main() only when invoked directly (not when imported by tests).
+// Use pathToFileURL so this works on Windows (file:///C:/…) as well as POSIX.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main();
 }
