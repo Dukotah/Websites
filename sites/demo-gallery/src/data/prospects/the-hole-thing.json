@@ -1,0 +1,71 @@
+{
+  "name": "The Hole Thing",
+  "tagline": "Santa Rosa's female-owned tattoo & piercing studio — Best of North Bay since 1997.",
+  "seoDescription": "The Hole Thing — female-owned tattoo, piercing & tooth gem studio on Santa Rosa Ave since 1997. Best of North Bay, walk-ins welcome in Sonoma County.",
+  "area": "Santa Rosa, CA",
+  "established": "Est. 1997",
+  "contact": {
+    "phone": "(707) 570-2879",
+    "email": "info@holething.net",
+    "address": "324 Santa Rosa Ave, Santa Rosa, CA 95404"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "https://www.instagram.com/holethingtattoo/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Ink, piercings, and a little sparkle.",
+    "subheading": "Santa Rosa's female-owned, locally loved tattoo and body-piercing studio since 1997 — custom tattoos, expert piercings, and tooth gems, walk-ins welcome.",
+    "ctaText": "Plan your visit",
+    "ctaHref": "#contact"
+  },
+  "highlights": ["Female-owned since 1997", "Voted Best of North Bay", "Walk-ins welcome"],
+  "images": {
+    "hero": "/images/library/tattoo/hero.svg",
+    "heroAlt": "The Hole Thing tattoo and piercing studio in Santa Rosa",
+    "story": "/images/library/tattoo/story.svg",
+    "storyAlt": "Inside The Hole Thing studio",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/tattoo/hero.svg"
+  },
+  "about": {
+    "heading": "Sonoma County's studio since 1997",
+    "body": [
+      "The Hole Thing has been Santa Rosa's female-owned home for tattoos and piercings since 1997, settling into our Santa Rosa Avenue studio in 2005. Two-plus decades in, we're proud to be a name locals trust — and to have been voted Best of North Bay year after year.",
+      "Our owner is one of the industry's most experienced piercers, with 20+ years behind the needle, alongside a roster of tattoo artists whose portfolios you're welcome to browse. Walk-ins are always welcome, consultations are free, and yes — we're family-friendly and happy to do little ones' ear piercings too."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Custom tattoos",
+      "description": "Original work and walk-ins from artists with portfolios you can browse first — free consultations, any time."
+    },
+    {
+      "title": "Body piercing",
+      "description": "Ears, septum, and everything beyond — done by one of the North Bay's most experienced piercers, 20+ years in."
+    },
+    {
+      "title": "Tooth gems",
+      "description": "A quick, painless little sparkle — Sonoma County's go-to spot for tooth gems."
+    },
+    {
+      "title": "Kids' & first piercings",
+      "description": "Family-friendly and gentle with first-timers, so little ones (and nervous grown-ups) are in good hands."
+    }
+  ],
+  "hours": [
+    { "day": "Mon", "hours": "11:00 AM – 6:00 PM" },
+    { "day": "Tue", "hours": "Closed" },
+    { "day": "Wed – Fri", "hours": "11:00 AM – 6:00 PM" },
+    { "day": "Sat – Sun", "hours": "12:00 PM – 5:00 PM" }
+  ],
+  "hoursNote": "Walk-ins welcome — call ahead for the artist you want.",
+  "theme": {
+    "brand": "#c2185b",
+    "brandDark": "#1a1620"
+  }
+}

@@ -26,6 +26,7 @@ const PALETTES = {
   salon: ['#c56a92', '#2e2230', '#e9b6cd'],
   landscaping: ['#3aa050', '#22321f', '#bfe06a'],
   'auto-repair': ['#e8961f', '#23272e', '#f4d35e'],
+  tattoo: ['#c2185b', '#1a1620', '#e8a0c0'],
   default: ['#c2683a', '#243b53', '#e0b074'],
 };
 
