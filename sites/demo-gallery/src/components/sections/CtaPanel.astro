@@ -1,0 +1,338 @@
+---
+/**
+ * CtaPanel — asymmetric split CTA panel (variant of CtaSection).
+ *
+ * Deliberately different silhouette from CtaSection's centered/row band:
+ * a self-contained panel with generous padding and rounded corners. Copy
+ * (heading + text) anchors the LEFT column; the action block (button + an
+ * optional supporting line) anchors a RIGHT column with a distinct inset
+ * surface. A large faint decorative arc sits behind the panel as an accent.
+ * Stacks to single-column on narrow viewports.
+ *
+ * Props are identical to CtaSection so SectionRenderer can spread {...section}
+ * without modification. eyebrow / intro are accepted (eyebrow renders above the
+ * heading; intro is treated as additional body copy if text is absent).
+ *
+ * Tone-aware: default / alt / deep / brand.
+ * Entrance: data-reveal on wrapper only; reduced-motion safe.
+ */
+import type { Section } from '../../types';
+
+type Props = Extract<Section, { type: 'cta' }> & { index?: number };
+
+const {
+  heading,
+  text,
+  buttonText,
+  buttonHref = '#contact',
+  eyebrow,
+  intro,
+  tone = 'brand',
+  // align accepted for interface parity; panel is always left-anchored by design
+  align: _align,
+  index: _index,
+} = Astro.props as Props;
+
+// Use intro as fallback body copy when text is absent
+const body = text ?? intro;
+---
+
+<section class="section ctapanel" data-tone={tone}>
+  <div class="container">
+
+    <!-- Decorative faint arc behind the panel -->
+    <div class="ctapanel__deco" aria-hidden="true"></div>
+
+    <div class="ctapanel__panel" data-reveal>
+
+      <!-- LEFT: copy column -->
+      <div class="ctapanel__copy">
+        {eyebrow && <p class="ctapanel__eyebrow">{eyebrow}</p>}
+        <h2 class="ctapanel__heading">{heading}</h2>
+        {body && <p class="ctapanel__text">{body}</p>}
+      </div>
+
+      <!-- RIGHT: action column -->
+      {buttonText && (
+        <div class="ctapanel__action">
+          <a href={buttonHref} class="ctapanel__btn">
+            {buttonText}
+            <svg class="ctapanel__arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+              <path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <p class="ctapanel__subline">No commitment — let's talk.</p>
+        </div>
+      )}
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Outer section spacing ── */
+  .ctapanel {
+    padding-block: var(--section-pad);
+    position: relative;
+  }
+
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    position: relative;
+  }
+
+  /* ── Decorative accent: oversized faint circle clipped by the container ── */
+  .ctapanel__deco {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-end: calc(var(--gutter) - 4rem);
+    translate: 0 -50%;
+    width: clamp(18rem, 40vw, 32rem);
+    height: clamp(18rem, 40vw, 32rem);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    /* Color set per tone below */
+    background: color-mix(in srgb, var(--brand) 8%, transparent);
+  }
+
+  /* ── The panel itself ── */
+  .ctapanel__panel {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-4);
+    /* Surface colors set per tone below */
+    background: var(--surface);
+  }
+
+  /* Two-column asymmetric split on wider viewports: ~60 / 40 */
+  @media (min-width: 720px) {
+    .ctapanel__panel {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+  }
+
+  /* ── LEFT: copy ── */
+  .ctapanel__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 0.6em;
+    color: var(--brand);
+    opacity: 0.85;
+  }
+
+  .ctapanel__heading {
+    font-family: var(--font-display);
+    font-size: clamp(var(--step-2), 3vw + 0.5rem, var(--step-4));
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.08;
+    margin: 0 0 0.5em;
+    text-wrap: balance;
+    color: currentColor;
+  }
+
+  .ctapanel__text {
+    font-size: var(--step-0);
+    line-height: var(--leading-body);
+    margin: 0;
+    max-width: 52ch;
+    opacity: 0.88;
+    color: currentColor;
+  }
+
+  /* ── RIGHT: action block ── */
+  .ctapanel__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    /* On wide screens: pushed into a distinct inset box */
+    padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.25rem, 2.5vw, 2rem);
+    border-radius: var(--radius);
+    /* Surface-2 gives it a gentle lift from the panel background */
+    background: var(--surface-2);
+    flex-shrink: 0;
+    min-width: 220px;
+  }
+
+  @media (max-width: 719px) {
+    .ctapanel__action {
+      background: transparent;
+      padding: 0;
+    }
+    .ctapanel__btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* ── Button ── */
+  .ctapanel__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    padding: 0.9em 1.7em;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    transition:
+      transform 200ms var(--ease-out-3),
+      box-shadow 200ms var(--ease-out-3),
+      background-color 200ms var(--ease-out-3);
+    /* Default: brand button */
+    background: var(--brand);
+    color: var(--brand-contrast);
+    box-shadow: var(--shadow-4);
+  }
+
+  .ctapanel__btn:hover,
+  .ctapanel__btn:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-4);
+    text-decoration: none;
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+    background: var(--brand-dark);
+  }
+
+  .ctapanel__arrow {
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+    transition: transform 200ms var(--ease-out-3);
+  }
+  .ctapanel__btn:hover .ctapanel__arrow {
+    transform: translateX(3px);
+  }
+
+  /* Supporting line under the button */
+  .ctapanel__subline {
+    font-size: var(--step--1);
+    margin: 0;
+    opacity: 0.62;
+    color: currentColor;
+    line-height: var(--leading-body);
+  }
+
+  /* ── Tone overrides ───────────────────────────────────── */
+
+  /* default: white panel on the page background */
+  [data-tone='default'] .ctapanel__panel {
+    background: var(--surface);
+  }
+  [data-tone='default'] .ctapanel__action {
+    background: var(--surface-2);
+  }
+  [data-tone='default'] .ctapanel__btn {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  [data-tone='default'] .ctapanel__btn:hover {
+    background: var(--brand-dark);
+  }
+
+  /* alt: slightly elevated surface */
+  [data-tone='alt'] {
+    background: var(--bg-alt);
+  }
+  [data-tone='alt'] .ctapanel__panel {
+    background: var(--surface);
+  }
+  [data-tone='alt'] .ctapanel__action {
+    background: var(--surface-2);
+  }
+  [data-tone='alt'] .ctapanel__btn {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  [data-tone='alt'] .ctapanel__btn:hover {
+    background: var(--brand-dark);
+  }
+  [data-tone='alt'] .ctapanel__deco {
+    background: color-mix(in srgb, var(--brand) 10%, transparent);
+  }
+
+  /* deep: dark background; panel is a slightly lighter dark surface */
+  [data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .ctapanel__panel {
+    background: color-mix(in srgb, var(--text-on-dark) 8%, var(--bg-deep));
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .ctapanel__action {
+    background: color-mix(in srgb, var(--text-on-dark) 6%, transparent);
+  }
+  [data-tone='deep'] .ctapanel__eyebrow {
+    color: color-mix(in srgb, var(--brand) 80%, var(--text-on-dark));
+  }
+  [data-tone='deep'] .ctapanel__btn {
+    background: var(--text-on-dark);
+    color: var(--bg-deep);
+  }
+  [data-tone='deep'] .ctapanel__btn:hover {
+    background: color-mix(in srgb, var(--text-on-dark) 88%, transparent);
+    outline-color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .ctapanel__deco {
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
+  }
+
+  /* brand: brand-color background; panel in brand-dark for depth */
+  [data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .ctapanel__panel {
+    background: color-mix(in srgb, var(--brand-contrast) 10%, var(--brand));
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .ctapanel__action {
+    background: color-mix(in srgb, var(--brand-contrast) 12%, transparent);
+  }
+  [data-tone='brand'] .ctapanel__eyebrow {
+    color: color-mix(in srgb, var(--brand-contrast) 80%, transparent);
+  }
+  [data-tone='brand'] .ctapanel__btn {
+    background: var(--brand-contrast);
+    color: var(--brand);
+  }
+  [data-tone='brand'] .ctapanel__btn:hover {
+    background: color-mix(in srgb, var(--brand-contrast) 92%, var(--brand));
+    outline-color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .ctapanel__deco {
+    background: color-mix(in srgb, var(--brand-dark) 30%, transparent);
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .ctapanel__btn,
+    .ctapanel__arrow {
+      transition: none;
+    }
+    .ctapanel__btn:hover {
+      transform: none;
+    }
+    .ctapanel__btn:hover .ctapanel__arrow {
+      transform: none;
+    }
+  }
+</style>

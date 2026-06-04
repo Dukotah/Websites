@@ -65,30 +65,61 @@ async function doOne(file) {
     return;
   }
 
-  // REAL photos only. Per-service generic stock looks like a template ("six
-  // near-identical boats"), so we only assign a photo when the business has its
-  // OWN distinct real photo for every service. Otherwise services render as
-  // clean numbered cards. Stock per-service is intentionally gone.
+  // JUDGMENT, key-free: a service earns a photo ONLY when the evidence
+  // (filename + alt) says that photo depicts that service. Assigning real photos
+  // by index manufactures false "this photo = this service" claims (a snack
+  // shelf labeled "Fishing boats"); generic stock per service reads as a
+  // template ("six near-identical boats"). Neither is acceptable. When there's
+  // no confident match the service renders as a clean NUMBERED card — which the
+  // renderer makes look intentional. Principle: fewer real beats more stock;
+  // never guess by index; never pad with stock.
   const realPool = (config.galleryImages ?? [])
-    .map((g) => g.src)
-    .filter((s) => s && !s.includes('/images/library/'));
+    .filter((g) => g.src && !g.src.includes('/images/library/'))
+    .map((g) => ({ src: g.src, text: `${g.src} ${g.alt ?? ''}`.toLowerCase() }));
 
-  // Drop any previously-assigned STOCK service images (photo-1xx from old runs).
-  let cleared = 0;
-  for (const it of items) {
-    if (it.image && /\/photo-1\d\d\./.test(it.image)) { delete it.image; cleared++; }
-  }
+  // Distinctive keywords from a service title: drop stopwords and the
+  // category-generic terms (so "fishing boats" in a marina can't match every
+  // boat photo, and a bare "service" never matches anything).
+  const STOP = new Set([
+    'and', 'the', 'for', 'with', 'our', 'your', 'from', 'full', 'all',
+    'services', 'service', 'repair', 'repairs', 'custom', 'premium',
+  ]);
+  const generic = new Set((KW[cat] ?? []).flatMap((w) => w.split(/\s+/)));
+  const keywords = (title) =>
+    (title.toLowerCase().match(/[a-z]+/g) ?? []).filter(
+      (w) => w.length > 2 && !STOP.has(w) && !generic.has(w),
+    );
 
+  const isStock = (src) => /\/photo-1\d\d\./.test(src);
+  const used = new Set();
   let added = 0;
-  if (realPool.length >= items.length) {
-    items.forEach((it, i) => {
-      if (!it.image || FORCE) { it.image = realPool[i]; added++; }
-    });
+  let cleared = 0;
+
+  for (const it of items) {
+    const words = keywords(it.title);
+    const match = realPool.find(
+      (p) => !used.has(p.src) && words.some((w) => p.text.includes(w)),
+    );
+
+    if (match) {
+      used.add(match.src);
+      if (it.image !== match.src && (!it.image || FORCE || isStock(it.image))) {
+        it.image = match.src;
+        added++;
+      }
+      continue;
+    }
+
+    // No confident match → strip stock always; strip any non-matching image on --force.
+    if (it.image && (isStock(it.image) || FORCE)) {
+      delete it.image;
+      cleared++;
+    }
   }
 
   if (added || cleared) {
     await writeFile(path, JSON.stringify(config, null, 2) + '\n');
-    console.log(`  ✓ ${slug.padEnd(26)} ${added} real service photo(s)${cleared ? `, cleared ${cleared} stock` : ''}  (${cat || '—'})`);
+    console.log(`  ✓ ${slug.padEnd(26)} ${added} matched photo(s)${cleared ? `, cleared ${cleared} mismatched` : ''}  (${cat || '—'})`);
   } else {
     console.log(`  · ${slug.padEnd(26)} clean numbered cards (no distinct real per-service photos)`);
   }

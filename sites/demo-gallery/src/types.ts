@@ -37,6 +37,13 @@ export interface SectionEnvelope {
   intro?: string;
   tone?: Tone;
   align?: Align;
+  /**
+   * Rendered layout variant index (0 = original). Assigned deterministically by
+   * the composition engine (lib/variants.ts) from the slug seed, so two
+   * same-category sites pick different layouts for the same section type.
+   * SectionRenderer maps it to a component; out-of-range falls back via modulo.
+   */
+  variant?: number;
 }
 
 /**

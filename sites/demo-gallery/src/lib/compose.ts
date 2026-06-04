@@ -16,6 +16,7 @@ import type { ProspectConfig, Section, SectionType } from '../types';
 import type { ArtDirection } from './art-direction';
 import type { HeroVariant, Tone } from '../types';
 import { pick, shuffle } from './seed';
+import { assignVariants } from './variants';
 
 /**
  * Extended section type identifier that includes 'about' — used only in the
@@ -560,7 +561,10 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     const plan = hasCta
       ? authored
       : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
-    return { hero, sections: assignTones(ensureMinimum(plan, config, seed), seed) };
+    return {
+      hero,
+      sections: assignVariants(assignTones(ensureMinimum(plan, config, seed), seed), seed),
+    };
   }
 
   // Recipe-driven assembly
@@ -591,7 +595,7 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
 
   return {
     hero,
-    sections: assignTones(ensureMinimum(sections, config, seed), seed),
+    sections: assignVariants(assignTones(ensureMinimum(sections, config, seed), seed), seed),
   };
 }
 

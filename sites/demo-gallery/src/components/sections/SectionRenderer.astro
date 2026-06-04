@@ -18,6 +18,7 @@ import MapSection from './MapSection.astro';
 import PressSection from './PressSection.astro';
 import BigQuoteSection from './BigQuoteSection.astro';
 import ServicesDetailed from './ServicesDetailed.astro';
+import ServicesDetailedRows from './ServicesDetailedRows.astro';
 import ServiceAreaSection from './ServiceAreaSection.astro';
 import HoursContactSection from './HoursContactSection.astro';
 import ProcessSection from './ProcessSection.astro';
@@ -26,6 +27,13 @@ import BeforeAfter from './BeforeAfter.astro';
 import FeatureGrid from './FeatureGrid.astro';
 import EditorialFeature from './EditorialFeature.astro';
 import SpecStrip from './SpecStrip.astro';
+
+// Section-variant alternates (chosen per slug by lib/variants.ts).
+import GalleryUniform from './GalleryUniform.astro';
+import TestimonialsSpotlight from './TestimonialsSpotlight.astro';
+import FeatureSplitFraming from './FeatureSplitFraming.astro';
+import StatsBand from './StatsBand.astro';
+import CtaPanel from './CtaPanel.astro';
 
 interface Props {
   sections: Section[];
@@ -41,26 +49,51 @@ const MAJOR = new Set([
   'team', 'process', 'editorial-feature', 'faq', 'list', 'before-after',
 ]);
 let chapter = 0;
+
+// Variant pools: a section type can render in several layouts; compose.ts picks
+// the index per slug (lib/variants.ts) so same-category sites diverge. Keep each
+// array length-aligned with SECTION_VARIANTS; out-of-range wraps via modulo.
+const SERVICES_DETAILED = [ServicesDetailed, ServicesDetailedRows];
+const GALLERY = [GallerySection, GalleryUniform];
+const TESTIMONIALS = [TestimonialsSection, TestimonialsSpotlight];
+const FEATURE_SPLIT = [FeatureSplit, FeatureSplitFraming];
+const STATS = [StatsSection, StatsBand];
+const CTA = [CtaSection, CtaPanel];
+
+/** Pick a variant component for a section, wrapping the index safely. */
+function variantOf<T>(pool: T[], variant?: number): T {
+  return pool[((variant ?? 0) % pool.length + pool.length) % pool.length];
+}
 ---
 
 {
   sections.map((section) => {
     const index = MAJOR.has(section.type) ? ++chapter : undefined;
     switch (section.type) {
-      case 'stats':
-        return <StatsSection {...section} index={index} />;
-      case 'testimonials':
-        return <TestimonialsSection {...section} index={index} />;
+      case 'stats': {
+        const C = variantOf(STATS, section.variant);
+        return <C {...section} index={index} />;
+      }
+      case 'testimonials': {
+        const C = variantOf(TESTIMONIALS, section.variant);
+        return <C {...section} index={index} />;
+      }
       case 'faq':
         return <FaqSection {...section} index={index} />;
       case 'list':
         return <ListSection {...section} index={index} />;
-      case 'cta':
-        return <CtaSection {...section} index={index} />;
-      case 'gallery':
-        return <GallerySection {...section} index={index} />;
-      case 'feature-split':
-        return <FeatureSplit {...section} index={index} />;
+      case 'cta': {
+        const C = variantOf(CTA, section.variant);
+        return <C {...section} index={index} />;
+      }
+      case 'gallery': {
+        const C = variantOf(GALLERY, section.variant);
+        return <C {...section} index={index} />;
+      }
+      case 'feature-split': {
+        const C = variantOf(FEATURE_SPLIT, section.variant);
+        return <C {...section} index={index} />;
+      }
       case 'timeline':
         return <TimelineSection {...section} index={index} />;
       case 'menu':
@@ -73,8 +106,10 @@ let chapter = 0;
         return <PressSection {...section} index={index} />;
       case 'bigquote':
         return <BigQuoteSection {...section} index={index} />;
-      case 'services-detailed':
-        return <ServicesDetailed {...section} index={index} />;
+      case 'services-detailed': {
+        const Svc = variantOf(SERVICES_DETAILED, section.variant);
+        return <Svc {...section} index={index} />;
+      }
       case 'service-area':
         return <ServiceAreaSection {...section} index={index} />;
       case 'hours-contact':
