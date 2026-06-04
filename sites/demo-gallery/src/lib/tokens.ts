@@ -63,9 +63,10 @@ const SHAPE_TOKENS: Record<string, ShapeTokens> = {
     radiusLg: '24px',
     radiusPill: '999px',
     borderWeight: '1px',
-    shadowSm: '0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05)',
-    shadowMd: '0 4px 12px rgba(0,0,0,.1), 0 2px 4px rgba(0,0,0,.06)',
-    shadowLg: '0 10px 30px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.07)',
+    // Open Props layered shadows — far more refined than flat hand-rolled ones.
+    shadowSm: 'var(--shadow-2)',
+    shadowMd: 'var(--shadow-3)',
+    shadowLg: 'var(--shadow-5)',
     frameStyle: 'soft',
   },
   sharp: {
@@ -93,9 +94,9 @@ const SHAPE_TOKENS: Record<string, ShapeTokens> = {
     radiusLg: '18px',
     radiusPill: '999px',
     borderWeight: '1px',
-    shadowSm: '0 1px 4px rgba(0,0,0,.07)',
-    shadowMd: '0 4px 14px rgba(0,0,0,.09)',
-    shadowLg: '0 8px 24px rgba(0,0,0,.1)',
+    shadowSm: 'var(--shadow-2)',
+    shadowMd: 'var(--shadow-4)',
+    shadowLg: 'var(--shadow-6)',
     frameStyle: 'pill',
   },
   framed: {
@@ -160,12 +161,12 @@ const MOTION_TOKENS: Record<string, MotionTokens> = {
   subtle: {
     motionFade: '190ms',
     motionRise: '10px',
-    motionEase: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+    motionEase: 'var(--ease-out-3)',
   },
   expressive: {
-    motionFade: '300ms',
+    motionFade: '320ms',
     motionRise: '20px',
-    motionEase: 'cubic-bezier(0.16, 1, 0.3, 1)',
+    motionEase: 'var(--ease-spring-3)',
   },
 };
 
