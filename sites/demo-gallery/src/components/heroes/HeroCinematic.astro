@@ -223,8 +223,18 @@ const trustLine = highlights[0] ?? '';
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--brand) 55%, #fff 45%);
+    color: #fff;
+    text-shadow: 0 1px 10px color-mix(in srgb, var(--bg-deep) 80%, transparent);
     margin: 0 0 0.9rem;
+  }
+  .cin-hero__eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 1.6rem;
+    height: 2px;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    background: var(--accent);
   }
 
   /* ── Oversized headline ──────────────────────────────────────────────────── */

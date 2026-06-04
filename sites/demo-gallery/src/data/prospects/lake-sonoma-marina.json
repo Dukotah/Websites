@@ -86,27 +86,33 @@
       "items": [
         {
           "title": "Pontoon (patio) boats",
-          "description": "Cruise in comfort — patio pontoons for half-day, full-day, or overnight on the lake. Perfect for groups and lazy afternoons."
+          "description": "Cruise in comfort — patio pontoons for half-day, full-day, or overnight on the lake. Perfect for groups and lazy afternoons.",
+          "image": "/images/lake-sonoma-marina/story.jpg"
         },
         {
           "title": "Fishing boats",
-          "description": "Quiet 3-person fishing boats for a morning chasing bass on Lake Sonoma. Half-day, full-day, or overnight."
+          "description": "Quiet 3-person fishing boats for a morning chasing bass on Lake Sonoma. Half-day, full-day, or overnight.",
+          "image": "/images/lake-sonoma-marina/photo-2.jpg"
         },
         {
           "title": "Premium sport boats",
-          "description": "8-person sport boats built for a full day of fun on the water — half- and full-day rentals."
+          "description": "8-person sport boats built for a full day of fun on the water — half- and full-day rentals.",
+          "image": "/images/lake-sonoma-marina/photo-3.jpg"
         },
         {
           "title": "Watersport & tubing boats",
-          "description": "7-person ski, wakeboard, and tubing boats so the whole crew can get out and ride."
+          "description": "7-person ski, wakeboard, and tubing boats so the whole crew can get out and ride.",
+          "image": "/images/lake-sonoma-marina/photo-4.jpg"
         },
         {
           "title": "Kayaks, paddle boards & jet skis",
-          "description": "Kayaks, paddle boards, canoes, and jet skis — paddle the quiet coves or open up the throttle."
+          "description": "Kayaks, paddle boards, canoes, and jet skis — paddle the quiet coves or open up the throttle.",
+          "image": "/images/lake-sonoma-marina/photo-5.png"
         },
         {
           "title": "Day-use, BBQ & deli",
-          "description": "Picnic areas with BBQ pits and volleyball, plus an on-site deli for sandwiches, hotdogs, and cold drinks (beer & wine included)."
+          "description": "Picnic areas with BBQ pits and volleyball, plus an on-site deli for sandwiches, hotdogs, and cold drinks (beer & wine included).",
+          "image": "/images/lake-sonoma-marina/photo-6.jpg"
         }
       ]
     },
@@ -196,6 +202,16 @@
       "note": "4200 Skaggs Springs Road, Geyserville — about 20 minutes from downtown Healdsburg."
     },
     {
+      "type": "map",
+      "address": "4200 Skaggs Springs Road, Geyserville, CA 95441",
+      "hours": [
+        {
+          "day": "Open year-round",
+          "hours": "Seasonal hours — call ahead"
+        }
+      ]
+    },
+    {
       "type": "faq",
       "eyebrow": "Good to know",
       "heading": "Planning your day",
@@ -260,6 +276,22 @@
     {
       "src": "/images/lake-sonoma-marina/photo-3.jpg",
       "alt": "Lake Sonoma Marina in Geyserville & Healdsburg, CA — photo 4"
+    },
+    {
+      "src": "/images/lake-sonoma-marina/photo-4.jpg",
+      "alt": "Lake Sonoma Marina in Geyserville & Healdsburg, CA — photo 5"
+    },
+    {
+      "src": "/images/lake-sonoma-marina/photo-5.png",
+      "alt": "Lake Sonoma Marina in Geyserville & Healdsburg, CA — photo 6"
+    },
+    {
+      "src": "/images/lake-sonoma-marina/photo-6.jpg",
+      "alt": "Lake Sonoma Marina in Geyserville & Healdsburg, CA — photo 7"
+    },
+    {
+      "src": "/images/lake-sonoma-marina/photo-7.jpg",
+      "alt": "Lake Sonoma Marina in Geyserville & Healdsburg, CA — photo 8"
     }
   ]
 }
