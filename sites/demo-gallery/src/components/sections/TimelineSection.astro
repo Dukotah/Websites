@@ -1,8 +1,11 @@
 ---
 /**
- * TimelineSection — vertical timeline of milestones/history.
- * Spec §6: type 'timeline'. No client JS. Pure CSS vertical line + node.
+ * TimelineSection — refined vertical/numbered chapter timeline.
+ * --accent markers (dot + spine). Numbered chapter counter as a typographic
+ * divider beside each entry (Zorah / Awwwards numbered-section pattern).
+ * Header via SectionHead. Mobile-first, accessible, no client JS.
  */
+import SectionHead from './SectionHead.astro';
 import type { SectionEnvelope } from '../../types';
 
 interface TimelineItem {
@@ -13,6 +16,7 @@ interface TimelineItem {
 
 interface Props extends SectionEnvelope {
   items: TimelineItem[];
+  index?: number;
 }
 
 const {
@@ -22,215 +26,224 @@ const {
   intro,
   tone = 'default',
   align = 'left',
+  index,
 } = Astro.props as Props;
 ---
 
 <section class="section timeline-section" data-tone={tone}>
   <div class="container">
-    {(eyebrow || heading || intro) && (
-      <header class={`section-header section-header--${align}`} data-reveal>
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {heading && <h2 class="timeline-section__heading">{heading}</h2>}
-        {intro && <p class="timeline-section__intro">{intro}</p>}
-      </header>
-    )}
+    <SectionHead {index} {eyebrow} {heading} {intro} {align} />
 
-    <ol class="timeline">
-      {items.map((item, i) => (
-        <li class="timeline-item" data-reveal data-reveal-order={i}>
-          <div class="timeline-item__node" aria-hidden="true"></div>
-          <div class="timeline-item__content">
-            {item.year && (
-              <span class="timeline-item__year">{item.year}</span>
-            )}
-            <h3 class="timeline-item__title">{item.title}</h3>
-            {item.body && (
-              <p class="timeline-item__body">{item.body}</p>
-            )}
-          </div>
-        </li>
-      ))}
-    </ol>
+    {items.length > 0 && (
+      <ol class="tl" aria-label={heading ?? 'Timeline'}>
+        {items.map((item, i) => (
+          <li class="tl__item" data-reveal data-reveal-order={i}>
+            {/* Left column: chapter number + spine */}
+            <div class="tl__track" aria-hidden="true">
+              <span class="tl__num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="tl__dot"></span>
+              {/* spine drawn via CSS border on the track column */}
+            </div>
+
+            {/* Right column: content */}
+            <div class="tl__body">
+              {item.year && (
+                <span class="tl__year">{item.year}</span>
+              )}
+              <h3 class="tl__title">{item.title}</h3>
+              {item.body && (
+                <p class="tl__text">{item.body}</p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    )}
   </div>
 </section>
 
 <style>
+  /* ── Shell ──────────────────────────────────────────────────────────────── */
   .timeline-section {
     padding-block: var(--section-pad);
+    background: var(--bg);
+    color: var(--text);
   }
-
   .container {
     max-width: var(--maxw);
     margin-inline: auto;
     padding-inline: var(--gutter);
   }
 
-  .section-header {
-    margin-bottom: 3rem;
-  }
-  .section-header--center {
-    text-align: center;
-    max-width: 52ch;
-    margin-inline: auto;
-  }
-  .section-header--left {
-    text-align: left;
-    max-width: 52ch;
+  /* ── Timeline list ─────────────────────────────────────────────────────── */
+  .tl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* constrain the timeline to a comfortable reading width + the track col */
+    max-width: min(100%, 720px);
   }
 
-  .eyebrow {
+  /* ── Each item: two-column grid (track | content) ─────────────────────── */
+  .tl__item {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    column-gap: clamp(1.25rem, 3vw, 2rem);
+    padding-bottom: clamp(2rem, 5vw, 3.5rem);
+    position: relative;
+  }
+  .tl__item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* ── Track column: chapter number above, dot + spine below ─────────────── */
+  .tl__track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* spine: a border on the track column stretching past the dot */
+    border-inline-end: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+    /* fade the spine out on the last item */
+    position: relative;
+  }
+  .tl__item:last-child .tl__track {
+    border-inline-end: none;
+  }
+
+  /* Chapter number — small tracked label, --accent, top of track */
+  .tl__num {
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
-    color: var(--brand);
-    margin: 0 0 0.5rem;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    /* align it flush to the spine */
+    margin-inline-end: calc(-1 * 0.5em);
+    padding-bottom: 0.75rem;
   }
 
-  .timeline-section__heading {
-    font-family: var(--font-display);
-    font-size: var(--step-3);
-    font-weight: var(--fw-display);
-    letter-spacing: var(--tracking-display);
-    line-height: var(--leading-display);
-    color: var(--text);
-    margin: 0 0 0.75rem;
-  }
-
-  .timeline-section__intro {
-    font-size: var(--step-0);
-    color: var(--text-muted);
-    line-height: var(--leading-body);
-    margin: 0;
-  }
-
-  /* Timeline list ------------------------------------------------------------- */
-  .timeline {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    max-width: 680px;
-  }
-
-  /* Vertical spine */
-  .timeline::before {
-    content: '';
-    position: absolute;
-    inset-block: 0;
-    left: calc(var(--_node-size) / 2 - var(--border-weight));
-    width: calc(var(--border-weight) * 2);
-    background: var(--border);
-    --_node-size: 1.5rem;
-  }
-
-  .timeline-item {
-    display: grid;
-    grid-template-columns: var(--_node-size) 1fr;
-    column-gap: 1.5rem;
-    padding-bottom: 2.5rem;
-    position: relative;
-    --_node-size: 1.5rem;
-  }
-
-  .timeline-item:last-child {
-    padding-bottom: 0;
-  }
-
-  /* Node (bullet) */
-  .timeline-item__node {
-    width: var(--_node-size);
-    height: var(--_node-size);
+  /* Accent dot — sits on the spine line, centered */
+  .tl__dot {
+    display: block;
+    width: 0.65rem;
+    height: 0.65rem;
     border-radius: var(--radius-pill);
-    background: var(--brand);
-    border: calc(var(--border-weight) * 2) solid var(--bg);
-    box-shadow: 0 0 0 calc(var(--border-weight) * 2) var(--brand);
+    background: var(--accent);
+    /* nudge slightly to sit ON the spine (the border is on the right edge of track) */
+    margin-inline-end: calc(-0.325rem - 0.5px);
     flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-    margin-top: 0.2rem;
+    /* ring around the dot */
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent),
+      0 0 0 1px var(--bg);
   }
 
-  .timeline-item__content {
-    padding-bottom: 0.25rem;
+  /* ── Content column ────────────────────────────────────────────────────── */
+  .tl__body {
+    padding-top: 0;
+    /* slight upward alignment so the title sits flush with the dot */
+    padding-block-start: 0.05rem;
   }
 
-  .timeline-item__year {
+  .tl__year {
     display: inline-block;
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
-    color: var(--brand);
     text-transform: uppercase;
-    margin-bottom: 0.3rem;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+    line-height: 1;
   }
 
-  .timeline-item__title {
+  .tl__title {
     font-family: var(--font-display);
-    font-size: var(--step-1);
+    font-size: var(--step-2);
     font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
     line-height: var(--leading-display);
     color: var(--text);
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.55rem;
+    text-wrap: balance;
   }
 
-  .timeline-item__body {
+  .tl__text {
+    font-family: var(--font-body);
     font-size: var(--step-0);
     line-height: var(--leading-body);
     color: var(--text-muted);
     margin: 0;
-    max-width: 56ch;
+    max-width: 58ch;
   }
 
-  /* Tone overrides ---------------------------------------------------------- */
+  /* ── Tone overrides ─────────────────────────────────────────────────────── */
   [data-tone='alt'] {
     background: var(--bg-alt);
   }
+
   [data-tone='deep'] {
     background: var(--bg-deep);
-  }
-  [data-tone='deep'] .timeline-section__heading,
-  [data-tone='deep'] .timeline-item__title {
     color: var(--text-on-dark);
   }
-  [data-tone='deep'] .timeline-section__intro,
-  [data-tone='deep'] .timeline-item__body {
-    color: color-mix(in srgb, var(--text-on-dark) 75%, transparent);
+  [data-tone='deep'] .tl__track {
+    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
   }
-  [data-tone='deep'] .eyebrow,
-  [data-tone='deep'] .timeline-item__year {
-    color: var(--accent);
+  [data-tone='deep'] .tl__dot {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent),
+      0 0 0 1px var(--bg-deep);
   }
-  [data-tone='deep'] .timeline::before {
-    background: color-mix(in srgb, var(--text-on-dark) 20%, transparent);
+  [data-tone='deep'] .tl__title {
+    color: var(--text-on-dark);
   }
-  [data-tone='deep'] .timeline-item__node {
-    border-color: var(--bg-deep);
+  [data-tone='deep'] .tl__year {
+    color: color-mix(in srgb, var(--text-on-dark) 60%, transparent);
   }
+  [data-tone='deep'] .tl__text {
+    color: color-mix(in srgb, var(--text-on-dark) 72%, transparent);
+  }
+
   [data-tone='brand'] {
     background: var(--brand);
-  }
-  [data-tone='brand'] .timeline-section__heading,
-  [data-tone='brand'] .timeline-item__title {
     color: var(--brand-contrast);
   }
-  [data-tone='brand'] .timeline-section__intro,
-  [data-tone='brand'] .timeline-item__body {
+  [data-tone='brand'] .tl__num {
+    color: var(--brand-contrast);
+    opacity: 0.7;
+  }
+  [data-tone='brand'] .tl__dot {
+    background: var(--brand-contrast);
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--brand-contrast) 22%, transparent),
+      0 0 0 1px var(--brand);
+  }
+  [data-tone='brand'] .tl__track {
+    border-color: color-mix(in srgb, var(--brand-contrast) 25%, transparent);
+  }
+  [data-tone='brand'] .tl__title {
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .tl__year {
+    color: color-mix(in srgb, var(--brand-contrast) 70%, transparent);
+  }
+  [data-tone='brand'] .tl__text {
     color: color-mix(in srgb, var(--brand-contrast) 80%, transparent);
   }
-  [data-tone='brand'] .eyebrow,
-  [data-tone='brand'] .timeline-item__year {
-    color: var(--brand-contrast);
-    opacity: 0.75;
-  }
-  [data-tone='brand'] .timeline-item__node {
-    background: var(--brand-contrast);
-    box-shadow: 0 0 0 calc(var(--border-weight) * 2) var(--brand-contrast);
-    border-color: var(--brand);
-  }
-  [data-tone='brand'] .timeline::before {
-    background: color-mix(in srgb, var(--brand-contrast) 25%, transparent);
+
+  /* ── Mobile: tighten the track column ──────────────────────────────────── */
+  @media (max-width: 480px) {
+    .tl {
+      max-width: 100%;
+    }
+    .tl__item {
+      grid-template-columns: 2.5rem 1fr;
+      column-gap: 1rem;
+    }
+    .tl__num {
+      font-size: 0.65rem;
+    }
   }
 </style>

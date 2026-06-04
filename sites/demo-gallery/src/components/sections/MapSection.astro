@@ -1,4 +1,15 @@
 ---
+/**
+ * MapSection — clean static OSM embed + address card + optional hours.
+ *
+ * Award pattern: the map is the hero of this band; the sidebar is an editorial
+ * info card, not a form widget. Address formatted as stacked lines with a
+ * directions link in accent. Hours in a clean DL. No API key required — uses
+ * the OpenStreetMap export embed (lat/lng preferred for precision, address
+ * fallback for search geocoding).
+ *
+ * Prop shape matches the 'map' member of the Section union (types.ts).
+ */
 import type { BusinessHours, Tone, Align } from '../../types';
 
 interface Props {
@@ -11,6 +22,8 @@ interface Props {
   intro?: string;
   tone?: Tone;
   align?: Align;
+  /** Chapter index from SectionRenderer — accepted but not rendered (utility band). */
+  index?: number;
 }
 
 const {
@@ -23,118 +36,175 @@ const {
   intro,
   tone = 'default',
   align = 'left',
-} = Astro.props;
+  index: _index,
+} = Astro.props as Props;
 
 /**
  * Build the OpenStreetMap iframe src.
- * When lat+lng are provided we use the bounding-box embed which is most
- * reliable without an API key. When only address is available we fall back
- * to the search-embed form which geocodes on the client.
+ * lat+lng → bounding-box embed with a pin (most reliable, no key).
+ * address only → search/query embed (geocodes on the client).
  */
 function buildMapSrc(address: string, lat?: number, lng?: number): string {
   if (lat !== undefined && lng !== undefined) {
-    // Tight bounding box (~500 m padding) around the pin
     const pad = 0.006;
     const bbox = `${lng - pad},${lat - pad},${lng + pad},${lat + pad}`;
     const marker = `${lat},${lng}`;
     return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${marker}`;
   }
-  // Search/query embed — geocodes by address string, key-free
   const q = encodeURIComponent(address);
   return `https://www.openstreetmap.org/export/embed.html?query=${q}&layer=mapnik`;
 }
 
 const mapSrc = buildMapSrc(address, lat, lng);
-const hasHours = hours && hours.length > 0;
+const hasHours = Array.isArray(hours) && hours.length > 0;
+
+// Split address on commas for multi-line display (e.g. "123 Main St, City, ST 00000")
+const addressLines = address.split(',').map((s) => s.trim()).filter(Boolean);
+const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 ---
 
-<section class="section" data-tone={tone} id="map">
+<section class="section map-sec" data-tone={tone} id="map">
   <div class="container">
 
+    <!-- Optional header (eyebrow / heading / intro) — minimal, not SectionHead-numbered -->
     {(eyebrow || heading || intro) && (
-      <div class={`section-header${align === 'center' ? ' section-header--center' : ''}`} data-reveal>
-        {eyebrow && <span class="eyebrow">{eyebrow}</span>}
-        {heading && <h2>{heading}</h2>}
-        {intro && <p class="intro">{intro}</p>}
-      </div>
+      <header class={`map-sec__head${align === 'center' ? ' map-sec__head--center' : ''}`} data-reveal>
+        {eyebrow && <p class="map-sec__eyebrow">{eyebrow}</p>}
+        {heading && <h2 class="map-sec__heading">{heading}</h2>}
+        {intro && <p class="map-sec__intro">{intro}</p>}
+      </header>
     )}
 
-    <div class="map-layout">
+    <!-- Map + info two-column layout -->
+    <div class="map-sec__body">
 
-      <!-- Static OSM embed — no API key required -->
-      <div class="map-frame" data-frame data-reveal>
+      <!-- OSM iframe — no API key -->
+      <div class="map-sec__frame" data-frame data-reveal>
         <iframe
           src={mapSrc}
-          title={`Map showing location of ${address}`}
+          title={`Map showing the location of ${address}`}
           loading="lazy"
           referrerpolicy="no-referrer"
           aria-label={`Map: ${address}`}
         ></iframe>
       </div>
 
-      <!-- Address + hours sidebar -->
-      <div class="map-info" data-reveal data-reveal-order="1">
+      <!-- Sidebar card: address + optional hours -->
+      <aside class="map-sec__info" data-reveal>
 
-        <div class="map-address">
-          <h3 class="map-info__label">Address</h3>
-          <address>
-            {address.split(',').map((part, i) => (
-              <span class="addr-line">{part.trim()}{i < address.split(',').length - 1 ? ',' : ''}</span>
+        <!-- Address block -->
+        <div class="map-sec__address-block">
+          <p class="map-sec__info-label">Address</p>
+          <address class="map-sec__address">
+            {addressLines.map((line, i) => (
+              <span class="map-sec__addr-line">
+                {line}{i < addressLines.length - 1 ? ',' : ''}
+              </span>
             ))}
           </address>
           <a
-            class="directions-link"
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
+            class="map-sec__directions"
+            href={directionsHref}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Get directions &rarr;
+            Get directions
+            <svg class="map-sec__dir-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </a>
         </div>
 
+        <!-- Hours block (optional) -->
         {hasHours && (
-          <div class="map-hours">
-            <h3 class="map-info__label">Hours</h3>
-            <table class="hours-table" aria-label="Business hours">
-              <tbody>
-                {hours!.map((row) => (
-                  <tr>
-                    <th scope="row">{row.day}</th>
-                    <td>{row.hours}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div class="map-sec__hours-block">
+            <p class="map-sec__info-label">Hours</p>
+            <dl class="map-sec__hours-table" aria-label="Business hours">
+              {hours!.map(({ day, hours: h }) => (
+                <div class="map-sec__hours-row">
+                  <dt class="map-sec__hours-day">{day}</dt>
+                  <dd class="map-sec__hours-val">{h}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         )}
 
-      </div>
+      </aside>
+
     </div>
   </div>
 </section>
 
 <style>
-  .map-layout {
+  /* ── Section padding ── */
+  .map-sec {
+    padding-block: var(--section-pad);
+  }
+
+  /* ── Optional header ── */
+  .map-sec__head {
+    margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+    max-width: 60ch;
+  }
+  .map-sec__head--center {
+    text-align: center;
+    margin-inline: auto;
+    max-width: 52ch;
+  }
+
+  .map-sec__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 0.5rem;
+  }
+
+  .map-sec__heading {
+    font-family: var(--font-display);
+    font-size: clamp(var(--step-2), 2.5vw + 0.4rem, var(--step-4));
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 0.45em;
+    text-wrap: balance;
+  }
+
+  .map-sec__intro {
+    font-size: var(--step-0);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  /* ── Two-column layout: map (wider) + sidebar ── */
+  .map-sec__body {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--grid-gap);
+    gap: clamp(1.25rem, 3vw, 2rem);
   }
 
   @media (min-width: 720px) {
-    .map-layout {
+    .map-sec__body {
+      /* 63 / 37 split — the map earns the larger share */
       grid-template-columns: 1fr 320px;
       align-items: start;
     }
   }
 
-  @media (min-width: 960px) {
-    .map-layout {
+  @media (min-width: 1000px) {
+    .map-sec__body {
       grid-template-columns: 1fr 360px;
     }
   }
 
-  /* Map iframe */
-  .map-frame {
+  /* ── Map iframe ── */
+  .map-sec__frame {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -142,132 +212,217 @@ const hasHours = hours && hours.length > 0;
     overflow: hidden;
     border: var(--border-weight) solid var(--border);
     box-shadow: var(--shadow-md);
+    background: var(--bg-alt);
   }
 
   @media (min-width: 720px) {
-    .map-frame {
+    .map-sec__frame {
       aspect-ratio: 4 / 3;
     }
   }
 
-  .map-frame iframe {
+  .map-sec__frame iframe {
+    display: block;
     width: 100%;
     height: 100%;
-    display: block;
     border: none;
     border-radius: inherit;
   }
 
-  /* Info sidebar */
-  .map-info {
+  /* ── Info sidebar card ── */
+  .map-sec__info {
     display: flex;
     flex-direction: column;
-    gap: clamp(1.5rem, 3vw, 2.25rem);
-    padding: clamp(1.25rem, 3vw, 2rem);
+    gap: clamp(1.5rem, 2.5vw, 2rem);
+    padding: clamp(1.25rem, 3vw, 1.75rem);
     background: var(--surface);
-    border-radius: var(--radius-lg);
     border: var(--border-weight) solid var(--border);
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
+    /* Top accent stripe — same pattern as HoursContact card */
+    border-top: 3px solid var(--brand);
   }
 
-  .map-info__label {
-    font-size: var(--step--1);
+  /* ── Shared section-label style (Address / Hours) ── */
+  .map-sec__info-label {
     font-family: var(--font-body);
+    font-size: var(--step--1);
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
     color: var(--brand);
-    margin-bottom: 0.6rem;
+    margin: 0 0 0.65rem;
   }
 
-  [data-tone="deep"] .map-info__label,
-  [data-tone="brand"] .map-info__label {
-    color: var(--accent);
-  }
-
-  /* Address */
-  address {
+  /* ── Address ── */
+  .map-sec__address {
     font-style: normal;
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
-    color: var(--text);
-    margin-bottom: 0.9rem;
+    gap: 0.15rem;
+    margin: 0 0 0.85rem;
   }
 
-  .addr-line {
+  .map-sec__addr-line {
     display: block;
     font-size: var(--step-0);
+    color: var(--text);
+    line-height: 1.5;
   }
 
-  .directions-link {
-    display: inline-block;
+  /* ── Directions link ── */
+  .map-sec__directions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
-    color: var(--accent);
     letter-spacing: 0.01em;
+    color: var(--accent);
+    text-decoration: none;
     transition: color var(--motion-fade) var(--motion-ease);
   }
-
-  .directions-link:hover {
+  .map-sec__directions:hover,
+  .map-sec__directions:focus-visible {
     color: var(--brand);
     text-decoration: underline;
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
-  /* Hours table */
-  .hours-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: var(--step--1);
+  .map-sec__dir-arrow {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    transition: transform var(--motion-fade) var(--motion-ease);
+  }
+  .map-sec__directions:hover .map-sec__dir-arrow {
+    transform: translateX(2px);
   }
 
-  .hours-table th,
-  .hours-table td {
-    padding: 0.35rem 0;
+  /* ── Hours DL table ── */
+  .map-sec__hours-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .map-sec__hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.45em 0;
     border-bottom: var(--border-weight) solid var(--border);
-    text-align: left;
-    vertical-align: top;
   }
-
-  .hours-table th {
-    font-weight: var(--fw-bold);
-    color: var(--text);
-    width: 40%;
-  }
-
-  .hours-table td {
-    color: var(--text-muted);
-  }
-
-  .hours-table tr:last-child th,
-  .hours-table tr:last-child td {
+  .map-sec__hours-row:last-child {
     border-bottom: none;
   }
 
-  /* Tone overrides for info panel */
-  [data-tone="deep"] .map-info,
-  [data-tone="brand"] .map-info {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.15);
+  .map-sec__hours-day {
+    font-weight: var(--fw-bold);
+    font-size: var(--step--1);
+    color: var(--text);
+    margin: 0;
+    min-width: 4.5rem;
   }
 
-  [data-tone="deep"] address,
-  [data-tone="deep"] .hours-table th,
-  [data-tone="brand"] address,
-  [data-tone="brand"] .hours-table th {
-    color: var(--text-on-dark);
+  .map-sec__hours-val {
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    margin: 0;
+    text-align: right;
   }
 
-  [data-tone="deep"] .hours-table td,
-  [data-tone="brand"] .hours-table td {
+  /* ── Tone overrides ── */
+
+  /* alt */
+  [data-tone="alt"] .map-sec__frame {
+    background: var(--bg-alt);
+  }
+
+  /* deep */
+  [data-tone="deep"] .map-sec__eyebrow {
+    color: var(--accent);
+  }
+  [data-tone="deep"] .map-sec__heading {
     color: var(--text-on-dark);
+  }
+  [data-tone="deep"] .map-sec__intro {
+    color: var(--text-on-dark);
+    opacity: 0.7;
+  }
+  [data-tone="deep"] .map-sec__info {
+    background: color-mix(in srgb, var(--text-on-dark) 8%, transparent);
+    border-color: color-mix(in srgb, var(--text-on-dark) 16%, transparent);
+    border-top-color: var(--accent);
+  }
+  [data-tone="deep"] .map-sec__info-label {
+    color: var(--accent);
+  }
+  [data-tone="deep"] .map-sec__addr-line {
+    color: var(--text-on-dark);
+  }
+  [data-tone="deep"] .map-sec__hours-day {
+    color: var(--text-on-dark);
+  }
+  [data-tone="deep"] .map-sec__hours-val {
+    color: var(--text-on-dark);
+    opacity: 0.6;
+  }
+  [data-tone="deep"] .map-sec__hours-row {
+    border-bottom-color: color-mix(in srgb, var(--text-on-dark) 14%, transparent);
+  }
+  [data-tone="deep"] .map-sec__frame {
+    border-color: color-mix(in srgb, var(--text-on-dark) 16%, transparent);
+  }
+
+  /* brand */
+  [data-tone="brand"] .map-sec__eyebrow {
+    color: var(--brand-contrast);
     opacity: 0.75;
   }
-
-  [data-tone="deep"] .hours-table th,
-  [data-tone="deep"] .hours-table td,
-  [data-tone="brand"] .hours-table th,
-  [data-tone="brand"] .hours-table td {
-    border-bottom-color: rgba(255, 255, 255, 0.12);
+  [data-tone="brand"] .map-sec__heading {
+    color: var(--brand-contrast);
+  }
+  [data-tone="brand"] .map-sec__intro {
+    color: var(--brand-contrast);
+    opacity: 0.8;
+  }
+  [data-tone="brand"] .map-sec__info {
+    background: color-mix(in srgb, var(--brand-contrast) 12%, transparent);
+    border-color: color-mix(in srgb, var(--brand-contrast) 22%, transparent);
+    border-top-color: var(--brand-contrast);
+  }
+  [data-tone="brand"] .map-sec__info-label {
+    color: var(--brand-contrast);
+    opacity: 0.8;
+  }
+  [data-tone="brand"] .map-sec__addr-line {
+    color: var(--brand-contrast);
+  }
+  [data-tone="brand"] .map-sec__directions {
+    color: var(--brand-contrast);
+  }
+  [data-tone="brand"] .map-sec__directions:hover {
+    color: var(--brand-contrast);
+    opacity: 0.8;
+  }
+  [data-tone="brand"] .map-sec__hours-day {
+    color: var(--brand-contrast);
+  }
+  [data-tone="brand"] .map-sec__hours-val {
+    color: var(--brand-contrast);
+    opacity: 0.65;
+  }
+  [data-tone="brand"] .map-sec__hours-row {
+    border-bottom-color: color-mix(in srgb, var(--brand-contrast) 22%, transparent);
+  }
+  [data-tone="brand"] .map-sec__frame {
+    border-color: color-mix(in srgb, var(--brand-contrast) 22%, transparent);
   }
 </style>

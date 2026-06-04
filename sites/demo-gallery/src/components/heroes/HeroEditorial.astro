@@ -1,9 +1,17 @@
 ---
 /**
- * HeroEditorial — centered magazine typography with thin rules, a full-bleed
- * photo (parallax), overlapping display type that "breaks" the rule lines,
- * a brand gradient-mesh, and a floating trust badge anchored bottom-right.
- * Spec §7: "editorial" variant.
+ * HeroEditorial — oversized typographic hero. The headline overflows toward
+ * one edge, image reveals beneath on scroll (data-parallax). Inspired by the
+ * BRAND Napa / Post Familiar / winery oversized-type pattern:
+ *
+ *   "Oversized typographic hero: the estate name or a single evocative phrase
+ *    rendered at 12–18vw … positioned to overflow the viewport edge on one
+ *    side. A secondary image fades in on scroll beneath the text."
+ *
+ * Award patterns applied:
+ * - Winery heroPatterns[2]: 12–18vw type, overflow one edge, image reveals under text
+ * - Salon heroPatterns[1]: "Oversized stacked headline over a muted-overlay image"
+ * - Eyebrow accent rule (HeroCinematic idiom), badge, parallax via data-parallax
  */
 import type { ProspectConfig } from '../../types';
 const { config } = Astro.props as { config: ProspectConfig };
@@ -23,7 +31,7 @@ const trustLine = highlights[0] ?? '';
   aria-label="Hero"
 >
 
-  <!-- ① Photo + parallax (only when image available) -->
+  <!-- ① Photo — parallax target, reveals "beneath" the oversized type on scroll -->
   {hasPhoto && (
     <div class="ed-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.35">
       <img
@@ -36,44 +44,44 @@ const trustLine = highlights[0] ?? '';
     </div>
   )}
 
-  <!-- ② Brand gradient-mesh -->
+  <!-- ② Gradient-mesh overlay -->
   <div class="ed-hero__mesh" aria-hidden="true"></div>
 
-  <!-- ③ Legibility scrim (radial so centre is clearest) -->
+  <!-- ③ Legibility scrim: heavier at base, lighter center so type breathes -->
   <div class="ed-hero__scrim" aria-hidden="true"></div>
 
-  <!-- ④ Trust badge (bottom-right, overlaps content edge) -->
+  <!-- ④ Trust badge — anchored top-right so it doesn't compete with the
+       overflowing type (bottom-left is where the type bleeds) -->
   {(badgeYear || trustLine) && (
-    <div class="ed-hero__badge" aria-label="Trust signal" data-reveal data-reveal-order="0">
+    <div class="ed-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
       {badgeYear && <strong class="ed-hero__badge-year">{badgeYear}</strong>}
       <span class="ed-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
       {badgeYear && trustLine && <span class="ed-hero__badge-trust">{trustLine}</span>}
     </div>
   )}
 
-  <!-- ⑤ Content -->
-  <div class="container ed-hero__inner">
-
-    <!-- Top thin rule -->
-    <hr class="ed-hero__rule ed-hero__rule--top" aria-hidden="true" />
+  <!-- ⑤ Content — left-aligned, type overflows right edge at large sizes -->
+  <div class="ed-hero__inner">
 
     <div class="ed-hero__copy" data-reveal data-reveal-order="1">
 
-      {eyebrow && <p class="ed-hero__eyebrow">{eyebrow}</p>}
+      {eyebrow && (
+        <p class="ed-hero__eyebrow">{eyebrow}</p>
+      )}
 
-      <!-- Oversized headline — "breaks" the rules visually -->
+      <!-- The oversized headline — intentionally wide, overflows viewport edge -->
       <h1 class="ed-hero__title">{hero.heading}</h1>
 
-      <!-- Accent mid-rule (short, brand-colored) -->
-      <div class="ed-hero__mid-rule" aria-hidden="true"></div>
+      <!-- Accent mid-rule below headline: short brand bar, left-anchored -->
+      <div class="ed-hero__rule" aria-hidden="true"></div>
 
       {hero.subheading && (
         <p class="ed-hero__sub">{hero.subheading}</p>
       )}
 
-      <!-- Refined CTA cluster -->
+      <!-- Ghost CTA + phone — award pattern for editorial heroes -->
       <div class="ed-hero__actions">
-        <a href={hero.ctaHref} class="btn ed-hero__cta">{hero.ctaText}</a>
+        <a href={hero.ctaHref} class="ed-hero__cta-ghost">{hero.ctaText}</a>
         {contact.phone && (
           <a href={telHref} class="ed-hero__phone">
             <svg class="ed-hero__phone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -85,11 +93,9 @@ const trustLine = highlights[0] ?? '';
       </div>
     </div>
 
-    <!-- Bottom rule -->
-    <hr class="ed-hero__rule ed-hero__rule--bottom" aria-hidden="true" />
   </div>
 
-  <!-- ⑥ Highlights ticker bar (pinned bottom) -->
+  <!-- ⑥ Highlights ticker bar — pinned bottom, backdrop-blur -->
   {highlights.length > 0 && (
     <ul class="ed-hero__highlights" aria-label="Key highlights" data-reveal data-reveal-order="2">
       {highlights.map((h: string) => <li>{h}</li>)}
@@ -99,25 +105,23 @@ const trustLine = highlights[0] ?? '';
 </section>
 
 <style>
-  /* ── Shell ───────────────────────────────────────────────────────────────── */
+  /* ── Shell ─────────────────────────────────────────────────────────────── */
   .ed-hero {
     position: relative;
     isolation: isolate;
-    min-height: min(92vh, 860px);
+    min-height: min(96vh, 920px);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-end;   /* copy sits lower, photo "above" reveals on scroll */
     background: var(--bg-deep);
     color: var(--text-on-dark);
     overflow: hidden;
   }
 
-  /* ── ① Photo layer (parallax) ────────────────────────────────────────────── */
+  /* ── ① Photo layer ──────────────────────────────────────────────────────── */
   .ed-hero__media {
     position: absolute;
-    inset: -12% 0;
+    inset: -14% 0;          /* generous bleed so parallax never shows gaps */
     z-index: 0;
     will-change: transform;
   }
@@ -125,58 +129,61 @@ const trustLine = highlights[0] ?? '';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 35%;
+    object-position: center 30%;
     display: block;
   }
   @media (prefers-reduced-motion: reduce) {
     .ed-hero__media { inset: 0; will-change: auto; }
   }
 
-  /* ── ② Gradient-mesh ─────────────────────────────────────────────────────── */
+  /* ── ② Gradient-mesh ────────────────────────────────────────────────────── */
   .ed-hero__mesh {
     position: absolute;
     inset: 0;
     z-index: 1;
     background:
       radial-gradient(
-        ellipse 80% 55% at 15% 10%,
-        color-mix(in srgb, var(--brand) 28%, transparent) 0%,
-        transparent 65%
+        ellipse 75% 50% at 0% 10%,
+        color-mix(in srgb, var(--brand) 26%, transparent) 0%,
+        transparent 62%
       ),
       radial-gradient(
-        ellipse 55% 45% at 90% 90%,
-        color-mix(in srgb, var(--accent) 18%, transparent) 0%,
-        transparent 60%
+        ellipse 50% 40% at 95% 92%,
+        color-mix(in srgb, var(--accent) 16%, transparent) 0%,
+        transparent 58%
       );
     pointer-events: none;
   }
 
-  /* ── ③ Radial scrim ──────────────────────────────────────────────────────── */
+  /* ── ③ Legibility scrim ─────────────────────────────────────────────────── */
+  /* Heavier at the bottom-left where copy sits; fades up/right.
+     Award pattern: transparent center → darker edges preserves photo detail. */
   .ed-hero__scrim {
     position: absolute;
     inset: 0;
     z-index: 2;
-    background: radial-gradient(
-      120% 90% at 50% 45%,
-      color-mix(in srgb, var(--bg-deep) 28%, transparent) 0%,
-      color-mix(in srgb, var(--bg-deep) 70%, transparent) 100%
-    );
+    background:
+      linear-gradient(
+        160deg,
+        transparent 30%,
+        color-mix(in srgb, var(--bg-deep) 65%, transparent) 100%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 40%,
+        color-mix(in srgb, var(--bg-deep) 78%, transparent) 100%
+      );
     pointer-events: none;
   }
-  /* No photo: need more coverage */
   :not([data-has-photo]) .ed-hero__scrim {
-    background: radial-gradient(
-      120% 90% at 50% 45%,
-      color-mix(in srgb, var(--bg-deep) 60%, transparent) 0%,
-      color-mix(in srgb, var(--bg-deep) 90%, transparent) 100%
-    );
+    background: color-mix(in srgb, var(--bg-deep) 82%, transparent);
   }
 
-  /* ── ④ Trust badge (bottom-right, bleeds toward edge) ────────────────────── */
+  /* ── ④ Trust badge (top-right, out of the type flow) ───────────────────── */
   .ed-hero__badge {
     position: absolute;
-    bottom: 5rem;             /* sits above highlights bar */
-    right: clamp(1.5rem, 4vw, 4rem);
+    top: clamp(1.5rem, 4vw, 3rem);
+    right: clamp(1.5rem, 4vw, 3.5rem);
     z-index: 5;
     display: inline-flex;
     flex-direction: column;
@@ -215,41 +222,25 @@ const trustLine = highlights[0] ?? '';
     max-width: 110px;
   }
 
-  /* ── ⑤ Content layer ─────────────────────────────────────────────────────── */
+  /* ── ⑤ Content layer ────────────────────────────────────────────────────── */
   .ed-hero__inner {
     position: relative;
     z-index: 3;
-    max-width: 820px;
-    padding-block: clamp(3rem, 8vw, 6rem);
     width: 100%;
+    max-width: var(--maxw);
+    /* align to gutter — NOT a constrained container, title overflows right */
+    padding-inline-start: var(--gutter);
+    padding-inline-end: 0;           /* intentional: title overflows right edge */
+    padding-block-end: clamp(3rem, 7vw, 5.5rem);
+    margin-inline: auto;
   }
 
-  /* Editorial rules */
-  .ed-hero__rule {
-    border: none;
-    border-top: var(--border-weight) solid
-      color-mix(in srgb, var(--text-on-dark) 28%, transparent);
-    margin: 0;
-    width: 100%;
-  }
-  :not([data-has-photo]) .ed-hero__rule {
-    border-top-color: color-mix(in srgb, var(--brand) 40%, var(--border));
-  }
-  .ed-hero__rule--top { margin-bottom: clamp(1.5rem, 3.5vw, 2.8rem); }
-  .ed-hero__rule--bottom { margin-top: clamp(1.5rem, 3.5vw, 2.8rem); }
-
-  /* Short brand-colored mid rule that "breaks" the headline */
-  .ed-hero__mid-rule {
-    width: clamp(3rem, 6vw, 5.5rem);
-    height: 3px;
-    background: var(--brand);
-    margin: 1.4rem auto 1.6rem;
-    border-radius: var(--radius-pill);
-  }
-  :not([data-has-photo]) .ed-hero__mid-rule {
-    background: color-mix(in srgb, var(--brand) 70%, #fff 30%);
+  .ed-hero__copy {
+    /* width is intentionally wider than the safe zone to enable the overflow */
+    max-width: none;
   }
 
+  /* Eyebrow: accent rule + tracked caps */
   .ed-hero__eyebrow {
     display: block;
     font-family: var(--font-body);
@@ -257,47 +248,96 @@ const trustLine = highlights[0] ?? '';
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--text-on-dark) 78%, transparent);
-    margin: 0 0 1.4rem;
+    color: color-mix(in srgb, var(--text-on-dark) 72%, transparent);
+    margin: 0 0 1.1rem;
   }
-  [data-has-photo] .ed-hero__eyebrow {
-    color: rgba(255, 255, 255, 0.84);
+  .ed-hero__eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 1.6rem;
+    height: 2px;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    background: var(--accent);
   }
 
-  /* Oversized headline — magazine scale */
+  /* Oversized headline — key pattern: overflows the viewport edge on one side.
+     No max-width constraint. Fluid size from --step-4 → viewport-scale. */
   .ed-hero__title {
     font-family: var(--font-display);
     font-weight: var(--fw-display);
-    font-size: clamp(2.8rem, 6.5vw, 6.4rem);
+    /* Intentionally large — goes beyond container on wide viewports */
+    font-size: clamp(3rem, 9vw, 8.5rem);
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-display);
     color: var(--text-on-dark);
     margin: 0;
-    text-shadow: 0 2px 40px color-mix(in srgb, var(--bg-deep) 42%, transparent);
+    text-shadow: 0 2px 48px color-mix(in srgb, var(--bg-deep) 45%, transparent);
+    /* Allow the overflow to the right — the award move */
+    white-space: nowrap;
+    overflow: visible;
   }
 
+  /* Accent mid-rule below headline: left-anchored, short brand bar */
+  .ed-hero__rule {
+    width: clamp(3rem, 6vw, 5rem);
+    height: 3px;
+    background: var(--accent);
+    margin: 1.4rem 0 1.6rem;
+    border-radius: var(--radius-pill);
+  }
+  :not([data-has-photo]) .ed-hero__rule {
+    background: color-mix(in srgb, var(--brand) 70%, #fff 30%);
+  }
+
+  /* Subheading — constrained width so it doesn't run to the edge */
   .ed-hero__sub {
     font-family: var(--font-body);
     font-size: var(--step-1);
     line-height: var(--leading-body);
-    color: color-mix(in srgb, var(--text-on-dark) 86%, transparent);
-    max-width: 54ch;
-    margin: 0 auto 2rem;
+    color: color-mix(in srgb, var(--text-on-dark) 82%, transparent);
+    max-width: 50ch;
+    margin: 0 0 2rem;
   }
 
   /* CTA cluster */
   .ed-hero__actions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
     gap: 1rem 1.75rem;
   }
 
-  .ed-hero__cta {
-    box-shadow: 0 4px 20px color-mix(in srgb, var(--brand) 40%, transparent);
+  /* Ghost button — editorial hero award pattern */
+  .ed-hero__cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    color: var(--text-on-dark);
+    text-decoration: none;
+    border: var(--border-weight) solid
+      color-mix(in srgb, var(--text-on-dark) 50%, transparent);
+    padding: 0.75em 1.6em;
+    border-radius: var(--radius);
+    transition:
+      border-color var(--motion-fade) var(--motion-ease),
+      background var(--motion-fade) var(--motion-ease),
+      color var(--motion-fade) var(--motion-ease);
+  }
+  .ed-hero__cta-ghost:hover {
+    border-color: var(--brand);
+    background: var(--brand);
+    color: var(--brand-contrast);
+    text-decoration: none;
+  }
+  .ed-hero__cta-ghost:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
   }
 
+  /* Phone link */
   .ed-hero__phone {
     display: inline-flex;
     align-items: center;
@@ -308,7 +348,7 @@ const trustLine = highlights[0] ?? '';
     color: var(--text-on-dark);
     text-decoration: none;
     border-bottom: var(--border-weight) solid
-      color-mix(in srgb, var(--text-on-dark) 42%, transparent);
+      color-mix(in srgb, var(--text-on-dark) 40%, transparent);
     padding-bottom: 2px;
     transition: border-color var(--motion-fade) var(--motion-ease);
   }
@@ -327,7 +367,7 @@ const trustLine = highlights[0] ?? '';
     flex-shrink: 0;
   }
 
-  /* ── ⑥ Highlights ticker bar (pinned bottom) ─────────────────────────────── */
+  /* ── ⑥ Highlights ticker — pinned bottom ───────────────────────────────── */
   .ed-hero__highlights {
     position: absolute;
     bottom: 0;
@@ -338,44 +378,53 @@ const trustLine = highlights[0] ?? '';
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.4rem 2rem;
-    background: color-mix(in srgb, var(--bg-deep) 52%, transparent);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    gap: 0.4rem 2.25rem;
+    background: color-mix(in srgb, var(--bg-deep) 55%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--text-on-dark) 84%, transparent);
+    color: color-mix(in srgb, var(--text-on-dark) 78%, transparent);
     z-index: 4;
   }
 
-  /* ── Mobile ──────────────────────────────────────────────────────────────── */
+  /* ── Mobile ─────────────────────────────────────────────────────────────── */
   @media (max-width: 720px) {
-    .ed-hero { min-height: 72vh; }
-    .ed-hero__title { font-size: clamp(2.2rem, 8vw, 3.4rem); }
+    .ed-hero {
+      min-height: 78vh;
+    }
+    /* On small screens, allow normal wrapping — no overflow-right */
+    .ed-hero__title {
+      font-size: clamp(2.4rem, 10vw, 3.8rem);
+      white-space: normal;
+    }
     .ed-hero__badge {
-      bottom: auto;
-      top: 1.25rem;
+      top: 1rem;
       right: 1rem;
     }
     .ed-hero__highlights {
       position: static;
-      background: var(--brand-dark);
+      background: var(--brand-dark, var(--bg-deep));
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
     }
+    .ed-hero__inner {
+      padding-inline-end: var(--gutter);
+    }
   }
 
-  /* ── Archetype tweaks ────────────────────────────────────────────────────── */
+  /* ── Archetype tweaks ──────────────────────────────────────────────────── */
   [data-archetype="magazine"] .ed-hero__title {
-    font-size: clamp(3.2rem, 7.5vw, 7.5rem);
-    letter-spacing: -0.03em;
+    font-size: clamp(3.5rem, 12vw, 11rem);
   }
-  [data-archetype="editorial"] .ed-hero__mid-rule {
+  [data-archetype="editorial"] .ed-hero__rule {
     border-radius: 0;
     height: 2px;
+  }
+  [data-archetype="classic"] .ed-hero__title {
+    white-space: normal;
   }
 </style>

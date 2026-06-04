@@ -1,8 +1,16 @@
 ---
+/**
+ * ProcessSection — numbered steps with giant ghost numerals, a connective rule,
+ * and editorial body text. Tear-down pattern: Genz-Ryan "Easy-Peasy Process" +
+ * Forestis/spa philosophy step-card (giant background numeral at ~8% opacity).
+ * Header via SectionHead. Tone-aware.
+ */
+import SectionHead from './SectionHead.astro';
 import type { SectionEnvelope } from '../../types';
 
 interface Props extends SectionEnvelope {
   steps: { title: string; body?: string }[];
+  index?: number;
 }
 
 const {
@@ -12,113 +20,128 @@ const {
   intro,
   tone = 'default',
   align = 'center',
+  index,
 } = Astro.props as Props;
 ---
 
-<section class="section" data-tone={tone} id="process">
-  <div class="container">
+{steps.length > 0 && (
+  <section class="section process" data-tone={tone} id="process">
+    <div class="container">
 
-    {(eyebrow || heading || intro) && (
-      <div class={`process__head${align === 'center' ? ' process__head--center' : ''}`} data-reveal>
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {heading && <h2>{heading}</h2>}
-        {intro && <p class="process__intro">{intro}</p>}
-      </div>
-    )}
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
 
-    <ol class="process__steps" role="list">
-      {steps.map((step, i) => (
-        <li class="process__step" data-reveal data-reveal-order={i}>
-          <div class="process__badge" aria-hidden="true">
-            <span class="process__num">{String(i + 1).padStart(2, '0')}</span>
-          </div>
-          <div class="process__connector" aria-hidden="true" />
-          <div class="process__body">
-            <h3 class="process__title">{step.title}</h3>
-            {step.body && <p class="process__desc">{step.body}</p>}
-          </div>
-        </li>
-      ))}
-    </ol>
+      <ol class="process__track" role="list">
+        {steps.map((step, i) => (
+          <li class="process__step" data-reveal data-reveal-order={i}>
+            {/* Ghost numeral — positioned absolute, serves as visual texture */}
+            <span class="process__ghost" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            {/* Visible pill badge */}
+            <div class="process__badge" aria-hidden="true">
+              <span class="process__num">{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <div class="process__body">
+              <h3 class="process__title">{step.title}</h3>
+              {step.body && <p class="process__desc">{step.body}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
 
-  </div>
-</section>
+    </div>
+  </section>
+)}
 
 <style>
-  .process__head {
-    max-width: 52ch;
-    margin-block-end: calc(var(--section-pad) * 0.6);
-  }
-  .process__head--center {
+  /* ── Layout ────────────────────────────────────────────────── */
+  .process { padding-block: var(--section-pad); }
+
+  .container {
+    max-width: var(--maxw);
     margin-inline: auto;
-    text-align: center;
+    padding-inline: var(--gutter);
   }
 
-  .process__head h2 {
-    font-family: var(--font-display);
-    font-weight: var(--fw-display);
-    font-size: var(--step-3);
-    letter-spacing: var(--tracking-display);
-    line-height: var(--leading-display);
-    margin-block: 0.25em 0.5em;
-  }
-
-  .process__intro {
-    color: var(--text-muted);
-    line-height: var(--leading-body);
-  }
-
-  /* Step list — vertical track */
-  .process__steps {
+  /* ── Step track ────────────────────────────────────────────── */
+  .process__track {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
     gap: var(--grid-gap);
     position: relative;
   }
 
-  /* Horizontal connector line between steps (desktop) */
+  /*
+   * Horizontal connector rule spanning the full track width.
+   * Sits at the vertical center of the badge (2rem from top).
+   * Only shown on multi-column layout.
+   */
   @media (min-width: 640px) {
-    .process__steps {
-      --track-y: 2rem; /* vertical centre of the badge */
-    }
-    .process__step:not(:last-child) .process__connector {
-      display: block;
+    .process__track::before {
+      content: '';
+      position: absolute;
+      top: 2rem; /* half of badge height */
+      left: calc(2rem + var(--grid-gap) * 0.5); /* inset past first badge */
+      right: calc(2rem + var(--grid-gap) * 0.5); /* inset before last badge */
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--brand) 40%, transparent),
+        color-mix(in srgb, var(--accent) 50%, transparent) 50%,
+        color-mix(in srgb, var(--brand) 40%, transparent)
+      );
+      pointer-events: none;
+      z-index: 0;
     }
   }
 
+  /* ── Single step ───────────────────────────────────────────── */
   .process__step {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
-    position: relative;
+    gap: 0.9rem;
+    padding-block-end: 0.5rem;
+    z-index: 1; /* sit above the connector rule */
   }
 
-  .process__connector {
-    display: none;
+  /*
+   * Giant ghost numeral — the award-level "printed on" background texture.
+   * Positioned relative to the step card; color-mixed to 8% opacity so it
+   * reads as watermark, not clutter.
+   */
+  .process__ghost {
     position: absolute;
-    top: 2rem; /* badge radius */
-    left: calc(100% + var(--grid-gap) * 0.5 - 1px);
-    width: calc(var(--grid-gap));
-    height: var(--border-weight, 1px);
-    background: var(--border);
-    transform: translateY(-50%);
+    inset-block-start: -0.75rem;
+    inset-inline-start: -0.5rem;
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: clamp(4.5rem, 10vw, 8rem);
+    line-height: 1;
+    color: color-mix(in srgb, var(--brand) 8%, transparent);
+    letter-spacing: var(--tracking-display);
     pointer-events: none;
+    user-select: none;
+    z-index: 0;
   }
 
+  /* ── Pill badge ────────────────────────────────────────────── */
   .process__badge {
+    position: relative;
+    z-index: 1;
     width: 4rem;
     height: 4rem;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--brand);
     border-radius: var(--radius-pill);
     box-shadow: var(--shadow-md);
-    flex-shrink: 0;
   }
 
   .process__num {
@@ -130,13 +153,20 @@ const {
     letter-spacing: var(--tracking-display);
   }
 
+  /* ── Copy block ────────────────────────────────────────────── */
+  .process__body {
+    position: relative;
+    z-index: 1;
+  }
+
   .process__title {
     font-family: var(--font-display);
     font-weight: var(--fw-bold);
     font-size: var(--step-1);
     color: var(--text);
-    margin: 0 0 0.3em;
+    margin: 0 0 0.35em;
     line-height: var(--leading-display);
+    text-wrap: balance;
   }
 
   .process__desc {
@@ -146,17 +176,56 @@ const {
     margin: 0;
   }
 
+  /* ── Mobile: horizontal badge + body ──────────────────────── */
   @media (max-width: 639px) {
-    .process__steps {
+    .process__track {
       grid-template-columns: 1fr;
-      gap: calc(var(--grid-gap) * 1.25);
+      gap: calc(var(--grid-gap) * 1.4);
     }
     .process__step {
       flex-direction: row;
       align-items: flex-start;
     }
-    .process__badge {
-      margin-top: 0.1rem;
+    .process__ghost {
+      font-size: clamp(3rem, 18vw, 5rem);
+      inset-inline-start: -0.25rem;
     }
+    .process__badge {
+      margin-top: 0.05rem;
+    }
+  }
+
+  /* ── Tone variants ─────────────────────────────────────────── */
+  [data-tone='alt'] { background: var(--bg-alt); }
+
+  [data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .process__title { color: var(--text-on-dark); }
+  [data-tone='deep'] .process__desc  { color: color-mix(in srgb, var(--text-on-dark) 70%, transparent); }
+  [data-tone='deep'] .process__ghost {
+    color: color-mix(in srgb, var(--brand-contrast) 10%, transparent);
+  }
+  [data-tone='deep'] .process__track::before {
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--brand-contrast) 20%, transparent),
+      color-mix(in srgb, var(--accent) 35%, transparent) 50%,
+      color-mix(in srgb, var(--brand-contrast) 20%, transparent)
+    );
+  }
+
+  [data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .process__title { color: var(--brand-contrast); }
+  [data-tone='brand'] .process__badge {
+    background: var(--brand-contrast);
+  }
+  [data-tone='brand'] .process__num { color: var(--brand); }
+  [data-tone='brand'] .process__ghost {
+    color: color-mix(in srgb, var(--brand-contrast) 10%, transparent);
   }
 </style>

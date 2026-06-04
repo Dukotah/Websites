@@ -1,143 +1,184 @@
 ---
+/**
+ * TestimonialsSection — editorial pull-quote stack.
+ * Award pattern: stacked large italic serif quotes, tracked small-caps attribution.
+ * NO star ratings. NO sliding carousel. Confidence, not insecurity.
+ * Spec: type 'testimonials'. Union prop shape preserved + index from SectionRenderer.
+ */
+import SectionHead from './SectionHead.astro';
 import type { Section } from '../../types';
 
-type Props = Extract<Section, { type: 'testimonials' }>;
+type Props = Extract<Section, { type: 'testimonials' }> & { index?: number };
 
 const {
   eyebrow = 'In their words',
-  heading = 'What people say',
+  heading,
   intro,
   tone = 'default',
   align = 'left',
   items = [],
+  index,
 } = Astro.props as Props;
 ---
 
-<section class="section" data-tone={tone}>
-  <div class="container">
-    {(eyebrow || heading || intro) && (
-      <div class="testimonials__head" data-align={align}>
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {heading && <h2>{heading}</h2>}
-        {intro && <p class="testimonials__intro">{intro}</p>}
-      </div>
-    )}
+{items.length > 0 && (
+  <section class="section tms" data-tone={tone}>
+    <div class="container">
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
 
-    <div class="testimonials__grid">
-      {
-        items.map((item, i) => (
-          <figure class="testimonial" data-reveal data-reveal-order={i}>
-            <blockquote>{item.quote}</blockquote>
-            <figcaption>
-              <span class="testimonial__author">{item.author}</span>
-              {item.source && <span class="testimonial__source"> · {item.source}</span>}
-            </figcaption>
-          </figure>
-        ))
-      }
+      <ol class="tms__stack" role="list">
+        {items.map((item, i) => (
+          <li class="tms__item" data-reveal data-reveal-order={i}>
+            <figure class="tms__figure">
+              <blockquote class="tms__quote">
+                <p>{item.quote}</p>
+              </blockquote>
+              <figcaption class="tms__attribution">
+                <span class="tms__author">{item.author}</span>
+                {item.source && (
+                  <span class="tms__source">{item.source}</span>
+                )}
+              </figcaption>
+            </figure>
+            {i < items.length - 1 && <hr class="tms__rule" aria-hidden="true" />}
+          </li>
+        ))}
+      </ol>
     </div>
-  </div>
-</section>
+  </section>
+)}
 
 <style>
-  .section[data-tone='default'] {
+  /* ── Section shell ──────────────────────────────────────────────────── */
+  .tms {
+    padding-block: var(--section-pad);
     background: var(--bg);
     color: var(--text);
   }
-  .section[data-tone='alt'] {
-    background: var(--bg-alt);
-    color: var(--text);
-  }
-  .section[data-tone='deep'] {
-    background: var(--bg-deep);
-    color: var(--text-on-dark);
-  }
-  .section[data-tone='brand'] {
-    background: var(--brand);
-    color: var(--brand-contrast);
+  .tms[data-tone='alt']   { background: var(--bg-alt); }
+  .tms[data-tone='deep']  { background: var(--bg-deep); color: var(--text-on-dark); }
+  .tms[data-tone='brand'] { background: var(--brand);   color: var(--brand-contrast); }
+
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
   }
 
-  .testimonials__head {
-    margin-bottom: var(--section-pad);
-    max-width: 50ch;
-  }
-  .testimonials__head[data-align='center'] {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .testimonials__intro {
-    color: var(--text-muted);
-    font-size: var(--step-0);
-    margin: 0.5rem 0 0;
-  }
-  .section[data-tone='deep'] .testimonials__intro,
-  .section[data-tone='brand'] .testimonials__intro {
-    color: inherit;
-    opacity: 0.9;
-  }
-
-  .testimonials__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--grid-gap);
-  }
-
-  .testimonial {
+  /* ── Quote stack ────────────────────────────────────────────────────── */
+  .tms__stack {
+    list-style: none;
     margin: 0;
-    background: var(--surface);
-    border: var(--border-weight) solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--section-pad);
-    box-shadow: var(--shadow-sm);
+    padding: 0;
+    /* Generous max-width keeps long quotes readable — editorial column width. */
+    max-width: 72ch;
+  }
+
+  .tms__item {
+    /* No card. No border. The quote stands on its own. */
+  }
+
+  /* ── Pull quote ─────────────────────────────────────────────────────── */
+  .tms__figure {
+    margin: 0;
+    padding-block: clamp(2.25rem, 5vw, 3.5rem);
+  }
+
+  .tms__quote {
+    margin: 0 0 1.25rem;
+  }
+
+  .tms__quote p {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-style: italic;
+    font-weight: var(--fw-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    /* text-wrap: balance on headings — quoted text benefits from the same. */
+    text-wrap: balance;
+    margin: 0;
+    /* Opening mark rendered as pseudo — not cluttering the DOM. */
+    position: relative;
+    padding-left: 1.6rem;
+  }
+
+  .tms__quote p::before {
+    content: '\201C';
+    position: absolute;
+    left: 0;
+    top: -0.08em;
+    font-family: var(--font-display);
+    font-size: 2.4em;
+    line-height: 1;
+    color: var(--brand);
+    opacity: 0.4;
+    font-style: normal;
+  }
+
+  /* Deep / brand tones: quote text inverts. */
+  .tms[data-tone='deep']  .tms__quote p { color: var(--text-on-dark); }
+  .tms[data-tone='brand'] .tms__quote p { color: var(--brand-contrast); }
+
+  /* ── Attribution — tracked small-caps ──────────────────────────────── */
+  .tms__attribution {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .section[data-tone='alt'] .testimonial {
-    background: var(--surface-2);
-  }
-  .section[data-tone='deep'] .testimonial,
-  .section[data-tone='brand'] .testimonial {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
   }
 
-  .testimonial blockquote {
-    margin: 0;
-    font-size: var(--step-0);
-    line-height: var(--leading-body);
-    color: currentColor;
+  .tms__author {
     font-family: var(--font-body);
-  }
-
-  .testimonial figcaption {
     font-size: var(--step--1);
-    color: var(--text-muted);
-    margin-top: auto;
-  }
-  .section[data-tone='deep'] .testimonial figcaption,
-  .section[data-tone='brand'] .testimonial figcaption {
-    color: inherit;
-    opacity: 0.85;
-  }
-
-  .testimonial__author {
     font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    /* True small-caps where the font supports it. */
+    font-variant-caps: all-small-caps;
     color: var(--text);
   }
-  .section[data-tone='deep'] .testimonial__author,
-  .section[data-tone='brand'] .testimonial__author {
-    color: currentColor;
+  .tms[data-tone='deep']  .tms__author { color: var(--text-on-dark); }
+  .tms[data-tone='brand'] .tms__author { color: var(--brand-contrast); }
+
+  .tms__source {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    font-variant-caps: all-small-caps;
+    color: var(--text-muted);
+    /* Em dash separator — cleaner than bullet. */
+  }
+  .tms__source::before {
+    content: '\2014\00a0';
+    opacity: 0.5;
+  }
+  .tms[data-tone='deep']  .tms__source,
+  .tms[data-tone='brand'] .tms__source {
+    color: inherit;
+    opacity: 0.7;
   }
 
-  .testimonial__source {
-    color: var(--text-muted);
+  /* ── Divider between quotes ─────────────────────────────────────────── */
+  .tms__rule {
+    border: none;
+    border-top: var(--border-weight) solid var(--border);
+    margin: 0;
   }
-  .section[data-tone='deep'] .testimonial__source,
-  .section[data-tone='brand'] .testimonial__source {
-    color: inherit;
-    opacity: 0.75;
+  .tms[data-tone='deep']  .tms__rule,
+  .tms[data-tone='brand'] .tms__rule {
+    border-top-color: color-mix(in srgb, currentColor 18%, transparent);
+  }
+
+  /* ── Wide layout: open the quote column on generous viewports ───────── */
+  @media (min-width: 64rem) {
+    .tms__stack {
+      max-width: 66ch;
+    }
+    .tms__quote p {
+      font-size: var(--step-3);
+      padding-left: 2rem;
+    }
   }
 </style>

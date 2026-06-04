@@ -1,7 +1,14 @@
 ---
+/**
+ * ListSection — tidy grouped columns with notes.
+ * Award pattern (cafe/salon teardowns): service/menu list as editorial element.
+ * Group title with accent rule, items as stacked rows, name + note on same line,
+ * hairline separators, no icon clutter. Generous inter-group spacing.
+ */
+import SectionHead from './SectionHead.astro';
 import type { Section } from '../../types';
 
-type Props = Extract<Section, { type: 'list' }>;
+type Props = Extract<Section, { type: 'list' }> & { index?: number };
 
 const {
   eyebrow,
@@ -10,135 +17,137 @@ const {
   tone = 'default',
   align = 'left',
   groups = [],
+  index,
 } = Astro.props as Props;
 ---
 
-<section class="section" data-tone={tone}>
+<section class="section lst" data-tone={tone}>
   <div class="container">
+
     {(eyebrow || heading || intro) && (
-      <div class="list__head" data-align={align}>
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {heading && <h2>{heading}</h2>}
-        {intro && <p class="list__intro">{intro}</p>}
-      </div>
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
     )}
 
-    <div class="list__groups">
-      {
-        groups.map((group, i) => (
-          <div class="list__group" data-reveal data-reveal-order={i}>
-            <h3 class="list__title">{group.title}</h3>
-            <ul class="list__items">
+    {groups.length > 0 && (
+      <div class="lst__groups">
+        {groups.map((group, gi) => (
+          <div class="lst__group" data-reveal data-reveal-order={gi}>
+
+            {/* Group heading — small accent rule below */}
+            <h3 class="lst__title">{group.title}</h3>
+
+            <ul class="lst__items" role="list">
               {group.items.map((item) => (
-                <li>
-                  <span class="list__name">{item.name}</span>
-                  {item.note && <span class="list__note">{item.note}</span>}
+                <li class="lst__item">
+                  <span class="lst__name">{item.name}</span>
+                  {item.note && (
+                    <span class="lst__note">{item.note}</span>
+                  )}
                 </li>
               ))}
             </ul>
+
           </div>
-        ))
-      }
-    </div>
+        ))}
+      </div>
+    )}
+
   </div>
 </section>
 
 <style>
-  .section[data-tone='default'] {
+  /* ── Section shell ── */
+  .lst {
+    padding-block: var(--section-pad);
     background: var(--bg);
     color: var(--text);
   }
-  .section[data-tone='alt'] {
-    background: var(--bg-alt);
-    color: var(--text);
-  }
-  .section[data-tone='deep'] {
-    background: var(--bg-deep);
-    color: var(--text-on-dark);
-  }
-  .section[data-tone='brand'] {
-    background: var(--brand);
-    color: var(--brand-contrast);
+  .lst[data-tone='alt']   { background: var(--bg-alt); }
+  .lst[data-tone='deep']  { background: var(--bg-deep); color: var(--text-on-dark); }
+  .lst[data-tone='brand'] { background: var(--brand);   color: var(--brand-contrast); }
+
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
   }
 
-  .list__head {
-    max-width: 50ch;
-    margin-bottom: var(--section-pad);
-  }
-  .list__head[data-align='center'] {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .list__intro {
-    color: var(--text-muted);
-    font-size: var(--step-0);
-    margin: 0.5rem 0 0;
-  }
-  .section[data-tone='deep'] .list__intro,
-  .section[data-tone='brand'] .list__intro {
-    color: inherit;
-    opacity: 0.9;
-  }
-
-  .list__groups {
+  /* ── Multi-column group grid ── */
+  .lst__groups {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: var(--section-pad);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: clamp(2.5rem, 5vw, 4rem) var(--grid-gap);
   }
 
-  .list__title {
+  /* ── Group block ── */
+  .lst__title {
     font-family: var(--font-display);
-    font-weight: var(--fw-display);
-    color: var(--text);
-    padding-bottom: 0.6rem;
-    border-bottom: 2px solid var(--accent);
-    margin: 0 0 0.75rem 0;
     font-size: var(--step-1);
-  }
-  .section[data-tone='deep'] .list__title,
-  .section[data-tone='brand'] .list__title {
-    color: currentColor;
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text);
+    margin: 0 0 0.9rem;
+    padding-bottom: 0.65rem;
+    /* Thin accent rule below the group title — editorial menu pattern */
+    border-bottom: 2px solid var(--accent);
+    text-wrap: balance;
   }
 
-  .list__items {
+  .lst[data-tone='deep']  .lst__title,
+  .lst[data-tone='brand'] .lst__title { color: currentColor; }
+
+  /* ── Item list ── */
+  .lst__items {
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  .list__items li {
+  .lst__item {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     gap: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px dotted var(--border);
+    padding-block: 0.6rem;
+    /* Hairline dotted separator — cafe/menu teardown pattern */
+    border-bottom: 1px solid var(--border);
     font-size: var(--step-0);
   }
-  .section[data-tone='deep'] .list__items li,
-  .section[data-tone='brand'] .list__items li {
-    border-bottom-color: rgba(255, 255, 255, 0.2);
+
+  /* Remove bottom border on last item so it doesn't double with group spacing */
+  .lst__item:last-child {
+    border-bottom: none;
   }
 
-  .list__name {
+  .lst[data-tone='deep']  .lst__item,
+  .lst[data-tone='brand'] .lst__item {
+    border-bottom-color: color-mix(in srgb, currentColor 18%, transparent);
+  }
+
+  /* Item name — bold, left */
+  .lst__name {
     font-weight: var(--fw-bold);
     color: var(--text);
-  }
-  .section[data-tone='deep'] .list__name,
-  .section[data-tone='brand'] .list__name {
-    color: currentColor;
+    line-height: var(--leading-body);
   }
 
-  .list__note {
-    color: var(--text-muted);
-    font-size: var(--step--1);
-    text-align: right;
+  .lst[data-tone='deep']  .lst__name,
+  .lst[data-tone='brand'] .lst__name { color: currentColor; }
+
+  /* Note — muted, right-aligned, small, flex: none to prevent wrapping */
+  .lst__note {
     flex: 0 0 auto;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    text-align: right;
+    line-height: var(--leading-body);
+    /* Soft italics for a menu/note feel */
+    font-style: italic;
   }
-  .section[data-tone='deep'] .list__note,
-  .section[data-tone='brand'] .list__note {
-    color: inherit;
-    opacity: 0.8;
+
+  .lst[data-tone='deep']  .lst__note,
+  .lst[data-tone='brand'] .lst__note {
+    color: color-mix(in srgb, currentColor 65%, transparent);
+    font-style: italic;
   }
 </style>

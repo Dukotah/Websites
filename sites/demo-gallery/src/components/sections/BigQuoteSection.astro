@@ -1,4 +1,17 @@
 ---
+/**
+ * BigQuoteSection — dark "atmosphere" palate-cleanser.
+ *
+ * Award pattern (winery/editorial teardown §5 "Dark atmosphere section"):
+ *   – Full-width --bg-deep section, --text-on-dark foreground.
+ *   – One oversized italic display pull-quote at --step-4/5.
+ *   – Thin --accent horizontal rules above and below the figure.
+ *   – Subtle film-grain overlay via [data-grain] on the section wrapper.
+ *   – Radial brand-glow at near-zero opacity for warmth without flatness.
+ *   – Optional SectionHead for eyebrow/heading/intro (rarely needed for this
+ *     palate-cleanser role, but honoured when provided).
+ */
+import SectionHead from './SectionHead.astro';
 import type { Tone, Align } from '../../types';
 
 interface Props {
@@ -10,6 +23,7 @@ interface Props {
   intro?: string;
   tone?: Tone;
   align?: Align;
+  index?: number;
 }
 
 const {
@@ -21,162 +35,212 @@ const {
   intro,
   tone = 'deep',
   align = 'center',
+  index,
 } = Astro.props;
+
+const hasHead = eyebrow || heading || intro;
 ---
 
-<section class="section bigquote-section" data-tone={tone} id="bigquote">
+<section class="section bqs" data-tone={tone} data-grain id="bigquote">
+  <!-- Ambient glow — purely decorative -->
+  <div class="bqs__glow" aria-hidden="true"></div>
+
   <div class="container">
 
-    {(eyebrow || heading || intro) && (
-      <div class={`section-header${align === 'center' ? ' section-header--center' : ''}`} data-reveal>
-        {eyebrow && <span class="eyebrow">{eyebrow}</span>}
-        {heading && <h2>{heading}</h2>}
-        {intro && <p class="intro">{intro}</p>}
-      </div>
+    {hasHead && (
+      <SectionHead
+        index={index}
+        eyebrow={eyebrow}
+        heading={heading}
+        intro={intro}
+        align={align}
+      />
     )}
 
-    <figure class="bigquote" data-reveal>
-      <!-- Decorative oversized quotation mark — purely visual, aria-hidden -->
-      <span class="bigquote__glyph" aria-hidden="true">&ldquo;</span>
+    <figure class="bqs__figure" data-reveal>
 
-      <blockquote class="bigquote__text">
-        <p>{quote}</p>
+      <!-- Thin accent rule above -->
+      <div class="bqs__rule" aria-hidden="true"></div>
+
+      <blockquote class="bqs__quote" cite={source}>
+        <!-- Aria-hidden decorative opening glyph (large typographic ornament) -->
+        <span class="bqs__glyph" aria-hidden="true">&ldquo;</span>
+        <p>{quote}<span class="bqs__glyph-close" aria-hidden="true">&rdquo;</span></p>
       </blockquote>
 
+      <!-- Thin accent rule below -->
+      <div class="bqs__rule" aria-hidden="true"></div>
+
       {(author || source) && (
-        <figcaption class="bigquote__attribution">
-          {author && <span class="bigquote__author">{author}</span>}
-          {author && source && <span class="bigquote__sep" aria-hidden="true"> &mdash; </span>}
-          {source && <cite class="bigquote__source">{source}</cite>}
+        <figcaption class="bqs__attribution">
+          {author && (
+            <span class="bqs__author">{author}</span>
+          )}
+          {source && (
+            <cite class="bqs__source">{source}</cite>
+          )}
         </figcaption>
       )}
-    </figure>
 
+    </figure>
   </div>
 </section>
 
 <style>
-  /* Pull-quote section gets its own padding tweak for the dramatic effect */
-  .bigquote-section {
-    padding-block: clamp(4rem, 10vw, 8rem);
+  /* ── Wrapper ────────────────────────────────────────────────────────────── */
+  .bqs {
+    padding-block: var(--section-pad);
     text-align: center;
     position: relative;
     overflow: hidden;
+    /* [data-grain] from treatment.css adds the feTurbulence noise overlay
+       as a ::after; it sits above the glow but below text (z-index 3). */
   }
 
-  /* Subtle radial glow behind the quote (uses brand color at very low opacity) */
-  .bigquote-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 50%, var(--brand) 0%, transparent 70%);
-    opacity: 0.08;
-    pointer-events: none;
-  }
-
-  .bigquote {
-    margin: 0 auto;
-    max-width: 44ch;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(1rem, 2.5vw, 1.75rem);
-  }
-
-  /* Oversized opening quotation mark */
-  .bigquote__glyph {
-    display: block;
-    font-family: var(--font-display);
-    font-size: clamp(5rem, 15vw, 10rem);
-    line-height: 0.7;
-    color: var(--brand);
-    opacity: 0.3;
-    user-select: none;
-    /* Nudge upward so the text nestles under it naturally */
-    margin-bottom: -0.2em;
-  }
-
-  /* When section is 'deep' or 'brand', the glyph uses accent for contrast */
-  [data-tone="deep"] .bigquote__glyph,
-  [data-tone="brand"] .bigquote__glyph {
-    color: var(--accent);
-    opacity: 0.4;
-  }
-
-  .bigquote__text {
-    margin: 0;
-  }
-
-  .bigquote__text p {
-    font-family: var(--font-display);
-    font-weight: var(--fw-display);
-    font-size: clamp(var(--step-2), 4vw, var(--step-4));
-    line-height: var(--leading-display);
-    letter-spacing: var(--tracking-display);
-    color: var(--text);
-    margin: 0;
-  }
-
-  [data-tone="deep"] .bigquote__text p,
-  [data-tone="brand"] .bigquote__text p {
+  /* Force deep-tone colours — this component is always dark */
+  .bqs[data-tone="deep"],
+  .bqs {
+    background: var(--bg-deep);
     color: var(--text-on-dark);
   }
 
-  /* Rule divider above attribution */
-  .bigquote__attribution {
+  /* ── Ambient radial glow ────────────────────────────────────────────────── */
+  .bqs__glow {
+    position: absolute;
+    inset: 0;
+    /* Warm brand glow at the centre — stays below grain layer */
+    background: radial-gradient(
+      ellipse 70% 55% at 50% 50%,
+      color-mix(in srgb, var(--brand) 22%, transparent) 0%,
+      transparent 68%
+    );
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Container ──────────────────────────────────────────────────────────── */
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    position: relative;
+    z-index: 1; /* sits above glow + grain overlay */
+  }
+
+  /* ── Figure ─────────────────────────────────────────────────────────────── */
+  .bqs__figure {
+    margin: 0 auto;
+    max-width: 42ch;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    padding-top: clamp(1rem, 2vw, 1.5rem);
-    border-top: var(--border-weight) solid var(--border);
-    width: 40%;
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  /* ── Accent rules ───────────────────────────────────────────────────────── */
+  .bqs__rule {
+    width: clamp(3rem, 10vw, 6rem);
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.75;
+    flex-shrink: 0;
+  }
+
+  /* ── Decorative quotation glyph ─────────────────────────────────────────── */
+  .bqs__glyph {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(4rem, 12vw, 7.5rem);
+    line-height: 0.6;
+    color: var(--accent);
+    opacity: 0.35;
+    user-select: none;
+    /* Pull glyph up so quote text nestles beneath it */
+    margin-bottom: -0.25em;
+  }
+
+  .bqs__glyph-close {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.7em;
+    line-height: 0;
+    vertical-align: -0.15em;
+    color: var(--accent);
+    opacity: 0.35;
+    margin-left: 0.1em;
+    user-select: none;
+  }
+
+  /* ── Blockquote / pull-quote text ───────────────────────────────────────── */
+  .bqs__quote {
+    margin: 0;
+  }
+
+  .bqs__quote p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: var(--fw-display);
+    /* --step-4 fluid; clamp up to --step-5 on wide viewports */
+    font-size: clamp(var(--step-3), 4.5vw, var(--step-5));
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text-on-dark);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  /* ── Attribution ────────────────────────────────────────────────────────── */
+  .bqs__attribution {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
     font-style: normal;
   }
 
-  [data-tone="deep"] .bigquote__attribution,
-  [data-tone="brand"] .bigquote__attribution {
-    border-top-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .bigquote__author {
+  .bqs__author {
     font-family: var(--font-body);
     font-weight: var(--fw-bold);
     font-size: var(--step--1);
     text-transform: uppercase;
     letter-spacing: var(--tracking-eyebrow);
-    color: var(--text-muted);
-  }
-
-  [data-tone="deep"] .bigquote__author,
-  [data-tone="brand"] .bigquote__author {
     color: var(--text-on-dark);
-    opacity: 0.75;
+    opacity: 0.9;
   }
 
-  .bigquote__sep {
-    color: var(--text-muted);
-    opacity: 0.5;
-  }
-
-  .bigquote__source {
+  .bqs__source {
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-style: italic;
-    color: var(--text-muted);
-  }
-
-  [data-tone="deep"] .bigquote__source,
-  [data-tone="brand"] .bigquote__source {
     color: var(--text-on-dark);
-    opacity: 0.6;
+    opacity: 0.55;
   }
 
+  /* ── Tone variants: alt/brand fall back gracefully but look best on deep ── */
+  [data-tone="default"] .bqs__quote p,
+  [data-tone="alt"] .bqs__quote p {
+    color: var(--text);
+  }
+  [data-tone="default"] .bqs__author,
+  [data-tone="alt"] .bqs__author {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+  [data-tone="default"] .bqs__source,
+  [data-tone="alt"] .bqs__source {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+  [data-tone="brand"] .bqs__quote p {
+    color: var(--brand-contrast);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────────────────────── */
   @media (max-width: 600px) {
-    .bigquote__attribution {
-      width: 80%;
+    .bqs__figure {
+      max-width: 36ch;
     }
   }
 </style>

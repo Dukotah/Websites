@@ -1,9 +1,13 @@
 ---
 /**
- * MenuSection — priced/grouped menu list (cafe, winery, etc.).
- * Spec §6: type 'menu'. No client JS. Elegant dotted-leader pricing rows.
+ * MenuSection — award-level editorial priced menu list.
+ * Spec §6: type 'menu'. Groups rendered as typographic columns with dotted-leader
+ * pricing rows. Generous vertical rhythm, category-break headers, and restrained
+ * brand accents — patterns from Coffee Collective / Poilâne / L'Enclume teardowns.
+ * Header via shared SectionHead; section prop shape kept for SectionRenderer.
  */
-import type { SectionEnvelope } from '../../types';
+import type { Tone, Align } from '../../types';
+import SectionHead from './SectionHead.astro';
 
 interface MenuItem {
   name: string;
@@ -16,56 +20,81 @@ interface MenuGroup {
   items: MenuItem[];
 }
 
-interface Props extends SectionEnvelope {
+interface Props {
   groups: MenuGroup[];
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  tone?: Tone;
+  align?: Align;
+  index?: number;
 }
 
 const {
-  groups,
+  groups = [],
   eyebrow,
   heading,
   intro,
   tone = 'default',
   align = 'center',
+  index,
 } = Astro.props as Props;
 ---
 
-<section class="section menu-section" data-tone={tone}>
-  <div class="container">
-    {(eyebrow || heading || intro) && (
-      <header class={`section-header section-header--${align}`} data-reveal>
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {heading && <h2 class="menu-section__heading">{heading}</h2>}
-        {intro && <p class="menu-section__intro">{intro}</p>}
-      </header>
-    )}
+{groups.length > 0 && (
+  <section class="section menu" data-tone={tone}>
+    <div class="container">
 
-    <div class="menu-groups">
-      {groups.map((group, gi) => (
-        <div class="menu-group" data-reveal data-reveal-order={gi}>
-          <h3 class="menu-group__title">{group.title}</h3>
-          <ul class="menu-list">
-            {group.items.map((item) => (
-              <li class="menu-item">
-                <span class="menu-item__name">{item.name}</span>
-                {item.price && (
-                  <span class="menu-item__price">{item.price}</span>
-                )}
-                {item.note && (
-                  <span class="menu-item__note">{item.note}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
+
+      <div class="menu__body">
+        {groups.map((group, gi) => (
+          <div class="menu__group" data-reveal data-reveal-order={gi}>
+
+            {/* Group title — thin brand rule above, tracked small-caps label */}
+            <header class="menu__group-head">
+              <span class="menu__group-num" aria-hidden="true">
+                {String(gi + 1).padStart(2, '0')}
+              </span>
+              <h3 class="menu__group-title">{group.title}</h3>
+            </header>
+
+            <ul class="menu__list" role="list">
+              {group.items.map((item) => (
+                <li class="menu__row">
+                  {/* Name cell — left anchor */}
+                  <span class="menu__name">{item.name}</span>
+
+                  {/* Dotted leader — middle stretch cell (CSS ::after on name) */}
+
+                  {/* Price cell — right anchor */}
+                  {item.price && (
+                    <span class="menu__price" aria-label={`price: ${item.price}`}>
+                      {item.price}
+                    </span>
+                  )}
+
+                  {/* Note beneath the row, full span */}
+                  {item.note && (
+                    <span class="menu__note">{item.note}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+
+          </div>
+        ))}
+      </div>
+
     </div>
-  </div>
-</section>
+  </section>
+)}
 
 <style>
-  .menu-section {
+  /* ── wrapper ─────────────────────────────────────────────────────────────── */
+  .menu {
     padding-block: var(--section-pad);
+    background: var(--bg);
   }
 
   .container {
@@ -74,202 +103,260 @@ const {
     padding-inline: var(--gutter);
   }
 
-  .section-header {
-    margin-bottom: 3rem;
-  }
-  .section-header--center {
-    text-align: center;
-    max-width: 52ch;
-    margin-inline: auto;
-  }
-  .section-header--left {
-    text-align: left;
-    max-width: 52ch;
+  /* ── group grid ──────────────────────────────────────────────────────────── */
+  /*
+   * Single column below md; balanced 2-col above. 60/40 columns when exactly 2
+   * groups (first group is the visual anchor), otherwise equal auto-fit columns.
+   * Matches the 60/40 asymmetric editorial split from the teardowns.
+   */
+  .menu__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 6vw, 5rem) clamp(3rem, 6vw, 5.5rem);
   }
 
-  .eyebrow {
+  @media (min-width: 48rem) {
+    .menu__body {
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 26rem), 1fr));
+    }
+  }
+
+  /* ── group block ─────────────────────────────────────────────────────────── */
+  .menu__group {
+    /* Vertical breathing room inside the group */
+  }
+
+  /* ── group header ────────────────────────────────────────────────────────── */
+  .menu__group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+    padding-bottom: 0.9rem;
+    border-bottom: calc(var(--border-weight) * 2) solid var(--brand);
+  }
+
+  /*
+   * Two-digit counter in --accent — chapter number pattern from winery teardown.
+   * Sizes up to signal "this is a designed section" without being decorative.
+   */
+  .menu__group-num {
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
-    color: var(--brand);
-    margin: 0 0 0.5rem;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    line-height: 1;
+    /* Align with the rule so num and title share the same baseline */
+    align-self: end;
   }
 
-  .menu-section__heading {
+  /*
+   * Group title in display font — large enough to read as a true section break,
+   * small enough that it doesn't compete with the section heading above.
+   */
+  .menu__group-title {
     font-family: var(--font-display);
-    font-size: var(--step-3);
+    font-size: var(--step-2);
     font-weight: var(--fw-display);
     letter-spacing: var(--tracking-display);
     line-height: var(--leading-display);
     color: var(--text);
-    margin: 0 0 0.75rem;
-  }
-
-  .menu-section__intro {
-    font-size: var(--step-0);
-    color: var(--text-muted);
-    line-height: var(--leading-body);
     margin: 0;
+    text-wrap: balance;
   }
 
-  /* Menu groups layout ------------------------------------------------------- */
-  .menu-groups {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  @media (min-width: 768px) {
-    .menu-groups {
-      /* Up to 2-col when there are multiple groups */
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
-    }
-  }
-
-  .menu-group {
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    padding: 2rem 2rem 1.75rem;
-    box-shadow: var(--shadow-sm);
-    border: var(--border-weight) solid var(--border);
-  }
-
-  .menu-group__title {
-    font-family: var(--font-display);
-    font-size: var(--step-1);
-    font-weight: var(--fw-display);
-    letter-spacing: var(--tracking-display);
-    color: var(--text);
-    margin: 0 0 1.25rem;
-    padding-bottom: 0.75rem;
-    border-bottom: calc(var(--border-weight) * 2) solid var(--brand);
-    display: inline-block;
-  }
-
-  .menu-list {
+  /* ── item list ───────────────────────────────────────────────────────────── */
+  .menu__list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0;
+    /* No extra gap — border-bottom on rows handles separation */
   }
 
-  /* Dotted-leader row: name stretches, price at end */
-  .menu-item {
+  /* ── single row — dotted leader grid ────────────────────────────────────── */
+  /*
+   * Three-column grid:  [name auto] [leader 1fr] [price auto]
+   * The middle column stretches to fill; a dotted border on the name's ::after
+   * pseudo-element draws the leader line.  Note spans into the second column.
+   */
+  .menu__row {
     display: grid;
-    /* name | dots | price */
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto auto;
-    align-items: baseline;
-    column-gap: 0.4rem;
-    padding: 0.65rem 0;
+    column-gap: 0;
+    align-items: end;
+    padding-block: 0.75rem;
     border-bottom: var(--border-weight) solid var(--border);
+    transition: background var(--motion-fade) var(--motion-ease);
   }
 
-  .menu-item:last-child {
+  .menu__row:last-child {
     border-bottom: none;
     padding-bottom: 0;
   }
 
-  .menu-item__name {
+  /*
+   * Hover: very subtle bg tint — keeps focus while preserving editorial restraint.
+   * No card lift, no border change; pure color-state signal from the teardown notes.
+   */
+  .menu__row:hover {
+    background: color-mix(in srgb, var(--brand) 4%, transparent);
+    margin-inline: -0.4rem;
+    padding-inline: 0.4rem;
+    border-radius: var(--radius);
+  }
+
+  /* ── name ────────────────────────────────────────────────────────────────── */
+  .menu__name {
+    grid-column: 1;
+    grid-row: 1;
+    font-family: var(--font-body);
     font-size: var(--step-0);
     font-weight: var(--fw-bold);
     color: var(--text);
-    grid-column: 1;
-    grid-row: 1;
+    line-height: 1.3;
+    padding-right: 0.3rem;
   }
 
-  /* Dotted leader — pseudo-element on the grid cell after name */
-  .menu-item::after {
+  /*
+   * Dotted leader — ::after on .menu__name occupies column 2 of the row grid,
+   * aligns to end so it sits on the text baseline, and draws the classic dotted rule.
+   * The margin-bottom aligns it optically with the baseline of the name text.
+   */
+  .menu__name::after {
     content: '';
+    display: block;
     grid-column: 2;
     grid-row: 1;
     align-self: end;
-    border-bottom: 1px dotted var(--border);
-    margin-bottom: 0.35em;
+    /* Explicitly size so the dots are uniform independent of row height */
+    height: 1px;
+    border-bottom: 2px dotted color-mix(in srgb, var(--border) 80%, var(--text-muted) 20%);
+    margin-bottom: 0.28em;
+    /* Push it flush into the leader column */
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    /*
+     * Since ::after stays in flow with the name element we use
+     * CSS subgrid-like trick: make it block but position it to span col 2.
+     * Actual column placement handled by the explicit grid-column on .menu__name.
+     * The ::after lives INSIDE the name cell, so we float it to visually bridge
+     * the gap — a reliable cross-browser fallback to the CSS subgrid method.
+     */
+    width: calc(100% + 2rem);
+    transform: translateX(0);
+    /* These two lines make the dot bridge visible across the gap */
+    min-width: 2rem;
+    opacity: 0.65;
   }
 
-  .menu-item__price {
+  /* ── price ───────────────────────────────────────────────────────────────── */
+  /*
+   * Price sits right-aligned in column 3.  Display font at same size as name
+   * but --brand color so it reads as the designed "right answer" typographically.
+   * No dollar-sign icon — the editorial move is plain numerals.
+   */
+  .menu__price {
+    grid-column: 3;
+    grid-row: 1;
     font-family: var(--font-display);
     font-size: var(--step-0);
     font-weight: var(--fw-display);
+    letter-spacing: 0.01em;
     color: var(--brand);
-    grid-column: 3;
-    grid-row: 1;
     white-space: nowrap;
+    padding-left: 0.5rem;
+    line-height: 1.3;
+    font-variant-numeric: tabular-nums;
   }
 
-  .menu-item__note {
-    font-size: var(--step--1);
-    color: var(--text-muted);
-    font-style: italic;
-    line-height: var(--leading-body);
+  /* ── note (second row, full span) ───────────────────────────────────────── */
+  /*
+   * Short descriptor / modifier note.  Italic, muted, set slightly smaller.
+   * Spans all three columns below the name-leader-price row.
+   */
+  .menu__note {
     grid-column: 1 / -1;
     grid-row: 2;
-    padding-top: 0.2rem;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    padding-top: 0.25rem;
+    padding-bottom: 0.1rem;
   }
 
-  /* Tone overrides ---------------------------------------------------------- */
+  /* ── tone overrides ──────────────────────────────────────────────────────── */
   [data-tone='alt'] {
     background: var(--bg-alt);
   }
-  [data-tone='alt'] .menu-group {
-    background: var(--surface-2);
+  [data-tone='alt'] .menu__row:hover {
+    background: color-mix(in srgb, var(--brand) 6%, var(--bg-alt));
   }
+
   [data-tone='deep'] {
     background: var(--bg-deep);
-  }
-  [data-tone='deep'] .menu-section__heading {
     color: var(--text-on-dark);
   }
-  [data-tone='deep'] .menu-section__intro {
-    color: color-mix(in srgb, var(--text-on-dark) 75%, transparent);
+  [data-tone='deep'] .menu__group-title,
+  [data-tone='deep'] .menu__name {
+    color: var(--text-on-dark);
   }
-  [data-tone='deep'] .eyebrow {
+  [data-tone='deep'] .menu__note {
+    color: color-mix(in srgb, var(--text-on-dark) 60%, transparent);
+  }
+  [data-tone='deep'] .menu__row {
+    border-bottom-color: color-mix(in srgb, var(--text-on-dark) 14%, transparent);
+  }
+  [data-tone='deep'] .menu__row:last-child {
+    border-bottom: none;
+  }
+  [data-tone='deep'] .menu__group-head {
+    border-bottom-color: var(--accent);
+  }
+  [data-tone='deep'] .menu__name::after {
+    border-bottom-color: color-mix(in srgb, var(--text-on-dark) 25%, transparent);
+  }
+  [data-tone='deep'] .menu__price {
     color: var(--accent);
   }
-  [data-tone='deep'] .menu-group {
-    background: color-mix(in srgb, var(--bg-deep) 70%, var(--surface) 30%);
-    border-color: color-mix(in srgb, var(--text-on-dark) 12%, transparent);
+  [data-tone='deep'] .menu__row:hover {
+    background: color-mix(in srgb, var(--text-on-dark) 5%, transparent);
   }
-  [data-tone='deep'] .menu-group__title,
-  [data-tone='deep'] .menu-item__name {
-    color: var(--text-on-dark);
-  }
-  [data-tone='deep'] .menu-item__note {
-    color: color-mix(in srgb, var(--text-on-dark) 65%, transparent);
-  }
-  [data-tone='deep'] .menu-item {
-    border-bottom-color: color-mix(in srgb, var(--text-on-dark) 12%, transparent);
-  }
+
   [data-tone='brand'] {
     background: var(--brand);
-  }
-  [data-tone='brand'] .menu-section__heading {
     color: var(--brand-contrast);
   }
-  [data-tone='brand'] .menu-section__intro {
+  [data-tone='brand'] .menu__group-title,
+  [data-tone='brand'] .menu__name {
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .menu__group-head {
+    border-bottom-color: color-mix(in srgb, var(--brand-contrast) 40%, transparent);
+  }
+  [data-tone='brand'] .menu__group-num {
     color: color-mix(in srgb, var(--brand-contrast) 80%, transparent);
   }
-  [data-tone='brand'] .eyebrow {
-    color: var(--brand-contrast);
-    opacity: 0.7;
-  }
-  [data-tone='brand'] .menu-group {
-    background: color-mix(in srgb, var(--brand) 60%, white 40%);
-    border-color: color-mix(in srgb, var(--brand-contrast) 20%, transparent);
-  }
-  [data-tone='brand'] .menu-group__title,
-  [data-tone='brand'] .menu-item__name {
+  [data-tone='brand'] .menu__price {
     color: var(--brand-contrast);
   }
-  [data-tone='brand'] .menu-group__title {
-    border-bottom-color: var(--brand-contrast);
+  [data-tone='brand'] .menu__note {
+    color: color-mix(in srgb, var(--brand-contrast) 70%, transparent);
   }
-  [data-tone='brand'] .menu-item__price {
-    color: var(--brand-contrast);
+  [data-tone='brand'] .menu__row {
+    border-bottom-color: color-mix(in srgb, var(--brand-contrast) 20%, transparent);
+  }
+  [data-tone='brand'] .menu__name::after {
+    border-bottom-color: color-mix(in srgb, var(--brand-contrast) 28%, transparent);
+  }
+  [data-tone='brand'] .menu__row:hover {
+    background: color-mix(in srgb, var(--brand-contrast) 8%, transparent);
   }
 </style>

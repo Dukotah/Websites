@@ -1,242 +1,319 @@
 ---
-import type { Tone, Align } from '../../types';
+/**
+ * PressSection — editorial restraint social-proof block.
+ * Award pattern: items WITH a quote → stacked italic serif pull-quote list with
+ * tracked small-caps publication attribution; logo-only items → quiet horizontal
+ * "as seen in" strip (logo marks desaturated, no animation, no lift effects).
+ * NO star ratings. NO sliding carousel. Header via SectionHead.
+ * Spec: type 'press'. Union prop shape preserved + index from SectionRenderer.
+ */
+import SectionHead from './SectionHead.astro';
+import type { Section } from '../../types';
 
-interface PressItem {
-  quote?: string;
-  source: string;
-  logo?: string;
-  href?: string;
-}
-
-interface Props {
-  items: PressItem[];
-  eyebrow?: string;
-  heading?: string;
-  intro?: string;
-  tone?: Tone;
-  align?: Align;
-}
+type Props = Extract<Section, { type: 'press' }> & { index?: number };
 
 const {
-  items,
-  eyebrow = 'As Seen In',
+  items = [],
+  eyebrow = 'As seen in',
   heading,
   intro,
   tone = 'alt',
   align = 'center',
-} = Astro.props;
+  index,
+} = Astro.props as Props;
 
-// Items with a quote get a card treatment; logo-only items render as a strip.
-const quotedItems = items.filter((it) => it.quote);
-const logoOnlyItems = items.filter((it) => !it.quote);
+// Items with a quote get the editorial pull-quote treatment.
+// Logo-only (or text-only without a quote) join the quiet strip.
+const quotedItems  = items.filter(it => it.quote);
+const stripItems   = items.filter(it => !it.quote);
+
+// Marquee only makes sense if there are enough logos to scroll.
+const useMarquee = stripItems.length >= 4;
 ---
 
-<section class="section" data-tone={tone} id="press">
-  <div class="container">
+{items.length > 0 && (
+  <section class="section prs" data-tone={tone} id="press">
+    <div class="container">
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
 
-    {(eyebrow || heading || intro) && (
-      <div class={`section-header${align === 'center' ? ' section-header--center' : ''}`} data-reveal>
-        {eyebrow && <span class="eyebrow">{eyebrow}</span>}
-        {heading && <h2>{heading}</h2>}
-        {intro && <p class="intro">{intro}</p>}
-      </div>
-    )}
+      {/* ── Stacked editorial pull-quotes ─────────────────────────────── */}
+      {quotedItems.length > 0 && (
+        <ol class="prs__quotes" role="list">
+          {quotedItems.map((item, i) => (
+            <li class="prs__quote-item" data-reveal data-reveal-order={i}>
+              <figure class="prs__figure">
+                <blockquote class="prs__blockquote">
+                  <p>{item.quote}</p>
+                </blockquote>
+                <figcaption class="prs__credit">
+                  {item.logo ? (
+                    <img
+                      src={item.logo}
+                      alt={`${item.source} logo`}
+                      class="prs__logo"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : null}
+                  <span class="prs__source">{item.source}</span>
+                  {item.href && (
+                    <a
+                      href={item.href}
+                      class="prs__read-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Read the full feature at ${item.source}`}
+                    >
+                      Read&nbsp;feature
+                      <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true">
+                        <path d="M5 10h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </a>
+                  )}
+                </figcaption>
+              </figure>
+              {i < quotedItems.length - 1 && <hr class="prs__rule" aria-hidden="true" />}
+            </li>
+          ))}
+        </ol>
+      )}
 
-    <!-- Quote cards -->
-    {quotedItems.length > 0 && (
-      <ul class="press-cards" aria-label="Press quotes" data-reveal-stagger>
-        {quotedItems.map((item) => (
-          <li class="press-card">
-            <blockquote class="press-card__body">
-              <p class="press-card__quote">&ldquo;{item.quote}&rdquo;</p>
-              <footer class="press-card__footer">
-                {item.logo ? (
-                  <img
-                    src={item.logo}
-                    alt={`${item.source} logo`}
-                    class="press-card__logo"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <span class="press-card__source">{item.source}</span>
-                )}
-                {item.href && (
-                  <a
-                    href={item.href}
-                    class="press-card__link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Read more at ${item.source}`}
-                  >
-                    {item.source} &rarr;
-                  </a>
-                )}
-                {!item.href && item.logo && (
-                  <span class="press-card__source">{item.source}</span>
-                )}
-              </footer>
-            </blockquote>
-          </li>
-        ))}
-      </ul>
-    )}
-
-    <!-- Logo-only strip (publications without a pull-quote) -->
-    {logoOnlyItems.length > 0 && (
-      <ul class="press-strip" aria-label="Press mentions" data-reveal>
-        {logoOnlyItems.map((item) => (
-          <li class="press-strip__item">
-            {item.href ? (
-              <a
-                href={item.href}
-                class="press-strip__link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={item.source}
-              >
-                {item.logo ? (
-                  <img
-                    src={item.logo}
-                    alt={`${item.source} logo`}
-                    class="press-strip__logo"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <span class="press-strip__name">{item.source}</span>
-                )}
-              </a>
-            ) : (
-              <span class="press-strip__link press-strip__link--passive" aria-label={item.source}>
-                {item.logo ? (
-                  <img
-                    src={item.logo}
-                    alt={`${item.source} logo`}
-                    class="press-strip__logo"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <span class="press-strip__name">{item.source}</span>
-                )}
-              </span>
-            )}
-          </li>
-        ))}
-      </ul>
-    )}
-
-  </div>
-</section>
+      {/* ── Logo strip ────────────────────────────────────────────────── */}
+      {stripItems.length > 0 && (
+        <div class={`prs__strip-wrap${quotedItems.length > 0 ? ' prs__strip-wrap--below-quotes' : ''}`} data-reveal>
+          {useMarquee ? (
+            /* Marquee: CSS animation only, no JS. */
+            <div class="prs__marquee">
+              {/* Accessible original list */}
+              <ul class="prs__marquee-track" role="list" aria-label="Press mentions">
+                {stripItems.map(item => (
+                  <li class="prs__strip-item">
+                    {item.href ? (
+                      <a href={item.href} class="prs__strip-link" target="_blank" rel="noopener noreferrer" aria-label={item.source}>
+                        {item.logo
+                          ? <img src={item.logo} alt={item.source} class="prs__strip-logo" loading="lazy" decoding="async" />
+                          : <span class="prs__strip-name">{item.source}</span>
+                        }
+                      </a>
+                    ) : (
+                      <span class="prs__strip-passive" aria-label={item.source}>
+                        {item.logo
+                          ? <img src={item.logo} alt={item.source} class="prs__strip-logo" loading="lazy" decoding="async" />
+                          : <span class="prs__strip-name">{item.source}</span>
+                        }
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              {/* Duplicate for seamless loop — hidden from assistive tech */}
+              <ul class="prs__marquee-track" role="list" aria-hidden="true">
+                {stripItems.map(item => (
+                  <li class="prs__strip-item">
+                    {item.href ? (
+                      <a href={item.href} class="prs__strip-link" target="_blank" rel="noopener noreferrer" tabindex="-1">
+                        {item.logo
+                          ? <img src={item.logo} alt="" class="prs__strip-logo" loading="lazy" decoding="async" />
+                          : <span class="prs__strip-name" aria-hidden="true">{item.source}</span>
+                        }
+                      </a>
+                    ) : (
+                      <span class="prs__strip-passive">
+                        {item.logo
+                          ? <img src={item.logo} alt="" class="prs__strip-logo" loading="lazy" decoding="async" />
+                          : <span class="prs__strip-name" aria-hidden="true">{item.source}</span>
+                        }
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            /* Static strip for small counts — cleaner than a barely-animated loop. */
+            <ul class="prs__strip" role="list" aria-label="Press mentions">
+              {stripItems.map(item => (
+                <li class="prs__strip-item">
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      class="prs__strip-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={item.source}
+                    >
+                      {item.logo
+                        ? <img src={item.logo} alt={item.source} class="prs__strip-logo" loading="lazy" decoding="async" />
+                        : <span class="prs__strip-name">{item.source}</span>
+                      }
+                    </a>
+                  ) : (
+                    <span class="prs__strip-passive" aria-label={item.source}>
+                      {item.logo
+                        ? <img src={item.logo} alt={item.source} class="prs__strip-logo" loading="lazy" decoding="async" />
+                        : <span class="prs__strip-name">{item.source}</span>
+                      }
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+)}
 
 <style>
-  /* ── Quote cards ────────────────────────────────────────────────────── */
-  .press-cards {
+  /* ── Section shell ──────────────────────────────────────────────────── */
+  .prs {
+    padding-block: var(--section-pad);
+    background: var(--bg);
+    color: var(--text);
+  }
+  .prs[data-tone='alt']   { background: var(--bg-alt); }
+  .prs[data-tone='deep']  { background: var(--bg-deep); color: var(--text-on-dark); }
+  .prs[data-tone='brand'] { background: var(--brand);   color: var(--brand-contrast); }
+
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* ── Editorial pull-quote stack ─────────────────────────────────────── */
+  .prs__quotes {
     list-style: none;
-    margin: 0 0 clamp(2rem, 4vw, 3rem);
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-    gap: var(--grid-gap);
-  }
-
-  .press-card {
-    background: var(--surface);
-    border: var(--border-weight) solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    padding: clamp(1.25rem, 3vw, 2rem);
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow var(--motion-fade) var(--motion-ease),
-                transform var(--motion-fade) var(--motion-ease);
-  }
-
-  .press-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-  }
-
-  .press-card__body {
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 1rem;
+    padding: 0;
+    /* Intentional column constraint — long press quotes need line-length control. */
+    max-width: 68ch;
   }
 
-  .press-card__quote {
-    font-size: var(--step-1);
+  .prs__quote-item { /* structural only */ }
+
+  .prs__figure {
+    margin: 0;
+    padding-block: clamp(2rem, 4.5vw, 3.25rem);
+  }
+
+  .prs__blockquote {
+    margin: 0 0 1.1rem;
+  }
+
+  .prs__blockquote p {
     font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-style: italic;
     font-weight: var(--fw-display);
     line-height: var(--leading-display);
     color: var(--text);
-    flex: 1;
+    text-wrap: balance;
     margin: 0;
-
-    /* Opening quote mark as a decorative element */
     position: relative;
-    padding-top: 0.25rem;
+    padding-left: 1.5rem;
   }
 
-  .press-card__quote::before {
+  .prs__blockquote p::before {
     content: '\201C';
-    display: block;
-    font-size: var(--step-4);
+    position: absolute;
+    left: 0;
+    top: -0.06em;
+    font-family: var(--font-display);
+    font-size: 2.2em;
     line-height: 1;
     color: var(--brand);
-    opacity: 0.25;
-    margin-bottom: -0.4em;
-    font-family: var(--font-display);
+    opacity: 0.35;
+    font-style: normal;
   }
 
-  .press-card__footer {
+  .prs[data-tone='deep']  .prs__blockquote p { color: var(--text-on-dark); }
+  .prs[data-tone='brand'] .prs__blockquote p { color: var(--brand-contrast); }
+
+  .prs__credit {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    padding-top: 1rem;
-    border-top: var(--border-weight) solid var(--border);
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
   }
 
-  .press-card__logo {
-    max-height: 28px;
+  /* Publication logo in the attribution line — always desaturated, restrained. */
+  .prs__logo {
+    max-height: 22px;
     width: auto;
     object-fit: contain;
     filter: grayscale(1);
-    opacity: 0.7;
-    transition: filter var(--motion-fade) var(--motion-ease),
-                opacity var(--motion-fade) var(--motion-ease);
+    opacity: 0.65;
+    vertical-align: middle;
   }
 
-  .press-card:hover .press-card__logo {
-    filter: grayscale(0);
-    opacity: 1;
-  }
-
-  .press-card__source {
+  /* Publication name — true small-caps + eyebrow tracking. */
+  .prs__source {
+    font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
-    text-transform: uppercase;
     letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    font-variant-caps: all-small-caps;
     color: var(--text-muted);
   }
+  .prs[data-tone='deep']  .prs__source,
+  .prs[data-tone='brand'] .prs__source {
+    color: inherit;
+    opacity: 0.65;
+  }
 
-  .press-card__link {
+  /* Optional "Read feature" link — minimal arrow-link, never a button. */
+  .prs__read-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
-    color: var(--accent);
-    text-decoration: none;
-    transition: color var(--motion-fade) var(--motion-ease);
-  }
-
-  .press-card__link:hover {
     color: var(--brand);
+    text-decoration: none;
+    transition: gap var(--motion-fade) var(--motion-ease);
+  }
+  .prs__read-link:hover {
+    gap: 0.5rem;
     text-decoration: underline;
   }
+  .prs[data-tone='deep']  .prs__read-link,
+  .prs[data-tone='brand'] .prs__read-link {
+    color: currentColor;
+    opacity: 0.8;
+  }
 
-  /* ── Logo-only strip ─────────────────────────────────────────────────── */
-  .press-strip {
+  /* Rule between quoted items. */
+  .prs__rule {
+    border: none;
+    border-top: var(--border-weight) solid var(--border);
+    margin: 0;
+  }
+  .prs[data-tone='deep']  .prs__rule,
+  .prs[data-tone='brand'] .prs__rule {
+    border-top-color: color-mix(in srgb, currentColor 16%, transparent);
+  }
+
+  /* ── Logo strip (no-quote items) ────────────────────────────────────── */
+  .prs__strip-wrap {
+    overflow: hidden;
+  }
+  /* Extra breathing room when appearing beneath pull-quotes. */
+  .prs__strip-wrap--below-quotes {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: var(--border-weight) solid var(--border);
+  }
+  .prs[data-tone='deep']  .prs__strip-wrap--below-quotes,
+  .prs[data-tone='brand'] .prs__strip-wrap--below-quotes {
+    border-top-color: color-mix(in srgb, currentColor 16%, transparent);
+  }
+
+  /* Static strip — center-justified, generous gap. */
+  .prs__strip {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -244,81 +321,135 @@ const logoOnlyItems = items.filter((it) => !it.quote);
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: clamp(1.5rem, 4vw, 3rem);
+    gap: clamp(1.75rem, 5vw, 3.5rem);
   }
 
-  .press-strip__item {
+  .prs__strip-item {
     display: flex;
     align-items: center;
   }
 
-  .press-strip__link {
+  .prs__strip-link,
+  .prs__strip-passive {
     display: inline-flex;
     align-items: center;
-    transition: opacity var(--motion-fade) var(--motion-ease),
-                transform var(--motion-fade) var(--motion-ease);
     text-decoration: none;
   }
+  .prs__strip-passive { pointer-events: none; }
 
-  .press-strip__link--passive {
-    pointer-events: none;
-  }
-
-  .press-strip__link:not(.press-strip__link--passive):hover {
-    opacity: 0.75;
-    transform: translateY(-2px);
-  }
-
-  .press-strip__logo {
-    max-height: 36px;
-    max-width: 120px;
+  .prs__strip-logo {
+    max-height: 32px;
+    max-width: 110px;
     width: auto;
     object-fit: contain;
     filter: grayscale(1);
-    opacity: 0.55;
-    transition: filter var(--motion-fade) var(--motion-ease),
-                opacity var(--motion-fade) var(--motion-ease);
+    opacity: 0.5;
+    /* No hover lift — confidence, not invitation. Just opacity. */
+    transition: opacity var(--motion-fade) var(--motion-ease);
+  }
+  .prs__strip-link:hover .prs__strip-logo {
+    opacity: 0.85;
   }
 
-  .press-strip__link:hover .press-strip__logo {
-    filter: grayscale(0);
-    opacity: 0.9;
-  }
-
-  .press-strip__name {
-    font-size: var(--step-0);
-    font-weight: var(--fw-bold);
+  .prs__strip-name {
     font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: var(--fw-display);
+    letter-spacing: 0.05em;
     color: var(--text-muted);
-    letter-spacing: 0.02em;
+    opacity: 0.65;
+    transition: opacity var(--motion-fade) var(--motion-ease);
+  }
+  .prs__strip-link:hover .prs__strip-name {
+    opacity: 1;
+  }
+  .prs[data-tone='deep']  .prs__strip-name,
+  .prs[data-tone='brand'] .prs__strip-name {
+    color: currentColor;
   }
 
-  /* ── Tone adaptations ────────────────────────────────────────────────── */
-  [data-tone="deep"] .press-card,
-  [data-tone="brand"] .press-card {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.12);
+  /* ── Marquee (CSS-only, no JS) ──────────────────────────────────────── */
+  /*
+   * Award pattern: "a horizontal scroll ticker (marquee) of logo marks".
+   * Two <ul> tracks sit in a flex row and scroll left in lockstep.
+   * The second track is aria-hidden so assistive tech sees each item once.
+   * Respects prefers-reduced-motion.
+   */
+  .prs__marquee {
+    overflow: hidden;
+    display: flex;
+    /* Fade edges so logos enter/exit softly. */
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
   }
 
-  [data-tone="deep"] .press-card__quote,
-  [data-tone="brand"] .press-card__quote {
-    color: var(--text-on-dark);
+  .prs__marquee-track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    /* Each track fills half the logical scroll width. */
+    flex-shrink: 0;
+    min-width: 100%;
+    animation: prs-scroll 28s linear infinite;
+    will-change: transform;
   }
 
-  [data-tone="deep"] .press-card__footer,
-  [data-tone="brand"] .press-card__footer {
-    border-top-color: rgba(255, 255, 255, 0.12);
+  @keyframes prs-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
   }
 
-  [data-tone="deep"] .press-card__source,
-  [data-tone="brand"] .press-card__source {
-    color: var(--text-on-dark);
-    opacity: 0.7;
+  /* Pause on hover — readers can dwell on a logo. */
+  .prs__marquee:hover .prs__marquee-track {
+    animation-play-state: paused;
   }
 
-  [data-tone="deep"] .press-strip__name,
-  [data-tone="brand"] .press-strip__name {
-    color: var(--text-on-dark);
-    opacity: 0.7;
+  /* Kill animation for reduced-motion; show both tracks as static wrapped list. */
+  @media (prefers-reduced-motion: reduce) {
+    .prs__marquee {
+      mask-image: none;
+      -webkit-mask-image: none;
+      overflow: visible;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: clamp(1.75rem, 5vw, 3.5rem);
+    }
+    .prs__marquee-track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      min-width: unset;
+    }
+    /* The duplicate (aria-hidden) track is visually suppressed via display:none
+       only in reduced-motion contexts where links would be accessible by keyboard. */
+    .prs__marquee-track[aria-hidden='true'] {
+      display: none;
+    }
+  }
+
+  /* ── Wide layout ────────────────────────────────────────────────────── */
+  @media (min-width: 64rem) {
+    .prs__blockquote p {
+      font-size: var(--step-3);
+      padding-left: 1.75rem;
+    }
+    .prs__quotes {
+      max-width: 62ch;
+    }
   }
 </style>

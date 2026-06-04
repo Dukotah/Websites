@@ -1,9 +1,13 @@
 ---
 /**
- * TeamSection — owner/staff cards. Spec §6: type 'team'.
- * Renders only from real, named people.
+ * TeamSection — refined people cards for owners, staff, and artisans.
+ * Spec §6: type 'team'. Award-level patterns drawn from Rendezvous Barbers,
+ * Sang Bleu, East River Tattoo, Forestis — portrait [data-frame], editorial
+ * name/role/bio typography, restrained hover, no card shadows.
+ * Header via shared SectionHead; prop shape matches types.ts union.
  */
-import type { SectionEnvelope } from '../../types';
+import type { Tone, Align } from '../../types';
+import SectionHead from './SectionHead.astro';
 
 interface Member {
   name: string;
@@ -11,8 +15,15 @@ interface Member {
   photo?: string;
   bio?: string;
 }
-interface Props extends SectionEnvelope {
+
+interface Props {
   members: Member[];
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  tone?: Tone;
+  align?: Align;
+  index?: number;
 }
 
 const {
@@ -21,129 +32,264 @@ const {
   heading,
   intro,
   tone = 'default',
-  align = 'center',
+  align = 'left',
+  index,
 } = Astro.props as Props;
 
-const initials = (name: string) =>
-  name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]?.toUpperCase()).join('');
+/**
+ * Initials fallback — max 2 chars from first/last name word.
+ * Used when no photo is supplied, giving the placeholder dignity.
+ */
+const initials = (name: string): string =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? '')
+    .join('');
 ---
 
 {members.length > 0 && (
   <section class="section team" data-tone={tone}>
     <div class="container">
-      <header class={`team__head team__head--${align}`} data-reveal>
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {heading && <h2 class="team__heading">{heading}</h2>}
-        {intro && <p class="team__intro">{intro}</p>}
-      </header>
-      <ul class="team__grid">
+
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
+
+      <ul class="team__grid" role="list">
         {members.map((m, i) => (
           <li class="team__card" data-reveal data-reveal-order={i}>
-            <div class="team__photo" data-frame>
+
+            {/*
+              Portrait container — [data-frame] applies the house-style frame
+              treatment from treatment.css.  Aspect ratio 3/4 (portrait) so the
+              image orientation reads like an editorial look-book, not a LinkedIn
+              headshot.  Initials fallback is centered and typographically scaled.
+            */}
+            <div class="team__portrait" data-frame>
               {m.photo ? (
-                <img src={m.photo} alt={`${m.name}${m.role ? ', ' + m.role : ''}`} loading="lazy" decoding="async" />
+                <img
+                  class="team__img"
+                  src={m.photo}
+                  alt={`${m.name}${m.role ? `, ${m.role}` : ''}`}
+                  loading="lazy"
+                  decoding="async"
+                />
               ) : (
-                <span class="team__initials" aria-hidden="true">{initials(m.name)}</span>
+                <span class="team__initials" aria-hidden="true">
+                  {initials(m.name)}
+                </span>
               )}
             </div>
-            <h3 class="team__name">{m.name}</h3>
-            {m.role && <p class="team__role">{m.role}</p>}
-            {m.bio && <p class="team__bio">{m.bio}</p>}
+
+            {/* Identity block */}
+            <div class="team__identity">
+              <h3 class="team__name">{m.name}</h3>
+              {m.role && (
+                <p class="team__role" aria-label={`Role: ${m.role}`}>
+                  {m.role}
+                </p>
+              )}
+            </div>
+
+            {/* Bio — optional; set at small readable size, italic for editorial flavor */}
+            {m.bio && (
+              <p class="team__bio">{m.bio}</p>
+            )}
+
           </li>
         ))}
       </ul>
+
     </div>
   </section>
 )}
 
 <style>
-  .team { padding-block: var(--section-pad); }
+  /* ── section wrapper ─────────────────────────────────────────────────────── */
+  .team {
+    padding-block: var(--section-pad);
+    background: var(--bg);
+  }
+
   .container {
     max-width: var(--maxw);
     margin-inline: auto;
     padding-inline: var(--gutter);
   }
-  .team__head { margin-bottom: 2.75rem; max-width: 54ch; }
-  .team__head--center { text-align: center; margin-inline: auto; }
-  .eyebrow {
+
+  /* ── grid ────────────────────────────────────────────────────────────────── */
+  /*
+   * Auto-fill columns with a sensible min card width.
+   * Portrait cards are deliberately narrower than service cards — the grid
+   * should feel like a look-book spread, not a data grid.
+   * 3-card rows on ≥1024px; 2-card on tablet; 1-card stacked on mobile.
+   */
+  .team__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  /* ── card ────────────────────────────────────────────────────────────────── */
+  /*
+   * Cards have NO box-shadow and NO visible border — premium editorial pattern
+   * from Sang Bleu / East River teardown: "no card shadows or rounded-corner
+   * content cards". Spacing and typography carry all hierarchy.
+   * Align left for editorial rhythm; portrait anchor is the visual weight.
+   */
+  .team__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── portrait ────────────────────────────────────────────────────────────── */
+  /*
+   * 3:4 portrait aspect ratio — taller than square, reads as editorial.
+   * [data-frame] on the wrapper applies treatment.css frame styles.
+   * The brand-tinted placeholder uses the same subtle warmth approach as the
+   * winery teardown: color-mix toward brand at low opacity, not a flat fill.
+   *
+   * Hover: image scales 1.04 inside the overflow:hidden container — the "gallery
+   * quality hover" from the salon teardown ("scale(1.04) over 0.6s"). No
+   * card lift, no shadow increase.
+   */
+  .team__portrait {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--brand) 10%, var(--surface));
+    display: grid;
+    place-items: center;
+    margin-bottom: 1rem;
+    /* Treatment from treatment.css will add frames/grain if data-treat used */
+  }
+
+  .team__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    /* Smooth scale reveal on hover — see .team__card:hover below */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: block;
+  }
+
+  .team__card:hover .team__img {
+    transform: scale(1.04);
+  }
+
+  /* ── initials fallback ───────────────────────────────────────────────────── */
+  /*
+   * Large display-weight initials centered in the portrait area.
+   * Color-mixes toward brand so it feels branded, not generic.
+   */
+  .team__initials {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: var(--fw-display);
+    line-height: 1;
+    color: color-mix(in srgb, var(--brand) 60%, var(--text-muted));
+    user-select: none;
+  }
+
+  /* ── identity block ──────────────────────────────────────────────────────── */
+  .team__identity {
+    margin-bottom: 0.6rem;
+  }
+
+  /*
+   * Name — display font, mid-size.  text-wrap: balance prevents awkward single-
+   * word orphans on narrow columns.
+   */
+  .team__name {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-display);
+    color: var(--text);
+    margin: 0 0 0.3rem;
+    text-wrap: balance;
+  }
+
+  /*
+   * Role — small-caps eyebrow-style label.  Deliberate 0.12em tracking and
+   * --brand color, consistent with the eyebrow treatment in ServicesDetailed.
+   * This is the "SERVICES — 01" micro-typography from the salon teardown.
+   */
+  .team__role {
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
     color: var(--brand);
-    margin: 0 0 0.5rem;
-  }
-  .team__heading {
-    font-family: var(--font-display);
-    font-size: var(--step-3);
-    font-weight: var(--fw-display);
-    letter-spacing: var(--tracking-display);
-    line-height: var(--leading-display);
-    color: var(--text);
-    margin: 0 0 0.6rem;
-  }
-  .team__intro {
-    font-size: var(--step-0);
-    color: var(--text-muted);
-    line-height: var(--leading-body);
     margin: 0;
+    line-height: 1.3;
   }
-  .team__grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: calc(var(--grid-gap) * 1.4);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  }
-  .team__card { text-align: center; }
-  .team__photo {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    margin: 0 auto 1rem;
-    max-width: 220px;
-    background: color-mix(in srgb, var(--brand) 12%, var(--surface));
-    display: grid;
-    place-items: center;
-  }
-  .team__photo img { width: 100%; height: 100%; object-fit: cover; }
-  .team__initials {
-    font-family: var(--font-display);
-    font-size: var(--step-4);
-    font-weight: var(--fw-display);
-    color: var(--brand);
-  }
-  .team__name {
-    font-family: var(--font-display);
-    font-size: var(--step-1);
-    font-weight: var(--fw-display);
-    color: var(--text);
-    margin: 0;
-  }
-  .team__role {
-    font-size: var(--step--1);
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
-    color: var(--brand);
-    margin: 0.25rem 0 0.5rem;
-  }
+
+  /*
+   * Bio — italic body text.  Italic as a "design element, not just emphasis"
+   * (cafe/salon teardown).  Line-height generous for readability.
+   */
   .team__bio {
+    font-family: var(--font-body);
     font-size: var(--step--1);
+    font-style: italic;
     color: var(--text-muted);
     line-height: var(--leading-body);
     margin: 0;
   }
 
-  [data-tone='alt'] { background: var(--bg-alt); }
-  [data-tone='deep'] { background: var(--bg-deep); color: var(--text-on-dark); }
-  [data-tone='deep'] .team__heading,
-  [data-tone='deep'] .team__name { color: var(--text-on-dark); }
-  [data-tone='deep'] .team__bio { color: color-mix(in srgb, var(--text-on-dark) 80%, transparent); }
-  [data-tone='brand'] { background: var(--brand); color: var(--brand-contrast); }
-  [data-tone='brand'] .team__heading,
-  [data-tone='brand'] .team__name { color: var(--brand-contrast); }
+  /* ── tone overrides ──────────────────────────────────────────────────────── */
+  [data-tone='alt'] {
+    background: var(--bg-alt);
+  }
+  [data-tone='alt'] .team__portrait {
+    background: color-mix(in srgb, var(--brand) 8%, var(--surface-2));
+  }
+
+  [data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .team__name {
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .team__bio {
+    color: color-mix(in srgb, var(--text-on-dark) 65%, transparent);
+  }
+  [data-tone='deep'] .team__role {
+    color: var(--accent);
+  }
+  [data-tone='deep'] .team__portrait {
+    background: color-mix(in srgb, var(--brand) 20%, var(--bg-deep));
+  }
+  [data-tone='deep'] .team__initials {
+    color: color-mix(in srgb, var(--accent) 80%, transparent);
+  }
+
+  [data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .team__name {
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .team__role {
+    color: color-mix(in srgb, var(--brand-contrast) 85%, transparent);
+  }
+  [data-tone='brand'] .team__bio {
+    color: color-mix(in srgb, var(--brand-contrast) 70%, transparent);
+  }
+  [data-tone='brand'] .team__portrait {
+    background: color-mix(in srgb, var(--brand-dark) 60%, transparent);
+  }
+  [data-tone='brand'] .team__initials {
+    color: var(--brand-contrast);
+  }
 </style>

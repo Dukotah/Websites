@@ -1,10 +1,18 @@
 ---
 /**
- * HeroStatement — huge display type + keylines. Ultra-minimal luxury feel.
- * Upgraded: oversized type that "breaks" the rules, a brand gradient-mesh in
- * the background, an offset image inset (optional, if image exists), and a
- * floating trust badge anchored to the image inset.
- * Spec §7: "statement" variant.
+ * HeroStatement — huge display type + single keyline + ghost CTA. Minimal.
+ *
+ * Award patterns applied:
+ * - Winery heroPatterns[3] (chapter/narrative opener): dark bg, manifesto in
+ *   tracked small-caps, parallax peels to reveal photo — adapted as a
+ *   light/dark hybrid with the "statement" register.
+ * - Trades heroPatterns[3]: "EDITORIAL FULL-WIDTH HERO with tall type and a
+ *   thin horizontal rule" — 1px rule, single accent word, trust bar below rule.
+ * - Marina/Cafe antiGeneric: whitespace as color; nothing between keyline and CTA.
+ *
+ * Structure: eyebrow → thick keyline → oversized H1 → thin full-width rule →
+ * ghost CTA + phone → highlights strip. Photo (optional) as right-side inset
+ * with offset/overlap accent, keeping the left column clean.
  */
 import type { ProspectConfig } from '../../types';
 const { config } = Astro.props as { config: ProspectConfig };
@@ -17,20 +25,20 @@ const trustLine = highlights[0] ?? '';
 const hasPhoto = Boolean(images?.hero);
 ---
 
-<section class="stmt-hero" id="top">
+<section class="stmt-hero" id="top" aria-label="Hero">
 
-  <!-- ① Gradient-mesh background -->
+  <!-- ① Gradient-mesh background (subtle, light) -->
   <div class="stmt-hero__bg" aria-hidden="true"></div>
 
-  <!-- ② Optional photo inset (offset frame, parallax) -->
+  <!-- ② Optional photo inset (right side, offset frame, parallax) -->
   {hasPhoto && (
     <div class="stmt-hero__photo-wrap" aria-hidden="true">
-      <!-- Accent rectangle behind the photo -->
+      <!-- Offset accent rectangle behind the photo -->
       <div class="stmt-hero__photo-accent" aria-hidden="true"></div>
       <div
         class="stmt-hero__photo"
         data-parallax
-        data-parallax-speed="0.25"
+        data-parallax-speed="0.2"
         data-parallax-axis="y"
       >
         <img
@@ -41,9 +49,9 @@ const hasPhoto = Boolean(images?.hero);
           decoding="async"
         />
       </div>
-      <!-- Trust badge anchored to photo -->
+      <!-- Trust badge on photo inset -->
       {(badgeYear || trustLine) && (
-        <div class="stmt-hero__badge" aria-label="Trust signal" data-reveal data-reveal-order="0">
+        <div class="stmt-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
           {badgeYear && <strong class="stmt-hero__badge-year">{badgeYear}</strong>}
           <span class="stmt-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
           {badgeYear && trustLine && <span class="stmt-hero__badge-trust">{trustLine}</span>}
@@ -52,32 +60,36 @@ const hasPhoto = Boolean(images?.hero);
     </div>
   )}
 
-  <!-- ③ Content -->
-  <div class="container stmt-hero__inner" data-has-photo={hasPhoto ? 'true' : undefined}>
+  <!-- ③ Content — left-anchored, reserved right for photo when present -->
+  <div
+    class="container stmt-hero__inner"
+    data-has-photo={hasPhoto ? 'true' : undefined}
+  >
 
-    <!-- Eyebrow line above the top keyline -->
+    <!-- Eyebrow: accent rule + tracked caps (HeroCinematic idiom) -->
     {eyebrow && (
       <p class="stmt-hero__eyebrow" data-reveal data-reveal-order="1">{eyebrow}</p>
     )}
 
-    <!-- Primary keyline (thick, brand-colored) -->
-    <div class="stmt-hero__rule" aria-hidden="true" data-reveal data-reveal-order="2"></div>
+    <!-- Primary keyline: thick, brand-gradient, short (the award "single keyline" move) -->
+    <div class="stmt-hero__keyline" aria-hidden="true" data-reveal data-reveal-order="2"></div>
 
-    <!-- Oversized headline — scale intentionally breaks the keylines -->
+    <!-- Oversized display headline — the defining gesture; max-width forces cascade -->
     <h1 class="stmt-hero__title" data-reveal data-reveal-order="3">
       {hero.heading}
     </h1>
 
-    <!-- Secondary keyline (thin, full-width) -->
-    <div class="stmt-hero__rule stmt-hero__rule--thin" aria-hidden="true" data-reveal data-reveal-order="4"></div>
+    <!-- Secondary thin full-width rule: palette cleanser before CTAs -->
+    <div class="stmt-hero__rule" aria-hidden="true" data-reveal data-reveal-order="4"></div>
 
-    <!-- Footer row: sub + CTAs side by side on wide screens -->
+    <!-- Footer row: sub + CTAs. Generous gap, flex-wrap for mobile. -->
     <div class="stmt-hero__foot" data-reveal data-reveal-order="5">
       {hero.subheading && (
         <p class="stmt-hero__sub">{hero.subheading}</p>
       )}
       <div class="stmt-hero__actions">
-        <a href={hero.ctaHref} class="btn stmt-hero__cta">{hero.ctaText}</a>
+        <!-- Ghost CTA — award pattern for statement/minimal heroes -->
+        <a href={hero.ctaHref} class="stmt-hero__cta-ghost">{hero.ctaText}</a>
         {contact.phone && (
           <a href={telHref} class="stmt-hero__phone">
             <svg class="stmt-hero__phone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -89,9 +101,9 @@ const hasPhoto = Boolean(images?.hero);
       </div>
     </div>
 
-    <!-- Trust badge fallback (no photo: embed inline) -->
+    <!-- Inline trust badge fallback when no photo present -->
     {!hasPhoto && (badgeYear || trustLine) && (
-      <div class="stmt-hero__badge stmt-hero__badge--inline" aria-label="Trust signal" data-reveal data-reveal-order="6">
+      <div class="stmt-hero__badge stmt-hero__badge--inline" data-reveal data-reveal-order="6" aria-label="Trust signal">
         {badgeYear && <strong class="stmt-hero__badge-year">{badgeYear}</strong>}
         <span class="stmt-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
         {badgeYear && trustLine && <span class="stmt-hero__badge-trust">{trustLine}</span>}
@@ -100,7 +112,7 @@ const hasPhoto = Boolean(images?.hero);
 
     <!-- Highlights strip -->
     {highlights.length > 0 && (
-      <ul class="stmt-hero__highlights" data-reveal data-reveal-order="7">
+      <ul class="stmt-hero__highlights" data-reveal data-reveal-order="7" aria-label="Key highlights">
         {highlights.map((h: string) => <li>{h}</li>)}
       </ul>
     )}
@@ -109,58 +121,58 @@ const hasPhoto = Boolean(images?.hero);
 </section>
 
 <style>
-  /* ── Shell ───────────────────────────────────────────────────────────────── */
+  /* ── Shell ─────────────────────────────────────────────────────────────── */
   .stmt-hero {
     position: relative;
     isolation: isolate;
     background: var(--bg);
     color: var(--text);
-    min-height: min(84vh, 760px);
+    min-height: min(86vh, 780px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
   }
 
-  /* ── ① Gradient-mesh background ──────────────────────────────────────────── */
+  /* ── ① Gradient-mesh background (very subtle — statement hero is minimal) ─ */
   .stmt-hero__bg {
     position: absolute;
     inset: 0;
     z-index: 0;
     background:
       radial-gradient(
-        ellipse 60% 55% at 105% 105%,
-        color-mix(in srgb, var(--brand) 10%, transparent) 0%,
-        transparent 65%
+        ellipse 55% 50% at 108% 108%,
+        color-mix(in srgb, var(--brand) 8%, transparent) 0%,
+        transparent 62%
       ),
       radial-gradient(
-        ellipse 45% 40% at -5% -5%,
-        color-mix(in srgb, var(--accent) 8%, transparent) 0%,
-        transparent 60%
+        ellipse 40% 35% at -5% -5%,
+        color-mix(in srgb, var(--accent) 6%, transparent) 0%,
+        transparent 58%
       );
     pointer-events: none;
   }
 
-  /* ── ② Photo inset (right side, offset frame) ────────────────────────────── */
+  /* ── ② Photo inset (right column, offset frame) ─────────────────────────── */
   .stmt-hero__photo-wrap {
     position: absolute;
-    top: 8%;
-    right: -2%;
-    width: clamp(200px, 32vw, 480px);
-    height: 76%;
+    top: 7%;
+    right: -1.5%;
+    width: clamp(220px, 34vw, 500px);
+    height: 78%;
     z-index: 1;
   }
 
-  /* Offset accent rectangle (behind and slightly below photo) */
+  /* Offset accent rectangle behind the photo — brand tint, peeks out */
   .stmt-hero__photo-accent {
     position: absolute;
-    inset: 8% -8% -8% 8%;
-    background: color-mix(in srgb, var(--brand) 12%, var(--bg-alt));
+    inset: 8% -7% -8% 8%;
+    background: color-mix(in srgb, var(--brand) 10%, var(--bg-alt, var(--surface)));
     border-radius: var(--radius-lg);
     z-index: 0;
   }
 
-  /* Photo container (parallax target) */
+  /* Photo container — parallax target */
   .stmt-hero__photo {
     position: absolute;
     inset: 0;
@@ -180,11 +192,11 @@ const hasPhoto = Boolean(images?.hero);
     .stmt-hero__photo { will-change: auto; }
   }
 
-  /* Trust badge — anchored bottom-left of photo inset */
+  /* Trust badge — bottom-left of photo, bleeds beyond frame edge */
   .stmt-hero__badge {
     position: absolute;
-    bottom: -1rem;
-    left: -1.5rem;
+    bottom: -1.25rem;
+    left: -1.75rem;
     z-index: 2;
     display: inline-flex;
     flex-direction: column;
@@ -194,16 +206,16 @@ const hasPhoto = Boolean(images?.hero);
     background: var(--brand);
     color: var(--brand-contrast);
     border-radius: var(--radius);
-    padding: 0.85rem 1.1rem;
+    padding: 0.85rem 1.15rem;
     min-width: 72px;
     box-shadow: var(--shadow-lg);
     text-align: center;
   }
+  /* Inline variant (no photo) */
   .stmt-hero__badge--inline {
-    /* No photo: render as an inline left-aligned element */
     position: static;
     display: inline-flex;
-    margin-top: 2rem;
+    margin-top: 2.25rem;
     align-self: flex-start;
   }
   .stmt-hero__badge-year {
@@ -230,64 +242,77 @@ const hasPhoto = Boolean(images?.hero);
     max-width: 110px;
   }
 
-  /* ── ③ Content layer ─────────────────────────────────────────────────────── */
+  /* ── ③ Content layer ────────────────────────────────────────────────────── */
   .stmt-hero__inner {
     position: relative;
     z-index: 2;
-    padding-block: clamp(4rem, 12vw, 8rem);
+    padding-block: clamp(4.5rem, 12vw, 9rem);
   }
 
-  /* When photo is present, reserve right column for it */
+  /* Reserve right column for photo when present */
   .stmt-hero__inner[data-has-photo] {
-    max-width: var(--maxw);
-    padding-right: clamp(220px, 36vw, 520px);
+    padding-inline-end: clamp(230px, 38vw, 540px);
   }
 
+  /* Eyebrow: accent rule + tracked caps */
   .stmt-hero__eyebrow {
+    display: block;
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
     color: var(--text-muted);
-    margin-bottom: 1.75rem;
+    margin: 0 0 1.6rem;
+  }
+  .stmt-hero__eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 1.6rem;
+    height: 2px;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    background: var(--accent);
   }
 
-  /* Primary keyline (thick, brand) */
-  .stmt-hero__rule {
+  /* Primary keyline (thick, brand gradient, short — "the single keyline") */
+  .stmt-hero__keyline {
     height: 3px;
     background: linear-gradient(
       90deg,
       var(--brand) 0%,
-      color-mix(in srgb, var(--brand) 20%, transparent) 100%
+      color-mix(in srgb, var(--brand) 15%, transparent) 100%
     );
     border: none;
-    margin: 0 0 1.6rem;
-    width: clamp(3.5rem, 9vw, 7.5rem);
+    margin: 0 0 1.75rem;
+    width: clamp(3.5rem, 8vw, 7rem);
+    border-radius: var(--radius-pill);
   }
 
-  /* Secondary keyline (thin, full-width) */
-  .stmt-hero__rule--thin {
-    height: 1px;
-    background: var(--border);
-    width: 100%;
-    margin: 1.6rem 0 2.25rem;
-  }
-
-  /* Oversized headline — the defining gesture */
+  /* Oversized headline — the defining gesture; max-width forces cascade */
   .stmt-hero__title {
     font-family: var(--font-display);
     font-weight: var(--fw-display);
-    font-size: clamp(3rem, 8.5vw, 7.5rem);
+    font-size: clamp(3.2rem, 9vw, 8rem);
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-display);
     color: var(--text);
     margin: 0;
-    overflow-wrap: break-word;
-    hyphens: auto;
+    /* Max-width forces 2–3 word cascade (award anti-generic pattern) */
+    max-width: 14ch;
+    text-wrap: balance;
   }
 
-  /* Footer row */
+  /* Secondary thin full-width rule — minimal, the "single keyline" award move */
+  .stmt-hero__rule {
+    height: 1px;
+    background: var(--border);
+    border: none;
+    margin: 1.75rem 0 2.5rem;
+    width: 100%;
+  }
+
+  /* Footer row: sub + CTAs */
   .stmt-hero__foot {
     display: flex;
     flex-wrap: wrap;
@@ -296,7 +321,7 @@ const hasPhoto = Boolean(images?.hero);
   }
 
   .stmt-hero__sub {
-    font-size: clamp(1rem, 1.8vw, 1.22rem);
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
     line-height: var(--leading-body);
     color: var(--text-muted);
     max-width: 52ch;
@@ -311,13 +336,38 @@ const hasPhoto = Boolean(images?.hero);
     align-items: center;
     gap: 1rem 1.5rem;
     flex-shrink: 0;
-    padding-top: 0.15rem;
+    padding-top: 0.1rem;
   }
 
-  .stmt-hero__cta {
-    box-shadow: 0 4px 14px color-mix(in srgb, var(--brand) 30%, transparent);
+  /* Ghost/outline CTA — award pattern: "no filled button in the hero" */
+  .stmt-hero__cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    color: var(--text);
+    text-decoration: none;
+    border: var(--border-weight) solid var(--border);
+    padding: 0.75em 1.6em;
+    border-radius: var(--radius);
+    transition:
+      border-color var(--motion-fade) var(--motion-ease),
+      background var(--motion-fade) var(--motion-ease),
+      color var(--motion-fade) var(--motion-ease);
+  }
+  .stmt-hero__cta-ghost:hover {
+    border-color: var(--brand);
+    background: var(--brand);
+    color: var(--brand-contrast);
+    text-decoration: none;
+  }
+  .stmt-hero__cta-ghost:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
   }
 
+  /* Phone link */
   .stmt-hero__phone {
     display: inline-flex;
     align-items: center;
@@ -352,7 +402,7 @@ const hasPhoto = Boolean(images?.hero);
   /* Highlights strip */
   .stmt-hero__highlights {
     list-style: none;
-    margin: 2.5rem 0 0;
+    margin: 2.75rem 0 0;
     padding: 1.5rem 0 0;
     border-top: var(--border-weight) solid var(--border);
     display: flex;
@@ -366,25 +416,28 @@ const hasPhoto = Boolean(images?.hero);
     color: var(--text-muted);
   }
 
-  /* ── Mobile ──────────────────────────────────────────────────────────────── */
+  /* ── Mobile ─────────────────────────────────────────────────────────────── */
   @media (max-width: 900px) {
     .stmt-hero__photo-wrap { display: none; }
-    .stmt-hero__inner[data-has-photo] { padding-right: var(--gutter); }
+    .stmt-hero__inner[data-has-photo] { padding-inline-end: var(--gutter); }
   }
   @media (max-width: 640px) {
-    .stmt-hero__title { font-size: clamp(2.4rem, 10vw, 3.8rem); }
+    .stmt-hero__title {
+      font-size: clamp(2.6rem, 11vw, 4rem);
+      max-width: none;
+    }
     .stmt-hero__foot { flex-direction: column; gap: 1.25rem; }
   }
 
-  /* ── Archetype tweaks ────────────────────────────────────────────────────── */
-  [data-archetype="editorial"] .stmt-hero__rule {
+  /* ── Archetype tweaks ──────────────────────────────────────────────────── */
+  [data-archetype="editorial"] .stmt-hero__keyline {
     border-radius: 0;
   }
   [data-archetype="magazine"] .stmt-hero__title {
-    font-size: clamp(3.5rem, 9.5vw, 9rem);
+    font-size: clamp(3.8rem, 10vw, 10rem);
     letter-spacing: -0.04em;
   }
   [data-archetype="classic"] .stmt-hero {
-    background: var(--bg-alt);
+    background: var(--bg-alt, var(--surface));
   }
 </style>

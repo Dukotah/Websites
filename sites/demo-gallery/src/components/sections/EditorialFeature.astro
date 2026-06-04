@@ -1,16 +1,18 @@
 ---
 /**
- * EditorialFeature — signature full-bleed editorial spread.
+ * EditorialFeature — AWARD-LEVEL signature editorial spreads.
  *
- * Alternating rows: large portrait image one side, short poetic copy + a
- * folio index number the other. Image side flips left/right each row.
- * Spec §6 type: 'editorial-feature'. Token-driven. [data-reveal] for
- * scroll-entrance. No client JS, no external images fetched at build.
+ * The winery/resort editorial pattern: portrait 3:4 image on the wider (60%)
+ * column, short poetic copy on the narrower (40%) column with an oversized
+ * ghost folio number as typographic anchor. Image side alternates each row.
+ * Generous section-level vertical rhythm (≥7vw between rows). Image wrapped
+ * in .u-offset-frame + [data-frame="editorial"] for depth and the brand-
+ * bottom accent mark. SectionHead handles the optional envelope header.
  *
- * Props shape mirrors FeatureSplit for data-source compatibility:
- *   rows: { heading, body, image?, imageAlt? }[]
- * Plus the shared SectionEnvelope (eyebrow, heading, intro, tone, align).
+ * Spec §6 type: 'editorial-feature'. No client JS. [data-reveal] for scroll
+ * entrances. Mirrors FeatureSplit props for data-source compatibility.
  */
+import SectionHead from './SectionHead.astro';
 import type { SectionEnvelope } from '../../types';
 
 interface EditorialRow {
@@ -22,6 +24,7 @@ interface EditorialRow {
 
 interface Props extends SectionEnvelope {
   rows: EditorialRow[];
+  index?: number;
 }
 
 const {
@@ -31,64 +34,68 @@ const {
   intro,
   tone = 'default',
   align = 'left',
+  index,
 } = Astro.props as Props;
 
-// Pad the index number with a leading zero — e.g. "01", "02" — editorial folio style.
-function fmtIndex(n: number): string {
+function fmtFolio(n: number): string {
   return String(n + 1).padStart(2, '0');
 }
 ---
 
 {rows.length > 0 && (
   <section class="section ef" data-tone={tone}>
-    <div class="ef__container">
+    <div class="container">
 
-      {(eyebrow || heading || intro) && (
-        <header class={`ef__header${align === 'center' ? ' ef__header--center' : ''}`} data-reveal>
-          {eyebrow && <p class="ef__eyebrow">{eyebrow}</p>}
-          {heading && <h2 class="ef__section-heading">{heading}</h2>}
-          {intro && <p class="ef__section-intro">{intro}</p>}
-          <!-- Hairline beneath the header block -->
-          <hr class="ef__rule" aria-hidden="true" />
-        </header>
-      )}
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
 
       <div class="ef__rows">
         {rows.map((row, i) => {
-          const isEven = i % 2 === 0; /* even → image-left, odd → image-right */
-          const hasImage = Boolean(row.image);
+          const isEven  = i % 2 === 0; /* even → image-left, odd → image-right */
+          const hasImg  = Boolean(row.image);
           return (
             <article
-              class={`ef__row ef__row--${isEven ? 'img-left' : 'img-right'}`}
+              class={`ef__row${isEven ? ' ef__row--img-left' : ' ef__row--img-right'}${!hasImg ? ' ef__row--no-img' : ''}`}
               aria-label={row.heading}
             >
-              {/* ── Image panel ─────────────────────────────────────────── */}
+
+              {/* ── Image column ─────────────────────────────────── */}
               <div class="ef__media-col" data-reveal data-reveal-order={0}>
-                {hasImage ? (
-                  <figure class="ef__figure" data-frame="editorial">
-                    <img
-                      src={row.image}
-                      alt={row.imageAlt ?? row.heading}
-                      loading="lazy"
-                      decoding="async"
-                      class="ef__img"
-                    />
-                  </figure>
+                {hasImg ? (
+                  <div class="u-offset-frame">
+                    <figure
+                      class="ef__figure"
+                      data-frame="editorial"
+                      data-treat="grade"
+                    >
+                      <img
+                        src={row.image}
+                        alt={row.imageAlt ?? row.heading}
+                        loading="lazy"
+                        decoding="async"
+                        class="ef__img"
+                      />
+                    </figure>
+                  </div>
                 ) : (
-                  /* Branded placeholder panel when no photo is available */
                   <div class="ef__placeholder" aria-hidden="true">
-                    <span class="ef__placeholder-glyph">{row.heading.charAt(0)}</span>
+                    <span class="ef__placeholder-glyph">
+                      {row.heading.charAt(0)}
+                    </span>
                   </div>
                 )}
               </div>
 
-              {/* ── Copy panel ──────────────────────────────────────────── */}
+              {/* ── Copy column ──────────────────────────────────── */}
               <div class="ef__copy-col" data-reveal data-reveal-order={1}>
-                <span class="ef__index" aria-hidden="true">{fmtIndex(i)}</span>
-                <hr class="ef__copy-rule" aria-hidden="true" />
-                <h3 class="ef__heading">{row.heading}</h3>
-                <p class="ef__body">{row.body}</p>
+                <div class="ef__copy-inner">
+                  {/* Oversized ghost folio — the signature editorial anchor */}
+                  <span class="ef__folio" aria-hidden="true">{fmtFolio(i)}</span>
+                  <hr class="ef__copy-rule" aria-hidden="true" />
+                  <h3 class="ef__row-heading">{row.heading}</h3>
+                  <p class="ef__row-body">{row.body}</p>
+                </div>
               </div>
+
             </article>
           );
         })}
@@ -99,138 +106,70 @@ function fmtIndex(n: number): string {
 )}
 
 <style>
-  /* ── Section shell ───────────────────────────────────────────────────────── */
+  /* ── Shell ────────────────────────────────────────────────────────────────── */
   .ef {
     padding-block: var(--section-pad);
-    /* No background override — inherits from [data-tone] in global.css */
   }
 
-  /* Full-width container: bleeds wider than the standard --maxw column so the
-     image panels can touch the viewport edge on large screens. */
-  .ef__container {
-    width: 100%;
+  .container {
     max-width: var(--maxw);
     margin-inline: auto;
     padding-inline: var(--gutter);
   }
 
-  /* ── Section header ──────────────────────────────────────────────────────── */
-  .ef__header {
-    margin-bottom: clamp(3rem, 7vw, 6rem);
-    max-width: 70ch;
-  }
-
-  .ef__header--center {
-    text-align: center;
-    margin-inline: auto;
-    max-width: 46ch;
-  }
-
-  .ef__eyebrow {
-    font-family: var(--font-body);
-    font-size: var(--step--1);
-    font-weight: var(--fw-body);
-    letter-spacing: calc(var(--tracking-eyebrow) + 0.04em);
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin: 0 0 1.25rem;
-  }
-
-  [data-tone="deep"] .ef__eyebrow,
-  [data-tone="brand"] .ef__eyebrow {
-    color: color-mix(in srgb, var(--text-on-dark) 65%, transparent);
-  }
-
-  .ef__section-heading {
-    font-family: var(--font-display);
-    font-weight: var(--fw-display);
-    font-size: clamp(var(--step-3), 4.5vw, var(--step-5));
-    letter-spacing: var(--tracking-display);
-    line-height: var(--leading-display);
-    color: var(--text);
-    margin: 0 0 1rem;
-  }
-
-  [data-tone="deep"] .ef__section-heading {
-    color: var(--text-on-dark);
-  }
-
-  .ef__section-intro {
-    font-size: var(--step-0);
-    color: var(--text-muted);
-    line-height: var(--leading-body);
-    margin: 0;
-  }
-
-  [data-tone="deep"] .ef__section-intro {
-    color: color-mix(in srgb, var(--text-on-dark) 75%, transparent);
-  }
-
-  /* Hairline rule beneath the header */
-  .ef__rule {
-    border: none;
-    border-top: var(--border-weight) solid var(--border);
-    margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
-  }
-
-  [data-tone="deep"] .ef__rule {
-    border-top-color: color-mix(in srgb, var(--text-on-dark) 18%, transparent);
-  }
-
-  /* ── Row stack ───────────────────────────────────────────────────────────── */
+  /* ── Row stack ────────────────────────────────────────────────────────────── */
   .ef__rows {
     display: flex;
     flex-direction: column;
-    /* Each row is separated by a hairline rule rendered via padding + border */
   }
 
-  /* ── Individual row ──────────────────────────────────────────────────────── */
+  /* ── Individual row ───────────────────────────────────────────────────────── */
+  /*
+   * 60/40 split: the image column takes 3fr (≈60%), the copy column 2fr (≈40%).
+   * Row gap is intentionally wide — editorial sites live or die by breathing room.
+   * Vertical row spacing is generous: 7–9vw between rows (section-level rhythm).
+   */
   .ef__row {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 3fr 2fr; /* 60/40 — image left by default */
     gap: clamp(3rem, 6vw, 7rem);
     align-items: center;
-    padding-block: clamp(3rem, 7vw, 6rem);
+    padding-block: clamp(4rem, 8vw, 7rem);
     border-top: var(--border-weight) solid var(--border);
   }
 
-  [data-tone="deep"] .ef__row {
-    border-top-color: color-mix(in srgb, var(--text-on-dark) 12%, transparent);
-  }
-
-  /* First row: no top border (header hairline already above it) */
+  /* First row: no top border */
   .ef__row:first-child {
     border-top: none;
     padding-top: 0;
   }
 
-  /* Image-right rows: swap column order visually */
+  /* Image-right: swap column proportions so copy is still the narrower (40%) */
   .ef__row--img-right {
-    grid-template-columns: 1fr 1.15fr;
+    grid-template-columns: 2fr 3fr; /* copy 40%, image 60% */
   }
 
-  .ef__row--img-right .ef__media-col {
-    order: 2;
-  }
+  /* Visual order control */
+  .ef__row--img-left  .ef__media-col { order: 0; }
+  .ef__row--img-left  .ef__copy-col  { order: 1; }
+  .ef__row--img-right .ef__media-col { order: 1; }
+  .ef__row--img-right .ef__copy-col  { order: 0; }
 
-  .ef__row--img-right .ef__copy-col {
-    order: 1;
-  }
-
-  /* ── Image panel ─────────────────────────────────────────────────────────── */
+  /* ── Image column ─────────────────────────────────────────────────────────── */
   .ef__media-col {
     position: relative;
   }
 
-  /* figure gets [data-frame="editorial"] from global.css:
-     border-radius: var(--radius); border-bottom: border-weight solid border */
+  /* Portrait 3:4 — the editorial magazine proportion (winery/resort signature) */
   .ef__figure {
     margin: 0;
+    aspect-ratio: 3 / 4;
     overflow: hidden;
-    aspect-ratio: 3 / 4; /* portrait — signature editorial proportion */
-    width: 100%;
     border-radius: var(--radius);
-    border-bottom: calc(var(--border-weight) * 3) solid var(--brand);
+    /* Brand accent mark at the base — the EditorialFeature visual signature */
+    border-bottom: calc(var(--border-weight) * 4) solid var(--brand);
+    /* Open Props shadow for real depth */
+    box-shadow: var(--shadow-5);
   }
 
   .ef__img {
@@ -238,22 +177,22 @@ function fmtIndex(n: number): string {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
-    transition: transform calc(var(--motion-fade) * 2) var(--motion-ease);
+    object-position: center 25%;
+    transition: transform calc(var(--motion-fade) * 2.5) var(--motion-ease);
   }
 
-  .ef__figure:hover .ef__img {
+  .ef__row:hover .ef__img {
     transform: scale(1.03);
   }
 
-  /* Branded placeholder when no image is available */
+  /* Branded placeholder when no photo supplied */
   .ef__placeholder {
     aspect-ratio: 3 / 4;
     display: grid;
     place-items: center;
     background: color-mix(in srgb, var(--brand) 10%, var(--surface));
     border-radius: var(--radius);
-    border-bottom: calc(var(--border-weight) * 3) solid var(--brand);
+    border-bottom: calc(var(--border-weight) * 4) solid var(--brand);
     overflow: hidden;
   }
 
@@ -262,54 +201,75 @@ function fmtIndex(n: number): string {
     font-weight: var(--fw-display);
     font-size: clamp(5rem, 18vw, 14rem);
     line-height: 1;
-    color: color-mix(in srgb, var(--brand) 30%, transparent);
+    color: color-mix(in srgb, var(--brand) 28%, transparent);
     user-select: none;
   }
 
-  /* ── Copy panel ──────────────────────────────────────────────────────────── */
+  /* ── Copy column ──────────────────────────────────────────────────────────── */
+  /*
+   * The "generous inset" — inner padding pulls the copy away from the image edge,
+   * creating the feel of a column-within-a-column (Jordan Winery / Resplendent
+   * Ceylon teardown pattern: min 10vw feel from the edge).
+   */
   .ef__copy-col {
-    padding-block: 0.5rem;
+    display: flex;
+    align-items: center;
   }
 
-  /* Folio index — oversized faded numeral, editorial signature */
-  .ef__index {
+  .ef__copy-inner {
+    width: 100%;
+  }
+
+  /* img-left → copy is right col; pad left (away from image) */
+  .ef__row--img-left .ef__copy-inner {
+    padding-inline-start: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  /* img-right → copy is left col; pad right (away from image) */
+  .ef__row--img-right .ef__copy-inner {
+    padding-inline-end: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  /* ── Folio number ─────────────────────────────────────────────────────────── */
+  /*
+   * Oversized ghost numeral — the editorial site signature move.
+   * Very large, very faint, optically tucked into the rule below it.
+   * Seen at Zorah Wines, Jordan Winery, Olivier Bernstein.
+   */
+  .ef__folio {
     display: block;
     font-family: var(--font-display);
     font-weight: var(--fw-display);
-    font-size: clamp(var(--step-4), 7vw, var(--step-6));
+    font-size: clamp(var(--step-4), 9vw, var(--step-6));
     line-height: 1;
     color: var(--brand);
-    opacity: 0.15;
-    letter-spacing: -0.04em;
-    margin-bottom: -0.1em; /* optical tuck — the rule sits just below it */
+    opacity: 0.12;
+    letter-spacing: -0.05em;
+    /* Optical tuck: the rule appears to emerge from the base of the numeral */
+    margin-bottom: -0.15em;
     user-select: none;
   }
 
-  [data-tone="deep"] .ef__index {
-    color: var(--text-on-dark);
-    opacity: 0.12;
-  }
-
-  /* Hairline rule between the index number and the heading */
+  /* Hairline rule between folio and heading — extends on hover for tactile feel */
   .ef__copy-rule {
     border: none;
     border-top: var(--border-weight) solid var(--border);
-    margin: 0.75rem 0 1.25rem;
+    margin: 0.8rem 0 1.4rem;
     width: 3rem;
     transition: width var(--motion-fade) var(--motion-ease);
   }
 
-  [data-tone="deep"] .ef__copy-rule {
-    border-top-color: color-mix(in srgb, var(--text-on-dark) 25%, transparent);
-  }
-
-  /* Hover: extend the rule to reinforce the interaction */
   .ef__row:hover .ef__copy-rule {
-    width: 5rem;
+    width: 5.5rem;
   }
 
-  /* Row heading */
-  .ef__heading {
+  /* ── Row heading (large display, per-row) ─────────────────────────────────── */
+  /*
+   * Deliberately narrow max-width forces the 2–3 word per line cascade —
+   * the premium winery/editorial move (teardown: "never let a headline run
+   * full-column width — it reads as template-generated").
+   */
+  .ef__row-heading {
     font-family: var(--font-display);
     font-weight: var(--fw-display);
     font-size: clamp(var(--step-2), 3.5vw, var(--step-4));
@@ -317,52 +277,54 @@ function fmtIndex(n: number): string {
     line-height: var(--leading-display);
     color: var(--text);
     margin: 0 0 1rem;
+    text-wrap: balance;
+    max-width: 14ch;
   }
 
-  [data-tone="deep"] .ef__heading {
-    color: var(--text-on-dark);
-  }
-
-  /* Body copy — deliberately short and poetic (short-form editorial prose) */
-  .ef__body {
+  /* ── Row body copy ────────────────────────────────────────────────────────── */
+  /* Short and poetic — editorial voice, not a wall of text */
+  .ef__row-body {
     font-size: var(--step-0);
     line-height: var(--leading-body);
     color: var(--text-muted);
     margin: 0;
-    max-width: 44ch; /* intentionally narrow: editorial voice, not a wall of text */
+    max-width: 40ch;
   }
 
-  [data-tone="deep"] .ef__body {
-    color: color-mix(in srgb, var(--text-on-dark) 70%, transparent);
-  }
+  /* ── Tone overrides ───────────────────────────────────────────────────────── */
+  [data-tone='alt']   { background: var(--bg-alt); }
+  [data-tone='deep']  { background: var(--bg-deep); color: var(--text-on-dark); }
+  [data-tone='brand'] { background: var(--brand);   color: var(--brand-contrast); }
 
-  /* ── Tone overrides ──────────────────────────────────────────────────────── */
-  [data-tone="alt"] { background: var(--bg-alt); }
-  [data-tone="deep"] { background: var(--bg-deep); color: var(--text-on-dark); }
-  [data-tone="brand"] { background: var(--brand); color: var(--brand-contrast); }
+  [data-tone='deep'] .ef__row           { border-top-color: color-mix(in srgb, var(--text-on-dark) 12%, transparent); }
+  [data-tone='deep'] .ef__row-heading   { color: var(--text-on-dark); }
+  [data-tone='deep'] .ef__row-body      { color: color-mix(in srgb, var(--text-on-dark) 70%, transparent); }
+  [data-tone='deep'] .ef__folio         { color: var(--text-on-dark); opacity: 0.10; }
+  [data-tone='deep'] .ef__copy-rule     { border-top-color: color-mix(in srgb, var(--text-on-dark) 22%, transparent); }
+  [data-tone='deep'] .ef__figure        { border-bottom-color: color-mix(in srgb, var(--brand) 80%, var(--text-on-dark)); }
 
-  [data-tone="brand"] .ef__eyebrow { color: color-mix(in srgb, var(--brand-contrast) 65%, transparent); }
-  [data-tone="brand"] .ef__section-heading,
-  [data-tone="brand"] .ef__heading { color: var(--brand-contrast); }
-  [data-tone="brand"] .ef__section-intro,
-  [data-tone="brand"] .ef__body { color: color-mix(in srgb, var(--brand-contrast) 80%, transparent); }
-  [data-tone="brand"] .ef__rule,
-  [data-tone="brand"] .ef__row,
-  [data-tone="brand"] .ef__copy-rule { border-color: color-mix(in srgb, var(--brand-contrast) 20%, transparent); }
-  [data-tone="brand"] .ef__index { color: var(--brand-contrast); opacity: 0.2; }
+  [data-tone='brand'] .ef__row          { border-top-color: color-mix(in srgb, var(--brand-contrast) 18%, transparent); }
+  [data-tone='brand'] .ef__row-heading  { color: var(--brand-contrast); }
+  [data-tone='brand'] .ef__row-body     { color: color-mix(in srgb, var(--brand-contrast) 80%, transparent); }
+  [data-tone='brand'] .ef__folio        { color: var(--brand-contrast); opacity: 0.18; }
+  [data-tone='brand'] .ef__copy-rule    { border-top-color: color-mix(in srgb, var(--brand-contrast) 22%, transparent); }
+  [data-tone='brand'] .ef__figure       { border-bottom-color: var(--brand-contrast); }
 
-  /* ── Responsive ──────────────────────────────────────────────────────────── */
+  /* ── Responsive ───────────────────────────────────────────────────────────── */
 
-  /* Tablet: narrow the gap, keep two columns */
+  /* Tablet: keep two-column but ease the gap and reduce inset */
   @media (max-width: 900px) {
     .ef__row,
     .ef__row--img-right {
       grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 4vw, 3rem);
+      gap: clamp(2rem, 4vw, 3.5rem);
     }
+
+    .ef__row--img-left .ef__copy-inner  { padding-inline-start: clamp(0.75rem, 2.5vw, 2rem); }
+    .ef__row--img-right .ef__copy-inner { padding-inline-end:   clamp(0.75rem, 2.5vw, 2rem); }
   }
 
-  /* Mobile: single column, image above copy, flip ordering reset */
+  /* Mobile: single column, image above copy, landscape to save height */
   @media (max-width: 620px) {
     .ef__row,
     .ef__row--img-right {
@@ -370,19 +332,20 @@ function fmtIndex(n: number): string {
       gap: 1.5rem;
     }
 
-    /* Restore natural DOM order (image col, then copy col) on mobile */
+    /* Restore natural DOM order on mobile */
     .ef__row--img-right .ef__media-col { order: 0; }
     .ef__row--img-right .ef__copy-col  { order: 1; }
 
-    /* Portrait image at mobile: use landscape ratio to save vertical space */
-    .ef__figure,
-    .ef__placeholder {
-      aspect-ratio: 4 / 3;
+    /* Collapse inset on single column */
+    .ef__row--img-left  .ef__copy-inner,
+    .ef__row--img-right .ef__copy-inner {
+      padding-inline: 0;
     }
 
-    /* Shrink the folio index on small screens */
-    .ef__index {
-      font-size: var(--step-4);
-    }
+    /* Landscape ratio on mobile — save vertical space */
+    .ef__figure,
+    .ef__placeholder { aspect-ratio: 4 / 3; }
+
+    .ef__folio { font-size: var(--step-4); }
   }
 </style>

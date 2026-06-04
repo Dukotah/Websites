@@ -1,8 +1,16 @@
 ---
 /**
- * FeatureSplit — alternating image + copy rows (zig-zag per row).
- * Spec §6: type 'feature-split'. No client JS. Image side flips each row.
+ * FeatureSplit — AWARD-LEVEL signature alternating editorial rows.
+ *
+ * Pattern: 60/40 image↔copy alternation (never 50/50), generous inset on the
+ * copy side (clamp 8–10vw feel), large per-row display heading, optional folio
+ * number, image wrapped in .u-offset-frame + [data-frame] for Open Props depth.
+ * Image side alternates each row (even→image-left, odd→image-right).
+ *
+ * Spec §6 type: 'feature-split'. No client JS. [data-reveal] for scroll
+ * entrances (handled globally). SectionHead for the optional envelope header.
  */
+import SectionHead from './SectionHead.astro';
 import type { SectionEnvelope } from '../../types';
 
 interface SplitRow {
@@ -14,58 +22,89 @@ interface SplitRow {
 
 interface Props extends SectionEnvelope {
   rows: SplitRow[];
+  index?: number;
 }
 
 const {
-  rows,
+  rows = [],
   eyebrow,
   heading,
   intro,
   tone = 'default',
   align = 'left',
+  index,
 } = Astro.props as Props;
+
+function fmtFolio(n: number): string {
+  return String(n + 1).padStart(2, '0');
+}
 ---
 
-<section class="section feature-split" data-tone={tone}>
-  <div class="container">
-    {(eyebrow || heading || intro) && (
-      <header class={`section-header section-header--${align}`} data-reveal>
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {heading && <h2 class="feature-split__heading">{heading}</h2>}
-        {intro && <p class="feature-split__intro">{intro}</p>}
-      </header>
-    )}
+{rows.length > 0 && (
+  <section class="section fs" data-tone={tone}>
+    <div class="container">
 
-    <div class="split-rows">
-      {rows.map((row, i) => (
-        <div class={`split-row split-row--${i % 2 === 0 ? 'img-left' : 'img-right'}`}>
-          {row.image && (
-            <figure class="split-row__media" data-frame data-reveal data-reveal-order={0}>
-              <img
-                src={row.image}
-                alt={row.imageAlt ?? row.heading}
-                loading="lazy"
-                decoding="async"
-                class="split-row__img"
-              />
-            </figure>
-          )}
-          <div
-            class={`split-row__copy${!row.image ? ' split-row__copy--full' : ''}`}
-            data-reveal
-            data-reveal-order={1}
-          >
-            <h3 class="split-row__title">{row.heading}</h3>
-            <p class="split-row__body">{row.body}</p>
-          </div>
-        </div>
-      ))}
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
+
+      <div class="fs__rows">
+        {rows.map((row, i) => {
+          const isEven = i % 2 === 0; /* even → image left, odd → image right */
+          const hasImg = Boolean(row.image);
+          return (
+            <article
+              class={`fs__row${isEven ? ' fs__row--img-left' : ' fs__row--img-right'}${!hasImg ? ' fs__row--no-img' : ''}`}
+              aria-label={row.heading}
+            >
+
+              {/* ── Image column ─────────────────────────────────── */}
+              <div class="fs__media-col" data-reveal data-reveal-order={0}>
+                {hasImg ? (
+                  <div class="u-offset-frame">
+                    <figure
+                      class="fs__figure"
+                      data-frame="editorial"
+                      data-treat="grade"
+                    >
+                      <img
+                        src={row.image}
+                        alt={row.imageAlt ?? row.heading}
+                        loading="lazy"
+                        decoding="async"
+                        class="fs__img"
+                      />
+                    </figure>
+                  </div>
+                ) : (
+                  <div class="fs__placeholder" aria-hidden="true">
+                    <span class="fs__placeholder-glyph">
+                      {row.heading.charAt(0)}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* ── Copy column ──────────────────────────────────── */}
+              <div class="fs__copy-col" data-reveal data-reveal-order={1}>
+                <div class="fs__copy-inner">
+                  <span class="fs__folio" aria-hidden="true">{fmtFolio(i)}</span>
+                  <hr class="fs__copy-rule" aria-hidden="true" />
+                  <h3 class="fs__row-heading">{row.heading}</h3>
+                  <p class="fs__row-body">{row.body}</p>
+                </div>
+              </div>
+
+            </article>
+          );
+        })}
+      </div>
+
     </div>
-  </div>
-</section>
+  </section>
+)}
 
 <style>
-  .feature-split {
+  /* ── Shell ────────────────────────────────────────────────────────────────── */
+  .fs {
     padding-block: var(--section-pad);
   }
 
@@ -75,171 +114,223 @@ const {
     padding-inline: var(--gutter);
   }
 
-  .section-header {
-    margin-bottom: 3rem;
-  }
-  .section-header--center {
-    text-align: center;
-    max-width: 52ch;
-    margin-inline: auto;
-  }
-  .section-header--left {
-    text-align: left;
-    max-width: 52ch;
-  }
-
-  .eyebrow {
-    font-family: var(--font-body);
-    font-size: var(--step--1);
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
-    color: var(--brand);
-    margin: 0 0 0.5rem;
-  }
-
-  .feature-split__heading {
-    font-family: var(--font-display);
-    font-size: var(--step-3);
-    font-weight: var(--fw-display);
-    letter-spacing: var(--tracking-display);
-    line-height: var(--leading-display);
-    color: var(--text);
-    margin: 0 0 0.75rem;
-  }
-
-  .feature-split__intro {
-    font-size: var(--step-0);
-    color: var(--text-muted);
-    line-height: var(--leading-body);
-    margin: 0;
-  }
-
-  /* Row layout ---------------------------------------------------------------- */
-  .split-rows {
+  /* ── Row stack ────────────────────────────────────────────────────────────── */
+  .fs__rows {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--section-pad) * 0.75);
   }
 
-  .split-row {
+  /* ── Individual row ───────────────────────────────────────────────────────── */
+  /*
+   * The 60/40 split: image gets 3fr (60%), copy gets 2fr (40%).
+   * Generous copy inset achieved via padding-inline on fs__copy-inner.
+   * Row gap is wide enough to feel editorial (not a card grid).
+   */
+  .fs__row {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--grid-gap);
+    grid-template-columns: 3fr 2fr; /* 60 / 40 — image left by default */
+    gap: clamp(2.5rem, 5vw, 5rem);
     align-items: center;
+    padding-block: clamp(3rem, 7vw, 6rem);
+    border-top: var(--border-weight) solid var(--border);
   }
 
-  @media (min-width: 768px) {
-    .split-row {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    /* Image-left row: media col 1, copy col 2 (natural DOM order) */
-    .split-row--img-left .split-row__media {
-      order: 0;
-    }
-    .split-row--img-left .split-row__copy {
-      order: 1;
-    }
-
-    /* Image-right row: copy col 1, media col 2 */
-    .split-row--img-right .split-row__media {
-      order: 1;
-    }
-    .split-row--img-right .split-row__copy {
-      order: 0;
-    }
+  /* First row: no top border — the SectionHead rule (or clean entry) above it */
+  .fs__row:first-child {
+    border-top: none;
+    padding-top: 0;
   }
 
-  /* Media -------------------------------------------------------------------- */
-  .split-row__media {
+  /* Image-right: copy col 1 (3fr), media col 2 (2fr) ... wait, for img-right the
+     copy should be the wider 60%. Swap: copy 3fr, image 2fr. */
+  .fs__row--img-right {
+    grid-template-columns: 2fr 3fr; /* copy 40%, image 60% */
+  }
+
+  /* Reorder: on img-right rows the media col renders second in DOM, visual order
+     is already correct (copy left, image right) — no order swap needed. */
+  .fs__row--img-left  .fs__media-col { order: 0; }
+  .fs__row--img-left  .fs__copy-col  { order: 1; }
+  .fs__row--img-right .fs__media-col { order: 1; }
+  .fs__row--img-right .fs__copy-col  { order: 0; }
+
+  /* ── Image column ─────────────────────────────────────────────────────────── */
+  .fs__media-col {
+    /* Overflow visible so .u-offset-frame slab peeks out */
+    position: relative;
+  }
+
+  /* The figure itself — landscape 4:3 for feature rows */
+  .fs__figure {
     margin: 0;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    background: var(--surface);
     aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius);
+    /* Open Props shadow for depth */
+    box-shadow: var(--shadow-4);
   }
 
-  .split-row__img {
+  .fs__img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform calc(var(--motion-fade) * 1.4) var(--motion-ease);
+    object-position: center;
+    transition: transform calc(var(--motion-fade) * 2) var(--motion-ease);
   }
 
-  .split-row__media:hover .split-row__img {
+  .fs__row:hover .fs__img {
     transform: scale(1.04);
   }
 
-  /* Copy --------------------------------------------------------------------- */
-  .split-row__copy {
-    padding-block: 0.5rem;
+  /* Branded placeholder when no photo supplied */
+  .fs__placeholder {
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--brand) 8%, var(--surface));
+    border-radius: var(--radius);
+    border-bottom: calc(var(--border-weight) * 3) solid var(--brand);
+    overflow: hidden;
   }
 
-  .split-row__copy--full {
-    grid-column: 1 / -1;
-  }
-
-  .split-row__title {
+  .fs__placeholder-glyph {
     font-family: var(--font-display);
-    font-size: var(--step-2);
     font-weight: var(--fw-display);
+    font-size: clamp(4rem, 16vw, 12rem);
+    line-height: 1;
+    color: color-mix(in srgb, var(--brand) 25%, transparent);
+    user-select: none;
+  }
+
+  /* ── Copy column ──────────────────────────────────────────────────────────── */
+  /*
+   * The generous inset: padding-inline on the inner div (not the grid column)
+   * creates the "column within a column" feel from the Jordan Winery teardown.
+   * On img-left rows the copy is on the right — pad the left edge.
+   * On img-right rows the copy is on the left — pad the right edge.
+   */
+  .fs__copy-col {
+    display: flex;
+    align-items: center;
+  }
+
+  .fs__copy-inner {
+    width: 100%;
+  }
+
+  /* Inset: image-left → copy is right col, pad inward from image edge */
+  .fs__row--img-left .fs__copy-inner {
+    padding-inline-start: clamp(1rem, 4vw, 3rem);
+  }
+
+  /* Inset: image-right → copy is left col, pad inward from image edge */
+  .fs__row--img-right .fs__copy-inner {
+    padding-inline-end: clamp(1rem, 4vw, 3rem);
+  }
+
+  /* ── Folio number ─────────────────────────────────────────────────────────── */
+  .fs__folio {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: clamp(var(--step-4), 8vw, var(--step-6));
+    line-height: 1;
+    color: var(--brand);
+    opacity: 0.13;
+    letter-spacing: -0.04em;
+    margin-bottom: -0.1em; /* optical tuck into the rule below */
+    user-select: none;
+  }
+
+  /* Hairline rule between folio and heading */
+  .fs__copy-rule {
+    border: none;
+    border-top: var(--border-weight) solid var(--border);
+    margin: 0.65rem 0 1.1rem;
+    width: 2.75rem;
+    transition: width var(--motion-fade) var(--motion-ease);
+  }
+
+  .fs__row:hover .fs__copy-rule {
+    width: 4.5rem;
+  }
+
+  /* ── Row heading (large display, per-row) ─────────────────────────────────── */
+  .fs__row-heading {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: clamp(var(--step-2), 3.5vw, var(--step-4));
     letter-spacing: var(--tracking-display);
     line-height: var(--leading-display);
     color: var(--text);
-    margin: 0 0 1rem;
+    margin: 0 0 0.9rem;
+    text-wrap: balance;
+    max-width: 16ch; /* deliberate narrow rag — premium editorial move */
   }
 
-  .split-row__body {
+  /* ── Row body copy ────────────────────────────────────────────────────────── */
+  .fs__row-body {
     font-size: var(--step-0);
     line-height: var(--leading-body);
     color: var(--text-muted);
     margin: 0;
-    max-width: 54ch;
+    max-width: 44ch; /* intentionally narrow editorial voice */
   }
 
-  /* Separator between rows */
-  .split-row + .split-row {
-    padding-top: calc(var(--section-pad) * 0.25);
-    border-top: var(--border-weight) solid var(--border);
+  /* ── Tone overrides ───────────────────────────────────────────────────────── */
+  [data-tone='alt']  { background: var(--bg-alt); }
+  [data-tone='deep'] { background: var(--bg-deep); color: var(--text-on-dark); }
+  [data-tone='brand']{ background: var(--brand);  color: var(--brand-contrast); }
+
+  [data-tone='deep'] .fs__row          { border-top-color: color-mix(in srgb, var(--text-on-dark) 12%, transparent); }
+  [data-tone='deep'] .fs__row-heading  { color: var(--text-on-dark); }
+  [data-tone='deep'] .fs__row-body     { color: color-mix(in srgb, var(--text-on-dark) 72%, transparent); }
+  [data-tone='deep'] .fs__folio        { color: var(--text-on-dark); opacity: 0.10; }
+  [data-tone='deep'] .fs__copy-rule    { border-top-color: color-mix(in srgb, var(--text-on-dark) 22%, transparent); }
+
+  [data-tone='brand'] .fs__row         { border-top-color: color-mix(in srgb, var(--brand-contrast) 18%, transparent); }
+  [data-tone='brand'] .fs__row-heading { color: var(--brand-contrast); }
+  [data-tone='brand'] .fs__row-body    { color: color-mix(in srgb, var(--brand-contrast) 80%, transparent); }
+  [data-tone='brand'] .fs__folio       { color: var(--brand-contrast); opacity: 0.18; }
+  [data-tone='brand'] .fs__copy-rule   { border-top-color: color-mix(in srgb, var(--brand-contrast) 22%, transparent); }
+
+  /* ── Responsive ───────────────────────────────────────────────────────────── */
+
+  /* Tablet: keep two columns but tighten gap and equalize a bit */
+  @media (max-width: 960px) {
+    .fs__row,
+    .fs__row--img-right {
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 3rem);
+    }
+
+    .fs__row--img-left .fs__copy-inner  { padding-inline-start: clamp(0.5rem, 2vw, 1.5rem); }
+    .fs__row--img-right .fs__copy-inner { padding-inline-end:   clamp(0.5rem, 2vw, 1.5rem); }
   }
 
-  /* Tone overrides ---------------------------------------------------------- */
-  [data-tone='alt'] {
-    background: var(--bg-alt);
-  }
-  [data-tone='deep'] {
-    background: var(--bg-deep);
-  }
-  [data-tone='deep'] .feature-split__heading,
-  [data-tone='deep'] .split-row__title {
-    color: var(--text-on-dark);
-  }
-  [data-tone='deep'] .feature-split__intro,
-  [data-tone='deep'] .split-row__body {
-    color: color-mix(in srgb, var(--text-on-dark) 75%, transparent);
-  }
-  [data-tone='deep'] .eyebrow {
-    color: var(--accent);
-  }
-  [data-tone='deep'] .split-row + .split-row {
-    border-top-color: color-mix(in srgb, var(--text-on-dark) 15%, transparent);
-  }
-  [data-tone='brand'] {
-    background: var(--brand);
-  }
-  [data-tone='brand'] .feature-split__heading,
-  [data-tone='brand'] .split-row__title {
-    color: var(--brand-contrast);
-  }
-  [data-tone='brand'] .feature-split__intro,
-  [data-tone='brand'] .split-row__body {
-    color: color-mix(in srgb, var(--brand-contrast) 80%, transparent);
-  }
-  [data-tone='brand'] .eyebrow {
-    color: var(--brand-contrast);
-    opacity: 0.75;
+  /* Mobile: single column, image stacks above copy, folio shrinks */
+  @media (max-width: 620px) {
+    .fs__row,
+    .fs__row--img-right {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    /* Restore natural DOM order: media first, copy second */
+    .fs__row--img-right .fs__media-col { order: 0; }
+    .fs__row--img-right .fs__copy-col  { order: 1; }
+
+    /* Inset collapses on single-column */
+    .fs__row--img-left  .fs__copy-inner,
+    .fs__row--img-right .fs__copy-inner {
+      padding-inline: 0;
+    }
+
+    .fs__folio { font-size: var(--step-3); }
+
+    /* Landscape on mobile to save height */
+    .fs__figure,
+    .fs__placeholder { aspect-ratio: 4 / 3; }
   }
 </style>

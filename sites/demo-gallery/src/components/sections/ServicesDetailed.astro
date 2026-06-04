@@ -1,15 +1,19 @@
 ---
 /**
- * ServicesDetailed — bear-flag-quality service grid: a photo (or branded
- * placeholder) per card, title, description, and a "request this" link.
- * Spec §6: type 'services-detailed'. Token-driven for per-business identity.
+ * ServicesDetailed — award-level service card grid.
+ *
+ * • Photo cards: 16/10 media panel, scale-on-hover, [data-frame] treatment.
+ * • Numbered text cards (no image): large accent number as watermark, top accent rule.
+ * • Header delegated to SectionHead (chapter index support).
+ * • Open Props shadows + hover lift; generous editorial spacing.
+ * • Tone-aware: default / alt / deep / brand.
  */
 import type { Tone, Align } from '../../types';
+import SectionHead from './SectionHead.astro';
 
 interface ServiceItem {
   title: string;
   description: string;
-  /** Real photo for this service (public path). Falls back to a branded card. */
   image?: string;
   icon?: string;
 }
@@ -21,8 +25,10 @@ interface Props {
   intro?: string;
   tone?: Tone;
   align?: Align;
-  /** phone for the per-card CTA link */
   phone?: string;
+  envelope?: string;
+  /** Chapter index forwarded from SectionRenderer */
+  index?: number;
 }
 
 const {
@@ -33,129 +39,294 @@ const {
   tone = 'default',
   align = 'left',
   phone,
+  envelope,
+  index,
 } = Astro.props as Props;
 
-const telHref = phone ? `tel:${phone.replace(/[^+\d]/g, '')}` : '#contact';
+// Prefer tel CTA; fall back to mailto; fall back to #contact anchor.
+const ctaHref = phone
+  ? `tel:${phone.replace(/[^+\d]/g, '')}`
+  : envelope
+  ? `mailto:${envelope}`
+  : '#contact';
 ---
 
 {items.length > 0 && (
   <section class="section svc" data-tone={tone} id="services-detailed">
     <div class="container">
-      {(eyebrow || heading || intro) && (
-        <div class={`svc__head${align === 'center' ? ' svc__head--center' : ''}`} data-reveal>
-          {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-          {heading && <h2 class="svc__heading">{heading}</h2>}
-          {intro && <p class="svc__intro">{intro}</p>}
-        </div>
-      )}
 
-      <div class="svc__grid">
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
+
+      <div class="svc__grid" class:list={[`svc__grid--${items.some(i => i.image) ? 'photo' : 'text'}`]}>
         {items.map((item, i) => (
-          <article class={`svc-card${item.image ? '' : ' svc-card--noimg'}`} data-reveal data-reveal-order={i}>
-            {item.image && (
+          <article
+            class={`svc-card${item.image ? ' svc-card--photo' : ' svc-card--num'}`}
+            data-reveal
+            data-reveal-order={i}
+          >
+            {item.image ? (
               <div class="svc-card__media" data-frame>
-                <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="400"
+                />
               </div>
+            ) : (
+              <span class="svc-card__watermark" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
             )}
+
             <div class="svc-card__body">
-              {!item.image && <span class="svc-card__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>}
+              {!item.image && (
+                <span class="svc-card__num-label" aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              )}
               <h3 class="svc-card__title">{item.title}</h3>
               <p class="svc-card__desc">{item.description}</p>
-              <a href={telHref} class="svc-card__link">
+              <a href={ctaHref} class="svc-card__link">
                 Ask about this
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <path
+                    d="M5 12h14m-6-6 6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
               </a>
             </div>
           </article>
         ))}
       </div>
+
     </div>
   </section>
 )}
 
 <style>
-  .svc { padding-block: var(--section-pad); }
-  .container { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
-  .svc__head { margin-bottom: 2.5rem; max-width: 56ch; }
-  .svc__head--center { text-align: center; margin-inline: auto; }
-  .eyebrow {
-    font-family: var(--font-body);
-    font-size: var(--step--1);
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
-    color: var(--brand);
-    margin: 0 0 0.5rem;
+  /* ── Section shell ───────────────────────────────────────────────────── */
+  .svc {
+    padding-block: var(--section-pad);
   }
-  .svc__heading {
-    font-family: var(--font-display);
-    font-size: var(--step-3);
-    font-weight: var(--fw-display);
-    letter-spacing: var(--tracking-display);
-    line-height: var(--leading-display);
-    color: var(--text);
-    margin: 0 0 0.6rem;
-  }
-  .svc__intro { font-size: var(--step-0); color: var(--text-muted); line-height: var(--leading-body); margin: 0; }
 
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* ── Grid ────────────────────────────────────────────────────────────── */
   .svc__grid {
     display: grid;
-    gap: var(--grid-gap);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--grid-gap, 1.5rem);
+    /* Photo cards: wider minimum so images breathe */
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   }
+
+  /* Numbered text-only: narrower minimum → up to 3 across */
+  .svc__grid--text {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  }
+
+  /* ── Card base ───────────────────────────────────────────────────────── */
   .svc-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     background: var(--surface);
-    border: var(--border-weight) solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: transform var(--motion-fade) var(--motion-ease), box-shadow var(--motion-fade) var(--motion-ease), border-color var(--motion-fade) var(--motion-ease);
+    /* Open Props layered shadow — resting state */
+    box-shadow: var(--shadow-2);
+    transition:
+      transform 260ms var(--motion-ease, var(--ease-out-3)),
+      box-shadow 260ms var(--motion-ease, var(--ease-out-3)),
+      border-color 260ms var(--motion-ease, var(--ease-out-3));
+    will-change: transform;
   }
+
   .svc-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: color-mix(in srgb, var(--brand) 35%, var(--border));
+    transform: translateY(-6px);
+    /* Open Props elevated shadow */
+    box-shadow: var(--shadow-4);
   }
+
+  /* ── Photo card ──────────────────────────────────────────────────────── */
+  .svc-card--photo {
+    border: var(--border-weight, 1px) solid var(--border);
+  }
+
+  .svc-card--photo:hover {
+    border-color: color-mix(in srgb, var(--brand) 40%, var(--border));
+  }
+
   .svc-card__media {
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 18%, var(--surface)), color-mix(in srgb, var(--brand) 4%, var(--surface)));
-    display: grid;
-    place-items: center;
+    background: color-mix(in srgb, var(--brand) 14%, var(--surface));
   }
-  .svc-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--motion-ease); }
-  .svc-card:hover .svc-card__media img { transform: scale(1.05); }
-  .svc-card__ph {
-    font-family: var(--font-display);
-    font-size: var(--step-5);
-    font-weight: var(--fw-display);
-    color: color-mix(in srgb, var(--brand) 55%, transparent);
+
+  .svc-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 540ms var(--ease-out-3, var(--motion-ease));
   }
-  /* No-photo cards: clean numbered text cards (no empty media panel, no stock). */
-  .svc-card--noimg { border-top: 3px solid var(--brand); }
-  .svc-card__num {
+
+  .svc-card--photo:hover .svc-card__media img {
+    transform: scale(1.06);
+  }
+
+  /* ── Numbered text card ──────────────────────────────────────────────── */
+  .svc-card--num {
+    border-top: 3px solid var(--brand);
+    border-inline: var(--border-weight, 1px) solid var(--border);
+    border-bottom: var(--border-weight, 1px) solid var(--border);
+  }
+
+  .svc-card--num:hover {
+    border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+    border-top-color: var(--brand);
+  }
+
+  /* Large watermark number — pure texture, zero layout contribution */
+  .svc-card__watermark {
+    position: absolute;
+    inset-block-start: 0.2rem;
+    inset-inline-end: 0.75rem;
     font-family: var(--font-display);
-    font-size: var(--step-2);
+    font-size: var(--step-6, clamp(3.5rem, 8vw, 6rem));
     font-weight: var(--fw-display);
     line-height: 1;
-    color: color-mix(in srgb, var(--brand) 70%, var(--text));
-    margin-bottom: 0.6rem;
-    display: block;
+    color: color-mix(in srgb, var(--brand) 12%, transparent);
+    pointer-events: none;
+    user-select: none;
+    /* don't stretch the card */
+    z-index: 0;
   }
-  .svc-card__body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
-  .svc-card__title { font-family: var(--font-display); font-size: var(--step-1); font-weight: var(--fw-display); color: var(--text); margin: 0 0 0.4rem; line-height: 1.2; }
-  .svc-card__desc { font-size: var(--step--1); color: var(--text-muted); line-height: var(--leading-body); margin: 0 0 1.1rem; flex: 1; }
-  .svc-card__link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-body); font-weight: var(--fw-bold); font-size: var(--step--1); color: var(--brand); }
-  .svc-card__link svg { width: 1.05em; height: 1.05em; transition: transform var(--motion-fade) var(--motion-ease); }
-  .svc-card__link:hover { text-decoration: none; }
-  .svc-card:hover .svc-card__link svg { transform: translateX(3px); }
 
-  [data-tone='alt'] { background: var(--bg-alt); }
-  [data-tone='deep'] { background: var(--bg-deep); color: var(--text-on-dark); }
-  [data-tone='deep'] .svc__heading, [data-tone='deep'] .svc-card__title { color: var(--text-on-dark); }
-  [data-tone='deep'] .svc-card { background: var(--surface-2); border-color: color-mix(in srgb, var(--text-on-dark) 16%, transparent); }
+  /* Visible inline number above title */
+  .svc-card__num-label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: var(--fw-display);
+    line-height: 1;
+    letter-spacing: var(--tracking-display);
+    color: var(--brand);
+    margin-bottom: 0.55rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Card body ───────────────────────────────────────────────────────── */
+  .svc-card__body {
+    position: relative;
+    z-index: 1;
+    padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 1.625rem) clamp(1.4rem, 3.5vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0;
+  }
+
+  .svc-card__title {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display, -0.02em);
+    line-height: 1.2;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+
+  .svc-card__desc {
+    font-size: var(--step-0);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin: 0 0 1.25rem;
+    flex: 1;
+  }
+
+  .svc-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step--1);
+    letter-spacing: 0.01em;
+    color: var(--brand);
+    text-decoration: none;
+    margin-top: auto;
+  }
+
+  .svc-card__link svg {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    transition: transform 220ms var(--ease-out-3, var(--motion-ease));
+  }
+
+  .svc-card__link:hover { text-decoration: none; }
+
+  .svc-card:hover .svc-card__link svg {
+    transform: translateX(4px);
+  }
+
+  /* ── Tone variants ───────────────────────────────────────────────────── */
+  [data-tone='alt'] {
+    background: var(--bg-alt);
+  }
+
+  [data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+
+  [data-tone='deep'] .svc-card {
+    background: var(--surface-2);
+    border-color: color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+  }
+
+  [data-tone='deep'] .svc-card--num {
+    border-top-color: var(--brand);
+  }
+
+  [data-tone='deep'] .svc-card__title {
+    color: var(--text-on-dark);
+  }
+
+  [data-tone='deep'] .svc-card__desc {
+    color: color-mix(in srgb, var(--text-on-dark) 72%, transparent);
+  }
+
+  [data-tone='deep'] .svc-card__watermark {
+    color: color-mix(in srgb, var(--text-on-dark) 7%, transparent);
+  }
+
+  [data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+
+  [data-tone='brand'] .svc-card {
+    background: color-mix(in srgb, var(--brand-dark) 40%, var(--surface));
+  }
+
+  [data-tone='brand'] .svc-card__title {
+    color: var(--brand-contrast);
+  }
+
+  [data-tone='brand'] .svc-card__link {
+    color: var(--accent-contrast, var(--brand-contrast));
+  }
 </style>

@@ -1,87 +1,83 @@
 ---
-import type { SectionEnvelope } from '../../types';
+/**
+ * LogosStrip — quiet certification / partner / press-mention strip.
+ * Award pattern: grayscale logos at rest, full-color on hover; hairline top/bottom
+ * rules; text-only wordmarks for items without a logo file. Mid-section credentials
+ * bar pattern from trades + salon teardowns. Reduced vertical padding (not a full
+ * section — a subdued band).
+ */
+import SectionHead from './SectionHead.astro';
+import type { Section } from '../../types';
 
-interface Props extends SectionEnvelope {
-  items: { label: string; logo?: string }[];
-}
+type Props = Extract<Section, { type: 'logos' }> & { index?: number };
 
 const {
-  items,
+  items = [],
   eyebrow,
   heading,
   intro,
   tone = 'alt',
   align = 'center',
+  index,
 } = Astro.props as Props;
 ---
 
-<section class="section section--logos" data-tone={tone} id="logos">
+<section class="section lgos" data-tone={tone}>
   <div class="container">
 
     {(eyebrow || heading || intro) && (
-      <div class={`logos__head${align === 'center' ? ' logos__head--center' : ''}`} data-reveal>
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {heading && <h2>{heading}</h2>}
-        {intro && <p class="logos__intro">{intro}</p>}
-      </div>
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
     )}
 
-    <ul class="logos__strip" role="list" data-reveal data-reveal-order="1">
-      {items.map(({ label, logo }) => (
-        <li class="logos__item">
-          {logo ? (
-            <div class="logos__frame" data-frame>
-              <img
-                src={logo}
-                alt={label}
-                class="logos__img"
-                loading="lazy"
-                decoding="async"
-                width="120"
-                height="60"
-              />
-            </div>
-          ) : (
-            <div class="logos__wordmark" aria-label={label}>
-              <span>{label}</span>
-            </div>
-          )}
-        </li>
-      ))}
-    </ul>
+    {items.length > 0 && (
+      <ul class="lgos__strip" role="list" aria-label="Partners and certifications" data-reveal>
+        {items.map(({ label, logo }) => (
+          <li class="lgos__item">
+            {logo ? (
+              <div class="lgos__frame" title={label}>
+                <img
+                  src={logo}
+                  alt={label}
+                  class="lgos__img"
+                  loading="lazy"
+                  decoding="async"
+                  width="120"
+                  height="56"
+                />
+              </div>
+            ) : (
+              <div class="lgos__wordmark" aria-label={label}>
+                <span>{label}</span>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
 
   </div>
 </section>
 
 <style>
-  .section--logos {
-    --_pad-v: calc(var(--section-pad) * 0.55);
-    padding-block: var(--_pad-v);
+  /* ── Section shell — deliberately compact vertical pad ── */
+  .lgos {
+    --_pad: calc(var(--section-pad) * 0.5);
+    padding-block: var(--_pad);
+    background: var(--bg-alt);
+    color: var(--text);
   }
+  .lgos[data-tone='default'] { background: var(--bg); }
+  .lgos[data-tone='deep']    { background: var(--bg-deep); color: var(--text-on-dark); }
+  .lgos[data-tone='brand']   { background: var(--brand);   color: var(--brand-contrast); }
 
-  .logos__head {
-    max-width: 52ch;
-    margin-block-end: calc(var(--section-pad) * 0.45);
-  }
-  .logos__head--center {
+  .container {
+    max-width: var(--maxw);
     margin-inline: auto;
-    text-align: center;
-  }
-  .logos__head h2 {
-    font-family: var(--font-display);
-    font-weight: var(--fw-display);
-    font-size: var(--step-2);
-    letter-spacing: var(--tracking-display);
-    line-height: var(--leading-display);
-    margin-block: 0.25em 0.5em;
-  }
-  .logos__intro {
-    color: var(--text-muted);
-    line-height: var(--leading-body);
+    padding-inline: var(--gutter);
   }
 
-  /* Strip */
-  .logos__strip {
+  /* ── Strip — hairline rules top & bottom, flex wrap centered ── */
+  .lgos__strip {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -89,63 +85,92 @@ const {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: calc(var(--grid-gap) * 1.25);
+    gap: clamp(1rem, 3vw, 2rem);
+    /* Top hairline — quiet editorial separator */
     border-top: var(--border-weight) solid var(--border);
     border-bottom: var(--border-weight) solid var(--border);
-    padding-block: calc(var(--grid-gap) * 1.25);
+    padding-block: clamp(1.25rem, 2.5vw, 1.75rem);
   }
 
-  .logos__item {
+  .lgos[data-tone='deep']  .lgos__strip,
+  .lgos[data-tone='brand'] .lgos__strip {
+    border-color: color-mix(in srgb, currentColor 20%, transparent);
+  }
+
+  .lgos__item {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* Logo image frame */
-  .logos__frame {
+  /* ── Logo image frame — no card box, just subtle pill ── */
+  .lgos__frame {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.9rem;
     border-radius: var(--radius);
-    background: var(--surface);
-    border: var(--border-weight) solid var(--border);
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--motion-fade) var(--motion-ease),
-                transform var(--motion-fade) var(--motion-ease);
-  }
-  .logos__frame:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    /* Intentionally no border/shadow — the grayscale IS the restraint */
+    transition:
+      opacity var(--motion-fade) var(--motion-ease),
+      transform var(--motion-fade) var(--motion-ease);
   }
 
-  .logos__img {
-    max-width: 120px;
-    max-height: 56px;
+  .lgos__frame:hover {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+
+  /* Grayscale at rest → full-color on hover (award-site certification pattern) */
+  .lgos__img {
+    max-width: 110px;
+    max-height: 52px;
     width: auto;
     height: auto;
     object-fit: contain;
-    /* Desaturate by default; full color on hover for subtle interactivity */
-    filter: grayscale(0.6) opacity(0.85);
+    display: block;
+    filter: grayscale(0.75) opacity(0.7);
     transition: filter var(--motion-fade) var(--motion-ease);
   }
-  .logos__frame:hover .logos__img {
+
+  .lgos__frame:hover .lgos__img {
     filter: grayscale(0) opacity(1);
   }
 
-  /* Text-only wordmark (no logo provided) */
-  .logos__wordmark {
+  /* On dark sections, invert-ish treatment */
+  .lgos[data-tone='deep']  .lgos__img,
+  .lgos[data-tone='brand'] .lgos__img {
+    filter: grayscale(1) brightness(2) opacity(0.65);
+  }
+  .lgos[data-tone='deep']  .lgos__frame:hover .lgos__img,
+  .lgos[data-tone='brand'] .lgos__frame:hover .lgos__img {
+    filter: grayscale(0) brightness(1) opacity(1);
+  }
+
+  /* ── Text-only wordmark — no logo provided ── */
+  .lgos__wordmark {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.65em 1.25em;
+    padding: 0.5em 1.1em;
     border: var(--border-weight) solid var(--border);
     border-radius: var(--radius);
     background: var(--surface);
-    box-shadow: var(--shadow-sm);
+    opacity: 0.72;
+    transition:
+      opacity var(--motion-fade) var(--motion-ease),
+      transform var(--motion-fade) var(--motion-ease),
+      border-color var(--motion-fade) var(--motion-ease);
   }
-  .logos__wordmark span {
-    font-family: var(--font-display);
+
+  .lgos__wordmark:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  }
+
+  .lgos__wordmark span {
+    font-family: var(--font-body);
     font-weight: var(--fw-bold);
     font-size: var(--step--1);
     color: var(--text-muted);
@@ -154,9 +179,19 @@ const {
     white-space: nowrap;
   }
 
+  .lgos[data-tone='deep']  .lgos__wordmark,
+  .lgos[data-tone='brand'] .lgos__wordmark {
+    background: color-mix(in srgb, currentColor 8%, transparent);
+    border-color: color-mix(in srgb, currentColor 20%, transparent);
+  }
+
+  .lgos[data-tone='deep']  .lgos__wordmark span,
+  .lgos[data-tone='brand'] .lgos__wordmark span {
+    color: color-mix(in srgb, currentColor 70%, transparent);
+  }
+
   @media (max-width: 480px) {
-    .logos__strip {
-      gap: var(--grid-gap);
-    }
+    .lgos__strip { gap: 0.75rem; }
+    .lgos__img   { max-width: 88px; max-height: 44px; }
   }
 </style>

@@ -65,7 +65,10 @@ async function auditTokens() {
     for (const m of css.matchAll(/var\(\s*--([a-z0-9-]+)/gi)) used.push({ token: m[1], file: f });
   }
 
-  const dead = used.filter((u) => !defined.has(u.token));
+  // Open Props families are defined in node_modules (imported in BaseLayout), not
+  // in our scanned files — treat them as known.
+  const OPEN_PROPS = /^(shadow-[1-6]|ease-[a-z0-9-]+|gradient-\d+|layer-\d+|size-\d+|radius-\d+)$/;
+  const dead = used.filter((u) => !defined.has(u.token) && !OPEN_PROPS.test(u.token));
   // group by token
   const byToken = new Map();
   for (const d of dead) {

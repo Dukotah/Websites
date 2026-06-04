@@ -1,7 +1,16 @@
 ---
+/**
+ * StatsSection — award-level editorial stat display.
+ * Big display numbers separated by hairline rules (top + bottom --border),
+ * font-variant-numeric: tabular-nums, restrained typographic treatment.
+ * Pattern: horizontal row of stats, each divided by a 1px vertical hairline
+ * (inline) with top + bottom border rules bounding the strip — direct takeaway
+ * from the Awwwards / trades teardown credentials bar pattern.
+ */
+import SectionHead from './SectionHead.astro';
 import type { Section } from '../../types';
 
-type Props = Extract<Section, { type: 'stats' }>;
+type Props = Extract<Section, { type: 'stats' }> & { index?: number };
 
 const {
   eyebrow,
@@ -10,104 +19,155 @@ const {
   tone = 'default',
   align = 'left',
   items = [],
+  index,
 } = Astro.props as Props;
 ---
 
-<section class="section" data-tone={tone}>
-  <div class="container">
-    {(eyebrow || heading || intro) && (
-      <div class="stats__head" data-align={align}>
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {heading && <h2>{heading}</h2>}
-        {intro && <p class="stats__intro">{intro}</p>}
-      </div>
-    )}
+{items.length > 0 && (
+  <section class="section stats-section" data-tone={tone}>
+    <div class="container">
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
 
-    <div class="stats__grid">
-      {
-        items.map((item, i) => (
-          <div class="stat" data-reveal data-reveal-order={i}>
-            <div class="stat__value">{item.value}</div>
-            <div class="stat__label">{item.label}</div>
+      <div class="stats-rail" role="list">
+        {items.map((item, i) => (
+          <div class="stat-cell" role="listitem" data-reveal data-reveal-order={i}>
+            <div class="stat-cell__value" aria-label={`${item.value} — ${item.label}`}>
+              {item.value}
+            </div>
+            <div class="stat-cell__label" aria-hidden="true">{item.label}</div>
           </div>
-        ))
-      }
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+)}
 
 <style>
-  .section[data-tone='default'] {
+  /* ── Shell ──────────────────────────────────────────────────────────────── */
+  .stats-section {
+    padding-block: var(--section-pad);
     background: var(--bg);
     color: var(--text);
   }
-  .section[data-tone='alt'] {
-    background: var(--bg-alt);
-    color: var(--text);
-  }
-  .section[data-tone='deep'] {
-    background: var(--bg-deep);
-    color: var(--text-on-dark);
-  }
-  .section[data-tone='brand'] {
-    background: var(--brand);
-    color: var(--brand-contrast);
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
   }
 
-  .stats__head {
-    margin-bottom: var(--section-pad);
-  }
-  .stats__head[data-align='left'] {
-    text-align: left;
-    max-width: 50ch;
-  }
-  .stats__head[data-align='center'] {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .stats__intro {
-    color: var(--text-muted);
-    font-size: var(--step-0);
-    margin: 0.5rem 0 0;
-  }
-  .section[data-tone='deep'] .stats__intro,
-  .section[data-tone='brand'] .stats__intro {
-    color: inherit;
-    opacity: 0.9;
-  }
-
-  .stats__grid {
+  /* ── Rail: top + bottom hairline rules bounding the stat strip ─────────── */
+  .stats-rail {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: var(--grid-gap);
-    text-align: center;
+    /* auto-fit up to 5 columns but no fewer than 2, scale gracefully */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+    border-top: var(--border-weight) solid var(--border);
+    border-bottom: var(--border-weight) solid var(--border);
   }
 
-  .stat {
-    padding: var(--section-pad) 0;
+  /* ── Individual stat cell ─────────────────────────────────────────────── */
+  .stat-cell {
+    padding-block: clamp(1.75rem, 4vw, 3rem);
+    padding-inline: clamp(1rem, 3vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    /* vertical hairline divider between siblings */
+    border-inline-end: var(--border-weight) solid var(--border);
+  }
+  .stat-cell:last-child {
+    border-inline-end: none;
   }
 
-  .stat__value {
+  /* ── Number ─────────────────────────────────────────────────────────────── */
+  .stat-cell__value {
     font-family: var(--font-display);
-    font-size: var(--step-4);
+    font-size: clamp(var(--step-4), 6vw, var(--step-6));
     font-weight: var(--fw-display);
-    line-height: var(--leading-display);
-    color: currentColor;
+    line-height: 1;
+    letter-spacing: var(--tracking-display);
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+    /* single-word accent on the value — uses color-mix so it degrades gracefully */
+    background: none;
   }
 
-  .stat__label {
-    margin-top: 0.5rem;
+  /* ── Label ────────────────────────────────────────────────────────────── */
+  .stat-cell__label {
+    font-family: var(--font-body);
     font-size: var(--step--1);
+    font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
     color: var(--text-muted);
-    font-weight: var(--fw-body);
+    line-height: 1.3;
+    /* cap the label at ~20 chars so it doesn't sprawl on wide cells */
+    max-width: 18ch;
   }
-  .section[data-tone='deep'] .stat__label,
-  .section[data-tone='brand'] .stat__label {
-    color: inherit;
-    opacity: 0.8;
+
+  /* ── Tone overrides ─────────────────────────────────────────────────────── */
+  [data-tone='alt'] {
+    background: var(--bg-alt);
+  }
+
+  [data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .stats-rail {
+    border-color: color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+  }
+  [data-tone='deep'] .stat-cell {
+    border-color: color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+  }
+  [data-tone='deep'] .stat-cell__value {
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .stat-cell__label {
+    color: color-mix(in srgb, var(--text-on-dark) 65%, transparent);
+  }
+
+  [data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .stats-rail {
+    border-color: color-mix(in srgb, var(--brand-contrast) 25%, transparent);
+  }
+  [data-tone='brand'] .stat-cell {
+    border-color: color-mix(in srgb, var(--brand-contrast) 25%, transparent);
+  }
+  [data-tone='brand'] .stat-cell__value {
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .stat-cell__label {
+    color: color-mix(in srgb, var(--brand-contrast) 70%, transparent);
+  }
+
+  /* ── Mobile: stack to 2-up, then single column below 400px ─────────────── */
+  @media (max-width: 640px) {
+    .stats-rail {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    /* restore inline dividers but add row dividers via box-shadow trick */
+    .stat-cell:nth-child(even) {
+      border-inline-end: none;
+    }
+    /* add bottom border on the first row of a 2-column layout */
+    .stat-cell {
+      border-bottom: var(--border-weight) solid var(--border);
+    }
+    .stats-rail > .stat-cell:nth-last-child(-n+2):nth-child(odd),
+    .stats-rail > .stat-cell:nth-last-child(1) {
+      border-bottom: none;
+    }
+  }
+  @media (max-width: 380px) {
+    .stats-rail {
+      grid-template-columns: 1fr;
+    }
+    .stat-cell {
+      border-inline-end: none;
+    }
   }
 </style>

@@ -32,55 +32,65 @@ interface Props {
 }
 
 const { sections = [] } = Astro.props as Props;
+
+// Numbered "chapter" content sections (award pattern). Accent/utility bands
+// (stats, cta, map, hours, press, logos, spec-strip…) are intentionally NOT
+// numbered so the chapters read as the narrative spine.
+const MAJOR = new Set([
+  'services-detailed', 'feature-split', 'gallery', 'timeline', 'menu',
+  'team', 'process', 'editorial-feature', 'faq', 'list', 'before-after',
+]);
+let chapter = 0;
 ---
 
 {
   sections.map((section) => {
+    const index = MAJOR.has(section.type) ? ++chapter : undefined;
     switch (section.type) {
       case 'stats':
-        return <StatsSection {...section} />;
+        return <StatsSection {...section} index={index} />;
       case 'testimonials':
-        return <TestimonialsSection {...section} />;
+        return <TestimonialsSection {...section} index={index} />;
       case 'faq':
-        return <FaqSection {...section} />;
+        return <FaqSection {...section} index={index} />;
       case 'list':
-        return <ListSection {...section} />;
+        return <ListSection {...section} index={index} />;
       case 'cta':
-        return <CtaSection {...section} />;
+        return <CtaSection {...section} index={index} />;
       case 'gallery':
-        return <GallerySection {...section} />;
+        return <GallerySection {...section} index={index} />;
       case 'feature-split':
-        return <FeatureSplit {...section} />;
+        return <FeatureSplit {...section} index={index} />;
       case 'timeline':
-        return <TimelineSection {...section} />;
+        return <TimelineSection {...section} index={index} />;
       case 'menu':
-        return <MenuSection {...section} />;
+        return <MenuSection {...section} index={index} />;
       case 'team':
-        return <TeamSection {...section} />;
+        return <TeamSection {...section} index={index} />;
       case 'map':
-        return <MapSection {...section} />;
+        return <MapSection {...section} index={index} />;
       case 'press':
-        return <PressSection {...section} />;
+        return <PressSection {...section} index={index} />;
       case 'bigquote':
-        return <BigQuoteSection {...section} />;
+        return <BigQuoteSection {...section} index={index} />;
       case 'services-detailed':
-        return <ServicesDetailed {...section} />;
+        return <ServicesDetailed {...section} index={index} />;
       case 'service-area':
-        return <ServiceAreaSection {...section} />;
+        return <ServiceAreaSection {...section} index={index} />;
       case 'hours-contact':
-        return <HoursContactSection {...section} />;
+        return <HoursContactSection {...section} index={index} />;
       case 'process':
-        return <ProcessSection {...section} />;
+        return <ProcessSection {...section} index={index} />;
       case 'logos':
-        return <LogosStrip {...section} />;
+        return <LogosStrip {...section} index={index} />;
       case 'before-after':
-        return <BeforeAfter {...section} />;
+        return <BeforeAfter {...section} index={index} />;
       case 'feature-grid':
-        return <FeatureGrid {...section} />;
+        return <FeatureGrid {...section} index={index} />;
       case 'editorial-feature':
-        return <EditorialFeature {...section} />;
+        return <EditorialFeature {...section} index={index} />;
       case 'spec-strip':
-        return <SpecStrip {...section} />;
+        return <SpecStrip {...section} index={index} />;
       default:
         return null;
     }
