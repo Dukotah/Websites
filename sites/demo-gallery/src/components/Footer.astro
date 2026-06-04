@@ -40,8 +40,8 @@ const socials = [
 
 <style>
   .footer {
-    background: var(--ink);
-    color: rgba(255, 255, 255, 0.7);
+    background: var(--bg-deep);
+    color: color-mix(in srgb, var(--text-on-dark) 80%, transparent);
     padding-block: 3.5rem 2rem;
   }
   .footer__inner {
@@ -50,28 +50,37 @@ const socials = [
     gap: 1.5rem 2rem;
     align-items: flex-start;
     justify-content: space-between;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
   }
   .footer__brand strong {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: #fff;
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: 1.3rem;
+    color: var(--text-on-dark);
   }
   .footer__brand p {
     margin: 0.4rem 0 0;
     font-size: 0.92rem;
   }
   .footer__brand a {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-on-dark);
+  }
+  .footer__brand a:hover {
+    color: var(--accent);
   }
   .footer__social {
     display: flex;
     gap: 1.5rem;
   }
   .footer__social a {
-    color: #fff;
-    font-weight: 500;
+    color: var(--text-on-dark);
+    font-weight: var(--fw-bold);
     font-size: 0.92rem;
+  }
+  .footer__social a:hover {
+    color: var(--accent);
   }
   .footer__base {
     display: flex;
@@ -80,8 +89,11 @@ const socials = [
     justify-content: space-between;
     margin-top: 2.5rem;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: var(--border-weight) solid color-mix(in srgb, var(--text-on-dark) 16%, transparent);
     font-size: 0.85rem;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
   }
   .footer__base p {
     margin: 0;
