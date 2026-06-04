@@ -563,7 +563,7 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
       : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
     return {
       hero,
-      sections: assignVariants(assignTones(ensureMinimum(plan, config, seed), seed), seed),
+      sections: assignVariants(assignTones(ensureMinimum(plan, config, seed), seed), seed, ad.category),
     };
   }
 
@@ -595,7 +595,7 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
 
   return {
     hero,
-    sections: assignVariants(assignTones(ensureMinimum(sections, config, seed), seed), seed),
+    sections: assignVariants(assignTones(ensureMinimum(sections, config, seed), seed), seed, ad.category),
   };
 }
 

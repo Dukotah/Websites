@@ -30,9 +30,13 @@ import SpecStrip from './SpecStrip.astro';
 
 // Section-variant alternates (chosen per slug by lib/variants.ts).
 import GalleryUniform from './GalleryUniform.astro';
+import GalleryFilmstrip from './GalleryFilmstrip.astro';
 import TestimonialsSpotlight from './TestimonialsSpotlight.astro';
 import FeatureSplitFraming from './FeatureSplitFraming.astro';
+import FeatureGridBordered from './FeatureGridBordered.astro';
 import StatsBand from './StatsBand.astro';
+import StatsInline from './StatsInline.astro';
+import ServicesDetailedBento from './ServicesDetailedBento.astro';
 import CtaPanel from './CtaPanel.astro';
 
 interface Props {
@@ -53,11 +57,12 @@ let chapter = 0;
 // Variant pools: a section type can render in several layouts; compose.ts picks
 // the index per slug (lib/variants.ts) so same-category sites diverge. Keep each
 // array length-aligned with SECTION_VARIANTS; out-of-range wraps via modulo.
-const SERVICES_DETAILED = [ServicesDetailed, ServicesDetailedRows];
-const GALLERY = [GallerySection, GalleryUniform];
+const SERVICES_DETAILED = [ServicesDetailed, ServicesDetailedRows, ServicesDetailedBento];
+const GALLERY = [GallerySection, GalleryUniform, GalleryFilmstrip];
 const TESTIMONIALS = [TestimonialsSection, TestimonialsSpotlight];
 const FEATURE_SPLIT = [FeatureSplit, FeatureSplitFraming];
-const STATS = [StatsSection, StatsBand];
+const FEATURE_GRID = [FeatureGrid, FeatureGridBordered];
+const STATS = [StatsSection, StatsBand, StatsInline];
 const CTA = [CtaSection, CtaPanel];
 
 /** Pick a variant component for a section, wrapping the index safely. */
@@ -120,8 +125,10 @@ function variantOf<T>(pool: T[], variant?: number): T {
         return <LogosStrip {...section} index={index} />;
       case 'before-after':
         return <BeforeAfter {...section} index={index} />;
-      case 'feature-grid':
-        return <FeatureGrid {...section} index={index} />;
+      case 'feature-grid': {
+        const C = variantOf(FEATURE_GRID, section.variant);
+        return <C {...section} index={index} />;
+      }
       case 'editorial-feature':
         return <EditorialFeature {...section} index={index} />;
       case 'spec-strip':

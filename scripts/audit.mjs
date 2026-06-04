@@ -95,6 +95,65 @@ function auditProspect(slug, c) {
   return issues;
 }
 
+// ── WCAG contrast (the "invisible / illegible text" bug, measured) ───────────
+// Dead-token checking catches var(--x)→undefined; this catches the OTHER half:
+// tokens that ARE defined but render text too faint to read (e.g. a pale brand
+// with white button text, or muted text on a tinted bg). Parses the per-page
+// color tokens that tokens.ts injects into the built HTML and measures real
+// ratios — so it needs `npm run build` to have run first.
+const DIST = join(APP, 'dist');
+
+function srgbChannel(c) {
+  const v = c / 255;
+  return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+}
+
+function luminance(hex) {
+  const h = hex.replace('#', '');
+  const n = h.length === 3 ? h.split('').map((x) => x + x).join('') : h;
+  const r = parseInt(n.slice(0, 2), 16);
+  const g = parseInt(n.slice(2, 4), 16);
+  const b = parseInt(n.slice(4, 6), 16);
+  return 0.2126 * srgbChannel(r) + 0.7152 * srgbChannel(g) + 0.0722 * srgbChannel(b);
+}
+
+function contrast(a, b) {
+  const la = luminance(a);
+  const lb = luminance(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+/** First-wins parse of the injected color tokens from a built page's inline CSS. */
+function parseTokens(html) {
+  const t = {};
+  for (const m of html.matchAll(/--([a-z0-9-]+)\s*:\s*(#[0-9a-fA-F]{3,6})\b/g)) {
+    if (!(m[1] in t)) t[m[1]] = m[2];
+  }
+  return t;
+}
+
+// The pairs that actually carry readable text in the rendered pages.
+const CONTRAST_PAIRS = [
+  ['text', 'bg', 'body text on page'],
+  ['text', 'surface', 'body text on cards'],
+  ['text-muted', 'bg', 'muted text on page'],
+  ['text-on-dark', 'bg-deep', 'text on dark sections'],
+  ['brand-contrast', 'brand', 'button label on brand'],
+  ['accent-contrast', 'accent', 'text on accent'],
+];
+
+function auditContrast(tokens) {
+  const issues = [];
+  for (const [fg, bg, desc] of CONTRAST_PAIRS) {
+    if (!tokens[fg] || !tokens[bg]) continue;
+    const r = contrast(tokens[fg], tokens[bg]);
+    const at = `(${tokens[fg]} on ${tokens[bg]})`;
+    if (r < 3.0) issues.push(['critical', `contrast ${r.toFixed(2)}:1 — ${desc} ${at}, AA needs 4.5`]);
+    else if (r < 4.5) issues.push(['warn', `contrast ${r.toFixed(2)}:1 — ${desc} ${at}, below AA 4.5`]);
+  }
+  return issues;
+}
+
 async function main() {
   let critical = 0;
   console.log('\n🔎 Project audit\n' + '─'.repeat(48));
@@ -115,9 +174,15 @@ async function main() {
   // 2. Per-prospect content
   console.log('\n## Prospects');
   const files = (await readdir(PROSPECTS)).filter((f) => f.endsWith('.json'));
+  let missingDist = false;
   for (const f of files) {
+    const slug = f.replace(/\.json$/, '');
     const c = JSON.parse(await readFile(join(PROSPECTS, f), 'utf8'));
-    const issues = auditProspect(f.replace(/\.json$/, ''), c);
+    const issues = auditProspect(slug, c);
+    // Measured WCAG contrast from the built page (needs a prior `npm run build`).
+    const distHtml = await readFile(join(DIST, 'p', slug, 'index.html'), 'utf8').catch(() => null);
+    if (distHtml) issues.push(...auditContrast(parseTokens(distHtml)));
+    else missingDist = true;
     const crit = issues.filter((i) => i[0] === 'critical');
     critical += crit.length;
     if (issues.length === 0) {
@@ -129,6 +194,10 @@ async function main() {
         console.log(`      [${mark}] ${msg}`);
       }
     }
+  }
+
+  if (missingDist) {
+    console.log('\n  ℹ contrast checks skipped for some pages — run `npm run build` first.');
   }
 
   console.log('\n' + '─'.repeat(48));

@@ -1,0 +1,193 @@
+---
+/**
+ * StatsInline — compact inline credentials ribbon (variant-2 of stats).
+ *
+ * Each stat is a horizontal value+label pair; pairs flow in a single wrapping
+ * row separated by subtle dot separators. Value in display type, label small
+ * and muted beside/beneath it. Reads like a one-line credentials strip —
+ * deliberately compact vs. the big stacked band (v1) or divided grid (v0).
+ *
+ * Props: identical to StatsSection / StatsBand — drop-in swappable.
+ */
+import SectionHead from './SectionHead.astro';
+import type { Section } from '../../types';
+
+type Props = Extract<Section, { type: 'stats' }> & { index?: number };
+
+const {
+  eyebrow,
+  heading,
+  intro,
+  tone = 'default',
+  align = 'left',
+  items = [],
+  index,
+} = Astro.props as Props;
+---
+
+{items.length > 0 && (
+  <section class="section stats-inline" data-tone={tone}>
+    <div class="container">
+      <SectionHead {index} {eyebrow} {heading} {intro} {align} />
+
+      <div class="inline__strip" role="list" data-reveal data-reveal-stagger>
+        {items.map((item, i) => (
+          <>
+            <div
+              class="inline__pair"
+              role="listitem"
+              data-reveal
+              data-reveal-order={i}
+            >
+              <span
+                class="inline__value"
+                aria-label={`${item.value} — ${item.label}`}
+              >
+                {item.value}
+              </span>
+              <span class="inline__label" aria-hidden="true">{item.label}</span>
+            </div>
+            {i < items.length - 1 && (
+              <span class="inline__sep" aria-hidden="true" />
+            )}
+          </>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  /* ── Shell ──────────────────────────────────────────────────────────────── */
+  .stats-inline {
+    padding-block: var(--section-pad);
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* ── Strip: wrapping inline row ─────────────────────────────────────────── */
+  .inline__strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0;
+    border-top: var(--border-weight) solid var(--border);
+    border-bottom: var(--border-weight) solid var(--border);
+    padding-block: clamp(0.875rem, 2vw, 1.25rem);
+  }
+
+  /* ── Stat pair: value + label side by side ──────────────────────────────── */
+  .inline__pair {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3em 0.5em;
+    padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  /* ── Value ──────────────────────────────────────────────────────────────── */
+  .inline__value {
+    font-family: var(--font-display);
+    font-size: clamp(var(--step-2), 3.5vw, var(--step-4));
+    font-weight: var(--fw-display);
+    line-height: 1;
+    letter-spacing: var(--tracking-display);
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+
+  /* ── Label ──────────────────────────────────────────────────────────────── */
+  .inline__label {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    line-height: var(--leading-body);
+    color: var(--text-muted);
+    max-width: 22ch;
+  }
+
+  /* ── Dot separator between pairs ───────────────────────────────────────── */
+  .inline__sep {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  /* ── Tone: alt ──────────────────────────────────────────────────────────── */
+  [data-tone='alt'] {
+    background: var(--bg-alt);
+  }
+
+  /* ── Tone: deep ─────────────────────────────────────────────────────────── */
+  [data-tone='deep'] {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .inline__strip {
+    border-color: color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+  }
+  [data-tone='deep'] .inline__value {
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'] .inline__label {
+    color: color-mix(in srgb, var(--text-on-dark) 60%, transparent);
+  }
+  [data-tone='deep'] .inline__sep {
+    background: color-mix(in srgb, var(--text-on-dark) 30%, transparent);
+  }
+
+  /* ── Tone: brand ────────────────────────────────────────────────────────── */
+  [data-tone='brand'] {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .inline__strip {
+    border-color: color-mix(in srgb, var(--brand-contrast) 25%, transparent);
+  }
+  [data-tone='brand'] .inline__value {
+    color: var(--brand-contrast);
+  }
+  [data-tone='brand'] .inline__label {
+    color: color-mix(in srgb, var(--brand-contrast) 70%, transparent);
+  }
+  [data-tone='brand'] .inline__sep {
+    background: color-mix(in srgb, var(--brand-contrast) 35%, transparent);
+  }
+
+  /* ── Mobile: tighten padding, allow pairs to stack to 2-up ─────────────── */
+  @media (max-width: 480px) {
+    .inline__pair {
+      flex-direction: column;
+      gap: 0.15em;
+      padding-inline: clamp(0.5rem, 3vw, 1rem);
+    }
+    .inline__sep {
+      /* hide dots when pairs are wrapping to avoid orphaned separators */
+      display: none;
+    }
+    .inline__strip {
+      gap: 0.75rem 0;
+      /* subtle row gap instead of dots on narrow screens */
+      row-gap: 0.75rem;
+    }
+  }
+
+  /* ── Reduced motion ─────────────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal],
+    [data-reveal-stagger] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>
