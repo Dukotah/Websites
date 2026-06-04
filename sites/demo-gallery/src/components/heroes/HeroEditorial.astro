@@ -1,21 +1,31 @@
 ---
 /**
- * HeroEditorial — centered magazine-style typography with thin rules.
- * Spec §7: "editorial" variant. Works without a photo (photo is optional overlay).
- * Port + full tokenization of src/components/HeroEditorial.astro.
+ * HeroEditorial — centered magazine typography with thin rules, a full-bleed
+ * photo (parallax), overlapping display type that "breaks" the rule lines,
+ * a brand gradient-mesh, and a floating trust badge anchored bottom-right.
+ * Spec §7: "editorial" variant.
  */
 import type { ProspectConfig } from '../../types';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights, established, area } = config;
+const { hero, images, contact, highlights = [], established, area } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join('  ·  ');
 const hasPhoto = Boolean(images?.hero);
+const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
+const trustLine = highlights[0] ?? '';
 ---
 
-<section class="ed-hero" id="top" data-has-photo={hasPhoto ? 'true' : undefined} aria-label="Hero">
+<section
+  class="ed-hero"
+  id="top"
+  data-has-photo={hasPhoto ? 'true' : undefined}
+  aria-label="Hero"
+>
+
+  <!-- ① Photo + parallax (only when image available) -->
   {hasPhoto && (
-    <div class="ed-hero__media" aria-hidden="true">
+    <div class="ed-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.35">
       <img
         src={images.hero}
         alt={images.heroAlt}
@@ -23,30 +33,54 @@ const hasPhoto = Boolean(images?.hero);
         fetchpriority="high"
         decoding="async"
       />
-      <span class="ed-hero__scrim" aria-hidden="true"></span>
     </div>
   )}
 
+  <!-- ② Brand gradient-mesh -->
+  <div class="ed-hero__mesh" aria-hidden="true"></div>
+
+  <!-- ③ Legibility scrim (radial so centre is clearest) -->
+  <div class="ed-hero__scrim" aria-hidden="true"></div>
+
+  <!-- ④ Trust badge (bottom-right, overlaps content edge) -->
+  {(badgeYear || trustLine) && (
+    <div class="ed-hero__badge" aria-label="Trust signal" data-reveal data-reveal-order="0">
+      {badgeYear && <strong class="ed-hero__badge-year">{badgeYear}</strong>}
+      <span class="ed-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
+      {badgeYear && trustLine && <span class="ed-hero__badge-trust">{trustLine}</span>}
+    </div>
+  )}
+
+  <!-- ⑤ Content -->
   <div class="container ed-hero__inner">
+
     <!-- Top thin rule -->
     <hr class="ed-hero__rule ed-hero__rule--top" aria-hidden="true" />
 
-    <div class="ed-hero__copy" data-reveal>
-      {eyebrow && (
-        <p class="ed-hero__eyebrow">{eyebrow}</p>
-      )}
+    <div class="ed-hero__copy" data-reveal data-reveal-order="1">
+
+      {eyebrow && <p class="ed-hero__eyebrow">{eyebrow}</p>}
+
+      <!-- Oversized headline — "breaks" the rules visually -->
       <h1 class="ed-hero__title">{hero.heading}</h1>
 
-      <!-- Mid rule beneath headline -->
-      <hr class="ed-hero__rule ed-hero__rule--mid" aria-hidden="true" />
+      <!-- Accent mid-rule (short, brand-colored) -->
+      <div class="ed-hero__mid-rule" aria-hidden="true"></div>
 
       {hero.subheading && (
         <p class="ed-hero__sub">{hero.subheading}</p>
       )}
+
+      <!-- Refined CTA cluster -->
       <div class="ed-hero__actions">
-        <a href={hero.ctaHref} class="btn">{hero.ctaText}</a>
+        <a href={hero.ctaHref} class="btn ed-hero__cta">{hero.ctaText}</a>
         {contact.phone && (
-          <a href={telHref} class="ed-hero__phone">{contact.phone}</a>
+          <a href={telHref} class="ed-hero__phone">
+            <svg class="ed-hero__phone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+            {contact.phone}
+          </a>
         )}
       </div>
     </div>
@@ -55,19 +89,21 @@ const hasPhoto = Boolean(images?.hero);
     <hr class="ed-hero__rule ed-hero__rule--bottom" aria-hidden="true" />
   </div>
 
-  {highlights && highlights.length > 0 && (
-    <ul class="ed-hero__highlights" aria-label="Key highlights">
+  <!-- ⑥ Highlights ticker bar (pinned bottom) -->
+  {highlights.length > 0 && (
+    <ul class="ed-hero__highlights" aria-label="Key highlights" data-reveal data-reveal-order="2">
       {highlights.map((h: string) => <li>{h}</li>)}
     </ul>
   )}
+
 </section>
 
 <style>
-  /* ── Base: works without a photo (bg = brand-dark) ─────────────────────── */
+  /* ── Shell ───────────────────────────────────────────────────────────────── */
   .ed-hero {
     position: relative;
     isolation: isolate;
-    min-height: min(88vh, 800px);
+    min-height: min(92vh, 860px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,71 +114,142 @@ const hasPhoto = Boolean(images?.hero);
     overflow: hidden;
   }
 
-  /* ── Photo layer (only rendered when hasPhoto) ──────────────────────────── */
+  /* ── ① Photo layer (parallax) ────────────────────────────────────────────── */
   .ed-hero__media {
     position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: var(--bg-deep);
+    inset: -12% 0;
+    z-index: 0;
+    will-change: transform;
   }
   .ed-hero__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 35%;
+    display: block;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ed-hero__media { inset: 0; will-change: auto; }
   }
 
-  /* Radial scrim — darkens edges, keeps center legible */
+  /* ── ② Gradient-mesh ─────────────────────────────────────────────────────── */
+  .ed-hero__mesh {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(
+        ellipse 80% 55% at 15% 10%,
+        color-mix(in srgb, var(--brand) 28%, transparent) 0%,
+        transparent 65%
+      ),
+      radial-gradient(
+        ellipse 55% 45% at 90% 90%,
+        color-mix(in srgb, var(--accent) 18%, transparent) 0%,
+        transparent 60%
+      );
+    pointer-events: none;
+  }
+
+  /* ── ③ Radial scrim ──────────────────────────────────────────────────────── */
   .ed-hero__scrim {
     position: absolute;
     inset: 0;
+    z-index: 2;
     background: radial-gradient(
       120% 90% at 50% 45%,
-      color-mix(in srgb, var(--bg-deep) 32%, transparent) 0%,
-      color-mix(in srgb, var(--bg-deep) 68%, transparent) 100%
+      color-mix(in srgb, var(--bg-deep) 28%, transparent) 0%,
+      color-mix(in srgb, var(--bg-deep) 70%, transparent) 100%
+    );
+    pointer-events: none;
+  }
+  /* No photo: need more coverage */
+  :not([data-has-photo]) .ed-hero__scrim {
+    background: radial-gradient(
+      120% 90% at 50% 45%,
+      color-mix(in srgb, var(--bg-deep) 60%, transparent) 0%,
+      color-mix(in srgb, var(--bg-deep) 90%, transparent) 100%
     );
   }
 
-  /* ── Content shell ──────────────────────────────────────────────────────── */
+  /* ── ④ Trust badge (bottom-right, bleeds toward edge) ────────────────────── */
+  .ed-hero__badge {
+    position: absolute;
+    bottom: 5rem;             /* sits above highlights bar */
+    right: clamp(1.5rem, 4vw, 4rem);
+    z-index: 5;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    background: var(--brand);
+    color: var(--brand-contrast);
+    border-radius: var(--radius);
+    padding: 0.85rem 1.1rem;
+    min-width: 72px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+  .ed-hero__badge-year {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: var(--fw-display);
+    line-height: 1;
+  }
+  .ed-hero__badge-label {
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+  }
+  .ed-hero__badge-trust {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+  }
+
+  /* ── ⑤ Content layer ─────────────────────────────────────────────────────── */
   .ed-hero__inner {
     position: relative;
-    z-index: 1;
-    max-width: 760px;
+    z-index: 3;
+    max-width: 820px;
     padding-block: clamp(3rem, 8vw, 6rem);
     width: 100%;
   }
 
-  /* ── Rules — thin editorial lines ──────────────────────────────────────── */
+  /* Editorial rules */
   .ed-hero__rule {
     border: none;
     border-top: var(--border-weight) solid
-      color-mix(in srgb, var(--text-on-dark) 30%, transparent);
+      color-mix(in srgb, var(--text-on-dark) 28%, transparent);
     margin: 0;
     width: 100%;
   }
-  /* When no photo: use a brand-tinted rule instead */
   :not([data-has-photo]) .ed-hero__rule {
     border-top-color: color-mix(in srgb, var(--brand) 40%, var(--border));
   }
+  .ed-hero__rule--top { margin-bottom: clamp(1.5rem, 3.5vw, 2.8rem); }
+  .ed-hero__rule--bottom { margin-top: clamp(1.5rem, 3.5vw, 2.8rem); }
 
-  .ed-hero__rule--top {
-    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  /* Short brand-colored mid rule that "breaks" the headline */
+  .ed-hero__mid-rule {
+    width: clamp(3rem, 6vw, 5.5rem);
+    height: 3px;
+    background: var(--brand);
+    margin: 1.4rem auto 1.6rem;
+    border-radius: var(--radius-pill);
   }
-  .ed-hero__rule--mid {
-    margin: 1.5rem auto;
-    width: 4rem;
-    border-top-width: calc(var(--border-weight) * 2);
-    border-top-color: color-mix(in srgb, var(--brand) 55%, #fff 45%);
-  }
-  .ed-hero__rule--bottom {
-    margin-top: clamp(1.5rem, 3vw, 2.5rem);
-  }
-
-  .ed-hero__copy {
-    /* data-reveal provides initial opacity/transform */
+  :not([data-has-photo]) .ed-hero__mid-rule {
+    background: color-mix(in srgb, var(--brand) 70%, #fff 30%);
   }
 
-  /* Eyebrow */
   .ed-hero__eyebrow {
     display: block;
     font-family: var(--font-body);
@@ -150,54 +257,58 @@ const hasPhoto = Boolean(images?.hero);
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--text-on-dark) 80%, transparent);
-    margin: 0 0 1.5rem;
+    color: color-mix(in srgb, var(--text-on-dark) 78%, transparent);
+    margin: 0 0 1.4rem;
   }
-  /* Bright when photo provides contrast; muted when no photo */
   [data-has-photo] .ed-hero__eyebrow {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.84);
   }
 
-  /* Headline — oversized magazine style */
+  /* Oversized headline — magazine scale */
   .ed-hero__title {
     font-family: var(--font-display);
     font-weight: var(--fw-display);
-    font-size: var(--step-6);
+    font-size: clamp(2.8rem, 6.5vw, 6.4rem);
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-display);
     color: var(--text-on-dark);
     margin: 0;
-    text-shadow: 0 2px 32px color-mix(in srgb, var(--bg-deep) 38%, transparent);
+    text-shadow: 0 2px 40px color-mix(in srgb, var(--bg-deep) 42%, transparent);
   }
 
-  /* Subheading */
   .ed-hero__sub {
     font-family: var(--font-body);
     font-size: var(--step-1);
     line-height: var(--leading-body);
-    color: color-mix(in srgb, var(--text-on-dark) 88%, transparent);
+    color: color-mix(in srgb, var(--text-on-dark) 86%, transparent);
     max-width: 54ch;
     margin: 0 auto 2rem;
   }
 
-  /* CTA row — centered */
+  /* CTA cluster */
   .ed-hero__actions {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 1rem 1.5rem;
+    gap: 1rem 1.75rem;
   }
 
-  /* Phone link */
+  .ed-hero__cta {
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--brand) 40%, transparent);
+  }
+
   .ed-hero__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     font-family: var(--font-body);
     font-weight: var(--fw-bold);
     font-size: var(--step-0);
     color: var(--text-on-dark);
     text-decoration: none;
     border-bottom: var(--border-weight) solid
-      color-mix(in srgb, var(--text-on-dark) 45%, transparent);
+      color-mix(in srgb, var(--text-on-dark) 42%, transparent);
     padding-bottom: 2px;
     transition: border-color var(--motion-fade) var(--motion-ease);
   }
@@ -210,8 +321,13 @@ const hasPhoto = Boolean(images?.hero);
     outline-offset: 3px;
     border-radius: 2px;
   }
+  .ed-hero__phone-icon {
+    width: 1.05em;
+    height: 1.05em;
+    flex-shrink: 0;
+  }
 
-  /* Highlights ticker bar — pinned to bottom */
+  /* ── ⑥ Highlights ticker bar (pinned bottom) ─────────────────────────────── */
   .ed-hero__highlights {
     position: absolute;
     bottom: 0;
@@ -224,25 +340,26 @@ const hasPhoto = Boolean(images?.hero);
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.4rem 2rem;
-    background: color-mix(in srgb, var(--bg-deep) 55%, transparent);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: color-mix(in srgb, var(--bg-deep) 52%, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--text-on-dark) 85%, transparent);
-    z-index: 2;
+    color: color-mix(in srgb, var(--text-on-dark) 84%, transparent);
+    z-index: 4;
   }
 
-  /* Mobile: un-pin the highlights bar so they flow below */
+  /* ── Mobile ──────────────────────────────────────────────────────────────── */
   @media (max-width: 720px) {
-    .ed-hero {
-      min-height: 70vh;
-    }
-    .ed-hero__title {
-      font-size: var(--step-4);
+    .ed-hero { min-height: 72vh; }
+    .ed-hero__title { font-size: clamp(2.2rem, 8vw, 3.4rem); }
+    .ed-hero__badge {
+      bottom: auto;
+      top: 1.25rem;
+      right: 1rem;
     }
     .ed-hero__highlights {
       position: static;
@@ -250,5 +367,15 @@ const hasPhoto = Boolean(images?.hero);
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
     }
+  }
+
+  /* ── Archetype tweaks ────────────────────────────────────────────────────── */
+  [data-archetype="magazine"] .ed-hero__title {
+    font-size: clamp(3.2rem, 7.5vw, 7.5rem);
+    letter-spacing: -0.03em;
+  }
+  [data-archetype="editorial"] .ed-hero__mid-rule {
+    border-radius: 0;
+    height: 2px;
   }
 </style>

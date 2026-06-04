@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import '../styles/treatment.css';
+import '../styles/arch-editorial.css';
+import '../styles/arch-utility.css';
 import '../lib/font-faces';
 import { resolveArtDirection } from '../lib/art-direction';
 import { artDirectionToCss } from '../lib/tokens';
@@ -57,10 +60,13 @@ const jsonLd = {
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body>
+  <body data-archetype={ad.archetype}>
     <slot />
     <script>
       import '../scripts/reveal.ts';
+    </script>
+    <script>
+      import '../scripts/motion.ts';
     </script>
   </body>
 </html>

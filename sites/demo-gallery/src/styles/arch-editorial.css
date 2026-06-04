@@ -1,0 +1,287 @@
+/**
+ * arch-editorial.css — archetype overrides for editorial-style pages
+ * (high-end winery / salon / boutique magazine aesthetic).
+ *
+ * ALL rules are scoped under [data-archetype="editorial"] so they are
+ * completely inert on classic, utility, and magazine archetype pages.
+ *
+ * Hard rules:
+ *   - Token-driven: zero hard-coded identity values. Use CSS custom properties
+ *     only (--brand, --font-display, --step-*, etc.).
+ *   - prefers-reduced-motion: global.css already zeroes animations/transitions
+ *     site-wide under that query — nothing here needs to repeat that.
+ *   - WCAG AA: contrast ratios preserved by using the existing token set which
+ *     was validated at design-system build time.
+ */
+
+/* ── Typography scale shift ──────────────────────────────────────────────────
+   Editorial reads larger than utility. Bump display headings, relax leading,
+   and tighten the body tracking slightly for a more typeset feel.
+   --------------------------------------------------------------------------- */
+
+[data-archetype="editorial"] h1,
+[data-archetype="editorial"] h2,
+[data-archetype="editorial"] h3 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  letter-spacing: calc(var(--tracking-display) - 0.01em); /* slightly tighter = more refined */
+  line-height: var(--leading-display);
+}
+
+/* Upsize section h2 headlines — give them real editorial presence */
+[data-archetype="editorial"] .section h2,
+[data-archetype="editorial"] .feature-split__heading,
+[data-archetype="editorial"] .svc__heading,
+[data-archetype="editorial"] .about__heading {
+  font-size: clamp(var(--step-3), 4.5vw, var(--step-5));
+  letter-spacing: var(--tracking-display);
+}
+
+/* Eyebrow labels: hairline spacing + lighter weight for editorial feel */
+[data-archetype="editorial"] .eyebrow {
+  font-size: var(--step--1);
+  letter-spacing: calc(var(--tracking-eyebrow) + 0.05em);
+  font-weight: var(--fw-body);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Body copy: slightly looser than utility default for air and legibility */
+[data-archetype="editorial"] p {
+  line-height: calc(var(--leading-body) + 0.08);
+  max-width: 68ch;
+}
+
+/* ── Hairline section rules ───────────────────────────────────────────────────
+   Thin top rules replace heavy section borders — a signature editorial detail.
+   --------------------------------------------------------------------------- */
+
+[data-archetype="editorial"] .section {
+  position: relative;
+}
+
+[data-archetype="editorial"] .section::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: var(--border-weight);
+  background: var(--border);
+}
+
+/* Deep-tone sections get a lighter rule so it's visible on dark bg */
+[data-archetype="editorial"] .section[data-tone="deep"]::before {
+  background: color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+}
+
+/* Skip the rule on the very first section (hero exits into page) */
+[data-archetype="editorial"] .section:first-of-type::before {
+  display: none;
+}
+
+/* ── Generous whitespace ─────────────────────────────────────────────────────
+   Editorial layouts breathe. Add extra vertical padding beyond the standard
+   --section-pad token so sections feel luxurious without altering the token.
+   --------------------------------------------------------------------------- */
+
+[data-archetype="editorial"] .section {
+  padding-block: calc(var(--section-pad) * 1.35);
+}
+
+/* ── Asymmetric grid — editorial section header ──────────────────────────────
+   Section headings push off-center: the eyebrow + heading sit in a narrow
+   left rail; the intro / body text colonises the wider right column.
+   Works on every shared section that uses .section-header.
+   --------------------------------------------------------------------------- */
+
+[data-archetype="editorial"] .section-header {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  column-gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  max-width: 100%; /* override any component-level max-width */
+}
+
+[data-archetype="editorial"] .section-header .eyebrow {
+  grid-column: 1 / -1; /* eyebrow spans full width above the asymmetric split */
+  margin-bottom: 0.5rem;
+}
+
+[data-archetype="editorial"] .section-header h2,
+[data-archetype="editorial"] .section-header > h2:first-of-type {
+  grid-column: 1;
+  margin-bottom: 0;
+}
+
+[data-archetype="editorial"] .section-header .intro,
+[data-archetype="editorial"] .section-header p:not(.eyebrow) {
+  grid-column: 2;
+  align-self: end;
+  padding-top: 0.25rem;
+}
+
+/* Centered override: collapse asymmetry for sections that explicitly center */
+[data-archetype="editorial"] .section-header--center {
+  grid-template-columns: 1fr;
+  text-align: center;
+  max-width: 46ch;
+  margin-inline: auto;
+}
+[data-archetype="editorial"] .section-header--center h2,
+[data-archetype="editorial"] .section-header--center .intro,
+[data-archetype="editorial"] .section-header--center p {
+  grid-column: 1;
+}
+
+/* Mobile: collapse asymmetric grid */
+@media (max-width: 680px) {
+  [data-archetype="editorial"] .section-header {
+    grid-template-columns: 1fr;
+  }
+  [data-archetype="editorial"] .section-header h2,
+  [data-archetype="editorial"] .section-header .intro,
+  [data-archetype="editorial"] .section-header p {
+    grid-column: 1;
+  }
+}
+
+/* ── Feature-split section: editorial asymmetric grid ───────────────────────
+   In editorial archetype the image is larger (golden-ratio feel) and the
+   copy column has generous left margin to create an off-center composition.
+   --------------------------------------------------------------------------- */
+
+[data-archetype="editorial"] .split-row {
+  grid-template-columns: 1.4fr 1fr;
+  align-items: start;
+  gap: clamp(3rem, 6vw, 6rem);
+}
+
+[data-archetype="editorial"] .split-row--img-right {
+  grid-template-columns: 1fr 1.4fr;
+}
+
+[data-archetype="editorial"] .split-row__media {
+  aspect-ratio: 3 / 4; /* portrait-biased — more editorial than 4:3 landscape */
+  border-radius: var(--radius);
+}
+
+[data-archetype="editorial"] .split-row__copy {
+  padding-block: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* Index number beside each row heading — editorial folio numbering */
+[data-archetype="editorial"] .split-row__title {
+  position: relative;
+  font-size: clamp(var(--step-2), 3.5vw, var(--step-4));
+}
+
+/* Separator lines between feature-split rows become full-width hairlines */
+[data-archetype="editorial"] .split-row + .split-row {
+  padding-top: calc(var(--section-pad) * 0.5);
+  border-top-width: var(--border-weight);
+  border-top-color: var(--border);
+}
+
+/* ── About section: editorial portrait-mode image ────────────────────────────
+   Flip to portrait crop for the story image, tighten the grid gap.
+   --------------------------------------------------------------------------- */
+
+[data-archetype="editorial"] .about__inner {
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: clamp(3rem, 7vw, 6rem);
+  align-items: start;
+}
+
+[data-archetype="editorial"] .about__media img {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  box-shadow: none;
+  border-bottom: calc(var(--border-weight) * 3) solid var(--brand);
+}
+
+[data-archetype="editorial"] .about__copy {
+  padding-top: clamp(1rem, 3vw, 2.5rem);
+}
+
+/* Service cards: keep the base photo-card grid (it reads more premium than a
+   text strip, and avoids a cascade clash with the component's scoped styles).
+   Editorial character comes from the type, rules, and asymmetric headers above. */
+
+/* ── Stats: large, centered, separated by hairlines ──────────────────────────
+   Stats display as an editorial reference row with a top + bottom rule.
+   --------------------------------------------------------------------------- */
+
+[data-archetype="editorial"] .stats-grid,
+[data-archetype="editorial"] .stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: 0;
+  border-top: var(--border-weight) solid var(--border);
+  border-bottom: var(--border-weight) solid var(--border);
+}
+
+[data-archetype="editorial"] .stat-item,
+[data-archetype="editorial"] .stats__item {
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 2vw, 2rem);
+  border-right: var(--border-weight) solid var(--border);
+  text-align: center;
+}
+
+[data-archetype="editorial"] .stat-item:last-child,
+[data-archetype="editorial"] .stats__item:last-child {
+  border-right: none;
+}
+
+/* ── Testimonials: pull-quote style, stacked, generous spacing ───────────────*/
+
+[data-archetype="editorial"] .testimonials-grid,
+[data-archetype="editorial"] .testi__grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  max-width: 56ch;
+  margin-inline: auto;
+  text-align: center;
+}
+
+[data-archetype="editorial"] .testimonial-card,
+[data-archetype="editorial"] .testi-card {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+}
+
+/* ── CTA band: typographic-only, no filled background ───────────────────────*/
+
+[data-archetype="editorial"] .cta-band,
+[data-archetype="editorial"] .cta-section {
+  text-align: center;
+}
+
+[data-archetype="editorial"] .cta-band h2,
+[data-archetype="editorial"] .cta-section h2 {
+  font-size: clamp(var(--step-3), 5vw, var(--step-5));
+}
+
+/* ── BigQuote: wider, airier, prominent quotation mark ──────────────────────*/
+
+[data-archetype="editorial"] .bigquote {
+  max-width: 54ch;
+}
+
+[data-archetype="editorial"] .bigquote__glyph {
+  opacity: 0.18;
+  color: var(--brand);
+}
+
+/* ── FAQ: definition-list style with hairline separators ─────────────────────*/
+
+[data-archetype="editorial"] .faq-list,
+[data-archetype="editorial"] .faq__list {
+  max-width: 62ch;
+  margin-inline: auto;
+}

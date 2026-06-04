@@ -1,0 +1,669 @@
+/**
+ * treatment.css — Image art-direction, depth, and texture layer.
+ *
+ * All rules are token-driven; never hardcode palette or spacing values.
+ * Archetype-specific rules are scoped under [data-archetype="..."] so
+ * they only fire for the matching archetype.
+ *
+ * Public API (classes / attributes):
+ *   TREATMENT     [data-treat="grade"]   [data-treat="duotone"]   [data-treat="bare"]
+ *   GRAIN         [data-grain]           [data-grain="heavy"]
+ *   FRAMES        [data-frame="rounded"] [data-frame="sharp"]     [data-frame="editorial"]
+ *                 [data-frame="framed"]  [data-frame="inset"]
+ *   DEPTH         .u-overlap             .u-overlap--pull-left    .u-overlap--pull-right
+ *                 .u-offset-frame        .u-offset-frame--accent
+ *                 .u-float-badge         .u-reveal-crop
+ *                 .u-asym-left           .u-asym-right
+ *   MOTION        Reduced-motion safe via @media + CSS-only techniques only.
+ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   1. TOKEN ADDITIONS
+   Any new tokens used here that are not guaranteed to be set by BaseLayout
+   fall back to safe values from global.css.
+   (--pattern-opacity is already declared in global.css :root as 0.02.)
+   ──────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Grain / texture strength dial — components can override locally */
+  --grain-opacity:  var(--pattern-opacity, 0.025);
+  /* Duotone shadow mix depth — 0 = transparent, 1 = fully opaque brand wash */
+  --duotone-depth:  0.54;
+  /* Offset frame gutter — how far the accent slab peeks out */
+  --offset-gap:     clamp(0.75rem, 2vw, 1.25rem);
+  /* Overlap pull — how much .u-overlap bleeds into the adjacent column/row */
+  --overlap-pull:   clamp(1.5rem, 4vw, 3rem);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   2. IMAGE TREATMENT — [data-treat]
+   Wrap any <img> (or <figure> containing one) in an element with [data-treat].
+   The wrapper must be position:relative; overflow:hidden — these are set below.
+   The actual <img> inside must fill the wrapper (width:100%; height:100%;
+   object-fit:cover) — typically already true with [data-frame] or explicit CSS.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/* Base wrapper behaviour shared by all treatments */
+[data-treat] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;       /* contain blend modes to this stacking context */
+}
+
+/* ── 2a. Grade — subtle brand tint via multiply/color overlay ── */
+/*
+ * A single ::before pseudo-element carries the gradient overlay.
+ * mix-blend-mode: multiply lets the photo show through while warm-shifting
+ * toward the brand hue.  On very light photos "multiply" can darken too much;
+ * "color" is a softer fallback — kept here as the safer cross-browser default.
+ *
+ * Usage: <div data-treat="grade" data-frame="..."><img …/></div>
+ */
+[data-treat="grade"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* Brand-tinted gradient — bottom-heavy so top of photo stays natural */
+  background: linear-gradient(
+    170deg,
+    color-mix(in srgb, var(--brand) 14%, transparent) 0%,
+    color-mix(in srgb, var(--brand) 28%, transparent) 60%,
+    color-mix(in srgb, var(--brand-dark) 42%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
+  border-radius: inherit;
+}
+
+/* Saturation / contrast nudge on the image itself — keeps colours punchy */
+[data-treat="grade"] > img,
+[data-treat="grade"] > figure > img {
+  filter: contrast(1.06) saturate(1.12);
+  transition: filter calc(var(--motion-fade, 190ms) * 1.4) var(--motion-ease, ease);
+}
+
+/* Subtle reveal on hover — lift the brand wash a touch */
+[data-treat="grade"]:hover::before {
+  background: linear-gradient(
+    170deg,
+    color-mix(in srgb, var(--brand) 10%, transparent) 0%,
+    color-mix(in srgb, var(--brand) 22%, transparent) 55%,
+    color-mix(in srgb, var(--brand-dark) 35%, transparent) 100%
+  );
+}
+
+/* ── 2b. Duotone — brand + bg-deep two-color wash ── */
+/*
+ * Two-layer technique:
+ *   ::before  = brand highlight (lighten blend),
+ *   ::after   = deep shadow (multiply blend).
+ * The image is desaturated first; the two pseudo layers re-colour it.
+ *
+ * Usage: <div data-treat="duotone"><img …/></div>
+ * Strength can be dialed via --duotone-depth (default 0.54).
+ */
+[data-treat="duotone"] > img,
+[data-treat="duotone"] > figure > img {
+  filter: grayscale(0.82) contrast(1.1);
+}
+
+/* Brand highlight layer */
+[data-treat="duotone"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--brand);
+  opacity: calc(var(--duotone-depth) * 0.55);
+  mix-blend-mode: color;
+  border-radius: inherit;
+}
+
+/* Deep shadow layer */
+[data-treat="duotone"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--bg-deep);
+  opacity: calc(var(--duotone-depth) * 0.38);
+  mix-blend-mode: multiply;
+  border-radius: inherit;
+}
+
+/* ── 2c. Bare — identity reset; still gets grain if [data-grain] is also set ── */
+[data-treat="bare"] {
+  /* No colour overlay; explicit opt-out of grade/duotone */
+}
+[data-treat="bare"] > img,
+[data-treat="bare"] > figure > img {
+  filter: none;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   3. FILM GRAIN / TEXTURE — [data-grain]
+   CSS-only SVG feTurbulence noise baked into a data URI.
+   Rendered as a ::after overlay at very low opacity (--grain-opacity).
+   Harmless when prefers-reduced-motion: reduce fires — it's static.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/*
+ * Usage:
+ *   <div data-treat="grade" data-grain><img …/></div>
+ *   <div data-treat="grade" data-grain="heavy"><img …/></div>  ← stronger
+ *
+ * IMPORTANT: If [data-treat] is already present its ::after is free; we
+ * add the grain there only when data-grain is combined with data-treat.
+ * For standalone use (no data-treat), we also support [data-grain] alone.
+ */
+
+/* Grain on a standalone wrapper (no data-treat) */
+[data-grain]:not([data-treat])::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+/* Grain layered on top of a treatment — reuses ::after (duotone uses both
+   pseudo-elements, so we elevate z-index and use a separate approach) */
+[data-treat="grade"][data-grain]::after,
+[data-treat="bare"][data-grain]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+/* Duotone uses both pseudos; grain rides on an extra inner span
+   when combined.  Components should add <span class="grain-layer"
+   aria-hidden="true"></span> as the last child of a duotone+grain wrapper. */
+[data-treat="duotone"][data-grain] .grain-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+/* Heavy variant — roughly 3× the base grain opacity */
+[data-grain="heavy"] {
+  --grain-opacity: calc(var(--pattern-opacity, 0.025) * 3);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   4. MEDIA FRAMES — [data-frame] extensions
+   global.css already defines the base [data-frame] and the five named variants:
+   soft | sharp | editorial | pill | framed.
+   This file ADDS:
+     rounded   — uses --radius-lg; softer than pill, tighter than default
+     inset     — inner stroke on top of the photo (doesn't shift layout)
+   And reinforces the archetype-aware defaults (section 7 below).
+   ──────────────────────────────────────────────────────────────────────────── */
+
+[data-frame="rounded"] {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+/* Inset: transparent background, inner box-shadow as a stroke */
+[data-frame="inset"] {
+  border-radius: var(--radius-lg);
+  box-shadow:
+    inset 0 0 0 var(--border-weight) var(--border),
+    var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* "framed" already in global.css; add the accent variant here */
+[data-frame="framed-accent"] {
+  border-radius: var(--radius);
+  border: calc(var(--border-weight) * 3) solid var(--brand);
+  box-shadow: var(--shadow-md);
+  padding: 4px;
+  overflow: hidden;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   5. DEPTH UTILITIES
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/* ── 5a. Overlap — negative-margin bleed into the adjacent column ── */
+/*
+ * Use on an image/figure inside a CSS grid or flex row.
+ * The element bleeds over the column boundary, creating real depth.
+ *
+ * Usage:
+ *   <figure class="split-row__media u-overlap" …>…</figure>
+ *   Variant .u-overlap--pull-left / .u-overlap--pull-right controls direction.
+ */
+.u-overlap {
+  position: relative;
+  z-index: 1;             /* sits above sibling content */
+}
+
+.u-overlap--pull-right {
+  margin-right: calc(var(--overlap-pull) * -1);
+}
+
+.u-overlap--pull-left {
+  margin-left: calc(var(--overlap-pull) * -1);
+}
+
+/* Pull both directions (centered bleed) */
+.u-overlap--pull-both {
+  margin-inline: calc(var(--overlap-pull) * -1);
+}
+
+/* ── 5b. Offset frame — image with a brand-coloured slab behind it ── */
+/*
+ * The wrapper creates a positioned context.  ::before draws the offset slab.
+ * The image (or [data-frame] wrapper) sits on top.
+ *
+ * Usage:
+ *   <div class="u-offset-frame">
+ *     <img data-frame="soft" … />
+ *   </div>
+ *
+ * Modifier .u-offset-frame--accent uses --accent instead of --brand.
+ * Modifier .u-offset-frame--tl / --tr / --br (default) / --bl controls corner.
+ */
+.u-offset-frame {
+  position: relative;
+  /* extra breathing room so the slab isn't clipped */
+  padding: var(--offset-gap);
+  /* un-pad the leading side so the image hugs the layout edge */
+  padding-inline-start: 0;
+}
+
+/* The slab — offset behind-and-below the image */
+.u-offset-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  bottom: 0;
+  right: 0;
+  /* Slab is slightly smaller than the wrapper, offset toward bottom-right */
+  top:    calc(var(--offset-gap) * 1.25);
+  left:   calc(var(--offset-gap) * 0.75);
+  background: var(--brand);
+  border-radius: var(--radius-lg);
+  z-index: 0;
+  opacity: 0.92;
+}
+
+/* The image/frame lifts above the slab */
+.u-offset-frame > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Accent-colour slab variant */
+.u-offset-frame--accent::before {
+  background: var(--accent);
+}
+
+/* Muted / surface slab variant */
+.u-offset-frame--surface::before {
+  background: var(--surface-2);
+}
+
+/* Top-left slab placement */
+.u-offset-frame--tl::before {
+  top:    0;
+  left:   0;
+  bottom: calc(var(--offset-gap) * 1.25);
+  right:  calc(var(--offset-gap) * 0.75);
+}
+
+/* Top-right slab placement */
+.u-offset-frame--tr::before {
+  top:    0;
+  right:  0;
+  bottom: calc(var(--offset-gap) * 1.25);
+  left:   calc(var(--offset-gap) * 0.75);
+}
+
+/* ── 5c. Floating badge ── */
+/*
+ * Absolutely-placed badge (e.g. "Est. 1989", "Licensed & Insured").
+ * The parent must be position:relative (true of all [data-treat] and
+ * [data-frame] wrappers already).
+ *
+ * Usage:
+ *   <div class="u-float-badge" data-placement="br">
+ *     <strong>Est. 1989</strong><span>Family Owned</span>
+ *   </div>
+ *
+ * data-placement: tl | tr | bl | br (default br)
+ */
+.u-float-badge {
+  position: absolute;
+  z-index: 10;
+  background: var(--brand);
+  color: var(--brand-contrast);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  line-height: 1.2;
+  min-width: 5.5rem;
+  /* Default placement: bottom-right */
+  bottom: 1.25rem;
+  right: -0.75rem;
+}
+
+.u-float-badge[data-placement="br"] {
+  bottom: 1.25rem;
+  right:  -0.75rem;
+  left:   auto;
+  top:    auto;
+}
+.u-float-badge[data-placement="bl"] {
+  bottom: 1.25rem;
+  left:   -0.75rem;
+  right:  auto;
+  top:    auto;
+}
+.u-float-badge[data-placement="tr"] {
+  top:    1.25rem;
+  right:  -0.75rem;
+  bottom: auto;
+  left:   auto;
+}
+.u-float-badge[data-placement="tl"] {
+  top:    1.25rem;
+  left:   -0.75rem;
+  bottom: auto;
+  right:  auto;
+}
+
+.u-float-badge strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: var(--fw-display);
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+}
+.u-float-badge span {
+  display: block;
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  opacity: 0.88;
+  margin-top: 0.2rem;
+}
+
+/* Accent-coloured badge variant */
+.u-float-badge--accent {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* Dark (bg-deep) badge variant */
+.u-float-badge--dark {
+  background: var(--bg-deep);
+  color: var(--text-on-dark);
+}
+
+/* ── 5d. Reveal crop — pan on scroll-reveal ── */
+/*
+ * The image starts clipped (scaled up + translated) and smoothly pans into
+ * its final position when data-revealed fires.  Uses CSS-only via the
+ * existing [data-reveal] / [data-revealed] contract.
+ * Safe: prefers-reduced-motion block in global.css disables all transitions.
+ *
+ * Usage:
+ *   <figure class="u-reveal-crop" data-reveal>
+ *     <img … />
+ *   </figure>
+ */
+.u-reveal-crop {
+  overflow: hidden;
+}
+
+.u-reveal-crop img {
+  transform: scale(1.08) translateY(1.5%);
+  transition:
+    transform calc(var(--motion-fade, 190ms) * 3) var(--motion-ease, ease),
+    opacity   var(--motion-fade, 190ms) var(--motion-ease, ease);
+}
+
+.u-reveal-crop[data-revealed] img {
+  transform: scale(1) translateY(0);
+}
+
+/* ── 5e. Asymmetric helpers ── */
+/*
+ * Shift a media block off-centre to create visual tension in two-column grids.
+ * Pair with a matching text column; the grid gap absorbs the extra.
+ *
+ * Usage:
+ *   <figure class="u-asym-left" …>…</figure>   ← image nudges left
+ *   <figure class="u-asym-right" …>…</figure>  ← image nudges right
+ */
+.u-asym-left {
+  margin-inline-start: calc(var(--gutter) * -0.5);
+}
+
+.u-asym-right {
+  margin-inline-end: calc(var(--gutter) * -0.5);
+}
+
+/* Wider pull for editorial/magazine archetypes */
+[data-archetype="editorial"] .u-asym-left,
+[data-archetype="magazine"]  .u-asym-left {
+  margin-inline-start: calc(var(--gutter) * -1.25);
+}
+[data-archetype="editorial"] .u-asym-right,
+[data-archetype="magazine"]  .u-asym-right {
+  margin-inline-end: calc(var(--gutter) * -1.25);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   6. SCRIM UTILITIES
+   Reusable gradient scrims placed via a span/div inside an image wrapper.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/* Generic scrim element class (add inside [data-treat] wrappers) */
+.u-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Bottom-anchored (copy legibility — classic use) */
+.u-scrim--bottom {
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    color-mix(in srgb, var(--bg-deep) 72%, transparent) 100%
+  );
+}
+
+/* Left-anchored (for split layouts with text on the left) */
+.u-scrim--left {
+  background: linear-gradient(
+    270deg,
+    transparent 40%,
+    color-mix(in srgb, var(--bg-deep) 68%, transparent) 100%
+  );
+}
+
+/* Right-anchored */
+.u-scrim--right {
+  background: linear-gradient(
+    90deg,
+    transparent 40%,
+    color-mix(in srgb, var(--bg-deep) 68%, transparent) 100%
+  );
+}
+
+/* Brand-tinted version (warm vignette) */
+.u-scrim--brand {
+  background: linear-gradient(
+    170deg,
+    transparent 30%,
+    color-mix(in srgb, var(--brand-dark) 64%, transparent) 100%
+  );
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   7. ARCHETYPE-SCOPED DEFAULTS
+   Each archetype opinionates the default treatment behaviour so components
+   just need [data-treat="grade"] and the archetype does the rest.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/* Classic — warm, subtle; photo remains the hero */
+[data-archetype="classic"] [data-treat="grade"]::before {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--brand) 10%, transparent) 0%,
+    color-mix(in srgb, var(--brand) 22%, transparent) 55%,
+    color-mix(in srgb, var(--brand-dark) 38%, transparent) 100%
+  );
+}
+
+/* Editorial — higher contrast, more aggressive grade, slight vignette */
+[data-archetype="editorial"] [data-treat="grade"]::before {
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--brand) 8%, transparent)  0%,
+    color-mix(in srgb, var(--brand) 30%, transparent) 50%,
+    color-mix(in srgb, var(--brand-dark) 55%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
+}
+[data-archetype="editorial"] [data-treat="grade"] > img,
+[data-archetype="editorial"] [data-treat="grade"] > figure > img {
+  filter: contrast(1.1) saturate(0.9);
+}
+
+/* Utility — cleaner / less tinted; brand just reinforces the bottom */
+[data-archetype="utility"] [data-treat="grade"]::before {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--brand-dark) 28%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
+}
+[data-archetype="utility"] [data-treat="grade"] > img,
+[data-archetype="utility"] [data-treat="grade"] > figure > img {
+  filter: contrast(1.04) saturate(1.05);
+}
+
+/* Magazine — rich, saturated; duotone leans heavier */
+[data-archetype="magazine"] [data-treat="grade"]::before {
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--brand) 20%, transparent) 0%,
+    color-mix(in srgb, var(--brand) 38%, transparent) 45%,
+    color-mix(in srgb, var(--brand-dark) 60%, transparent) 100%
+  );
+  mix-blend-mode: color;
+}
+[data-archetype="magazine"] [data-treat="grade"] > img,
+[data-archetype="magazine"] [data-treat="grade"] > figure > img {
+  filter: contrast(1.08) saturate(1.22);
+}
+[data-archetype="magazine"] [data-treat="duotone"] {
+  --duotone-depth: 0.68;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   8. RESPONSIVE ADJUSTMENTS
+   Depth utilities that use negative margins can break narrow layouts.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  /* Overlap pulls are too aggressive at mobile — neutralise */
+  .u-overlap--pull-right,
+  .u-overlap--pull-left,
+  .u-overlap--pull-both {
+    margin-inline: 0;
+  }
+
+  /* Offset frame: collapse padding so it doesn't waste vertical space */
+  .u-offset-frame {
+    padding: calc(var(--offset-gap) * 0.5);
+    padding-inline-start: 0;
+  }
+
+  /* Asymmetric nudges are too strong on one-column stacks */
+  .u-asym-left,
+  .u-asym-right {
+    margin-inline: 0;
+  }
+
+  /* Float badge: keep inside the frame on small screens */
+  .u-float-badge[data-placement="br"],
+  .u-float-badge[data-placement="tr"] {
+    right: 0.5rem;
+  }
+  .u-float-badge[data-placement="bl"],
+  .u-float-badge[data-placement="tl"] {
+    left: 0.5rem;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   9. REDUCED MOTION SAFETY
+   global.css already blanket-disables animation/transition.
+   These rules handle the static-state overrides specific to this file's
+   techniques that don't rely on transitions (e.g. the reveal-crop scale).
+   ──────────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Reveal crop must land in its final state immediately */
+  .u-reveal-crop img {
+    transform: none !important;
+  }
+
+  /* Kill any img filter transitions */
+  [data-treat] > img,
+  [data-treat] > figure > img {
+    transition: none !important;
+  }
+
+  /* Ensure grade hover doesn't animate ::before (pseudo transitions removed
+     by global.css but belt-and-suspenders for specificity collisions) */
+  [data-treat="grade"]:hover::before {
+    background: linear-gradient(
+      170deg,
+      color-mix(in srgb, var(--brand) 14%, transparent) 0%,
+      color-mix(in srgb, var(--brand) 28%, transparent) 60%,
+      color-mix(in srgb, var(--brand-dark) 42%, transparent) 100%
+    );
+  }
+}

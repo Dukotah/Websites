@@ -1,0 +1,252 @@
+---
+/**
+ * StickyCallBar — mobile-only sticky bottom bar with a click-to-call button
+ * and a "Get a quote" anchor. Shown on utility archetype pages.
+ *
+ * Displayed only on mobile (hidden ≥ 768 px via media query). The bar sits
+ * above the system nav chrome at the bottom of the viewport using
+ * position: fixed + safe-area-inset-bottom so it clears the iOS home bar.
+ *
+ * Reduced-motion safe: the show/hide entrance uses a CSS class toggle driven
+ * by a tiny IntersectionObserver that watches the page hero. The animation is
+ * wrapped in a prefers-reduced-motion media query — when reduced-motion is
+ * set, the bar is visible immediately with no transition.
+ *
+ * Props: { config } — a ProspectConfig (reads contact.phone, hero.ctaHref,
+ * hero.ctaText, name for aria labels).
+ */
+import type { ProspectConfig } from '../types';
+
+interface Props {
+  config: ProspectConfig;
+}
+
+const { config } = Astro.props as Props;
+
+const rawPhone  = config.contact?.phone ?? '';
+const telHref   = rawPhone ? `tel:${rawPhone.replace(/[^+\d]/g, '')}` : '';
+const quoteHref = config.hero?.ctaHref  ?? '#contact';
+const quoteText = config.hero?.ctaText  ?? 'Get a quote';
+const bizName   = config.name           ?? 'us';
+---
+
+{/* Only render the bar when there is a phone number or quote CTA target. */}
+{(telHref || quoteHref) && (
+  <div
+    class="scb"
+    id="sticky-call-bar"
+    role="complementary"
+    aria-label={`Quick contact for ${bizName}`}
+  >
+    <div class="scb__inner">
+
+      {telHref && (
+        <a
+          href={telHref}
+          class="scb__btn scb__btn--call"
+          aria-label={`Call ${bizName}: ${rawPhone}`}
+        >
+          {/* Phone handset icon — inline SVG, no external dep */}
+          <svg
+            class="scb__icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C8.61 21 3 15.39 3 8.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="scb__label">Call now</span>
+          {rawPhone && <span class="scb__phone">{rawPhone}</span>}
+        </a>
+      )}
+
+      <a
+        href={quoteHref}
+        class="scb__btn scb__btn--quote"
+        aria-label={`${quoteText} from ${bizName}`}
+      >
+        {quoteText}
+      </a>
+
+    </div>
+  </div>
+)}
+
+<style>
+  /* ── Visibility guard: mobile only ─────────────────────────────────── */
+  .scb {
+    display: none; /* hidden on all viewports by default */
+  }
+
+  @media (max-width: 767px) {
+    .scb {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+
+      /* Clear iOS / Android safe area (home-bar / gesture bar) */
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+
+      background: var(--bg-deep);
+      border-top: 2px solid var(--brand);
+
+      /* Entrance animation — slides up from below */
+      transform: translateY(100%);
+      transition:
+        transform 280ms var(--motion-ease),
+        opacity   280ms var(--motion-ease);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    /* JS adds .scb--visible once the hero is no longer in view */
+    .scb--visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ── Reduced motion: skip the entrance animation; show immediately ── */
+    @media (prefers-reduced-motion: reduce) {
+      .scb {
+        transform: none !important;
+        opacity: 1 !important;
+        transition: none !important;
+      }
+    }
+
+    /* ── Inner layout: two CTAs side by side ─────────────────────────── */
+    .scb__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0.6rem var(--gutter, 1.25rem);
+      max-width: var(--maxw, 1140px);
+      margin-inline: auto;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    /* ── Base button ─────────────────────────────────────────────────── */
+    .scb__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.8em 1em;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-weight: var(--fw-bold);
+      font-size: var(--step-0);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      text-align: center;
+      line-height: 1.2;
+      cursor: pointer;
+      /* Transitioning background for tap feedback */
+      transition: background var(--motion-fade) var(--motion-ease);
+    }
+
+    .scb__btn:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    /* ── Call button: brand background ───────────────────────────────── */
+    .scb__btn--call {
+      background: var(--brand);
+      color: var(--brand-contrast);
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .scb__btn--call:hover,
+    .scb__btn--call:active {
+      background: var(--brand-dark);
+      color: var(--brand-contrast);
+      text-decoration: none;
+    }
+
+    .scb__icon {
+      width: 1.15em;
+      height: 1.15em;
+      flex-shrink: 0;
+    }
+
+    .scb__label {
+      font-size: var(--step--1);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .scb__phone {
+      font-size: var(--step-0);
+      font-weight: var(--fw-bold);
+    }
+
+    /* ── Quote button: accent / outlined ────────────────────────────── */
+    .scb__btn--quote {
+      background: var(--accent);
+      color: var(--accent-contrast);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: var(--step--1);
+    }
+
+    .scb__btn--quote:hover,
+    .scb__btn--quote:active {
+      background: var(--brand-dark);
+      color: var(--brand-contrast);
+      text-decoration: none;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * Show the sticky bar once the user has scrolled past the hero so the call
+   * button doesn't compete with the hero CTA that is already visible.
+   *
+   * Uses IntersectionObserver (wide browser support, no layout thrash).
+   * Respects prefers-reduced-motion by making the bar visible immediately.
+   */
+  (function () {
+    const bar = document.getElementById('sticky-call-bar');
+    if (!bar) return;
+
+    // Under reduced-motion the CSS already makes the bar fully visible
+    // (transform:none, opacity:1). No JS toggling needed.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      bar.classList.add('scb--visible');
+      return;
+    }
+
+    // Watch the first <section> or the <main> as a proxy for the hero.
+    const hero =
+      document.querySelector('main > *:first-child') ||
+      document.querySelector('main') ||
+      document.body;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          bar.classList.add('scb--visible');
+        } else {
+          bar.classList.remove('scb--visible');
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(hero);
+  })();
+</script>

@@ -1,11 +1,17 @@
 ---
-// HeroCollage — 2–3 photo collage + headline.
-// Draws from config.images.hero first, then config.galleryImages.
-// Graceful: renders with 1 image (single wide), 2 (primary + aside), or 3.
+/**
+ * HeroCollage — 2–3 photo collage with overlapping headline, a brand gradient-
+ * mesh, and a floating trust badge that bleeds across the primary photo edge.
+ * Spec §7: "collage" variant. Gracefully degrades to 1 image.
+ */
 import type { ProspectConfig } from '../../types';
 const { config } = Astro.props as { config: ProspectConfig };
-const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
-const eyebrow = [config.established, config.area].filter(Boolean).join(' · ');
+
+const { hero, images, contact, highlights = [], established, area } = config;
+const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
+const eyebrow = [established, area].filter(Boolean).join(' · ');
+const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
+const trustLine = highlights[0] ?? '';
 
 // Collect real images: primary hero first, then gallery extras.
 type ImgSlot = { src: string; alt: string };
@@ -17,189 +23,314 @@ for (const gi of config.galleryImages ?? []) {
   if (allImages.length >= 3) break;
   if (gi.src && gi.src !== config.images?.hero) allImages.push(gi);
 }
-// Cap to 3; always have at least the placeholder so layout doesn't break.
-const images = allImages.slice(0, 3);
-if (images.length === 0) {
-  images.push({ src: config.images?.placeholder ?? '', alt: config.name });
+const imgs = allImages.slice(0, 3);
+if (imgs.length === 0) {
+  imgs.push({ src: config.images?.placeholder ?? '', alt: config.name });
 }
-const count = images.length; // 1 | 2 | 3
+const count = imgs.length; // 1 | 2 | 3
 ---
 
-<section class="collage-hero" id="top" data-count={count}>
-  <!-- Collage grid — CSS handles layout by data-count -->
-  <div class="collage-hero__media" aria-hidden="true">
-    {images.map((img, i) => (
-      <div class="collage-hero__frame" data-frame data-index={i}>
+<section class="col-hero" id="top" data-count={count} aria-label="Hero">
+
+  <!-- ① Collage grid (position: absolute behind content) -->
+  <div class="col-hero__media" aria-hidden="true">
+    {imgs.map((img, i) => (
+      <div
+        class="col-hero__frame"
+        data-index={i}
+        data-parallax={i === 0 ? '' : undefined}
+        data-parallax-speed={i === 0 ? '0.3' : undefined}
+      >
         <img
           src={img.src}
           alt={img.alt}
           onerror={`this.onerror=null;this.src='${config.images?.placeholder ?? ''}'`}
           fetchpriority={i === 0 ? 'high' : 'auto'}
           loading={i === 0 ? 'eager' : 'lazy'}
+          decoding="async"
         />
       </div>
     ))}
-    <span class="collage-hero__scrim" aria-hidden="true"></span>
+
+    <!-- Brand gradient-mesh overlay -->
+    <div class="col-hero__mesh" aria-hidden="true"></div>
+
+    <!-- Legibility scrim -->
+    <span class="col-hero__scrim" aria-hidden="true"></span>
   </div>
 
-  <!-- Text layer sits over the collage -->
-  <div class="container collage-hero__inner">
+  <!-- ② Floating trust badge (anchored bottom-right of primary photo) -->
+  {(badgeYear || trustLine) && (
+    <div class="col-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
+      {badgeYear && <strong class="col-hero__badge-year">{badgeYear}</strong>}
+      <span class="col-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
+      {badgeYear && trustLine && <span class="col-hero__badge-trust">{trustLine}</span>}
+    </div>
+  )}
+
+  <!-- ③ Content -->
+  <div class="container col-hero__inner">
+
     {eyebrow && (
-      <p class="collage-hero__eyebrow" data-reveal data-reveal-order="0">{eyebrow}</p>
+      <p class="col-hero__eyebrow" data-reveal data-reveal-order="1">{eyebrow}</p>
     )}
-    <h1 class="collage-hero__title" data-reveal data-reveal-order="1">
-      {config.hero.heading}
+
+    <h1 class="col-hero__title" data-reveal data-reveal-order="2">
+      {hero.heading}
     </h1>
-    <p class="collage-hero__sub" data-reveal data-reveal-order="2">
-      {config.hero.subheading}
-    </p>
-    <div class="collage-hero__actions" data-reveal data-reveal-order="3">
-      <a href={config.hero.ctaHref} class="btn">{config.hero.ctaText}</a>
-      {config.contact.phone && (
-        <a href={telHref} class="collage-hero__phone">{config.contact.phone}</a>
+
+    {hero.subheading && (
+      <p class="col-hero__sub" data-reveal data-reveal-order="3">
+        {hero.subheading}
+      </p>
+    )}
+
+    <!-- CTA cluster -->
+    <div class="col-hero__actions" data-reveal data-reveal-order="4">
+      <a href={hero.ctaHref} class="btn col-hero__cta">{hero.ctaText}</a>
+      {contact.phone && (
+        <a href={telHref} class="col-hero__phone">
+          <svg class="col-hero__phone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="currentColor"/>
+          </svg>
+          {contact.phone}
+        </a>
       )}
     </div>
+
   </div>
 
-  {config.highlights && config.highlights.length > 0 && (
-    <ul class="collage-hero__highlights">
-      {config.highlights.map((h) => <li>{h}</li>)}
+  <!-- ④ Highlights bar (pinned bottom) -->
+  {highlights.length > 0 && (
+    <ul class="col-hero__highlights" data-reveal data-reveal-order="5" aria-label="Key highlights">
+      {highlights.map((h: string) => <li>{h}</li>)}
     </ul>
   )}
+
 </section>
 
 <style>
-  .collage-hero {
+  /* ── Shell ───────────────────────────────────────────────────────────────── */
+  .col-hero {
     position: relative;
     isolation: isolate;
-    min-height: min(88vh, 760px);
+    min-height: min(92vh, 840px);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     color: #fff;
     overflow: hidden;
+    background: var(--bg-deep);
   }
 
-  /* ── Collage grid ── */
-  .collage-hero__media {
+  /* ── ① Collage grid ──────────────────────────────────────────────────────── */
+  .col-hero__media {
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
     display: grid;
     gap: 3px;
     background: var(--bg-deep);
   }
 
   /* 1 image: single full-bleed */
-  .collage-hero[data-count="1"] .collage-hero__media {
+  .col-hero[data-count="1"] .col-hero__media {
     grid-template-columns: 1fr;
   }
-
   /* 2 images: primary 62% | aside 38% */
-  .collage-hero[data-count="2"] .collage-hero__media {
+  .col-hero[data-count="2"] .col-hero__media {
     grid-template-columns: 62fr 38fr;
   }
-
-  /* 3 images: primary 55% | right column 45% split into 2 rows */
-  .collage-hero[data-count="3"] .collage-hero__media {
+  /* 3 images: primary 55% | right column split 2 rows */
+  .col-hero[data-count="3"] .col-hero__media {
     grid-template-columns: 55fr 45fr;
     grid-template-rows: 1fr 1fr;
   }
-  .collage-hero[data-count="3"] .collage-hero__frame:first-child {
+  .col-hero[data-count="3"] .col-hero__frame:first-child {
     grid-row: 1 / 3;
   }
 
-  .collage-hero__frame {
+  .col-hero__frame {
     overflow: hidden;
     background: var(--bg-deep);
+    position: relative;
+    will-change: transform; /* only primary gets parallax but ok on siblings */
   }
-  .collage-hero__frame img {
+  .col-hero__frame img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.6s var(--motion-ease);
   }
-  .collage-hero__frame:hover img {
-    transform: scale(1.03);
+  .col-hero__frame:hover img {
+    transform: scale(1.04);
   }
   @media (prefers-reduced-motion: reduce) {
-    .collage-hero__frame img { transition: none; }
-    .collage-hero__frame:hover img { transform: none; }
+    .col-hero__frame { will-change: auto; }
+    .col-hero__frame img { transition: none; }
+    .col-hero__frame:hover img { transform: none; }
   }
 
-  /* Scrim so text reads over any photo combination */
-  .collage-hero__scrim {
+  /* Brand gradient-mesh sits above photos, below scrim */
+  .col-hero__mesh {
     position: absolute;
     inset: 0;
+    background:
+      radial-gradient(
+        ellipse 70% 55% at 80% 0%,
+        color-mix(in srgb, var(--brand) 26%, transparent) 0%,
+        transparent 60%
+      );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Bottom-heavy scrim for text legibility */
+  .col-hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
     background: linear-gradient(
-      160deg,
-      rgba(15, 18, 20, 0.12) 0%,
-      rgba(15, 18, 20, 0.28) 40%,
-      rgba(15, 18, 20, 0.78) 100%
+      162deg,
+      rgba(12, 14, 18, 0.08) 0%,
+      rgba(12, 14, 18, 0.26) 40%,
+      rgba(12, 14, 18, 0.82) 100%
     );
     pointer-events: none;
   }
 
-  /* ── Copy layer ── */
-  .collage-hero__inner {
-    position: relative;
-    z-index: 1;
-    padding-block: clamp(2.5rem, 6vw, 4.5rem);
-    max-width: 680px;
+  /* ── ② Trust badge ───────────────────────────────────────────────────────── */
+  .col-hero__badge {
+    position: absolute;
+    /* Anchored to the right-edge of the primary photo (55% for 3-col, 62% for 2-col) */
+    /* Use calc to approximate the grid boundary */
+    left: clamp(42%, 54vw, 56%);
+    bottom: 8rem;          /* above highlights bar */
+    transform: translateX(-50%);
+    z-index: 5;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    background: var(--brand);
+    color: var(--brand-contrast);
+    border-radius: var(--radius);
+    padding: 0.85rem 1.1rem;
+    min-width: 72px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+  .col-hero__badge-year {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: var(--fw-display);
+    line-height: 1;
+  }
+  .col-hero__badge-label {
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+  }
+  .col-hero__badge-trust {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
   }
 
-  .collage-hero__eyebrow {
+  /* ── ③ Content layer ─────────────────────────────────────────────────────── */
+  .col-hero__inner {
+    position: relative;
+    z-index: 4;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+    max-width: var(--maxw);
+    width: 100%;
+  }
+
+  .col-hero__eyebrow {
+    font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--brand) 60%, #fff);
-    margin-bottom: 1rem;
+    color: color-mix(in srgb, var(--brand) 55%, #fff 45%);
+    margin-bottom: 0.85rem;
   }
 
-  .collage-hero__title {
+  /* Oversized headline */
+  .col-hero__title {
     font-family: var(--font-display);
     font-weight: var(--fw-display);
-    font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+    font-size: clamp(2.4rem, 5.5vw, 5rem);
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-display);
     color: #fff;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.85rem;
+    max-width: 20ch;
+    text-shadow: 0 2px 28px rgba(0, 0, 0, 0.32);
   }
 
-  .collage-hero__sub {
-    font-size: clamp(1.02rem, 1.8vw, 1.25rem);
+  .col-hero__sub {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.8vw, 1.22rem);
     line-height: var(--leading-body);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.88);
     max-width: 52ch;
     margin-bottom: 1.75rem;
   }
 
-  .collage-hero__actions {
+  /* CTA cluster */
+  .col-hero__actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1rem 1.5rem;
+    gap: 1rem 1.75rem;
   }
 
-  .collage-hero__phone {
-    color: #fff;
-    font-weight: var(--fw-bold);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    padding-bottom: 2px;
-    transition: border-color var(--motion-ease);
+  .col-hero__cta {
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--brand) 40%, transparent);
   }
-  .collage-hero__phone:hover {
+
+  .col-hero__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    text-decoration: none;
+    border-bottom: var(--border-weight) solid rgba(255, 255, 255, 0.45);
+    padding-bottom: 2px;
+    transition: border-color var(--motion-fade) var(--motion-ease);
+  }
+  .col-hero__phone:hover {
     text-decoration: none;
     border-color: #fff;
   }
+  .col-hero__phone:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .col-hero__phone-icon {
+    width: 1.05em;
+    height: 1.05em;
+    flex-shrink: 0;
+  }
 
-  /* Highlights bar */
-  .collage-hero__highlights {
+  /* ── ④ Highlights bar ────────────────────────────────────────────────────── */
+  .col-hero__highlights {
     position: relative;
-    z-index: 1;
+    z-index: 4;
     list-style: none;
     margin: 0;
     padding: 1rem var(--gutter);
@@ -207,27 +338,37 @@ const count = images.length; // 1 | 2 | 3
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 0.4rem 2rem;
-    background: rgba(0, 0, 0, 0.32);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    font-family: var(--font-body);
     font-size: var(--step--1);
+    font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.84);
+    color: rgba(255, 255, 255, 0.82);
   }
 
-  /* Collapse to single column on narrow screens */
+  /* ── Mobile ──────────────────────────────────────────────────────────────── */
   @media (max-width: 640px) {
-    .collage-hero[data-count="2"] .collage-hero__media,
-    .collage-hero[data-count="3"] .collage-hero__media {
+    .col-hero[data-count="2"] .col-hero__media,
+    .col-hero[data-count="3"] .col-hero__media {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
     }
-    /* Show only primary photo on very small screens */
-    .collage-hero__frame:not(:first-child) {
-      display: none;
+    .col-hero__frame:not(:first-child) { display: none; }
+    .col-hero[data-count="3"] .col-hero__frame:first-child { grid-row: auto; }
+    .col-hero__title { font-size: clamp(2rem, 8vw, 3rem); max-width: none; }
+    .col-hero__badge {
+      left: auto;
+      right: 1rem;
+      bottom: 7rem;
+      transform: none;
     }
-    .collage-hero[data-count="3"] .collage-hero__frame:first-child {
-      grid-row: auto;
-    }
+  }
+
+  /* ── Archetype tweaks ────────────────────────────────────────────────────── */
+  [data-archetype="magazine"] .col-hero__title {
+    font-size: clamp(2.8rem, 6.5vw, 5.8rem);
   }
 </style>

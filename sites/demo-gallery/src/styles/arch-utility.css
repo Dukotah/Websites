@@ -1,0 +1,201 @@
+/**
+ * arch-utility.css — archetype overrides for [data-archetype="utility"].
+ *
+ * Scope: ALL rules here are nested under [data-archetype="utility"] so they
+ * only fire when the body carries that attribute. No rule touches the global
+ * token contract; all identity values are consumed via var(--…).
+ *
+ * Visual language: trades / towing / plumbing — dense, confident, conversion-
+ * focused. Boxy high-contrast cards, bold condensed headings, strong color
+ * blocks, tighter vertical rhythm, no decorative softness.
+ */
+
+/* ── Section rhythm: tighter than the standard spacious defaults ─────────── */
+[data-archetype="utility"] {
+  --_u-section-pad: calc(var(--section-pad) * 0.72);
+  --_u-grid-gap:    calc(var(--grid-gap)    * 0.85);
+}
+
+[data-archetype="utility"] .section {
+  padding-block: var(--_u-section-pad);
+}
+
+/* ── Headings: condensed, uppercase, maximum impact ──────────────────────── */
+[data-archetype="utility"] h1,
+[data-archetype="utility"] h2,
+[data-archetype="utility"] h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.0;
+  font-weight: var(--fw-display);
+}
+
+[data-archetype="utility"] .eyebrow {
+  letter-spacing: 0.22em;
+  font-weight: var(--fw-bold);
+}
+
+/* ── Cards: boxy, high-contrast, no decorative radius ───────────────────── */
+[data-archetype="utility"] .svc-card,
+[data-archetype="utility"] .feat-card,
+[data-archetype="utility"] .stat,
+[data-archetype="utility"] [class*="-card"] {
+  border-radius: var(--radius);          /* use the site's own radius but never large */
+  border-width: 2px;
+  box-shadow: none;
+}
+
+/* Override card hover: lift → solid left accent bar instead of shadow float */
+[data-archetype="utility"] .svc-card:hover,
+[data-archetype="utility"] .feat-card:hover,
+[data-archetype="utility"] [class*="-card"]:hover {
+  transform: none;
+  box-shadow: none;
+  border-left-color: var(--accent);
+  border-left-width: 4px;
+}
+
+/* ── Service card media: fixed-height banner, no rounded corners ─────────── */
+[data-archetype="utility"] .svc-card__media {
+  aspect-ratio: 16 / 7;
+  border-radius: 0;
+}
+
+/* ── Strong color blocks: brand band around CTA and band sections ─────────── */
+[data-archetype="utility"] [data-tone="brand"] {
+  border-top:    4px solid var(--brand-dark);
+  border-bottom: 4px solid var(--brand-dark);
+}
+
+[data-archetype="utility"] [data-tone="deep"] {
+  border-top:    4px solid var(--brand);
+  border-bottom: 4px solid var(--brand);
+}
+
+/* ── Buttons: pill → rect, heavier weight, uppercase label ────────────────── */
+[data-archetype="utility"] .btn {
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: var(--fw-bold);
+  padding: 0.75em 1.75em;
+}
+
+[data-archetype="utility"] .btn--ghost {
+  border-width: 2px;
+}
+
+/* ── Stats grid: left-aligned numbers, bold dividers ────────────────────── */
+[data-archetype="utility"] .stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0;
+  text-align: left;
+  border-top:    2px solid var(--border);
+  border-left:   2px solid var(--border);
+}
+
+[data-archetype="utility"] .stat {
+  padding: 1.5rem 1.75rem;
+  border-right:  2px solid var(--border);
+  border-bottom: 2px solid var(--border);
+  position: relative;
+}
+
+[data-archetype="utility"] .stat::before {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: var(--brand);
+  margin-bottom: 0.75rem;
+}
+
+[data-archetype="utility"] .stat__value {
+  font-size: var(--step-5);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+[data-archetype="utility"] .stat__label {
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: var(--fw-bold);
+  font-size: var(--step--1);
+  margin-top: 0.4rem;
+}
+
+/* ── Testimonials: blockquote bar + hard bottom rule ─────────────────────── */
+[data-archetype="utility"] .tcard,
+[data-archetype="utility"] [class*="testimonial-card"],
+[data-archetype="utility"] [class*="tcard"] {
+  border-radius: var(--radius);
+  border-left: 4px solid var(--brand);
+  box-shadow: none;
+  background: var(--surface);
+}
+
+/* ── FAQ: disclosure bars, no softness ───────────────────────────────────── */
+[data-archetype="utility"] .faq__item {
+  border-radius: 0;
+  border-bottom: 2px solid var(--border);
+}
+
+[data-archetype="utility"] .faq__item:first-child {
+  border-top: 2px solid var(--border);
+}
+
+/* ── About section: tighter image, side-by-side badge restyle ───────────── */
+[data-archetype="utility"] .about__media img {
+  border-radius: var(--radius);
+  aspect-ratio: 1 / 1;
+  box-shadow: none;
+  border: 2px solid var(--border);
+}
+
+[data-archetype="utility"] .about__badge {
+  border-radius: var(--radius);
+}
+
+/* ── Section headings with a left accent rule ───────────────────────────── */
+[data-archetype="utility"] .section-header,
+[data-archetype="utility"] .svc__head,
+[data-archetype="utility"] .stats__head,
+[data-archetype="utility"] .logos__head {
+  padding-left: 1rem;
+  border-left: 4px solid var(--brand);
+}
+
+/* ── Feature-grid cards ──────────────────────────────────────────────────── */
+[data-archetype="utility"] .fg-card {
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  box-shadow: none;
+}
+
+[data-archetype="utility"] .fg-card:hover {
+  border-color: var(--brand);
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Process steps: numbered pills → numbered squares ────────────────────── */
+[data-archetype="utility"] .process__num,
+[data-archetype="utility"] [class*="step__num"] {
+  border-radius: var(--radius);
+}
+
+/* ── Contact section: denser layout ─────────────────────────────────────── */
+[data-archetype="utility"] .contact__inner {
+  gap: calc(var(--grid-gap) * 0.75);
+}
+
+/* ── Hero headings: max punch, tight leading ─────────────────────────────── */
+[data-archetype="utility"] .hero__heading,
+[data-archetype="utility"] [class*="hero"] h1 {
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+}
+
+/* ── Reduced-motion: already handled globally; nothing to add ────────────── */

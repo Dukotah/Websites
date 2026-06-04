@@ -1,60 +1,246 @@
 ---
-// HeroStatement — huge display type + keyline + CTA, ultra-minimal.
-// Designed for luxury / editorial fonts; no photo required.
-// The keyline (horizontal rule) is the primary visual gesture.
+/**
+ * HeroStatement — huge display type + keylines. Ultra-minimal luxury feel.
+ * Upgraded: oversized type that "breaks" the rules, a brand gradient-mesh in
+ * the background, an offset image inset (optional, if image exists), and a
+ * floating trust badge anchored to the image inset.
+ * Spec §7: "statement" variant.
+ */
 import type { ProspectConfig } from '../../types';
 const { config } = Astro.props as { config: ProspectConfig };
-const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
-const eyebrow = [config.established, config.area].filter(Boolean).join(' · ');
+
+const { hero, images, contact, highlights = [], established, area } = config;
+const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
+const eyebrow = [established, area].filter(Boolean).join(' · ');
+const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
+const trustLine = highlights[0] ?? '';
+const hasPhoto = Boolean(images?.hero);
 ---
 
 <section class="stmt-hero" id="top">
-  <div class="container stmt-hero__inner">
-    <!-- Top metadata line -->
+
+  <!-- ① Gradient-mesh background -->
+  <div class="stmt-hero__bg" aria-hidden="true"></div>
+
+  <!-- ② Optional photo inset (offset frame, parallax) -->
+  {hasPhoto && (
+    <div class="stmt-hero__photo-wrap" aria-hidden="true">
+      <!-- Accent rectangle behind the photo -->
+      <div class="stmt-hero__photo-accent" aria-hidden="true"></div>
+      <div
+        class="stmt-hero__photo"
+        data-parallax
+        data-parallax-speed="0.25"
+        data-parallax-axis="y"
+      >
+        <img
+          src={images.hero}
+          alt={images.heroAlt}
+          onerror={`this.onerror=null;this.src='${images.placeholder}'`}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <!-- Trust badge anchored to photo -->
+      {(badgeYear || trustLine) && (
+        <div class="stmt-hero__badge" aria-label="Trust signal" data-reveal data-reveal-order="0">
+          {badgeYear && <strong class="stmt-hero__badge-year">{badgeYear}</strong>}
+          <span class="stmt-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
+          {badgeYear && trustLine && <span class="stmt-hero__badge-trust">{trustLine}</span>}
+        </div>
+      )}
+    </div>
+  )}
+
+  <!-- ③ Content -->
+  <div class="container stmt-hero__inner" data-has-photo={hasPhoto ? 'true' : undefined}>
+
+    <!-- Eyebrow line above the top keyline -->
     {eyebrow && (
-      <p class="stmt-hero__eyebrow" data-reveal data-reveal-order="0">{eyebrow}</p>
+      <p class="stmt-hero__eyebrow" data-reveal data-reveal-order="1">{eyebrow}</p>
     )}
 
-    <!-- Keyline above the heading — the defining gesture -->
-    <div class="stmt-hero__rule" aria-hidden="true" data-reveal data-reveal-order="1"></div>
+    <!-- Primary keyline (thick, brand-colored) -->
+    <div class="stmt-hero__rule" aria-hidden="true" data-reveal data-reveal-order="2"></div>
 
-    <h1 class="stmt-hero__title" data-reveal data-reveal-order="2">
-      {config.hero.heading}
+    <!-- Oversized headline — scale intentionally breaks the keylines -->
+    <h1 class="stmt-hero__title" data-reveal data-reveal-order="3">
+      {hero.heading}
     </h1>
 
-    <!-- Keyline below the heading -->
-    <div class="stmt-hero__rule stmt-hero__rule--thin" aria-hidden="true" data-reveal data-reveal-order="3"></div>
+    <!-- Secondary keyline (thin, full-width) -->
+    <div class="stmt-hero__rule stmt-hero__rule--thin" aria-hidden="true" data-reveal data-reveal-order="4"></div>
 
-    <div class="stmt-hero__foot" data-reveal data-reveal-order="4">
-      <p class="stmt-hero__sub">{config.hero.subheading}</p>
+    <!-- Footer row: sub + CTAs side by side on wide screens -->
+    <div class="stmt-hero__foot" data-reveal data-reveal-order="5">
+      {hero.subheading && (
+        <p class="stmt-hero__sub">{hero.subheading}</p>
+      )}
       <div class="stmt-hero__actions">
-        <a href={config.hero.ctaHref} class="btn">{config.hero.ctaText}</a>
-        {config.contact.phone && (
-          <a href={telHref} class="stmt-hero__phone">{config.contact.phone}</a>
+        <a href={hero.ctaHref} class="btn stmt-hero__cta">{hero.ctaText}</a>
+        {contact.phone && (
+          <a href={telHref} class="stmt-hero__phone">
+            <svg class="stmt-hero__phone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+            {contact.phone}
+          </a>
         )}
       </div>
     </div>
 
-    {config.highlights && config.highlights.length > 0 && (
-      <ul class="stmt-hero__highlights" data-reveal data-reveal-order="5">
-        {config.highlights.map((h) => <li>{h}</li>)}
+    <!-- Trust badge fallback (no photo: embed inline) -->
+    {!hasPhoto && (badgeYear || trustLine) && (
+      <div class="stmt-hero__badge stmt-hero__badge--inline" aria-label="Trust signal" data-reveal data-reveal-order="6">
+        {badgeYear && <strong class="stmt-hero__badge-year">{badgeYear}</strong>}
+        <span class="stmt-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
+        {badgeYear && trustLine && <span class="stmt-hero__badge-trust">{trustLine}</span>}
+      </div>
+    )}
+
+    <!-- Highlights strip -->
+    {highlights.length > 0 && (
+      <ul class="stmt-hero__highlights" data-reveal data-reveal-order="7">
+        {highlights.map((h: string) => <li>{h}</li>)}
       </ul>
     )}
+
   </div>
 </section>
 
 <style>
+  /* ── Shell ───────────────────────────────────────────────────────────────── */
   .stmt-hero {
+    position: relative;
+    isolation: isolate;
     background: var(--bg);
     color: var(--text);
-    min-height: min(82vh, 720px);
+    min-height: min(84vh, 760px);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
   }
 
+  /* ── ① Gradient-mesh background ──────────────────────────────────────────── */
+  .stmt-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(
+        ellipse 60% 55% at 105% 105%,
+        color-mix(in srgb, var(--brand) 10%, transparent) 0%,
+        transparent 65%
+      ),
+      radial-gradient(
+        ellipse 45% 40% at -5% -5%,
+        color-mix(in srgb, var(--accent) 8%, transparent) 0%,
+        transparent 60%
+      );
+    pointer-events: none;
+  }
+
+  /* ── ② Photo inset (right side, offset frame) ────────────────────────────── */
+  .stmt-hero__photo-wrap {
+    position: absolute;
+    top: 8%;
+    right: -2%;
+    width: clamp(200px, 32vw, 480px);
+    height: 76%;
+    z-index: 1;
+  }
+
+  /* Offset accent rectangle (behind and slightly below photo) */
+  .stmt-hero__photo-accent {
+    position: absolute;
+    inset: 8% -8% -8% 8%;
+    background: color-mix(in srgb, var(--brand) 12%, var(--bg-alt));
+    border-radius: var(--radius-lg);
+    z-index: 0;
+  }
+
+  /* Photo container (parallax target) */
+  .stmt-hero__photo {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    will-change: transform;
+  }
+  .stmt-hero__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stmt-hero__photo { will-change: auto; }
+  }
+
+  /* Trust badge — anchored bottom-left of photo inset */
+  .stmt-hero__badge {
+    position: absolute;
+    bottom: -1rem;
+    left: -1.5rem;
+    z-index: 2;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    background: var(--brand);
+    color: var(--brand-contrast);
+    border-radius: var(--radius);
+    padding: 0.85rem 1.1rem;
+    min-width: 72px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+  .stmt-hero__badge--inline {
+    /* No photo: render as an inline left-aligned element */
+    position: static;
+    display: inline-flex;
+    margin-top: 2rem;
+    align-self: flex-start;
+  }
+  .stmt-hero__badge-year {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: var(--fw-display);
+    line-height: 1;
+  }
+  .stmt-hero__badge-label {
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+  }
+  .stmt-hero__badge-trust {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+  }
+
+  /* ── ③ Content layer ─────────────────────────────────────────────────────── */
   .stmt-hero__inner {
+    position: relative;
+    z-index: 2;
     padding-block: clamp(4rem, 12vw, 8rem);
+  }
+
+  /* When photo is present, reserve right column for it */
+  .stmt-hero__inner[data-has-photo] {
+    max-width: var(--maxw);
+    padding-right: clamp(220px, 36vw, 520px);
   }
 
   .stmt-hero__eyebrow {
@@ -64,41 +250,44 @@ const eyebrow = [config.established, config.area].filter(Boolean).join(' · ');
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
     color: var(--text-muted);
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 
-  /* Primary keyline — thick, brand-colored */
+  /* Primary keyline (thick, brand) */
   .stmt-hero__rule {
     height: 3px;
-    background: var(--brand);
+    background: linear-gradient(
+      90deg,
+      var(--brand) 0%,
+      color-mix(in srgb, var(--brand) 20%, transparent) 100%
+    );
     border: none;
-    margin: 0 0 1.75rem;
-    width: clamp(3rem, 8vw, 7rem);
-    transform-origin: left center;
+    margin: 0 0 1.6rem;
+    width: clamp(3.5rem, 9vw, 7.5rem);
   }
 
-  /* Secondary keyline — thin, muted */
+  /* Secondary keyline (thin, full-width) */
   .stmt-hero__rule--thin {
     height: 1px;
     background: var(--border);
     width: 100%;
-    margin: 1.75rem 0 2.5rem;
+    margin: 1.6rem 0 2.25rem;
   }
 
+  /* Oversized headline — the defining gesture */
   .stmt-hero__title {
     font-family: var(--font-display);
     font-weight: var(--fw-display);
-    font-size: clamp(3rem, 8vw, 7rem);
+    font-size: clamp(3rem, 8.5vw, 7.5rem);
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-display);
     color: var(--text);
     margin: 0;
-    /* Allow very long business names to wrap gracefully */
     overflow-wrap: break-word;
     hyphens: auto;
   }
 
-  /* Foot: subheading + actions in a flex row on wide screens */
+  /* Footer row */
   .stmt-hero__foot {
     display: flex;
     flex-wrap: wrap;
@@ -115,49 +304,87 @@ const eyebrow = [config.established, config.area].filter(Boolean).join(' · ');
     flex: 1 1 280px;
   }
 
+  /* CTA cluster */
   .stmt-hero__actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 1rem 1.5rem;
     flex-shrink: 0;
-    padding-top: 0.15rem; /* optical align with first line of sub */
+    padding-top: 0.15rem;
+  }
+
+  .stmt-hero__cta {
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--brand) 30%, transparent);
   }
 
   .stmt-hero__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     color: var(--text);
+    font-family: var(--font-body);
     font-weight: var(--fw-bold);
-    border-bottom: 1px solid var(--border);
+    font-size: var(--step-0);
+    text-decoration: none;
+    border-bottom: var(--border-weight) solid var(--border);
     padding-bottom: 2px;
-    transition: border-color var(--motion-ease), color var(--motion-ease);
+    transition:
+      border-color var(--motion-fade) var(--motion-ease),
+      color var(--motion-fade) var(--motion-ease);
   }
   .stmt-hero__phone:hover {
     text-decoration: none;
     border-color: var(--brand);
     color: var(--brand);
   }
+  .stmt-hero__phone:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .stmt-hero__phone-icon {
+    width: 1.05em;
+    height: 1.05em;
+    flex-shrink: 0;
+  }
 
+  /* Highlights strip */
   .stmt-hero__highlights {
     list-style: none;
-    margin: 3rem 0 0;
+    margin: 2.5rem 0 0;
     padding: 1.5rem 0 0;
-    border-top: 1px solid var(--border);
+    border-top: var(--border-weight) solid var(--border);
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 2.5rem;
+    font-family: var(--font-body);
     font-size: var(--step--1);
+    font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
     color: var(--text-muted);
   }
 
+  /* ── Mobile ──────────────────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .stmt-hero__photo-wrap { display: none; }
+    .stmt-hero__inner[data-has-photo] { padding-right: var(--gutter); }
+  }
   @media (max-width: 640px) {
-    .stmt-hero__title {
-      font-size: clamp(2.4rem, 10vw, 3.5rem);
-    }
-    .stmt-hero__foot {
-      flex-direction: column;
-      gap: 1.25rem;
-    }
+    .stmt-hero__title { font-size: clamp(2.4rem, 10vw, 3.8rem); }
+    .stmt-hero__foot { flex-direction: column; gap: 1.25rem; }
+  }
+
+  /* ── Archetype tweaks ────────────────────────────────────────────────────── */
+  [data-archetype="editorial"] .stmt-hero__rule {
+    border-radius: 0;
+  }
+  [data-archetype="magazine"] .stmt-hero__title {
+    font-size: clamp(3.5rem, 9.5vw, 9rem);
+    letter-spacing: -0.04em;
+  }
+  [data-archetype="classic"] .stmt-hero {
+    background: var(--bg-alt);
   }
 </style>

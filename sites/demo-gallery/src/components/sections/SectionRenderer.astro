@@ -24,6 +24,8 @@ import ProcessSection from './ProcessSection.astro';
 import LogosStrip from './LogosStrip.astro';
 import BeforeAfter from './BeforeAfter.astro';
 import FeatureGrid from './FeatureGrid.astro';
+import EditorialFeature from './EditorialFeature.astro';
+import SpecStrip from './SpecStrip.astro';
 
 interface Props {
   sections: Section[];
@@ -75,6 +77,10 @@ const { sections = [] } = Astro.props as Props;
         return <BeforeAfter {...section} />;
       case 'feature-grid':
         return <FeatureGrid {...section} />;
+      case 'editorial-feature':
+        return <EditorialFeature {...section} />;
+      case 'spec-strip':
+        return <SpecStrip {...section} />;
       default:
         return null;
     }

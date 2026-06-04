@@ -1,35 +1,54 @@
 ---
 /**
- * HeroSplit — text panel + photo, side by side. Stacks vertically on mobile.
- * Spec §7: "split" variant. Needs a hero image.
- * Port + full tokenization of src/components/HeroSplit.astro.
+ * HeroSplit — text panel + offset/overlapping photo frame. Side by side, stacks
+ * on mobile. Agency quality: oversized display type, gradient-mesh panel accent,
+ * a floating trust badge, and a refined CTA cluster.
+ * Spec §7: "split" variant.
  */
 import type { ProspectConfig } from '../../types';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights, established, area } = config;
+const { hero, images, contact, highlights = [], established, area } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
+const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
+const trustLine = highlights[0] ?? '';
 ---
 
 <section class="spl-hero" id="top" aria-label="Hero">
-  <!-- Text panel -->
+
+  <!-- ① Text panel -->
   <div class="spl-hero__panel">
+
+    <!-- Brand gradient-mesh accent (decorative, behind copy) -->
+    <div class="spl-hero__mesh" aria-hidden="true"></div>
+
+    <!-- Geometric corner rule -->
+    <div class="spl-hero__geo" aria-hidden="true"></div>
+
     <div class="spl-hero__copy" data-reveal>
-      {eyebrow && (
-        <p class="spl-hero__eyebrow">{eyebrow}</p>
-      )}
+
+      {eyebrow && <p class="spl-hero__eyebrow">{eyebrow}</p>}
+
       <h1 class="spl-hero__title">{hero.heading}</h1>
-      {hero.subheading && (
-        <p class="spl-hero__sub">{hero.subheading}</p>
-      )}
+
+      {hero.subheading && <p class="spl-hero__sub">{hero.subheading}</p>}
+
+      <!-- CTA cluster -->
       <div class="spl-hero__actions">
-        <a href={hero.ctaHref} class="btn">{hero.ctaText}</a>
+        <a href={hero.ctaHref} class="btn spl-hero__cta">{hero.ctaText}</a>
         {contact.phone && (
-          <a href={telHref} class="spl-hero__phone">{contact.phone}</a>
+          <a href={telHref} class="spl-hero__phone">
+            <svg class="spl-hero__phone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+            {contact.phone}
+          </a>
         )}
       </div>
-      {highlights && highlights.length > 0 && (
+
+      <!-- Highlights strip -->
+      {highlights.length > 0 && (
         <ul class="spl-hero__highlights" aria-label="Key highlights" data-reveal-stagger>
           {highlights.map((h: string) => <li>{h}</li>)}
         </ul>
@@ -37,37 +56,96 @@ const eyebrow = [established, area].filter(Boolean).join(' · ');
     </div>
   </div>
 
-  <!-- Photo panel -->
-  <div class="spl-hero__media" data-frame={images.hero ? 'editorial' : undefined} aria-hidden="true">
-    <img
-      src={images.hero}
-      alt={images.heroAlt}
-      onerror={`this.onerror=null;this.src='${images.placeholder}'`}
-      fetchpriority="high"
-      decoding="async"
-    />
+  <!-- ② Photo panel — offset frame + trust badge overlay -->
+  <div class="spl-hero__media-wrap" aria-hidden="true">
+
+    <!-- Offset accent rectangle (sits behind photo, bleeds beyond frame) -->
+    <div class="spl-hero__frame-accent" aria-hidden="true"></div>
+
+    <!-- Photo with parallax -->
+    <div class="spl-hero__media" data-parallax data-parallax-speed="0.3">
+      <img
+        src={images.hero}
+        alt={images.heroAlt}
+        onerror={`this.onerror=null;this.src='${images.placeholder}'`}
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+
+    <!-- Floating trust badge -->
+    {(badgeYear || trustLine) && (
+      <div class="spl-hero__badge" aria-label="Trust signal">
+        {badgeYear && <strong class="spl-hero__badge-year">{badgeYear}</strong>}
+        <span class="spl-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
+        {badgeYear && trustLine && <span class="spl-hero__badge-trust">{trustLine}</span>}
+      </div>
+    )}
   </div>
+
 </section>
 
 <style>
+  /* ── Shell ───────────────────────────────────────────────────────────────── */
   .spl-hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: min(84vh, 740px);
+    min-height: min(88vh, 800px);
     overflow: hidden;
+    background: var(--brand-dark);
   }
 
-  /* Text panel — brand-dark surface */
+  /* ── ① Text panel ────────────────────────────────────────────────────────── */
   .spl-hero__panel {
+    position: relative;
+    isolation: isolate;
     background: var(--brand-dark);
     color: var(--text-on-dark);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(2.5rem, 6vw, 5rem);
+    padding: clamp(2.5rem, 6vw, 5.5rem);
+    overflow: hidden;
+  }
+
+  /* Brand gradient-mesh inside the text panel */
+  .spl-hero__mesh {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(
+        ellipse 90% 60% at -10% 110%,
+        color-mix(in srgb, var(--brand) 25%, transparent) 0%,
+        transparent 65%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 110% -10%,
+        color-mix(in srgb, var(--accent) 18%, transparent) 0%,
+        transparent 60%
+      );
+    pointer-events: none;
+  }
+
+  /* Geometric corner accent (top-left of the text panel) */
+  .spl-hero__geo {
+    position: absolute;
+    top: -2rem;
+    left: -2rem;
+    width: clamp(80px, 14vw, 180px);
+    aspect-ratio: 1;
+    border-radius: var(--radius-pill);
+    border: 2px solid color-mix(in srgb, var(--brand) 40%, transparent);
+    z-index: 0;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .spl-hero__geo { display: none; }
   }
 
   .spl-hero__copy {
+    position: relative;
+    z-index: 1;
     max-width: 44ch;
   }
 
@@ -79,19 +157,19 @@ const eyebrow = [established, area].filter(Boolean).join(' · ');
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--brand) 70%, #fff 30%);
-    margin: 0 0 1.25rem;
+    color: color-mix(in srgb, var(--brand) 65%, #fff 35%);
+    margin: 0 0 1.1rem;
   }
 
-  /* Headline */
+  /* Oversized headline */
   .spl-hero__title {
     font-family: var(--font-display);
     font-weight: var(--fw-display);
-    font-size: var(--step-4);
+    font-size: clamp(2.4rem, 4.5vw, 4.8rem);
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-display);
     color: var(--text-on-dark);
-    margin: 0 0 1.25rem;
+    margin: 0 0 1.1rem;
   }
 
   /* Subheading */
@@ -99,28 +177,35 @@ const eyebrow = [established, area].filter(Boolean).join(' · ');
     font-family: var(--font-body);
     font-size: var(--step-0);
     line-height: var(--leading-body);
-    color: color-mix(in srgb, var(--text-on-dark) 85%, transparent);
+    color: color-mix(in srgb, var(--text-on-dark) 82%, transparent);
     max-width: 44ch;
-    margin: 0 0 1.9rem;
+    margin: 0 0 1.85rem;
   }
 
-  /* CTA row */
+  /* CTA cluster */
   .spl-hero__actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1rem 1.5rem;
+    gap: 1rem 1.75rem;
   }
 
-  /* Phone link */
+  .spl-hero__cta {
+    /* slight glow that lifts off the dark panel */
+    box-shadow: 0 4px 18px color-mix(in srgb, var(--brand) 40%, transparent);
+  }
+
   .spl-hero__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     font-family: var(--font-body);
     font-weight: var(--fw-bold);
     font-size: var(--step-0);
     color: var(--text-on-dark);
     text-decoration: none;
     border-bottom: var(--border-weight) solid
-      color-mix(in srgb, var(--text-on-dark) 45%, transparent);
+      color-mix(in srgb, var(--text-on-dark) 40%, transparent);
     padding-bottom: 2px;
     transition: border-color var(--motion-fade) var(--motion-ease);
   }
@@ -133,6 +218,11 @@ const eyebrow = [established, area].filter(Boolean).join(' · ');
     outline-offset: 3px;
     border-radius: 2px;
   }
+  .spl-hero__phone-icon {
+    width: 1.05em;
+    height: 1.05em;
+    flex-shrink: 0;
+  }
 
   /* Highlights strip */
   .spl-hero__highlights {
@@ -140,48 +230,121 @@ const eyebrow = [established, area].filter(Boolean).join(' · ');
     margin: 2.25rem 0 0;
     padding: 1.5rem 0 0;
     border-top: var(--border-weight) solid
-      color-mix(in srgb, var(--text-on-dark) 20%, transparent);
+      color-mix(in srgb, var(--text-on-dark) 18%, transparent);
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 1.75rem;
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--text-on-dark) 80%, transparent);
+    color: color-mix(in srgb, var(--text-on-dark) 78%, transparent);
   }
 
-  /* Photo panel */
-  .spl-hero__media {
-    background: var(--brand-dark);
-    /* override [data-frame] rounding — full-height panel needs no radius */
-    border-radius: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
+  /* ── ② Photo panel ───────────────────────────────────────────────────────── */
+  .spl-hero__media-wrap {
+    position: relative;
+    isolation: isolate;
     overflow: hidden;
+    background: var(--bg-deep);
+  }
+
+  /* Offset accent rectangle — brand-colored, sits behind photo, peeks out */
+  .spl-hero__frame-accent {
+    position: absolute;
+    inset: 6% 0 6% -6%;      /* overlaps the gutter between panels */
+    background: color-mix(in srgb, var(--brand) 18%, var(--bg-deep));
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    z-index: 0;
+  }
+
+  /* Photo itself — parallax target */
+  .spl-hero__media {
+    position: absolute;
+    inset: -10% 0;            /* bleed for parallax */
+    z-index: 1;
+    will-change: transform;
   }
   .spl-hero__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    display: block;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .spl-hero__media { inset: 0; will-change: auto; }
   }
 
-  /* Mobile: stack vertically, photo first */
-  @media (max-width: 840px) {
+  /* Floating trust badge — bottom-left of photo, overlaps onto text panel */
+  .spl-hero__badge {
+    position: absolute;
+    bottom: 2rem;
+    left: -1.25rem;           /* bleeds over the panel seam */
+    z-index: 2;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    background: var(--brand);
+    color: var(--brand-contrast);
+    border-radius: var(--radius);
+    padding: 0.85rem 1.1rem;
+    min-width: 72px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+  .spl-hero__badge-year {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: var(--fw-display);
+    line-height: 1;
+  }
+  .spl-hero__badge-label {
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+  }
+  .spl-hero__badge-trust {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+  }
+
+  /* ── Mobile ──────────────────────────────────────────────────────────────── */
+  @media (max-width: 860px) {
     .spl-hero {
       grid-template-columns: 1fr;
     }
-    .spl-hero__media {
+    .spl-hero__media-wrap {
       order: -1;
-      min-height: 44vh;
+      min-height: 46vh;
     }
-    .spl-hero__copy {
-      max-width: none;
+    .spl-hero__media { inset: 0; }
+    .spl-hero__frame-accent { display: none; }
+    .spl-hero__badge {
+      left: auto;
+      right: 1rem;
+      bottom: 1rem;
     }
-    .spl-hero__title {
-      font-size: var(--step-3);
-    }
+    .spl-hero__copy { max-width: none; }
+    .spl-hero__title { font-size: clamp(2rem, 7vw, 3rem); }
+  }
+
+  /* ── Archetype tweaks ────────────────────────────────────────────────────── */
+  [data-archetype="classic"] .spl-hero__title {
+    font-size: clamp(2.6rem, 5vw, 5rem);
+  }
+  [data-archetype="magazine"] .spl-hero__panel {
+    background: var(--bg-deep);
   }
 </style>

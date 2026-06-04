@@ -118,6 +118,26 @@ export type Section =
   | ({
       type: 'feature-grid';
       items: { label: string; note?: string; icon?: string }[];
+    } & SectionEnvelope)
+  | ({
+      /**
+       * editorial-feature — alternating full-bleed editorial spreads.
+       * Big portrait image one side, short poetic copy + folio index the other.
+       * Image side flips per row. Use on editorial-archetype pages.
+       * Component: sections/EditorialFeature.astro
+       */
+      type: 'editorial-feature';
+      rows: { heading: string; body: string; image?: string; imageAlt?: string }[];
+    } & SectionEnvelope)
+  | ({
+      /**
+       * spec-strip — bold KPI / credentials band for utility archetype pages.
+       * Big number+label blocks on a brand or deep color band. Ideal for towing
+       * response time, license, coverage radius, guarantee, etc.
+       * Component: sections/SpecStrip.astro
+       */
+      type: 'spec-strip';
+      items: { value: string; label: string; icon?: string }[];
     } & SectionEnvelope);
 
 /** The discriminant string of any Section (handy for the composition engine). */
@@ -133,6 +153,8 @@ export interface ArtDirectionConfig {
   /** pin a palette preset id (palette.ts PALETTE_PRESETS). */
   paletteId?: string;
   accentStrategy?: 'analogous' | 'complementary';
+  /** Page architecture; otherwise derived from category. */
+  archetype?: 'classic' | 'editorial' | 'utility' | 'magazine';
   shape?: 'soft' | 'sharp' | 'editorial' | 'rounded-pill' | 'framed';
   motion?: 'none' | 'subtle' | 'expressive';
   density?: 'compact' | 'standard' | 'spacious';

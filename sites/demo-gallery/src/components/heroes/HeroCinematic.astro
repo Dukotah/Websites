@@ -1,19 +1,23 @@
 ---
 /**
- * HeroCinematic — full-bleed photo, bottom-anchored copy over a gradient scrim.
- * Spec §7: "cinematic" variant. Needs a strong hero image.
- * Port + full tokenization of src/components/Hero.astro.
+ * HeroCinematic — full-bleed photo with layered scrim, oversized display type,
+ * an offset image frame accent, a brand gradient-mesh, and a floating trust badge.
+ * Spec §7: "cinematic" variant. Agency-quality composition.
  */
 import type { ProspectConfig } from '../../types';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights, established, area } = config;
+const { hero, images, contact, highlights = [], established, area, name } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
+const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
+const trustLine = highlights[0] ?? '';
 ---
 
 <section class="cin-hero" id="top" aria-label="Hero">
-  <div class="cin-hero__media" data-frame="editorial" aria-hidden="true">
+
+  <!-- ① Full-bleed photo — parallax target -->
+  <div class="cin-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.4">
     <img
       src={images.hero}
       alt={images.heroAlt}
@@ -21,86 +25,197 @@ const eyebrow = [established, area].filter(Boolean).join(' · ');
       fetchpriority="high"
       decoding="async"
     />
-    <span class="cin-hero__scrim" aria-hidden="true"></span>
   </div>
 
+  <!-- ② Brand gradient-mesh overlay (behind scrim, above photo) -->
+  <div class="cin-hero__mesh" aria-hidden="true"></div>
+
+  <!-- ③ Bottom-heavy legibility scrim -->
+  <div class="cin-hero__scrim" aria-hidden="true"></div>
+
+  <!-- ④ Offset geometric accent shape (top-right corner) -->
+  <div class="cin-hero__geo" aria-hidden="true"></div>
+
+  <!-- ⑤ Content -->
   <div class="container cin-hero__inner">
-    <div class="cin-hero__copy" data-reveal>
-      {eyebrow && (
-        <p class="cin-hero__eyebrow">{eyebrow}</p>
-      )}
+
+    <!-- Floating trust badge -->
+    {(badgeYear || trustLine) && (
+      <div class="cin-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
+        {badgeYear && <strong class="cin-hero__badge-year">{badgeYear}</strong>}
+        <span class="cin-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
+        {badgeYear && trustLine && <span class="cin-hero__badge-trust">{trustLine}</span>}
+      </div>
+    )}
+
+    <div class="cin-hero__copy" data-reveal data-reveal-order="1">
+      {eyebrow && <p class="cin-hero__eyebrow">{eyebrow}</p>}
+
+      <!-- Oversized display headline — two visual weights via <em> -->
       <h1 class="cin-hero__title">{hero.heading}</h1>
+
       {hero.subheading && (
         <p class="cin-hero__sub">{hero.subheading}</p>
       )}
+
+      <!-- Refined CTA cluster: primary button + phone -->
       <div class="cin-hero__actions">
-        <a href={hero.ctaHref} class="btn">{hero.ctaText}</a>
+        <a href={hero.ctaHref} class="btn cin-hero__cta">{hero.ctaText}</a>
         {contact.phone && (
-          <a href={telHref} class="cin-hero__phone">{contact.phone}</a>
+          <a href={telHref} class="cin-hero__phone">
+            <svg class="cin-hero__phone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+            {contact.phone}
+          </a>
         )}
       </div>
     </div>
 
-    {highlights && highlights.length > 0 && (
-      <p class="cin-hero__meta" aria-label="Key highlights">
-        {highlights.join('   ·   ')}
-      </p>
+    <!-- Highlights strip pinned inside the copy block -->
+    {highlights.length > 0 && (
+      <ul class="cin-hero__highlights" data-reveal data-reveal-order="2" aria-label="Key highlights">
+        {highlights.map((h: string) => <li>{h}</li>)}
+      </ul>
     )}
+
   </div>
 </section>
 
 <style>
+  /* ── Shell ───────────────────────────────────────────────────────────────── */
   .cin-hero {
     position: relative;
     isolation: isolate;
-    min-height: min(88vh, 780px);
+    min-height: min(92vh, 840px);
     display: flex;
     align-items: flex-end;
     overflow: hidden;
+    background: var(--bg-deep);
   }
 
-  /* Full-bleed media layer */
+  /* ── ① Photo layer (parallax target) ────────────────────────────────────── */
   .cin-hero__media {
     position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: var(--bg-deep);
-    /* override [data-frame] rounding — full bleed needs no radius here */
-    border-radius: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
+    inset: -12% 0;          /* generous bleed so parallax doesn't expose edges */
+    z-index: 0;
+    will-change: transform;
   }
   .cin-hero__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 30%;
+    display: block;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cin-hero__media { inset: 0; will-change: auto; }
   }
 
-  /* Scrim: bottom-heavy gradient so copy is legible */
+  /* ── ② Brand gradient-mesh ───────────────────────────────────────────────── */
+  .cin-hero__mesh {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(
+        ellipse 70% 55% at 80% 5%,
+        color-mix(in srgb, var(--brand) 30%, transparent) 0%,
+        transparent 65%
+      ),
+      radial-gradient(
+        ellipse 50% 40% at 5% 95%,
+        color-mix(in srgb, var(--accent) 20%, transparent) 0%,
+        transparent 60%
+      );
+    pointer-events: none;
+  }
+
+  /* ── ③ Legibility scrim ──────────────────────────────────────────────────── */
   .cin-hero__scrim {
     position: absolute;
     inset: 0;
+    z-index: 2;
     background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--bg-deep) 18%, transparent) 0%,
-      color-mix(in srgb, var(--bg-deep) 28%, transparent) 40%,
-      color-mix(in srgb, var(--bg-deep) 78%, transparent) 100%
+      178deg,
+      color-mix(in srgb, var(--bg-deep) 8%, transparent) 0%,
+      color-mix(in srgb, var(--bg-deep) 20%, transparent) 38%,
+      color-mix(in srgb, var(--bg-deep) 82%, transparent) 100%
     );
+    pointer-events: none;
   }
 
-  /* Content positioned at the bottom */
+  /* ── ④ Geometric accent (rotated square frame, top-right) ───────────────── */
+  .cin-hero__geo {
+    position: absolute;
+    top: -8%;
+    right: -6%;
+    width: clamp(220px, 34vw, 520px);
+    aspect-ratio: 1 / 1;
+    border: 2px solid color-mix(in srgb, var(--brand) 32%, transparent);
+    border-radius: var(--radius-lg);
+    transform: rotate(16deg);
+    z-index: 3;
+    pointer-events: none;
+    background: color-mix(in srgb, var(--brand) 5%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cin-hero__geo { display: none; }
+  }
+
+  /* ── ⑤ Content layer ─────────────────────────────────────────────────────── */
   .cin-hero__inner {
+    position: relative;
+    z-index: 4;
     padding-block: clamp(2.5rem, 6vw, 4.5rem);
-    max-width: 760px;
     width: 100%;
+    max-width: var(--maxw);
   }
 
-  .cin-hero__copy {
-    /* data-reveal handles initial opacity/transform */
+  /* ── Trust badge (floating, top-left of copy block) ─────────────────────── */
+  .cin-hero__badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    background: var(--brand);
+    color: var(--brand-contrast);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    min-width: 68px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    /* Slight left-offset to break out of the copy column */
+    left: -0.5rem;
+  }
+  .cin-hero__badge-year {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: var(--fw-display);
+    line-height: 1;
+  }
+  .cin-hero__badge-label {
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+  }
+  .cin-hero__badge-trust {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.75;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
   }
 
-  /* Eyebrow */
+  /* ── Eyebrow ─────────────────────────────────────────────────────────────── */
   .cin-hero__eyebrow {
     display: block;
     font-family: var(--font-body);
@@ -108,83 +223,118 @@ const eyebrow = [established, area].filter(Boolean).join(' · ');
     font-weight: var(--fw-bold);
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--brand) 60%, #fff 40%);
-    margin: 0 0 var(--grid-gap);
+    color: color-mix(in srgb, var(--brand) 55%, #fff 45%);
+    margin: 0 0 0.9rem;
   }
 
-  /* Headline */
+  /* ── Oversized headline ──────────────────────────────────────────────────── */
   .cin-hero__title {
     font-family: var(--font-display);
     font-weight: var(--fw-display);
-    font-size: var(--step-5);
+    font-size: clamp(2.8rem, 6.5vw, 5.6rem);
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-display);
     color: var(--text-on-dark);
     margin: 0 0 1rem;
-    text-shadow: 0 2px 24px color-mix(in srgb, var(--bg-deep) 40%, transparent);
+    text-shadow: 0 2px 32px color-mix(in srgb, var(--bg-deep) 50%, transparent);
+    max-width: 18ch;
   }
 
-  /* Subheading */
+  /* ── Subheading ──────────────────────────────────────────────────────────── */
   .cin-hero__sub {
     font-family: var(--font-body);
     font-size: var(--step-1);
     line-height: var(--leading-body);
-    color: color-mix(in srgb, var(--text-on-dark) 90%, transparent);
-    max-width: 56ch;
-    margin: 0 0 1.75rem;
+    color: color-mix(in srgb, var(--text-on-dark) 88%, transparent);
+    max-width: 52ch;
+    margin: 0 0 1.85rem;
   }
 
-  /* CTA row */
+  /* ── CTA cluster ─────────────────────────────────────────────────────────── */
   .cin-hero__actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1rem 1.5rem;
+    gap: 1rem 1.75rem;
   }
 
-  /* Phone link styled for dark background */
+  .cin-hero__cta {
+    font-size: var(--step-0);
+    padding: 0.9em 1.8em;
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--brand) 45%, transparent);
+  }
+
   .cin-hero__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     font-family: var(--font-body);
     font-weight: var(--fw-bold);
     font-size: var(--step-0);
     color: var(--text-on-dark);
     text-decoration: none;
     border-bottom: var(--border-weight) solid
-      color-mix(in srgb, var(--text-on-dark) 50%, transparent);
+      color-mix(in srgb, var(--text-on-dark) 45%, transparent);
     padding-bottom: 2px;
-    transition: border-color var(--motion-fade) var(--motion-ease);
+    transition: border-color var(--motion-fade) var(--motion-ease),
+                color var(--motion-fade) var(--motion-ease);
   }
   .cin-hero__phone:hover {
     text-decoration: none;
     border-color: var(--text-on-dark);
+    color: #fff;
   }
   .cin-hero__phone:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 3px;
     border-radius: 2px;
   }
+  .cin-hero__phone-icon {
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+  }
 
-  /* Highlights meta bar */
-  .cin-hero__meta {
+  /* ── Highlights strip ────────────────────────────────────────────────────── */
+  .cin-hero__highlights {
+    list-style: none;
     margin: 2rem 0 0;
-    padding-top: 1.5rem;
+    padding: 1.4rem 0 0;
     border-top: var(--border-weight) solid
-      color-mix(in srgb, var(--text-on-dark) 22%, transparent);
+      color-mix(in srgb, var(--text-on-dark) 20%, transparent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2rem;
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: var(--fw-bold);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--text-on-dark) 80%, transparent);
+    color: color-mix(in srgb, var(--text-on-dark) 78%, transparent);
   }
 
-  /* Mobile */
+  /* ── Mobile ──────────────────────────────────────────────────────────────── */
   @media (max-width: 640px) {
-    .cin-hero {
-      min-height: 75vh;
+    .cin-hero { min-height: 78vh; }
+    .cin-hero__title { font-size: clamp(2.2rem, 9vw, 3.2rem); max-width: none; }
+    .cin-hero__badge { left: 0; }
+    .cin-hero__geo {
+      width: 55vw;
+      right: -18%;
+      top: -5%;
     }
-    .cin-hero__title {
-      font-size: var(--step-4);
-    }
+  }
+
+  /* ── Archetype-specific accent tweaks ───────────────────────────────────── */
+  [data-archetype="editorial"] .cin-hero__geo {
+    border-width: 1px;
+    transform: rotate(0deg);
+    border-radius: 0;
+  }
+  [data-archetype="utility"] .cin-hero__mesh {
+    opacity: 0.7;
+  }
+  [data-archetype="magazine"] .cin-hero__title {
+    font-size: clamp(3rem, 7vw, 6.4rem);
   }
 </style>

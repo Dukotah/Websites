@@ -4,6 +4,7 @@ import type { ProspectConfig } from '../types';
 import { resolveArtDirection } from '../lib/art-direction';
 import { composePage } from '../lib/compose';
 import { scoreProspect } from '../lib/score';
+import { scoreUniqueness } from '../lib/uniqueness';
 
 // Internal dashboard of every demo — YOUR view, not prospect-facing. It scores
 // each demo (spec §10) so you can tell a genuinely strong, unique site from a
@@ -13,14 +14,19 @@ const modules = import.meta.glob<ProspectConfig>('../data/prospects/*.json', {
   import: 'default',
 });
 
-const prospects = Object.entries(modules)
-  .map(([path, config]) => {
-    const slug = path.split('/').pop()!.replace(/\.json$/, '');
-    const ad = resolveArtDirection(config);
-    const plan = composePage(config, ad);
-    const s = scoreProspect(config, ad, plan);
-    return { slug, config, ad, plan, ...s };
-  })
+const base = Object.entries(modules).map(([path, config]) => {
+  const slug = path.split('/').pop()!.replace(/\.json$/, '');
+  const ad = resolveArtDirection(config);
+  const plan = composePage(config, ad);
+  const s = scoreProspect(config, ad, plan);
+  return { slug, config, ad, plan, ...s };
+});
+
+// Distinctiveness vs every other site — flags near-duplicate designs.
+const uniq = scoreUniqueness(base.map(({ slug, ad, plan }) => ({ slug, ad, plan })));
+
+const prospects = base
+  .map((p) => ({ ...p, uniq: uniq.get(p.slug) }))
   // Worst score first — the ones needing work surface to the top.
   .sort((a, b) => a.score - b.score);
 
@@ -62,7 +68,7 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
 
       <ul class="grid">
         {
-          prospects.map(({ slug, config, ad, score, grade, flags }) => (
+          prospects.map(({ slug, config, ad, score, grade, flags, uniq }) => (
             <li class="card" style={`--spine:${ad.palette.brand}`}>
               <div class="card__body">
                 <div class="card__top">
@@ -81,7 +87,7 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
                   <span class="identity__tags">
                     <code>{ad.fontPairing.mood}</code>
                     <code>{ad.shape}</code>
-                    <code>{ad.category}</code>
+                    <code>{ad.archetype}</code>
                   </span>
                 </div>
 
@@ -89,6 +95,14 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
                   <span class={`scorebar__fill grade--${grade}`} style={`width:${score}%`} />
                   <span class="scorebar__num">{score}</span>
                 </div>
+
+                {uniq && (
+                  <p class={`uniqline${uniq.score < 55 ? ' uniqline--warn' : ''}`}>
+                    {uniq.score >= 55
+                      ? `Distinct ${uniq.score}/100`
+                      : `Distinct ${uniq.score}/100 — looks like ${uniq.nearest.slug} (shares ${uniq.nearest.sharedTraits.join(', ')})`}
+                  </p>
+                )}
 
                 {flags.length > 0 && (
                   <ul class="card__flags">

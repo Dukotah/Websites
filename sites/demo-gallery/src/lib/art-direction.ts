@@ -17,6 +17,19 @@ export type ShapeFamily = 'soft' | 'sharp' | 'editorial' | 'rounded-pill' | 'fra
 export type MotionLevel = 'none' | 'subtle' | 'expressive';
 export type Density = 'compact' | 'standard' | 'spacious';
 export type NeutralTemp = 'warm' | 'cool';
+export type Archetype = 'classic' | 'editorial' | 'utility' | 'magazine';
+
+/** Page architecture per category (honored unless config.artDirection.archetype pins one). */
+const ARCHETYPE_BY_CAT: Record<string, Archetype> = {
+  winery: 'editorial',
+  salon: 'editorial',
+  cafe: 'editorial',
+  tattoo: 'editorial',
+  landscaping: 'editorial',
+  towing: 'utility',
+  plumbing: 'utility',
+  'auto-repair': 'utility',
+};
 
 export interface ArtDirection {
   /** stable slug-derived seed driving all otherwise-random choices */
@@ -30,6 +43,7 @@ export interface ArtDirection {
   shape: ShapeFamily;
   motion: MotionLevel;
   density: Density;
+  archetype: Archetype;
   neutralTemp: NeutralTemp;
   /** carry-through of explicit token overrides for tokens.ts to apply last */
   tokenOverrides?: TokenOverrides;
@@ -204,6 +218,8 @@ export function resolveArtDirection(config: ProspectConfig, slug?: string): ArtD
   const shape = pickShape(category, seed, ad.shape as ShapeFamily | undefined);
   const motion = pickMotion(category, seed, ad.motion as MotionLevel | undefined);
   const density = (ad.density as Density | undefined) ?? densityForFont(fontPairing, seed);
+  const archetype: Archetype =
+    (ad.archetype as Archetype | undefined) ?? ARCHETYPE_BY_CAT[category] ?? 'classic';
 
   return {
     seed,
@@ -215,6 +231,7 @@ export function resolveArtDirection(config: ProspectConfig, slug?: string): ArtD
     shape,
     motion,
     density,
+    archetype,
     neutralTemp,
     tokenOverrides: config.tokens,
   };
