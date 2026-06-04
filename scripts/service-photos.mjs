@@ -33,11 +33,13 @@ const KW = {
   salon: ['salon', 'hair', 'spa', 'barber', 'nail'],
   landscaping: ['landscap', 'lawn', 'garden', 'tree'],
   tattoo: ['tattoo', 'pierc', 'ink'],
+  marina: ['marina', 'boat', 'kayak', 'pontoon', 'jet ski', 'lake'],
 };
 // A photogenic generic term per category, used to bias the search.
 const CAT_TERM = {
   winery: 'winery', cafe: 'cafe', towing: 'truck', plumbing: 'plumbing',
   'auto-repair': 'auto repair', salon: 'salon', landscaping: 'garden', tattoo: 'tattoo',
+  marina: 'boat lake',
 };
 
 function inferCategory(config) {

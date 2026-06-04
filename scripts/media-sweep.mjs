@@ -49,6 +49,7 @@ const CATEGORY_QUERIES = {
   salon: ['hair salon interior', 'salon styling chair', 'beauty salon'],
   landscaping: ['landscaped garden yard', 'lawn care mowing', 'garden design plants'],
   tattoo: ['tattoo studio interior', 'tattoo artist working', 'tattoo machine art'],
+  marina: ['lake marina boats', 'pontoon boat lake', 'kayak lake sunset', 'boat dock water'],
   default: ['small business storefront', 'main street shop'],
 };
 
@@ -62,6 +63,7 @@ const KW = {
   salon: ['salon', 'hair', 'spa', 'barber', 'nail', 'lash'],
   landscaping: ['landscap', 'lawn', 'garden', 'tree', 'irrigation'],
   tattoo: ['tattoo', 'pierc', 'ink', 'body art'],
+  marina: ['marina', 'boat', 'kayak', 'pontoon', 'jet ski', 'watersport', 'lake'],
 };
 
 const GENERIC_EMAIL = /@(gmail|yahoo|hotmail|outlook|aol|icloud|proton|me)\./i;
