@@ -132,16 +132,25 @@ const trustLine = highlights[0] ?? '';
   }
 
   /* ── ③ Legibility scrim ──────────────────────────────────────────────────── */
+  /* Directional scrim: heavier on the lower-left where the copy sits, fading to
+     clear over the photo's center/right so the image detail is preserved (the
+     award-site move — legible type without flattening the photograph). */
   .cin-hero__scrim {
     position: absolute;
     inset: 0;
     z-index: 2;
-    background: linear-gradient(
-      178deg,
-      color-mix(in srgb, var(--bg-deep) 8%, transparent) 0%,
-      color-mix(in srgb, var(--bg-deep) 20%, transparent) 38%,
-      color-mix(in srgb, var(--bg-deep) 82%, transparent) 100%
-    );
+    background:
+      linear-gradient(
+        102deg,
+        color-mix(in srgb, var(--bg-deep) 72%, transparent) 0%,
+        color-mix(in srgb, var(--bg-deep) 34%, transparent) 40%,
+        transparent 72%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 42%,
+        color-mix(in srgb, var(--bg-deep) 58%, transparent) 100%
+      );
     pointer-events: none;
   }
 

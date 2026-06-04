@@ -1,0 +1,502 @@
+{
+  "summary": "Tear down best-in-class local-business sites per category and extract concrete, implementable design patterns to reimplement in our token-driven Astro components",
+  "agentCount": 5,
+  "logs": [],
+  "result": {
+    "count": 5,
+    "briefs": [
+      {
+        "category": "Wineries, Vineyards & Tasting Rooms (Premium/Estate)",
+        "references": [
+          {
+            "name": "Pasqua Wines",
+            "url": "https://pasqua.it",
+            "why": "Awwwards SOTM June 2023 by Adoratorio Studio — trompe-l'oeil WebGL villa, Acid Grotesk + Wulkan Display pairing, chapter-based narrative architecture, sound-on toggle, and the terracotta/earth-tone restraint that feels gallery-grade."
+          },
+          {
+            "name": "Post Familiar Wine",
+            "url": "https://postfamiliar.com",
+            "why": "Awwwards SOTD + Developer Award Jan 2024 — product-as-hero imagery with layered overlapping bottles, maximalist whitespace, bold type juxtaposition, and a product-centric editorial grid that reads like a design magazine."
+          },
+          {
+            "name": "Ashes & Diamonds (by FINE)",
+            "url": "https://ashesdiamonds.com",
+            "why": "Gold Davey Award — strict B&W palette activated only on hover, mid-century modern architecture translated to web, vineyard modals for concise info, and full-page mobile menu takeover; simplicity so disciplined it reads as luxury."
+          },
+          {
+            "name": "BRAND Napa Valley (by FINE)",
+            "url": "https://brandnapavalley.com",
+            "why": "Best Beverage Website 2025 WebAwards + Davey Gold — fashion/tech hybrid aesthetic, manifesto-driven copy replacing tasting notes, oversized brand identity as graphic element, smooth transitions and motion as brand voice."
+          },
+          {
+            "name": "Zorah Wines",
+            "url": "https://zorahwines.com",
+            "why": "Awwwards Honorable Mention — warm gold (#CFA556) and taupe (#7C6F63) palette referencing Armenian heritage, numbered sequential narrative sections (01-08), poetic editorial language as section punctuation."
+          },
+          {
+            "name": "Jordan Winery",
+            "url": "https://jordanwinery.com",
+            "why": "Narrative-first hero (no product push above the fold), golden-hour photography with consistent warm grade across all imagery, editorial magazine-style alternating text/image sections, aspirational hospitality language as primary CTA."
+          },
+          {
+            "name": "Olivier Bernstein",
+            "url": "https://olivierbernstein.com",
+            "why": "Burgundy estate benchmark — museum/gallery vernacular (dramatic chiaroscuro photography, literary Proust quote closure), symmetrical layouts with generous gallery-like margins, numbered chapter structure with poetic descriptors as section introductions."
+          },
+          {
+            "name": "Duckhorn Vineyards",
+            "url": "https://duckhorn.com",
+            "why": "Staggered/overlapping text-image blocks for featured products, small credibility badges (93-point ratings, anniversary seals) placed with restraint, alternating full-width imagery and content blocks for breathing rhythm, heritage narrative anchored in hero."
+          }
+        ],
+        "heroPatterns": [
+          "Full-bleed cinematic still with display serif headline broken across 2-3 lines in a ragged-right, left-anchored composition — headline starts mid-viewport vertically, not centered, so below-fold content bleeds into view on load. Type sits directly on image using a subtle radial gradient scrim (transparent center → 40% black at edges) rather than a flat overlay, preserving photographic detail. CTA is a single ghost/outline button with generous padding, not a filled pill.",
+          "Editorial split-hero: left 55% is a full-height cropped portrait-orientation vineyard or winemaker photograph; right 45% is deep --bg-deep background carrying the headline in a condensed-weight display serif at --step-5 to --step-6, sub-copy at --step-0, and a text-link CTA with a thin underscore animation on hover. No decorative border between columns — the photo edge IS the dividing line. This asymmetry signals agency work immediately.",
+          "Oversized typographic hero: the estate name or a single evocative phrase (e.g., 'Six Thousand Years') rendered at 12–18vw in a high-contrast serif (Wulkan Display, Canela, or IvyPresto Headline), positioned to overflow the viewport edge on one side. A secondary image fades in on scroll beneath the text, creating a text-over-image reveal. Background is parchment/warm off-white --bg. This is the BRAND Napa / Post Familiar move.",
+          "Chapter/narrative opener: hero is mostly dark (--bg-deep near-black or deep earth tone) with a single centered crest, monogram, or minimal wine bottle illustration at 30% viewport height. Below it, a one-sentence manifesto in tracked small-caps sans-serif at --step-1. Parallax scroll peels this away to reveal the first full-bleed vineyard photograph. Used by Zorah, Olivier Bernstein, and Pasqua — signals museum-grade positioning.",
+          "Dual-panel hero with asymmetric overlap: left panel is a portrait photo of the winemaker or hands in soil (40vw wide, full viewport height), right panel carries brand messaging. The headline TYPE extends from the right panel leftward, overlapping the photograph by 8–12% of viewport width using a negative margin or absolute position. The overlap is the expensive move — it breaks the grid in a controlled way that templates never do."
+        ],
+        "sectionPatterns": [
+          "Alternating editorial rows (checkerboard with restraint): image-right/text-left then image-left/text-right, but images are NOT equal-width columns. Use a 60/40 or 65/35 split, not 50/50. Text columns have generous left or right padding (min 10vw from the edge), creating a column-within-a-column feel. Section-level spacing between rows is --space-3xl minimum. This is Jordan Winery's signature rhythm.",
+          "Numbered chapter navigation: sections prefixed with a 2-digit counter (01, 02, 03...) in small tracked sans-serif at --step--1, positioned above the section headline in --accent color. The number acts as a typographic divider rather than a decorative element. Pairs with a sticky side-nav or scroll-progress indicator on desktop (a thin vertical line with a traveling dot).",
+          "Product-as-art feature block: a single bottle or wine glass rendered at oversized scale (60–80vh tall) centered against a full-bleed --surface background, with tasting notes arranged in a 2-column micro-type layout beneath it. No box shadow on the bottle image — instead use a soft diffused drop-shadow via filter:drop-shadow to keep it floating. Ratings badges (Decanter, Wine Spectator scores) appear as small circular SVG stamps, NOT inline text.",
+          "Terroir/estate map section: an illustrated SVG or high-contrast B&W aerial photograph of the vineyard parcels, with hover-activated tooltips (grape variety, block name, elevation). This is a marquee 'we spent money on this' section. Implement with CSS pointer-events on SVG paths + absolute-positioned tooltip cards. Color the active parcel with --accent at 60% opacity.",
+          "Dark atmosphere section: a full-width section with --bg-deep background (near-black or deep burgundy), a single centered quote or philosophy statement in italic display serif at --step-3 to --step-4, and a thin horizontal rule in --accent above and below. This acts as a palate cleanser between content-heavy sections. Optional: add a 5% noise/grain overlay via an SVG feTurbulence pseudo-element to add analog warmth.",
+          "Social proof with editorial restraint: press mentions displayed as a horizontal scroll ticker (marquine) of logo marks in --text at 60% opacity, OR as a stacked list of pull-quotes in italic serif with the publication name in tracked small-caps below. No star ratings. No testimonial carousels. This signals confidence, not insecurity.",
+          "Immersive visit/experience section: full-width video loop (muted, autoplay, no controls visible) of a tasting room or harvest scene, with text content overlaid using a centered content card that has --surface background at 85% opacity and --radius-lg border radius. The card floats on the video, casting no box-shadow — the slight transparency is the depth cue.",
+          "Wine club / membership section: dark --bg-deep section with a single centered headline ('Become a member' or estate-specific equivalent), followed by 2–3 benefit statements in icon + text pairs where the icons are minimal line drawings (not filled icons). CTA is a full-width button at the section's max-width, not the viewport width — gives it a contained, considered feel. Della Vite and Lightfoot & Wolfville use this effectively.",
+          "Footer as terroir statement: footer carries the winery's founding year, appellation, and a 1-sentence philosophy statement in italic serif body copy — positioned above the legal/nav links. Footer background uses --bg-deep with --text at 70% opacity. Winery address is formatted in tracked small-caps. Social icons are bare SVG marks at 16px, no fill on hover — just opacity change to 100%."
+        ],
+        "typography": [
+          "Primary display: Wulkan Display or Canela (CSS: font-family var(--font-display)) — high-contrast didone-influenced serifs with dramatic thick/thin stroke variation that reads 'Bordeaux chateau label' digitally. These are the go-to for hero headlines at --step-5 to --step-7 (clamp from ~48px to 96px+). Freight Display Pro and IvyPresto Headline are accessible fallbacks with similar contrast ratios.",
+          "Body/secondary: Acid Grotesk, Commuters Sans, or Graphik — geometric-to-humanist grotesques that provide maximum contrast against the display serif without feeling cold. Set body at --step-0 (clamp 16px–18px), line-height 1.6–1.7, letter-spacing normal. Captions and metadata use --step--1 at letter-spacing 0.08em tracked.",
+          "Small-caps utility: all section labels, category tags, vineyard names, and navigation items should use font-variant-small-caps or a true small-caps cut (Playfair Display SC, Garamond Premier Pro) at letter-spacing 0.12–0.15em. This is the single most distinctive 'wine label' move that separates premium from template — templates never do true small-caps.",
+          "Type scale discipline: use only 4–5 stops from the fluid type scale in any one page. The expensive feeling comes from RESTRAINT in scale variation combined with BOLDNESS at the largest size. A common premium pattern: --step-6 display headline, --step-1 sub-headline or label, --step-0 body, --step--1 caption/metadata. Never use --step-2 through --step-4 for body content.",
+          "Headline weight contrast: pair a Light (300) or Regular (400) weight display serif for hero headlines with Bold (700) or Black (900) weight for a pulled quote or feature callout elsewhere on the same page. This weight reversal is an editorial magazine move. The Jordan Winery and Lightfoot & Wolfville approach — hero in Light, feature pull-quote in Bold.",
+          "Headline line-length control: premium winery headlines break deliberately at 2–3 words per line, creating a vertical cascade. Implement with max-width: 10ch on the container, or use manual <br> tags with aria-hidden. Never let a headline run full-column width — it reads as template-generated."
+        ],
+        "color": [
+          "Parchment/warm-off-white as --bg: #F5F0E8 to #FAF7F2 range — not pure white. This is the single most impactful color swap from template-to-premium. Pure white reads clinical; warm off-white reads aged paper, linen, estate stationery. Pair with --text at #1A1512 (near-black with warm undertone, never pure #000000).",
+          "Deep earth tones for --bg-deep: either near-black with warm undertone (#0F0C09) for dramatic dark sections, deep burgundy (#3D1A1A to #2A0F0F) for wine-adjacent atmosphere, or a muted forest/slate (#1C2B1E) for cool-climate/biodynamic estates. The choice communicates terroir — use dark burgundy for Napa/Bordeaux feel, dark green for Oregon/Burgundy/biodynamic.",
+          "Restrained accent in --accent: warm gold (#C9A84C to #D4A853), terracotta (#C1380F, the Pasqua exact value), dusty sage (#7A8C6E), or dusty rose/blush (#C4877A). The key is DESATURATION — premium accents are never saturated. They should feel like natural pigments, not screen colors. Zorah's gold (#CFA556) and taupe (#7C6F63) pairing is a gold standard.",
+          "Color as state only (Ashes & Diamonds move): build the entire site in a 2-color system (warm off-white + near-black) and reserve --accent EXCLUSIVELY for hover states, active navigation, and micro-interactions. This communicates extraordinary confidence. The color reveal becomes a reward, not decoration.",
+          "Photography as palette anchor: lock all section backgrounds to desaturated versions of the most dominant hue in each section's hero photograph. For a golden-hour vineyard photo, push --surface to a warm sand. For a cellar photograph, push to deep charcoal. The page should feel like it was color-sampled from the photography, not the other way around.",
+          "Dark sections use noise overlay: for any --bg-deep section, apply a ::before pseudo-element with an SVG feTurbulence filter at 3–5% opacity to add grain/film noise. Implementation: background-image: url(\"data:image/svg+xml,...\") with feColorMatrix to generate monochrome noise. This adds tactile warmth and prevents flat digital feel at zero performance cost."
+        ],
+        "motion": [
+          "Scroll-triggered fade-up for text blocks: translate3d(0, 24px, 0) + opacity 0 → translate3d(0, 0, 0) + opacity 1 over 600ms with ease-out cubic-bezier(0.22, 1, 0.36, 1). Stagger child elements by 80ms. This is the most universally used premium scroll effect — subtle enough to respect prefers-reduced-motion when wrapped in a media query check.",
+          "Image parallax at 0.15–0.2 speed ratio: background images in hero sections scroll at 15–20% the speed of the viewport scroll. Implement with CSS transform: translateY() updated on scroll via a small JS observer (not background-attachment: fixed which causes GPU compositing issues on mobile). Disable entirely at <768px.",
+          "Horizontal image reveal on scroll: images start clipped (clip-path: inset(0 100% 0 0)) and animate to clip-path: inset(0 0% 0 0) over 800ms as they enter the viewport. The reveal direction matches the reading direction (left-to-right). This is a Duckhorn / Jordan-level move that makes imagery feel revealed rather than loaded.",
+          "Hover: color accent reveal on grayscale elements (Ashes & Diamonds signature move): apply filter: grayscale(100%) to product images, navigation link borders, or icon elements at rest. On hover, transition to filter: grayscale(0%) + a translateY(-4px) lift over 300ms. Pair with the same transition on a border-bottom or underline in --accent color.",
+          "Nav link underline draw: navigation links show a 1px underline in --accent that draws from left to right on hover (width: 0 → 100% via a ::after pseudo-element, transition: width 250ms ease). On mouse-leave, it retracts right to left (transform-origin: right). This is the single most-copied 'editorial site' micro-interaction — but the right-to-left retraction is the detail that elevates it.",
+          "Section entrance sound optional toggle: following the Pasqua pattern, offer a SOUND: ON/OFF toggle in the nav for sites with ambient audio (vineyard ambience, harvest sounds). Implement as a simple checkbox state with CSS-driven label swap, zero JS cost. Even sites that never use audio feel more premium for having considered it."
+        ],
+        "antiGeneric": [
+          "The headline never runs full column width — it has an explicit max-width forcing a 2–3 word-per-line cascade. Templates always let type fill the container; premium sites control the rag deliberately.",
+          "Color accent appears ONLY on interaction states, not as background fills or decorative elements. Templates splash accent color everywhere; premium sites hoard it for hover reveals.",
+          "Section labels and metadata use true small-caps with letter-spacing 0.12em+, not uppercase with letter-spacing. The distinction is visible — small-caps preserve x-height proportions. Templates fake small-caps with text-transform: uppercase at font-size: 0.8em which looks reduced, not refined.",
+          "Bottle/product photography has zero box-shadow — only filter:drop-shadow at very low blur/opacity or no shadow at all. The product floats on the background by color contrast alone. Template sites add hard box-shadows that make bottles look like they're sitting on a shelf.",
+          "The footer carries a philosophy statement or founding year narrative in italic body serif — it's a piece of content, not just legal links. Templates waste the footer on nav repetition.",
+          "Photography is color-graded to a consistent warm or cool grade — golden-hour for Napa/Bordeaux estates, cool misty green for Oregon/Burgundy/cool-climate sites. Template sites mix stock photography with inconsistent white balance and color temperature.",
+          "A noise/grain ::before overlay (3–5% opacity, SVG feTurbulence) is applied to all solid-color section backgrounds to prevent the flat digital look. This single CSS trick adds years of perceived design investment. Template sites have perfectly flat backgrounds.",
+          "The CTA is never a bright filled button in the hero — it's a ghost/outline button or a text-link with an arrow, respecting that the estate does not need to shout. The filled CTA appears only in lower-funnel sections (shop, book, join club) where purchase intent is explicit."
+        ]
+      },
+      {
+        "category": "marinas, lake/boat rentals, outdoor recreation & hospitality destinations",
+        "references": [
+          {
+            "name": "Reverie Safaris",
+            "url": "https://reveriesafaris.com",
+            "why": "Awwwards HM May 2026 — editorial luxury with immersive full-bleed imagery, deep forest-green (#1E392B) + cream (#FBF9F3) palette, Framer/Contentful build. Sets the standard for 'bespoke journey storytelling' applicable to any outdoor destination."
+          },
+          {
+            "name": "Son Daven",
+            "url": "https://sondaven.com/en",
+            "why": "Awwwards HM May 2026 — GSAP + WebGL resort site with preloader counter, scroll-triggered section reveals, parallax mountain imagery, SVG floor plans, and staggered card entrances. Token palette: warm taupe #A89474 / deep brown #2C2824."
+          },
+          {
+            "name": "Sommerro House",
+            "url": "https://sommerrohouse.com",
+            "why": "Siteinspire pick (Bielke&Yang) — full-viewport video hero with tracked Art-Deco serif, alternating 60/40 image-text splits, zero divider lines (whitespace-only section breaks), and 40% reserved emptiness around content as the luxury signal."
+          },
+          {
+            "name": "Piaule Catskill",
+            "url": "https://piaule.com",
+            "why": "Siteinspire pick (Human NYC / Feel) — landscape hotel that weaponizes restraint: gallery-like whitespace, temperature/time metadata in nav, curated sub-page architecture (/cabins /oak-house /spa) signaling specialization over breadth."
+          },
+          {
+            "name": "Four Seasons Yachts",
+            "url": "https://www.fourseasonsyachts.com",
+            "why": "Ultra-premium marine hospitality — deep navy/black + crisp white palette with maritime authority, asymmetric left/right section alternation, panoramic vs portrait imagery ratio contrast, dual-CTA pattern (Explore + Inquire)."
+          },
+          {
+            "name": "Mangusta Yachts",
+            "url": "https://www.mangustayachts.com",
+            "why": "Best-in-class luxury marine brand — monochromatic near-black palette with cream text, all-caps geometric sans, autoplay video hero, nautical-themed motion backgrounds, side-navigation with embedded yacht imagery."
+          },
+          {
+            "name": "My Arbor Hotel",
+            "url": "https://my-arbor.com/en",
+            "why": "Plerdy top pick — forest nature resort with deep green #2D5016 / cream #F5F3F0 palette, diffused golden-hour photography, mixed portrait/landscape aspect ratios for organic feel, poetic microcopy replacing marketing speak."
+          },
+          {
+            "name": "Resplendent Ceylon",
+            "url": "https://www.resplendentceylon.com",
+            "why": "Multi-property nature brand — classic serif (Garamond/Didot-family) with loose tracking, 60/40 asymmetric property cards that alternate sides, horizontal card cascades for journeys, Relais & Chateaux badge credibility."
+          }
+        ],
+        "heroPatterns": [
+          "Full-bleed autoplay video with centered or bottom-left text overlay: nav floats as transparent bar with white logotype; primary headline in large tracked serif or all-caps sans (64–96px / --step-5 to --step-6) with a single short aspirational line ('Where Dreams Roam Wild'); no subtitle clutter. Semi-transparent rgba(0,0,0,0.25) gradient only where text overlaps water/sky. CTA is an understated outlined button or bare text-link with arrow — never a filled pill. Implement via: `<section style='--hero-h: 100svh'>` with `object-fit:cover` video and CSS grid stacking text above.",
+          "Stacked-card hero grid (Here & Away / Piaule pattern): 3 portrait-ratio property cards at slight asymmetric offset fill the viewport — no video needed. Card text anchors bottom-left with property name + one-word location tag in --font-display at --step-2. Background is near-black or deep --bg-deep. On scroll, cards lift with a subtle translateY(-8px) + shadow-increase. Implement as CSS grid with `grid-template-columns: 1.6fr 1fr 1fr` and `mix-blend-mode: multiply` on text overlay.",
+          "Cinematic preloader-to-hero reveal (Son Daven): A 0→100% counter in --font-display increments during asset load, then the hero fades in with a 1.05→1.0 scale ease. Hero itself is full-bleed landscape photo with the tagline split across two lines using SplitText or CSS custom properties for per-word stagger. Creates high anticipation that signals production budget. Implement: CSS `@keyframes counterUp` driving a CSS counter, then `animation-play-state: running` toggled on load complete.",
+          "Heritage-anchor hero with oversize date or founding year: a 4-digit year or season phrase ('Est. 1947' / 'Summer on the Water') floats as a huge near-invisible watermark at --step-7 or larger, 8% opacity, behind the hero headline. Grounds the brand in permanence. Color: var(--brand) at 8% opacity over --bg. Headline sits at --step-5 in --font-display. Used by Bürgenstock ('since 1873') and applicable to any marina with history.",
+          "Split-screen static hero: left half is a 16:9 water/dock photo cropped at an unusual angle (overhead or mast-level); right half is --bg-deep with the headline in --font-display --step-4 left-aligned, a 2-sentence brand positioning paragraph in --font-body at --step-0, and the booking CTA. Dividing line between halves can be 1px var(--accent) or zero (pure juxtaposition). No motion required — the compositional tension does the work.",
+          "Full-bleed dusk/dawn photo hero with an inline weather or tide token: small monospace label (e.g. 'Water temp: 72°F / Wind: 8 kn') rendered in --font-body --step--1 with generous tracking placed above the main headline. Borrowed from Piaule's temperature/time display in nav. Creates place-specific authenticity that stock-photo sites never achieve. Implement as a static token for MVP, progressive-enhanced with a weather API."
+        ],
+        "sectionPatterns": [
+          "60/40 alternating image-text split: section 1 has photo left (60vw max-width, aspect-ratio 4/3, object-fit cover) and text block right (40vw, padded 4rem); section 2 reverses. Text block contains a --step-3 heading in --font-display, 2–3 lines of --step-0 body in --font-body at line-height 1.7, and a bare arrow-link CTA. Gap between sections is 8rem (--space-2xl). No card borders, no shadows — pure whitespace separation. Direct implementation of Resplendent Ceylon / Sommerro pattern.",
+          "Amenity icon-grid with editorial framing: 6 tiles in a 3×2 CSS grid, each containing a minimal SVG icon (32px stroke, var(--text) at 60% opacity), a 2-word label in --font-display --step-1, and a 1-sentence elaboration in --font-body --step--1. Background is var(--surface). Tiles do NOT have borders or cards — just generous 2rem padding and a very light rgba(0,0,0,0.04) hover state. Directly derived from Son Daven's Wellness / Cuisine / Fitness / Art Space block.",
+          "Full-width editorial break: a single sentence in --font-display at --step-4, centered, with 120% line-height and loose tracking (0.02em), spanning the full content width (max 900px). Background shifts to var(--bg-deep) or var(--brand). This 'pull quote section' replaces decorative dividers and forces the reader to pause. Used at Mukul ('feel like the only person on earth') and Piaule. Implement as `<blockquote>` with CSS `font-size: clamp(2rem, 5vw, 4rem)`.",
+          "Horizontal-scroll fleet/cabin carousel with sticky type-selector tabs: tabs (e.g. 'Pontoon' / 'Tritoon' / 'Kayak') pin to the top of the viewport while the card rail scrolls horizontally. Each card shows a 3:2 image, vessel name in --font-display --step-2, capacity + duration as metadata in --font-body --step--1, and price as --step-1. Active tab uses var(--accent) underline, not background fill. Derived from Son Daven apartments carousel. CSS: `position: sticky; top: 0` on tab bar + `overflow-x: scroll; scroll-snap-type: x mandatory` on card rail.",
+          "Social-proof strip with staggered testimonial blocks: 3 full-width quote blocks stacked vertically, each left-indented 20% of viewport. Quote text in italic --font-display --step-1; attribution in small-caps --font-body --step--1 with var(--accent) color. No card boxes, no stars, no headshots — pure typography. Alternating indent direction (20% left, then 10% left, then 30% left) creates organic rhythm. Derived from Reverie Safaris' testimonial treatment.",
+          "Location/context map section: a hand-drawn or minimalist SVG map of the lake/bay with labeled landmarks, paired with a text block listing nearby attractions as distance cards ('Downtown: 12 min by boat'). Each distance card is a small pill or inline item in --font-body --step--1 with a direction arrow SVG. Background var(--bg). Map SVG uses var(--brand) for water fill at 15% opacity and var(--text) for stroke. Derived from Son Daven's Yaremche location section.",
+          "Gallery masonry with numbered pagination: a 2-column asymmetric grid (left col: one tall 2:3 portrait; right col: two stacked 16:9 landscapes) followed by a second 3-column equal grid. Below the grid, a discrete `01 / 16` counter in --font-body --step--1 allows next/prev navigation. No lightbox by default — images link to full-bleed single-image pages. Avoids generic 'photo gallery' template feel.",
+          "Booking widget as editorial element: instead of a box-form widget dropped in the hero, the booking form appears as a full-width section with label text in --font-display --step-3 ('Reserve Your Slip') and input fields rendered as borderless underline inputs on --bg-deep background. Fields: Arrival date / Departure date / Vessel type / Party size. Single 'Check Availability' CTA in var(--accent). This treats the booking step as a designed moment, not a utility widget.",
+          "Story/narrative section with alternating run-on layout: a section titled 'Our Water' or 'The Lake' uses 4 paragraphs in --font-body --step-0, with the first word of each paragraph set in --font-display at --step-3 as a drop-style initial — not a traditional drop cap, but the first word as a block-level visual anchor. Paragraphs have 3rem spacing. Right margin holds a sticky 2:3 portrait photo that changes per paragraph via IntersectionObserver. Derived from Resplendent Ceylon's conservation narrative.",
+          "Dark footer as brand moment: footer background is var(--bg-deep) or near-black. Logo in --font-display --step-3 centered or large-left. Below logo: a 2–3 column grid of links in --font-body --step--1 with 2rem row gap. Bottom strip holds address + marina coordinates in monospace --font-body at --step--2 with very light opacity (40%). No social media icon grid — just text links. A single horizontal rule at 20% opacity separates main footer from the bottom strip. Creates a cinematic closing."
+        ],
+        "typography": [
+          "Display / headline font: Canela (Commercial Type) or Freight Display (GarageFonts) — high-contrast flared serif with ink-trap details. Set at --step-4 through --step-6 for heroes; --step-2 through --step-3 for section headers. Use light (300) or regular (400) weight for elegance — bold Canela reads as fashion, not marina.",
+          "Body font paired with Canela: Graphik (Commercial Type, the designed companion to Canela) at 400/500 weight, or GT America (Grilli Type) as the accessible alternative. Both read cleanly at --step-0 (approx 16–18px fluid) with line-height 1.65–1.75.",
+          "Alternative all-serif pairing for heritage/classic marina tone: Cormorant Garamond (free, Google Fonts) at --step-5+ for display in 300 weight (extreme thin-to-thick contrast reads expensive at large scale) paired with Montserrat at 300/400 for body. Tracking on Cormorant display: 0.03em. Avoid bold Cormorant — it reads as template.",
+          "Monospace accent font for metadata/coordinates/specs: IBM Plex Mono or Space Mono at --step--1, tracking 0.08em. Use for: water temp, vessel specs, marina coordinates, price per hour. The contrast between monospace technical labels and serif editorial headlines is a signature luxury-outdoor move.",
+          "All-caps treatment: reserve for nav items and short (<5 word) labels only. Set at --step--1 with letter-spacing 0.12–0.16em and font-weight 500. Avoid all-caps body copy — it signals template design.",
+          "Fluid type scale (--step- tokens): use a ratio of 1.333 (perfect fourth) with min 320px / max 1440px viewport. This gives: --step--1: clamp(0.75rem, 0.69rem + 0.29vw, 0.94rem); --step-0: clamp(1rem, 0.91rem + 0.39vw, 1.25rem); --step-3: clamp(1.77rem, 1.4rem + 1.85vw, 2.92rem); --step-5: clamp(3.16rem, 2.2rem + 4.8vw, 6.1rem). Implement all heading sizes as var(--step-N) references, never hardcoded px.",
+          "Line-height rhythm: --lh-tight 1.1 (hero display only), --lh-heading 1.25 (section heads), --lh-body 1.7 (paragraphs), --lh-relaxed 1.9 (pull quotes). Never apply --lh-tight below --step-3."
+        ],
+        "color": [
+          "Primary palette archetype for outdoor water/lake: --brand: #1E392B (deep forest/water green, from Reverie Safaris); --accent: #C9A961 (warm gold, dock hardware, sunset); --bg: #FBFAF7 (warm off-white, never pure #fff); --bg-deep: #111410 (near-black with green undertone); --surface: #F0EDE7 (warm gray card surface); --text: #1A1A18 (near-black with slight warmth).",
+          "Alternative palette for classic/heritage marina: --brand: #1A3A5C (navy); --accent: #B8860B (dark goldenrod, brass fittings); --bg: #F8F7F4; --bg-deep: #0D1B2A; --surface: #EEE9E0; --text: #1C1C1C. Used by Four Seasons Yachts / Mangusta.",
+          "Dark-mode / nighttime marina palette: flip --bg to #0C0F0A and --text to #F2EFE8. Use --brand at full saturation on dark. This works as a full dark section for the footer or a hero at dawn/dusk. Never force dark mode site-wide for hospitality — light mode reads more inviting for bookings.",
+          "Accent usage rule: --accent touches no more than 3 UI elements per viewport — CTA buttons, active tab indicators, pull-quote rules, price displays. Everywhere else is --text on --bg or --text on --surface. Oversaturation of accent color is the #1 tell of a cheap template.",
+          "Photography-driven color discipline: every hero and section-split photo should be color-graded to share warmth with --bg (avoid cool blue-filtered stock photos on a warm-cream site). Use CSS `filter: sepia(0.08) saturate(1.1)` as a global fallback on `img` elements to unify mixed-source photography without altering genuine portfolio shots.",
+          "Whitespace as color: treat var(--bg) generously — minimum 5rem (80px) vertical padding on every section, 8rem on hero transitions. The perception of space between sections communicates price tier more reliably than any brand color."
+        ],
+        "motion": [
+          "Section entrance stagger (GSAP ScrollTrigger or CSS @scroll-timeline): as a section enters the viewport, heading translates from translateY(32px) opacity(0) to translateY(0) opacity(1) over 600ms ease-out; body text follows 120ms later; image follows 200ms after that. Stagger per-element, not per-section-all-at-once. Always wrap in `@media (prefers-reduced-motion: no-preference)` — fallback is instant visible.",
+          "Parallax on hero and section-split images: inner `<img>` translates at 40% of scroll speed relative to its container (`transform: translateY(calc(var(--scroll-offset) * 0.4))`). Container has `overflow: hidden`. Only apply to images >= 50vw wide. Use CSS scroll-driven animations (`animation-timeline: scroll()`) where browser support allows, GSAP ScrollTrigger.scrub(1) elsewhere. Never apply to images inside cards — only hero-scale elements.",
+          "Preloader counter reveal: CSS counter animating 0→100 using `animation: counter 1.8s ease-out forwards` with `counter-increment` inside a `@keyframes`. On completion, fire a class swap that runs the hero entrance. Totals ~2.5s before content is visible — acceptable for a premium destination site; do not use for local-business landing pages where time-to-CTA matters more.",
+          "Hover lift on rental/vessel cards: `transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.12)` on `:hover` with `transition: transform 220ms ease, box-shadow 220ms ease`. Do NOT scale — scale on cards reads as interactive toy, not premium. The Y-lift only signals that the card is a distinct surface.",
+          "Text-reveal clip animation for section headers: wrap heading text in a `<span>` with `overflow: hidden` and animate inner span from `translateY(100%)` to `translateY(0)` using IntersectionObserver. Creates 'rising text' effect seen on Son Daven and most Awwwards resort sites. Duration 500ms, easing cubic-bezier(0.25, 0.46, 0.45, 0.94).",
+          "Cursor follower (optional, desktop-only): a 20px circle following mouse at ~80% speed with 150ms ease. Changes to a larger ring (48px, border only) when hovering over photos. Implement with `transform: translate(var(--cx), var(--cy))` on a fixed element driven by mousemove. Gate behind `(pointer: fine)` media query and disable on reduced-motion. Seen on Mangusta, Azimut, most Awwwards SOTD marina/yacht sites.",
+          "Smooth scroll and page transitions: `scroll-behavior: smooth` on `<html>` for same-page anchors. For route changes in Astro: use View Transitions API (`<ViewTransitions />`) with `transition:name` on hero images so they morph between list and detail pages — the photo slides from the rental card to the full detail hero. This is the single highest-impact motion investment for a boat rental site."
+        ],
+        "antiGeneric": [
+          "No hero carousel: every genuine premium site (Piaule, Sommerro, Reverie, Son Daven) uses a single full-bleed hero image or video — never a 3-slide auto-rotating carousel with dot indicators. The carousel is the #1 visual signal of a managed-property template.",
+          "No icon-badge rows: eliminating rows of Font Awesome icons (anchor, wifi, parking, pet-friendly) with centered labels beneath them. Replace with an editorial prose list or the 6-tile grid pattern above with actual photography, not clip art.",
+          "Typography that earns its weight: using a genuine high-contrast display serif (Canela, Cormorant, Freight Display) at the correct light weight — not the bold weight, not a free Playfair Display knockoff set at font-weight 700. The difference is visible at a glance.",
+          "Color restraint that goes past 'coastal': most marina templates default to teal + coral + white with a nautical rope texture. Premium sites use one unexpected deep tone (forest green, near-black brown, navy) as the dominant, with gold or warm cream as the single accent. The rest is whitespace.",
+          "Photography shot for the site, not sourced for the site: the clearest premium tell is imagery with consistent color grading, consistent lighting direction, and a consistent compositional style — overhead dock shots, mast-level water shots, golden-hour reflections — rather than mixed stock photos from different photographers with different color temperatures.",
+          "No 'Book Now' as the first and last word: premium sites name their CTAs with action + destination ('Reserve Your Slip', 'Explore the Fleet', 'Plan Your Day on the Water'). Generic templates use 'Book Now', 'Learn More', 'Click Here' — these read as conversion-first, experience-second.",
+          "Whitespace that feels earned, not accidental: sections separated by 8rem+ vertical space, with no filler content to justify the gap — just intentional breath. Templates fill this space with a testimonials block, a newsletter signup, and a 'Why Choose Us' row. Premium sites leave it empty.",
+          "Booking form as designed section, not embedded widget: dropping an online booking iframe or a styled `<form>` inside a card with rounded corners and a blue submit button signals SaaS tool, not bespoke design. The editorial booking section pattern (full-width, underline inputs, --bg-deep background) is the distinguishing move."
+        ]
+      },
+      {
+        "category": "Towing, Plumbing, HVAC & Home-Services Trades",
+        "references": [
+          {
+            "name": "Goettl Air Conditioning & Plumbing",
+            "url": "https://goettl.com",
+            "why": "50K+ reviews displayed as a weapon, high-production video hero with near-perfect text contrast, premium visual hierarchy that still converts hard"
+          },
+          {
+            "name": "Thiele Heating & Air Conditioning",
+            "url": "https://callthiele.com",
+            "why": "Navy #0b2f43 + gold #c8b64b palette signals luxury-service tier; accordion service menus with hover depth feel bespoke, not template"
+          },
+          {
+            "name": "GEE! Heating and Air",
+            "url": "https://geehvac.com",
+            "why": "Unexpected orange + purple palette breaks every HVAC convention; bold, chunky type hierarchy creates instant shelf differentiation"
+          },
+          {
+            "name": "Carini Home Services",
+            "url": "https://carinihome.com",
+            "why": "Orange diagonal accent shapes behind hero text, staggered image-text alternation, sustainability brand DNA woven into every section — cohesive top to bottom"
+          },
+          {
+            "name": "Medley Heating, Air & Plumbing",
+            "url": "https://callmedley.com",
+            "why": "Dark navy #0f2942 with burnt orange #e85a2b video hero; smooth scroll animations timed to content reveal — the benchmark for dark-theme trades design"
+          },
+          {
+            "name": "Genz-Ryan HVAC & Plumbing",
+            "url": "https://genzryan.com",
+            "why": "Prototypical conversion machine: real-family hero photo, 8K+ Google review count front-and-center, five-step process section, expiring-offer cards, all in a tight red/navy palette"
+          },
+          {
+            "name": "GreenSavers Home Energy",
+            "url": "https://greensavers.com",
+            "why": "Dark atmospheric design on a trades site is rare and immediately premium; data-driven case-study cards with real energy-savings charts are the trust signal the category ignores"
+          },
+          {
+            "name": "Jacobs Heating & Air Conditioning",
+            "url": "https://jacobsheating.com",
+            "why": "SVG custom fan illustrations, community-involvement photography, 70-year heritage woven into copy rhythm — proves restraint and local story beat flashy templates every time"
+          }
+        ],
+        "heroPatterns": [
+          "DARK FULL-BLEED VIDEO OR PHOTO HERO with high-contrast display headline: a near-black or deep-navy background (#0a0e1a or #0f2942) with a full-viewport photo or looping video of a technician or truck at work. A single oversized H1 (clamp(2.5rem, 6vw, 5rem), weight 800–900, tracked tight at -0.03em) sits left-aligned at roughly 55% viewport width. The right 45% is the imagery with a subtle dark gradient bleed into the left column. A single high-contrast CTA button (brand accent, pill or sharp rectangle, min 52px tall) sits below the headline with the phone number as secondary CTA in a smaller weight. This pattern (see Medley, Goettl) reads expensive because the image never fights the text — the type IS the hero.",
+          "ASYMMETRIC SPLIT HERO with diagonal clip-path divider: left half is a deep solid brand color (#brand token), right half is a full-bleed action photograph. A CSS clip-path polygon on the image column cuts a 6–10 degree diagonal across the center seam, so the photo 'bleeds' into the color panel. The H1 sits large in the color panel with a 1–2 line subhead. A small trust cluster (star rating + review count) anchors below the subhead. This avoids the sterile center-aligned look of cheap templates and creates perceived depth. Implement with a two-column CSS grid; the clip-path is a single `clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%)` on the image wrapper.",
+          "BRAND-COLOR FULL-BLEED HERO WITH OVERSIZED BACKGROUND NUMERAL OR WORD: the hero background is a solid brand color or very dark surface, and behind the headline a massive semi-transparent word (e.g., 'FAST', 'COLD', 'FIXED') or a 3-digit year ('1978') sits at ~25vw font-size, opacity 0.06–0.10, serving as texture. The actual headline and subhead sit in front at normal z-index. A branded service truck or technician cutout PNG (no background) is positioned right-of-center at full hero height. This gives a poster/editorial feel while keeping message clarity. Used by Bear's Plumbing and Tundra HVAC variants. Implement using position:absolute for the background numeral and a transparent-background PNG for the cutout.",
+          "EDITORIAL FULL-WIDTH HERO with tall type and a thin horizontal rule: no imagery at all in the hero (or a very dim background texture). The headline is a two-line stack at ~7vw each line, weight 900, with the second line using a contrasting --accent color for the key word (e.g., 'We Fix <span style=color:var(--accent)>Everything</span>'). A 1px horizontal rule (--accent) spans the full width below the headline. Then a three-column trust bar immediately below: icon + stat + label (e.g., '24/7 Emergency | 4.9 Stars | Since 1983'). This type-first approach signals agency craft because it trusts the words. Implement with a grid of `1fr` hero + `auto` trust bar, using --step-5 or --step-6 for the headline scale.",
+          "LARGE HERO WITH INTEGRATED ABOVE-FOLD BOOKING WIDGET: the hero is full-width dark/brand-colored, with H1 left-aligned at ~50% width. The right column (or bottom third on mobile) holds a compact 3–4 field booking form styled as a card with a light surface (#fff or --surface), rounded corners (--radius-lg), and a heavy drop shadow (--shadow-lg). The form headline is small-caps, 0.75rem, --accent color: 'Get a free quote in 60 seconds'. This eliminates the scroll-to-convert friction and is the single highest-ROI hero pattern in this category. Seen on Dallas Plumbing, Western Rooter. Token mapping: form card uses --surface, --shadow-lg, --radius-md; CTA button uses --brand on --accent text."
+        ],
+        "sectionPatterns": [
+          "THREE-PILLAR TRUST BAR immediately below hero (not in footer): a full-width band using --bg-deep or a 5% tint of --brand as background, containing three columns each with an icon (outline style, --accent color, 28–32px), a bold number or short phrase in --step-2 weight 700 (e.g., '4.9 Stars', '24/7', 'Since 1978'), and a 1-line label in --step--1. This appears on Genz-Ryan, Goettl, and GreenSavers. Crucially it must be above the scroll-fold on desktop. Token use: --bg-deep background, --accent icons, --step-2 stat numbers.",
+          "DIAGONAL OR SKEWED SECTION BREAK between sections: instead of a flat horizontal border, use `clip-path: polygon(0 0, 100% 4vw, 100% 100%, 0 100%)` or a matching negative clip on the next section to create a 3–5 degree slope. The skew is the ONLY decoration — no drop shadows, no gradients. Alternate between --bg and --bg-deep sections using this clip, so the page has visual movement without busyness. Thiele, Heath Mechanical, and Trademark all use this. Implement as a single CSS custom property `--section-skew` applied to a `::before` pseudo on section wrappers.",
+          "SERVICE CARD GRID with icon, bold service name, one-sentence benefit, and hover reveal: a 3- or 4-column grid (collapses to 2 on tablet, 1 on mobile) of cards using --surface background, --radius-md, --shadow-sm. Each card has a line icon (SVG, --accent stroke), service name in --step-1 weight 700, one sentence of copy, and a 'Learn more →' link. On hover: the card background transitions to --brand, icon and text invert to white over 200ms (use `transition: background var(--motion-quick)`). This pattern is used by virtually every premium site; the differentiator is the tight 16px padding, the single-sentence copy discipline, and the animated hover that feels tactile.",
+          "BEFORE/AFTER or PROOF GALLERY section with dark background and constrained image grid: a --bg-deep background section titled 'Our Work' or 'Real Results' in large left-aligned type. Below it, a CSS grid of 3–4 columns of project photos with no border radius and 2px --accent color borders on hover. On mobile, horizontally scrollable (overflow-x: scroll, snap-type: x mandatory). No lightbox complexity — link cards to service pages. This pattern (Bradham Brothers, Command Comfort) signals real work over stock photography.",
+          "SOCIAL PROOF WALL with alternating card sizes: instead of a basic slider, use a CSS masonry or auto-fill grid of review cards at different heights. Cards use --surface background, a 5-star icon row in --accent, reviewer name in weight 600, and the review text in --step--1 line-height 1.6. One card per row on mobile, 2–3 staggered on desktop. The size variation (some cards taller due to longer reviews) signals authenticity — a real review collection, not a curated 3-quote slider. Reference: Goettl (50K reviews), Genz-Ryan (8K reviews).",
+          "NUMBERED PROCESS SECTION (how it works): a horizontal timeline on desktop, vertical stack on mobile. Each step has an oversized numeral (--step-5, weight 900, color --brand at 15% opacity as a background element) with the step title in --step-1 weight 700 above it and 2–3 lines of copy. A thin horizontal line (1px --accent) connects the numerals on desktop. This pattern destroys anxiety about 'what happens next' and appears on Genz-Ryan ('Easy-Peasy Process'), Just Right, and Stott HVAC. Implement: the giant numeral is `position:absolute` inside a `position:relative` step card, rendered in --brand color at opacity 0.12.",
+          "DARK TESTIMONIAL QUOTE SECTION with large pull-quote and reviewer photo: a --bg-deep or --brand background section where a single featured testimonial is displayed at editorial scale — the quote mark is an SVG at 80px in --accent, the quote text itself is --step-2 or --step-3 italic weight 400, the reviewer name and job title are --step--1 uppercase tracked wide. A circular reviewer photo (60–80px, --radius-full) sits to the left of or above the name. This elevated single-quote treatment (vs. a slider of tiny quotes) reads premium. Below it, a row of 3–5 micro-quotes in cards can follow at smaller scale. Reference: editorial agency sites applied to home services.",
+          "EMERGENCY / URGENCY STICKY HEADER BAND: a 40–48px tall announcement bar pinned to the top of the viewport (above the main nav) in --brand or --accent background with white text: '24/7 Emergency Service — Call Now: [number]' with a pulsing dot (2px circle, CSS animation: pulse 1.5s infinite) to the left of 'Emergency'. On scroll past 200px, this bar slides up out of view (transition: transform 300ms ease) so it doesn't permanently eat viewport. Seen on 911 HVAC, Same Day Heating. CSS: `position: fixed; top: 0; z-index: 1000; transform: translateY(0); transition: transform 0.3s;` toggled with a JS scroll listener.",
+          "CERTIFICATIONS AND BRAND-PARTNER LOGOS SECTION styled as editorial credentials: instead of a generic 'Our Partners' footer strip, use a mid-page section with a small-caps heading 'Certified & Trusted By' in --step--1, and the logos displayed in a horizontal scroll on mobile / fixed row on desktop, all converted to grayscale CSS filter with hover returning to full color. Below each logo a one-word credential ('Licensed', 'Insured', 'Elite Dealer'). This pattern (Jacobs Heating, Bradham Brothers with Trane) signals investment and quality. CSS: `img { filter: grayscale(100%); transition: filter 0.2s; } img:hover { filter: none; }`",
+          "LOCATION/SERVICE AREA SECTION using a bold grid of city names over a subtle map background: a --bg-deep section with the heading 'We Serve [City] & Beyond' in large type. Below it, a 4–6 column pill-grid of city/neighborhood names as links (--surface background, --radius-full, 1px --accent border). On hover, pill fills --accent, text inverts. A very low-opacity map image (10–15% opacity) sits as the section background. This builds local SEO AND visually demonstrates scale. Reference: McAtee, Paragon Mechanical. The pill grid is a `flex-wrap: wrap; gap: 8px` container."
+        ],
+        "typography": [
+          "DISPLAY PAIRING — heavy grotesque + humanist sans: use a weight-900 or Black-cut grotesque for all H1–H2 display text (e.g., Outfit Black, Plus Jakarta Sans ExtraBold, or Inter at weight 900 with optical-size tuning). Pair with a lighter humanist sans (Inter Regular 400, DM Sans Regular, or Source Sans 3) for body and UI labels. This pairing — blunt authority up top, readable warmth below — is the visual signature of premium trades sites and avoids the corporate flatness of using one font at all weights.",
+          "TYPE SCALE using --step tokens mapped to fluid clamp() values: H1 display at --step-5 (clamp(2.25rem, 5vw + 1rem, 5rem)), H2 section titles at --step-3 (clamp(1.5rem, 3vw, 2.5rem)), card titles at --step-1 (clamp(1.1rem, 1.5vw, 1.375rem)), body at --step-0 (1rem), labels/captions at --step--1 (0.875rem). The extreme jump between --step-5 heroes and --step-0 body is the type-scale move that reads expensive — cheap sites compress the range, reducing visual tension.",
+          "HEADLINE TRACKING: display headlines (H1, H2) should use letter-spacing: -0.03em to -0.04em. This tight tracking is the single most recognizable signal of professional typography versus template defaults which leave tracking at 0. Body text and UI labels use tracking: 0 to +0.01em. All-caps labels and eyebrow text (category tags above section titles) use tracking: +0.12em to +0.18em in --step--1.",
+          "EYEBROW TEXT PATTERN before section headlines: a small-caps or all-uppercase label at --step--1, weight 600, --accent color, letter-spacing 0.15em, appearing 8–12px above the main H2. Examples: 'WHY CHOOSE US', 'OUR PROCESS', 'TRUSTED BY 4,000+ HOMEOWNERS'. This two-level headline treatment (eyebrow + H2) is used on every premium home-services site and is entirely absent from cheap templates.",
+          "NUMERIC CALLOUTS in a heavier weight than surrounding text: when displaying stats ('8,000+ Reviews', '24/7', 'Since 1945'), set the number itself in the display weight (800–900) at 2–3x the size of the descriptor label below it. The number is in --brand or --accent, the label in a lighter weight --text color. This typographic contrast makes statistics feel monumental rather than decorative."
+        ],
+        "color": [
+          "DARK ANCHOR + WARM ACCENT is the premium signature: a near-black or deep-navy anchor color (--bg-deep: #0a0f1e or #0f2942) used for hero backgrounds, section alternates, and the footer. Paired with a warm accent (--accent: #e85a2b burnt orange, or #f5a623 amber, or a vivid red #d93025) used exclusively for CTAs, icon strokes, eyebrow labels, and hover states. The neutral --bg is #f7f7f5 (off-white, not pure white) and --surface is #ffffff. This avoids the cold blue-on-white template look that signals commodity.",
+          "AVOID PURE PRIMARY BLUE as the only brand color — it is the clearest signal of a low-cost template. Premium trades sites either push the blue to near-black navy (#002e6e, #0b2f43) and add a warm second accent, or abandon blue entirely for a bold unexpected palette (Trademark's pink/navy, GEE's orange/purple). The token --brand should be either the deep navy OR a bold non-blue (forest green, burgundy, slate).",
+          "TWO-SECTION ALTERNATION using --bg and --bg-deep: pages alternate between sections using --bg (#f7f7f5) and --bg-deep (#0a0f1e or a 95% tint of --brand). The alternation should not be every section — group 2–3 related sections in --bg before switching to a single --bg-deep feature section (e.g., testimonials or the process section). Cheap templates alternate every section robotically.",
+          "ACCENT COLOR USED AT MAXIMUM 15–20% of total page real estate: --accent appears only on CTAs, icon strokes, eyebrow labels, hover states, and the occasional section divider line. Never as a section background (except a very narrow announcement bar). This scarcity is what makes the accent 'pop' — GEE!'s orange works because it is not everywhere.",
+          "COLOR ON TYPE as a premium move: the key word in an H1 is set in --accent while the rest of the headline is in --text or white. Example: 'We Fix Everything. <span>Fast.</span>' where 'Fast.' uses --accent. This single-word color accent is a cheap-to-implement move that immediately reads agency-designed. Also used for statistics: the numeral in --accent, the descriptor label in lighter --text."
+        ],
+        "motion": [
+          "SECTION ENTRANCE via scroll-triggered fade-up: each section's main content block starts at `opacity: 0; transform: translateY(24px)` and transitions to `opacity: 1; transform: translateY(0)` over 400ms ease-out when it enters the viewport (IntersectionObserver threshold 0.15). Stagger child elements by 80ms each. This is the single most universally used motion pattern on premium trades sites (Medley, Thelen, Ignite). Implement with a CSS class toggled by IntersectionObserver; honor `prefers-reduced-motion: reduce` by disabling all transforms.",
+          "BUTTON HOVER STATE with subtle lift and scale: CTA buttons on hover: `transform: translateY(-2px) scale(1.01); box-shadow: var(--shadow-md); transition: all 0.18s ease`. The 2px lift is imperceptible as movement but registers tactilely. Never use a slide-in text swap or clip animation on buttons — it delays the click. Only the lift + shadow change.",
+          "CARD HOVER with background color transition: service cards transition from --surface to --brand background over 200ms, with text and icon colors inverting. Use CSS custom properties for the transition: `background-color: var(--card-bg, var(--surface)); transition: background-color var(--motion-quick, 200ms) ease`. This keeps the animation token-driven and easy to override per business.",
+          "NUMBER/STAT COUNTER ANIMATION on scroll-enter: numeric stat callouts (review counts, years in business, jobs completed) animate from 0 to their target value over 1.2s using a JS counter function when the stat enters the viewport. This single animation has outsized trust impact because it draws the eye to proof points. Use `requestAnimationFrame` for smoothness; disable for `prefers-reduced-motion`.",
+          "STICKY NAV BACKGROUND BLUR on scroll: the main navigation bar starts transparent (over the dark hero) and transitions to `background: rgba(var(--bg-rgb), 0.9); backdrop-filter: blur(12px); box-shadow: var(--shadow-sm)` after 80px of scroll. This glassmorphism-lite pattern reads high-end with zero visual cost on the page content and is used across Goettl, Medley, and Anderson Plumbing. Token: --bg-rgb should be the RGB decomposition of --bg for use in rgba()."
+        ],
+        "antiGeneric": [
+          "The hero has a REAL technician or truck photo, not a stock 'man with wrench smiling at camera'. The technician is in branded uniform, often photographed candidly at work or loading a truck. Cheap sites use the same 5 Shutterstock images the whole category shares.",
+          "Display headlines are tightly tracked (-0.03em or tighter) and use a weight-900 grotesque cut. Generic templates leave letter-spacing at 0 and use regular or semibold weights that read as comfortable rather than authoritative.",
+          "The review count is a DESIGN ELEMENT, not a footer footnote. Premium sites treat '8,247 Five-Star Reviews' as hero-level typography — the number is set at --step-4 in the display weight. Cheap sites put the Google badge in the footer.",
+          "Section breaks use clip-path diagonal cuts or matching skewed pseudo-elements, NOT flat borders or drop shadows between sections. The diagonal reveals that someone wrote custom CSS.",
+          "The CTA button is never a default Bootstrap primary blue rounded rectangle. It is either the specific --accent color (warm, vivid) OR it inverts the color scheme entirely (white button on dark hero). Cheap sites use #007bff or a generic filled blue.",
+          "Eyebrow labels exist above H2 section titles — small-caps, tracked wide, --accent color, 2 to 5 words. Their absence is the fastest way to spot a template; their presence signals a design system.",
+          "At least one section uses --bg-deep (very dark navy or near-black) as the background. Cheap trades sites are all white/light-gray. The dark section creates visual anchor and makes the brand feel serious about its positioning.",
+          "The service area is a designed section with pill/badge links, not a paragraph of comma-separated cities buried in a footer column. Premium sites treat their coverage area as a trust signal worth layout investment."
+        ]
+      },
+      {
+        "category": "salons, spas, barbers & tattoo studios (boutique, editorial)",
+        "references": [
+          {
+            "name": "Forestis Dolomites",
+            "url": "https://www.forestis.it/en",
+            "why": "The look-book layout — staggered portrait/landscape grid, oversized centered serif headline over full-bleed imagery, pure restraint with 60-80px section gutters — is the clearest real-world example of 'maximum breathing room as a luxury signal' in the wellness category."
+          },
+          {
+            "name": "Sang Bleu London",
+            "url": "https://london.sangbleu.tattoo/",
+            "why": "Positions a tattoo studio as an art collective rather than a service shop: portfolio-first navigation, quantified section labels (e.g. '23 Merch'), merch and events integration, and zero promotional urgency — the definitive anti-generic tattoo template."
+          },
+          {
+            "name": "Larry King Hair",
+            "url": "https://larrykinghair.com/en-us",
+            "why": "Runs the salon like a fashion magazine: 'The Down Low' and 'Little Book of Experts' editorial sections, session-stylist founder story, campaign photography emphasising texture and movement, and bold uppercase hero copy ('Your Ride or Die has arrived') that treats hair as culture."
+          },
+          {
+            "name": "Rendezvous Barbers",
+            "url": "https://www.myrendezvous.ca/",
+            "why": "Awwwards Honorable Mention (2024) — vibrant orange/black palette with bold clean sans-serif, lifestyle photography as the primary visual driver, and an in-house editorial blog ('RDV paper') that extends brand beyond appointments."
+          },
+          {
+            "name": "UNOIT Sydney",
+            "url": "https://www.unoit.com.au/",
+            "why": "Award-winning Webflow barbershop that pairs a stark black/white/gold palette with all-caps section headers, accordion service menus, and experience bundling (haircut + shiatsu + cocktail) — shows how to upsell premium tiers visually without clutter."
+          },
+          {
+            "name": "Huckle the Barber (We Are Huckle)",
+            "url": "https://wearehuckle.com/",
+            "why": "Full-width architectural/lifestyle photography, founder-origin storytelling, record-store cultural credibility, and a restrained black-on-white palette that reads as London creative scene rather than barbershop."
+          },
+          {
+            "name": "Truefitt & Hill",
+            "url": "https://www.truefittandhill.co.uk/",
+            "why": "World's oldest barbershop (est. 1805) executes heritage luxury via serif headlines, cream/off-white grounds, period photography, four-column product grids with generous margins, and a monthly journal — demonstrates how to make 200+ years feel contemporary, not dusty."
+          },
+          {
+            "name": "East River Tattoo",
+            "url": "https://eastrivertattoo.com/",
+            "why": "Pure gallery-art positioning: achromatic palette, no text overlays on hero imagery, only three SKUs in the shop (exclusivity signal), individual artist roster pages, collaboration framing ('by Duke Riley + designer') — the quietest, most confident tattoo studio site studied."
+          }
+        ],
+        "heroPatterns": [
+          "Full-bleed portrait with zero text overlay — let a single strong image fill 100dvh with no headline competing with it; place only a small logo and a single ghost-stroke CTA button anchored to the bottom-left using CSS absolute positioning. Works in: tattoo studios, editorial salons. Token mapping: --bg-deep as a fallback; image loaded via CSS background-position: center / cover.",
+          "Oversized stacked headline over a muted-overlay image — two lines of display type (--font-display, clamp(4.5rem, 10vw, 10rem), weight 300-400, tracking -0.03em) placed left-aligned at 55% from top, with background image at opacity 0.45 via a pseudo-element using --bg-deep at 45% opacity. The giant type IS the visual; photography plays tonal support role. Used by: Rendezvous Barbers, Larry King, AIRE Ancient Baths.",
+          "Split-panel hero — left 48% carries a full-height crop of hands/work/detail (not a face); right 52% is --bg or --bg-deep with the brand name in large caps (--font-display, 8vw, weight 700, tracking 0.12em), a two-line descriptor in --font-body at 1.1rem weight 300, and a pill-shaped CTA. The vertical dividing line uses a 1px --accent rule. Seen in: Maverick Barbers, Centrum Stylizacji.",
+          "Centered serif wordmark + single italic sentence hero — for spa/wellness. Background is --bg (cream or warm off-white). Logo at 80px centered. Below it: a single italicised sentence in --font-display at 1.8rem, weight 300, line-height 1.4. No photography above the fold at all. The restraint is the luxury signal. Scroll arrow in thin 1px stroke. Implement via flex column center on 100dvh. Seen in: Forestis, Aesop-pattern.",
+          "Full-bleed vertical video loop with a single bold-weight word locked to the bottom edge — video fills 100dvh (object-fit: cover), autoplay muted loop. A single word in --font-display (e.g. 'CRAFT', 'INK', 'CUT') at clamp(8rem, 20vw, 18rem), weight 900, color white, position: absolute bottom-0 left-0, line-height 0.85 so it bleeds off the left edge intentionally. No subhead. Booking CTA fades in on scroll using Intersection Observer. Used by: Wayward Barbershop, Maison Seventy Seven.",
+          "Asymmetric hero with overlapping image and text block — a portrait-orientation photo occupies a 7-column CSS grid left panel, partially overlapping a --surface card on the right that holds the headline and CTA. The card is nudged -4rem vertically relative to the image creating a stagger. Uses --shadow-lg and --radius-lg tokens on the card. This is the Framer/Squarespace editorial pattern seen across Centrum Stylizacji and Joanna Czech-style positioning."
+        ],
+        "sectionPatterns": [
+          "Alternating text-left / image-right sections with deliberate 8:4 or 7:5 column split (not 6:6) — the asymmetric ratio feels designed rather than templated. Each block has a minimum padding-block of clamp(5rem, 8vw, 9rem). The --text color appears at reduced opacity (0.5) for the section label above the headline, styled as a small-caps category tag (e.g. 'SERVICES — 01'). Seen in every high-end site studied.",
+          "Numbered service list with large counter as background texture — service names at 1.25rem, weight 500 in --text. Behind each row, the number (01, 02, 03...) renders at 18rem, weight 800, color --surface (slightly darker than the page background) with mix-blend-mode: multiply, creating a watermark effect. No borders, no icons. Space between rows is 3rem. This is the 'editorial services menu' pattern from Spoke & Weal and Abel's on Queen.",
+          "Full-width quote pull-out — a single client or founder quote occupies its own 100% section. Type set in --font-display italic, clamp(2.2rem, 4.5vw, 4rem), weight 300, centered. Above it: a 60px hairline rule in --accent. Below: attribution in small-caps --font-body at 0.75rem, tracking 0.18em. Background is --bg-deep. No imagery. Pulls the scroll rhythm apart and signals editorial confidence.",
+          "Gallery grid with mixed aspect ratios — not a uniform masonry grid. Defined explicitly: row 1 is [1fr 2fr], row 2 is [2fr 1fr 1fr], row 3 is [1fr 1fr 2fr] using CSS Grid template-areas. Each image gets object-fit: cover with a hover state that scales to 1.04 over 0.5s ease. Gap is 0.5rem (tight). The art-direction of mixing portrait/landscape communicates curation. From Forestis and every tattoo studio studied.",
+          "Artist/stylist roster with portrait + name + discipline only — no bios, no star ratings. A grid of 3-4 portrait crops (aspect-ratio: 3/4, full-width within their cell), name below in --font-body weight 600, discipline in small-caps weight 300 at 0.7rem. Hover reveals a full-bleed overlay of their work (background-image crossfade via CSS transition). This 'gallery roster' pattern separates editorial studios (Sang Bleu, East River, Rendezvous) from generic 'meet the team' templates.",
+          "Scrolling marquee ticker as section separator — a horizontal loop of 3-4 brand values or a service list: 'CUT · COLOR · RITUAL · RESTORE · CUT · COLOR ·' at 1.2rem all-caps, --font-body, weight 400, tracking 0.15em. Animates via CSS animation: marquee 30s linear infinite on a flex container. Background is --accent or --brand. This replaces decorative dividers with branded movement. Seen in Bare Skin Aesthetics and multiple Framer beauty sites.",
+          "Credentials bar — a single horizontal band (padding-block 2rem) on --bg-deep containing 3-5 stat items: '14 years · 5 locations · Vogue · Harper's Bazaar · Best of City 2024'. Each item separated by a centered dot in --accent. Set in small-caps --font-body 0.8rem weight 600, tracking 0.2em. Appears directly below the hero or just before the booking CTA section. From Josh Wood Colour, Joanna Czech, Rendezvous.",
+          "Split booking section with atmosphere image — bottom-of-page booking CTA occupies 100vw at 70vh. Left 60% is a full-bleed atmospheric image (interior, texture, or detail). Right 40% is --bg-deep with the CTA copy in display type and a prominent button using --brand. No form visible above fold — button opens modal. This 'closer' pattern avoids the generic centered-box booking widget and was observed across UNOIT, Huckle, and Maverick.",
+          "Philosophy or process section using large number anchors — e.g. a '3-step ritual' or 'the method' section. Each step has an enormous numeral (clamp(6rem, 14vw, 12rem), weight 800, color: color-mix(in srgb, var(--text) 8%, transparent)) as a background decoration, with a 1.3rem heading and 2-3 sentence paragraph in the foreground. Left-border accent rule in --accent at 2px. Max 3 steps visible before scroll. Forestis, AIRE, Susanne Kaufmann-style spas use this.",
+          "Journal or editorial blog preview section — 3-column card grid with: full-bleed image top, minimal category label (small-caps, tracking 0.15em), headline in --font-display 1.5rem weight 400, date in --text/50, and no excerpt. Cards have no visible border — only a bottom hover animation (underline slide-in on the headline). This section signals brand depth beyond appointments. Larry King ('The Down Low'), Huckle, Rendezvous ('RDV paper'), and Truefitt & Hill all deploy it."
+        ],
+        "typography": [
+          "Display pairing: Cormorant Garamond (or PP Editorial New, or Canela) for headlines + Suisse Int'l (or Inter, or DM Sans) for body. The serif/geometric-sans contrast is the lingua franca of editorial luxury. Set display at weight 300-400 (not heavy) — thinness signals confidence. Body at weight 400, line-height 1.65. Scale: --step-5 through --step-7 for hero, --step-1 for body, --step-0 for captions.",
+          "All-caps sans-serif for category labels and navigation — use --font-body (a geometric sans like Inter or Neue Haas Grotesk), 0.7-0.8rem, weight 600, letter-spacing 0.18-0.22em. This micro-typography is the single most consistent pattern across all premium sites studied (Truefitt & Hill, UNOIT, Rendezvous, AIRE). Never use it for body paragraphs — only short labels.",
+          "Heritage/dark barber palette: Bebas Neue or Druk Wide as display + a legible sans (Helvetica Neue or Aktiv Grotesk) as body. Set display at clamp(4rem, 12vw, 10rem) weight 900, tracking -0.02em. This ultra-compressed grotesque for display is distinct from the serif editorial track — suits tattoo studios and dark masculine barbershops (Abel's on Queen, UNOIT, The Board Room).",
+          "Italic emphasis within otherwise upright type — a single italicised word or phrase inside a headline using --font-display creates editorial rhythm. E.g. 'The art of *simplicity*' where the italic word drops in weight. Implement with <em> in the Astro component, styled with font-style: italic and font-weight: 300 while the surrounding text is weight 500. Seen in Balanced Beauty, Josh Wood, Forestis.",
+          "Fluid type scale using CSS clamp for all --step-* tokens — minimum from a 375px base, maximum from a 1400px base. Example: --step-6 = clamp(3.5rem, 8vw + 0.5rem, 8rem). This eliminates breakpoint-specific font resets and ensures headings compress gracefully on mobile without looking like stock sites. Critical: set --step-neg1 at 0.8rem for small-caps labels.",
+          "Optical size and weight contrast as the primary hierarchy tool — avoid relying on color differences to distinguish heading levels. Instead: H1 at --step-6 weight 300, H2 at --step-4 weight 600, H3 at --step-2 weight 400 italic, label at --step-neg1 small-caps weight 600 tracking 0.2em. This four-level system covers 95% of layout needs and was consistent across every high-end site.",
+          "Real font names worth licensing for this stack: Display options — Cormorant Garamond (Google, free), PP Editorial New (Pangram Pangram, paid), Canela (Commercial Type, paid), Freight Display Pro (GarageFonts, paid). Body options — Suisse Int'l (Swiss Typefaces, paid; Aesop's actual font), Inter (Google, free), DM Sans (Google, free), Neue Haas Grotesk (Linotype, paid). Budget recommendation: Cormorant + Inter covers 90% of the editorial look for free."
+        ],
+        "color": [
+          "Neutral-ground strategy — almost every premium site sets --bg to a warm off-white (hsl(40 20% 97%) to hsl(35 15% 94%)), not pure #FFFFFF. This avoids clinical brightness. --bg-deep is charcoal (hsl(220 10% 12%)) or near-black, used for closing sections, navbars, and quote blocks. --text is hsl(220 8% 18%). This two-temperature ground (warm bg / cool deep) creates depth without a branded color.",
+          "Single accent, used sparingly — no more than one chromatic accent color. For salons/spas: muted sage (hsl(145 18% 52%)), dusty rose (hsl(340 25% 68%)), or warm amber (hsl(38 70% 58%)). For barbers/tattoo: brass/gold (hsl(42 75% 52%)) or blood red (hsl(355 75% 42%)). The accent only appears on CTAs, hairline rules, and the marquee ticker. Never as a section background. Token: --accent.",
+          "Dark editorial track for tattoo/barber — --bg = hsl(0 0% 6%), --bg-deep = hsl(0 0% 3%), --surface = hsl(0 0% 11%), --text = hsl(0 0% 94%), --accent = hsl(42 70% 52%) (gold) or hsl(0 0% 100%) (white). Photography against pure black makes ink and skin tones pop with zero interference. Abel's on Queen, Flatbone, UNOIT all use sub-10% lightness backgrounds.",
+          "Light editorial track for spa/salon — --bg = hsl(35 25% 96%), --bg-deep = hsl(220 10% 14%), --surface = hsl(35 20% 99%), --text = hsl(220 10% 18%), --accent = hsl(145 18% 50%) (sage) or hsl(350 30% 62%) (dusty rose). Warm ground prevents the sterile clinical reading common on med-spa sites. Forestis, Balanced Beauty, and Susanne Kaufmann-style sites all use this warm-neutral foundation.",
+          "Color as section punctuation, not decoration — use --bg-deep as a full-width section background exactly twice per page: once for a quote pull-out midway, once for the booking closer. This creates a predictable rhythm of light/dark/light/light/dark that guides the eye without needing decorative elements. Avoid multiple different section background colors — the 'rainbow band' pattern is the primary cheap-template tell.",
+          "Image-as-color philosophy — the most expensive sites add almost no flat color beyond their ground. Warmth, vibrancy, and character come entirely from photography. This means --brand and --accent are rarely visible as fills; instead they appear as 1-2px rules, button borders, and text accents. Any section that 'needs color' is actually asking for a better photograph."
+        ],
+        "motion": [
+          "Scroll-triggered fade-up for section entries — elements start at transform: translateY(2rem) opacity: 0 and animate to translateY(0) opacity: 1 over 0.6s cubic-bezier(0.22, 1, 0.36, 1) when they enter the viewport via Intersection Observer. Stagger sibling elements by 80ms using animation-delay. This is the baseline premium motion pattern — every site studied uses a variant of it. Implement with @media (prefers-reduced-motion: no-preference) guard.",
+          "Image parallax at low intensity — background images in alternating sections translate at 0.2x scroll velocity (not 0.5x — that causes layout instability and is the generic-template tell). Implement with transform: translateY(calc(var(--scroll-offset) * 0.2)) on the image element inside an overflow: hidden container. Only apply to 2-3 images per page. Disable entirely under prefers-reduced-motion.",
+          "Hover image-swap on artist/team cards — on :hover, a second image (work sample) crossfades over the portrait via CSS transition: opacity 0.4s ease on an absolutely positioned top-layer image. No scale, no border change. The restraint is the point. This is the 'portfolio card' pattern from Sang Bleu, East River Tattoo, and Rendezvous barber artist pages.",
+          "Marquee ticker using CSS animation only — animation: marquee 32s linear infinite on a flex row of duplicated text nodes, no JS required. Pause on :hover via animation-play-state: paused. This avoids JS scroll listeners and is GPU-composited via transform. Use will-change: transform on the inner element. Seen on Bare Skin Aesthetics and multiple Framer beauty sites.",
+          "Nav reveal on scroll-up (hide-on-down / show-on-up) — a position: fixed header starts transparent over the hero, transitions to --bg-deep background over 0.3s ease when user scrolls down >80px, and re-shows immediately when scroll direction reverses. Implement with a small IntersectionObserver or scroll direction delta comparison. This is table-stakes for premium sites — every barber and spa site studied uses it. The plain always-visible opaque nav is the clearest template tell.",
+          "Gallery image scale on hover — within the mixed-aspect-ratio portfolio grid, each cell has overflow: hidden. The img inside transitions from scale(1) to scale(1.04) over 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94). No other effects (no brightness, no overlay). This subtle zoom without the container growing is the gallery-quality hover pattern distinct from the generic 'card lift + shadow' approach."
+        ],
+        "antiGeneric": [
+          "No card shadows or rounded-corner content cards — premium sites in this category use zero card-shadow for layout sections. Shadow appears only on modal overlays or floating booking CTAs. Radius tokens (--radius-sm) are used sparingly on pill buttons only, never on content sections. The 'card with shadow and border-radius' is the single most reliable tell of a $29 template.",
+          "Typography does the spacing work, not dividers — no <hr> tags, no decorative section dividers, no gradient fades. Section transitions are pure whitespace (clamp(5rem, 9vw, 10rem) padding-block) plus a shift in --bg vs --bg-deep. The only visual separator permitted is a 1px --accent hairline on the pull-quote block.",
+          "Photography is specific, not illustrative — high-end sites show actual hands on actual hair, specific tattoo flash on specific skin, real steam over real water. Stock photos of faceless models with perfect skin are the instantaneous cheap tell. The budget implication: one real photo shoot of the space and team replaces 50 stock images in terms of perceived value.",
+          "Absence of iconography in services sections — generic sites use a grid of icons (scissors, flower, leaf) next to service names. Premium sites use numbers, text alone, or a single high-quality photograph per service category. Sang Bleu, East River, Forestis, and Truefitt & Hill have zero service icons on their primary pages.",
+          "Navigation with cultural credibility links — beyond Home/Services/Book, premium sites add an editorial or cultural section: 'Journal', 'RDV Paper', 'The Down Low', 'Collection'. This single nav item signals the brand exists beyond transactions. Larry King, Huckle, Rendezvous, and Truefitt & Hill all include it.",
+          "Booking CTA appears once in the hero and once as a full-width closer — never as a floating sticky button on mobile, never in a sidebar, never repeated in every section. Scarcity of the CTA increases its perceived weight. The omnipresent sticky 'Book Now' button is an immediate value-discount signal.",
+          "Statistics framed as proof, not marketing — '14 years · Vogue · 5 locations' rather than 'We're passionate about hair! Book today!'. Joanna Czech shows '$735+ treatments', Truefitt & Hill shows 'serving nine reigning monarchs', Josh Wood shows '2.7x stronger'. Specificity without exclamation points is the credibility tell."
+        ]
+      },
+      {
+        "category": "cafes, coffee, bakeries & restaurants (warm, appetite-appeal)",
+        "references": [
+          {
+            "name": "Coffee Collective",
+            "url": "https://coffeecollective.dk/",
+            "why": "Awwwards Honorable Mention; two-token palette (cream #FAF6ED + deep brown #4D4341), documentary photography, zero decorative noise — the restraint IS the luxury signal."
+          },
+          {
+            "name": "L'Enclume",
+            "url": "https://lenclume.co.uk/",
+            "why": "3-Michelin-star site by Gunter Piekarski: full-viewport imagery carousel, naturalistic cream/earth neutrals, zero aggressive selling — confident minimalism that lets provenance copy carry weight."
+          },
+          {
+            "name": "Roberta's Pizza",
+            "url": "https://www.robertaspizza.com/",
+            "why": "Alright Studio; Arial Narrow + Garamond URW pairing, bold red sketch illustrations as brand anchor, asymmetric alternating image-text blocks — personality-driven premium rather than polish-driven."
+          },
+          {
+            "name": "Onyx Coffee Lab",
+            "url": "https://onyxcoffeelab.com/",
+            "why": "Off-white #fbfaf3 + warm cream #eee9df tokens, alternating module orientation, hand-drawn typography marks, video embeds revealing process — editorial authority backed by award display."
+          },
+          {
+            "name": "Poilâne",
+            "url": "https://poilane.com/en",
+            "why": "Heritage bakery (est. 1932); cream/off-white bg, charcoal text, ochre accents, full-bleed texture photography with generous tracking on caps — 'Contemporain par tradition' as a design system in itself."
+          },
+          {
+            "name": "Lula Cafe",
+            "url": "https://www.lulacafe.com/",
+            "why": "Nitewerk agency brand; bold + graceful typeface contrast signals daytime/nighttime duality, neon menus against muted palette — intentional tension between casual and sophisticated."
+          },
+          {
+            "name": "Stumptown Coffee Roasters",
+            "url": "https://stumptowncoffee.com/",
+            "why": "Origin-storytelling split-screen layout (atmospheric farm photography beside product), deep forest green + caramel palette, generous headline tracking, 'Call of the Wild' campaign hero."
+          },
+          {
+            "name": "Kaffestuggu",
+            "url": "https://www.awwwards.com/sites/kaffestuggu",
+            "why": "Awwwards Honorable Mention Oct 2024; warm neutral #F5E6DE + near-black #262221 two-token palette, illustration-integrated design, clean minimal responsive — warmth through extreme restraint."
+          }
+        ],
+        "heroPatterns": [
+          "Full-viewport image with typographic overlay using generous letter-spacing (0.08–0.15em) on an all-caps display serif — image bleeds to all four edges with no border, text sits at optical center or lower-third, CTA is a single ghost/outline button. Token implementation: --bg-deep as overlay tint at 20–30% opacity, --font-display at --step-5 or higher, --brand as the CTA border.",
+          "Split-screen pinned hero: left half is a dark --bg-deep panel holding a large display headline (--step-4 to --step-5) in --font-display with tight leading, right half is a full-bleed food photograph. On scroll, the text panel sticks while the image scrolls — creates the 'sticky image' or 'sticky text' effect. The dividing line is a sharp vertical edge, no border, no gradient.",
+          "Oversized single-word or two-word headline that bleeds off-screen on desktop (font-size: clamp(5rem, 14vw, 16rem)) in a high-contrast condensed serif or display sans, with a small appetite-appeal photograph inset into the type block — the image is cropped into a rectangular hole cut out of the type area using mix-blend-mode or a positioned element. Tokens: --font-display at viewport-scaled size, --brand as hover-state background.",
+          "Dark --bg-deep hero (near-black warm brown or charcoal) with a single hero food photograph in a centered or slightly off-center card — photograph has warm, dim lighting. Display type in cream/off-white (--text on dark) at --step-3 to --step-4, positioned below the image. The contrast of dark surround against warm-lit food image is the entire composition. No additional UI chrome.",
+          "Animated text-first hero: the headline types or fades in word-by-word on load using a CSS animation or lightweight GSAP fade-up, no heavy WebGL. Body copy in --font-body at --step-0 fades in after. A slow-dissolving image carousel runs behind at 0.6 opacity, blurred slightly — the type is the primary event, photography is atmosphere. Reduced-motion fallback shows static first frame.",
+          "Marquee/ticker banner as hero accent: a full-width horizontal scrolling text strip in --font-display at --step-1 (all caps, generous tracking) in --brand or --accent color sits above or below the main hero image. Content is the brand ethos repeated ('ROASTED DAILY · SOURCED DIRECT · BREWED WITH INTENTION ·'). The kinetic strip signals brand confidence without heavy JavaScript."
+        ],
+        "sectionPatterns": [
+          "Alternating left-right image-text modules: each section pairs a full-bleed image taking 55–60% of the viewport width with a text block on the opposite side. Sections alternate which side holds the image. Between modules, padding is 2× the normal --step-* spacing. This is the standard premium content cadence (Onyx, Roberta's, Stumptown all use it). Token: --surface as background on text side, transparent on image side.",
+          "Origin/provenance storytelling block: a dark --bg-deep full-width section mid-page breaks the warm cream flow. It contains a short pull-quote in --font-display at --step-2 (italic or light weight), a farmer/producer portrait photograph at 40% width, and 2–3 lines of origin detail in small --font-body. The color inversion signals a premium 'chapter break.' Token: --text becomes light, --accent becomes the quote punctuation color.",
+          "Product grid using asymmetric card sizing: instead of uniform 3-column grids, one card is 2× wide (spanning 2 columns) and alternates position each row. Product names in --font-display, flavor/tasting notes in italic --font-body at --step--1, price in small --font-body. Cards have no border — separation comes from whitespace only. Background: --surface. Hover state: subtle shadow using --shadow-md token.",
+          "Horizontal scroll gallery for menu or product categories: a CSS overflow-x: auto; scroll-snap-type: x mandatory container with card width set to 80vw on mobile, 35vw on desktop. Fade-out edges via CSS mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent) on the container. Cards hold a large cropped food photograph + category name at --step-1 in --font-display. Eliminates harsh cutoffs.",
+          "Subscription/ordering section with a centered headline + three-column benefit strip: headline at --step-3 in --font-display, three equally spaced columns below each with a small icon (SVG inline), benefit title at --step-0 bold, and one-line description at --step--1. Background alternates between --bg and --surface. The three columns use a generous gap (4–6rem) rather than card borders.",
+          "Founder/story narrative section using editorial pull-quote treatment: a 2-column layout where the left column is narrow (30%) holding a portrait photograph in a slightly off-square aspect ratio (3:4), and the right column holds a large italic pull-quote at --step-2 in --font-display followed by 2–3 paragraphs of body copy. No header above — the quote IS the entry point. Signals bespoke brand over template.",
+          "Location/cafe finder section using a photograph grid: 2–3 location cards in a grid, each card is full-bleed interior photograph (no border-radius or minimal --radius-sm) with the location name in --font-display overlaid at the bottom-left using position: absolute. On hover, the overlay fades to reveal address + hours. Tokens: --bg-deep for overlay, --text-on-dark for type.",
+          "Testimonial/press strip as a subdued trust section: a single row of centered press logos (Harper's Bazaar, Eater, Bon Appétit) in grayscale at 50% opacity that become full opacity on hover, separated by em-dashes or thin dividers. Below: one rotating pull-quote in italic --font-display at --step-1. Background: --surface. No box shadows, no cards — the restraint signals that press validation is assumed, not begged for.",
+          "Process/education section using numbered step cards: three or four horizontal cards each with a large numeral (01, 02, 03) in --font-display at --step-4, a short bold heading at --step-0, and 2 lines of body. Cards have a left border accent in --brand (4px solid). Alternating card backgrounds: --bg and --surface. Common in coffee/bakery sites (Climpson, Counter Culture) to signal expertise.",
+          "Full-width dark footer with warm accent: --bg-deep background, the logo large-format centered at top of footer (--step-3 to --step-4), then a 3-column link grid in --font-body at --step--1, then a full-width divider line in --accent at 30% opacity, then legal/social in --step--2. The large logo treatment in footer is a signature premium move — it re-anchors brand identity on exit."
+        ],
+        "typography": [
+          "Display pairing winner for warm/artisan: Cormorant Garamond (free, Google Fonts) or Canela (Commercial Type, licensed) for headlines — high-contrast hairline serifs signal heritage without feeling stuffy. Pair with Neue Haas Grotesk (or its free stand-in Inter with tighter letter-spacing) for body and UI. Token: --font-display: 'Canela', 'Cormorant Garamond', Georgia, serif; --font-body: 'Neue Haas Grotesk', 'Inter', system-ui, sans-serif.",
+          "Alto-energy/personality pairing: a condensed geometric sans for display (Bebas Neue, Barlow Condensed SemiBold, or Anton) at very large sizes (--step-4 to --step-5) paired with a humanist sans for body (Jost, DM Sans). This is the Ma'ono/Roberta's register — confident, bold, NOT fussy. Tracking on the display: 0.04–0.08em; no tracking on body.",
+          "Heritage bakery register: a transitional serif for display (Playfair Display, EB Garamond, or Libre Baskerville) with generous line-height (1.25–1.35) and wide tracking on uppercase headings (0.1–0.2em letter-spacing). Body in a warm geometric sans (Nunito, Jost). This reads as 'artisan recipe card' — approachable but clearly hand-crafted.",
+          "Fluid type scale using CSS clamp — all --step-* tokens should interpolate between mobile-min and desktop-max with no breakpoint jumps: --step--1: clamp(0.75rem, 1.5vw, 0.875rem); --step-0: clamp(1rem, 2vw, 1.125rem); --step-1: clamp(1.25rem, 2.5vw, 1.5rem); --step-2: clamp(1.5rem, 3.5vw, 2rem); --step-3: clamp(2rem, 5vw, 3rem); --step-4: clamp(2.75rem, 7vw, 4.5rem); --step-5: clamp(3.5rem, 10vw, 7rem). The large end of --step-5 enables the 'bleeds off screen' hero headline pattern.",
+          "Tracking (letter-spacing) is the single easiest thing that separates premium from template: display type at --step-3 and above gets 0.06–0.12em; all-caps micro labels (categories, section titles) get 0.15–0.25em; body copy at --step-0 gets 0 to -0.01em (slightly tight reads as editorial). Templates default to 0 everywhere — deliberate tracking is the immediate tell.",
+          "Weight contrast within the same typeface family signals sophistication: use a 300 Light weight for sub-headings and pull-quote attribution, 400 Regular for body, 600 SemiBold for UI labels, 800 ExtraBold only for the hero headline. Never use only one weight. The Coffee Collective, Allpress, and Workshop Coffee all rely on weight contrast as their primary hierarchy tool.",
+          "Italic as a design element, not just emphasis: a single italic sentence in --font-display at --step-2 used as an epigraph or pull-quote introduction signals editorial quality. Cormorant Garamond Italic and Canela Italic are especially effective because their italic forms are visually distinct from the roman cut (swash-like)."
+        ],
+        "color": [
+          "Primary warm neutral base: --bg should be a warm off-white (hsl(38, 25%, 97%) or #FAF6ED Coffee Collective equivalent), not pure white. --bg-deep should be a deep warm charcoal or near-black brown (hsl(10, 8%, 14%) or #262221 Kaffestuggu equivalent). This warm-neutral + warm-dark two-token base is the single most consistent pattern across all award-level cafe/coffee sites studied.",
+          "--brand and --accent: the highest-impact accent for appetite-appeal is either a terracotta/warm red-orange (hsl(15, 65%, 52%)) or a muted warm gold/ochre (hsl(38, 70%, 50%)). These sit in the warm red-yellow range that food science associates with appetite stimulation. Avoid cool blues, purples, or pure greens as primary accents in this category.",
+          "--surface (card/section background) should be one step warmer and slightly darker than --bg: hsl(35, 20%, 93%) works. This creates a subtle section break without a border or divider line. The difference between --bg and --surface should be perceivable but not jarring — 4–8% lightness difference is the target.",
+          "Dark section inversion: the 'chapter break' pattern (a --bg-deep section mid-page) is used by L'Enclume, Stumptown, Onyx, and Coffee Collective. It requires that --text, --brand, and --accent all have dark-context variants or that the token system supports context-aware values. In practice: set color-scheme on the section, and define --text: hsl(38, 25%, 92%) and --accent: hsl(38, 70%, 65%) for the dark context.",
+          "Photography-driven color: the best cafe sites let food photography supply the accent color energy, so the UI palette stays deliberately muted. The 'neutrals + one warm accent' palette works specifically because it does not compete with the reds of tomatoes, the golds of bread crusts, the creams of lattes. This is the anti-template insight: less UI color = more appetite-appeal from imagery.",
+          "GH Café Montréal and Coffee Ground Zero (Awwwards) show that dark-dominant palettes (--bg: near-black, --text: off-white) work strongly for specialty/editorial coffee positioning. The contrast is inverted from the warm-cream default but equally premium. Use --brand as a single vivid accent (warm gold, #E2FC07 neon-yellow, or terracotta) to prevent the dark palette from reading as generic SaaS."
+        ],
+        "motion": [
+          "Scroll-triggered fade-up on content blocks: each text block or image card translates from 24–32px below its resting position and fades from opacity 0 to 1 over 400–600ms with an ease-out curve. Use Intersection Observer, not scroll listeners. Stagger child elements by 80–120ms. This is the most universally safe and premium-reading animation — it matches what GSAP ScrollTrigger does on most Awwwards winners but is implementable in pure CSS with @keyframes or a tiny JS observer.",
+          "Parallax on hero photography: the hero image translates at 0.4–0.6× the scroll speed of the page using CSS transform: translateY() driven by a scroll listener or CSS scroll-timeline. The effect creates depth between the text layer (scrolls at 1×) and the image layer (scrolls at 0.5×). Keep the translation range small (max ±80px) to avoid gaps at the top/bottom of the image. Reduced-motion: disable entirely and show static image.",
+          "Marquee/ticker using pure CSS animation: @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } } applied to a container holding two copies of the text (ensures seamless loop). Duration 20–30s, linear, infinite. Pause on hover with animation-play-state: paused. Zero JavaScript required, performant on GPU compositor.",
+          "Image hover scale with warm overlay: on product cards and menu items, hovering triggers transform: scale(1.03) on the image (inside a overflow: hidden container) over 300ms ease-out, simultaneously fading in a warm --bg-deep overlay at 40% opacity. This is the most common premium hover pattern in hospitality sites — it signals interactivity without jumping or bouncing.",
+          "Hero headline character-by-character or word-by-word reveal on load: each word or character wrapped in a <span> animates from transform: translateY(100%) inside a overflow: hidden parent (the 'clip reveal' technique). Duration 600ms, stagger 60ms per word, cubic-bezier(0.16, 1, 0.3, 1) easing. Looks expensive, requires only CSS + minimal JS for the span wrapping. Reduced-motion fallback: show full text immediately at opacity 1.",
+          "Color-shift on dark section entry: as the user scrolls into a --bg-deep section, a smooth background-color transition on the body or a sticky header element shifts from light to dark over ~200ms using CSS transition on background-color. This is achievable with Intersection Observer toggling a class. Creates the 'cinematic chapter change' feel without WebGL."
+        ],
+        "antiGeneric": [
+          "Two-token background system (--bg warm off-white + --bg-deep warm near-black) instead of pure white everywhere. Pure #ffffff is the instant template tell in this category — every award-level site uses a warm-tinted neutral.",
+          "Deliberate tracking on display type (0.06–0.15em on headings, 0.15–0.25em on all-caps labels). Zero tracking everywhere is the Squarespace default. Tracking is free, requires no library, and is the fastest single change that reads as 'expensive agency'.",
+          "Photography that shows process, texture, and human hands — not just finished product on white. Coffee grounds close-up, flour dusted, hands shaping dough. The Coffee Collective, Climpson, and Tandem all lead with this. Stock photography of pristine products on white backgrounds is the template tell.",
+          "Provenance copy as design element: a short italicized origin sentence ('Single-origin, Huye Mountain, Rwanda — harvested at 1,800m') used as a subheading or pull-quote. This content itself signals premium; no amount of design polish substitutes for it.",
+          "Weight contrast within a single type family used as the hierarchy system — not six different fonts. Workshop Coffee, Allpress, and Coffee Collective achieve all hierarchy through one sans-serif family at Light / Regular / SemiBold / Bold weights. Multi-font chaos is the template tell.",
+          "Asymmetric or off-grid image placement: one image card in a grid that spans 2 columns while others span 1, or a photograph that overflows its parent container by 2–4rem into adjacent whitespace. il Buco and Roberta's both use this. Perfect 12-column symmetry is the template tell.",
+          "No stock photography, no generic bokeh coffee cup. Every site in this teardown that scores above 7 on CSS Design Awards or receives Awwwards recognition uses bespoke photography specifically shot for the brand — or clearly authentic restaurant/product photography. This is not a design token, it is a pre-design requirement.",
+          "The footer logo at large scale (--step-3 to --step-4 height treatment) on a dark background. Template footers shrink the logo to 24–32px. Premium hospitality sites re-present the logo large at exit as a brand statement. Poilâne, L'Enclume, and Quince all do this."
+        ]
+      }
+    ]
+  }
+}
