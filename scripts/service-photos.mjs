@@ -65,31 +65,32 @@ async function doOne(file) {
     return;
   }
 
-  let added = 0;
-  for (let i = 0; i < items.length; i++) {
-    const it = items[i];
-    if (it.image && !FORCE) continue;
-    // Query by the service title, biased toward the category, then category term.
-    const queries = [
-      `${it.title} ${term}`.trim(),
-      it.title,
-      term,
-    ].filter(Boolean);
-    try {
-      // Openverse first (more relevant), Wikimedia as fallback.
-      let got = await getOpenversePhotos(queries, { destDir: PUBLIC_IMAGES, slug, max: 1, startIndex: 100 + i, aspect: 'wide' });
-      if (!got.length) {
-        got = await getRealPhotos({ name: '', category: cat }, { destDir: PUBLIC_IMAGES, slug, max: 1, startIndex: 100 + i, width: 1200, queries });
-      }
-      if (got[0]?.path) { it.image = got[0].path; added++; }
-    } catch { /* leave without image (component falls back to a branded card) */ }
+  // REAL photos only. Per-service generic stock looks like a template ("six
+  // near-identical boats"), so we only assign a photo when the business has its
+  // OWN distinct real photo for every service. Otherwise services render as
+  // clean numbered cards. Stock per-service is intentionally gone.
+  const realPool = (config.galleryImages ?? [])
+    .map((g) => g.src)
+    .filter((s) => s && !s.includes('/images/library/'));
+
+  // Drop any previously-assigned STOCK service images (photo-1xx from old runs).
+  let cleared = 0;
+  for (const it of items) {
+    if (it.image && /\/photo-1\d\d\./.test(it.image)) { delete it.image; cleared++; }
   }
 
-  if (added) {
+  let added = 0;
+  if (realPool.length >= items.length) {
+    items.forEach((it, i) => {
+      if (!it.image || FORCE) { it.image = realPool[i]; added++; }
+    });
+  }
+
+  if (added || cleared) {
     await writeFile(path, JSON.stringify(config, null, 2) + '\n');
-    console.log(`  ✓ ${slug.padEnd(26)} ${added}/${items.length} service photo(s) added  (${cat || '—'})`);
+    console.log(`  ✓ ${slug.padEnd(26)} ${added} real service photo(s)${cleared ? `, cleared ${cleared} stock` : ''}  (${cat || '—'})`);
   } else {
-    console.log(`  · ${slug.padEnd(26)} no new service photos`);
+    console.log(`  · ${slug.padEnd(26)} clean numbered cards (no distinct real per-service photos)`);
   }
 }
 

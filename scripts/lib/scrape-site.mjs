@@ -493,7 +493,12 @@ export async function collectSiteImages(url, { maxPages = 4, timeoutMs = 12000 }
   const home = await fetchHtml(url, timeoutMs);
   if (!home) return [];
   const base = home.finalUrl;
-  let images = extractImages(home.html, base);
+  // og:image / twitter:image is usually the business's intended hero — put it
+  // first so the downloader can prefer it for the hero slot.
+  const ogImages = ['og:image', 'og:image:url', 'twitter:image']
+    .map((k) => absolutize(metaContent(home.html, k), base))
+    .filter(Boolean);
+  let images = [...ogImages, ...extractImages(home.html, base)];
 
   const links = findInternalPhotoLinks(home.html, base, maxPages);
   for (const link of links) {

@@ -86,33 +86,27 @@
       "items": [
         {
           "title": "Pontoon (patio) boats",
-          "description": "Cruise in comfort — patio pontoons for half-day, full-day, or overnight on the lake. Perfect for groups and lazy afternoons.",
-          "image": "/images/lake-sonoma-marina/photo-100.jpg"
+          "description": "Cruise in comfort — patio pontoons for half-day, full-day, or overnight on the lake. Perfect for groups and lazy afternoons."
         },
         {
           "title": "Fishing boats",
-          "description": "Quiet 3-person fishing boats for a morning chasing bass on Lake Sonoma. Half-day, full-day, or overnight.",
-          "image": "/images/lake-sonoma-marina/photo-101.jpg"
+          "description": "Quiet 3-person fishing boats for a morning chasing bass on Lake Sonoma. Half-day, full-day, or overnight."
         },
         {
           "title": "Premium sport boats",
-          "description": "8-person sport boats built for a full day of fun on the water — half- and full-day rentals.",
-          "image": "/images/lake-sonoma-marina/photo-102.jpg"
+          "description": "8-person sport boats built for a full day of fun on the water — half- and full-day rentals."
         },
         {
           "title": "Watersport & tubing boats",
-          "description": "7-person ski, wakeboard, and tubing boats so the whole crew can get out and ride.",
-          "image": "/images/lake-sonoma-marina/photo-103.jpg"
+          "description": "7-person ski, wakeboard, and tubing boats so the whole crew can get out and ride."
         },
         {
           "title": "Kayaks, paddle boards & jet skis",
-          "description": "Kayaks, paddle boards, canoes, and jet skis — paddle the quiet coves or open up the throttle.",
-          "image": "/images/lake-sonoma-marina/photo-104.jpg"
+          "description": "Kayaks, paddle boards, canoes, and jet skis — paddle the quiet coves or open up the throttle."
         },
         {
           "title": "Day-use, BBQ & deli",
-          "description": "Picnic areas with BBQ pits and volleyball, plus an on-site deli for sandwiches, hotdogs, and cold drinks (beer & wine included).",
-          "image": "/images/lake-sonoma-marina/photo-105.jpg"
+          "description": "Picnic areas with BBQ pits and volleyball, plus an on-site deli for sandwiches, hotdogs, and cold drinks (beer & wine included)."
         }
       ]
     },
@@ -240,6 +234,7 @@
       }
     }
   ],
+  "heroVariant": "cinematic",
   "artDirection": {
     "archetype": "editorial",
     "fontId": "warm-humanist",

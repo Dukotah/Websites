@@ -97,7 +97,7 @@ const nameFor = (i, ext) =>
  * enough to be a hero/story (filters logos, icons, thumbnails). Returns saved
  * media descriptors. Best-effort; network failures just yield fewer results.
  */
-export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxCandidates = 8 } = {}) {
+export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxCandidates = 8, heroHint } = {}) {
   if (!urls?.length) return [];
   const outDir = join(destDir, slug);
   await mkdir(outDir, { recursive: true });
@@ -126,6 +126,17 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     return 0; // portrait
   };
   kept.sort((a, b) => tier(b) - tier(a) || (b.w ?? 0) * (b.h ?? 0) - (a.w ?? 0) * (a.h ?? 0));
+
+  // Honor an explicit hero hint (e.g. the site's og:image / full-bleed hero) —
+  // it's almost always the business's intended money shot. If it survived the
+  // size filter and is landscape-ish, force it into the hero slot.
+  if (heroHint) {
+    const i = kept.findIndex((k) => k.url === heroHint && (!k.w || !k.h || k.w / k.h >= 1.1));
+    if (i > 0) {
+      const [h] = kept.splice(i, 1);
+      kept.unshift(h);
+    }
+  }
 
   const saved = [];
   for (const img of kept.slice(0, max)) {

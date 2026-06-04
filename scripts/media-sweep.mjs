@@ -118,7 +118,7 @@ async function sweepOne(file) {
     try {
       const imgs = await collectSiteImages(site, { maxPages: 5 });
       if (imgs.length) {
-        const got = await downloadScrapedPhotos(imgs, { destDir: PUBLIC_IMAGES, slug, max: TARGET, maxCandidates: 36 });
+        const got = await downloadScrapedPhotos(imgs, { destDir: PUBLIC_IMAGES, slug, max: TARGET, maxCandidates: 36, heroHint: imgs[0] });
         if (got.length) { media = got; sources.push(`their site (${got.length})`); }
       }
     } catch { /* fall through to stock */ }
@@ -127,16 +127,18 @@ async function sweepOne(file) {
   const queries = [...(CATEGORY_QUERIES[category] ?? CATEGORY_QUERIES.default), area].filter(Boolean);
   let usedStock = false;
 
+  // Stock is a LAST RESORT only — never pad real photos with generic stock
+  // (that's the "looks like a template" tell). Only used if we got 0 real photos.
   // Tier 2 — Openverse (large free CC library; more relevant than Wikimedia).
-  if (media.length < TARGET) {
+  if (media.length === 0) {
     try {
-      const ov = await getOpenversePhotos(queries, { destDir: PUBLIC_IMAGES, slug, max: TARGET - media.length, startIndex: media.length });
+      const ov = await getOpenversePhotos(queries, { destDir: PUBLIC_IMAGES, slug, max: TARGET, startIndex: 0 });
       if (ov.length) { media = media.concat(ov); usedStock = true; sources.push(`Openverse (${ov.length})`); }
     } catch { /* fall through */ }
   }
 
   // Tier 3 — Wikimedia Commons (last-resort stock).
-  if (media.length < TARGET) {
+  if (media.length === 0) {
     try {
       const wiki = await getRealPhotos(
         { name: config.name, category, city: config.contact?.city, state: '' },

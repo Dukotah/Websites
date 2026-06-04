@@ -250,8 +250,9 @@ export function pickHero(
   const { imageCount, heroIsReal } = inventory;
 
   if (imageCount >= 2) {
-    // Can do collage or cinematic/split
-    return pick(seed ^ 0x3f4a8b1c, ['collage', 'cinematic', 'split'] as const);
+    // Favor the full-bleed cinematic hero — a strong real photo deserves the
+    // whole stage (a split panel chops the money shot in half).
+    return pick(seed ^ 0x3f4a8b1c, ['cinematic', 'cinematic', 'split', 'collage'] as const);
   }
   if (heroIsReal) {
     return pick(seed ^ 0x7e2c9d44, ['cinematic', 'split'] as const);
@@ -548,6 +549,11 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     if (!authored.some((s) => s.type === 'services-detailed')) {
       const sd = instantiateSection('services-detailed', config);
       if (sd) authored = [authored[0], sd, ...authored.slice(1)];
+    }
+    // Show their REAL photos big — inject a gallery when we have ≥3 real images.
+    if (!authored.some((s) => s.type === 'gallery')) {
+      const g = instantiateSection('gallery', config);
+      if (g) authored.splice(Math.min(2, authored.length), 0, g);
     }
     // Ensure CTA is present
     const hasCta = authored.some((s) => s.type === 'cta');
