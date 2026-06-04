@@ -26,7 +26,7 @@
   if (motionQuery.matches) {
     // Mark everything as revealed immediately so layouts aren't broken by the
     // initial hidden state.
-    document.querySelectorAll('[data-reveal]').forEach((el) => {
+    document.querySelectorAll('[data-reveal], [data-reveal-stagger]').forEach((el) => {
       (el as HTMLElement).dataset.revealed = '';
     });
     return;
@@ -51,7 +51,7 @@
   );
 
   // Observe all [data-reveal] elements present at script load time.
-  document.querySelectorAll('[data-reveal]').forEach((el) => {
+  document.querySelectorAll('[data-reveal], [data-reveal-stagger]').forEach((el) => {
     observer.observe(el);
   });
 
@@ -64,7 +64,7 @@
         if (node.dataset.reveal !== undefined) {
           observer.observe(node);
         }
-        node.querySelectorAll('[data-reveal]').forEach((el) => {
+        node.querySelectorAll('[data-reveal], [data-reveal-stagger]').forEach((el) => {
           observer.observe(el);
         });
       }
@@ -78,7 +78,7 @@
     if (e.matches) {
       observer.disconnect();
       mutationObserver.disconnect();
-      document.querySelectorAll('[data-reveal]').forEach((el) => {
+      document.querySelectorAll('[data-reveal], [data-reveal-stagger]').forEach((el) => {
         (el as HTMLElement).dataset.revealed = '';
       });
     }

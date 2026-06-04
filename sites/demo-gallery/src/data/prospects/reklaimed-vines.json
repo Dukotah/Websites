@@ -46,19 +46,23 @@
   "services": [
     {
       "title": "Whole-fruit wines",
-      "description": "Fruit wines pressed from the whole fruit for a brighter, truer flavor — our signature."
+      "description": "Fruit wines pressed from the whole fruit for a brighter, truer flavor — our signature.",
+      "image": "/images/reklaimed-vines/photo-100.jpg"
     },
     {
       "title": "Dry wines",
-      "description": "A hand-crafted lineup of dry wines for the traditional palate."
+      "description": "A hand-crafted lineup of dry wines for the traditional palate.",
+      "image": "/images/reklaimed-vines/photo-101.jpg"
     },
     {
       "title": "Wine slushies & jelly",
-      "description": "Warm-weather slushies and small-batch wine jelly to take a little home with you."
+      "description": "Warm-weather slushies and small-batch wine jelly to take a little home with you.",
+      "image": "/images/reklaimed-vines/photo-102.jpg"
     },
     {
       "title": "Tasting room",
-      "description": "A welcoming room shared with Defiant Distillery, where the whole family says hello."
+      "description": "A welcoming room shared with Defiant Distillery, where the whole family says hello.",
+      "image": "/images/reklaimed-vines/photo-103.jpg"
     }
   ],
   "hours": [

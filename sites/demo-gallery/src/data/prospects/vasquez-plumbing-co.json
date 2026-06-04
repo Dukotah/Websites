@@ -84,19 +84,23 @@
       "items": [
         {
           "title": "Leak detection & repair",
-          "description": "Slab leaks, hidden drips, and pressure problems traced with acoustic and thermal tools — so we open one wall, not four."
+          "description": "Slab leaks, hidden drips, and pressure problems traced with acoustic and thermal tools — so we open one wall, not four.",
+          "image": "/images/vasquez-plumbing-co/photo-100.jpg"
         },
         {
           "title": "Drain & sewer cleaning",
-          "description": "Hydro-jetting and camera inspection for stubborn clogs and root intrusion, with the footage shown to you on the spot."
+          "description": "Hydro-jetting and camera inspection for stubborn clogs and root intrusion, with the footage shown to you on the spot.",
+          "image": "/images/vasquez-plumbing-co/photo-101.png"
         },
         {
           "title": "Water heaters",
-          "description": "Tank and tankless installs, repairs, and flushes — most standard swaps done same-day with a 6-year labor warranty."
+          "description": "Tank and tankless installs, repairs, and flushes — most standard swaps done same-day with a 6-year labor warranty.",
+          "image": "/images/vasquez-plumbing-co/photo-102.png"
         },
         {
           "title": "Repipes & remodels",
-          "description": "Whole-home PEX and copper repipes plus kitchen and bath remodels, coordinated cleanly with your contractor."
+          "description": "Whole-home PEX and copper repipes plus kitchen and bath remodels, coordinated cleanly with your contractor.",
+          "image": "/images/vasquez-plumbing-co/photo-103.jpg"
         }
       ]
     },

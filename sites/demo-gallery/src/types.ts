@@ -9,6 +9,8 @@
 export interface Service {
   title: string;
   description: string;
+  /** Optional real photo (public path) — drives the photo service-card grid. */
+  image?: string;
 }
 
 export interface BusinessHours {
@@ -98,7 +100,7 @@ export type Section =
   | ({ type: 'bigquote'; quote: string; author?: string; source?: string } & SectionEnvelope)
   | ({
       type: 'services-detailed';
-      items: { title: string; description: string; icon?: string }[];
+      items: { title: string; description: string; icon?: string; image?: string }[];
     } & SectionEnvelope)
   | ({ type: 'service-area'; areas: string[]; note?: string } & SectionEnvelope)
   | ({

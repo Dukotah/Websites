@@ -89,19 +89,23 @@
       "items": [
         {
           "title": "Custom tattoos",
-          "description": "Original work and walk-in pieces from resident artists — including American Traditional — with portfolios you're welcome to browse before you book. Free consultations, any time."
+          "description": "Original work and walk-in pieces from resident artists — including American Traditional — with portfolios you're welcome to browse before you book. Free consultations, any time.",
+          "image": "/images/the-hole-thing/photo-100.jpg"
         },
         {
           "title": "Body piercing",
-          "description": "Ears, nostril, septum, navel and beyond, plus jewelry changes and downsizes — done carefully by experienced piercers who keep it calm and clean."
+          "description": "Ears, nostril, septum, navel and beyond, plus jewelry changes and downsizes — done carefully by experienced piercers who keep it calm and clean.",
+          "image": "/images/the-hole-thing/photo-101.jpg"
         },
         {
           "title": "Tooth gems",
-          "description": "A quick, painless little sparkle. We're Sonoma County's go-to spot for tooth gems — in and out in a few minutes."
+          "description": "A quick, painless little sparkle. We're Sonoma County's go-to spot for tooth gems — in and out in a few minutes.",
+          "image": "/images/the-hole-thing/photo-102.jpg"
         },
         {
           "title": "Kids' & first piercings",
-          "description": "Family-friendly and gentle with first-timers, so little ones (and anyone nervous) are in good, patient hands."
+          "description": "Family-friendly and gentle with first-timers, so little ones (and anyone nervous) are in good, patient hands.",
+          "image": "/images/the-hole-thing/photo-103.jpg"
         }
       ]
     },

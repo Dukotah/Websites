@@ -1,69 +1,72 @@
 ---
+/**
+ * Header — sticky, solid header that works over ANY hero variant (the old one
+ * was white-on-photo and vanished over light heroes). Token-driven.
+ */
 import type { ProspectConfig } from '../types';
 const { config } = Astro.props as { config: ProspectConfig };
 const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const area = config.area || '';
 ---
 
-<header class="header">
-  <div class="container header__inner">
-    <a href="#top" class="header__brand">{config.name}</a>
-    <nav class="header__nav" aria-label="Primary">
+<header class="hdr">
+  <div class="container hdr__inner">
+    <a href="#top" class="hdr__brand">
+      <span class="hdr__mark" aria-hidden="true">{config.name.charAt(0)}</span>
+      <span class="hdr__name">{config.name}</span>
+    </a>
+    <nav class="hdr__nav" aria-label="Primary">
       <a href="#about">About</a>
-      <a href="#services">Services</a>
+      <a href="#services-detailed">Services</a>
       <a href="#contact">Contact</a>
-      <a href={telHref} class="header__call">{config.contact.phone}</a>
+      <a href={telHref} class="hdr__call">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
+        <span>{config.contact.phone}</span>
+      </a>
     </nav>
   </div>
 </header>
 
 <style>
-  .header {
-    position: absolute;
-    inset: 0 0 auto 0;
+  .hdr {
+    position: sticky;
+    top: 0;
     z-index: 50;
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    backdrop-filter: saturate(1.2) blur(8px);
+    border-bottom: var(--border-weight) solid var(--border);
   }
-  .header__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    min-height: 76px;
+  .hdr__inner {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    min-height: 64px;
+    max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter);
   }
-  .header__brand {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: #fff;
-    letter-spacing: 0.01em;
+  .hdr__brand { display: inline-flex; align-items: center; gap: 0.6rem; }
+  .hdr__brand:hover { text-decoration: none; }
+  .hdr__mark {
+    display: grid; place-items: center; width: 34px; height: 34px;
+    border-radius: var(--radius);
+    background: var(--brand); color: var(--brand-contrast);
+    font-family: var(--font-display); font-weight: var(--fw-display); font-size: 1.1rem;
   }
-  .header__brand:hover {
-    text-decoration: none;
+  .hdr__name {
+    font-family: var(--font-display); font-weight: var(--fw-display);
+    font-size: 1.15rem; color: var(--text); letter-spacing: var(--tracking-display);
   }
-  .header__nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+  .hdr__nav { display: flex; align-items: center; gap: 1.75rem; }
+  .hdr__nav a { font-family: var(--font-body); color: var(--text-muted); font-weight: var(--fw-bold); font-size: 0.92rem; }
+  .hdr__nav a:hover { color: var(--brand); text-decoration: none; }
+  .hdr__call {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    background: var(--brand); color: var(--brand-contrast) !important;
+    padding: 0.55rem 1.05rem; border-radius: var(--radius-pill);
+    font-weight: var(--fw-bold); font-size: 0.9rem;
   }
-  .header__nav a {
-    color: rgba(255, 255, 255, 0.92);
-    font-weight: 500;
-    font-size: 0.95rem;
-  }
-  .header__nav a:hover {
-    color: #fff;
-    text-decoration: none;
-  }
-  .header__call {
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 999px;
-    padding: 0.5rem 1.1rem;
-  }
-  .header__call:hover {
-    background: rgba(255, 255, 255, 0.12);
-  }
+  .hdr__call svg { width: 1em; height: 1em; }
+  .hdr__call:hover { background: var(--brand-dark); text-decoration: none; }
+
   @media (max-width: 720px) {
-    .header__nav a:not(.header__call) {
-      display: none;
-    }
+    .hdr__nav a:not(.hdr__call) { display: none; }
+    .hdr__name { font-size: 1.05rem; }
   }
 </style>

@@ -300,7 +300,7 @@ function instantiateSection(type: RecipeSectionType, config: ProspectConfig): Se
     case 'services-detailed': {
       const items = (config.services ?? [])
         .filter((s) => s.description && s.description.trim().length > 20)
-        .map((s) => ({ title: s.title, description: s.description }));
+        .map((s) => ({ title: s.title, description: s.description, image: s.image }));
       if (!items.length) return null;
       return { type: 'services-detailed', items };
     }
@@ -542,12 +542,18 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
   // If the config explicitly provides a sections array (author override), respect it.
   // The engine only adds hero + connective tissue (cta at min).
   if (config.sections && config.sections.length > 0) {
-    const authored = config.sections;
+    let authored = [...config.sections];
+    // Every site gets a photo service-card grid (the bear-flag look) — inject one
+    // from config.services if the author didn't include it.
+    if (!authored.some((s) => s.type === 'services-detailed')) {
+      const sd = instantiateSection('services-detailed', config);
+      if (sd) authored = [authored[0], sd, ...authored.slice(1)];
+    }
     // Ensure CTA is present
     const hasCta = authored.some((s) => s.type === 'cta');
     const plan = hasCta
       ? authored
-      : [...authored, instantiateSection('cta', config)].filter(Boolean) as Section[];
+      : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
     return { hero, sections: assignTones(ensureMinimum(plan, config, seed), seed) };
   }
 

@@ -46,19 +46,23 @@
   "services": [
     {
       "title": "House-made wines",
-      "description": "Small-farm wines produced and bottled on-site — including local favorites like Purple Haze and Udder Chaos."
+      "description": "Small-farm wines produced and bottled on-site — including local favorites like Purple Haze and Udder Chaos.",
+      "image": "/images/purple-cow-winery/photo-100.jpg"
     },
     {
       "title": "Tastings",
-      "description": "Settle in and sample the lineup in a relaxed, farmhouse-style tasting room."
+      "description": "Settle in and sample the lineup in a relaxed, farmhouse-style tasting room.",
+      "image": "/images/purple-cow-winery/photo-101.jpg"
     },
     {
       "title": "Live music & games",
-      "description": "Weekend live music, corn hole, and giant Connect Four out on the lawn."
+      "description": "Weekend live music, corn hole, and giant Connect Four out on the lawn.",
+      "image": "/images/purple-cow-winery/photo-102.jpg"
     },
     {
       "title": "Family & farm-friendly",
-      "description": "Friendly farm animals and open space make it an easy afternoon for the whole crew."
+      "description": "Friendly farm animals and open space make it an easy afternoon for the whole crew.",
+      "image": "/images/purple-cow-winery/photo-103.jpg"
     }
   ],
   "hours": [

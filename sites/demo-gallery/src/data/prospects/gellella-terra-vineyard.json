@@ -46,19 +46,23 @@
   "services": [
     {
       "title": "Small-batch wines",
-      "description": "Handcrafted dry, sweet, and dessert wines made in small lots, the old-family way."
+      "description": "Handcrafted dry, sweet, and dessert wines made in small lots, the old-family way.",
+      "image": "/images/gellella-terra-vineyard/photo-100.jpg"
     },
     {
       "title": "Tastings & tours",
-      "description": "Reserved tastings and vineyard tours, plus wine-appreciation sessions for groups."
+      "description": "Reserved tastings and vineyard tours, plus wine-appreciation sessions for groups.",
+      "image": "/images/gellella-terra-vineyard/photo-101.jpg"
     },
     {
       "title": "Wine & small plates",
-      "description": "Thoughtful small plates paired to the wines, meant to be enjoyed slowly with the view."
+      "description": "Thoughtful small plates paired to the wines, meant to be enjoyed slowly with the view.",
+      "image": "/images/gellella-terra-vineyard/photo-102.jpg"
     },
     {
       "title": "Private events",
-      "description": "By-appointment group tastings and gatherings in an intimate, family setting."
+      "description": "By-appointment group tastings and gatherings in an intimate, family setting.",
+      "image": "/images/gellella-terra-vineyard/photo-103.jpg"
     }
   ],
   "hours": [

@@ -46,19 +46,23 @@
   "services": [
     {
       "title": "40+ wines & meads",
-      "description": "From light and sweet to bold and dry — plus traditional meads — all made and bottled right here."
+      "description": "From light and sweet to bold and dry — plus traditional meads — all made and bottled right here.",
+      "image": "/images/honey-hole-winery/photo-100.jpg"
     },
     {
       "title": "Wine slushies",
-      "description": "Our warm-weather favorite, and the reason a lot of folks first find us."
+      "description": "Our warm-weather favorite, and the reason a lot of folks first find us.",
+      "image": "/images/honey-hole-winery/photo-101.jpg"
     },
     {
       "title": "Tastings & tasting bar",
-      "description": "Pull up to the bar and work your way through the list with people who love to talk wine."
+      "description": "Pull up to the bar and work your way through the list with people who love to talk wine.",
+      "image": "/images/honey-hole-winery/photo-102.jpg"
     },
     {
       "title": "Patio, pups & food trucks",
-      "description": "Pet-friendly outdoor seating with rotating food trucks and local honey and treats to take home."
+      "description": "Pet-friendly outdoor seating with rotating food trucks and local honey and treats to take home.",
+      "image": "/images/honey-hole-winery/photo-103.jpg"
     }
   ],
   "hours": [

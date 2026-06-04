@@ -46,23 +46,28 @@
   "services": [
     {
       "title": "Light & medium-duty towing",
-      "description": "Cars, trucks, and vans moved safely on flatbeds and wheel-lifts, anywhere in Santa Barbara County."
+      "description": "Cars, trucks, and vans moved safely on flatbeds and wheel-lifts, anywhere in Santa Barbara County.",
+      "image": "/images/smittys-towing/photo-100.jpg"
     },
     {
       "title": "Heavy-duty recovery & rotators",
-      "description": "Overturned big rigs, heavy equipment, and water recoveries handled by 360° rotators and operators who've seen it all."
+      "description": "Overturned big rigs, heavy equipment, and water recoveries handled by 360° rotators and operators who've seen it all.",
+      "image": "/images/smittys-towing/photo-101.jpg"
     },
     {
       "title": "24/7 roadside assistance",
-      "description": "Flat tires, jump starts, lockouts, and fuel delivery — one call gets a truck rolling, any hour of the night."
+      "description": "Flat tires, jump starts, lockouts, and fuel delivery — one call gets a truck rolling, any hour of the night.",
+      "image": "/images/smittys-towing/photo-102.png"
     },
     {
       "title": "Motorcycle & EV towing",
-      "description": "Specialized, damage-free transport for motorcycles, plus manufacturer-authorized towing for electric vehicles."
+      "description": "Specialized, damage-free transport for motorcycles, plus manufacturer-authorized towing for electric vehicles.",
+      "image": "/images/smittys-towing/photo-103.jpg"
     },
     {
       "title": "Secure impound & storage",
-      "description": "Gated, inside storage yards across the county keep recovered and impounded vehicles safe."
+      "description": "Gated, inside storage yards across the county keep recovered and impounded vehicles safe.",
+      "image": "/images/smittys-towing/photo-104.jpg"
     }
   ],
   "hours": [

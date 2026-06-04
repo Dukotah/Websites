@@ -46,19 +46,23 @@
   "services": [
     {
       "title": "Small-batch wines",
-      "description": "More than 25 artisan wines, made in small lots from Pennsylvania-grown fruit."
+      "description": "More than 25 artisan wines, made in small lots from Pennsylvania-grown fruit.",
+      "image": "/images/kog-hill-winery/photo-100.jpg"
     },
     {
       "title": "Classic varietals",
-      "description": "Cabernet Franc, Grüner Veltliner, and other dry standards for the traditionalist."
+      "description": "Cabernet Franc, Grüner Veltliner, and other dry standards for the traditionalist.",
+      "image": "/images/kog-hill-winery/photo-101.jpg"
     },
     {
       "title": "Specialty pours",
-      "description": "Toasted Marshmallow, Pumpkin Spice, and other seasonal favorites that keep things fun."
+      "description": "Toasted Marshmallow, Pumpkin Spice, and other seasonal favorites that keep things fun.",
+      "image": "/images/kog-hill-winery/photo-102.jpg"
     },
     {
       "title": "Tastings",
-      "description": "Weekend tastings where you can work through the list and find your bottle."
+      "description": "Weekend tastings where you can work through the list and find your bottle.",
+      "image": "/images/kog-hill-winery/photo-103.jpg"
     }
   ],
   "hours": [
