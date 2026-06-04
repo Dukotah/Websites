@@ -437,6 +437,72 @@ export async function scrapeSite(url, { timeoutMs = 12000 } = {}) {
   return enrichment;
 }
 
+// --- deep image crawl --------------------------------------------------------
+
+async function fetchHtml(url, timeoutMs = 12000) {
+  const target = /^https?:\/\//i.test(url) ? url : `https://${url}`;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const res = await fetch(target, {
+      headers: { 'User-Agent': UA, Accept: 'text/html,*/*' },
+      redirect: 'follow',
+      signal: ctrl.signal,
+    });
+    if (!res.ok) return null;
+    return { html: await res.text(), finalUrl: res.url || target };
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// Internal links worth crawling for photos (galleries/services/about pages).
+const PHOTO_PAGE_HINT = /gallery|galleries|photos?|portfolio|work|projects?|services?|about|menu|team|recent|featured|our-/i;
+
+function findInternalPhotoLinks(html, base, max = 5) {
+  const host = (() => { try { return new URL(base).host; } catch { return ''; } })();
+  const out = [];
+  const seen = new Set();
+  for (const m of html.matchAll(/<a\b[^>]*href\s*=\s*["']([^"'#]+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const href = m[1];
+    const text = stripTags(m[2] || '');
+    if (!PHOTO_PAGE_HINT.test(href) && !PHOTO_PAGE_HINT.test(text)) continue;
+    const abs = absolutize(href, base);
+    if (!abs) continue;
+    try {
+      const u = new URL(abs);
+      if (u.host !== host) continue; // same site only
+      const key = u.pathname.replace(/\/$/, '');
+      if (!key || key.length < 2 || seen.has(key)) continue;
+      seen.add(key);
+      out.push(abs);
+    } catch { /* skip */ }
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
+/**
+ * Collect real photo URLs from a site by scraping its homepage AND a few
+ * photo-likely subpages (gallery/services/about). Key-free, best-effort.
+ * Returns a deduped, logo-filtered list of absolute image URLs.
+ */
+export async function collectSiteImages(url, { maxPages = 4, timeoutMs = 12000 } = {}) {
+  const home = await fetchHtml(url, timeoutMs);
+  if (!home) return [];
+  const base = home.finalUrl;
+  let images = extractImages(home.html, base);
+
+  const links = findInternalPhotoLinks(home.html, base, maxPages);
+  for (const link of links) {
+    const page = await fetchHtml(link, timeoutMs);
+    if (page) images = images.concat(extractImages(page.html, page.finalUrl));
+  }
+  return usefulImages(images);
+}
+
 function mergeSocial(sameAs = [], found) {
   const out = { ...found };
   for (const u of sameAs) {

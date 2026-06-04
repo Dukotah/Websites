@@ -26,12 +26,12 @@
     "Live music & farm animals"
   ],
   "images": {
-    "hero": "/images/purple-cow-winery/hero.jpg",
+    "hero": "/images/purple-cow-winery/hero.webp",
     "heroAlt": "Purple Cow Winery in Bloomsburg, PA",
-    "story": "/images/purple-cow-winery/story.jpg",
+    "story": "/images/purple-cow-winery/story.webp",
     "storyAlt": "Inside Purple Cow Winery",
     "storyCaption": "",
-    "storyCredit": "Photo: Christian Ferrer",
+    "storyCredit": "Photo: Openverse",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "about": {
@@ -167,15 +167,15 @@
   },
   "galleryImages": [
     {
-      "src": "/images/purple-cow-winery/story.jpg",
+      "src": "/images/purple-cow-winery/story.webp",
       "alt": "Purple Cow Winery in Bloomsburg, PA — photo 2"
     },
     {
-      "src": "/images/purple-cow-winery/photo-2.jpg",
+      "src": "/images/purple-cow-winery/photo-2.webp",
       "alt": "Purple Cow Winery in Bloomsburg, PA — photo 3"
     },
     {
-      "src": "/images/purple-cow-winery/photo-3.jpg",
+      "src": "/images/purple-cow-winery/photo-3.webp",
       "alt": "Purple Cow Winery in Bloomsburg, PA — photo 4"
     }
   ],

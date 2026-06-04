@@ -57,7 +57,7 @@
     {
       "title": "24/7 roadside assistance",
       "description": "Flat tires, jump starts, lockouts, and fuel delivery — one call gets a truck rolling, any hour of the night.",
-      "image": "/images/smittys-towing/photo-102.png"
+      "image": "/images/smittys-towing/photo-102.jpg"
     },
     {
       "title": "Motorcycle & EV towing",
@@ -164,7 +164,7 @@
       "alt": "Smitty's Towing in Santa Barbara County, CA — photo 2"
     },
     {
-      "src": "/images/smittys-towing/photo-2.png",
+      "src": "/images/smittys-towing/photo-2.jpg",
       "alt": "Smitty's Towing in Santa Barbara County, CA — photo 3"
     },
     {
@@ -172,7 +172,5 @@
       "alt": "Smitty's Towing in Santa Barbara County, CA — photo 4"
     }
   ],
-  "flags": [
-    "Includes area/stock photos from Wikimedia (credited) — replace with the business’s own before sending"
-  ]
+  "flags": []
 }

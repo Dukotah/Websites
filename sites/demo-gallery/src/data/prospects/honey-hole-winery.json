@@ -26,12 +26,12 @@
     "Pet-friendly patio"
   ],
   "images": {
-    "hero": "/images/honey-hole-winery/hero.jpg",
+    "hero": "/images/honey-hole-winery/hero.webp",
     "heroAlt": "Honey Hole Winery in Drums, PA",
-    "story": "/images/honey-hole-winery/story.jpg",
+    "story": "/images/honey-hole-winery/story.webp",
     "storyAlt": "Inside Honey Hole Winery",
     "storyCaption": "",
-    "storyCredit": "Photo: Christian Ferrer",
+    "storyCredit": "Photo: Openverse",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "about": {
@@ -176,15 +176,15 @@
   },
   "galleryImages": [
     {
-      "src": "/images/honey-hole-winery/story.jpg",
+      "src": "/images/honey-hole-winery/story.webp",
       "alt": "Honey Hole Winery in Drums, PA — photo 2"
     },
     {
-      "src": "/images/honey-hole-winery/photo-2.jpg",
+      "src": "/images/honey-hole-winery/photo-2.webp",
       "alt": "Honey Hole Winery in Drums, PA — photo 3"
     },
     {
-      "src": "/images/honey-hole-winery/photo-3.jpg",
+      "src": "/images/honey-hole-winery/photo-3.webp",
       "alt": "Honey Hole Winery in Drums, PA — photo 4"
     }
   ],

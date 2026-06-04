@@ -26,12 +26,12 @@
     "Legacy from Tito, Italy"
   ],
   "images": {
-    "hero": "/images/gellella-terra-vineyard/hero.jpg",
+    "hero": "/images/gellella-terra-vineyard/hero.webp",
     "heroAlt": "Gellella Terra Vineyard in Muncy, PA",
-    "story": "/images/gellella-terra-vineyard/story.jpg",
+    "story": "/images/gellella-terra-vineyard/story.webp",
     "storyAlt": "Inside Gellella Terra Vineyard",
     "storyCaption": "",
-    "storyCredit": "Photo: Christian Ferrer",
+    "storyCredit": "Photo: Openverse",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "about": {
@@ -164,15 +164,15 @@
   },
   "galleryImages": [
     {
-      "src": "/images/gellella-terra-vineyard/story.jpg",
+      "src": "/images/gellella-terra-vineyard/story.webp",
       "alt": "Gellella Terra Vineyard in Muncy, PA — photo 2"
     },
     {
-      "src": "/images/gellella-terra-vineyard/photo-2.jpg",
+      "src": "/images/gellella-terra-vineyard/photo-2.webp",
       "alt": "Gellella Terra Vineyard in Muncy, PA — photo 3"
     },
     {
-      "src": "/images/gellella-terra-vineyard/photo-3.jpg",
+      "src": "/images/gellella-terra-vineyard/photo-3.webp",
       "alt": "Gellella Terra Vineyard in Muncy, PA — photo 4"
     }
   ],

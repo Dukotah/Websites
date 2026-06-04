@@ -26,12 +26,12 @@
     "PA-grown fruit"
   ],
   "images": {
-    "hero": "/images/kog-hill-winery/hero.jpg",
+    "hero": "/images/kog-hill-winery/hero.webp",
     "heroAlt": "Kog Hill Winery in Morgantown, PA",
-    "story": "/images/kog-hill-winery/story.jpg",
+    "story": "/images/kog-hill-winery/story.webp",
     "storyAlt": "Inside Kog Hill Winery",
     "storyCaption": "",
-    "storyCredit": "Photo: Christian Ferrer",
+    "storyCredit": "Photo: Openverse",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "about": {
@@ -164,15 +164,15 @@
   },
   "galleryImages": [
     {
-      "src": "/images/kog-hill-winery/story.jpg",
+      "src": "/images/kog-hill-winery/story.webp",
       "alt": "Kog Hill Winery in Morgantown, PA — photo 2"
     },
     {
-      "src": "/images/kog-hill-winery/photo-2.jpg",
+      "src": "/images/kog-hill-winery/photo-2.webp",
       "alt": "Kog Hill Winery in Morgantown, PA — photo 3"
     },
     {
-      "src": "/images/kog-hill-winery/photo-3.jpg",
+      "src": "/images/kog-hill-winery/photo-3.webp",
       "alt": "Kog Hill Winery in Morgantown, PA — photo 4"
     }
   ],

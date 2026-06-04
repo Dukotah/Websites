@@ -24,8 +24,9 @@
 import { readFile, writeFile, readdir } from 'node:fs/promises';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { scrapeSite } from './lib/scrape-site.mjs';
+import { collectSiteImages } from './lib/scrape-site.mjs';
 import { downloadScrapedPhotos } from './lib/images.mjs';
+import { getOpenversePhotos } from './lib/openverse.mjs';
 import { getRealPhotos } from './lib/photos.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -109,33 +110,40 @@ async function sweepOne(file) {
   let media = [];
   let sources = [];
 
-  // Tier 1 — their own site.
+  // Tier 1 — their own site (homepage + gallery/services/about subpages).
   const site = deriveSite(config, slug);
   if (site) {
     try {
-      const e = await scrapeSite(site);
-      if (e?.images?.length) {
-        const got = await downloadScrapedPhotos(e.images, { destDir: PUBLIC_IMAGES, slug, max: TARGET, maxCandidates: 28 });
+      const imgs = await collectSiteImages(site, { maxPages: 5 });
+      if (imgs.length) {
+        const got = await downloadScrapedPhotos(imgs, { destDir: PUBLIC_IMAGES, slug, max: TARGET, maxCandidates: 36 });
         if (got.length) { media = got; sources.push(`their site (${got.length})`); }
       }
-    } catch { /* fall through to Wikimedia */ }
+    } catch { /* fall through to stock */ }
   }
 
-  // Tier 2 — Wikimedia Commons, category + location.
-  let usedWikimedia = false;
+  const queries = [...(CATEGORY_QUERIES[category] ?? CATEGORY_QUERIES.default), area].filter(Boolean);
+  let usedStock = false;
+
+  // Tier 2 — Openverse (large free CC library; more relevant than Wikimedia).
   if (media.length < TARGET) {
-    const queries = [
-      ...(CATEGORY_QUERIES[category] ?? CATEGORY_QUERIES.default),
-      area, // a couple of location shots as a last query
-    ];
+    try {
+      const ov = await getOpenversePhotos(queries, { destDir: PUBLIC_IMAGES, slug, max: TARGET - media.length, startIndex: media.length });
+      if (ov.length) { media = media.concat(ov); usedStock = true; sources.push(`Openverse (${ov.length})`); }
+    } catch { /* fall through */ }
+  }
+
+  // Tier 3 — Wikimedia Commons (last-resort stock).
+  if (media.length < TARGET) {
     try {
       const wiki = await getRealPhotos(
         { name: config.name, category, city: config.contact?.city, state: '' },
         { destDir: PUBLIC_IMAGES, slug, max: TARGET - media.length, startIndex: media.length, width: 1600, queries },
       );
-      if (wiki.length) { media = media.concat(wiki); usedWikimedia = true; sources.push(`Wikimedia (${wiki.length})`); }
+      if (wiki.length) { media = media.concat(wiki); usedStock = true; sources.push(`Wikimedia (${wiki.length})`); }
     } catch { /* leave SVG library */ }
   }
+  const usedWikimedia = usedStock; // (kept var name below for flag logic)
 
   if (!media.length) {
     console.log(`  · ${slug.padEnd(26)} no photos found anywhere — left on library art`);

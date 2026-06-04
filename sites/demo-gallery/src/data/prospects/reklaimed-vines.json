@@ -26,12 +26,12 @@
     "Huntingdon County's only winery"
   ],
   "images": {
-    "hero": "/images/reklaimed-vines/hero.jpg",
+    "hero": "/images/reklaimed-vines/hero.webp",
     "heroAlt": "ReKlaimed Vines in Huntingdon, PA",
-    "story": "/images/reklaimed-vines/story.jpg",
+    "story": "/images/reklaimed-vines/story.webp",
     "storyAlt": "Inside ReKlaimed Vines",
     "storyCaption": "",
-    "storyCredit": "Photo: Christian Ferrer",
+    "storyCredit": "Photo: Openverse",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "about": {
@@ -158,15 +158,15 @@
   },
   "galleryImages": [
     {
-      "src": "/images/reklaimed-vines/story.jpg",
+      "src": "/images/reklaimed-vines/story.webp",
       "alt": "ReKlaimed Vines in Huntingdon, PA — photo 2"
     },
     {
-      "src": "/images/reklaimed-vines/photo-2.jpg",
+      "src": "/images/reklaimed-vines/photo-2.webp",
       "alt": "ReKlaimed Vines in Huntingdon, PA — photo 3"
     },
     {
-      "src": "/images/reklaimed-vines/photo-3.jpg",
+      "src": "/images/reklaimed-vines/photo-3.webp",
       "alt": "ReKlaimed Vines in Huntingdon, PA — photo 4"
     }
   ],

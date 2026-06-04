@@ -14,6 +14,7 @@ import { readFile, writeFile, readdir } from 'node:fs/promises';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getRealPhotos } from './lib/photos.mjs';
+import { getOpenversePhotos } from './lib/openverse.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PROSPECTS = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
@@ -73,10 +74,11 @@ async function doOne(file) {
       term,
     ].filter(Boolean);
     try {
-      const got = await getRealPhotos(
-        { name: '', category: cat },
-        { destDir: PUBLIC_IMAGES, slug, max: 1, startIndex: 100 + i, width: 1200, queries },
-      );
+      // Openverse first (more relevant), Wikimedia as fallback.
+      let got = await getOpenversePhotos(queries, { destDir: PUBLIC_IMAGES, slug, max: 1, startIndex: 100 + i, aspect: 'wide' });
+      if (!got.length) {
+        got = await getRealPhotos({ name: '', category: cat }, { destDir: PUBLIC_IMAGES, slug, max: 1, startIndex: 100 + i, width: 1200, queries });
+      }
       if (got[0]?.path) { it.image = got[0].path; added++; }
     } catch { /* leave without image (component falls back to a branded card) */ }
   }

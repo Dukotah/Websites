@@ -31,7 +31,7 @@
     "story": "/images/vasquez-plumbing-co/story.jpg",
     "storyAlt": "Inside Vasquez Plumbing Co",
     "storyCaption": "",
-    "storyCredit": "Photo: Tangopaso",
+    "storyCredit": "Photo: U.S. Department of Agriculture",
     "placeholder": "/images/library/plumbing/hero.svg"
   },
   "about": {
@@ -90,12 +90,12 @@
         {
           "title": "Drain & sewer cleaning",
           "description": "Hydro-jetting and camera inspection for stubborn clogs and root intrusion, with the footage shown to you on the spot.",
-          "image": "/images/vasquez-plumbing-co/photo-101.png"
+          "image": "/images/vasquez-plumbing-co/photo-101.jpg"
         },
         {
           "title": "Water heaters",
           "description": "Tank and tankless installs, repairs, and flushes — most standard swaps done same-day with a 6-year labor warranty.",
-          "image": "/images/vasquez-plumbing-co/photo-102.png"
+          "image": "/images/vasquez-plumbing-co/photo-102.jpg"
         },
         {
           "title": "Repipes & remodels",
