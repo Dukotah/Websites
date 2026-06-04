@@ -140,30 +140,100 @@ export function contrastRatio(a: string | Rgb, b: string | Rgb): number {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-/** Lighten a hex color by `amount` lightness percentage points (0..100). */
-export function lighten(hex: string, amount: number): string {
-  const hsl = toHsl(hex);
-  return toHex({ ...hsl, l: clamp(hsl.l + amount, 0, 100) });
+// ─────────────────────────────────────────────────────────────────────────────
+// OKLab / OKLCH — perceptually-uniform color space (Björn Ottosson, 2020).
+//
+// Lightness and mix operations run here instead of HSL so ramps step EVENLY
+// across hues (HSL "lightness" is wildly uneven — yellow at l=50% reads far
+// lighter than blue at l=50%, so HSL-derived surfaces/borders drift per brand)
+// and mixes never pass through a muddy sRGB midpoint. Public SIGNATURES are
+// unchanged, so palette.ts and every downstream consumer are untouched.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface Oklab {
+  L: number; // perceptual lightness, 0 (black) .. 1 (white)
+  a: number; // green(−) ↔ red(+)
+  b: number; // blue(−) ↔ yellow(+)
 }
 
-/** Darken a hex color by `amount` lightness percentage points (0..100). */
-export function darken(hex: string, amount: number): string {
-  const hsl = toHsl(hex);
-  return toHex({ ...hsl, l: clamp(hsl.l - amount, 0, 100) });
+/** sRGB channel (0..1, gamma) → linear-light. */
+function srgbToLinear(c: number): number {
+  return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+}
+
+/** linear-light channel → sRGB (0..1, gamma), gamut-clipped. */
+function linearToSrgb(c: number): number {
+  const v = c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
+  return clamp(v, 0, 1);
+}
+
+/** Hex → OKLab. Never throws (bad hex → safe neutral via parseHex). */
+export function hexToOklab(hex: string): Oklab {
+  const { r, g, b } = parseHex(hex);
+  const lr = srgbToLinear(clamp(r, 0, 255) / 255);
+  const lg = srgbToLinear(clamp(g, 0, 255) / 255);
+  const lb = srgbToLinear(clamp(b, 0, 255) / 255);
+
+  const l = 0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb;
+  const m = 0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb;
+  const s = 0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb;
+
+  const l_ = Math.cbrt(l);
+  const m_ = Math.cbrt(m);
+  const s_ = Math.cbrt(s);
+
+  return {
+    L: 0.2104542553 * l_ + 0.793617785 * m_ - 0.0040720468 * s_,
+    a: 1.9779984951 * l_ - 2.428592205 * m_ + 0.4505937099 * s_,
+    b: 0.0259040371 * l_ + 0.7827717662 * m_ - 0.808675766 * s_,
+  };
+}
+
+/** OKLab → hex, gamut-clamped to sRGB. Always valid. */
+export function oklabToHex(lab: Oklab): string {
+  const l_ = lab.L + 0.3963377774 * lab.a + 0.2158037573 * lab.b;
+  const m_ = lab.L - 0.1055613458 * lab.a - 0.0638541728 * lab.b;
+  const s_ = lab.L - 0.0894841775 * lab.a - 1.291485548 * lab.b;
+
+  const l = l_ * l_ * l_;
+  const m = m_ * m_ * m_;
+  const s = s_ * s_ * s_;
+
+  const r = linearToSrgb(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s);
+  const g = linearToSrgb(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s);
+  const b = linearToSrgb(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s);
+
+  return rgbToHex({ r: r * 255, g: g * 255, b: b * 255 });
 }
 
 /**
- * Linearly mix two hex colors in sRGB space. `t` = weight of `b` (0 → all a,
- * 1 → all b). Clamped.
+ * Lighten a hex color by `amount` (0..100). Adjusts OKLab perceptual lightness
+ * (amount/100 of the full 0..1 range), so equal amounts read as equal visual
+ * steps regardless of hue.
+ */
+export function lighten(hex: string, amount: number): string {
+  const lab = hexToOklab(hex);
+  return oklabToHex({ ...lab, L: clamp(lab.L + amount / 100, 0, 1) });
+}
+
+/** Darken a hex color by `amount` (0..100) in OKLab perceptual lightness. */
+export function darken(hex: string, amount: number): string {
+  const lab = hexToOklab(hex);
+  return oklabToHex({ ...lab, L: clamp(lab.L - amount / 100, 0, 1) });
+}
+
+/**
+ * Mix two hex colors in OKLab space. `t` = weight of `b` (0 → all a, 1 → all b).
+ * OKLab interpolation avoids the muddy grey midpoints of raw sRGB mixing.
  */
 export function mix(a: string, b: string, t: number): string {
   const w = clamp(t, 0, 1);
-  const ca = parseHex(a);
-  const cb = parseHex(b);
-  return rgbToHex({
-    r: ca.r + (cb.r - ca.r) * w,
-    g: ca.g + (cb.g - ca.g) * w,
-    b: ca.b + (cb.b - ca.b) * w,
+  const la = hexToOklab(a);
+  const lb = hexToOklab(b);
+  return oklabToHex({
+    L: la.L + (lb.L - la.L) * w,
+    a: la.a + (lb.a - la.a) * w,
+    b: la.b + (lb.b - la.b) * w,
   });
 }
 
