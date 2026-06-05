@@ -161,19 +161,23 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     kept.push({ buf: got.buf, ext, url, w: dims?.w ?? q.w, h: dims?.h ?? q.h, score: q.score });
   }
 
-  // Rank by photographic quality (entropy + tonal richness + landscape + area),
-  // so the best real photo lands in the hero slot and the gallery is best-first.
+  // Rank survivors by photographic quality (entropy + tonal richness + landscape
+  // + area) — this is the GALLERY order, best-first.
   kept.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 
-  // Honor an explicit hero hint (e.g. the site's og:image / full-bleed hero) —
-  // it's almost always the business's intended money shot. If it survived the
-  // size filter and is landscape-ish, force it into the hero slot.
-  if (heroHint) {
-    const i = kept.findIndex((k) => k.url === heroHint && (!k.w || !k.h || k.w / k.h >= 1.1));
-    if (i > 0) {
-      const [h] = kept.splice(i, 1);
-      kept.unshift(h);
-    }
+  // Choose the HERO deliberately — it carries the whole page, so "best photo" is
+  // the wrong default (a striking portrait crops badly full-bleed). Preference:
+  //   1. the business's OWN og:image/hero hint, when it survived as a real photo
+  //      (graphics were already dropped, so a surviving hint is trustworthy);
+  //   2. else the best-scored LANDSCAPE shot (wide reads as intentional);
+  //   3. else the best overall.
+  const isLandscape = (k) => k.w && k.h && k.w / k.h >= 1.2;
+  let heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint) : -1;
+  if (heroIdx < 0) heroIdx = kept.findIndex(isLandscape);
+  if (heroIdx < 0) heroIdx = 0;
+  if (heroIdx > 0) {
+    const [h] = kept.splice(heroIdx, 1);
+    kept.unshift(h);
   }
 
   const saved = [];
