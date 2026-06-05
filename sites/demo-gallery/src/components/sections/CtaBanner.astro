@@ -1,0 +1,191 @@
+---
+/**
+ * CtaBanner — full-bleed "closing statement" CTA (variant 2 of cta).
+ *
+ * Deliberately different silhouette from the contained CtaSection band (v0) and
+ * the asymmetric CtaPanel (v1): an edge-to-edge brand wash with an oversized,
+ * centered display headline and a single primary action, anchored by a large
+ * faint outlined geometric motif. Reads as the page's confident sign-off.
+ *
+ * Prop shape matches the 'cta' member of the Section union, so SectionRenderer
+ * can spread {...section} unchanged. eyebrow renders above the heading; intro is
+ * used as body copy when `text` is absent.
+ *
+ * Tone-aware (default / alt / deep / brand — brand is the natural fit). Entrance
+ * is data-reveal only; reduced-motion safe (the motif is static).
+ */
+import type { Section } from '../../types';
+
+type Props = Extract<Section, { type: 'cta' }> & { index?: number };
+
+const {
+  heading,
+  text,
+  buttonText,
+  buttonHref = '#contact',
+  eyebrow,
+  intro,
+  tone = 'brand',
+  align: _align,
+  index: _index,
+} = Astro.props as Props;
+
+const body = text ?? intro;
+---
+
+<section class="section ctabanner" data-tone={tone}>
+  <!-- Oversized outlined geometric motif (decorative, static) -->
+  <div class="ctabanner__motif" aria-hidden="true"></div>
+
+  <div class="container ctabanner__inner" data-reveal>
+    {eyebrow && <p class="ctabanner__eyebrow">{eyebrow}</p>}
+    <h2 class="ctabanner__heading">{heading}</h2>
+    {body && <p class="ctabanner__body">{body}</p>}
+    {buttonText && (
+      <a href={buttonHref} class="ctabanner__btn">
+        {buttonText}
+        <svg class="ctabanner__arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+          <path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    )}
+  </div>
+</section>
+
+<style>
+  .ctabanner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(4rem, 9vw, 7.5rem);
+    background: var(--brand);
+    color: var(--brand-contrast);
+    text-align: center;
+  }
+
+  /* Large faint outlined ring, offset to the corner — pure decoration. */
+  .ctabanner__motif {
+    position: absolute;
+    z-index: 0;
+    top: -40%;
+    right: -10%;
+    width: clamp(320px, 48vw, 720px);
+    aspect-ratio: 1 / 1;
+    border: 2px solid color-mix(in srgb, var(--brand-contrast) 22%, transparent);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .ctabanner__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 44rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+  }
+
+  .ctabanner__eyebrow {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--brand-contrast) 80%, transparent);
+  }
+
+  .ctabanner__heading {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+
+  .ctabanner__body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--step-1);
+    line-height: var(--leading-body);
+    color: color-mix(in srgb, var(--brand-contrast) 88%, transparent);
+    max-width: 38ch;
+  }
+
+  .ctabanner__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    padding: 0.95em 2em;
+    border-radius: var(--radius-pill, var(--radius));
+    background: var(--brand-contrast);
+    color: var(--brand);
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    text-decoration: none;
+    box-shadow: var(--shadow-3, 0 6px 24px rgb(0 0 0 / 0.18));
+    transition:
+      transform var(--motion-fade, 0.2s) var(--motion-ease, ease),
+      box-shadow var(--motion-fade, 0.2s) var(--motion-ease, ease);
+  }
+  .ctabanner__btn:hover {
+    box-shadow: var(--shadow-5, 0 12px 36px rgb(0 0 0 / 0.24));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .ctabanner__btn:hover {
+      transform: translateY(-2px);
+    }
+    .ctabanner__btn:hover .ctabanner__arrow {
+      transform: translateX(3px);
+    }
+  }
+  .ctabanner__btn:focus-visible {
+    outline: 2px solid var(--brand-contrast);
+    outline-offset: 3px;
+  }
+  .ctabanner__arrow {
+    width: 1.1em;
+    height: 1.1em;
+    transition: transform var(--motion-fade, 0.2s) var(--motion-ease, ease);
+  }
+
+  /* ── Tones — brand is default; honor the others for variety ─────────────── */
+  [data-tone='default'].ctabanner,
+  [data-tone='alt'].ctabanner {
+    background: var(--bg-alt);
+    color: var(--text);
+  }
+  [data-tone='default'].ctabanner .ctabanner__motif,
+  [data-tone='alt'].ctabanner .ctabanner__motif {
+    border-color: color-mix(in srgb, var(--brand) 28%, transparent);
+  }
+  [data-tone='default'].ctabanner .ctabanner__body,
+  [data-tone='alt'].ctabanner .ctabanner__body,
+  [data-tone='default'].ctabanner .ctabanner__eyebrow,
+  [data-tone='alt'].ctabanner .ctabanner__eyebrow {
+    color: var(--text-muted);
+  }
+  [data-tone='default'].ctabanner .ctabanner__btn,
+  [data-tone='alt'].ctabanner .ctabanner__btn {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+
+  [data-tone='deep'].ctabanner {
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+  }
+  [data-tone='deep'].ctabanner .ctabanner__motif {
+    border-color: color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+  }
+  [data-tone='deep'].ctabanner .ctabanner__btn {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+</style>

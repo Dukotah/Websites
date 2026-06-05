@@ -38,6 +38,7 @@ import StatsBand from './StatsBand.astro';
 import StatsInline from './StatsInline.astro';
 import ServicesDetailedBento from './ServicesDetailedBento.astro';
 import CtaPanel from './CtaPanel.astro';
+import CtaBanner from './CtaBanner.astro';
 
 interface Props {
   sections: Section[];
@@ -63,7 +64,7 @@ const TESTIMONIALS = [TestimonialsSection, TestimonialsSpotlight];
 const FEATURE_SPLIT = [FeatureSplit, FeatureSplitFraming];
 const FEATURE_GRID = [FeatureGrid, FeatureGridBordered];
 const STATS = [StatsSection, StatsBand, StatsInline];
-const CTA = [CtaSection, CtaPanel];
+const CTA = [CtaSection, CtaPanel, CtaBanner];
 
 /** Pick a variant component for a section, wrapping the index safely. */
 function variantOf<T>(pool: T[], variant?: number): T {

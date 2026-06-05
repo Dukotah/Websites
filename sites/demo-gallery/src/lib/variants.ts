@@ -21,7 +21,7 @@ export const SECTION_VARIANTS: Partial<Record<SectionType, number>> = {
   'feature-split': 2, // [alternating-zigzag, framed-cards]
   'feature-grid': 2, // [tiles, bordered-spec-sheet]
   stats: 3, // [default, KPI-band, inline-ribbon]
-  cta: 2, // [centered, asymmetric-panel]
+  cta: 3, // [centered band, asymmetric-panel, full-bleed banner]
 };
 
 /**
