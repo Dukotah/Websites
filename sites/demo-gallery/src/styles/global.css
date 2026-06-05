@@ -368,3 +368,39 @@ img {
   color: var(--text-on-dark);
   opacity: 0.8;
 }
+
+/* ── Crop-zoom on hover (gallery / cards / feature media) ──────────────────────
+ * Photos render inside the SiteImage child component, so each card's own scoped
+ * `:hover .x__img { transform }` rule can't reach the <img>. Centralize the
+ * interaction here (global, so it pierces) by reusing the existing container
+ * classes. Pure transform inside overflow:hidden — the box never moves. Honored
+ * only when motion is welcome. */
+@media (prefers-reduced-motion: no-preference) {
+  .gallery__cell .gallery__img,
+  .gu__cell .gu__img,
+  .gf__tile .gf__img,
+  .ef__img,
+  .fs__img,
+  .fsf__img,
+  .team__img,
+  .svc-card__media img,
+  .bento-cell__media img,
+  .svcrow__media img,
+  .col-hero__frame img {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .gallery__cell:hover .gallery__img,
+  .gu__cell:hover .gu__img,
+  .gf__tile:hover .gf__img,
+  .ef__row:hover .ef__img,
+  .fs__row:hover .fs__img,
+  .fsf__card:hover .fsf__img,
+  .team__card:hover .team__img,
+  .svc-card--photo:hover .svc-card__media img,
+  .bento-cell--photo:hover .bento-cell__media img,
+  .svcrow__link:hover .svcrow__media img,
+  .col-hero__frame:hover img {
+    transform: scale(1.04);
+  }
+}
