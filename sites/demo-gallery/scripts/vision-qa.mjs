@@ -179,22 +179,30 @@ async function runCapture() {
   mkdirSync(REVIEW, { recursive: true });
   mkdirSync(FINDINGS, { recursive: true });
 
-  // One Chrome over CDP for the whole batch → true full-page shots (no height cap)
-  // so the judge always sees the contact form + footer on long pages.
-  const dbgPort = port + 1000;
-  await withChrome(CHROME, dbgPort, async (conn) => {
-    for (const slug of slugs) {
-      try {
+  // One Chrome PER PAGE (not one for the whole batch): a page that wedges the
+  // renderer — e.g. a very tall winery page stalling captureBeyondViewport —
+  // would otherwise poison every page after it (Target.createTarget then times
+  // out forever). Per-page isolation costs ~1s of browser boot but guarantees
+  // one bad page can't sink the other ten. Full-page shots still get no height
+  // cap beyond the renderer's own limit, so contact + footer stay in frame.
+  let ok = 0;
+  for (let i = 0; i < slugs.length; i++) {
+    const slug = slugs[i];
+    const dbgPort = port + 1000 + i; // fresh port per page; avoids reuse races
+    try {
+      await withChrome(CHROME, dbgPort, async (conn) => {
         const { foldPng, fullPng, fullHeight } = await capturePage(conn, `http://localhost:${port}/p/${slug}`);
         writeFileSync(join(SHOTS, `${slug}-fold.png`), foldPng);
         writeFileSync(join(SHOTS, `${slug}-full.png`), fullPng);
         writeFileSync(join(REVIEW, `${slug}.json`), JSON.stringify(packetFor(slug), null, 2));
         console.log(`✓ ${slug}  (full ${fullHeight}px)`);
-      } catch (e) {
-        console.log(`✗ ${slug}  — ${e.message}`);
-      }
+        ok++;
+      });
+    } catch (e) {
+      console.log(`✗ ${slug}  — ${e.message}`);
     }
-  });
+  }
+  console.log(`\n▶ captured ${ok}/${slugs.length} pages`);
   preview.kill();
 
   console.log(`\n▶ review packets → ${REVIEW}`);

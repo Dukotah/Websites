@@ -13,8 +13,20 @@
  *     writeFileSync('fold.png', foldPng); writeFileSync('full.png', fullPng);
  *   });
  */
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { setTimeout as sleep } from 'node:timers/promises';
+
+/** Kill a process AND its children. `child.kill()` orphans Chrome's ~10 helper
+ *  processes on Windows (--headless=new spawns gpu/renderer/utility procs), so
+ *  they pile up across runs; taskkill /T tears the whole tree down. */
+function killTree(child) {
+  if (!child?.pid) return;
+  if (process.platform === 'win32') {
+    spawnSync('taskkill', ['/pid', String(child.pid), '/T', '/F'], { stdio: 'ignore' });
+  } else {
+    try { child.kill('SIGKILL'); } catch {}
+  }
+}
 
 /** Launch headless Chrome with a debugging port; returns the child process. */
 export function launchChrome(chromePath, port) {
@@ -54,11 +66,26 @@ async function connect(wsUrl) {
       for (const l of listeners) l(m);
     }
   };
-  const send = (method, params = {}, sessionId) =>
+  // Every call is bounded: a stalled or crashed renderer otherwise leaves the
+  // promise pending forever (Page.captureScreenshot on a tall page is the usual
+  // culprit), which would hang the whole capture loop with no way to recover.
+  const send = (method, params = {}, sessionId, timeoutMs = 45000) =>
     new Promise((res, rej) => {
       const _id = ++id;
-      pending.set(_id, { res, rej });
-      ws.send(JSON.stringify({ id: _id, method, params, ...(sessionId ? { sessionId } : {}) }));
+      const timer = setTimeout(() => {
+        if (pending.delete(_id)) rej(new Error(`CDP ${method} timed out after ${timeoutMs}ms`));
+      }, timeoutMs);
+      pending.set(_id, {
+        res: (v) => { clearTimeout(timer); res(v); },
+        rej: (e) => { clearTimeout(timer); rej(e); },
+      });
+      try {
+        ws.send(JSON.stringify({ id: _id, method, params, ...(sessionId ? { sessionId } : {}) }));
+      } catch (e) {
+        clearTimeout(timer);
+        pending.delete(_id);
+        rej(e);
+      }
     });
   const onEvent = (fn) => {
     listeners.add(fn);
@@ -87,7 +114,7 @@ export async function withChrome(chromePath, port, fn) {
       conn.close();
     }
   } finally {
-    child.kill();
+    killTree(child);
   }
 }
 
@@ -136,7 +163,9 @@ export async function capturePage(conn, url, { width = 1440, foldHeight = 900, s
 
     const metrics = await S('Page.getLayoutMetrics', {});
     const size = metrics.cssContentSize ?? metrics.contentSize;
-    const fullHeight = Math.min(Math.ceil(size?.height ?? foldHeight), 30000);
+    // Cap high enough to show contact + footer on a long demo, but not so tall
+    // that encoding a giant PNG stalls the renderer (a 1440×30000 shot is ~43MP).
+    const fullHeight = Math.min(Math.ceil(size?.height ?? foldHeight), 16000);
 
     const shoot = (height) =>
       S('Page.captureScreenshot', {
@@ -145,9 +174,19 @@ export async function capturePage(conn, url, { width = 1440, foldHeight = 900, s
         clip: { x: 0, y: 0, width, height, scale: 1 },
       }).then((r) => Buffer.from(r.data, 'base64'));
 
+    // Capture the fold first and keep it: if the full-page shot stalls (a very
+    // tall page can wedge the renderer), the judge still gets the cold-link
+    // first impression instead of losing the page entirely.
     const foldPng = await shoot(foldHeight);
-    const fullPng = await shoot(fullHeight);
-    return { foldPng, fullPng, fullHeight };
+    let fullPng = foldPng;
+    let captured = foldHeight;
+    try {
+      fullPng = await shoot(fullHeight);
+      captured = fullHeight;
+    } catch (e) {
+      console.log(`    ⚠ full-page shot failed (${e.message}); kept fold only`);
+    }
+    return { foldPng, fullPng, fullHeight: captured };
   } finally {
     await conn.send('Target.closeTarget', { targetId }).catch(() => {});
   }
