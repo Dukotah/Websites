@@ -386,6 +386,20 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
   const [heroPhoto, storyPhoto] = media;
   const lib = `/images/library/${catKey}`;
 
+  // Gallery = the business's OWN photos beyond the hero (never stock). A media
+  // item is "own" when it carries no credit and isn't library/SVG art; stock
+  // tiers (Wikimedia/Openverse/library) are credited or live under /library/.
+  const GALLERY_MAX = 8;
+  const isOwn = (m) => m?.path && !m.credit && !m.path.includes('/images/library/');
+  const ownPhotos = media.filter(isOwn);
+  const galleryImages =
+    ownPhotos[0] && heroPhoto && ownPhotos[0].path === heroPhoto.path
+      ? ownPhotos.slice(1, 1 + GALLERY_MAX).map((m, i) => ({
+          src: m.path,
+          alt: `${row.name}${area ? ` in ${area}` : ''} — photo ${i + 1}`,
+        }))
+      : [];
+
   const phone = e?.phone || row.phone || '(555) 555-5555';
   const address = e?.address || row.address || area;
   const established = (e?.established || row.established || '').toString().replace(/^est\.?\s*/i, '');
@@ -437,6 +451,7 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
       storyCredit,
       placeholder: `${lib}/hero.svg`,
     },
+    galleryImages,
     about: { heading: copy.aboutHeading, body: copy.aboutBody, signature: '' },
     servicesHeading: copy.servicesHeading,
     services: copy.services,
@@ -470,19 +485,22 @@ const catKeyFor = (row) =>
   CATEGORIES[row.category?.toLowerCase()] ? row.category.toLowerCase() : 'default';
 
 // Has the agent already dropped real photos for this slug into
-// public/images/<slug>/ (the strongest tier)? If so, use them as-is.
+// src/assets/prospects/<slug>/ (the strongest tier)? If so, use them ALL —
+// hero/story first, then the rest as gallery fodder (they're all genuinely
+// theirs, so more real photos = a richer page, never stock).
 async function agentDroppedPhotos(slug) {
   try {
     const files = (await readdir(join(PUBLIC_IMAGES, slug)))
       .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f))
       .sort();
-    const pick = (base) => files.find((f) => f.startsWith(base));
-    const hero = pick('hero') ?? files[0];
-    const story = pick('story') ?? files[1] ?? hero;
-    if (!hero) return [];
-    const media = [{ path: `/images/${slug}/${hero}`, credit: '' }];
-    if (story && story !== hero) media.push({ path: `/images/${slug}/${story}`, credit: '' });
-    return media;
+    if (!files.length) return [];
+    const hero = files.find((f) => f.startsWith('hero')) ?? files[0];
+    const story = files.find((f) => f.startsWith('story')) ?? files.find((f) => f !== hero);
+    // hero, then story, then everything else — de-duped, order preserved.
+    const ordered = [hero, story, ...files].filter(
+      (f, i, a) => f && a.indexOf(f) === i,
+    );
+    return ordered.map((f) => ({ path: `/images/${slug}/${f}`, credit: '' }));
   } catch {
     return [];
   }
@@ -545,7 +563,7 @@ async function main() {
     let media = await agentDroppedPhotos(slug);
     let photoSource = media.length ? 'agent-supplied' : '';
     if (!media.length) {
-      const got = await acquirePhotos(row, e, { destDir: PUBLIC_IMAGES, slug, max: 2, skipWikimedia });
+      const got = await acquirePhotos(row, e, { destDir: PUBLIC_IMAGES, slug, ownMax: 9, min: 2, skipWikimedia });
       media = got.media;
       photoSource = got.source;
     }

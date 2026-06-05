@@ -37,8 +37,15 @@ const PUBLIC_IMAGES = join(ROOT, 'sites', 'demo-gallery', 'src', 'assets', 'pros
 const argv = process.argv.slice(2);
 const FORCE = argv.includes('--force');
 const tIdx = argv.indexOf('--target');
+// Stock cap (Openverse/Wikimedia): kept SMALL — stock is a last resort.
 const TARGET = tIdx >= 0 ? Number(argv[tIdx + 1]) : 4;
-const onlySlugs = argv.filter((a) => !a.startsWith('--') && a !== String(TARGET));
+const oIdx = argv.indexOf('--own');
+// Own-photo cap (their site): generous — every one is genuinely theirs, so a
+// richer gallery of real photos beats a sparse one (never stock-padded).
+const OWN_TARGET = oIdx >= 0 ? Number(argv[oIdx + 1]) : 9;
+// Positional slugs: drop flags AND any value consumed by a value-flag.
+const flagValueIdx = new Set([tIdx, oIdx].filter((i) => i >= 0).map((i) => i + 1));
+const onlySlugs = argv.filter((a, i) => !a.startsWith('--') && !flagValueIdx.has(i));
 
 // Category → photogenic Wikimedia search terms (real, on-theme photos).
 const CATEGORY_QUERIES = {
@@ -119,7 +126,7 @@ async function sweepOne(file) {
     try {
       const imgs = await collectSiteImages(site, { maxPages: 5 });
       if (imgs.length) {
-        const got = await downloadScrapedPhotos(imgs, { destDir: PUBLIC_IMAGES, slug, max: TARGET, maxCandidates: 36, heroHint: imgs[0] });
+        const got = await downloadScrapedPhotos(imgs, { destDir: PUBLIC_IMAGES, slug, max: OWN_TARGET, maxCandidates: 60, heroHint: imgs[0] });
         if (got.length) { media = got; sources.push(`their site (${got.length})`); }
       }
     } catch { /* fall through to stock */ }

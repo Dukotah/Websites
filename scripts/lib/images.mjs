@@ -19,6 +19,7 @@
 
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { createHash } from 'node:crypto';
 import { getRealPhotos } from './photos.mjs';
 
 const UA =
@@ -93,8 +94,27 @@ const nameFor = (i, ext) =>
 // --- tier 1: the business's own scraped photos -----------------------------
 
 /**
+ * Reduce a photo URL to a size-agnostic identity so the same image served at
+ * many widths (hero.jpg, hero-1024x768.jpg, hero-scaled.jpg, hero@2x.jpg, plus
+ * any ?ver= query) counts once. Lets us pull MORE *distinct* real photos into a
+ * gallery instead of the same shot repeated at different resolutions.
+ */
+function baseIdentity(url) {
+  try {
+    const u = new URL(url);
+    let p = u.pathname.toLowerCase();
+    // Strip a trailing size/density/variant token right before the extension.
+    p = p.replace(/[-_@](?:\d{2,4}x\d{2,4}|\d{2,4}w|\dx|scaled|thumb(?:nail)?|small|medium|large)(?=\.[a-z0-9]+$)/g, '');
+    return u.host + p;
+  } catch {
+    return url;
+  }
+}
+
+/**
  * Download the real photos found on the business's site, keeping only ones big
- * enough to be a hero/story (filters logos, icons, thumbnails). Returns saved
+ * enough to be a hero/story (filters logos, icons, thumbnails) and DISTINCT
+ * (de-duped by size-agnostic URL identity and by exact bytes). Returns saved
  * media descriptors. Best-effort; network failures just yield fewer results.
  */
 export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxCandidates = 8, heroHint } = {}) {
@@ -102,10 +122,22 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
   const outDir = join(destDir, slug);
   await mkdir(outDir, { recursive: true });
 
-  // Download a handful of candidates, keep the ones big enough to be a hero,
-  // THEN rank — so a wide storefront beats a square logo for the hero slot.
+  // Collapse size-variants of the same photo up front, so the candidate budget
+  // is spent on distinct images rather than re-fetching one shot many times.
+  const seenBase = new Set();
+  const distinctUrls = [];
+  for (const url of urls) {
+    const b = baseIdentity(url);
+    if (seenBase.has(b)) continue;
+    seenBase.add(b);
+    distinctUrls.push(url);
+  }
+
+  // Download candidates, keep the ones big enough to be a hero and not byte-for-
+  // byte duplicates, THEN rank — so a wide storefront beats a square logo.
   const kept = [];
-  for (const url of urls.slice(0, maxCandidates)) {
+  const seenHash = new Set();
+  for (const url of distinctUrls.slice(0, maxCandidates)) {
     const got = await fetchImage(url);
     if (!got) continue;
     const ext = EXT_BY_MIME[got.mime];
@@ -113,6 +145,9 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     const dims = imageSize(got.buf);
     if (dims && (dims.w < MIN_W || dims.h < MIN_H)) continue; // too small → skip
     if (!dims && got.buf.length < 18000) continue; // tiny file, dims unknown → skip
+    const hash = createHash('sha1').update(got.buf).digest('hex');
+    if (seenHash.has(hash)) continue; // exact duplicate bytes → skip
+    seenHash.add(hash);
     kept.push({ buf: got.buf, ext, url, w: dims?.w, h: dims?.h });
   }
 
@@ -232,7 +267,11 @@ export async function generateImages(facts, { destDir, slug, startIndex = 0, nee
  * @param {object} row        CSV row (name, category, city, state, ...)
  * @param {object|null} enrichment  scrape-site.mjs output (may be null)
  */
-export async function acquirePhotos(row, enrichment, { destDir, slug, max = 2, skipWikimedia = false } = {}) {
+export async function acquirePhotos(
+  row,
+  enrichment,
+  { destDir, slug, ownMax = 9, min = 2, skipWikimedia = false } = {},
+) {
   const facts = {
     name: row.name,
     category: row.category,
@@ -240,24 +279,33 @@ export async function acquirePhotos(row, enrichment, { destDir, slug, max = 2, s
     city: row.city,
   };
 
-  // Tier 1: their own scraped photos.
-  let media = await downloadScrapedPhotos(enrichment?.images, { destDir, slug, max });
-  if (media.length >= max) return { media, source: 'business-site' };
+  // Tier 1: their own scraped photos — pulled GENEROUSLY (up to ownMax). Every
+  // one is genuinely theirs, so a richer real-photo gallery is pure upside.
+  let media = await downloadScrapedPhotos(enrichment?.images, {
+    destDir,
+    slug,
+    max: ownMax,
+    maxCandidates: 60,
+  });
+  // If we have at least the essential slots from their OWN photos, stop here —
+  // stock must NEVER pad a gallery (that's the "looks like a template" tell).
+  if (media.length >= min) return { media, source: 'business-site' };
   let source = media.length ? 'business-site' : '';
 
-  // Tier 2: AI-generate the remaining slots (only if a key is configured).
-  const gap = max - media.length;
+  // Below the essentials (≤1 own photo): backfill ONLY the hero/story slots
+  // (`min`) with AI/Wikimedia — never a full gallery's worth of stock.
+  const gap = min - media.length;
   const generated = await generateImages(facts, { destDir, slug, startIndex: media.length, need: gap });
   if (generated.length) {
     media = media.concat(generated);
     source = source ? `${source}+ai` : 'ai-generated';
-    if (media.length >= max) return { media, source };
+    if (media.length >= min) return { media, source };
   }
 
-  // Tier 3: Wikimedia Commons (free).
-  if (media.length < max && !skipWikimedia) {
+  // Tier 3: Wikimedia Commons (free) — still only up to the essentials.
+  if (media.length < min && !skipWikimedia) {
     try {
-      const wiki = await getRealPhotos(row, { destDir, slug, max: max - media.length });
+      const wiki = await getRealPhotos(row, { destDir, slug, max: min - media.length });
       if (wiki.length) {
         // Re-key filenames so they don't collide with hero/story already saved.
         media = media.concat(wiki);
