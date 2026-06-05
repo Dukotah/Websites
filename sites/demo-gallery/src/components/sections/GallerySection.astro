@@ -36,6 +36,7 @@
 
 import type { SectionEnvelope } from '../../types';
 import SectionHead from './SectionHead.astro';
+import SiteImage from '../SiteImage.astro';
 
 interface GalleryImage {
   src: string;
@@ -150,12 +151,11 @@ const renderGroups = buildRenderGroups(slotted);
                 aria-label={img.alt}
               >
                 <div class="gallery__thumb">
-                  <img
+                  <SiteImage
                     src={img.src}
                     alt={img.alt}
-                    loading="lazy"
-                    decoding="async"
                     class="gallery__img"
+                    sizes="(min-width: 768px) 50vw, 100vw"
                   />
                   {img.caption && (
                     <figcaption class="gallery__cap" aria-hidden="true">

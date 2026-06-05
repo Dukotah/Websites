@@ -14,6 +14,7 @@
  * - Eyebrow accent rule (HeroCinematic idiom), badge, parallax via data-parallax
  */
 import type { ProspectConfig } from '../../types';
+import SiteImage from '../SiteImage.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
 const { hero, images, contact, highlights = [], established, area } = config;
@@ -34,12 +35,13 @@ const trustLine = highlights[0] ?? '';
   <!-- ① Photo — parallax target, reveals "beneath" the oversized type on scroll -->
   {hasPhoto && (
     <div class="ed-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.35">
-      <img
+      <SiteImage
         src={images.hero}
         alt={images.heroAlt}
-        onerror={`this.onerror=null;this.src='${images.placeholder}'`}
+        placeholder={images.placeholder}
         fetchpriority="high"
-        decoding="async"
+        loading="eager"
+        sizes="100vw"
       />
     </div>
   )}

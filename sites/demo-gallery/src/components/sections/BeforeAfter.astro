@@ -11,6 +11,7 @@
  *   - [data-frame] on image wrappers; [data-reveal] on figures
  */
 import SectionHead from './SectionHead.astro';
+import SiteImage from '../SiteImage.astro';
 import type { Section } from '../../types';
 
 type Props = Extract<Section, { type: 'before-after' }> & { index?: number };
@@ -47,23 +48,21 @@ const single = pairs.length === 1;
 
             {/* After image — base layer, full bleed */}
             <div class="ba-after" data-frame>
-              <img
+              <SiteImage
                 src={after}
                 alt={label ? `${label} — after` : `After image ${i + 1}`}
                 class="ba-img"
-                loading="lazy"
-                decoding="async"
+                sizes="(min-width: 768px) 50vw, 100vw"
               />
             </div>
 
             {/* Before image — clipped to left of --split */}
             <div class="ba-before" data-frame>
-              <img
+              <SiteImage
                 src={before}
                 alt={label ? `${label} — before` : `Before image ${i + 1}`}
                 class="ba-img"
-                loading="lazy"
-                decoding="async"
+                sizes="(min-width: 768px) 50vw, 100vw"
               />
             </div>
 

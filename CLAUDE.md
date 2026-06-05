@@ -55,8 +55,11 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
 3. **Photos — pull their real ones (the whole point of "real effort").** In order:
    1. **The business's own photos online.** From the research above, download
       good, clearly-theirs images with `curl` into
-      `sites/demo-gallery/public/images/<slug>/` as `hero.<ext>` / `story.<ext>`.
-      The generator and the gallery auto-detect anything you drop there.
+      `sites/demo-gallery/src/assets/prospects/<slug>/` as `hero.<ext>` /
+      `story.<ext>`. The generator and the gallery auto-detect anything you drop
+      there, and `astro:assets` optimizes it (responsive WebP + blur-up). Keep
+      the JSON path in its `/images/<slug>/<file>` form — the asset registry
+      (`src/lib/assets.ts`) maps it to the real file at build.
    2. If you can't, **Wikimedia Commons** (free, no key) — often town/area shots.
    3. Else the **built-in category library** art.
    > Web search reaches the live web even where raw downloads are blocked; if
@@ -89,7 +92,7 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
 6. **Launch = commit + push.** Vercel's Git integration rebuilds the gallery on
    push, so pushing IS deploying:
    ```bash
-   git add sites/demo-gallery/src/data/prospects sites/demo-gallery/public/images data/<file>.csv
+   git add sites/demo-gallery/src/data/prospects sites/demo-gallery/src/assets/prospects data/<file>.csv
    git commit -m "Add outreach prospects: <short note>"
    git push
    ```
@@ -122,7 +125,10 @@ project, and attach their domain.
 
 - Don't hand-edit prospect JSON *structure* — regenerate; copy fields are fine
   to improve by hand.
-- Per-prospect images live in `sites/demo-gallery/public/images/<slug>/`;
-  shared fallback art in `sites/demo-gallery/public/images/library/<category>/`.
+- Per-prospect images live in `sites/demo-gallery/src/assets/prospects/<slug>/`
+  (so `astro:assets` optimizes them — responsive WebP + blur-up; rendered via
+  `<SiteImage>`). JSON keeps the `/images/<slug>/<file>` path; `src/lib/assets.ts`
+  resolves it. Shared SVG fallback art stays in
+  `sites/demo-gallery/public/images/library/<category>/` (served as-is).
 - `data/outreach-links.json` is gitignored (may contain real emails).
 - Full walkthrough: `docs/outreach-pipeline.md`.

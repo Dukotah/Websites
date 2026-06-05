@@ -15,6 +15,7 @@
  * with offset/overlap accent, keeping the left column clean.
  */
 import type { ProspectConfig } from '../../types';
+import SiteImage from '../SiteImage.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
 const { hero, images, contact, highlights = [], established, area } = config;
@@ -41,12 +42,11 @@ const hasPhoto = Boolean(images?.hero);
         data-parallax-speed="0.2"
         data-parallax-axis="y"
       >
-        <img
+        <SiteImage
           src={images.hero}
           alt={images.heroAlt}
-          onerror={`this.onerror=null;this.src='${images.placeholder}'`}
-          loading="lazy"
-          decoding="async"
+          placeholder={images.placeholder}
+          sizes="(min-width: 880px) 45vw, 100vw"
         />
       </div>
       <!-- Trust badge on photo inset -->

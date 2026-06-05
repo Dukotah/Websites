@@ -5,6 +5,7 @@
  * Spec §7: "collage" variant. Gracefully degrades to 1 image.
  */
 import type { ProspectConfig } from '../../types';
+import SiteImage from '../SiteImage.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
 const { hero, images, contact, highlights = [], established, area } = config;
@@ -41,13 +42,13 @@ const count = imgs.length; // 1 | 2 | 3
         data-parallax={i === 0 ? '' : undefined}
         data-parallax-speed={i === 0 ? '0.3' : undefined}
       >
-        <img
+        <SiteImage
           src={img.src}
           alt={img.alt}
-          onerror={`this.onerror=null;this.src='${config.images?.placeholder ?? ''}'`}
+          placeholder={config.images?.placeholder ?? ''}
           fetchpriority={i === 0 ? 'high' : 'auto'}
           loading={i === 0 ? 'eager' : 'lazy'}
-          decoding="async"
+          sizes="(min-width: 640px) 50vw, 100vw"
         />
       </div>
     ))}

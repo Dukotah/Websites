@@ -30,7 +30,8 @@ import { downloadScrapedPhotos } from './lib/images.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PROSPECTS = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
-const PUBLIC_IMAGES = join(ROOT, 'sites', 'demo-gallery', 'public', 'images');
+// Photos land in src/assets/prospects/<slug>/ so astro:assets optimizes them.
+const PUBLIC_IMAGES = join(ROOT, 'sites', 'demo-gallery', 'src', 'assets', 'prospects');
 
 const args = process.argv.slice(2);
 const slug = args.find((a) => !a.startsWith('--') && !/^https?:/i.test(a));

@@ -10,6 +10,7 @@
  */
 import type { Tone, Align } from '../../types';
 import SectionHead from './SectionHead.astro';
+import SiteImage from '../SiteImage.astro';
 
 interface ServiceItem {
   title: string;
@@ -66,13 +67,10 @@ const ctaHref = phone
           >
             {item.image ? (
               <div class="svc-card__media" data-frame>
-                <img
+                <SiteImage
                   src={item.image}
                   alt={item.title}
-                  loading="lazy"
-                  decoding="async"
-                  width="640"
-                  height="400"
+                  sizes="(min-width: 768px) 33vw, (min-width: 480px) 50vw, 100vw"
                 />
               </div>
             ) : (

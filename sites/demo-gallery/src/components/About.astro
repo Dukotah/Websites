@@ -4,6 +4,7 @@
  * beside the story copy and a checklist of highlights. Token-driven.
  */
 import type { ProspectConfig } from '../types';
+import SiteImage from './SiteImage.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
 const { about, images, highlights = [], established, name } = config;
@@ -13,12 +14,11 @@ const badgeLine = (established || '').toString().replace(/^est\.?\s*/i, '');
 <section class="section about" id="about" data-tone="alt">
   <div class="container about__inner">
     <div class="about__media" data-frame data-reveal>
-      <img
+      <SiteImage
         src={images.story || images.hero}
         alt={images.storyAlt || `Inside ${name}`}
-        loading="lazy"
-        decoding="async"
-        onerror="this.onerror=null;this.src='/images/about.svg'"
+        placeholder="/images/about.svg"
+        sizes="(min-width: 768px) 50vw, 100vw"
       />
       {badgeLine && (
         <div class="about__badge">

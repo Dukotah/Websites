@@ -11,6 +11,7 @@
  * entrances (handled globally). SectionHead for the optional envelope header.
  */
 import SectionHead from './SectionHead.astro';
+import SiteImage from '../SiteImage.astro';
 import type { SectionEnvelope } from '../../types';
 
 interface SplitRow {
@@ -65,12 +66,11 @@ function fmtFolio(n: number): string {
                       data-frame="editorial"
                       data-treat="grade"
                     >
-                      <img
+                      <SiteImage
                         src={row.image}
                         alt={row.imageAlt ?? row.heading}
-                        loading="lazy"
-                        decoding="async"
                         class="fs__img"
+                        sizes="(min-width: 768px) 60vw, 100vw"
                       />
                     </figure>
                   </div>

@@ -5,6 +5,7 @@
  * Spec §7: "cinematic" variant. Agency-quality composition.
  */
 import type { ProspectConfig } from '../../types';
+import SiteImage from '../SiteImage.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
 const { hero, images, contact, highlights = [], established, area, name } = config;
@@ -18,12 +19,13 @@ const trustLine = highlights[0] ?? '';
 
   <!-- ① Full-bleed photo — parallax target -->
   <div class="cin-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.4">
-    <img
+    <SiteImage
       src={images.hero}
       alt={images.heroAlt}
-      onerror={`this.onerror=null;this.src='${images.placeholder}'`}
+      placeholder={images.placeholder}
       fetchpriority="high"
-      decoding="async"
+      loading="eager"
+      sizes="100vw"
     />
   </div>
 

@@ -39,7 +39,8 @@ import { acquirePhotos } from './lib/images.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
-const PUBLIC_IMAGES = join(ROOT, 'sites', 'demo-gallery', 'public', 'images');
+// Photos land in src/assets/prospects/<slug>/ so astro:assets optimizes them.
+const PUBLIC_IMAGES = join(ROOT, 'sites', 'demo-gallery', 'src', 'assets', 'prospects');
 const csvPath = resolve(ROOT, process.argv[2] ?? 'data/prospects.sample.csv');
 
 // ---------------------------------------------------------------------------

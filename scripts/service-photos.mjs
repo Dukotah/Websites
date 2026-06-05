@@ -18,7 +18,8 @@ import { getOpenversePhotos } from './lib/openverse.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PROSPECTS = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
-const PUBLIC_IMAGES = join(ROOT, 'sites', 'demo-gallery', 'public', 'images');
+// Photos land in src/assets/prospects/<slug>/ so astro:assets optimizes them.
+const PUBLIC_IMAGES = join(ROOT, 'sites', 'demo-gallery', 'src', 'assets', 'prospects');
 
 const argv = process.argv.slice(2);
 const FORCE = argv.includes('--force');

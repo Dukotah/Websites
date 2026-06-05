@@ -1,0 +1,114 @@
+---
+/**
+ * SiteImage — the single image primitive every component renders through.
+ *
+ * For managed prospect rasters (resolved from src/assets via the registry) it
+ * emits astro:assets <Image>, which gives:
+ *   • a responsive WebP srcset (multiple widths) sized by `sizes`
+ *   • Sharp-optimized bytes (smaller than the source JPEG/PNG)
+ *   • a blur-up placeholder: the tiny LQIP data-URI is painted as the element's
+ *     own background, so the box shows a blurred preview until the real image
+ *     decodes over it. No wrapper div, no fade-in JS — the output is a plain
+ *     <img>, so all existing component CSS keeps matching.
+ *
+ * For anything it can't manage (remote URLs, SVG placeholders) it falls back to
+ * a plain <img>, optionally with an onerror swap to a public placeholder.
+ *
+ * Drop-in contract: replace `<img src alt class loading … />` with
+ * `<SiteImage src alt class loading … />` — same attributes.
+ */
+import { Image } from 'astro:assets';
+import { resolveAsset } from '../lib/assets';
+import lqipMap from '../lib/lqip.json';
+
+interface Props {
+  src: string;
+  alt: string;
+  /** Responsive hint, e.g. "(min-width:640px) 33vw, 100vw". Default 100vw. */
+  sizes?: string;
+  /** Override candidate widths; defaults derive from the source width. */
+  widths?: number[];
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  decoding?: 'async' | 'sync' | 'auto';
+  /** Output format for the optimized variant. */
+  format?: 'webp' | 'avif' | 'jpeg' | 'png';
+  quality?: number;
+  /** CSS object-position for cover crops, e.g. "center 30%". */
+  objectPosition?: string;
+  class?: string;
+  style?: string;
+  /** Public SVG/raster to swap in if an UNMANAGED src fails to load. */
+  placeholder?: string;
+}
+
+const {
+  src,
+  alt,
+  sizes = '100vw',
+  widths,
+  loading = 'lazy',
+  fetchpriority,
+  decoding = 'async',
+  format = 'webp',
+  quality = 74,
+  objectPosition,
+  class: className,
+  style: styleProp,
+  placeholder,
+} = Astro.props as Props;
+
+const asset = resolveAsset(src);
+
+const lqip = (lqipMap as Record<string, string>)[src];
+
+// Compose the inline style: caller style + blur-up background + object-position.
+const styleParts: string[] = [];
+if (styleProp) styleParts.push(styleProp);
+if (asset && lqip) {
+  styleParts.push(
+    `background-image:url('${lqip}')`,
+    'background-size:cover',
+    'background-position:center',
+    'background-repeat:no-repeat',
+  );
+}
+if (objectPosition) styleParts.push(`object-position:${objectPosition}`);
+const style = styleParts.length ? styleParts.join(';') : undefined;
+
+// Candidate widths: capped to the source so Astro never upscales.
+function candidateWidths(maxW: number): number[] {
+  const pool = [320, 480, 640, 768, 1024, 1280, 1600, 2000, 2400];
+  const fit = pool.filter((w) => w <= maxW);
+  if (fit[fit.length - 1] !== maxW) fit.push(maxW);
+  return fit.length ? fit : [maxW];
+}
+const resolvedWidths = asset ? (widths ?? candidateWidths(asset.width)) : undefined;
+---
+
+{asset ? (
+  <Image
+    src={asset}
+    alt={alt}
+    widths={resolvedWidths}
+    sizes={sizes}
+    format={format}
+    quality={quality}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding={decoding}
+    class={className}
+    style={style}
+  />
+) : (
+  <img
+    src={src}
+    alt={alt}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding={decoding}
+    class={className}
+    style={style}
+    onerror={placeholder ? `this.onerror=null;this.src='${placeholder}'` : undefined}
+  />
+)}

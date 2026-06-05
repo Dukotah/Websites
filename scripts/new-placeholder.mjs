@@ -156,5 +156,5 @@ await writeFile(path, JSON.stringify(config, null, 2) + '\n');
 console.log(`✓ wrote ${slug}.json  (${category}, flagged needs-review)`);
 console.log('\nNext:');
 console.log('  1. Replace the flagged placeholders with real facts as you get them.');
-console.log('  2. Drop real photos in public/images/' + slug + '/ (hero.jpg, story.jpg, …).');
+console.log('  2. Drop real photos in src/assets/prospects/' + slug + '/ (hero.jpg, story.jpg, …).');
 console.log('  3. cd sites/demo-gallery && npm run build  &&  node ../../scripts/audit.mjs');

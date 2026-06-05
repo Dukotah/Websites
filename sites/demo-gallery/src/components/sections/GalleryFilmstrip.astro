@@ -36,6 +36,7 @@
 
 import type { SectionEnvelope } from '../../types';
 import SectionHead from './SectionHead.astro';
+import SiteImage from '../SiteImage.astro';
 
 interface GalleryImage {
   src: string;
@@ -74,12 +75,11 @@ const {
         {images.map((img) => (
           <figure class="gf__tile" data-frame aria-label={img.alt}>
             <div class="gf__thumb">
-              <img
+              <SiteImage
                 src={img.src}
                 alt={img.alt}
-                loading="lazy"
-                decoding="async"
                 class="gf__img"
+                sizes="(min-width: 768px) 30vw, 55vw"
               />
               {img.caption && (
                 <figcaption class="gf__cap" aria-hidden="true">

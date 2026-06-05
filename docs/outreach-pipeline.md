@@ -63,8 +63,9 @@ Each prospect's hero + story image is resolved in priority order:
 1. **The business's own photos already online** *(best — done by the agent)*.
    When run conversationally, the agent web-searches the business and, if it
    finds clearly-theirs photos, downloads them into
-   `sites/demo-gallery/public/images/<slug>/` as `hero.<ext>` / `story.<ext>`.
-   The generator auto-detects anything there and uses it first.
+   `sites/demo-gallery/src/assets/prospects/<slug>/` as `hero.<ext>` /
+   `story.<ext>` (so `astro:assets` optimizes them). The generator auto-detects
+   anything there and uses it first.
 2. **Wikimedia Commons** *(free, no key)* — `scripts/lib/photos.mjs` searches by
    business name → category + town → town, downloads CC-licensed matches, and
    captures attribution. Best-effort: skipped silently if the environment can't
@@ -129,8 +130,9 @@ Photo source, best to worst:
 1. **The prospect's own Google photos** — automatic when `GOOGLE_MAPS_API_KEY`
    is set (see above). This is the default path now.
 2. **Hand-dropped real photos** for a hot lead — drop files into
-   `sites/demo-gallery/public/images/<slug>/` and point that prospect's JSON
-   `images.hero` / `images.story` at them.
+   `sites/demo-gallery/src/assets/prospects/<slug>/` and point that prospect's
+   JSON `images.hero` / `images.story` at the `/images/<slug>/<file>` path (the
+   asset registry resolves it; `astro:assets` optimizes it).
 3. **SVG placeholders** — the fallback when there's no key and no match. The
    page still looks finished, just generic.
 

@@ -8,6 +8,7 @@
  */
 import type { Tone, Align } from '../../types';
 import SectionHead from './SectionHead.astro';
+import SiteImage from '../SiteImage.astro';
 
 interface Member {
   name: string;
@@ -67,12 +68,11 @@ const initials = (name: string): string =>
             */}
             <div class="team__portrait" data-frame>
               {m.photo ? (
-                <img
+                <SiteImage
                   class="team__img"
                   src={m.photo}
                   alt={`${m.name}${m.role ? `, ${m.role}` : ''}`}
-                  loading="lazy"
-                  decoding="async"
+                  sizes="(min-width: 768px) 25vw, 50vw"
                 />
               ) : (
                 <span class="team__initials" aria-hidden="true">

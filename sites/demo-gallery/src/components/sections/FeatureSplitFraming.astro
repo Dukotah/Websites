@@ -12,6 +12,7 @@
  * Spec §6 type: 'feature-split-framing'. No client JS. [data-reveal] entrances.
  */
 import SectionHead from './SectionHead.astro';
+import SiteImage from '../SiteImage.astro';
 import type { SectionEnvelope } from '../../types';
 
 interface SplitRow {
@@ -52,12 +53,11 @@ const {
               {/* ── Image band ─────────────────────────────────────── */}
               <div class="fsf__media">
                 {hasImg ? (
-                  <img
+                  <SiteImage
                     src={row.image}
                     alt={row.imageAlt ?? row.heading}
-                    loading="lazy"
-                    decoding="async"
                     class="fsf__img"
+                    sizes="(min-width: 768px) 50vw, 100vw"
                   />
                 ) : (
                   <div class="fsf__placeholder" aria-hidden="true">

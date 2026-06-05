@@ -13,6 +13,7 @@
  * entrances. Mirrors FeatureSplit props for data-source compatibility.
  */
 import SectionHead from './SectionHead.astro';
+import SiteImage from '../SiteImage.astro';
 import type { SectionEnvelope } from '../../types';
 
 interface EditorialRow {
@@ -67,12 +68,11 @@ function fmtFolio(n: number): string {
                       data-frame="editorial"
                       data-treat="grade"
                     >
-                      <img
+                      <SiteImage
                         src={row.image}
                         alt={row.imageAlt ?? row.heading}
-                        loading="lazy"
-                        decoding="async"
                         class="ef__img"
+                        sizes="(min-width: 768px) 60vw, 100vw"
                       />
                     </figure>
                   </div>
