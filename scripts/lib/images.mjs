@@ -21,6 +21,7 @@ import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { getRealPhotos } from './photos.mjs';
+import { scorePhoto, dhash, hamming, NEAR_DUP_DISTANCE } from './photo-score.mjs';
 
 const UA =
   'Mozilla/5.0 (compatible; websites-outreach/1.0; +https://github.com/dukotah/websites)';
@@ -137,6 +138,7 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
   // byte duplicates, THEN rank — so a wide storefront beats a square logo.
   const kept = [];
   const seenHash = new Set();
+  const seenPhash = []; // perceptual hashes of survivors, for near-dup detection
   for (const url of distinctUrls.slice(0, maxCandidates)) {
     const got = await fetchImage(url);
     if (!got) continue;
@@ -148,19 +150,20 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     const hash = createHash('sha1').update(got.buf).digest('hex');
     if (seenHash.has(hash)) continue; // exact duplicate bytes → skip
     seenHash.add(hash);
-    kept.push({ buf: got.buf, ext, url, w: dims?.w, h: dims?.h });
+    // Content judgment: drop logos / screenshots / flat illustrations that pass
+    // the size filter — only real photographs earn a slot (key-free, pixel stats).
+    const q = await scorePhoto(got.buf);
+    if (q.isGraphic) continue;
+    // Perceptual near-dup: the same shot at a different size/crop already kept.
+    const ph = await dhash(got.buf);
+    if (ph != null && seenPhash.some((p) => hamming(p, ph) <= NEAR_DUP_DISTANCE)) continue;
+    if (ph != null) seenPhash.push(ph);
+    kept.push({ buf: got.buf, ext, url, w: dims?.w ?? q.w, h: dims?.h ?? q.h, score: q.score });
   }
 
-  // Rank by aspect-ratio tier first (a wide storefront makes a better hero than
-  // a square logo or a portrait), then by pixel area as a tiebreak.
-  const tier = (img) => {
-    if (!img.w || !img.h) return 1; // unknown dims → middle
-    const ar = img.w / img.h;
-    if (ar >= 1.3) return 2; // clearly landscape — ideal hero
-    if (ar >= 0.9) return 1; // square-ish
-    return 0; // portrait
-  };
-  kept.sort((a, b) => tier(b) - tier(a) || (b.w ?? 0) * (b.h ?? 0) - (a.w ?? 0) * (a.h ?? 0));
+  // Rank by photographic quality (entropy + tonal richness + landscape + area),
+  // so the best real photo lands in the hero slot and the gallery is best-first.
+  kept.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 
   // Honor an explicit hero hint (e.g. the site's og:image / full-bleed hero) —
   // it's almost always the business's intended money shot. If it survived the
