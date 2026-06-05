@@ -276,6 +276,11 @@ const trustLine = highlights[0] ?? '';
     position: relative;
     isolation: isolate;
     overflow: hidden;
+    /* Definite height floor: all children (photo, accent, badge) are absolutely
+       positioned, so this column has no in-flow content to give the absolute
+       photo a height to fill. Match the hero shell so the photo fills the panel
+       (mobile overrides this below). */
+    min-height: min(92vh, 860px);
     /* no border — the photo edge IS the divider (award pattern) */
     background: var(--bg-deep);
   }
@@ -297,13 +302,9 @@ const trustLine = highlights[0] ?? '';
     z-index: 1;
     will-change: transform;
   }
-  .spl-hero__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
+  /* The photo fills via SiteImage's own inline cover styles (parent-scoped
+     `img` rules can't reach a child component's <img>). This column just needs a
+     definite height to fill — provided by .spl-hero__media-wrap above. */
   @media (prefers-reduced-motion: reduce) {
     .spl-hero__media { inset: 0; will-change: auto; }
   }

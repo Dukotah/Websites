@@ -36,6 +36,16 @@ interface Props {
   quality?: number;
   /** CSS object-position for cover crops, e.g. "center 30%". */
   objectPosition?: string;
+  /**
+   * How the image sits in its box. Default 'cover' makes it fill the parent
+   * (the parent must define a height or aspect-ratio). 'contain' letterboxes;
+   * 'none' opts out entirely (caller controls sizing).
+   *
+   * This lives here because the image is rendered inside THIS component —
+   * Astro scopes a parent's `.x img {}` rules to the parent and they do NOT
+   * pierce into a child component, so fill/object-fit must be applied here.
+   */
+  fit?: 'cover' | 'contain' | 'none';
   class?: string;
   style?: string;
   /** Public SVG/raster to swap in if an UNMANAGED src fails to load. */
@@ -53,6 +63,7 @@ const {
   format = 'webp',
   quality = 74,
   objectPosition,
+  fit = 'cover',
   class: className,
   style: styleProp,
   placeholder,
@@ -62,8 +73,12 @@ const asset = resolveAsset(src);
 
 const lqip = (lqipMap as Record<string, string>)[src];
 
-// Compose the inline style: caller style + blur-up background + object-position.
+// Compose the inline style: fill rules + caller style + blur-up + object-position.
+// Fill rules are inline so they reach the <img> regardless of style scoping.
 const styleParts: string[] = [];
+if (fit !== 'none') {
+  styleParts.push('display:block', 'width:100%', 'height:100%', `object-fit:${fit}`);
+}
 if (styleProp) styleParts.push(styleProp);
 if (asset && lqip) {
   styleParts.push(
