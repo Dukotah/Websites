@@ -1,0 +1,229 @@
+{
+  "name": "Taqueria Las Palmas",
+  "category": "cafe",
+  "tagline": "Authentic Mexican food on Santa Rosa Avenue.",
+  "seoDescription": "Taqueria Las Palmas — a family-run Santa Rosa taqueria on Santa Rosa Avenue serving authentic Mexican food: carnitas, al pastor, chiles rellenos, blackened fish tacos, huge burritos and breakfast all day. 4.6 stars across 240+ reviews, open daily 9–9.",
+  "area": "Santa Rosa, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 546-3091",
+    "email": "",
+    "address": "415 Santa Rosa Ave, Santa Rosa, CA 95404"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Authentic Mexican, made fresh.",
+    "subheading": "A bright, family-run taqueria on Santa Rosa Avenue — carnitas, al pastor, chiles rellenos, blackened fish tacos and burritos big enough to share. Breakfast served all day.",
+    "ctaText": "See the menu",
+    "ctaHref": "#menu"
+  },
+  "highlights": [
+    "4.6 stars · 240+ reviews",
+    "Open daily 9 AM – 9 PM",
+    "Breakfast served all day"
+  ],
+  "images": {
+    "hero": "/images/taqueria-las-palmas/hero.jpg",
+    "heroAlt": "Authentic Mexican food at Taqueria Las Palmas in Santa Rosa, CA",
+    "story": "/images/taqueria-las-palmas/story.jpg",
+    "storyAlt": "Street tacos with lime at Taqueria Las Palmas",
+    "storyCaption": "",
+    "storyCredit": "Representative photo (CC) — pending the taqueria's own",
+    "placeholder": "/images/library/cafe/hero.svg"
+  },
+  "about": {
+    "heading": "A Santa Rosa Avenue staple",
+    "body": [
+      "Taqueria Las Palmas is the kind of family-run neighborhood taqueria Santa Rosa keeps coming back to — a bright, casual stop on Santa Rosa Avenue where the carnitas are juicy, the chorizo is the real thing, and the burritos come big enough to split. Locals will tell you it's their first suggestion when out-of-towners ask where to find good Mexican food.",
+      "It's authentic, affordable, and made fresh, with breakfast served all day and friendly, fast service at the counter. Eat in, grab it to go, or call ahead — either way you're getting a generous, honest plate of food."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we serve",
+  "services": [
+    {
+      "title": "Tacos & al pastor",
+      "description": "Al pastor, carne asada, carnitas, chicken and blackened fish — on warm tortillas with onion, cilantro and our salsas. The simple stuff, done right."
+    },
+    {
+      "title": "Burritos & plates",
+      "description": "Big, flavorful burritos and full plates — chicken, carne asada, carnitas or veggie — with rice, beans and everything that makes them a meal you can split."
+    },
+    {
+      "title": "Breakfast all day",
+      "description": "Chorizo and eggs, breakfast burritos and more — the morning classics, served any time of day."
+    },
+    {
+      "title": "Seafood & specialties",
+      "description": "Camarones al mojo de ajo (shrimp in garlic sauce), chiles rellenos and carne asada quesadillas — a few favorites worth coming back for."
+    }
+  ],
+  "hours": [
+    { "day": "Monday – Friday", "hours": "9:00 AM – 9:00 PM" },
+    { "day": "Saturday", "hours": "9:00 AM – 9:00 PM" },
+    { "day": "Sunday", "hours": "9:00 AM – 9:00 PM" }
+  ],
+  "hoursNote": "Open every day, 9 AM to 9 PM. Eat in, take out, or call ahead at (707) 546-3091.",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "The menu",
+      "heading": "Tacos, burritos & breakfast all day",
+      "items": [
+        {
+          "title": "Tacos & al pastor",
+          "description": "Al pastor, carne asada, carnitas, chicken and blackened fish — on warm tortillas with onion, cilantro and house salsas. The simple stuff, done right."
+        },
+        {
+          "title": "Burritos & plates",
+          "description": "Big, flavorful burritos and full plates — chicken, carne asada, carnitas or veggie — with rice, beans and everything that makes them a meal you can split."
+        },
+        {
+          "title": "Breakfast all day",
+          "description": "Chorizo and eggs, breakfast burritos and the morning classics — served any time, not just mornings."
+        },
+        {
+          "title": "Seafood & specialties",
+          "description": "Camarones al mojo de ajo, chiles rellenos and carne asada quesadillas — a few favorites worth the drive."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        { "value": "4.6★", "label": "Across 240+ reviews" },
+        { "value": "9–9", "label": "Open every day" },
+        { "value": "All day", "label": "Breakfast any time" },
+        { "value": "Family-run", "label": "On Santa Rosa Ave" }
+      ]
+    },
+    {
+      "type": "list",
+      "eyebrow": "On the menu",
+      "heading": "What people order",
+      "intro": "A neighborhood taqueria menu — generous portions, fair prices, made fresh.",
+      "groups": [
+        {
+          "title": "Tacos",
+          "items": [
+            { "name": "Al pastor" },
+            { "name": "Carne asada" },
+            { "name": "Carnitas" },
+            { "name": "Blackened fish" },
+            { "name": "Chicken" }
+          ]
+        },
+        {
+          "title": "Burritos & plates",
+          "items": [
+            { "name": "Carne asada burrito" },
+            { "name": "Carnitas burrito" },
+            { "name": "Chicken burrito" },
+            { "name": "Veggie burrito" },
+            { "name": "Carne asada quesadilla" }
+          ]
+        },
+        {
+          "title": "Breakfast & specialties",
+          "items": [
+            { "name": "Chorizo & eggs" },
+            { "name": "Breakfast burrito" },
+            { "name": "Chile relleno" },
+            { "name": "Camarones al mojo de ajo", "note": "shrimp in garlic sauce" },
+            { "name": "Flan" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "bigquote",
+      "quote": "Taqueria Las Palmas is always my first suggestion when guests ask where to find the best Mexican food.",
+      "author": "Google reviewer"
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "Santa Rosa keeps coming back",
+      "items": [
+        {
+          "quote": "Massive burritos, both flavorful and affordable — portions that rival the best I've had in San Francisco.",
+          "author": "Yelp reviewer",
+          "source": "Yelp"
+        },
+        {
+          "quote": "Juicy carnitas, great chorizo, perfectly cooked eggs, and the flan is delicious. Real attention to detail.",
+          "author": "Yelp reviewer",
+          "source": "Yelp"
+        },
+        {
+          "quote": "Perfect drive-in food place — everything was tasty and the service was superb.",
+          "author": "Google reviewer",
+          "source": "Google"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Before you come in",
+      "items": [
+        {
+          "q": "Where are you, and when are you open?",
+          "a": "415 Santa Rosa Ave, Santa Rosa. Open every day, 9 AM to 9 PM."
+        },
+        {
+          "q": "Do you serve breakfast?",
+          "a": "All day. Chorizo and eggs, breakfast burritos and the morning classics — any time you come in."
+        },
+        {
+          "q": "Can I get it to go?",
+          "a": "Yes — eat in or take out. Call ahead at (707) 546-3091 and we'll have it ready."
+        },
+        {
+          "q": "Do you have vegetarian options?",
+          "a": "We do — veggie burritos and more, made fresh alongside everything else."
+        }
+      ]
+    },
+    {
+      "type": "hours-contact",
+      "heading": "Hours & how to find us",
+      "hours": [
+        { "day": "Monday – Friday", "hours": "9:00 AM – 9:00 PM" },
+        { "day": "Saturday", "hours": "9:00 AM – 9:00 PM" },
+        { "day": "Sunday", "hours": "9:00 AM – 9:00 PM" }
+      ],
+      "phone": "(707) 546-3091",
+      "cta": { "text": "Call (707) 546-3091", "href": "tel:7075463091" }
+    },
+    {
+      "type": "cta",
+      "heading": "Come hungry.",
+      "text": "Authentic Mexican food, made fresh on Santa Rosa Avenue — breakfast, tacos and burritos worth sharing.",
+      "buttonText": "Call (707) 546-3091",
+      "buttonHref": "tel:7075463091"
+    }
+  ],
+  "flags": [
+    "No website — demo built from public listings (Yelp, Tripadvisor, Sonoma County Tourism, restaurant aggregators); confirm details with the owner",
+    "Founding year and owner name not found — left out rather than invented; add once confirmed",
+    "Photos are representative food photography (credited) — swap for the taqueria's own before sending",
+    "Email unknown — left blank"
+  ],
+  "design": "bold",
+  "theme": {
+    "brand": "#c5402f",
+    "brandDark": "#241510"
+  },
+  "galleryImages": [
+    { "src": "/images/taqueria-las-palmas/photo-3.jpg", "alt": "Overhead tray of street tacos at Taqueria Las Palmas" },
+    { "src": "/images/taqueria-las-palmas/photo-6.jpg", "alt": "Platter of al pastor tacos with lime and agua fresca" },
+    { "src": "/images/taqueria-las-palmas/story.jpg", "alt": "Street tacos with a squeeze of lime" },
+    { "src": "/images/taqueria-las-palmas/photo-5.jpg", "alt": "Tacos with salsa and peppers" },
+    { "src": "/images/taqueria-las-palmas/photo-9.jpg", "alt": "A spread of tacos, salsas and limes" }
+  ]
+}
