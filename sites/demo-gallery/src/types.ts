@@ -11,6 +11,12 @@ export interface Service {
   description: string;
   /** Optional real photo (public path) — drives the photo service-card grid. */
   image?: string;
+  /**
+   * Optional call-to-action label for this service's card. When omitted the
+   * composer fills a category-appropriate default (lib/labels.ts serviceCtaFor),
+   * e.g. "Book a tasting" for a winery, "Get a quote" for a trade.
+   */
+  cta?: string;
 }
 
 export interface BusinessHours {
@@ -107,7 +113,16 @@ export type Section =
   | ({ type: 'bigquote'; quote: string; author?: string; source?: string } & SectionEnvelope)
   | ({
       type: 'services-detailed';
-      items: { title: string; description: string; icon?: string; image?: string }[];
+      items: {
+        title: string;
+        description: string;
+        icon?: string;
+        image?: string;
+        /** Per-card CTA label, baked by the composer (default or service.cta). */
+        cta?: string;
+        /** Per-card CTA href, baked by the composer (bookingUrl, tel:, or #contact). */
+        ctaHref?: string;
+      }[];
     } & SectionEnvelope)
   | ({ type: 'service-area'; areas: string[]; note?: string } & SectionEnvelope)
   | ({
@@ -262,6 +277,30 @@ export interface ProspectConfig {
    * infers it from name/services keywords.
    */
   category?: string;
+
+  /**
+   * Optional human-readable category descriptor for the page <title>, e.g.
+   * "Winery & Tasting Room". When absent it's derived from the category
+   * (lib/labels.ts). Set this to override the default phrasing.
+   */
+  categoryLabel?: string;
+
+  /**
+   * Optional Formspree form id (the part after /f/). When present, the contact
+   * form POSTs to https://formspree.io/f/<id>; when absent the contact section
+   * renders a mailto:/tel: fallback instead. No account = graceful degradation.
+   */
+  formspreeId?: string;
+
+  /**
+   * Optional external booking/scheduling URL (Resy, Tock, Calendly, a tasting
+   * reservation page…). When present, conversion CTAs (service cards, hero)
+   * can link straight to it instead of the on-page #contact anchor.
+   */
+  bookingUrl?: string;
+
+  /** Optional geo-coordinates for schema.org GeoCoordinates (rich results / maps). */
+  geo?: { lat: number; lng: number };
 
   /**
    * Optional rich-result signals for structured data (schema.org / Google).

@@ -4,10 +4,12 @@ const { config } = Astro.props as { config: ProspectConfig };
 
 const year = new Date().getFullYear();
 const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+// Render each social as an inline SVG icon, only when the business actually has
+// that link. Instagram is included (not just Facebook) — previously omitted.
 const socials = [
-  { label: 'Facebook', href: config.social.facebook },
-  { label: 'Instagram', href: config.social.instagram },
-  { label: 'Reviews', href: config.social.google },
+  { key: 'facebook', label: 'Facebook', href: config.social.facebook },
+  { key: 'instagram', label: 'Instagram', href: config.social.instagram },
+  { key: 'google', label: 'Reviews on Google', href: config.social.google },
 ].filter((s) => s.href);
 ---
 
@@ -23,8 +25,24 @@ const socials = [
       socials.length > 0 && (
         <nav class="footer__social" aria-label="Social media">
           {socials.map((s) => (
-            <a href={s.href} target="_blank" rel="noopener">
-              {s.label}
+            <a href={s.href} target="_blank" rel="noopener" class="footer__social-link" aria-label={s.label} title={s.label}>
+              {s.key === 'facebook' && (
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.9h-2.34V22c4.78-.76 8.43-4.92 8.43-9.94Z" />
+                </svg>
+              )}
+              {s.key === 'instagram' && (
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2" />
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" />
+                </svg>
+              )}
+              {s.key === 'google' && (
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="m12 2 2.95 5.97 6.59.96-4.77 4.65 1.13 6.56L12 17.02 6.1 20.14l1.13-6.56-4.77-4.65 6.59-.96L12 2Z" />
+                </svg>
+              )}
             </a>
           ))}
         </nav>

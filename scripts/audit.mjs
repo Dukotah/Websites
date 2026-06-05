@@ -80,11 +80,25 @@ async function auditTokens() {
 
 const isStock = (src) => !src || src.includes('/images/library/') || src.endsWith('.svg');
 const TEMPLATED = /professional \w+ for \w+ and nearby|service (one|two|three|four)/i;
+// Text-forward hero variants are photo-free BY DESIGN (huge type, no image) —
+// not a defect. pickHero() falls back to these when no real photo exists.
+const TEXT_HEROES = new Set(['statement', 'editorial', 'panel']);
 
 function auditProspect(slug, c) {
   const issues = [];
-  if (isStock(c.images?.hero)) issues.push(['critical', 'hero is stock/SVG art (no real photo)']);
-  if (!c.images?.heroAlt?.trim()) issues.push(['warn', 'missing hero alt text']);
+  const textHero = TEXT_HEROES.has(c.heroVariant);
+  if (isStock(c.images?.hero)) {
+    if (textHero) {
+      // Intentional text hero (e.g. honest placeholder, or a business with no
+      // congruent real photo). Looks deliberate, not slop — just note it.
+      issues.push(['info', `text hero (no photo) — deliberate "${c.heroVariant}" layout`]);
+    } else {
+      issues.push(['critical', 'hero is stock/SVG art (no real photo)']);
+    }
+  }
+  // Only warn about missing alt when a hero photo is actually rendered.
+  if (!textHero && c.images?.hero && !c.images?.heroAlt?.trim())
+    issues.push(['warn', 'missing hero alt text']);
   for (const s of c.sections ?? []) {
     const arr = s.items ?? s.rows ?? s.groups ?? s.steps ?? s.members ?? s.areas ?? s.images;
     if (Array.isArray(arr) && arr.length === 0) issues.push(['critical', `empty "${s.type}" section`]);

@@ -99,6 +99,9 @@ const trustLine = highlights[0] ?? '';
   .spl-hero {
     display: grid;
     grid-template-columns: 55fr 45fr;
+    /* Single explicit row at 1fr so neither column can balloon the grid past
+       the height floor — both columns share one equal-height track. */
+    grid-template-rows: 1fr;
     min-height: min(92vh, 860px);
     overflow: hidden;
     background: var(--bg-deep);
@@ -139,8 +142,10 @@ const trustLine = highlights[0] ?? '';
   .spl-hero__copy {
     position: relative;
     z-index: 1;
-    /* max-width forces the 2–3 word cascade (award pattern) */
-    max-width: 14ch;
+    /* Editorial measure: readable but still constrained. (Was 14ch, which at the
+       clamp(2.8–5.4rem) heading collapsed every word onto its own line, forcing
+       the panel — and the whole hero — to 1600px+ with a void beside the photo.) */
+    max-width: min(38ch, 100%);
   }
 
   /* Eyebrow: accent rule + tracked caps (HeroCinematic idiom) */
@@ -275,6 +280,9 @@ const trustLine = highlights[0] ?? '';
   .spl-hero__media-wrap {
     position: relative;
     isolation: isolate;
+    /* Always fill the full grid-row height so the photo column never leaves a
+       gap when the copy column happens to be the taller of the two. */
+    align-self: stretch;
     overflow: hidden;
     /* Definite height floor: all children (photo, accent, badge) are absolutely
        positioned, so this column has no in-flow content to give the absolute
@@ -375,7 +383,7 @@ const trustLine = highlights[0] ?? '';
 
   /* ── Archetype tweaks ─────────────────────────────────────────────────── */
   [data-archetype="classic"] .spl-hero__copy {
-    max-width: 18ch;
+    max-width: min(42ch, 100%);
   }
   [data-archetype="magazine"] .spl-hero__title {
     font-size: clamp(3rem, 6.5vw, 6rem);

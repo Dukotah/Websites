@@ -14,6 +14,11 @@
     "instagram": "",
     "google": ""
   },
+  "heroVariant": "editorial",
+  "artDirection": {
+    "fontId": "organic-serif",
+    "neutralTemp": "warm"
+  },
   "hero": {
     "heading": "Twenty-five wines, made in small batches.",
     "subheading": "An artisan Pennsylvania winery in Morgantown, crafting everything from classic Cabernet Franc to a Toasted Marshmallow you have to taste to believe — all from locally grown fruit.",

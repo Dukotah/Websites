@@ -1,5 +1,6 @@
 ---
 import type { ProspectConfig } from '../types';
+import ContactForm from './ContactForm.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
 const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
@@ -50,6 +51,8 @@ const mapEmbed = `https://maps.google.com/maps?q=${mapQuery}&output=embed`;
         </table>
         {config.hoursNote && <p class="visit__note">{config.hoursNote}</p>}
       </div>
+
+      <ContactForm config={config} />
 
       <a href={mapHref} target="_blank" rel="noopener" class="btn visit__cta">Get directions</a>
     </div>

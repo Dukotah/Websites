@@ -36,6 +36,7 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { scrapeSite, stripTags } from './lib/scrape-site.mjs';
 import { acquirePhotos } from './lib/images.mjs';
+import { diversifyBatch } from './lib/divergence.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
@@ -461,6 +462,10 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
     layout: extras.layout ?? 'classic',
     status: extras.status,
     flags: extras.flags ?? [],
+    // Optional conversion wiring from the CSV (booking_url / formspree_id):
+    // a real form endpoint and/or external booking link, emitted only when given.
+    ...(extras.formspreeId ? { formspreeId: extras.formspreeId } : {}),
+    ...(extras.bookingUrl ? { bookingUrl: extras.bookingUrl } : {}),
     theme: preset.theme,
   };
 }
@@ -476,6 +481,10 @@ function deriveStatus(row, e, media, photoSource, templated) {
   if (templated.includes('services')) flags.push('Services are template defaults — replace with real ones');
   if (templated.includes('service-descriptions')) flags.push('Service descriptions need a polish pass');
   if (templated.includes('about')) flags.push('About copy is templated — rewrite from research');
+  // Contact completeness: never silently ship a guessed email. If we found no
+  // real email, flag the gap so a real non-phone contact method gets added.
+  const hasRealEmail = Boolean(e?.email || row.email);
+  if (!hasRealEmail) flags.push('No email found — add a real email or contact form before sending');
   const status = flags.length ? 'needs-review' : 'ready';
   return { status, flags };
 }
@@ -536,6 +545,7 @@ async function main() {
 
   const base = process.env.GALLERY_BASE_URL?.replace(/\/$/, '') ?? '';
   const links = [];
+  const built = [];
 
   for (const row of rows) {
     if (!row.name) continue;
@@ -576,12 +586,33 @@ async function main() {
     // 5) Quality gate.
     const { status, flags } = deriveStatus(row, e, media, photoSource, copy._templated ?? []);
 
-    const config = buildConfig(row, copy, preset, catKey, media, e, { sections, layout, status, flags });
-    await writeFile(join(OUT_DIR, `${slug}.json`), JSON.stringify(config, null, 2) + '\n');
+    const config = buildConfig(row, copy, preset, catKey, media, e, {
+      sections,
+      layout,
+      status,
+      flags,
+      formspreeId: row.formspree_id || row.formspree || '',
+      bookingUrl: row.booking_url || row.booking || '',
+    });
+    built.push({ slug, catKey, config, link: `${base}/p/${slug}`, status, photoSource, flags });
+  }
 
-    const link = `${base}/p/${slug}`;
-    links.push({ name: row.name, email: config.contact.email, link, status, photoSource, flags });
-    console.log(`  ✓ ${row.name}  →  ${link}   [${layout} · photos: ${photoSource} · ${status}]`);
+  // Anti-cookie-cutter: hand same-category siblings DISTINCT font/hero/temp/order
+  // so a batch of (say) five wineries can't be mistaken for one template.
+  const divReport = diversifyBatch(
+    built.map((b) => ({ slug: b.slug, category: b.catKey, config: b.config })),
+  );
+  if (divReport.length) {
+    console.log(`\nDiversified ${divReport.length} same-category site(s) so none look alike:`);
+    for (const r of divReport) console.log(`  · ${r.slug}: ${r.changes.join(', ')}`);
+    console.log('');
+  }
+
+  // Now write everything (post-divergence) + build the links manifest.
+  for (const b of built) {
+    await writeFile(join(OUT_DIR, `${b.slug}.json`), JSON.stringify(b.config, null, 2) + '\n');
+    links.push({ name: b.config.name, email: b.config.contact.email, link: b.link, status: b.status, photoSource: b.photoSource, flags: b.flags });
+    console.log(`  ✓ ${b.config.name}  →  ${b.link}   [photos: ${b.photoSource} · ${b.status}]`);
   }
 
   await writeFile(join(ROOT, 'data', 'outreach-links.json'), JSON.stringify(links, null, 2) + '\n');

@@ -132,3 +132,27 @@ project, and attach their domain.
   `sites/demo-gallery/public/images/library/<category>/` (served as-is).
 - `data/outreach-links.json` is gitignored (may contain real emails).
 - Full walkthrough: `docs/outreach-pipeline.md`.
+
+## Framework quality tools (the anti-cookie-cutter layer)
+
+The factory is deterministic, so its weak spot is JUDGMENT — same-category sites
+looking alike, and photos/layout that "don't look right." These close that gap:
+
+- **Batch divergence** (`scripts/lib/divergence.mjs`, auto-run by
+  `generate-prospects.mjs`): after all configs are built, it groups the batch by
+  category and gives each same-category sibling a DISTINCT `artDirection.fontId`,
+  `heroVariant`, `neutralTemp` (warm/cool), and rotated section order — so five
+  wineries can't be mistaken for one template. Deterministic; respects explicit
+  pins; leaves single-member categories untouched. Pools must stay in sync with
+  `fonts.ts` FONT_REGISTRY and the HeroVariant union.
+- **Vision QA** (`npm run shots` → `scripts/screenshot-audit.mjs`): builds,
+  previews, and screenshots every prospect's fold + full page into `.shots/`.
+  Build-success and grep hide visual breakage — REVIEW `.shots/fold/<slug>.png`
+  (the cold-link first impression) before sending. The in-session agent is the
+  vision reviewer (no API key needed on Pro).
+- **Mechanical QA** (`node scripts/audit.mjs`, from repo root): dead-token +
+  measured WCAG contrast + empty-section + templated-copy + missing-email gate;
+  understands intentional text heroes (statement/editorial/panel). Non-zero exit
+  on criticals → can gate deploy.
+- Heroes are length-robust: `HeroEditorial` wraps long (full-sentence) headlines
+  instead of clipping them off the right edge.

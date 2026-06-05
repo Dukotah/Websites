@@ -17,6 +17,9 @@ interface ServiceItem {
   description: string;
   image?: string;
   icon?: string;
+  /** Per-card CTA label + href baked by the composer (lib/compose.ts). */
+  cta?: string;
+  ctaHref?: string;
 }
 
 interface Props {
@@ -44,8 +47,9 @@ const {
   index,
 } = Astro.props as Props;
 
-// Prefer tel CTA; fall back to mailto; fall back to #contact anchor.
-const ctaHref = phone
+// Section-level fallback CTA href (used only when a card doesn't carry its own
+// composer-baked ctaHref): prefer tel, then mailto, then the #contact anchor.
+const fallbackCtaHref = phone
   ? `tel:${phone.replace(/[^+\d]/g, '')}`
   : envelope
   ? `mailto:${envelope}`
@@ -87,8 +91,8 @@ const ctaHref = phone
               )}
               <h3 class="svc-card__title">{item.title}</h3>
               <p class="svc-card__desc">{item.description}</p>
-              <a href={ctaHref} class="svc-card__link">
-                Ask about this
+              <a href={item.ctaHref ?? fallbackCtaHref} class="svc-card__link">
+                {item.cta ?? 'Ask about this'}
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
                   <path
                     d="M5 12h14m-6-6 6 6-6 6"

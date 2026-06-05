@@ -24,7 +24,7 @@ const SCHEMA_TYPE: Record<string, string> = {
   plumbing: 'Plumber',
   landscaping: 'HomeAndConstructionBusiness',
   towing: 'AutomotiveBusiness',
-  marina: 'LocalBusiness',
+  marina: 'SportsActivityLocation',
 };
 
 /** Categories where servesCuisine / menu make sense. */
@@ -111,9 +111,29 @@ export function buildJsonLd(
 
   if (config.contact.email) ld.email = config.contact.email;
   if (config.contact.address) {
-    ld.address = { '@type': 'PostalAddress', streetAddress: config.contact.address };
+    const address: Record<string, string> = {
+      '@type': 'PostalAddress',
+      streetAddress: config.contact.address,
+    };
+    // Enrich with locality/region parsed from the "Town, ST" area string when
+    // available — these power Google's address rich result.
+    const areaParts = (config.area ?? '').split(',').map((s) => s.trim()).filter(Boolean);
+    if (areaParts.length >= 2) {
+      address.addressLocality = areaParts[0];
+      address.addressRegion = areaParts[areaParts.length - 1];
+    } else if (areaParts.length === 1) {
+      address.addressLocality = areaParts[0];
+    }
+    ld.address = address;
   }
   if (config.area) ld.areaServed = config.area;
+  if (config.geo && Number.isFinite(config.geo.lat) && Number.isFinite(config.geo.lng)) {
+    ld.geo = {
+      '@type': 'GeoCoordinates',
+      latitude: config.geo.lat,
+      longitude: config.geo.lng,
+    };
+  }
   if (opts.image) ld.image = opts.image;
   if (socials.length) ld.sameAs = socials;
   if (hoursSpec.length) ld.openingHoursSpecification = hoursSpec;

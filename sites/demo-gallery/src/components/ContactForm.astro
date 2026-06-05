@@ -1,0 +1,215 @@
+---
+/**
+ * ContactForm — a real, no-JS conversion path for the contact section.
+ *
+ * Every CTA on a demo resolves to #contact; without a form that's a dead end
+ * for anyone who won't (or can't) call. This renders a native HTML form that
+ * POSTs to Formspree when `config.formspreeId` is set — no client JS, no npm
+ * dependency, just a form action. When no Formspree id is configured it degrades
+ * to a mailto:/tel: fallback link so the section is never a dead end.
+ *
+ * The middle field flips between Email and Phone based on the business category:
+ * trades (towing/plumbing/auto/landscaping) want a phone to call back; everyone
+ * else collects an email. Fully token-driven so it inherits each site's identity.
+ */
+import type { ProspectConfig } from '../types';
+import { inferCategory } from '../lib/art-direction';
+
+const { config } = Astro.props as { config: ProspectConfig };
+
+const category = inferCategory(config);
+// Trades call you back; hospitality/retail email you. Pick the field that
+// matches how this kind of business actually follows up.
+const PHONE_FIRST = new Set(['towing', 'plumbing', 'auto-repair', 'landscaping']);
+const usePhone = PHONE_FIRST.has(category);
+const fieldLabel = usePhone ? 'Phone' : 'Email';
+const fieldType = usePhone ? 'tel' : 'email';
+const fieldName = usePhone ? 'phone' : 'email';
+const fieldAutocomplete = usePhone ? 'tel' : 'email';
+const fieldPlaceholder = usePhone ? '(555) 555-0100' : 'you@example.com';
+
+const formspreeId = config.formspreeId?.trim();
+const action = formspreeId ? `https://formspree.io/f/${formspreeId}` : '';
+
+const email = config.contact?.email?.trim();
+const phone = config.contact?.phone?.trim();
+const subject = `New inquiry from ${config.name}'s website`;
+const mailtoHref = email
+  ? `mailto:${email}?subject=${encodeURIComponent(subject)}`
+  : '';
+const telHref = phone ? `tel:${phone.replace(/[^+\d]/g, '')}` : '';
+
+// Resolve the no-Formspree fallback to the channel that actually exists, and
+// phrase the helper text to match it (so we never say "email" then show a Call
+// button). Prefer the business's natural channel, then whatever's available.
+let fbHref = '';
+let fbLabel = '';
+let fbVerb = '';
+if (usePhone && telHref) {
+  fbHref = telHref; fbLabel = `Call ${phone}`; fbVerb = 'a quick call';
+} else if (mailtoHref) {
+  fbHref = mailtoHref; fbLabel = 'Email us'; fbVerb = 'email';
+} else if (telHref) {
+  fbHref = telHref; fbLabel = `Call ${phone}`; fbVerb = 'a quick call';
+}
+---
+
+<div class="cform">
+  <h3 class="cform__title">Send a message</h3>
+
+  {action ? (
+    <form class="cform__form" method="POST" action={action}>
+      {/* Honeypot — bots fill it, humans never see it; Formspree drops those. */}
+      <input type="text" name="_gotcha" class="cform__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input type="hidden" name="_subject" value={subject} />
+
+      <div class="cform__field">
+        <label class="cform__label" for="cf-name">Name</label>
+        <input class="cform__input" id="cf-name" name="name" type="text" autocomplete="name" required />
+      </div>
+
+      <div class="cform__field">
+        <label class="cform__label" for="cf-contact">{fieldLabel}</label>
+        <input
+          class="cform__input"
+          id="cf-contact"
+          name={fieldName}
+          type={fieldType}
+          autocomplete={fieldAutocomplete}
+          placeholder={fieldPlaceholder}
+          required
+        />
+      </div>
+
+      <div class="cform__field">
+        <label class="cform__label" for="cf-message">Message</label>
+        <textarea class="cform__input cform__textarea" id="cf-message" name="message" rows="4" required></textarea>
+      </div>
+
+      <button class="cform__submit" type="submit">Send message</button>
+    </form>
+  ) : (
+    <div class="cform__fallback">
+      <p class="cform__fallback-text">
+        The fastest way to reach us is {fbVerb} — we’ll get right back to you.
+      </p>
+      {fbHref && (
+        <a class="cform__submit" href={fbHref}>{fbLabel}</a>
+      )}
+    </div>
+  )}
+</div>
+
+<style>
+  .cform {
+    margin-top: 2rem;
+    background: var(--bg-alt);
+    border: var(--border-weight, 1px) solid var(--border);
+    border-radius: var(--radius-lg, var(--radius));
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .cform__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    margin: 0 0 1.1rem;
+    font-size: var(--step-1);
+    color: var(--text);
+  }
+
+  .cform__form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .cform__field {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .cform__label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: var(--fw-bold, 700);
+    color: var(--text-muted);
+  }
+
+  .cform__input {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    color: var(--text);
+    background: var(--surface, var(--bg));
+    border: var(--border-weight, 1px) solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.7em 0.85em;
+    width: 100%;
+    transition:
+      border-color var(--motion-fade, 180ms) var(--motion-ease, ease),
+      box-shadow var(--motion-fade, 180ms) var(--motion-ease, ease);
+  }
+
+  .cform__input::placeholder {
+    color: color-mix(in srgb, var(--text-muted) 70%, transparent);
+  }
+
+  .cform__input:focus-visible {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 22%, transparent);
+  }
+
+  .cform__textarea {
+    resize: vertical;
+    min-height: 6.5rem;
+    line-height: var(--leading-body, 1.6);
+  }
+
+  /* Visually hidden but still focusable-by-bots honeypot. */
+  .cform__honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .cform__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold, 700);
+    font-size: var(--step-0);
+    color: var(--brand-contrast);
+    background: var(--brand);
+    border: var(--border-weight, 1px) solid var(--brand);
+    border-radius: var(--radius);
+    padding: 0.8em 1.6em;
+    text-decoration: none;
+    cursor: pointer;
+    justify-self: start;
+    transition:
+      background var(--motion-fade, 180ms) var(--motion-ease, ease),
+      transform var(--motion-fade, 180ms) var(--motion-ease, ease);
+  }
+
+  .cform__submit:hover {
+    background: var(--brand-dark, var(--brand));
+    text-decoration: none;
+  }
+
+  .cform__submit:focus-visible {
+    outline: 2px solid var(--ring, var(--brand));
+    outline-offset: 3px;
+  }
+
+  .cform__fallback-text {
+    margin: 0 0 1.25rem;
+    color: var(--text-muted);
+    font-size: var(--step-0);
+    line-height: var(--leading-body, 1.6);
+  }
+</style>

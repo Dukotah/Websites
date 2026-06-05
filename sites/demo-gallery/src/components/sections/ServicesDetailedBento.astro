@@ -22,6 +22,9 @@ interface ServiceItem {
   description: string;
   image?: string;
   icon?: string;
+  /** Per-cell CTA label + href baked by the composer (lib/compose.ts). */
+  cta?: string;
+  ctaHref?: string;
 }
 
 interface Props {
@@ -49,7 +52,7 @@ const {
   index,
 } = Astro.props as Props;
 
-const ctaHref = phone
+const fallbackCtaHref = phone
   ? `tel:${phone.replace(/[^+\d]/g, '')}`
   : envelope
   ? `mailto:${envelope}`
@@ -95,8 +98,8 @@ const ctaHref = phone
               )}
               <h3 class="bento-cell__title">{item.title}</h3>
               <p class="bento-cell__desc">{item.description}</p>
-              <a href={ctaHref} class="bento-cell__link" aria-label={`${item.title} — ask about this`}>
-                Ask about this
+              <a href={item.ctaHref ?? fallbackCtaHref} class="bento-cell__link" aria-label={`${item.title} — ${item.cta ?? 'ask about this'}`}>
+                {item.cta ?? 'Ask about this'}
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
                   <path
                     d="M5 12h14m-6-6 6 6-6 6"

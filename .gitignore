@@ -31,3 +31,6 @@ Thumbs.db
 
 # Standalone proof-of-concept exports (generated)
 proof/
+
+# Local screenshot-audit output (vision QA)
+.shots/

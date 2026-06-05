@@ -22,6 +22,9 @@ interface ServiceItem {
   description: string;
   image?: string;
   icon?: string;
+  /** Per-row CTA label + href baked by the composer (lib/compose.ts). */
+  cta?: string;
+  ctaHref?: string;
 }
 
 interface Props {
@@ -48,7 +51,7 @@ const {
   index,
 } = Astro.props as Props;
 
-const ctaHref = phone
+const fallbackCtaHref = phone
   ? `tel:${phone.replace(/[^+\d]/g, '')}`
   : envelope
   ? `mailto:${envelope}`
@@ -63,7 +66,7 @@ const ctaHref = phone
       <ol class="svcrows__list" data-reveal data-reveal-stagger>
         {items.map((item, i) => (
           <li class="svcrow">
-            <a class="svcrow__link" href={ctaHref} aria-label={`${item.title} — ask about this`}>
+            <a class="svcrow__link" href={item.ctaHref ?? fallbackCtaHref} aria-label={`${item.title} — ${item.cta ?? 'ask about this'}`}>
               <span class="svcrow__num" aria-hidden="true">
                 {String(i + 1).padStart(2, '0')}
               </span>

@@ -17,6 +17,20 @@ import type { ArtDirection } from './art-direction';
 import type { HeroVariant, Tone } from '../types';
 import { pick, shuffle } from './seed';
 import { assignVariants } from './variants';
+import { inferCategory } from './art-direction';
+import { serviceCtaFor } from './labels';
+
+/**
+ * Resolve the CTA href for a service card. Prefer an explicit booking URL; for a
+ * "Call …" CTA with a phone on file use tel:; otherwise the on-page #contact
+ * anchor (which now hosts a real contact form).
+ */
+function serviceCtaHref(config: ProspectConfig, label: string): string {
+  if (config.bookingUrl?.trim()) return config.bookingUrl.trim();
+  const phone = config.contact?.phone?.trim();
+  if (phone && /\bcall\b/i.test(label)) return `tel:${phone.replace(/[^+\d]/g, '')}`;
+  return '#contact';
+}
 
 /**
  * Extended section type identifier that includes 'about' — used only in the
@@ -300,9 +314,20 @@ function instantiateSection(type: RecipeSectionType, config: ProspectConfig): Se
     }
 
     case 'services-detailed': {
+      const category = inferCategory(config);
+      const defaultCta = serviceCtaFor(category);
       const items = (config.services ?? [])
         .filter((s) => s.description && s.description.trim().length > 20)
-        .map((s) => ({ title: s.title, description: s.description, image: s.image }));
+        .map((s) => {
+          const cta = s.cta?.trim() || defaultCta;
+          return {
+            title: s.title,
+            description: s.description,
+            image: s.image,
+            cta,
+            ctaHref: serviceCtaHref(config, cta),
+          };
+        });
       if (!items.length) return null;
       return { type: 'services-detailed', items };
     }
@@ -484,6 +509,41 @@ function instantiateSection(type: RecipeSectionType, config: ProspectConfig): Se
 
 const TONE_CYCLE: Tone[] = ['default', 'alt', 'default', 'deep', 'default', 'alt', 'brand'];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Rating injection — surface real Google review data in the stats rail
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * When the business has a real rating (reviewCount > 0), replace one cell of an
+ * existing stats section with a "4.8 ★ / 128 Google reviews" trust stat. Only
+ * touches an authored stats section — never fabricates one — and only when the
+ * rating is genuine, mirroring the no-fake-reviews rule for testimonials.
+ */
+function withRatingStat(sections: Section[], config: ProspectConfig): Section[] {
+  const rating = config.rating;
+  if (!rating || !(rating.count > 0) || !(rating.value > 0)) return sections;
+
+  const ratingCell = {
+    value: `${rating.value} ★`,
+    label: `${rating.count} Google review${rating.count === 1 ? '' : 's'}`,
+  };
+
+  let injected = false;
+  return sections.map((section) => {
+    if (injected || section.type !== 'stats') return section;
+    const items = (section as Extract<Section, { type: 'stats' }>).items ?? [];
+    if (items.length === 0) return section;
+    injected = true;
+    // Replace the LAST flavor cell so the rail keeps its column count; if there's
+    // only one cell, prepend instead so we don't lose the existing stat.
+    const next =
+      items.length >= 2
+        ? [...items.slice(0, -1), ratingCell]
+        : [ratingCell, ...items];
+    return { ...section, items: next };
+  });
+}
+
 function assignTones(sections: Section[], seed: number): Section[] {
   // jitter the starting index so two slugs don't start on the same tone
   const offset = seed % TONE_CYCLE.length;
@@ -563,7 +623,11 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
       : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
     return {
       hero,
-      sections: assignVariants(assignTones(ensureMinimum(plan, config, seed), seed), seed, ad.category),
+      sections: assignVariants(
+        assignTones(withRatingStat(ensureMinimum(plan, config, seed), config), seed),
+        seed,
+        ad.category,
+      ),
     };
   }
 
@@ -595,7 +659,11 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
 
   return {
     hero,
-    sections: assignVariants(assignTones(ensureMinimum(sections, config, seed), seed), seed, ad.category),
+    sections: assignVariants(
+      assignTones(withRatingStat(ensureMinimum(sections, config, seed), config), seed),
+      seed,
+      ad.category,
+    ),
   };
 }
 

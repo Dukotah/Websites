@@ -10,10 +10,11 @@ import '../styles/arch-editorial.css';
 import '../styles/arch-utility.css';
 import '../lib/font-faces';
 import { getImage } from 'astro:assets';
-import { resolveArtDirection } from '../lib/art-direction';
+import { resolveArtDirection, inferCategory } from '../lib/art-direction';
 import { artDirectionToCss } from '../lib/tokens';
 import { resolveAsset } from '../lib/assets';
 import { buildJsonLd } from '../lib/structured-data';
+import { categoryLabelFor } from '../lib/labels';
 import type { ProspectConfig } from '../types';
 
 interface Props {
@@ -26,8 +27,18 @@ const { config } = Astro.props;
 const title = Astro.props.title ?? config.name;
 const description = Astro.props.description ?? config.seoDescription;
 
-const fullTitle =
-  title === config.name ? `${config.name} — ${config.area}` : `${title} | ${config.name}`;
+// Default page title: "Name — CategoryLabel in Area" (e.g. "Gellella Terra
+// Vineyard — Winery & Tasting Room in Muncy, PA"). The label is a readable
+// descriptor, not a raw slug; it falls back gracefully when unknown so the
+// title degrades to "Name — Area" rather than printing nothing meaningful.
+const categoryLabel = config.categoryLabel ?? categoryLabelFor(inferCategory(config));
+const defaultTitle =
+  categoryLabel && config.area
+    ? `${config.name} — ${categoryLabel} in ${config.area}`
+    : config.area
+      ? `${config.name} — ${config.area}`
+      : config.name;
+const fullTitle = title === config.name ? defaultTitle : `${title} | ${config.name}`;
 
 // Resolve the per-business visual identity and emit its token block. Seeded from
 // name+brand so it matches what the page renderer composes.

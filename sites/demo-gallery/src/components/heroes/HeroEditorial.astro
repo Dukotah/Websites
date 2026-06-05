@@ -23,12 +23,17 @@ const eyebrow = [established, area].filter(Boolean).join('  ·  ');
 const hasPhoto = Boolean(images?.hero);
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
+// The edge-overflow move (white-space:nowrap) only reads as intentional for a
+// SHORT evocative phrase. A full-sentence headline would clip mid-word, so wrap
+// it to 2–3 lines at a smaller scale instead of running off the right edge.
+const longTitle = (hero.heading ?? '').length > 24;
 ---
 
 <section
   class="ed-hero"
   id="top"
   data-has-photo={hasPhoto ? 'true' : undefined}
+  data-long-title={longTitle ? 'true' : undefined}
   aria-label="Hero"
 >
 
@@ -278,6 +283,15 @@ const trustLine = highlights[0] ?? '';
     /* Allow the overflow to the right — the award move */
     white-space: nowrap;
     overflow: visible;
+  }
+
+  /* Long (full-sentence) headline: wrap to a readable block instead of clipping
+     off the right edge. Smaller fluid scale + a measure that forces 2–3 lines. */
+  [data-long-title] .ed-hero__title {
+    white-space: normal;
+    text-wrap: balance;
+    font-size: clamp(2.6rem, 6.2vw, 5.6rem);
+    max-width: 16ch;
   }
 
   /* Accent mid-rule below headline: left-anchored, short brand bar */

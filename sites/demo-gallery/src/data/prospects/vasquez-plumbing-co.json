@@ -25,9 +25,10 @@
     "Flat-rate, upfront pricing",
     "24/7 emergency service"
   ],
+  "heroVariant": "statement",
   "images": {
-    "hero": "/images/vasquez-plumbing-co/hero.jpg",
-    "heroAlt": "Vasquez Plumbing Co in Santa Rosa, Petaluma & Sonoma County, CA",
+    "hero": "",
+    "heroAlt": "",
     "story": "/images/vasquez-plumbing-co/story.jpg",
     "storyAlt": "Inside Vasquez Plumbing Co",
     "storyCaption": "",

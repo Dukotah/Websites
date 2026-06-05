@@ -14,8 +14,13 @@
     "instagram": "",
     "google": ""
   },
+  "heroVariant": "panel",
+  "artDirection": {
+    "fontId": "handcrafted",
+    "neutralTemp": "warm"
+  },
   "hero": {
-    "heading": "Hand-bottled by one family — all seven of us.",
+    "heading": "Hand-bottled by one family.",
     "subheading": "Huntingdon County's only winery: a family-owned and operated Central Pennsylvania label where every wine is made and hand-bottled by Kristi, Charles, and their five kids.",
     "ctaText": "Come taste",
     "ctaHref": "#contact"

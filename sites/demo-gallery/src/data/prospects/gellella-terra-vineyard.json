@@ -14,6 +14,12 @@
     "instagram": "",
     "google": ""
   },
+  "heroVariant": "split",
+  "artDirection": {
+    "fontId": "classic-trad",
+    "neutralTemp": "cool",
+    "shape": "framed"
+  },
   "hero": {
     "heading": "An Italian winemaking legacy, rooted in Muncy.",
     "subheading": "A family-owned vineyard carrying on generations of winemaking from Tito, Italy — small-batch dry, sweet, and dessert wines, poured alongside thoughtful small plates and a charming view.",

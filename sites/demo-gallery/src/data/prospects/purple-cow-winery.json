@@ -14,6 +14,11 @@
     "instagram": "https://www.instagram.com/purplecowwinery/",
     "google": ""
   },
+  "heroVariant": "statement",
+  "artDirection": {
+    "fontId": "boutique-contrast",
+    "neutralTemp": "cool"
+  },
   "hero": {
     "heading": "Once a dairy farm. Now your favorite winery.",
     "subheading": "A family-owned winery with a farmhouse feel, tucked along the back roads of Bloomsburg — house-made wines, live music, lawn games, and a few friendly farm animals.",
