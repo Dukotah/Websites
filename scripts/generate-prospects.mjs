@@ -304,10 +304,29 @@ function fallbackCopy(row, preset) {
   return researchCopy(row, preset, null);
 }
 
-// Compose optional depth sections from REAL data only — never fabricated.
-function buildSections(row, e) {
+// Compose a RICH depth-section spine from REAL data only — never fabricated.
+// Every section is data-gated: it appears only when the scrape (or CSV row)
+// actually provides the facts to fill it, so the FIRST build lands rich instead
+// of thin. Photos/gallery are deliberately NOT built here — that lever lives in
+// the media pipeline so we never pad a gallery with stock.
+function buildSections(row, e, copy) {
   const sections = [];
+  const area = [row.city, row.state].filter(Boolean).join(', ');
+  const phone = e?.phone || row.phone || '';
+  const address = e?.address || row.address || '';
 
+  // 1) Services as the rich grid — the visible spine of the page.
+  const svc = (copy?.services ?? []).filter((s) => s.title);
+  if (svc.length) {
+    sections.push({
+      type: 'services-detailed',
+      eyebrow: 'Services',
+      heading: copy.servicesHeading || 'What we do',
+      items: svc.map((s) => ({ title: s.title, description: s.description })),
+    });
+  }
+
+  // 2) Stats from real numbers only.
   const stats = [];
   if (e?.established) {
     const yrs = new Date().getFullYear() - Number(e.established);
@@ -318,12 +337,40 @@ function buildSections(row, e) {
   if (e?.services?.length >= 3) stats.push({ value: `${e.services.length}`, label: 'Services offered' });
   if (stats.length >= 2) sections.push({ type: 'stats', items: stats.slice(0, 4) });
 
+  // 3) Testimonials from scraped reviews.
   if (e?.testimonials?.length) {
     sections.push({
       type: 'testimonials',
       eyebrow: 'In their words',
       heading: 'What customers say',
       items: e.testimonials.slice(0, 3).map((t) => ({ quote: clip(t.quote, 280), author: t.author })),
+    });
+  }
+
+  // 4) FAQ — every answer comes straight from a REAL scraped fact (location,
+  //    hours, phone, area). Honest by construction; adds depth + local SEO.
+  const faq = [];
+  if (address) faq.push({ q: 'Where are you located?', a: `You'll find us at ${address}.` });
+  if (e?.hours?.length) {
+    faq.push({ q: 'What are your hours?', a: e.hours.map((h) => `${h.day}: ${h.hours}`).join('; ') + '.' });
+  }
+  if (area) faq.push({ q: 'What areas do you serve?', a: `We proudly serve ${area} and the surrounding community.` });
+  if (phone) faq.push({ q: 'How do I get in touch?', a: `Call us at ${phone} — we're glad to help.` });
+  if (faq.length >= 2) {
+    sections.push({ type: 'faq', eyebrow: 'Good to know', heading: 'Common questions', items: faq.slice(0, 4) });
+  }
+
+  // 5) Map locator from a real address (hours live in hours-contact, not here).
+  if (address) sections.push({ type: 'map', address });
+
+  // 6) Hours + phone close with a contact CTA.
+  if (e?.hours?.length || phone) {
+    sections.push({
+      type: 'hours-contact',
+      heading: 'Get in touch',
+      hours: e?.hours?.length ? e.hours : [],
+      phone: phone || undefined,
+      cta: { text: 'Contact us', href: '#contact' },
     });
   }
 
@@ -504,7 +551,7 @@ async function main() {
 
     // 3) Copy from real facts; 4) depth sections + layout.
     const copy = await generateCopy(row, preset, e);
-    const sections = buildSections(row, e);
+    const sections = buildSections(row, e, copy);
     const layout = layoutFor(slug);
 
     // 5) Quality gate.
