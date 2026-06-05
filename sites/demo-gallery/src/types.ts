@@ -264,6 +264,17 @@ export interface ProspectConfig {
   category?: string;
 
   /**
+   * Optional rich-result signals for structured data (schema.org / Google).
+   * Only emit these from REAL, on-page data — Google penalizes marked-up ratings
+   * that aren't visible to the visitor.
+   */
+  rating?: { value: number; count: number };
+  /** Price tier, schema.org style: "$", "$$", "$$$", "$$$$". */
+  priceRange?: string;
+  /** Cuisines served (food businesses) → schema.org servesCuisine. */
+  servesCuisine?: string[];
+
+  /**
    * Legacy "design kit" font hint from the prior system. Superseded by the v2
    * art-direction engine (which derives the font); kept optional so older
    * prospect JSON still type-checks.

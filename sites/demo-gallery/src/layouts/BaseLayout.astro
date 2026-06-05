@@ -13,6 +13,7 @@ import { getImage } from 'astro:assets';
 import { resolveArtDirection } from '../lib/art-direction';
 import { artDirectionToCss } from '../lib/tokens';
 import { resolveAsset } from '../lib/assets';
+import { buildJsonLd } from '../lib/structured-data';
 import type { ProspectConfig } from '../types';
 
 interface Props {
@@ -55,23 +56,9 @@ if (heroAsset) {
   ogImage = new URL(config.images.hero, Astro.site).href;
 }
 
-// Structured data so the business shows up nicely in local Google searches.
-const socials = Object.values(config.social ?? {}).filter(Boolean);
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: config.name,
-  description: config.seoDescription,
-  telephone: config.contact.phone,
-  email: config.contact.email,
-  address: config.contact.address
-    ? { '@type': 'PostalAddress', streetAddress: config.contact.address }
-    : undefined,
-  areaServed: config.area,
-  url: canonical,
-  ...(ogImage ? { image: ogImage } : {}),
-  ...(socials.length ? { sameAs: socials } : {}),
-};
+// Category-aware structured data (rich results: type, stars, hours) — built from
+// the same real facts shown on the page. See lib/structured-data.ts.
+const jsonLd = buildJsonLd(config, { canonical, image: ogImage || undefined });
 ---
 
 <!doctype html>

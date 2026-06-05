@@ -1,0 +1,134 @@
+/**
+ * structured-data.ts — build category-aware schema.org JSON-LD for a prospect.
+ *
+ * A precise @type (Restaurant, HairSalon, Plumber, TattooParlor…) plus rich
+ * fields (aggregateRating, openingHoursSpecification, priceRange, servesCuisine)
+ * makes a site eligible for Google rich results — stars, hours and the business
+ * category right in search. That's a concrete cold-outreach selling point, and
+ * we already hold the data. Everything here is emitted ONLY when real data
+ * exists; ratings/hours come from the same facts shown on the page.
+ *
+ * Refs: https://schema.org/Restaurant · https://schema.org/LocalBusiness ·
+ *       Google "Local Business" structured-data docs.
+ */
+import { inferCategory } from './art-direction';
+import type { ProspectConfig } from '../types';
+
+/** Category → most specific valid schema.org business type (falls back to LocalBusiness). */
+const SCHEMA_TYPE: Record<string, string> = {
+  cafe: 'Restaurant',
+  winery: 'Winery',
+  salon: 'HairSalon',
+  tattoo: 'TattooParlor',
+  'auto-repair': 'AutoRepair',
+  plumbing: 'Plumber',
+  landscaping: 'HomeAndConstructionBusiness',
+  towing: 'AutomotiveBusiness',
+  marina: 'LocalBusiness',
+};
+
+/** Categories where servesCuisine / menu make sense. */
+const FOOD_CATEGORIES = new Set(['cafe']);
+
+const DAY_BY_ABBR: Record<string, number> = {
+  sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6,
+};
+const DAY_NAME = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+/** Expand a day label ("Mon – Fri", "Saturday", "Wed – Sat") into full day names. */
+function parseDays(label: string): string[] {
+  const idx = (tok: string) => DAY_BY_ABBR[tok.trim().toLowerCase().slice(0, 3)];
+  const parts = label.split(/–|—|-|\bto\b|&|,/i).map((s) => s.trim()).filter(Boolean);
+  if (parts.length === 0) return [];
+  if (parts.length === 1) {
+    const d = idx(parts[0]);
+    return d == null ? [] : [DAY_NAME[d]];
+  }
+  const a = idx(parts[0]);
+  const b = idx(parts[parts.length - 1]);
+  if (a == null || b == null) return [];
+  const out: string[] = [];
+  for (let d = a; ; d = (d + 1) % 7) {
+    out.push(DAY_NAME[d]);
+    if (d === b) break;
+    if (out.length > 7) break; // safety
+  }
+  return out;
+}
+
+/** "9:00 AM" → "09:00"; "9 PM" → "21:00"; "12:00 AM" → "00:00". */
+function parseTime(t: string): string | null {
+  const m = /(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/i.exec(t.trim());
+  if (!m) return null;
+  let h = parseInt(m[1], 10);
+  const min = m[2] ?? '00';
+  const ap = m[3]?.toLowerCase();
+  if (ap === 'pm' && h !== 12) h += 12;
+  if (ap === 'am' && h === 12) h = 0;
+  if (h > 23) return null;
+  return `${String(h).padStart(2, '0')}:${min}`;
+}
+
+/** Build openingHoursSpecification[] from the prospect's hours rows. */
+function openingHours(hours: ProspectConfig['hours'] = []): object[] {
+  const specs: object[] = [];
+  for (const row of hours) {
+    if (!row?.hours || /closed/i.test(row.hours)) continue;
+    const range = row.hours.split(/–|—|-|\bto\b/i).map((s) => s.trim());
+    if (range.length < 2) continue;
+    const opens = parseTime(range[0]);
+    const closes = parseTime(range[1]);
+    const days = parseDays(row.day);
+    if (!opens || !closes || days.length === 0) continue;
+    specs.push({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: days,
+      opens,
+      closes,
+    });
+  }
+  return specs;
+}
+
+/** Assemble the JSON-LD object for a prospect page. */
+export function buildJsonLd(
+  config: ProspectConfig,
+  opts: { canonical: string; image?: string },
+): Record<string, unknown> {
+  const category = inferCategory(config);
+  const type = SCHEMA_TYPE[category] ?? 'LocalBusiness';
+  const socials = Object.values(config.social ?? {}).filter(Boolean);
+  const hoursSpec = openingHours(config.hours);
+
+  const ld: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': type,
+    name: config.name,
+    description: config.seoDescription,
+    telephone: config.contact.phone,
+    url: opts.canonical,
+  };
+
+  if (config.contact.email) ld.email = config.contact.email;
+  if (config.contact.address) {
+    ld.address = { '@type': 'PostalAddress', streetAddress: config.contact.address };
+  }
+  if (config.area) ld.areaServed = config.area;
+  if (opts.image) ld.image = opts.image;
+  if (socials.length) ld.sameAs = socials;
+  if (hoursSpec.length) ld.openingHoursSpecification = hoursSpec;
+  if (config.priceRange) ld.priceRange = config.priceRange;
+  if (FOOD_CATEGORIES.has(category) && config.servesCuisine?.length) {
+    ld.servesCuisine = config.servesCuisine;
+  }
+  if (config.rating && config.rating.count > 0) {
+    ld.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: config.rating.value,
+      reviewCount: config.rating.count,
+      bestRating: 5,
+    };
+  }
+
+  return ld;
+}

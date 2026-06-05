@@ -1,6 +1,9 @@
 {
   "name": "Taqueria Las Palmas",
   "category": "cafe",
+  "rating": { "value": 4.6, "count": 243 },
+  "priceRange": "$",
+  "servesCuisine": ["Mexican"],
   "tagline": "Authentic Mexican food on Santa Rosa Avenue.",
   "seoDescription": "Taqueria Las Palmas — a family-run Santa Rosa taqueria on Santa Rosa Avenue serving authentic Mexican food: carnitas, al pastor, chiles rellenos, blackened fish tacos, huge burritos and breakfast all day. 4.6 stars across 240+ reviews, open daily 9–9.",
   "area": "Santa Rosa, CA",
