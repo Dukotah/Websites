@@ -42,6 +42,15 @@ Once connected, every `git push` to the repo triggers Vercel to rebuild **only
 the projects whose files changed**. Pull requests get their own preview URLs so
 you can show a client a draft before it's public.
 
+## Environment variables (optional)
+
+- **`SITE_URL`** — set this to the demos' real domain (e.g.
+  `https://demos.copperbaytech.com`). It's the absolute base for **social-share
+  previews** (the hero image + title that show when you email/text a demo link)
+  and canonical URLs. Without it the build falls back to Vercel's auto domain,
+  or `https://example.com` locally — so previews still render, just on the wrong
+  host until this is set. Add it under the gallery project → Settings → Env Vars.
+
 ## Custom domains (theirbusiness.com)
 
 When a client is ready to use their real domain:

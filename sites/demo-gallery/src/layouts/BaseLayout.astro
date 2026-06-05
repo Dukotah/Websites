@@ -9,8 +9,10 @@ import '../styles/treatment.css';
 import '../styles/arch-editorial.css';
 import '../styles/arch-utility.css';
 import '../lib/font-faces';
+import { getImage } from 'astro:assets';
 import { resolveArtDirection } from '../lib/art-direction';
 import { artDirectionToCss } from '../lib/tokens';
+import { resolveAsset } from '../lib/assets';
 import type { ProspectConfig } from '../types';
 
 interface Props {
@@ -31,7 +33,30 @@ const fullTitle =
 const ad = resolveArtDirection(config);
 const tokenCss = artDirectionToCss(ad);
 
+// Absolute canonical URL for this page (also used as og:url).
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : Astro.url.pathname;
+
+// Social-share image: the hero rendered to a share-friendly JPEG (~1200w, the
+// format link-preview scrapers reliably handle). Absolute URL so it resolves in
+// an email/iMessage/Slack/LinkedIn preview. Falls back to the raw hero path when
+// it isn't a managed raster (remote/SVG); empty when there's no real photo.
+const heroAsset = resolveAsset(config.images?.hero);
+let ogImage = '';
+let ogImageW = 0;
+let ogImageH = 0;
+if (heroAsset) {
+  const built = await getImage({ src: heroAsset, width: 1200, format: 'jpeg', quality: 80 });
+  ogImage = Astro.site ? new URL(built.src, Astro.site).href : built.src;
+  ogImageW = 1200;
+  ogImageH = Math.round((1200 * heroAsset.height) / heroAsset.width);
+} else if (config.images?.hero && !config.images.hero.endsWith('.svg') && Astro.site) {
+  ogImage = new URL(config.images.hero, Astro.site).href;
+}
+
 // Structured data so the business shows up nicely in local Google searches.
+const socials = Object.values(config.social ?? {}).filter(Boolean);
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
@@ -39,8 +64,13 @@ const jsonLd = {
   description: config.seoDescription,
   telephone: config.contact.phone,
   email: config.contact.email,
-  address: config.contact.address,
+  address: config.contact.address
+    ? { '@type': 'PostalAddress', streetAddress: config.contact.address }
+    : undefined,
   areaServed: config.area,
+  url: canonical,
+  ...(ogImage ? { image: ogImage } : {}),
+  ...(socials.length ? { sameAs: socials } : {}),
 };
 ---
 
@@ -52,12 +82,30 @@ const jsonLd = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
 
     <!-- Open Graph (link previews on social / messaging) -->
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="business.business" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={config.name} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && (
+      <Fragment>
+        <meta property="og:image" content={ogImage} />
+        {ogImageW > 0 && <meta property="og:image:width" content={String(ogImageW)} />}
+        {ogImageH > 0 && <meta property="og:image:height" content={String(ogImageH)} />}
+        <meta property="og:image:alt" content={config.images?.heroAlt ?? config.name} />
+      </Fragment>
+    )}
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
     <meta name="theme-color" content={ad.palette.brand} />
 
     <!-- Per-business design tokens (full visual identity) -->
