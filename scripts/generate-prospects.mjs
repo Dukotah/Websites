@@ -37,6 +37,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { scrapeSite, stripTags } from './lib/scrape-site.mjs';
 import { acquirePhotos } from './lib/images.mjs';
 import { diversifyBatch } from './lib/divergence.mjs';
+import { buildCrmManifest } from './build-crm-manifest.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
@@ -93,6 +94,18 @@ const slugify = (s) =>
   s.toLowerCase().trim().replace(/['']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
 const titleCase = (s) => s.replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Bare, comparable hostname for a business's existing site — the natural key the
+// CRM (Duke) joins a demo back to its lead on. Mirrors Duke's hostLabel(): lower-
+// cased, scheme-/www-stripped, no trailing slash. Empty string when there's no URL.
+const hostKey = (u) => {
+  if (!u) return '';
+  try {
+    return new URL(u.startsWith('http') ? u : `https://${u}`).hostname.replace(/^www\./, '').toLowerCase();
+  } catch {
+    return String(u).trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '');
+  }
+};
 
 // Stable per-slug hash → a layout, so a batch gets visual variety but each
 // site keeps the same layout across re-runs.
@@ -466,6 +479,15 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
     // a real form endpoint and/or external booking link, emitted only when given.
     ...(extras.formspreeId ? { formspreeId: extras.formspreeId } : {}),
     ...(extras.bookingUrl ? { bookingUrl: extras.bookingUrl } : {}),
+    // CRM bridge: the keys Duke joins this demo back to its lead on. `host` is the
+    // business's existing-site hostname (primary key, deduped the same way Duke's
+    // intake does); `leadId` is reserved for an exact 1:1 join when the source CSV
+    // carries the scraper's id. Persisted so the manifest builder can rebuild the
+    // full demos↔leads map from the prospect JSONs alone, no regen required.
+    crm: {
+      host: hostKey(row.website),
+      leadId: row.id || row.lead_id || row.crm_id || '',
+    },
     theme: preset.theme,
   };
 }
@@ -616,10 +638,17 @@ async function main() {
   }
 
   await writeFile(join(ROOT, 'data', 'outreach-links.json'), JSON.stringify(links, null, 2) + '\n');
+
+  // Public, email-free CRM bridge: rebuild the full demos↔leads manifest Duke
+  // pulls (raw GitHub) to overlay each lead with its bespoke demo URL. Built from
+  // the prospect JSONs just written, so it always reflects every live demo.
+  const { demos } = await buildCrmManifest();
+
   const review = links.filter((l) => l.status === 'needs-review').length;
   console.log(`\nWrote ${links.length} site(s) to sites/demo-gallery/src/data/prospects/`);
   if (review) console.log(`  ${review} flagged needs-review — open the dashboard (npm run dev → /) before sending.`);
-  console.log('Links manifest: data/outreach-links.json');
+  console.log('Links manifest:  data/outreach-links.json  (private — emails)');
+  console.log(`CRM manifest:    data/demo-manifest.json   (public — ${demos.length} demos; Duke joins leads→demos on this)`);
   console.log('\nNext: cd sites/demo-gallery && npm install && npm run dev   (preview at /p/<slug>)');
   console.log('Then commit + push — Vercel rebuilds the gallery and your links go live.');
 }

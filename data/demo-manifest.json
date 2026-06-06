@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-06-06T01:49:55.954Z",
+  "base": "https://demos.copperbaytech.com",
+  "demos": [
+    {
+      "slug": "built-rite-marine",
+      "name": "Built Rite Marine",
+      "host": "",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/built-rite-marine",
+      "status": "needs-review"
+    },
+    {
+      "slug": "gellella-terra-vineyard",
+      "name": "Gellella Terra Vineyard",
+      "host": "",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/gellella-terra-vineyard",
+      "status": "needs-review"
+    },
+    {
+      "slug": "honey-hole-winery",
+      "name": "Honey Hole Winery",
+      "host": "",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/honey-hole-winery",
+      "status": "needs-review"
+    },
+    {
+      "slug": "kog-hill-winery",
+      "name": "Kog Hill Winery",
+      "host": "",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/kog-hill-winery",
+      "status": "needs-review"
+    },
+    {
+      "slug": "lake-sonoma-marina",
+      "name": "Lake Sonoma Marina",
+      "host": "lakesonoma.com",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/lake-sonoma-marina",
+      "status": "ready"
+    },
+    {
+      "slug": "purple-cow-winery",
+      "name": "Purple Cow Winery",
+      "host": "",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/purple-cow-winery",
+      "status": "needs-review"
+    },
+    {
+      "slug": "reklaimed-vines",
+      "name": "ReKlaimed Vines",
+      "host": "",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/reklaimed-vines",
+      "status": "needs-review"
+    },
+    {
+      "slug": "smittys-towing",
+      "name": "Smitty's Towing",
+      "host": "",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/smittys-towing",
+      "status": "ready"
+    },
+    {
+      "slug": "taqueria-las-palmas",
+      "name": "Taqueria Las Palmas",
+      "host": "",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/taqueria-las-palmas",
+      "status": "needs-review"
+    },
+    {
+      "slug": "the-hole-thing",
+      "name": "The Hole Thing",
+      "host": "holething.net",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/the-hole-thing",
+      "status": "needs-review"
+    },
+    {
+      "slug": "vasquez-plumbing-co",
+      "name": "Vasquez Plumbing Co",
+      "host": "",
+      "leadId": null,
+      "demoUrl": "https://demos.copperbaytech.com/p/vasquez-plumbing-co",
+      "status": "needs-review"
+    }
+  ]
+}
