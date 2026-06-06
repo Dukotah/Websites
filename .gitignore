@@ -34,3 +34,6 @@ proof/
 
 # Local screenshot-audit output (vision QA)
 .shots/
+
+# Local CRM reconcile artifact (derivative, regenerated on demand)
+data/crm-unmatched-demos.json
