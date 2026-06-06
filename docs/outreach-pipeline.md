@@ -106,13 +106,30 @@ git commit -m "Add this week's outreach prospects"
 git push
 ```
 
-## 5. Send the outreach
+## 5. Push the links into the CRM (optional but recommended)
+
+Drop each demo link onto its matching lead in the Duke CRM so reps see a "Demo"
+badge and a one-click "Preview site we built" link — no manual copy-paste:
+
+```bash
+export CRM_BASE_URL=https://your-duke-deploy.vercel.app
+export CRM_ADMIN_TOKEN=<same secret set on the Duke deployment>
+npm run push-to-crm                 # pushes data/outreach-links.json
+npm run push-to-crm -- --dry-run    # preview what would be pushed
+```
+
+Leads are matched by business **name**, so the CRM lead's name and the prospect
+`name` must line up (case/punctuation are normalized). Any prospect that doesn't
+match a lead is reported as skipped — add the lead or fix the name, then re-run.
+The push is idempotent, so it's safe to run again after each batch.
+
+## 6. Send the outreach
 
 Pull the link for each prospect from `data/outreach-links.json` and merge it
 into your email — e.g. "I built you a quick homepage, take a look:
 {{link}}".
 
-## 6. When a prospect converts
+## 7. When a prospect converts
 
 Graduate them to a real, standalone site with its own project and domain — the
 JSON already matches the single-site config schema:

@@ -6,7 +6,8 @@
   "scripts": {
     "new-site": "node scripts/new-site.mjs",
     "fetch-photos": "node scripts/fetch-photos.mjs",
-    "generate-prospects": "node scripts/generate-prospects.mjs"
+    "generate-prospects": "node scripts/generate-prospects.mjs",
+    "push-to-crm": "node scripts/push-to-crm.mjs"
   },
   "devDependencies": {
     "sharp": "^0.34.0"
