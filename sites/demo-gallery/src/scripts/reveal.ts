@@ -22,6 +22,11 @@
     return;
   }
 
+  // Signal the BaseLayout head guard that the reveal logic is alive, so its 4s
+  // failsafe won't unhide everything. Set as early as possible — the moment this
+  // module executes — so even the reduced-motion path below counts as "ready".
+  (window as unknown as { __revealReady?: boolean }).__revealReady = true;
+
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (motionQuery.matches) {
     // Mark everything as revealed immediately so layouts aren't broken by the

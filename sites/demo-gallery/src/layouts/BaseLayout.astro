@@ -85,7 +85,7 @@ const jsonLd = buildJsonLd(config, { canonical, image: ogImage || undefined });
     <!-- Open Graph (link previews on social / messaging) -->
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="business.business" />
+    <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content={config.name} />
     <meta property="og:url" content={canonical} />
@@ -103,15 +103,30 @@ const jsonLd = buildJsonLd(config, { canonical, image: ogImage || undefined });
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {ogImage && <meta name="twitter:image:alt" content={config.images?.heroAlt ?? config.name} />}
 
     <meta name="theme-color" content={ad.palette.brand} />
 
     <!-- Per-business design tokens (full visual identity) -->
     <style is:inline set:html={tokenCss}></style>
 
+    <!-- Reveal-animation guard: hide [data-reveal] content only while JS is
+         running, so a blocked/slow reveal bundle can never leave the page blank.
+         If reveal.ts hasn't initialized within 4s, unhide everything. -->
+    <script is:inline>
+      (function () {
+        var el = document.documentElement;
+        el.classList.add('js-reveal-ready');
+        setTimeout(function () {
+          if (!window.__revealReady) el.classList.remove('js-reveal-ready');
+        }, 4000);
+      })();
+    </script>
+
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   </head>
   <body data-archetype={ad.archetype}>
+    <a href="#main" class="skip-nav">Skip to content</a>
     <slot />
     <script>
       import '../scripts/reveal.ts';

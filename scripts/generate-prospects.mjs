@@ -80,6 +80,21 @@ const CATEGORIES = {
     highlights: ['ASE-certified', 'Honest quotes', 'Warranty on work'],
     services: ['Diagnostics', 'Brakes & suspension', 'Oil & maintenance', 'Engine repair'],
   },
+  winery: {
+    theme: { brand: '#6b2737', brandDark: '#2b1a1f' },
+    highlights: ['Estate-grown', 'Tasting room open', 'Family-owned'],
+    services: ['Wine tastings', 'Wine club', 'Vineyard tours', 'Private events'],
+  },
+  marina: {
+    theme: { brand: '#1f5f8b', brandDark: '#15324a' },
+    highlights: ['On the water', 'Boater-friendly', 'Seasonal hours'],
+    services: ['Slip rentals', 'Launch ramp', 'Fuel dock', 'Boat & gear storage'],
+  },
+  restaurant: {
+    theme: { brand: '#b5462f', brandDark: '#2c1d18' },
+    highlights: ['Made fresh', 'Dine-in & takeout', 'Local favorite'],
+    services: ['Dine-in', 'Takeout & to-go', 'Catering', 'Private dining'],
+  },
   default: {
     theme: { brand: '#c2683a', brandDark: '#243b53' },
     highlights: ['Friendly service', 'Locally owned', 'Fair prices'],
@@ -655,6 +670,9 @@ function deriveStatus(row, e, media, photoSource, templated) {
   // real email, flag the gap so a real non-phone contact method gets added.
   const hasRealEmail = Boolean(e?.email || row.email);
   if (!hasRealEmail) flags.push('No email found — add a real email or contact form before sending');
+  // Hours fell back to the generic Mon–Fri 8–6 default (buildConfig) — wrong for
+  // wineries, marinas, weekend/seasonal businesses. Flag so it's verified.
+  if (!e?.hours?.length) flags.push('Hours are a generic default (Mon–Fri 8–6) — verify before sending');
   const status = flags.length ? 'needs-review' : 'ready';
   return { status, flags };
 }

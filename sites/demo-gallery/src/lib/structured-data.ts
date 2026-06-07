@@ -74,6 +74,18 @@ function openingHours(hours: ProspectConfig['hours'] = []): object[] {
   const specs: object[] = [];
   for (const row of hours) {
     if (!row?.hours || /closed/i.test(row.hours)) continue;
+    // 24/7 businesses (towing, locksmith…) write "Open 24 hours" / "24/7" —
+    // the range parser can't read those, so emit a full-week always-open spec.
+    if (/24\s*\/?\s*7|24\s*hours|always open|round the clock/i.test(row.hours)) {
+      const days = parseDays(row.day);
+      specs.push({
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: days.length ? days : DAY_NAME.slice(),
+        opens: '00:00',
+        closes: '23:59',
+      });
+      continue;
+    }
     const range = row.hours.split(/–|—|-|\bto\b/i).map((s) => s.trim());
     if (range.length < 2) continue;
     const opens = parseTime(range[0]);
@@ -103,6 +115,9 @@ export function buildJsonLd(
   const ld: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': type,
+    // Stable entity identifier — anchors this business in Google's entity graph
+    // and lets sameAs links (GBP/Yelp/socials) reconcile to one node.
+    '@id': `${opts.canonical}#business`,
     name: config.name,
     description: config.seoDescription,
     telephone: config.contact.phone,

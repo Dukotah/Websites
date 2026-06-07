@@ -47,6 +47,8 @@ const hasPhoto = Boolean(images?.hero);
           alt={images.heroAlt}
           placeholder={images.placeholder}
           sizes="(min-width: 880px) 45vw, 100vw"
+          loading="eager"
+          fetchpriority="high"
         />
       </div>
       <!-- Trust badge on photo inset -->

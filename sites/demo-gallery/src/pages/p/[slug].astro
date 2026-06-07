@@ -34,7 +34,7 @@ const plan = composePage(config, ad);
 
 <BaseLayout config={config}>
   <Header config={config} />
-  <main>
+  <main id="main">
     <HeroRenderer config={config} variant={plan.hero} />
     <About config={config} />
     <SectionRenderer sections={plan.sections} />

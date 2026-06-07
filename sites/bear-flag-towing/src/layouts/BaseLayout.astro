@@ -19,7 +19,9 @@ const ogImage = `${siteUrl}/og.jpg`;
 // LocalBusiness structured data — helps Google show hours, phone, and area.
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'TowingService',
+  // "TowingService" is not a real schema.org type (Google ignores it);
+  // AutomotiveBusiness is the recognized parent for a towing operator.
+  '@type': 'AutomotiveBusiness',
   name: config.name,
   description: config.seoDescription,
   telephone: config.contact.phone,

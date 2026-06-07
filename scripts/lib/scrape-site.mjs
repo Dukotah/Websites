@@ -267,9 +267,12 @@ function extractTestimonials(html) {
   )) {
     consider(m[1]);
   }
+  // Rotate generic attributions — four identical "Verified customer" lines read
+  // as fabricated. Still honest (no invented names); just less template-looking.
+  const ATTRIB = ['Local customer', 'Happy customer', 'Returning customer', 'Satisfied customer'];
   return dedupeCI(quotes)
     .slice(0, 4)
-    .map((quote) => ({ quote, author: 'Verified customer' }));
+    .map((quote, i) => ({ quote, author: ATTRIB[i % ATTRIB.length] }));
 }
 
 // Many builder CDNs (GoDaddy/wsimg, Wix, Squarespace, Cloudinary, Shopify)

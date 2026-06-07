@@ -236,8 +236,34 @@ img {
   padding: 4px;
 }
 
+/* ── Skip-to-content link (WCAG 2.4.1 bypass blocks) — visually hidden until
+ * focused, then pinned top-left over everything. ─────────────────────────── */
+.skip-nav {
+  position: absolute;
+  left: 8px;
+  top: -60px;
+  z-index: 1000;
+  padding: 0.6rem 1rem;
+  background: var(--brand, #111);
+  color: var(--brand-contrast, #fff);
+  font-family: var(--font-body, system-ui);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius, 6px);
+  transition: top 0.15s ease;
+}
+.skip-nav:focus {
+  top: 8px;
+  outline: 2px solid var(--ring, currentColor);
+  outline-offset: 2px;
+}
+
 /* ── 7. Reveal animation [data-reveal] / [data-revealed] (spec §5.2) ───────── */
-[data-reveal] {
+/* The hidden initial state is gated behind .js-reveal-ready (added by the inline
+ * head guard in BaseLayout, and removed again if the reveal bundle fails to
+ * initialize within 4s). Without JS — or if the script bundle is blocked/slow —
+ * content stays visible by default, so the page can never render blank. */
+.js-reveal-ready [data-reveal] {
   opacity: 0;
   transform: translateY(var(--motion-rise));
   transition:
@@ -251,7 +277,7 @@ img {
 }
 
 /* Stagger for child elements in expressive mode */
-[data-reveal-stagger] > * {
+.js-reveal-ready [data-reveal-stagger] > * {
   opacity: 0;
   transform: translateY(var(--motion-rise));
   transition:

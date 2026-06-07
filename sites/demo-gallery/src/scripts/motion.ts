@@ -59,6 +59,15 @@
 
     function tick() {
       rafId = 0;
+      // If the user turned on Reduce Motion at runtime, clear any applied
+      // transforms and stop — no reload needed (see the change handler below).
+      if (motionQuery.matches) {
+        for (const el of els) {
+          el.style.transform = '';
+          el.style.willChange = '';
+        }
+        return;
+      }
       const y = window.scrollY;
       if (y === lastY) return;
       lastY = y;
@@ -162,9 +171,10 @@
   })();
 
   // Re-evaluate on runtime OS preference change (user toggles Reduce Motion).
+  // No page reload (which flashes white and resets scroll): the parallax tick
+  // self-clears its transforms when motionQuery.matches, and the CSS hard-block
+  // handles every static reset. A synthetic scroll kicks the tick immediately.
   motionQuery.addEventListener('change', () => {
-    // Reload the page to let reveal.ts also reset cleanly; avoids partially
-    // animated state. Silent no-op if the event fires after teardown.
-    window.location.reload();
+    window.dispatchEvent(new Event('scroll'));
   });
 })();
