@@ -246,6 +246,32 @@ function extractParagraphs(html) {
     .filter((t) => !/(cookie|privacy policy|all rights reserved|terms of service)/i.test(t));
 }
 
+// Pull customer-review text from visible HTML (most small-business reviews live
+// as plain text, not JSON-LD): <blockquote>s, and elements whose class mentions
+// review/testimonial/quote. Key-free, best-effort. We don't invent an author —
+// scraped reviews rarely carry a clean name, so they're attributed generically.
+const REVIEW_NOISE =
+  /(leave a review|write a review|read more|view all|see all|google|yelp|facebook|trustpilot|powered by|©|copyright)/i;
+
+function extractTestimonials(html) {
+  const quotes = [];
+  const consider = (raw) => {
+    const q = stripTags(raw);
+    if (q.length >= 40 && q.length <= 400 && !REVIEW_NOISE.test(q)) quotes.push(q);
+  };
+  for (const bq of matchAll(html, 'blockquote')) consider(bq);
+  // Elements explicitly classed as a review/testimonial/quote (non-greedy, so a
+  // deeply-nested card may truncate — acceptable for a best-effort heuristic).
+  for (const m of html.matchAll(
+    /<(?:div|li|article|p|figure)\b[^>]*class\s*=\s*["'][^"']*(?:review|testimonial|quote)[^"']*["'][^>]*>([\s\S]*?)<\/(?:div|li|article|p|figure)>/gi,
+  )) {
+    consider(m[1]);
+  }
+  return dedupeCI(quotes)
+    .slice(0, 4)
+    .map((quote) => ({ quote, author: 'Verified customer' }));
+}
+
 // Many builder CDNs (GoDaddy/wsimg, Wix, Squarespace, Cloudinary, Shopify)
 // append a transform path after the real file, e.g.
 //   …/IMG_1920.jpeg/:/cr=t:0%25,…/fx-gs   (the /:/… part, often grayscale).
@@ -426,15 +452,45 @@ export async function scrapeSite(url, { timeoutMs = 12000 } = {}) {
     reviewCount: ld.reviewCount,
     services: extractServices(html),
     about: extractParagraphs(html).slice(0, 4),
-    testimonials: ld.testimonials ?? [],
+    // Prefer authoritative JSON-LD reviews; top up from visible HTML when thin.
+    testimonials: ((ld.testimonials ?? []).length >= 2
+      ? ld.testimonials
+      : [...(ld.testimonials ?? []), ...extractTestimonials(html)]
+    ).slice(0, 4),
     images: usefulImages([...(ld.images ?? []), ...heuristicImages]),
     social: mergeSocial(ld.social, findSocial(html)),
   };
+
+  // Email is the single most-missing field and costs score points. Most small
+  // businesses put it on a /contact (not the homepage), so if we came up empty,
+  // do a few targeted subpage fetches before giving up.
+  if (!enrichment.email) {
+    enrichment.email = await findEmailOnSubpages(base);
+  }
 
   // Signal of how much real material we actually got — the caller uses this to
   // decide ready vs needs-review.
   enrichment.richness = scoreRichness(enrichment);
   return enrichment;
+}
+
+// Likely email-bearing subpages, in priority order.
+const CONTACT_PATHS = ['contact', 'contact-us', 'contactus', 'about', 'about-us'];
+
+async function findEmailOnSubpages(base) {
+  let origin;
+  try {
+    origin = new URL(base).origin;
+  } catch {
+    return '';
+  }
+  for (const path of CONTACT_PATHS) {
+    const page = await fetchHtml(`${origin}/${path}`, 8000);
+    if (!page) continue;
+    const email = findEmail(page.html);
+    if (email) return email;
+  }
+  return '';
 }
 
 // --- deep image crawl --------------------------------------------------------

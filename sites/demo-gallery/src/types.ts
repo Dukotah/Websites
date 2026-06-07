@@ -181,6 +181,12 @@ export interface ArtDirectionConfig {
   motion?: 'none' | 'subtle' | 'expressive';
   density?: 'compact' | 'standard' | 'spacious';
   neutralTemp?: 'warm' | 'cool';
+  /**
+   * Generator-internal hint from the batch-divergence pass: which distinctive
+   * "depth" section this sibling should get so same-category sites don't share an
+   * identical section set. Consumed by generate-prospects.mjs; unused at render.
+   */
+  preferredDepthSection?: string;
 }
 
 /** Explicit per-token CSS overrides (escape hatch, applied last). */

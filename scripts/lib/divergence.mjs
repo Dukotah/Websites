@@ -43,6 +43,9 @@ const FONT_POOLS = {
   construction: ['rugged-slab', 'bold-display', 'modern-grotesk'],
   fitness: ['bold-display', 'modern-grotesk', 'rugged-slab'],
   tech: ['modern-grotesk', 'clean-sans', 'space-grotesk'],
+  // marina = part utility (boats/repair/fuel), part lifestyle (lake/recreation).
+  marina: ['modern-grotesk', 'rugged-slab', 'editorial-serif', 'clean-sans'],
+  restaurant: ['warm-humanist', 'editorial-serif', 'handcrafted', 'classic-trad'],
   default: ['editorial-serif', 'modern-grotesk', 'classic-trad', 'clean-sans', 'warm-humanist'],
 };
 
@@ -58,8 +61,43 @@ const HERO_POOLS = {
   plumbing: ['statement', 'split', 'cinematic', 'panel'],
   'auto-repair': ['cinematic', 'statement', 'split', 'panel'],
   towing: ['collage', 'cinematic', 'statement', 'split'],
+  marina: ['split', 'cinematic', 'editorial', 'statement'],
+  restaurant: ['cinematic', 'editorial', 'collage', 'statement'],
   default: ['cinematic', 'split', 'editorial', 'statement', 'panel', 'collage'],
 };
+
+// Per-category pool of distinctive "depth" sections handed out one-per-sibling so
+// same-category sites don't share an identical section set. Only types the
+// generator can build from scraped facts (see buildDepthSection) belong here.
+const DEPTH_POOLS = {
+  winery: ['bigquote', 'timeline', 'feature-split'],
+  cafe: ['bigquote', 'feature-split', 'timeline'],
+  restaurant: ['bigquote', 'feature-split', 'timeline'],
+  salon: ['bigquote', 'feature-split', 'timeline'],
+  landscaping: ['feature-split', 'bigquote', 'timeline'],
+  default: ['feature-split', 'bigquote', 'timeline'],
+};
+
+/**
+ * Can the generator actually build this depth section for the config? Checked
+ * from the config alone (divergence has no scrape handle), mirroring the
+ * data-gates in buildDepthSection so a hint is never assigned for absent data.
+ */
+function depthBuildable(config, type) {
+  switch (type) {
+    case 'timeline':
+      return Boolean(String(config.established ?? '').match(/\d{4}/));
+    case 'bigquote': {
+      const t = (config.sections ?? []).find((s) => s.type === 'testimonials');
+      const strongQuote = t && (t.items ?? []).some((it) => it.quote && it.quote.length > 60);
+      return Boolean(strongQuote) || String(config.tagline ?? '').length > 40;
+    }
+    case 'feature-split':
+      return (config.services ?? []).some((s) => s.description && s.description.length > 30);
+    default:
+      return false;
+  }
+}
 
 function hash(str) {
   let h = 2166136261 >>> 0;
@@ -119,9 +157,12 @@ export function diversifyBatch(prospects) {
     // regardless of where the pinned sibling sits in iteration order.
     const usedFonts = new Set();
     const usedHeroes = new Set();
+    const usedDepth = new Set();
+    const depthPool = DEPTH_POOLS[cat] ?? DEPTH_POOLS.default;
     for (const p of members) {
       if (p.config.artDirection?.fontId) usedFonts.add(p.config.artDirection.fontId);
       if (p.config.heroVariant) usedHeroes.add(p.config.heroVariant);
+      if (p.config.artDirection?.preferredDepthSection) usedDepth.add(p.config.artDirection.preferredDepthSection);
     }
 
     members.forEach((p, i) => {
@@ -162,6 +203,26 @@ export function diversifyBatch(prospects) {
       if (i > 0 && Array.isArray(cfg.sections) && cfg.sections.length >= 3) {
         cfg.sections = rotateSections(cfg.sections, i);
         changes.push('sections-rotated');
+      }
+
+      // ── Depth section: a DISTINCT extra section per sibling, so the batch
+      //    can't share one identical section set. Advisory — the generator only
+      //    builds it if the real data exists; we pick a buildable type not
+      //    already present and not already claimed by a sibling. ───────────────
+      if (!cfg.artDirection.preferredDepthSection) {
+        const present = new Set((cfg.sections ?? []).map((s) => s.type));
+        const buildable = depthPool.filter((t) => !present.has(t) && depthBuildable(cfg, t));
+        let chosen = '';
+        for (let k = 0; k < buildable.length; k++) {
+          const cand = buildable[(offset + i + k) % buildable.length];
+          if (!usedDepth.has(cand)) { chosen = cand; break; }
+        }
+        if (!chosen && buildable.length) chosen = buildable[(offset + i) % buildable.length];
+        if (chosen) {
+          usedDepth.add(chosen);
+          cfg.artDirection.preferredDepthSection = chosen;
+          changes.push(`depth=${chosen}`);
+        }
       }
 
       // Drop an empty artDirection so we don't write noise.

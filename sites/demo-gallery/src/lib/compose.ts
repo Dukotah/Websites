@@ -616,6 +616,19 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
       const g = instantiateSection('gallery', config);
       if (g) authored.splice(Math.min(2, authored.length), 0, g);
     }
+    // No gallery (<3 real images) but a story photo + described services? Inject
+    // ONE feature-split so 2-image sites get an editorial image band instead of a
+    // blank gap between About and Services. Skipped if a feature-split is already
+    // present (e.g. one the divergence pass added), so the two never double up.
+    if (
+      !authored.some((s) => s.type === 'gallery') &&
+      !authored.some((s) => s.type === 'feature-split') &&
+      inventory.hasFeatureSplit &&
+      inventory.imageCount < 3
+    ) {
+      const fs = instantiateSection('feature-split', config);
+      if (fs) authored.splice(Math.min(2, authored.length), 0, fs);
+    }
     // Ensure CTA is present
     const hasCta = authored.some((s) => s.type === 'cta');
     const plan = hasCta

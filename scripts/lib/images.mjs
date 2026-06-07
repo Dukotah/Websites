@@ -277,7 +277,7 @@ export async function generateImages(facts, { destDir, slug, startIndex = 0, nee
 export async function acquirePhotos(
   row,
   enrichment,
-  { destDir, slug, ownMax = 9, min = 2, skipWikimedia = false } = {},
+  { destDir, slug, ownMax = 9, min = 2, skipWikimedia = false, heroHint } = {},
 ) {
   const facts = {
     name: row.name,
@@ -293,6 +293,7 @@ export async function acquirePhotos(
     slug,
     max: ownMax,
     maxCandidates: 60,
+    heroHint,
   });
   // If we have at least the essential slots from their OWN photos, stop here —
   // stock must NEVER pad a gallery (that's the "looks like a template" tell).

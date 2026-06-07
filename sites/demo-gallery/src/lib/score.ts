@@ -152,7 +152,13 @@ function scoreContactComplete(
 
   const email = contact.email ?? '';
   if (email.trim() && !TEMPLATED_EMAIL_PATTERN.test(email)) earned += 3;
-  else if (!email.trim()) flags.push('Email missing');
+  else if (!email.trim()) {
+    // A missing email is a smaller conversion risk than a FAKE one when phone +
+    // address are both present (the prospect is still reachable) — give partial
+    // credit and skip the hard flag in that case.
+    if (contact.phone?.trim() && contact.address?.trim()) earned += 1;
+    else flags.push('Email missing');
+  }
 
   if (contact.address?.trim()) earned += 2;
   else flags.push('Address missing');

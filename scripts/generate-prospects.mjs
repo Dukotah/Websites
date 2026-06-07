@@ -94,12 +94,121 @@ const slugify = (s) =>
 
 const titleCase = (s) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 
-// Stable per-slug hash → a layout, so a batch gets visual variety but each
-// site keeps the same layout across re-runs.
-function layoutFor(slug) {
+// Stable string hash (FNV-ish, 32-bit) — drives deterministic per-slug picks so
+// a batch gets variety while each site stays identical across re-runs.
+function hashStr(s) {
   let h = 0;
-  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
-  return LAYOUTS[h % LAYOUTS.length];
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return h >>> 0;
+}
+
+// Stable per-slug hash → a layout.
+function layoutFor(slug) {
+  return LAYOUTS[hashStr(slug) % LAYOUTS.length];
+}
+
+// ---------------------------------------------------------------------------
+// Hero headline bank — per-category, "earned"-feeling promises instead of the
+// old formulaic "<Category> done right." Each entry is a function of a small
+// context so missing facts (year/city) degrade gracefully. A seed-based pick
+// keeps the same slug on the same headline across re-runs.
+// ---------------------------------------------------------------------------
+const HERO_HEADLINES = {
+  towing: [
+    (c) => `On the road for ${c.city || 'you'}, day or night.`,
+    () => `Fast. Honest. On the way.`,
+    (c) => (c.year ? `${c.city || 'Local'} towing since ${c.year}.` : `Reliable towing when you need it.`),
+    () => `Stuck? Consider it handled.`,
+  ],
+  winery: [
+    (c) => `${c.name}: the pour you'll come back for.`,
+    (c) => (c.year ? `Pouring with purpose since ${c.year}.` : `Wine the way it's meant to be.`),
+    (c) => `${c.city || 'Our'} favorite glass.`,
+    () => `Small batches. Big character.`,
+  ],
+  cafe: [
+    () => `Your new favorite morning.`,
+    (c) => (c.year ? `Pulling shots since ${c.year}.` : `Good coffee, made with care.`),
+    (c) => `A corner of ${c.city || 'town'} worth slowing down for.`,
+    () => `Fresh daily. Worth the trip.`,
+  ],
+  plumbing: [
+    () => `Done right. The first time.`,
+    (c) => `${c.city || 'Local'} plumbing you can count on.`,
+    () => `Upfront pricing. No surprises.`,
+    (c) => (c.year ? `Keeping ${c.city || 'homes'} running since ${c.year}.` : `Fast fixes, lasting work.`),
+  ],
+  salon: [
+    () => `Leave looking like the best you.`,
+    (c) => `${c.city || 'Your'} chair is ready.`,
+    () => `Style that fits your life.`,
+    (c) => (c.year ? `Making people feel good since ${c.year}.` : `Honest advice, beautiful results.`),
+  ],
+  landscaping: [
+    () => `Yards worth coming home to.`,
+    (c) => `${c.city || 'Local'} landscapes, done right.`,
+    () => `From overgrown to outstanding.`,
+    (c) => (c.year ? `Growing with ${c.city || 'the area'} since ${c.year}.` : `Reliable crews, lasting curb appeal.`),
+  ],
+  'auto-repair': [
+    () => `Honest work. Fair price.`,
+    (c) => `${c.city || 'The'} shop that tells you straight.`,
+    () => `Back on the road, fast.`,
+    (c) => (c.year ? `Trusted under the hood since ${c.year}.` : `Repairs done right, guaranteed.`),
+  ],
+  default: [
+    (c) => (c.year ? `Serving ${c.city || 'the area'} since ${c.year}.` : `${titleCase(c.what)} you can count on.`),
+    (c) => `${c.city || 'Local'}, trusted, and proud of it.`,
+    () => `Real work. Real people. Real results.`,
+    (c) => `The ${c.what} ${c.city || 'locals'} recommend.`,
+  ],
+};
+
+function pickHeroHeadline(row, e, what, area) {
+  const key = HERO_HEADLINES[row.category?.toLowerCase()] ? row.category.toLowerCase() : 'default';
+  const bank = HERO_HEADLINES[key];
+  const ctx = { name: row.name, city: row.city, area, what, year: e?.established || '' };
+  return bank[hashStr(slugify(row.name) + '|hero') % bank.length](ctx);
+}
+
+// ---------------------------------------------------------------------------
+// Service-description derivation (key-free path). The old fallback wrote
+// "<Title> for <city> and the surrounding community." for every service — pure
+// filler. Instead: pull a real sentence from the business's about copy that
+// mentions the service, and only if none exists fall back to one of several
+// varied, concrete templates (rotated by seed so siblings don't all match).
+// ---------------------------------------------------------------------------
+const SERVICE_DESC_TEMPLATES = [
+  (t, city) => `We handle ${t.toLowerCase()} with care${city ? ` for ${city}` : ''} — and we do it right the first time.`,
+  (t, city) => `Count on our team for ${t.toLowerCase()}${city ? ` across ${city}` : ''}, start to finish.`,
+  (t) => `Real experience behind every ${t.toLowerCase()} job, big or small.`,
+  (t, city) => `${t} you can trust${city ? `, right here in ${city}` : ''}.`,
+];
+
+function deriveServiceDesc(title, aboutText, city, seed, used) {
+  // 1) A real sentence from their own copy that names this service — but NOT one
+  //    already used for another service (two services often share a keyword, and
+  //    repeating one sentence verbatim across cards looks worse than a template).
+  const key = title.toLowerCase().split(/\s+/).find((w) => /[a-z]{4,}/i.test(w));
+  if (key && aboutText) {
+    const hit = aboutText
+      .split(/(?<=[.!?])\s+/)
+      .map((s) => s.trim())
+      .find(
+        (s) =>
+          s.toLowerCase().includes(key) &&
+          s.length >= 40 &&
+          s.length <= 220 &&
+          !(used && used.has(s)),
+      );
+    if (hit) {
+      used?.add(hit);
+      return clip(hit, 200);
+    }
+  }
+  // 2) Varied, concrete fallback (action verb + the service noun phrase).
+  const tpl = SERVICE_DESC_TEMPLATES[seed % SERVICE_DESC_TEMPLATES.length];
+  return tpl(titleCase(title), city);
 }
 
 // Trim a long string to a sentence boundary near `max` chars, falling back to
@@ -241,14 +350,19 @@ function researchCopy(row, preset, e) {
   }
 
   // Services: real scraped service names beat generic presets. We only have
-  // their titles, so descriptions are light — flag for a polish pass.
+  // their titles, so descriptions are derived from their own about copy where
+  // possible (a sentence that names the service), else a varied concrete line.
   let services;
   if (e?.services?.length >= 3) {
-    services = e.services.slice(0, 5).map((title) => ({
+    const aboutText = realParas.join(' ') || e?.description || '';
+    const sseed = hashStr(slugify(row.name));
+    const usedDescs = new Set();
+    services = e.services.slice(0, 5).map((title, i) => ({
       title: titleCase(title),
-      description: `${titleCase(title)} for ${row.city || 'the local area'} and the surrounding community.`,
+      description: deriveServiceDesc(title, aboutText, row.city, sseed + i, usedDescs),
     }));
-    templated.push('service-descriptions');
+    // No longer flagged 'service-descriptions': derived from real copy or a
+    // concrete, non-filler template — not the old "<Title> for <city>…" stub.
   } else {
     templated.push('services');
     services = preset.services.map((title) => ({
@@ -278,10 +392,9 @@ function researchCopy(row, preset, e) {
     150,
   );
 
-  const heroHeading = e?.established
-    ? `${titleCase(what)} in ${row.city || 'town'} since ${e.established}.`
-    : `${titleCase(what)} done right.`;
-  if (!e?.established) templated.push('hero');
+  // Hero: a per-category headline bank (earned-feeling, seeded) — not the old
+  // formulaic "<Category> done right."
+  const heroHeading = pickHeroHeadline(row, e, what, area);
 
   const heroSubheading = e?.description
     ? clip(e.description, 170)
@@ -355,6 +468,11 @@ function buildSections(row, e, copy) {
   if (address) faq.push({ q: 'Where are you located?', a: `You'll find us at ${address}.` });
   if (e?.hours?.length) {
     faq.push({ q: 'What are your hours?', a: e.hours.map((h) => `${h.day}: ${h.hours}`).join('; ') + '.' });
+  } else if (row.hours_note || row.hoursnote) {
+    faq.push({ q: 'What are your hours?', a: clip(row.hours_note || row.hoursnote, 160) });
+  } else if (phone) {
+    // No published hours — an honest "call us" answer keeps the FAQ from going sparse.
+    faq.push({ q: 'What are your hours?', a: `Hours can vary — give us a call at ${phone} and we'll let you know when we're open.` });
   }
   if (area) faq.push({ q: 'What areas do you serve?', a: `We proudly serve ${area} and the surrounding community.` });
   if (phone) faq.push({ q: 'How do I get in touch?', a: `Call us at ${phone} — we're glad to help.` });
@@ -379,11 +497,59 @@ function buildSections(row, e, copy) {
   return sections;
 }
 
+// Build ONE distinctive "depth" section requested by the batch-divergence pass
+// (divergence assigns config.artDirection.preferredDepthSection per same-category
+// sibling so a batch can't share one identical section set). Data-gated: returns
+// null when the real facts to fill it don't exist, so the hint stays advisory.
+function buildDepthSection(type, row, e, copy) {
+  switch (type) {
+    case 'timeline': {
+      const yr = (e?.established || row.established || '').toString().match(/\d{4}/)?.[0];
+      if (!yr) return null;
+      return {
+        type: 'timeline',
+        eyebrow: 'Our story',
+        heading: 'How we got here',
+        items: [
+          {
+            year: yr,
+            title: `${row.name} opened its doors`,
+            body: copy?.aboutBody?.[0] ? clip(copy.aboutBody[0], 160) : '',
+          },
+        ],
+      };
+    }
+    case 'bigquote': {
+      const t = (e?.testimonials ?? []).find((t) => t.quote && t.quote.length > 60);
+      if (t) return { type: 'bigquote', quote: clip(t.quote, 240), author: t.author };
+      const tagline = copy?.tagline || '';
+      if (tagline.length > 40) return { type: 'bigquote', quote: tagline };
+      return null;
+    }
+    case 'feature-split': {
+      const svc = (copy?.services ?? []).filter((s) => s.description && s.description.length > 30);
+      if (!svc.length) return null;
+      return {
+        type: 'feature-split',
+        eyebrow: 'What sets us apart',
+        heading: copy.servicesHeading || 'What we do',
+        rows: svc.slice(0, 3).map((s) => ({ heading: s.title, body: s.description })),
+      };
+    }
+    default:
+      return null;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Build a full ProspectConfig from a row + copy + scraped enrichment + photos.
 // ---------------------------------------------------------------------------
 function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {}) {
   const area = [row.city, row.state].filter(Boolean).join(', ');
+  // Authoritative category for the render-time art-direction engine. Without it,
+  // inferCategory() re-guesses from name/service keywords (less reliable); with
+  // it, the engine and batch-divergence grouping agree on one value.
+  const rawCat = (row.category || '').toLowerCase().trim();
   const [heroPhoto, storyPhoto] = media;
   const lib = `/images/library/${catKey}`;
 
@@ -422,13 +588,17 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
 
   return {
     name: row.name,
+    ...(rawCat ? { category: rawCat } : {}),
     tagline: copy.tagline,
     seoDescription: copy.seoDescription,
     area,
     established: established ? `Est. ${established}` : '',
     contact: {
       phone,
-      email: e?.email || row.email || `hello@${slugify(row.name)}.com`,
+      // Never invent an email. A guessed hello@… reads as fake to the prospect
+      // and the scorer/audit flag it; empty renders no email line (Contact.astro
+      // guards it), and deriveStatus flags the gap for a real contact method.
+      email: e?.email || row.email || '',
       address,
     },
     social: {
@@ -573,7 +743,17 @@ async function main() {
     let media = await agentDroppedPhotos(slug);
     let photoSource = media.length ? 'agent-supplied' : '';
     if (!media.length) {
-      const got = await acquirePhotos(row, e, { destDir: PUBLIC_IMAGES, slug, ownMax: 9, min: 2, skipWikimedia });
+      const got = await acquirePhotos(row, e, {
+        destDir: PUBLIC_IMAGES,
+        slug,
+        ownMax: 9,
+        min: 2,
+        skipWikimedia,
+        // Their og:image / primary structured image is usually their intended
+        // hero — hand it to the downloader so it wins the hero slot over a
+        // merely higher-scoring (but off-brand) photo.
+        heroHint: e?.images?.[0],
+      });
       media = got.media;
       photoSource = got.source;
     }
@@ -594,18 +774,40 @@ async function main() {
       formspreeId: row.formspree_id || row.formspree || '',
       bookingUrl: row.booking_url || row.booking || '',
     });
-    built.push({ slug, catKey, config, link: `${base}/p/${slug}`, status, photoSource, flags });
+    // Keep row/e/copy on the entry (not serialized) so the post-divergence pass
+    // can build the depth section the divergence hint requests.
+    built.push({ slug, catKey, config, row, e, copy, link: `${base}/p/${slug}`, status, photoSource, flags });
   }
 
   // Anti-cookie-cutter: hand same-category siblings DISTINCT font/hero/temp/order
-  // so a batch of (say) five wineries can't be mistaken for one template.
+  // — and now a DISTINCT depth section — so a batch of (say) five wineries can't
+  // be mistaken for one template. Group by the authoritative category so unknown
+  // categories (marina, restaurant) get their own pool instead of all-default.
   const divReport = diversifyBatch(
-    built.map((b) => ({ slug: b.slug, category: b.catKey, config: b.config })),
+    built.map((b) => ({ slug: b.slug, category: b.config.category || b.catKey, config: b.config })),
   );
   if (divReport.length) {
     console.log(`\nDiversified ${divReport.length} same-category site(s) so none look alike:`);
     for (const r of divReport) console.log(`  · ${r.slug}: ${r.changes.join(', ')}`);
     console.log('');
+  }
+
+  // Compose the per-sibling depth section the divergence pass requested. This is
+  // what breaks "100% identical section sets" across same-category siblings: it
+  // runs AFTER divergence so the hint can actually change which sections exist.
+  for (const b of built) {
+    const want = b.config.artDirection?.preferredDepthSection;
+    if (!want) continue;
+    const arr = b.config.sections ?? [];
+    if (arr.some((s) => s.type === want)) continue; // already present
+    const sec = buildDepthSection(want, b.row, b.e, b.copy);
+    if (!sec) continue;
+    // Insert before the contact tail (map / hours-contact) so it reads as page
+    // body, not an afterthought; otherwise just after the opening section.
+    const tailIdx = arr.findIndex((s) => s.type === 'map' || s.type === 'hours-contact');
+    const at = tailIdx > 0 ? tailIdx : Math.min(1, arr.length);
+    arr.splice(at, 0, sec);
+    b.config.sections = arr;
   }
 
   // Now write everything (post-divergence) + build the links manifest.
