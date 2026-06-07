@@ -1,0 +1,184 @@
+{
+  "name": "Joon Hair",
+  "category": "salon",
+  "tagline": "Joon Hair specializes in hair color, haircutting, and special event styling (bridal, business, birthday",
+  "seoDescription": "Joon Hair specializes in hair color, haircutting, and special event styling (bridal, business, birthday, etc.)",
+  "area": "Santa Rosa, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 575-1474",
+    "email": "letschat@joonhair.net",
+    "address": "205 5th ST Santa Rosa, CA 95401 United States"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "https://www.instagram.com/joon.hair/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Honest advice, beautiful results.",
+    "subheading": "Joon Hair specializes in hair color, haircutting, and special event styling (bridal, business, birthday, etc.)",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Walk-ins welcome",
+    "Experienced stylists",
+    "Relaxed setting"
+  ],
+  "images": {
+    "hero": "/images/joon-hair/photo-2.webp",
+    "heroAlt": "A stylist at Joon Hair in downtown Santa Rosa",
+    "story": "/images/joon-hair/story.webp",
+    "storyAlt": "About Joon Hair",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/salon/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/joon-hair/story.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 1"
+    },
+    {
+      "src": "/images/joon-hair/photo-2.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 2"
+    },
+    {
+      "src": "/images/joon-hair/photo-3.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 3"
+    },
+    {
+      "src": "/images/joon-hair/photo-4.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 4"
+    },
+    {
+      "src": "/images/joon-hair/photo-5.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 5"
+    },
+    {
+      "src": "/images/joon-hair/photo-6.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 6"
+    },
+    {
+      "src": "/images/joon-hair/photo-7.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 7"
+    },
+    {
+      "src": "/images/joon-hair/photo-8.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 8"
+    }
+  ],
+  "about": {
+    "heading": "About Joon Hair",
+    "body": [
+      "Welcome to Joon Hair, a beautiful salon in the heart of historic downtown Santa Rosa. Our name “Joon”, is a Persian term of endearment meaning “soul” and “beloved” — a reflection of the warmth and care we bring to each of our guests.",
+      "Owned by a wife-wife duo with Persian Ancestry, Joon was created to be a luxury salon with an open and welcoming spirit. Our team includes some of Sonoma county’s most talented stylists, all highly skilled ad dedicated to their craft. From Precision cuts to custom color and transformative treatments, we’re here to celebrate your unique beauty."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Cuts & styling",
+      "description": "Precision cuts and styling tailored to your hair and your routine, by stylists who actually listen."
+    },
+    {
+      "title": "Color & highlights",
+      "description": "Custom color, balayage, and dimensional highlights — from a subtle refresh to a full transformation."
+    },
+    {
+      "title": "Treatments",
+      "description": "Conditioning and bond-repair treatments that bring over-processed or damaged hair back to life."
+    },
+    {
+      "title": "Special occasions",
+      "description": "Bridal, business, and birthday styling to get you camera-ready for the moment that matters."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "9:00 AM – 2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Cuts & styling",
+          "description": "Precision cuts and styling tailored to your hair and your routine, by stylists who actually listen."
+        },
+        {
+          "title": "Color & highlights",
+          "description": "Custom color, balayage, and dimensional highlights — from a subtle refresh to a full transformation."
+        },
+        {
+          "title": "Treatments",
+          "description": "Conditioning and bond-repair treatments that bring over-processed or damaged hair back to life."
+        },
+        {
+          "title": "Special occasions",
+          "description": "Bridal, business, and birthday styling to get you camera-ready for the moment that matters."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 205 5th ST Santa Rosa, CA 95401 United States."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Hours can vary — give us a call at (707) 575-1474 and we'll let you know when we're open."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 575-1474 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "map",
+      "address": "205 5th ST Santa Rosa, CA 95401 United States"
+    },
+    {
+      "type": "hours-contact",
+      "heading": "Get in touch",
+      "hours": [],
+      "phone": "(707) 575-1474",
+      "cta": {
+        "text": "Contact us",
+        "href": "#contact"
+      }
+    }
+  ],
+  "layout": "editorial",
+  "heroVariant": "editorial-asym",
+  "status": "ready",
+  "flags": [],
+  "theme": {
+    "brand": "#b5557f",
+    "brandDark": "#2e2230"
+  }
+}

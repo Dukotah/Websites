@@ -1,0 +1,174 @@
+{
+  "name": "Petaluma Pie Company",
+  "category": "cafe",
+  "tagline": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic",
+  "seoDescription": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients",
+  "area": "Petaluma, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 766-6743",
+    "email": "pie@petalumapie.com",
+    "address": "Petaluma, CA"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/petalumapiecompany/",
+    "instagram": "https://www.instagram.com/petalumapie/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Handmade pies, sweet and savory.",
+    "subheading": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients. You can order online to pick up in the shop",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Made from scratch",
+    "Local & organic",
+    "Sweet & savory pies"
+  ],
+  "images": {
+    "hero": "/images/petaluma-pie-company/hero.jpg",
+    "heroAlt": "Petaluma Pie Company in Petaluma, CA",
+    "story": "/images/petaluma-pie-company/story.jpg",
+    "storyAlt": "About Petaluma Pie Company",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/cafe/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/petaluma-pie-company/story.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 1"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-2.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 2"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-3.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 3"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-4.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 4"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-5.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 5"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-6.png",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 6"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-7.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 7"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-8.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 8"
+    }
+  ],
+  "about": {
+    "heading": "About Petaluma Pie Company",
+    "body": [
+      "Petaluma Pie Company makes sweet and savory pies from scratch using local and organic ingredients — the kind of pie you'd make at home if you had all day. Order online and pick up fresh at our shop in downtown Petaluma."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Sweet pies",
+      "description": "Seasonal fruit and cream pies made from scratch with local and organic fruit."
+    },
+    {
+      "title": "Savory pies",
+      "description": "Hand pies and savory pot pies — a whole meal you can hold in one hand."
+    },
+    {
+      "title": "Whole pies to order",
+      "description": "Order a whole pie for the holidays, a party, or just because."
+    },
+    {
+      "title": "Online ordering & pickup",
+      "description": "Order online and pick up fresh at our shop in downtown Petaluma."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "9:00 AM – 2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Sweet pies",
+          "description": "Seasonal fruit and cream pies made from scratch with local and organic fruit."
+        },
+        {
+          "title": "Savory pies",
+          "description": "Hand pies and savory pot pies — a whole meal you can hold in one hand."
+        },
+        {
+          "title": "Whole pies to order",
+          "description": "Order a whole pie for the holidays, a party, or just because."
+        },
+        {
+          "title": "Online ordering & pickup",
+          "description": "Order online and pick up fresh at our shop in downtown Petaluma."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "What are your hours?",
+          "a": "Hours can vary — give us a call at (707) 766-6743 and we'll let you know when we're open."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Petaluma, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 766-6743 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "hours-contact",
+      "heading": "Get in touch",
+      "hours": [],
+      "phone": "(707) 766-6743",
+      "cta": {
+        "text": "Contact us",
+        "href": "#contact"
+      }
+    }
+  ],
+  "layout": "classic",
+  "status": "ready",
+  "flags": [],
+  "theme": {
+    "brand": "#c2683a",
+    "brandDark": "#3b2f2a"
+  }
+}
