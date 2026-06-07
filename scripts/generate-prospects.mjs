@@ -831,7 +831,7 @@ async function main() {
   // Now write everything (post-divergence) + build the links manifest.
   for (const b of built) {
     await writeFile(join(OUT_DIR, `${b.slug}.json`), JSON.stringify(b.config, null, 2) + '\n');
-    links.push({ name: b.config.name, email: b.config.contact.email, link: b.link, status: b.status, photoSource: b.photoSource, flags: b.flags });
+    links.push({ name: b.config.name, slug: b.slug, email: b.config.contact.email, link: b.link, status: b.status, photoSource: b.photoSource, flags: b.flags, category: b.config.category ?? b.catKey, area: b.config.area, claimByDate: b.config.outreach?.claimByDate ?? '', thumbnailUrl: `/thumbnails/${b.slug}.png` });
     console.log(`  ✓ ${b.config.name}  →  ${b.link}   [photos: ${b.photoSource} · ${b.status}]`);
   }
 

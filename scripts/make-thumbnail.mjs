@@ -12,7 +12,7 @@
  * brand-color card when the hero is a library SVG / missing. Text is rendered
  * via an SVG overlay using a generic sans family (librsvg has no @fontsource).
  */
-import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, copyFile } from 'node:fs/promises';
 import { join, basename } from 'node:path';
 import sharp from 'sharp';
 import { ROOT, PROSPECT_IMAGES } from './lib/paths.mjs';
@@ -21,6 +21,7 @@ const W = 1200;
 const H = 630;
 const PROSPECTS_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
 const OUT_DIR = join(ROOT, 'data', 'thumbnails');
+const PUBLISH_DIR = join(ROOT, 'sites', 'demo-gallery', 'public', 'thumbnails');
 const BASE_URL = (process.env.GALLERY_BASE_URL || 'yourdomain.com').replace(/^https?:\/\//, '').replace(/\/$/, '');
 
 const escapeXml = (s) =>
@@ -116,11 +117,14 @@ async function makeOne(slug) {
 
   const out = join(OUT_DIR, `${slug}.png`);
   await sharp(base).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(out);
-  console.log(`  ✓ ${slug}  ${heroFile ? '(hero photo)' : '(brand card)'} → data/thumbnails/${slug}.png`);
+  await mkdir(PUBLISH_DIR, { recursive: true });
+  await copyFile(out, join(PUBLISH_DIR, `${slug}.png`));
+  console.log(`  ✓ ${slug}  ${heroFile ? '(hero photo)' : '(brand card)'} → data/thumbnails/${slug}.png  (published: sites/demo-gallery/public/thumbnails/${slug}.png)`);
 }
 
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
+  await mkdir(PUBLISH_DIR, { recursive: true });
   let slugs = process.argv.slice(2);
   if (!slugs.length) {
     const files = await readdir(PROSPECTS_DIR);

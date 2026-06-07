@@ -37,3 +37,5 @@ proof/
 
 # Generated cold-outreach email thumbnails (regenerate on demand)
 data/thumbnails/
+
+# Published thumbnails (sites/demo-gallery/public/thumbnails/) ARE committed — stable hosted path for email + CRM
