@@ -2,11 +2,15 @@
 /**
  * Header — sticky, solid header that works over ANY hero variant (the old one
  * was white-on-photo and vanished over light heroes). Token-driven.
+ *
+ * Mobile (≤720px): the About/Services/Contact links collapse into a hamburger
+ * drawer (the phone CTA stays visible — it's the priority action). The toggle is
+ * a pure-CSS checkbox hack, so the menu opens even if JS never loads; a tiny
+ * progressive script only adds aria-expanded sync + close-on-navigate/Escape.
  */
 import type { ProspectConfig } from '../types';
 const { config } = Astro.props as { config: ProspectConfig };
 const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
-const area = config.area || '';
 ---
 
 <header class="hdr">
@@ -15,17 +19,47 @@ const area = config.area || '';
       <span class="hdr__mark" aria-hidden="true">{config.name.charAt(0)}</span>
       <span class="hdr__name">{config.name}</span>
     </a>
-    <nav class="hdr__nav" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#services-detailed">Services</a>
-      <a href="#contact">Contact</a>
+
+    <input type="checkbox" id="hdr-toggle" class="hdr__toggle" hidden />
+
+    <div class="hdr__right">
+      <nav class="hdr__nav" aria-label="Primary">
+        <a href="#about" data-hdr-link>About</a>
+        <a href="#services-detailed" data-hdr-link>Services</a>
+        <a href="#contact" data-hdr-link>Contact</a>
+      </nav>
+
       <a href={telHref} class="hdr__call">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
-        <span>{config.contact.phone}</span>
+        <span class="hdr__call-num">{config.contact.phone}</span>
       </a>
-    </nav>
+
+      <label for="hdr-toggle" class="hdr__burger" role="button" tabindex="0" aria-controls="hdr-toggle" aria-expanded="false" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </label>
+    </div>
   </div>
 </header>
+
+<script is:inline>
+  // Progressive enhancement only — the checkbox hack already opens/closes the
+  // drawer with zero JS. This syncs aria-expanded and closes on navigate/Escape.
+  (function () {
+    var t = document.getElementById('hdr-toggle');
+    var b = document.querySelector('.hdr__burger');
+    if (!t || !b) return;
+    var sync = function () { b.setAttribute('aria-expanded', t.checked ? 'true' : 'false'); };
+    t.addEventListener('change', sync);
+    // Space/Enter on the focusable label toggles it (labels don't do this natively for keyboards on all UAs).
+    b.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); t.checked = !t.checked; sync(); }
+    });
+    document.querySelectorAll('[data-hdr-link]').forEach(function (a) {
+      a.addEventListener('click', function () { t.checked = false; sync(); });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && t.checked) { t.checked = false; sync(); } });
+  })();
+</script>
 
 <style>
   .hdr {
@@ -41,10 +75,10 @@ const area = config.area || '';
     min-height: 64px;
     max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter);
   }
-  .hdr__brand { display: inline-flex; align-items: center; gap: 0.6rem; }
+  .hdr__brand { display: inline-flex; align-items: center; gap: 0.6rem; min-width: 0; }
   .hdr__brand:hover { text-decoration: none; }
   .hdr__mark {
-    display: grid; place-items: center; width: 34px; height: 34px;
+    display: grid; place-items: center; width: 34px; height: 34px; flex-shrink: 0;
     border-radius: var(--radius);
     background: var(--brand); color: var(--brand-contrast);
     font-family: var(--font-display); font-weight: var(--fw-display); font-size: 1.1rem;
@@ -52,7 +86,10 @@ const area = config.area || '';
   .hdr__name {
     font-family: var(--font-display); font-weight: var(--fw-display);
     font-size: 1.15rem; color: var(--text); letter-spacing: var(--tracking-display);
+    /* Truncate a long business name so it can never shove the nav controls off-screen */
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
   }
+  .hdr__right { display: flex; align-items: center; gap: 1.75rem; flex-shrink: 0; }
   .hdr__nav { display: flex; align-items: center; gap: 1.75rem; }
   .hdr__nav a { font-family: var(--font-body); color: var(--text-muted); font-weight: var(--fw-bold); font-size: 0.92rem; }
   .hdr__nav a:hover { color: var(--brand); text-decoration: none; }
@@ -61,12 +98,79 @@ const area = config.area || '';
     background: var(--brand); color: var(--brand-contrast) !important;
     padding: 0.55rem 1.05rem; border-radius: var(--radius-pill);
     font-weight: var(--fw-bold); font-size: 0.9rem;
+    min-height: 40px;
   }
   .hdr__call svg { width: 1em; height: 1em; }
   .hdr__call:hover { background: var(--brand-dark); text-decoration: none; }
 
+  /* Hamburger — hidden on desktop, shown on mobile */
+  .hdr__burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px; height: 40px;
+    padding: 9px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: var(--radius);
+  }
+  .hdr__burger span {
+    display: block; height: 2px; width: 100%;
+    background: var(--text); border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .hdr__burger:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
   @media (max-width: 720px) {
-    .hdr__nav a:not(.hdr__call) { display: none; }
+    .hdr__burger { display: flex; }
+    .hdr__right { gap: 0.6rem; }
+    /* Hard-cap the brand so it can never crowd the call + burger off-screen
+       even on the narrowest phones (~340px) */
+    .hdr__name { max-width: 38vw; }
+
+    /* Nav becomes a full-width dropdown drawer below the bar */
+    .hdr__nav {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: var(--surface);
+      border-bottom: var(--border-weight) solid var(--border);
+      box-shadow: var(--shadow-md);
+      display: none;
+    }
+    .hdr__nav a {
+      padding: 0.95rem var(--gutter);
+      font-size: 1rem;
+      border-top: var(--border-weight) solid var(--border);
+    }
+    .hdr__toggle:checked ~ .hdr__right .hdr__nav,
+    .hdr__toggle:checked ~ * .hdr__nav { display: flex; }
+
+    /* Animate burger → X when open */
+    .hdr__toggle:checked ~ .hdr__right .hdr__burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hdr__toggle:checked ~ .hdr__right .hdr__burger span:nth-child(2) { opacity: 0; }
+    .hdr__toggle:checked ~ .hdr__right .hdr__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     .hdr__name { font-size: 1.05rem; }
+  }
+
+  /* Phones: phone pill collapses to icon-only so brand + call + burger always fit
+     (the number is still one tap via the tel: link). Number returns ≥521px. */
+  @media (max-width: 520px) {
+    .hdr__call-num { display: none; }
+    .hdr__call { padding: 0.55rem 0.7rem; }
+  }
+
+  /* Narrowest phones: drop the brand NAME (keep the logo mark) so the call + menu
+     never get crowded off-screen. The name is still in the claim bar, hero, title. */
+  @media (max-width: 430px) {
+    .hdr__name { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hdr__burger span { transition: none; }
   }
 </style>
