@@ -547,6 +547,36 @@ function withRatingStat(sections: Section[], config: ProspectConfig): Section[] 
   });
 }
 
+/**
+ * CRO: Insert a CTA immediately after any `testimonials` section that is not
+ * already followed by one. Captures lead intent at the credibility peak rather
+ * than letting momentum dissipate to the page footer.
+ *
+ * Rules (avoids adjacent-duplicate CTAs):
+ *   - Only acts when `testimonials` appears in the list.
+ *   - Skips the insertion if the section immediately following `testimonials`
+ *     is already a `cta` (authored or previously appended).
+ *   - The mid-page CTA is distinct from the closing CTA; both may coexist on
+ *     the page — they are separated by at least one non-CTA section.
+ *   - Only inserts when `instantiateSection('cta', config)` returns a real
+ *     section (defensive null-guard, though `cta` is always satisfiable).
+ */
+function insertCtaAfterTestimonials(sections: Section[], config: ProspectConfig): Section[] {
+  const testimonialsIdx = sections.findIndex((s) => s.type === 'testimonials');
+  if (testimonialsIdx === -1) return sections;
+
+  const afterIdx = testimonialsIdx + 1;
+  // Already a CTA immediately after testimonials — nothing to do.
+  if (afterIdx < sections.length && sections[afterIdx].type === 'cta') return sections;
+
+  const midCta = instantiateSection('cta', config);
+  if (!midCta) return sections;
+
+  const result = [...sections];
+  result.splice(afterIdx, 0, midCta);
+  return result;
+}
+
 function assignTones(sections: Section[], seed: number): Section[] {
   // jitter the starting index so two slugs don't start on the same tone
   const offset = seed % TONE_CYCLE.length;
@@ -634,9 +664,11 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     }
     // Ensure CTA is present
     const hasCta = authored.some((s) => s.type === 'cta');
-    const plan = hasCta
+    const withTrailingCta = hasCta
       ? authored
       : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
+    // CRO: insert a mid-page CTA immediately after testimonials (credibility peak).
+    const plan = insertCtaAfterTestimonials(withTrailingCta, config);
     return {
       hero,
       sections: assignVariants(
@@ -673,10 +705,13 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     }
   }
 
+  // CRO: insert a mid-page CTA immediately after testimonials (credibility peak).
+  const sectionsWithMidCta = insertCtaAfterTestimonials(sections, config);
+
   return {
     hero,
     sections: assignVariants(
-      assignTones(withRatingStat(ensureMinimum(sections, config, seed), config), seed),
+      assignTones(withRatingStat(ensureMinimum(sectionsWithMidCta, config, seed), config), seed),
       seed,
       ad.category,
     ),

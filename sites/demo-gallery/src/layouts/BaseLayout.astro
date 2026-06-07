@@ -15,6 +15,7 @@ import { artDirectionToCss } from '../lib/tokens';
 import { resolveAsset } from '../lib/assets';
 import { buildJsonLd } from '../lib/structured-data';
 import { categoryLabelFor } from '../lib/labels';
+import { getDisplayFontPreloadHref } from '../lib/fonts';
 import type { ProspectConfig } from '../types';
 
 interface Props {
@@ -44,6 +45,10 @@ const fullTitle = title === config.name ? defaultTitle : `${title} | ${config.na
 // name+brand so it matches what the page renderer composes.
 const ad = resolveArtDirection(config);
 const tokenCss = artDirectionToCss(ad);
+
+// Preload the display font's latin woff2 so the LCP hero headline doesn't FOUT.
+// Returns null when the path can't be verified (never emits a broken preload).
+const displayFontPreloadHref = getDisplayFontPreloadHref(ad.fontId);
 
 // Absolute canonical URL for this page (also used as og:url).
 const canonical = Astro.site
@@ -109,6 +114,20 @@ const jsonLd = buildJsonLd(config, { canonical, image: ogImage || undefined });
     {ogImage && <meta name="twitter:image:alt" content={config.images?.heroAlt ?? config.name} />}
 
     <meta name="theme-color" content={ad.palette.brand} />
+
+    <!-- Preload the display font's latin subset so the hero headline renders
+         on the first paint rather than flashing unstyled (FOUT). The href is
+         Vite-fingerprinted so it hits the browser cache reliably. Only emitted
+         when a verified woff2 path resolves for this pairing. -->
+    {displayFontPreloadHref && (
+      <link
+        rel="preload"
+        as="font"
+        type="font/woff2"
+        href={displayFontPreloadHref}
+        crossorigin
+      />
+    )}
 
     <!-- Per-business design tokens (full visual identity) -->
     <style is:inline set:html={tokenCss}></style>

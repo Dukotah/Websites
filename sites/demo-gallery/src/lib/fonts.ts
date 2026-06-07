@@ -8,6 +8,79 @@
 
 import { hash, pick, shuffle } from './seed';
 
+// ---------------------------------------------------------------------------
+// Display-font preload helper (FOUT prevention for LCP hero headline)
+// ---------------------------------------------------------------------------
+//
+// Vite glob import over the exact woff2 files we want to preload — one latin
+// normal file per display family. `?url` makes Vite emit each file as a
+// fingerprinted asset URL; `eager: true` resolves them all at build time so
+// there is no dynamic import overhead at request time. The glob covers both
+// @fontsource-variable and @fontsource namespaces in one pass.
+//
+// Pattern rationale:
+//   • Variable fonts:  <pkg>/files/<family>-latin-wght-normal.woff2
+//     (the "wght" axis is what index.css loads for the base latin range)
+//   • Static fonts:    <pkg>/files/<family>-latin-400-normal.woff2
+//     (the base weight the browser will request first)
+//
+// The map key is the bare npm package name so the registry lookup below is
+// a simple string→URL table access — no path manipulation at request time.
+
+// Maps `<display-npm-package>` → fingerprinted URL (built by Vite).
+// Only families that actually match the glob pattern end up in this map.
+const _variableWoff2Urls = import.meta.glob<string>(
+  '/node_modules/@fontsource-variable/*/files/*-latin-wght-normal.woff2',
+  { eager: true, query: '?url', import: 'default' },
+);
+const _staticWoff2Urls = import.meta.glob<string>(
+  '/node_modules/@fontsource/*/files/*-latin-400-normal.woff2',
+  { eager: true, query: '?url', import: 'default' },
+);
+
+/**
+ * Mapping from display npm package name → fingerprinted woff2 URL (or null
+ * when the expected file wasn't found in the glob — emits nothing rather than
+ * a broken preload).
+ */
+function _buildPreloadMap(): Record<string, string | null> {
+  const out: Record<string, string | null> = {};
+
+  // Variable fonts — extract package name from path like
+  // /node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2
+  for (const [path, url] of Object.entries(_variableWoff2Urls)) {
+    const m = path.match(/^\/node_modules\/(@fontsource-variable\/[^/]+)\//);
+    if (m) out[m[1]] = url;
+  }
+
+  // Static fonts — extract package name from path like
+  // /node_modules/@fontsource/spectral/files/spectral-latin-400-normal.woff2
+  for (const [path, url] of Object.entries(_staticWoff2Urls)) {
+    const m = path.match(/^\/node_modules\/(@fontsource\/[^/]+)\//);
+    if (m) out[m[1]] = url;
+  }
+
+  return out;
+}
+
+const _preloadMap = _buildPreloadMap();
+
+/**
+ * Return the Vite-fingerprinted woff2 URL for the DISPLAY font of the given
+ * fontId, or null when no verified file could be resolved.
+ *
+ * Only the first (display) package in the pairing's fontsourcePackages list is
+ * considered — that is the face the hero headline renders in.
+ *
+ * Callers must emit nothing rather than a broken preload when this returns null.
+ */
+export function getDisplayFontPreloadHref(fontId: string): string | null {
+  const pairing = FONT_BY_ID[fontId];
+  if (!pairing) return null;
+  const pkg = pairing.fontsourcePackages[0];
+  return _preloadMap[pkg] ?? null;
+}
+
 export type TypeScaleName = 'tight' | 'editorial' | 'friendly' | 'geometric' | 'humanist';
 
 export interface FontPairing {

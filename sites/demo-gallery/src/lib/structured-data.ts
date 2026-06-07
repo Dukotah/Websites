@@ -156,7 +156,14 @@ export function buildJsonLd(
   if (FOOD_CATEGORIES.has(category) && config.servesCuisine?.length) {
     ld.servesCuisine = config.servesCuisine;
   }
-  if (config.rating && config.rating.count > 0) {
+  // Google's self-serving-review policy: a LocalBusiness page that marks up its
+  // OWN Google Business Profile rating receives NO star snippet and risks a manual
+  // action. Only third-party ratings that are visibly displayed on the page may be
+  // marked up. We therefore suppress aggregateRating when source === 'google'.
+  // All other sources (yelp, tripadvisor, onsite) are eligible, as is the absent
+  // case (treated as on-page/third-party for backward compatibility — no existing
+  // prospect JSON sets `source`, so their emission is unchanged).
+  if (config.rating && config.rating.count > 0 && config.rating.source !== 'google') {
     ld.aggregateRating = {
       '@type': 'AggregateRating',
       ratingValue: config.rating.value,

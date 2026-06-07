@@ -204,8 +204,10 @@ const count = imgs.length; // 1 | 2 | 3
   /* ── ② Trust badge ───────────────────────────────────────────────────────── */
   .col-hero__badge {
     position: absolute;
-    /* Anchored to the right-edge of the primary photo (55% for 3-col, 62% for 2-col) */
-    /* Use calc to approximate the grid boundary */
+    /*
+     * Default (3-image): primary column = 55fr → badge centred on that boundary.
+     * Overridden per data-count below.
+     */
     left: clamp(42%, 54vw, 56%);
     bottom: 8rem;          /* above highlights bar */
     transform: translateX(-50%);
@@ -245,6 +247,29 @@ const count = imgs.length; // 1 | 2 | 3
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 110px;
+  }
+
+  /*
+   * Count-specific badge positioning (desktop only — mobile overrides below).
+   *
+   * 3-image layout: primary column is 55fr of 100% → right edge ≈ 55%.
+   *   Badge centre sits on that seam: left ≈ 55%.
+   *
+   * 2-image layout: primary column is 62fr of 100% → right edge ≈ 62%.
+   *   Badge centre sits on that seam: left ≈ 62%.
+   *
+   * 1-image layout: full bleed — pin badge to right side instead.
+   */
+  .col-hero[data-count="3"] .col-hero__badge {
+    left: clamp(42%, 54vw, 56%);  /* 55% seam, matches default */
+  }
+  .col-hero[data-count="2"] .col-hero__badge {
+    left: clamp(48%, 61vw, 64%);  /* 62% seam */
+  }
+  .col-hero[data-count="1"] .col-hero__badge {
+    left: auto;
+    right: clamp(1rem, 4vw, 3rem);
+    transform: none;
   }
 
   /* ── ③ Content layer ─────────────────────────────────────────────────────── */

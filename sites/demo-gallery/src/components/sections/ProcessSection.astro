@@ -77,9 +77,11 @@ const {
   /*
    * Horizontal connector rule spanning the full track width.
    * Sits at the vertical center of the badge (2rem from top).
-   * Only shown on multi-column layout.
+   * Only shown when all steps fit on a single row (min-width: 900px).
+   * Below 900px the auto-fit grid may wrap to 2 columns, which causes
+   * the rule to bleed across rows — hide it at those widths instead.
    */
-  @media (min-width: 640px) {
+  @media (min-width: 900px) {
     .process__track::before {
       content: '';
       position: absolute;
@@ -207,13 +209,17 @@ const {
   [data-tone='deep'] .process__ghost {
     color: color-mix(in srgb, var(--brand-contrast) 10%, transparent);
   }
-  [data-tone='deep'] .process__track::before {
-    background: linear-gradient(
-      to right,
-      color-mix(in srgb, var(--brand-contrast) 20%, transparent),
-      color-mix(in srgb, var(--accent) 35%, transparent) 50%,
-      color-mix(in srgb, var(--brand-contrast) 20%, transparent)
-    );
+  /* Tone override for the connector — scoped to the same breakpoint so it
+     can't accidentally show the ::before on wrapped layouts. */
+  @media (min-width: 900px) {
+    [data-tone='deep'] .process__track::before {
+      background: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--brand-contrast) 20%, transparent),
+        color-mix(in srgb, var(--accent) 35%, transparent) 50%,
+        color-mix(in srgb, var(--brand-contrast) 20%, transparent)
+      );
+    }
   }
 
   [data-tone='brand'] {

@@ -345,8 +345,24 @@ export interface ProspectConfig {
    * Optional rich-result signals for structured data (schema.org / Google).
    * Only emit these from REAL, on-page data — Google penalizes marked-up ratings
    * that aren't visible to the visitor.
+   *
+   * `source` identifies where the rating originates so structured-data emission
+   * can be gated correctly:
+   *   'google'      — Google Business Profile star count. DO NOT mark up: GBP data
+   *                   is self-serving (we don't control it) and Google explicitly
+   *                   excludes it from star-snippet eligibility (manual-action risk).
+   *   'yelp'        — Yelp aggregate (third-party, eligible when shown on-page).
+   *   'tripadvisor' — TripAdvisor aggregate (same).
+   *   'onsite'      — Rating collected directly on this page (eligible).
+   *   absent        — Treated as on-page / third-party (backward-compatible default;
+   *                   all existing prospect configs that omit source keep their
+   *                   aggregateRating emission unchanged).
    */
-  rating?: { value: number; count: number };
+  rating?: {
+    value: number;
+    count: number;
+    source?: 'google' | 'yelp' | 'tripadvisor' | 'onsite';
+  };
   /** Price tier, schema.org style: "$", "$$", "$$$", "$$$$". */
   priceRange?: string;
   /** Cuisines served (food businesses) → schema.org servesCuisine. */

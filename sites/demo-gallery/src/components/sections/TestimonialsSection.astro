@@ -19,12 +19,29 @@ const {
   items = [],
   index,
 } = Astro.props as Props;
+
+// Derive a single shared source label only when EVERY item carries the same
+// non-empty source value — avoids fabricating or averaging heterogeneous data.
+const sourcedItems = items.filter((it) => it.source?.trim());
+const sharedSource: string | null =
+  sourcedItems.length === items.length && items.length > 0
+    ? (() => {
+        const first = items[0].source!.trim();
+        return items.every((it) => it.source?.trim() === first) ? first : null;
+      })()
+    : null;
 ---
 
 {items.length > 0 && (
   <section class="section tms" data-tone={tone}>
     <div class="container">
       <SectionHead {index} {eyebrow} {heading} {intro} {align} />
+
+      {sharedSource && (
+        <p class="tms__shared-source" aria-label={`Reviews via ${sharedSource}`}>
+          Reviews via <span class="tms__shared-source-name">{sharedSource}</span>
+        </p>
+      )}
 
       <ol class="tms__stack" role="list">
         {items.map((item, i) => (
@@ -35,8 +52,11 @@ const {
               </blockquote>
               <figcaption class="tms__attribution">
                 <span class="tms__author">{item.author}</span>
-                {item.source && (
-                  <span class="tms__source">{item.source}</span>
+                {item.source && !sharedSource && (
+                  <span class="tms__source">
+                    {/* "via" is part of the readable text — no pseudo separator needed */}
+                    <span aria-hidden="true"> — </span>via {item.source.trim()}
+                  </span>
                 )}
               </figcaption>
             </figure>
@@ -148,16 +168,32 @@ const {
     text-transform: uppercase;
     font-variant-caps: all-small-caps;
     color: var(--text-muted);
-    /* Em dash separator — cleaner than bullet. */
-  }
-  .tms__source::before {
-    content: '\2014\00a0';
-    opacity: 0.5;
   }
   .tms[data-tone='deep']  .tms__source,
   .tms[data-tone='brand'] .tms__source {
     color: inherit;
     opacity: 0.7;
+  }
+
+  /* ── Shared-source header — shown once when ALL items share one platform ── */
+  .tms__shared-source {
+    margin: 0 0 clamp(1rem, 2.5vw, 1.75rem);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 400;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    font-variant-caps: all-small-caps;
+    color: var(--text-muted);
+  }
+  .tms__shared-source-name {
+    /* Slight emphasis so the platform name reads as distinct from "Reviews via". */
+    font-weight: var(--fw-bold);
+  }
+  .tms[data-tone='deep']  .tms__shared-source,
+  .tms[data-tone='brand'] .tms__shared-source {
+    color: inherit;
+    opacity: 0.65;
   }
 
   /* ── Divider between quotes ─────────────────────────────────────────── */
