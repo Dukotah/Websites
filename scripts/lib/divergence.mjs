@@ -24,8 +24,10 @@
 
 // Hero variants that need a real photo vs. those that stand on type alone.
 const PHOTO_HEROES = ['cinematic', 'split', 'collage'];
-const TEXT_HEROES = ['statement', 'editorial', 'panel'];
-// `editorial` reads well with OR without a photo, so it bridges both pools.
+const TEXT_HEROES = ['statement', 'editorial', 'panel', 'typographic', 'editorial-asym'];
+// `editorial`, `typographic`, and `editorial-asym` read well with OR without a
+// photo (editorial-asym collapses to a full-width type column when none), so
+// they bridge both pools and are safe to assign regardless of photo inventory.
 
 // Per-category font pools — distinct pairings, ordered best-first. Mirror of the
 // `categories` arrays in fonts.ts (plus a rustic extra or two for variety).
@@ -53,17 +55,17 @@ const FONT_POOLS = {
 // siblings alternate "big photo" vs "big type". Filtered per-site by photo
 // availability at assignment time.
 const HERO_POOLS = {
-  winery: ['cinematic', 'split', 'editorial', 'statement', 'panel'],
-  cafe: ['cinematic', 'editorial', 'collage', 'statement'],
-  salon: ['editorial', 'split', 'statement', 'cinematic'],
-  tattoo: ['cinematic', 'statement', 'split', 'editorial'],
-  landscaping: ['cinematic', 'split', 'editorial', 'panel'],
-  plumbing: ['statement', 'split', 'cinematic', 'panel'],
-  'auto-repair': ['cinematic', 'statement', 'split', 'panel'],
-  towing: ['collage', 'cinematic', 'statement', 'split'],
-  marina: ['split', 'cinematic', 'editorial', 'statement'],
-  restaurant: ['cinematic', 'editorial', 'collage', 'statement'],
-  default: ['cinematic', 'split', 'editorial', 'statement', 'panel', 'collage'],
+  winery: ['cinematic', 'split', 'editorial-asym', 'editorial', 'statement', 'panel'],
+  cafe: ['cinematic', 'editorial-asym', 'editorial', 'collage', 'statement'],
+  salon: ['editorial-asym', 'editorial', 'split', 'typographic', 'statement', 'cinematic'],
+  tattoo: ['cinematic', 'statement', 'typographic', 'split', 'editorial'],
+  landscaping: ['cinematic', 'split', 'editorial-asym', 'editorial', 'panel'],
+  plumbing: ['statement', 'split', 'typographic', 'cinematic', 'panel'],
+  'auto-repair': ['cinematic', 'statement', 'typographic', 'split', 'panel'],
+  towing: ['collage', 'cinematic', 'statement', 'typographic', 'split'],
+  marina: ['split', 'cinematic', 'editorial-asym', 'editorial', 'statement'],
+  restaurant: ['cinematic', 'editorial-asym', 'editorial', 'collage', 'statement'],
+  default: ['cinematic', 'split', 'editorial-asym', 'editorial', 'typographic', 'statement', 'panel', 'collage'],
 };
 
 // Per-category pool of distinctive "depth" sections handed out one-per-sibling so

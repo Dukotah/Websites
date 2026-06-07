@@ -270,15 +270,18 @@ export function pickHero(
     return pick(seed ^ 0x3f4a8b1c, ['cinematic', 'cinematic', 'split', 'collage'] as const);
   }
   if (heroIsReal) {
-    return pick(seed ^ 0x7e2c9d44, ['cinematic', 'split'] as const);
+    // One strong photo: cinematic/split, or the type-dominant asymmetric split
+    // (wide display column beside a narrow tight crop) — the editorial move.
+    return pick(seed ^ 0x7e2c9d44, ['cinematic', 'split', 'editorial-asym'] as const);
   }
   // No real photo (missing or stock art) — text-forward variants that look
-  // intentional rather than stretching a flat stock SVG full-bleed.
+  // intentional rather than stretching a flat stock SVG full-bleed. The
+  // typographic-fill hero (type IS the hero) is the strongest of these.
   const isEditorial = ['editorial', 'boutique-contrast', 'classic-trad'].includes(ad.fontId);
   if (isEditorial) {
-    return pick(seed ^ 0x1a2b3c4d, ['editorial', 'statement', 'panel'] as const);
+    return pick(seed ^ 0x1a2b3c4d, ['typographic', 'editorial', 'statement', 'panel'] as const);
   }
-  return pick(seed ^ 0x9f8e7d6c, ['panel', 'editorial'] as const);
+  return pick(seed ^ 0x9f8e7d6c, ['typographic', 'panel', 'editorial'] as const);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

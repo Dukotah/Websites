@@ -81,6 +81,9 @@ const jsonLd = buildJsonLd(config, { canonical, image: ogImage || undefined });
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {/* Unclaimed outreach demos stay out of the index so they can't outrank the
+        prospect's real site. Flip outreach.published once they convert. */}
+    {!config.outreach?.published && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Open Graph (link previews on social / messaging) -->
     <meta property="og:title" content={fullTitle} />

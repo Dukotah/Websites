@@ -34,3 +34,6 @@ proof/
 
 # Local screenshot-audit output (vision QA)
 .shots/
+
+# Generated cold-outreach email thumbnails (regenerate on demand)
+data/thumbnails/

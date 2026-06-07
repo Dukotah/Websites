@@ -1,0 +1,172 @@
+---
+/**
+ * ClaimBanner — the cold-outreach conversion bar shown at the very top of an
+ * unclaimed demo page. This is the single highest-leverage element of the
+ * outreach play: the prospect clicks the link, lands on a site already built
+ * for them, and the banner gives them one obvious next step ("claim it").
+ *
+ * Renders ONLY for unclaimed demos (config.outreach.published !== true) — once
+ * a prospect converts, flip `published: true` and the bar disappears (and the
+ * page becomes indexable; see BaseLayout's robots gate).
+ *
+ * Honest by construction: no fake countdown. The expiry date is shown only when
+ * a real `claimByDate` is set; the scarcity `note` is whatever the sender wrote.
+ * Static (scrolls away) so it never fights the sticky header's offset; the hero
+ * CTAs and contact section carry conversion below the fold.
+ */
+import type { ProspectConfig } from '../types';
+
+const { config } = Astro.props as { config: ProspectConfig };
+const o = config.outreach ?? {};
+
+// CTA target: explicit claim link → else call them → else jump to contact.
+const telHref = config.contact?.phone
+  ? `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`
+  : '';
+const claimHref = o.claimUrl || telHref || '#contact';
+const claimLabel = o.claimUrl ? 'Claim this site' : telHref ? 'Call to claim it' : 'Claim this site';
+
+// Format the expiry date readably (e.g. "July 7, 2026") without pulling a lib.
+let claimBy = '';
+if (o.claimByDate) {
+  const d = new Date(`${o.claimByDate}T00:00:00`);
+  if (!Number.isNaN(d.getTime())) {
+    claimBy = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+}
+---
+
+<aside class="claim-bar" data-claim-bar aria-label="Demo site offer">
+  <div class="claim-bar__inner">
+    <p class="claim-bar__msg">
+      <strong class="claim-bar__lead">This site was custom-built for {config.name}.</strong>
+      {o.note && <span class="claim-bar__note">{o.note}</span>}
+      {claimBy && <span class="claim-bar__date">Offer good through {claimBy}.</span>}
+    </p>
+    <div class="claim-bar__actions">
+      <a class="claim-bar__cta" href={claimHref}>{claimLabel}</a>
+      <button type="button" class="claim-bar__dismiss" data-claim-dismiss aria-label="Dismiss">
+        &times;
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script is:inline>
+  // Let a visitor dismiss the bar for the session (re-shows on a fresh visit).
+  (function () {
+    var bar = document.querySelector('[data-claim-bar]');
+    if (!bar) return;
+    try {
+      if (sessionStorage.getItem('claim-bar-dismissed') === '1') {
+        bar.style.display = 'none';
+        return;
+      }
+    } catch (e) {}
+    var btn = bar.querySelector('[data-claim-dismiss]');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        bar.style.display = 'none';
+        try {
+          sessionStorage.setItem('claim-bar-dismissed', '1');
+        } catch (e) {}
+      });
+    }
+  })();
+</script>
+
+<style>
+  .claim-bar {
+    background: var(--brand);
+    color: var(--brand-contrast);
+    border-bottom: 2px solid color-mix(in srgb, var(--brand-contrast) 18%, transparent);
+  }
+  .claim-bar__inner {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding: 0.7rem var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+    flex-wrap: wrap;
+  }
+  .claim-bar__msg {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    line-height: 1.4;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2rem 0.6rem;
+  }
+  .claim-bar__lead {
+    font-weight: var(--fw-bold);
+  }
+  .claim-bar__note,
+  .claim-bar__date {
+    opacity: 0.85;
+  }
+  .claim-bar__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  /* Inverse button: contrast-colored fill so the CTA pops on the brand bar. */
+  .claim-bar__cta {
+    display: inline-flex;
+    align-items: center;
+    background: var(--brand-contrast);
+    color: var(--brand);
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step--1);
+    text-decoration: none;
+    padding: 0.5em 1.1em;
+    border-radius: var(--radius-pill, var(--radius));
+    white-space: nowrap;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .claim-bar__cta:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+    opacity: 0.92;
+  }
+  .claim-bar__cta:focus-visible {
+    outline: 2px solid var(--brand-contrast);
+    outline-offset: 2px;
+  }
+  .claim-bar__dismiss {
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.4rem;
+    line-height: 1;
+    padding: 0 0.3rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.15s ease;
+  }
+  .claim-bar__dismiss:hover {
+    opacity: 1;
+  }
+  .claim-bar__dismiss:focus-visible {
+    outline: 2px solid var(--brand-contrast);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .claim-bar__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .claim-bar__actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+</style>

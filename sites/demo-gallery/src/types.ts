@@ -193,7 +193,37 @@ export interface ArtDirectionConfig {
 export type TokenOverrides = Partial<Record<string, string>>;
 
 /** Hero variant ids (spec §7). */
-export type HeroVariant = 'cinematic' | 'split' | 'editorial' | 'panel' | 'collage' | 'statement';
+export type HeroVariant =
+  | 'cinematic'
+  | 'split'
+  | 'editorial'
+  | 'panel'
+  | 'collage'
+  | 'statement'
+  | 'typographic'
+  | 'editorial-asym';
+
+/**
+ * Cold-outreach funnel config. The demo gallery is an OUTREACH asset: until a
+ * prospect claims/converts, the page shows a "claim this site" banner and is
+ * kept out of the search index so it can't outrank their real site. Everything
+ * here is optional — a demo with no `outreach` block still works (banner on,
+ * noindex on, default contact CTA).
+ */
+export interface OutreachConfig {
+  /**
+   * Flip to true once the prospect has claimed the site (or it's otherwise live
+   * for real). Hides the claim banner AND makes the page indexable. Default
+   * (absent/false) = unclaimed demo: banner shown, noindex.
+   */
+  published?: boolean;
+  /** Where "Claim this site" points (Calendly/Tally/booking link). Falls back to tel:/#contact. */
+  claimUrl?: string;
+  /** Absolute date the offer expires (YYYY-MM-DD), shown in the banner. Omit to show no date. */
+  claimByDate?: string;
+  /** Short scarcity/personalization line, e.g. "1 build slot left in Sonoma County this month". */
+  note?: string;
+}
 
 export interface ProspectConfig {
   /** Business name — header, footer, browser tab. */
@@ -274,6 +304,9 @@ export interface ProspectConfig {
 
   /** Optional pin for the hero variant; otherwise chosen by the engine. */
   heroVariant?: HeroVariant;
+
+  /** Cold-outreach funnel settings (claim banner + index gating). */
+  outreach?: OutreachConfig;
 
   /** Extra real photos the generator collected (feeds gallery/collage). */
   galleryImages?: { src: string; alt: string }[];
