@@ -22,6 +22,7 @@ export const SECTION_VARIANTS: Partial<Record<SectionType, number>> = {
   'feature-grid': 2, // [tiles, bordered-spec-sheet]
   stats: 3, // [default, KPI-band, inline-ribbon]
   cta: 3, // [centered band, asymmetric-panel, full-bleed banner]
+  faq: 2, // [sticky-aside, bordered-accordion]
 };
 
 /**
@@ -36,6 +37,7 @@ const TYPE_SALT: Partial<Record<SectionType, number>> = {
   'feature-grid': 0x6c1f9ab2,
   stats: 0x9a3e7c11,
   cta: 0x46d2b8e3,
+  faq: 0x38b7c2f1,
 };
 
 /**
@@ -47,16 +49,16 @@ const TYPE_SALT: Partial<Record<SectionType, number>> = {
  */
 const VARIANT_WEIGHTS: Record<string, Partial<Record<SectionType, number[]>>> = {
   // ── utility / trades — structured, bold, spec-sheet ──────────────────────
-  towing: { 'services-detailed': [3, 2, 1], stats: [1, 3, 1], 'feature-grid': [1, 3] },
-  plumbing: { 'services-detailed': [3, 2, 1], stats: [1, 3, 1], 'feature-grid': [1, 3] },
-  'auto-repair': { 'services-detailed': [3, 2, 1], stats: [1, 3, 1], 'feature-grid': [1, 3] },
-  marina: { 'services-detailed': [2, 3, 1], stats: [1, 2, 2], 'feature-grid': [1, 2] },
+  towing: { 'services-detailed': [3, 2, 1], stats: [1, 3, 1], 'feature-grid': [1, 3], faq: [3, 1] },
+  plumbing: { 'services-detailed': [3, 2, 1], stats: [1, 3, 1], 'feature-grid': [1, 3], faq: [3, 1] },
+  'auto-repair': { 'services-detailed': [3, 2, 1], stats: [1, 3, 1], 'feature-grid': [1, 3], faq: [3, 1] },
+  marina: { 'services-detailed': [2, 3, 1], stats: [1, 2, 2], 'feature-grid': [1, 2], faq: [2, 2] },
   // ── editorial — refined, magazine, gallery-forward ───────────────────────
-  winery: { 'services-detailed': [1, 2, 3], gallery: [3, 1, 2], stats: [2, 1, 3], 'feature-grid': [2, 1] },
-  salon: { 'services-detailed': [1, 2, 3], gallery: [3, 1, 2], stats: [2, 1, 3], 'feature-grid': [2, 1] },
-  cafe: { 'services-detailed': [1, 2, 3], gallery: [2, 2, 3], stats: [2, 1, 3], 'feature-grid': [2, 1] },
-  tattoo: { 'services-detailed': [1, 2, 3], gallery: [2, 1, 3], stats: [2, 1, 3], 'feature-grid': [2, 1] },
-  landscaping: { 'services-detailed': [2, 2, 2], gallery: [3, 1, 2], stats: [1, 2, 2], 'feature-grid': [2, 1] },
+  winery: { 'services-detailed': [1, 2, 3], gallery: [3, 1, 2], stats: [2, 1, 3], 'feature-grid': [2, 1], faq: [1, 3] },
+  salon: { 'services-detailed': [1, 2, 3], gallery: [3, 1, 2], stats: [2, 1, 3], 'feature-grid': [2, 1], faq: [1, 3] },
+  cafe: { 'services-detailed': [1, 2, 3], gallery: [2, 2, 3], stats: [2, 1, 3], 'feature-grid': [2, 1], faq: [1, 3] },
+  tattoo: { 'services-detailed': [1, 2, 3], gallery: [2, 1, 3], stats: [2, 1, 3], 'feature-grid': [2, 1], faq: [1, 3] },
+  landscaping: { 'services-detailed': [2, 2, 2], gallery: [3, 1, 2], stats: [1, 2, 2], 'feature-grid': [2, 1], faq: [2, 2] },
 };
 
 /** Expand a weight array into a selection pool (e.g. [3,2,1] → 0,0,0,1,1,2). */
