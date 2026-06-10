@@ -577,6 +577,17 @@ function insertCtaAfterTestimonials(sections: Section[], config: ProspectConfig)
   return result;
 }
 
+/**
+ * Contact.astro is hardcoded into every page (after the composed sections) and
+ * already renders the canonical address + embedded map + hours table + contact
+ * form. A `map` or `hours-contact` section therefore DUPLICATES it — that is the
+ * "double map / triplicate hours" bug. Strip both from every plan (authored or
+ * recipe-driven); the page's single source of truth for contact is Contact.astro.
+ */
+function dropCanonicalContactSections(sections: Section[]): Section[] {
+  return sections.filter((s) => s.type !== 'map' && s.type !== 'hours-contact');
+}
+
 function assignTones(sections: Section[], seed: number): Section[] {
   // jitter the starting index so two slugs don't start on the same tone
   const offset = seed % TONE_CYCLE.length;
@@ -605,9 +616,12 @@ function ensureMinimum(sections: Section[], config: ProspectConfig, seed: number
     const cta = instantiateSection('cta', config);
     if (cta) backfill.push(cta);
   }
-  if (!existing.has('hours-contact') && !existing.has('map')) {
-    const hc = instantiateSection('hours-contact', config);
-    if (hc) backfill.push(hc);
+  // NOTE: no hours-contact/map backfill — Contact.astro is the canonical contact
+  // block (see dropCanonicalContactSections). A sparse page backfills with a
+  // gallery instead, so it gains real media rather than a duplicate contact card.
+  if (!existing.has('gallery')) {
+    const g = instantiateSection('gallery', config);
+    if (g) backfill.push(g);
   }
 
   return [...sections, ...backfill];
@@ -637,7 +651,9 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
   // If the config explicitly provides a sections array (author override), respect it.
   // The engine only adds hero + connective tissue (cta at min).
   if (config.sections && config.sections.length > 0) {
-    let authored = [...config.sections];
+    // Drop map/hours-contact up front: Contact.astro already renders them, and
+    // leaving them here is what produced the double-map / triplicate-hours pages.
+    let authored = dropCanonicalContactSections([...config.sections]);
     // Every site gets a photo service-card grid (the bear-flag look) — inject one
     // from config.services if the author didn't include it.
     if (!authored.some((s) => s.type === 'services-detailed')) {
@@ -671,10 +687,12 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     const plan = insertCtaAfterTestimonials(withTrailingCta, config);
     return {
       hero,
-      sections: assignVariants(
-        assignTones(withRatingStat(ensureMinimum(plan, config, seed), config), seed),
-        seed,
-        ad.category,
+      sections: dropCanonicalContactSections(
+        assignVariants(
+          assignTones(withRatingStat(ensureMinimum(plan, config, seed), config), seed),
+          seed,
+          ad.category,
+        ),
       ),
     };
   }
@@ -710,10 +728,12 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
 
   return {
     hero,
-    sections: assignVariants(
-      assignTones(withRatingStat(ensureMinimum(sectionsWithMidCta, config, seed), config), seed),
-      seed,
-      ad.category,
+    sections: dropCanonicalContactSections(
+      assignVariants(
+        assignTones(withRatingStat(ensureMinimum(sectionsWithMidCta, config, seed), config), seed),
+        seed,
+        ad.category,
+      ),
     ),
   };
 }

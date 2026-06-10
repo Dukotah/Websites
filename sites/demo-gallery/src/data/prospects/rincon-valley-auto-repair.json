@@ -1,0 +1,185 @@
+{
+  "name": "Rincon Valley Auto Repair",
+  "category": "auto-repair",
+  "tagline": "Family-owned, ASE-trained auto repair for all makes and models in Santa Rosa",
+  "seoDescription": "Family-owned auto repair in Santa Rosa, CA. ASE-trained techs service domestic and import cars, with a 2-year/24K-mile warranty.",
+  "area": "Santa Rosa, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 791-3960",
+    "email": "rinconvalleyautorepair@gmail.com",
+    "address": "4785 CA-12"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "https://instagram.com/rinconvalleyautorepair/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Honest Auto Repair Done Right",
+    "subheading": "A family-owned, full-service maintenance and repair shop in Santa Rosa with ASE-trained technicians who service all makes and models, foreign and domestic.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "ASE-trained technicians",
+    "2-Year / 24,000-Mile warranty",
+    "Family-owned and operated"
+  ],
+  "images": {
+    "hero": "/images/rincon-valley-auto-repair/hero.jpg",
+    "heroAlt": "Rincon Valley Auto Repair in Santa Rosa, CA",
+    "story": "/images/rincon-valley-auto-repair/story.png",
+    "storyAlt": "About Rincon Valley Auto Repair",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/auto-repair/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/rincon-valley-auto-repair/story.png",
+      "alt": "Rincon Valley Auto Repair in Santa Rosa, CA — photo 1"
+    },
+    {
+      "src": "/images/rincon-valley-auto-repair/photo-2.png",
+      "alt": "Rincon Valley Auto Repair in Santa Rosa, CA — photo 2"
+    },
+    {
+      "src": "/images/rincon-valley-auto-repair/photo-3.png",
+      "alt": "Rincon Valley Auto Repair in Santa Rosa, CA — photo 3"
+    }
+  ],
+  "about": {
+    "heading": "About Rincon Valley Auto Repair",
+    "body": [
+      "Rincon Valley Auto Repair is a family-owned and operated, full-service maintenance and repair facility in Santa Rosa. Our ASE-trained technicians service and repair all makes and models of both domestic and imported vehicles, and we take pride in delivering excellent service and quality repairs at a reasonable cost.",
+      "We focus on preventing problems rather than just repairing them, so you spend less over the life of your vehicle. Every repair is backed by a 2-Year/24,000-Mile warranty, and our waiting room offers free Wi-Fi. We also offer financing and after-hours drop-off to make service easy."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Computer Diagnostics",
+      "description": "We use computer diagnostics to pinpoint check-engine lights and electronic issues accurately."
+    },
+    {
+      "title": "Brake Repair & Service",
+      "description": "Complete brake inspection, repair, and service to keep your vehicle stopping safely."
+    },
+    {
+      "title": "Steering & Suspension",
+      "description": "Repair and service of steering and suspension components for a smooth, controlled ride."
+    },
+    {
+      "title": "Transmission Repair",
+      "description": "Transmission diagnosis and repair for both domestic and imported vehicles."
+    },
+    {
+      "title": "Preventative Maintenance",
+      "description": "Full-service maintenance aimed at preventing problems before they become costly repairs."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 5:00 PM"
+    },
+    {
+      "day": "Sat – Sun",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Computer Diagnostics",
+          "description": "We use computer diagnostics to pinpoint check-engine lights and electronic issues accurately."
+        },
+        {
+          "title": "Brake Repair & Service",
+          "description": "Complete brake inspection, repair, and service to keep your vehicle stopping safely."
+        },
+        {
+          "title": "Steering & Suspension",
+          "description": "Repair and service of steering and suspension components for a smooth, controlled ride."
+        },
+        {
+          "title": "Transmission Repair",
+          "description": "Transmission diagnosis and repair for both domestic and imported vehicles."
+        },
+        {
+          "title": "Preventative Maintenance",
+          "description": "Full-service maintenance aimed at preventing problems before they become costly repairs."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "4.5★",
+          "label": "12 reviews"
+        },
+        {
+          "value": "5",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "Their communication and expertise can't be praised enough.",
+          "author": "Kole C."
+        },
+        {
+          "quote": "Competitive prices. Knowledgeable. Clean facilities. Thorough.",
+          "author": "Mark S."
+        },
+        {
+          "quote": "Ray quickly fixed the issue. The mechanics are all very nice.",
+          "author": "Georgia S."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 4785 CA-12."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon – Fri: 8:00 AM – 5:00 PM; Sat – Sun: Closed."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 791-3960 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "ready",
+  "flags": [],
+  "theme": {
+    "brand": "#e08a1e",
+    "brandDark": "#23272e"
+  }
+}

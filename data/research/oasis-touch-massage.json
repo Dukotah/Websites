@@ -1,0 +1,50 @@
+{
+  "slug": "oasis-touch-massage",
+  "confirmed": true,
+  "established": "",
+  "tagline": "By-appointment therapeutic massage in downtown Santa Rosa with Michelle Martinez, CAMTC-certified.",
+  "seoDescription": "Oasis Touch Massage in downtown Santa Rosa: Swedish, deep tissue, hot stone & CBD massage by appointment with Michelle Martinez.",
+  "heroHeading": "Therapeutic massage for a pain-free lifestyle",
+  "heroSubheading": "Relaxation, stress relief, and lasting pain relief through customized therapeutic massage and bodywork in downtown Santa Rosa. By appointment only.",
+  "highlights": [
+    "CAMTC-certified, AMTA-member therapist Michelle Martinez",
+    "By-appointment sessions with focused, one-on-one attention",
+    "Swedish, deep tissue, hot stone, and CBD massage plus add-ons"
+  ],
+  "aboutHeading": "About Oasis Touch Massage",
+  "aboutBody": [
+    "Oasis Touch Massage Therapy is a small, by-appointment practice in downtown Santa Rosa led by Michelle Martinez, a CAMTC-certified massage therapist and AMTA member. Her mission is to promote relaxation, stress relief, and a pain-free lifestyle through therapeutic massage and bodywork.",
+    "Working part-time, Michelle offers each client unhurried, one-on-one care from her studio at 509 7th St, Suite 100. Sessions can be tailored from gentle Swedish work to focused deep tissue, with add-ons like cupping, reflexology, and red light therapy. New clients receive $15 off their first session."
+  ],
+  "services": [
+    {"title": "Swedish Massage", "description": "Oils or lotion combined with rolling, kneading, and percussion strokes for full-body relaxation (70 or 90 min)."},
+    {"title": "Deep Tissue Massage", "description": "Targeted pressure to relieve tension held in the deeper layers of muscle and tissue (70 or 90 min)."},
+    {"title": "Hot Stone Massage", "description": "Heated stones placed on key points of the body to deepen relaxation and promote circulation (70 or 90 min)."},
+    {"title": "CBD Massage", "description": "THC-free massage enriched with certified organic CBD extract plus organic hempseed and jojoba oils (70 or 90 min)."},
+    {"title": "30-Minute Targeted Massage", "description": "Focused work on one specific area of the body for quick, concentrated relief."},
+    {"title": "Add-On Treatments", "description": "Enhance any session with cupping, reflexology, red light therapy, a sugar scrub, or a complimentary face massage."}
+  ],
+  "hours": [
+    {"day": "Sun", "hours": "By appointment only"},
+    {"day": "Tue", "hours": "By appointment only"},
+    {"day": "Wed", "hours": "By appointment only"},
+    {"day": "Fri", "hours": "By appointment only"},
+    {"day": "Mon, Thu, Sat", "hours": "Closed"}
+  ],
+  "testimonials": [],
+  "priceRange": "$$",
+  "servesCuisine": [],
+  "social": {
+    "facebook": "https://www.facebook.com/oasistouch.bymichelle",
+    "instagram": "https://www.instagram.com/oasistouch.massage/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://www.oasistouchmassagetherapy.com/images/sites/33481/708360.jpg",
+    "https://www.oasistouchmassagetherapy.com/images/sites/33481/666198.jpg",
+    "https://www.oasistouchmassagetherapy.com/images/sites/33481/691152.jpg",
+    "https://www.oasistouchmassagetherapy.com/images/sites/33481/691156.jpg",
+    "https://www.oasistouchmassagetherapy.com/images/sites/33481/666196.jpg"
+  ],
+  "notes": "Address: 509 7th St Suite 100, Santa Rosa, CA 95401. Practitioner: Michelle Martinez, CAMTC #86001, AMTA #1789802, MEC25-0002. Also has TikTok: https://www.tiktok.com/@oasistouch.massage. No rating/review count could be verified on Google/Yelp, so rating omitted. Hours are part-time, by-appointment-only on Sun/Tue/Wed/Fri (no clock times published). Established year not found. Pricing (from site, for context): Swedish/Deep Tissue 70min $155 / 90min $175; Hot Stone & CBD 70min $160 / 90min $180; 30-min targeted $95; add-ons: cupping $45, reflexology $45, red light $30, sugar scrub $45, face massage free. New-client $15 off first session. 726094.png is the logo (excluded from photos). Some service-page images are stock template assets (/massage/images/shared/) and were excluded; only the business's own /images/sites/33481/ uploads were kept."
+}

@@ -495,19 +495,11 @@ function buildSections(row, e, copy) {
     sections.push({ type: 'faq', eyebrow: 'Good to know', heading: 'Common questions', items: faq.slice(0, 4) });
   }
 
-  // 5) Map locator from a real address (hours live in hours-contact, not here).
-  if (address) sections.push({ type: 'map', address });
-
-  // 6) Hours + phone close with a contact CTA.
-  if (e?.hours?.length || phone) {
-    sections.push({
-      type: 'hours-contact',
-      heading: 'Get in touch',
-      hours: e?.hours?.length ? e.hours : [],
-      phone: phone || undefined,
-      cta: { text: 'Contact us', href: '#contact' },
-    });
-  }
+  // NOTE: we deliberately do NOT emit `map` or `hours-contact` sections here.
+  // The page template (pages/p/[slug].astro) always renders <Contact>, which is
+  // the canonical address + embedded map + hours table + contact form. Authoring
+  // those sections too is what produced the double-map / triplicate-hours pages.
+  // (compose.ts also strips them defensively for any config that still has them.)
 
   return sections;
 }

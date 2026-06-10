@@ -1,0 +1,43 @@
+{
+  "slug": "seasons-property-maintenance",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Locally owned, family-operated exterior property care across Sonoma County, year-round.",
+  "seoDescription": "Family-operated property maintenance in Santa Rosa, CA. Lawn care, window & gutter cleaning, pressure washing, and more across Sonoma County.",
+  "heroHeading": "Reliable Year-Round Property Care",
+  "heroSubheading": "Locally owned and family-operated, Seasons Property Maintenance keeps homes and businesses across Sonoma County clean, tidy, and well cared for in every season.",
+  "highlights": ["Locally owned & family-operated", "Year-round exterior care", "Serving all of Sonoma County"],
+  "aboutHeading": "About Seasons Property Maintenance",
+  "aboutBody": [
+    "Seasons Property Maintenance is a locally owned and family-operated business dedicated to providing reliable, year-round exterior care for homes and businesses throughout Sonoma County. From Santa Rosa to Petaluma, Rohnert Park, and Windsor, we help property owners and managers keep their spaces looking their best.",
+    "We focus on dependable service and attention to detail across everything we do, from lawn care and high weed mowing to window cleaning, gutter cleaning, pressure washing, and solar panel cleaning. Our goal is simple: professional property care you can count on in every season."
+  ],
+  "services": [
+    {"title": "Lawn Care & Mowing", "description": "Regular grass cutting and lawn upkeep to keep your yard healthy and well maintained."},
+    {"title": "High Weed Mowing & Vegetation Management", "description": "Clearing of overgrown weeds and brush to keep properties tidy and fire-safe."},
+    {"title": "Window Cleaning", "description": "Professional interior and exterior window cleaning for homes and businesses."},
+    {"title": "Gutter Cleaning", "description": "Removal of leaves and debris to keep gutters flowing and protect your property."},
+    {"title": "Pressure Washing", "description": "Exterior surface cleaning for driveways, walkways, siding, and patios."},
+    {"title": "Debris & Leaf Removal", "description": "Seasonal cleanup and hauling of leaves, yard waste, and accumulated debris."},
+    {"title": "Solar Panel Cleaning", "description": "Careful cleaning of solar panels to help maintain efficiency and output."}
+  ],
+  "hours": [{"day": "Mon – Fri", "hours": "8:00 AM – 5:00 PM"}],
+  "testimonials": [],
+  "rating": null,
+  "priceRange": "",
+  "servesCuisine": [],
+  "social": {
+    "facebook": "https://www.facebook.com/seasonspm",
+    "instagram": "https://www.instagram.com/seasonspm",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://lirp.cdn-website.com/964f4a20/dms3rep/multi/opt/Lawn-mower-91527857-318w.jpg",
+    "https://lirp.cdn-website.com/964f4a20/dms3rep/multi/opt/pexels-photo-6195113-318w.jpeg",
+    "https://lirp.cdn-website.com/964f4a20/dms3rep/multi/opt/pexels-photo-5652626-318w.jpeg",
+    "https://lirp.cdn-website.com/964f4a20/dms3rep/multi/opt/A-Close-Up-Of-A-Young-Man-Movi-428487047-318w.jpg",
+    "https://lirp.cdn-website.com/964f4a20/dms3rep/multi/opt/Vineyard-Sunset-72264592-921w.jpg",
+    "https://lirp.cdn-website.com/964f4a20/dms3rep/multi/opt/Beautiful-view-on-cute-backyar-113200052-1920w.jpg"
+  ],
+  "notes": "Owner is Jonathan Erker (confirmed via LawnStarter profile, not on own site). No founding year, Google rating, or review count is publicly verifiable, so 'established', 'rating', and 'testimonials' left empty/null. Hours (Mon-Fri 8-5) and address (1753 Willowside Road, Santa Rosa CA 95401) carried from prior scrape; not re-confirmed on the live site pages fetched. realPhotoUrls are the images actually displayed on their site, but several appear to be stock/CDN images (pexels filenames, stock IDs) rather than verified crew/job photos."
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "taylor-lane-organic-coffee",
+  "confirmed": true,
+  "established": "Est. 1993",
+  "tagline": "USDA Organic, Fair Trade coffee roasted small-batch in Sonoma County since 1993.",
+  "seoDescription": "Taylor Lane Organic Coffee roasts USDA Organic, Fair Trade beans and runs a cozy cafe at The Barlow in Sebastopol, CA.",
+  "heroHeading": "Organic coffee, roasted in Sonoma County",
+  "heroSubheading": "Small-batch USDA Organic and Fair Trade coffee, roasted on a low-emission Loring roaster and poured fresh at our cafe in Sebastopol's Barlow.",
+  "highlights": [
+    "USDA Organic and Fair Trade certified beans",
+    "Small-batch roasted on an energy-efficient Loring Smart Roast",
+    "Cafe and espresso bar at The Barlow with free Wi-Fi and seating"
+  ],
+  "aboutHeading": "About Taylor Lane Organic Coffee",
+  "aboutBody": [
+    "Taylor Lane Organic Coffee was founded in 1993, when Chris and Terry Martin set out to roast specialty organic coffee in Sonoma County, California. Originally known as Taylor Maid Farms, the company rebranded to Taylor Lane Organic Coffee in 2018 and is now headquartered in Sebastopol.",
+    "Every coffee is USDA Organic and Fair Trade certified and roasted in small batches on an energy-efficient Loring Smart Roast, then hand-packaged in recyclable fiber cans. The company offers a rotating selection of single-origin and blended roasts alongside a cafe, espresso bar, tea house, coworking space, and wholesale program at The Barlow market in Sebastopol."
+  ],
+  "services": [
+    {
+      "title": "Small-batch organic coffee",
+      "description": "A rotating selection of USDA Organic, Fair Trade single-origin and blended roasts, hand-packaged in recyclable fiber cans."
+    },
+    {
+      "title": "Cafe and espresso bar",
+      "description": "Expertly crafted espresso drinks, pour-overs, and lattes served in a cozy cafe at The Barlow with free Wi-Fi and seating."
+    },
+    {
+      "title": "Loose-leaf tea",
+      "description": "A selection of loose-leaf teas available to enjoy in the cafe or to take home."
+    },
+    {
+      "title": "Coffee subscription",
+      "description": "A subscription service that delivers Taylor Lane's organic coffee on a recurring schedule."
+    },
+    {
+      "title": "Wholesale program",
+      "description": "Wholesale organic coffee supplied to cafes and businesses across Sonoma County and beyond."
+    },
+    {
+      "title": "Coworking space",
+      "description": "A coworking area inside the Sebastopol cafe with free Wi-Fi for working, meeting, and lingering over coffee."
+    }
+  ],
+  "hours": [
+    {"day": "Mon – Sun", "hours": "7:00 AM – 5:00 PM"}
+  ],
+  "testimonials": [],
+  "rating": {"value": 4.1, "count": 339, "source": "yelp"},
+  "priceRange": "$$",
+  "servesCuisine": ["Coffee", "Cafe", "Tea"],
+  "social": {
+    "facebook": "https://www.facebook.com/brewtaylorlane/",
+    "instagram": "https://www.instagram.com/brewtaylorlane/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://www.taylorlane.com/cdn/shop/files/location-img-1_1400x.jpg?v=1613763529",
+    "https://www.taylorlane.com/cdn/shop/files/how-much-is-a-shot-of-espresso_1400x.jpg?v=1613765262",
+    "https://www.taylorlane.com/cdn/shop/files/Taylor_Lane_Transparent_Coffee_Cans_Edited_1400x.png?v=1746120035",
+    "https://www.taylorlane.com/cdn/shop/files/Taylor_Lane_Organic_Coffee_Shop_Coworking_Space_with_Free_Wi-Fi_1400x.png?v=1750283924",
+    "https://www.taylorlane.com/cdn/shop/files/coffee-roasting-heri_2x_8e1126a2-f7ce-48ff-a46c-a4589e987f44_1400x.jpg?v=1613762939",
+    "https://www.taylorlane.com/cdn/shop/files/location-img-2_1400x.png?v=1613763529"
+  ],
+  "notes": "Address: 6790 McKinley St, Ste 170, Sebastopol, CA 95472 (The Barlow). Phone (707) 634-7129 and email info@taylorlane.com were provided in the brief; not confirmed on site pages fetched. Hours confirmed daily 7 AM-5 PM with a 7:00-7:30 AM 'Early Bird' $1-off special. Founded 1993 as Taylor Maid Farms; rebranded to Taylor Lane Organic Coffee in 2018 (Darleen Scherer appointed CEO). Rating varies by platform: Yelp ~4.1 (339 reviews) used here; other aggregators showed 4.0-4.5. No verbatim review with attributable author could be confirmed (Yelp blocked fetch), so testimonials left empty. priceRange estimated $$ from cafe context; not authoritatively confirmed. No standalone Google rating confirmed; google social left blank."
+}

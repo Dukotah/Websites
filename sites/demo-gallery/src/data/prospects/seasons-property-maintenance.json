@@ -1,0 +1,177 @@
+{
+  "name": "Seasons Property Maintenance",
+  "category": "landscaping",
+  "tagline": "Locally owned, family-operated exterior property care across Sonoma County, year-round.",
+  "seoDescription": "Family-operated property maintenance in Santa Rosa, CA. Lawn care, window & gutter cleaning, pressure washing, and more across Sonoma County.",
+  "area": "Santa Rosa, CA",
+  "established": "",
+  "contact": {
+    "phone": "707-360-2559",
+    "email": "jonathan@seasonspm.net",
+    "address": "1753 Willowside Road, Santa Rosa, California, 95401"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/seasonspm",
+    "instagram": "https://www.instagram.com/seasonspm",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Reliable Year-Round Property Care",
+    "subheading": "Locally owned and family-operated, Seasons Property Maintenance keeps homes and businesses across Sonoma County clean, tidy, and well cared for in every season.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Locally owned & family-operated",
+    "Year-round exterior care",
+    "Serving all of Sonoma County"
+  ],
+  "images": {
+    "hero": "/images/seasons-property-maintenance/hero.jpg",
+    "heroAlt": "Seasons Property Maintenance in Santa Rosa, CA",
+    "story": "/images/seasons-property-maintenance/story.jpg",
+    "storyAlt": "About Seasons Property Maintenance",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/landscaping/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/seasons-property-maintenance/story.jpg",
+      "alt": "Seasons Property Maintenance in Santa Rosa, CA — photo 1"
+    },
+    {
+      "src": "/images/seasons-property-maintenance/photo-2.jpg",
+      "alt": "Seasons Property Maintenance in Santa Rosa, CA — photo 2"
+    },
+    {
+      "src": "/images/seasons-property-maintenance/photo-3.jpg",
+      "alt": "Seasons Property Maintenance in Santa Rosa, CA — photo 3"
+    },
+    {
+      "src": "/images/seasons-property-maintenance/photo-4.jpg",
+      "alt": "Seasons Property Maintenance in Santa Rosa, CA — photo 4"
+    },
+    {
+      "src": "/images/seasons-property-maintenance/photo-5.png",
+      "alt": "Seasons Property Maintenance in Santa Rosa, CA — photo 5"
+    },
+    {
+      "src": "/images/seasons-property-maintenance/photo-6.jpg",
+      "alt": "Seasons Property Maintenance in Santa Rosa, CA — photo 6"
+    }
+  ],
+  "about": {
+    "heading": "About Seasons Property Maintenance",
+    "body": [
+      "Seasons Property Maintenance is a locally owned and family-operated business dedicated to providing reliable, year-round exterior care for homes and businesses throughout Sonoma County. From Santa Rosa to Petaluma, Rohnert Park, and Windsor, we help property owners and managers keep their spaces looking their best.",
+      "We focus on dependable service and attention to detail across everything we do, from lawn care and high weed mowing to window cleaning, gutter cleaning, pressure washing, and solar panel cleaning. Our goal is simple: professional property care you can count on in every season."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Lawn Care & Mowing",
+      "description": "Regular grass cutting and lawn upkeep to keep your yard healthy and well maintained."
+    },
+    {
+      "title": "High Weed Mowing & Vegetation Management",
+      "description": "Clearing of overgrown weeds and brush to keep properties tidy and fire-safe."
+    },
+    {
+      "title": "Window Cleaning",
+      "description": "Professional interior and exterior window cleaning for homes and businesses."
+    },
+    {
+      "title": "Gutter Cleaning",
+      "description": "Removal of leaves and debris to keep gutters flowing and protect your property."
+    },
+    {
+      "title": "Pressure Washing",
+      "description": "Exterior surface cleaning for driveways, walkways, siding, and patios."
+    },
+    {
+      "title": "Debris & Leaf Removal",
+      "description": "Seasonal cleanup and hauling of leaves, yard waste, and accumulated debris."
+    },
+    {
+      "title": "Solar Panel Cleaning",
+      "description": "Careful cleaning of solar panels to help maintain efficiency and output."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 5:00 PM"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Lawn Care & Mowing",
+          "description": "Regular grass cutting and lawn upkeep to keep your yard healthy and well maintained."
+        },
+        {
+          "title": "High Weed Mowing & Vegetation Management",
+          "description": "Clearing of overgrown weeds and brush to keep properties tidy and fire-safe."
+        },
+        {
+          "title": "Window Cleaning",
+          "description": "Professional interior and exterior window cleaning for homes and businesses."
+        },
+        {
+          "title": "Gutter Cleaning",
+          "description": "Removal of leaves and debris to keep gutters flowing and protect your property."
+        },
+        {
+          "title": "Pressure Washing",
+          "description": "Exterior surface cleaning for driveways, walkways, siding, and patios."
+        },
+        {
+          "title": "Debris & Leaf Removal",
+          "description": "Seasonal cleanup and hauling of leaves, yard waste, and accumulated debris."
+        },
+        {
+          "title": "Solar Panel Cleaning",
+          "description": "Careful cleaning of solar panels to help maintain efficiency and output."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 1753 Willowside Road, Santa Rosa, California, 95401."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon – Fri: 8:00 AM – 5:00 PM."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at 707-360-2559 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "editorial",
+  "status": "ready",
+  "flags": [],
+  "theme": {
+    "brand": "#2f8f3e",
+    "brandDark": "#22321f"
+  }
+}

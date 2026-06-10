@@ -1,0 +1,210 @@
+{
+  "name": "The Male Room",
+  "category": "barber",
+  "tagline": "A downtown Santa Rosa barbershop where guys get great cuts and feel right at home.",
+  "seoDescription": "The Male Room: men's haircuts, beard trims, shaves and gray blending in downtown Santa Rosa. Book online or walk in.",
+  "area": "Santa Rosa, CA",
+  "established": "Est. 2018",
+  "contact": {
+    "phone": "(707) 867-9306",
+    "email": "themaleroomsantarosa@gmail.com",
+    "address": "740 3rd St"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/p/The-Male-Room-100064724293798/",
+    "instagram": "https://www.instagram.com/themaleroom.sr/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Look Sharp, Feel Confident",
+    "subheading": "A six-chair barbershop in downtown Santa Rosa specializing in men's haircuts, beard trims, shaves and gray blending — with complimentary beverages and a relaxed vibe.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Specialists in men's grooming since 2018",
+    "Six-chair, 1,500 sq ft shop in downtown Santa Rosa",
+    "Walk-ins welcome and easy online booking"
+  ],
+  "images": {
+    "hero": "/images/the-male-room/hero.webp",
+    "heroAlt": "The Male Room in Santa Rosa, CA",
+    "story": "/images/the-male-room/story.webp",
+    "storyAlt": "About The Male Room",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/the-male-room/story.webp",
+      "alt": "The Male Room in Santa Rosa, CA — photo 1"
+    },
+    {
+      "src": "/images/the-male-room/photo-2.webp",
+      "alt": "The Male Room in Santa Rosa, CA — photo 2"
+    },
+    {
+      "src": "/images/the-male-room/photo-3.webp",
+      "alt": "The Male Room in Santa Rosa, CA — photo 3"
+    },
+    {
+      "src": "/images/the-male-room/photo-4.webp",
+      "alt": "The Male Room in Santa Rosa, CA — photo 4"
+    },
+    {
+      "src": "/images/the-male-room/photo-5.webp",
+      "alt": "The Male Room in Santa Rosa, CA — photo 5"
+    },
+    {
+      "src": "/images/the-male-room/photo-6.webp",
+      "alt": "The Male Room in Santa Rosa, CA — photo 6"
+    }
+  ],
+  "about": {
+    "heading": "About The Male Room",
+    "body": [
+      "The Male Room first opened its doors in 2018 on 4th Street, founded by Emily Weigel with a simple goal: to create a space where guys could get great haircuts and feel right at home. In 2021 the shop expanded to its current 3rd Street location — a six-chair, 1,500-square-foot space with plenty of room to relax.",
+      "That same year, Emily teamed up with her husband, Galen Magee, who came on board as co-owner and GM. Together they built a crew of dedicated men's hair specialists, including Heather Rae, Amanda and Laurel. Every visit starts with understanding your goals, lifestyle and style — finished off with a scalp massage, precision detailing and a complimentary beverage."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "Our services",
+  "services": [
+    {
+      "title": "Men's Haircut",
+      "description": "A tailored cut built around your hair, lifestyle and personal style, starting at $40."
+    },
+    {
+      "title": "Haircut with Shampoo",
+      "description": "A full haircut paired with a relaxing wash, starting at $45."
+    },
+    {
+      "title": "Beard Trim",
+      "description": "Precision beard shaping and detailing to keep your facial hair clean and even, starting at $20."
+    },
+    {
+      "title": "Foil Shaver Shave",
+      "description": "A close, smooth shave finished with a foil shaver for $35."
+    },
+    {
+      "title": "Color & Gray Blending",
+      "description": "Subtle color work to soften or blend gray for a natural look, starting at $45."
+    },
+    {
+      "title": "Scalp Massage",
+      "description": "A relaxing scalp massage to round out your visit, starting at $20."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Tuesday",
+      "hours": "10:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Wednesday",
+      "hours": "10:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Thursday",
+      "hours": "10:00 AM – 5:00 PM"
+    },
+    {
+      "day": "Friday",
+      "hours": "10:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "10:00 AM – 3:00 PM"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Our services",
+      "items": [
+        {
+          "title": "Men's Haircut",
+          "description": "A tailored cut built around your hair, lifestyle and personal style, starting at $40."
+        },
+        {
+          "title": "Haircut with Shampoo",
+          "description": "A full haircut paired with a relaxing wash, starting at $45."
+        },
+        {
+          "title": "Beard Trim",
+          "description": "Precision beard shaping and detailing to keep your facial hair clean and even, starting at $20."
+        },
+        {
+          "title": "Foil Shaver Shave",
+          "description": "A close, smooth shave finished with a foil shaver for $35."
+        },
+        {
+          "title": "Color & Gray Blending",
+          "description": "Subtle color work to soften or blend gray for a natural look, starting at $45."
+        },
+        {
+          "title": "Scalp Massage",
+          "description": "A relaxing scalp massage to round out your visit, starting at $20."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "8+",
+          "label": "Years in business"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "Laurel took amazing care of me for a long time, and then when my schedule changed recently Kenneth has been giving me some really fresh haircuts.",
+          "author": "Yelp reviewer"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 740 3rd St."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Tuesday: 10:00 AM – 6:00 PM; Wednesday: 10:00 AM – 6:00 PM; Thursday: 10:00 AM – 5:00 PM; Friday: 10:00 AM – 6:00 PM; Saturday: 10:00 AM – 3:00 PM."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 867-9306 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "classic",
+  "status": "ready",
+  "flags": [],
+  "theme": {
+    "brand": "#c2683a",
+    "brandDark": "#243b53"
+  },
+  "priceRange": "$$"
+}

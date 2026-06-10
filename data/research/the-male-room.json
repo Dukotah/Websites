@@ -1,0 +1,50 @@
+{
+  "slug": "the-male-room",
+  "confirmed": true,
+  "established": "Est. 2018",
+  "tagline": "A downtown Santa Rosa barbershop where guys get great cuts and feel right at home.",
+  "seoDescription": "The Male Room: men's haircuts, beard trims, shaves and gray blending in downtown Santa Rosa. Book online or walk in.",
+  "heroHeading": "Look Sharp, Feel Confident",
+  "heroSubheading": "A six-chair barbershop in downtown Santa Rosa specializing in men's haircuts, beard trims, shaves and gray blending — with complimentary beverages and a relaxed vibe.",
+  "highlights": [
+    "Specialists in men's grooming since 2018",
+    "Six-chair, 1,500 sq ft shop in downtown Santa Rosa",
+    "Walk-ins welcome and easy online booking"
+  ],
+  "aboutHeading": "About The Male Room",
+  "aboutBody": [
+    "The Male Room first opened its doors in 2018 on 4th Street, founded by Emily Weigel with a simple goal: to create a space where guys could get great haircuts and feel right at home. In 2021 the shop expanded to its current 3rd Street location — a six-chair, 1,500-square-foot space with plenty of room to relax.",
+    "That same year, Emily teamed up with her husband, Galen Magee, who came on board as co-owner and GM. Together they built a crew of dedicated men's hair specialists, including Heather Rae, Amanda and Laurel. Every visit starts with understanding your goals, lifestyle and style — finished off with a scalp massage, precision detailing and a complimentary beverage."
+  ],
+  "services": [
+    {"title": "Men's Haircut", "description": "A tailored cut built around your hair, lifestyle and personal style, starting at $40."},
+    {"title": "Haircut with Shampoo", "description": "A full haircut paired with a relaxing wash, starting at $45."},
+    {"title": "Beard Trim", "description": "Precision beard shaping and detailing to keep your facial hair clean and even, starting at $20."},
+    {"title": "Foil Shaver Shave", "description": "A close, smooth shave finished with a foil shaver for $35."},
+    {"title": "Color & Gray Blending", "description": "Subtle color work to soften or blend gray for a natural look, starting at $45."},
+    {"title": "Scalp Massage", "description": "A relaxing scalp massage to round out your visit, starting at $20."}
+  ],
+  "hours": [
+    {"day": "Tuesday", "hours": "10:00 AM – 6:00 PM"},
+    {"day": "Wednesday", "hours": "10:00 AM – 6:00 PM"},
+    {"day": "Thursday", "hours": "10:00 AM – 5:00 PM"},
+    {"day": "Friday", "hours": "10:00 AM – 6:00 PM"},
+    {"day": "Saturday", "hours": "10:00 AM – 3:00 PM"}
+  ],
+  "testimonials": [
+    {"quote": "Laurel took amazing care of me for a long time, and then when my schedule changed recently Kenneth has been giving me some really fresh haircuts.", "author": "Yelp reviewer"}
+  ],
+  "rating": null,
+  "priceRange": "$$",
+  "servesCuisine": [],
+  "social": {
+    "facebook": "https://www.facebook.com/p/The-Male-Room-100064724293798/",
+    "instagram": "https://www.instagram.com/themaleroom.sr/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://images.squarespace-cdn.com/content/v1/5b4b9c0a506fbec6555f668e/bc495139-9b4b-4c72-b713-16cf414b316c/tempImageuXqpTl.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5b4b9c0a506fbec6555f668e/1692469223111-ED9QOTYW9J2KXOOEYBNQ/IMG_5820.jpg"
+  ],
+  "notes": "Hours confirmed via Yahoo Local listing (Tue/Wed/Fri 10-6, Thu 10-5, Sat 10-3, Sun/Mon closed). Founding story, owners (Emily Weigel, Galen Magee), staff (Heather Rae, Amanda, Laurel) and 2021 3rd St relocation confirmed on their own About page. Pricing from official Services page ('Prices Vary By Provider'). Booking platform is Mango Mint (booking.mangomint.com/161686). Instagram @themaleroom.sr (~190 followers). Yelp shows 34 reviews but exact star rating could not be retrieved (page returned 403), so rating left null. Most Male_Room_Large.png and the GettyImages stock file were excluded as logo/stock; only two genuine shop/work photos confirmed."
+}

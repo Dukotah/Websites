@@ -1,0 +1,51 @@
+{
+  "slug": "ausiellos-homeslice",
+  "confirmed": true,
+  "established": "Est. 2023",
+  "tagline": "Wood-fired pizzas, shareable plates and craft cocktails in Santa Rosa's Rincon Valley.",
+  "seoDescription": "Ausiello's Homeslice in Santa Rosa: a family-run restaurant and full bar serving wood-fired pizza, smash burgers and craft cocktails.",
+  "heroHeading": "Wood-Fired Pizza and Cocktails",
+  "heroSubheading": "A neighborhood restaurant and full bar from the Ausiello family, serving wood-fired pizzas, smash burgers and shareable plates in Rincon Valley, Santa Rosa.",
+  "highlights": [
+    "Wood-fired oven pizzas with a crispy, browned crust",
+    "Full bar with a cocktail-forward, family-friendly atmosphere",
+    "Run by the Ausiello family, longtime Santa Rosa restaurateurs"
+  ],
+  "aboutHeading": "About Ausiello's Homeslice",
+  "aboutBody": [
+    "The Ausiello family migrated to the North Bay in 1998 and ran a downtown Santa Rosa bar and grill for more than 23 years before opening Homeslice. In late 2023 they brought their hospitality to the Rincon Valley neighborhood at 5755 Mountain Hawk Drive.",
+    "Homeslice is a local, cocktail-forward restaurant and full bar built around wood-fired oven pizzas, smash burgers, house-made plates and a rotating menu of handcrafted drinks, served in a friendly and familiar atmosphere."
+  ],
+  "services": [
+    { "title": "Wood-Fired Pizza", "description": "Pizzas baked in a wood-fired oven for a crispy, browned crust, with varieties like Margherita, pesto and mushroom, and Korean short rib." },
+    { "title": "Shareable Plates", "description": "Starters and small plates such as Grandma's meatballs, crispy Brussels sprouts, hot cheese dip and crispy rice with ahi tartare." },
+    { "title": "Burgers & Sandwiches", "description": "Fan favorites including the smash burger and a crispy chicken sandwich with tangy slaw and kimchi mayo." },
+    { "title": "Pasta", "description": "House pasta dishes such as stuffed shells with herb ricotta and roasted garlic pesto." },
+    { "title": "Craft Cocktails & Full Bar", "description": "A cocktail-forward full bar with classic and contemporary handcrafted drinks." },
+    { "title": "Happy Hour", "description": "Daily happy hour with food and drink specials in a relaxed, family-friendly setting." }
+  ],
+  "hours": [
+    { "day": "Mon – Thu", "hours": "3:00 PM – 10:00 PM" },
+    { "day": "Fri", "hours": "11:30 AM – 11:00 PM" },
+    { "day": "Sat", "hours": "11:30 AM – 11:00 PM" },
+    { "day": "Sun", "hours": "11:30 AM – 10:00 PM" }
+  ],
+  "testimonials": [],
+  "rating": null,
+  "priceRange": "$$",
+  "servesCuisine": ["Pizza", "Italian", "American"],
+  "social": {
+    "facebook": "https://www.facebook.com/p/Ausiellos-Homeslice-Restaurant-Bar-61553783382660/",
+    "instagram": "https://www.instagram.com/ausiellos_homeslice/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://www.sonomamag.com/wp-content/uploads/2024/01/1704470903321.jpg",
+    "https://static.spotapps.co/spots/3f/6f1494a1554720b22ec19c6c0a30a4/full",
+    "https://static.spotapps.co/spots/c4/a66ba1f2d04e0fb0aa3dd88cf22190/full",
+    "https://static.spotapps.co/spots/03/95d60b2f414f7e96cfacacea8232b6/full",
+    "https://static.spotapps.co/spots/aa/61b5c10fde457994193c719ae10bc4/full",
+    "https://static.spotapps.co/spots/99/bfed41b63b4d43958bc916280bc66f/full"
+  ],
+  "notes": "Hours are from the official website (Mon-Thu open at 3 PM); some third-party listings show Tuesday closed and slightly different times, so confirm with the restaurant. Opened late December 2023 in Rincon Valley; the family previously ran Ausiello's Third Street Bar & Grill downtown for 23+ years. Rating left empty: Tripadvisor showed 4.0/5 but no confirmed count, Yelp listed 96 reviews but the star rating could not be verified (page blocked). Email whatup@ausielloshomeslice.com from the brief was not confirmed on the site. Phone (707) 595-3923 and address 5755 Mountain Hawk Drive, Santa Rosa, CA 95409 confirmed. The spotapps.co photo URLs are the restaurant's own website gallery images (verified content-type image/jpeg) but do not end in a standard image extension."
+}

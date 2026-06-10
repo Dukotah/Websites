@@ -1,0 +1,190 @@
+{
+  "name": "Curoso Plumbing",
+  "category": "plumbing",
+  "tagline": "Santa Rosa's water heater and plumbing experts since 1982 — family-owned, licensed and trusted",
+  "seoDescription": "Curoso Plumbing in Santa Rosa, CA: family-owned since 1982 for water heaters, repiping, drain cleaning and plumbing repair. Licensed #706012.",
+  "area": "Santa Rosa, CA",
+  "established": "Est. 1982",
+  "contact": {
+    "phone": "707-545-5017",
+    "email": "jimcuroso06@outlook.com",
+    "address": "1925 Fulton Road"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/curosoplumbing/",
+    "instagram": "https://www.instagram.com/curoso2/",
+    "google": "https://goo.gl/maps/99W1zHjMPdkKrpeh7"
+  },
+  "hero": {
+    "heading": "Trusted Santa Rosa plumbing since 1982",
+    "subheading": "Family-owned and operated by Jim Curoso. Licensed, bonded and insured plumbers specializing in water heaters, repiping, drain cleaning and everyday plumbing repair across the North Bay.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Family-owned and operated since 1982",
+    "CA licensed, bonded & insured (CSLB #706012)",
+    "Water heater specialists — same-day service with 24-hour answering"
+  ],
+  "images": {
+    "hero": "/images/library/plumbing/hero.svg",
+    "heroAlt": "Curoso Plumbing in Santa Rosa, CA",
+    "story": "/images/library/plumbing/story.svg",
+    "storyAlt": "About Curoso Plumbing",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/plumbing/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About Curoso Plumbing",
+    "body": [
+      "Curoso Plumbing has served Santa Rosa and the North Bay since 1982. Owner Jim Curoso learned the trade from his father, Jim Curoso Sr., who was first introduced to plumbing in the Navy, and the family has now been caring for local customers for more than 40 years.",
+      "The company is fully licensed, bonded and insured (CSLB #706012) and specializes in water heaters of every type — gas, propane, electric, tankless, heat pump and commercial — alongside repiping, drain cleaning and a full range of residential and commercial plumbing repairs. Calls are returned quickly, a 24-hour answering service handles emergencies, and same-day water heater service is available."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Water Heater Installation & Repair",
+      "description": "Installation, repair and replacement of gas, propane, electric, tankless, heat pump and commercial water heaters, with same-day service available."
+    },
+    {
+      "title": "Tankless Water Heaters",
+      "description": "Specialists in tankless water heater installation and service from brands like Rinnai and Navien."
+    },
+    {
+      "title": "Repiping",
+      "description": "Whole-home and partial repiping to replace old, failing or leaking water lines."
+    },
+    {
+      "title": "Drain Cleaning",
+      "description": "Clearing slow and clogged drains to keep your home's plumbing flowing freely."
+    },
+    {
+      "title": "Plumbing Repair",
+      "description": "Fast fixes for leaking pipes, running toilets, faucets and other everyday residential and commercial plumbing problems."
+    },
+    {
+      "title": "Gas Line Installation",
+      "description": "Safe, code-compliant gas line installation for appliances and fixtures."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "7:00 AM – 7:00 PM"
+    },
+    {
+      "day": "Sat",
+      "hours": "7:00 AM – 5:00 PM"
+    },
+    {
+      "day": "Sun",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Water Heater Installation & Repair",
+          "description": "Installation, repair and replacement of gas, propane, electric, tankless, heat pump and commercial water heaters, with same-day service available."
+        },
+        {
+          "title": "Tankless Water Heaters",
+          "description": "Specialists in tankless water heater installation and service from brands like Rinnai and Navien."
+        },
+        {
+          "title": "Repiping",
+          "description": "Whole-home and partial repiping to replace old, failing or leaking water lines."
+        },
+        {
+          "title": "Drain Cleaning",
+          "description": "Clearing slow and clogged drains to keep your home's plumbing flowing freely."
+        },
+        {
+          "title": "Plumbing Repair",
+          "description": "Fast fixes for leaking pipes, running toilets, faucets and other everyday residential and commercial plumbing problems."
+        },
+        {
+          "title": "Gas Line Installation",
+          "description": "Safe, code-compliant gas line installation for appliances and fixtures."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "44+",
+          "label": "Years in business"
+        },
+        {
+          "value": "5★",
+          "label": "278 reviews"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "They were able to get the job done today (next day). Awesome customer service and great install by Shane.",
+          "author": "Pablo"
+        },
+        {
+          "quote": "Shane had been to my home previously and he did such a GOOD JOB!!! I give him and them 5 stars!!!",
+          "author": "Linda Ferreira"
+        },
+        {
+          "quote": "He's incredibly easy to work with, friendly, and clearly takes pride in doing the job right.",
+          "author": "Evan James"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 1925 Fulton Road."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon – Fri: 7:00 AM – 7:00 PM; Sat: 7:00 AM – 5:00 PM; Sun: Closed."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at 707-545-5017 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "classic",
+  "status": "needs-review",
+  "flags": [
+    "Hero uses on-brand library art — no real Curoso photo was found; add one before sending"
+  ],
+  "theme": {
+    "brand": "#1f6feb",
+    "brandDark": "#16324f"
+  }
+}
