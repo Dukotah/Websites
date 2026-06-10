@@ -26,6 +26,22 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
 const SRC = join(APP, 'src');
 const PROSPECTS = join(SRC, 'data', 'prospects');
+// Human/agent-verified research lives here, one file per slug. A `confirmed:true`
+// file means the copy (incl. the headline) was AUTHORED on purpose, so cliché-ish
+// phrasing there is a real business motto — not the "AI batch" tell.
+const RESEARCH = join(ROOT, 'data', 'research');
+
+/** True iff a research file exists for this slug AND is confirmed:true.
+ *  Guarded: most prospects have no research file — a missing/unparsable file
+ *  is simply "not confirmed", never a crash. */
+async function isConfirmed(slug) {
+  try {
+    const raw = await readFile(join(RESEARCH, `${slug}.json`), 'utf8');
+    return JSON.parse(raw).confirmed === true;
+  } catch {
+    return false;
+  }
+}
 
 // Tokens injected at runtime by tokens.ts (artDirectionToCss) — always present.
 const INJECTED = new Set([
@@ -89,7 +105,7 @@ const TEXT_HEROES = new Set(['statement', 'editorial', 'panel', 'typographic', '
 const HEADLINE_CLICHES =
   /\b(done right|you can trust|second to none|no job too (big|small)|one[- ]stop shop|a cut above|exceed(s|ing)? (your )?expectations|where quality meets|satisfaction (is )?(our |)guarantee|we'?ve got you covered|rain or shine|quality you can|your trusted partner)\b/i;
 
-function auditProspect(slug, c) {
+function auditProspect(slug, c, confirmed = false) {
   const issues = [];
   const textHero = TEXT_HEROES.has(c.heroVariant);
   if (isStock(c.images?.hero)) {
@@ -111,9 +127,17 @@ function auditProspect(slug, c) {
   if ((c.services ?? []).some((s) => TEMPLATED.test(s.description ?? '') || TEMPLATED.test(s.title ?? '')))
     issues.push(['warn', 'templated service copy left in place']);
   // Cliché headline — the most important line on the page reaching for filler.
+  // EXCEPTION: a confirmed (human/agent-verified) site had its headline AUTHORED
+  // on purpose — "Electrical work done right the first time" is a real motto, not
+  // batch slop — so downgrade the warning to info instead of flagging it. Only
+  // template/auto (unconfirmed) sites still warn.
   const heading = c.hero?.heading ?? '';
-  if (HEADLINE_CLICHES.test(heading))
-    issues.push(['warn', `cliché headline "${heading}" — rewrite with a specific, earned promise`]);
+  if (HEADLINE_CLICHES.test(heading)) {
+    if (confirmed)
+      issues.push(['info', `headline "${heading}" matches a cliché pattern but is verified-authored copy`]);
+    else
+      issues.push(['warn', `cliché headline "${heading}" — rewrite with a specific, earned promise`]);
+  }
   // Social proof: a rating OR real testimonials. Missing BOTH is a real gap
   // (93% of buyers weigh reviews); missing only quotes (but has a rating) is minor.
   const hasTestimonials = (c.sections ?? []).some(
@@ -283,7 +307,8 @@ async function main() {
   for (const f of files) {
     const slug = f.replace(/\.json$/, '');
     const c = JSON.parse(await readFile(join(PROSPECTS, f), 'utf8'));
-    const issues = auditProspect(slug, c);
+    const confirmed = await isConfirmed(slug);
+    const issues = auditProspect(slug, c, confirmed);
     // Measured WCAG contrast from the built page (needs a prior `npm run build`).
     const distHtml = await readFile(join(DIST, 'p', slug, 'index.html'), 'utf8').catch(() => null);
     let seq = null;

@@ -34,7 +34,7 @@
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { scrapeSite, stripTags } from './lib/scrape-site.mjs';
+import { scrapeSite, stripTags, scoreRichness } from './lib/scrape-site.mjs';
 import { acquirePhotos } from './lib/images.mjs';
 import { diversifyBatch } from './lib/divergence.mjs';
 import { scorePhoto } from './lib/photo-score.mjs';
@@ -96,6 +96,41 @@ const CATEGORIES = {
     highlights: ['Made fresh', 'Dine-in & takeout', 'Local favorite'],
     services: ['Dine-in', 'Takeout & to-go', 'Catering', 'Private dining'],
   },
+  roofing: {
+    theme: { brand: '#9c3b2e', brandDark: '#21262b' },
+    highlights: ['Licensed & insured', 'Free estimates', 'Workmanship warranty'],
+    services: ['Roof replacement', 'Repairs & leak fixes', 'Inspections', 'Gutters & flashing'],
+  },
+  electrician: {
+    theme: { brand: '#e0a11e', brandDark: '#1c2733' },
+    highlights: ['Licensed & insured', 'Upfront pricing', 'Emergency service'],
+    services: ['Panel upgrades', 'Wiring & rewires', 'Lighting & fixtures', 'Troubleshooting & repair'],
+  },
+  hvac: {
+    theme: { brand: '#1f8a8a', brandDark: '#17323a' },
+    highlights: ['Licensed & insured', 'Upfront pricing', '24/7 service'],
+    services: ['AC repair & install', 'Heating & furnaces', 'Maintenance plans', 'Indoor air quality'],
+  },
+  spa: {
+    theme: { brand: '#8a6bb0', brandDark: '#2a2433' },
+    highlights: ['Licensed therapists', 'Relaxed setting', 'By appointment'],
+    services: ['Massage therapy', 'Facials & skincare', 'Body treatments', 'Wellness packages'],
+  },
+  barber: {
+    theme: { brand: '#3a4a5a', brandDark: '#1c232b' },
+    highlights: ['Walk-ins welcome', 'Skilled barbers', 'Classic & modern'],
+    services: ['Haircuts', 'Beard trims & shaves', 'Fades & styling', 'Kids cuts'],
+  },
+  cleaning: {
+    theme: { brand: '#2f9e8f', brandDark: '#1d3330' },
+    highlights: ['Insured & bonded', 'Reliable & thorough', 'Flexible scheduling'],
+    services: ['Home cleaning', 'Deep cleaning', 'Move-in / move-out', 'Recurring service'],
+  },
+  contractor: {
+    theme: { brand: '#c77d2a', brandDark: '#26211b' },
+    highlights: ['Licensed & insured', 'Free estimates', 'On time & on budget'],
+    services: ['Remodels & additions', 'Kitchens & baths', 'Decks & framing', 'Repairs & maintenance'],
+  },
   default: {
     theme: { brand: '#c2683a', brandDark: '#243b53' },
     highlights: ['Friendly service', 'Locally owned', 'Fair prices'],
@@ -109,6 +144,15 @@ const slugify = (s) =>
   s.toLowerCase().trim().replace(/['']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
 const titleCase = (s) => s.replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Humanize a category slug for prose, keeping trade acronyms uppercased so a
+// headline reads "HVAC" not "Hvac". Hyphens AND underscores both become spaces.
+const CAT_ACRONYMS = { hvac: 'HVAC', ac: 'AC', llc: 'LLC' };
+function humanizeCategory(cat) {
+  const s = (cat || '').replace(/[-_]+/g, ' ').trim();
+  if (!s) return 'local business';
+  return s.split(/\s+/).map((w) => CAT_ACRONYMS[w.toLowerCase()] || w).join(' ');
+}
 
 // Stable string hash (FNV-ish, 32-bit) — drives deterministic per-slug picks so
 // a batch gets variety while each site stays identical across re-runs.
@@ -172,19 +216,84 @@ const HERO_HEADLINES = {
     () => `Back on the road, fast.`,
     (c) => (c.year ? `Trusted under the hood since ${c.year}.` : `Repairs done right, guaranteed.`),
   ],
+  electrician: [
+    () => `Wired right. Done safely.`,
+    (c) => `${c.city || 'Local'} electrical you can trust.`,
+    (c) => (c.year ? `Powering ${c.city || 'the North Bay'} since ${c.year}.` : `Licensed electricians, code-correct work.`),
+    () => `Done correctly the first time.`,
+  ],
+  hvac: [
+    () => `Comfortable, all year round.`,
+    (c) => `${c.city || 'Local'} heating & cooling, done right.`,
+    () => `Fixed today, not next week.`,
+    (c) => (c.year ? `Keeping ${c.city || 'homes'} comfortable since ${c.year}.` : `Fast, honest HVAC service.`),
+  ],
+  roofing: [
+    (c) => `${c.city || 'Local'} roofing you can stand behind.`,
+    () => `A roof done right, the first time.`,
+    () => `Quality you can see from the street.`,
+    (c) => (c.year ? `Protecting ${c.city || 'homes'} since ${c.year}.` : `Licensed, insured, and on time.`),
+  ],
+  spa: [
+    () => `Time to feel like yourself again.`,
+    (c) => `${c.city || 'Your'} place to unwind.`,
+    () => `Relax — you're in good hands.`,
+    (c) => (c.year ? `Caring for ${c.city || 'the area'} since ${c.year}.` : `Skilled, licensed, and gentle.`),
+  ],
+  barber: [
+    () => `A cut above the rest.`,
+    (c) => `${c.city || 'Your'} chair is ready.`,
+    () => `Classic cuts, modern style.`,
+    (c) => (c.year ? `Keeping ${c.city || 'town'} sharp since ${c.year}.` : `Walk in. Look sharp.`),
+  ],
+  cleaning: [
+    () => `A cleaner home, every time.`,
+    (c) => `${c.city || 'Local'} cleaning you can trust.`,
+    () => `Spotless, dependable, done.`,
+    (c) => (c.year ? `Trusted in ${c.city || 'the area'} since ${c.year}.` : `Insured, thorough, reliable.`),
+  ],
+  contractor: [
+    () => `Built right. On time. On budget.`,
+    (c) => `${c.city || 'Local'} building & remodeling, done right.`,
+    () => `From plan to finish, handled.`,
+    (c) => (c.year ? `Building in ${c.city || 'the area'} since ${c.year}.` : `Licensed, insured craftsmanship.`),
+  ],
+  restaurant: [
+    () => `A local favorite for a reason.`,
+    (c) => `${c.city || 'Your'} table is waiting.`,
+    () => `Made fresh. Served with care.`,
+    (c) => (c.year ? `Feeding ${c.city || 'the neighborhood'} since ${c.year}.` : `Real food, real welcome.`),
+  ],
   default: [
     (c) => (c.year ? `Serving ${c.city || 'the area'} since ${c.year}.` : `${titleCase(c.what)} you can count on.`),
     (c) => `${c.city || 'Local'}, trusted, and proud of it.`,
+    () => `Local service you can count on.`,
+    (c) => `${titleCase(c.city || 'Local')}'s trusted ${c.what}.`,
+    () => `Quality work, honest prices.`,
+    (c) => `Proudly serving ${c.city || 'the community'}.`,
+    (c) => `${titleCase(c.what)}, done the right way.`,
     () => `Real work. Real people. Real results.`,
-    (c) => `The ${c.what} ${c.city || 'locals'} recommend.`,
   ],
 };
 
-function pickHeroHeadline(row, e, what, area) {
-  const key = HERO_HEADLINES[row.category?.toLowerCase()] ? row.category.toLowerCase() : 'default';
+// Pick a hero headline from the per-category bank. Routes through normCat so
+// aliased/new categories (electrician, med-spa…) hit the right bank instead of
+// the generic default. When `used` is supplied, walks the bank from the seeded
+// start to the first headline NOT already used in this batch — kills the
+// "three sites all say 'Real work. Real people.'" cookie-cutter tell.
+function pickHeroHeadline(row, e, what, area, used = null) {
+  const norm = normCat(row.category);
+  const key = HERO_HEADLINES[norm] ? norm : 'default';
   const bank = HERO_HEADLINES[key];
   const ctx = { name: row.name, city: row.city, area, what, year: e?.established || '' };
-  return bank[hashStr(slugify(row.name) + '|hero') % bank.length](ctx);
+  const start = hashStr(slugify(row.name) + '|hero') % bank.length;
+  if (used) {
+    for (let i = 0; i < bank.length; i++) {
+      const cand = bank[(start + i) % bank.length](ctx);
+      if (!used.has(cand)) return cand;
+    }
+  }
+  return bank[start](ctx);
 }
 
 // ---------------------------------------------------------------------------
@@ -273,7 +382,7 @@ function parseCsv(text) {
 // business's own scraped prose + services, falling back to template only for
 // fields with no real source (those get flagged for a polish pass).
 // ---------------------------------------------------------------------------
-async function generateCopy(row, preset, e) {
+async function generateCopy(row, preset, e, usedHeadlines = null) {
   if (process.env.ANTHROPIC_API_KEY) {
     try {
       return await generateCopyWithClaude(row, preset, e);
@@ -281,7 +390,7 @@ async function generateCopy(row, preset, e) {
       console.warn(`  ! Claude copy failed for ${row.name} (${err.message}); using research/template`);
     }
   }
-  return researchCopy(row, preset, e);
+  return researchCopy(row, preset, e, usedHeadlines);
 }
 
 async function generateCopyWithClaude(row, preset, e) {
@@ -343,9 +452,11 @@ async function generateCopyWithClaude(row, preset, e) {
 
 // Key-free copy built from scraped facts. Tracks which fields fell back to
 // template (in `_templated`) so the caller can flag the site for polish.
-function researchCopy(row, preset, e) {
+function researchCopy(row, preset, e, usedHeadlines = null) {
   const area = [row.city, row.state].filter(Boolean).join(', ');
-  const what = row.category ? row.category.replace(/-/g, ' ') : 'local business';
+  // Humanize the category slug for prose: hyphen/underscore → space, acronyms
+  // (HVAC, AC) kept uppercase, so a raw or mis-cased token never lands in copy.
+  const what = humanizeCategory(row.category);
   const templated = [];
 
   // About: their OWN words (cleaned) beat anything we'd write.
@@ -410,7 +521,7 @@ function researchCopy(row, preset, e) {
 
   // Hero: a per-category headline bank (earned-feeling, seeded) — not the old
   // formulaic "<Category> done right."
-  const heroHeading = pickHeroHeadline(row, e, what, area);
+  const heroHeading = pickHeroHeadline(row, e, what, area, usedHeadlines);
 
   const heroSubheading = e?.description
     ? clip(e.description, 170)
@@ -464,9 +575,9 @@ async function loadResearch(slug) {
 // Shape a research file into the `enrichment` (e) object the rest of the
 // pipeline expects from scrapeSite — so buildSections / buildConfig / photos /
 // deriveStatus all consume verified facts through the SAME code paths as a scrape.
-function enrichmentFromResearch(r, row) {
+function enrichmentFromResearch(r, row, { authoritative = true } = {}) {
   const year = (r.established || '').toString().replace(/^est\.?\s*/i, '').match(/\d{4}/)?.[0] || '';
-  return {
+  const e = {
     description: r.tagline || r.seoDescription || '',
     about: Array.isArray(r.aboutBody) ? r.aboutBody : [],
     services: (r.services ?? []).map((s) => s.title).filter(Boolean),
@@ -484,10 +595,14 @@ function enrichmentFromResearch(r, row) {
     city: row.city || '',
     state: row.state || '',
     images: Array.isArray(r.realPhotoUrls) ? r.realPhotoUrls : [],
-    // Verified by construction — never trips the "thin research" quality gate.
-    richness: 100,
     _fromResearch: true,
   };
+  // A confirmed:true file is human-verified prose → trusted by construction
+  // (never trips the "thin research" gate). An auto file (confirmed:false, from
+  // build-research.mjs) is a CACHED SCRAPE: keep its honest richness so a thin
+  // extraction still flags needs-review instead of shipping silently.
+  e.richness = authoritative ? 100 : (r._richness ?? scoreRichness(e));
+  return e;
 }
 
 // Map a research file straight into the `copy` object (no Claude call needed —
@@ -631,7 +746,7 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
   // it, the engine and batch-divergence grouping agree on one value.
   const rawCat = (row.category || '').toLowerCase().trim();
   const [heroPhoto, storyPhoto] = media;
-  const lib = `/images/library/${catKey}`;
+  const lib = `/images/library/${artKeyFor(catKey)}`;
 
   // Gallery = the business's OWN photos beyond the hero (never stock). A media
   // item is "own" when it carries no credit and isn't library/SVG art; stock
@@ -744,9 +859,61 @@ function deriveStatus(row, e, media, photoSource, templated) {
   return { status, flags };
 }
 
-// Resolve the category key (so we can pick the right library art folder).
-const catKeyFor = (row) =>
-  CATEGORIES[row.category?.toLowerCase()] ? row.category.toLowerCase() : 'default';
+// Synonyms → a canonical CATEGORIES key. Lets messy real-world category labels
+// (esp. from the lead-scraper: "electrical", "med spa", "auto_repair", "general
+// contractor") resolve to a themed preset instead of falling to neutral default.
+// Keys are lowercased + hyphen-collapsed before lookup.
+const CATEGORY_ALIASES = {
+  // food & drink
+  coffee: 'cafe', 'coffee-shop': 'cafe', coffeehouse: 'cafe', espresso: 'cafe', bakery: 'cafe',
+  restaurants: 'restaurant', eatery: 'restaurant', diner: 'restaurant', bistro: 'restaurant',
+  grill: 'restaurant', taqueria: 'restaurant', pizzeria: 'restaurant', pizza: 'restaurant',
+  // beauty & wellness
+  hair: 'salon', hairdresser: 'salon', 'hair-salon': 'salon', beauty: 'salon',
+  'beauty-salon': 'salon', nail: 'salon', nails: 'salon', 'nail-salon': 'salon',
+  massage: 'spa', 'medical-spa': 'spa', 'med-spa': 'spa', medspa: 'spa', 'day-spa': 'spa',
+  wellness: 'spa', esthetician: 'spa', skincare: 'spa', 'medical-aesthetics': 'spa', aesthetics: 'spa',
+  barbershop: 'barber', 'barber-shop': 'barber',
+  // trades
+  plumber: 'plumbing', 'plumbing-heating': 'plumbing',
+  electrical: 'electrician', electric: 'electrician', electricians: 'electrician',
+  heating: 'hvac', cooling: 'hvac', 'air-conditioning': 'hvac', ac: 'hvac', 'hvac-contractor': 'hvac',
+  roof: 'roofing', roofer: 'roofing', 'roofing-contractor': 'roofing',
+  'general-contractor': 'contractor', builder: 'contractor', construction: 'contractor',
+  remodeling: 'contractor', remodeler: 'contractor', handyman: 'contractor',
+  // home services
+  landscaper: 'landscaping', landscape: 'landscaping', lawn: 'landscaping',
+  'lawn-care': 'landscaping', gardening: 'landscaping', yard: 'landscaping',
+  'house-cleaning': 'cleaning', housekeeping: 'cleaning', janitorial: 'cleaning', maid: 'cleaning',
+  // auto & misc
+  auto: 'auto-repair', 'auto-repair': 'auto-repair', auto_repair: 'auto-repair',
+  mechanic: 'auto-repair', 'car-repair': 'auto-repair', automotive: 'auto-repair',
+  'auto-body': 'auto-repair', 'body-shop': 'auto-repair',
+  tow: 'towing', 'tow-truck': 'towing', 'towing-service': 'towing',
+  wineries: 'winery', vineyard: 'winery', 'tasting-room': 'winery',
+  marinas: 'marina', harbor: 'marina',
+};
+
+// Library art folders that actually exist on disk (public/images/library/<k>).
+// Themed presets without their own art (marina, restaurant, the new trades…)
+// fall back to the default art folder so the SVG placeholder never 404s.
+const ART_CATEGORIES = new Set([
+  'auto-repair', 'cafe', 'default', 'landscaping', 'plumbing', 'salon', 'tattoo', 'towing', 'winery',
+]);
+
+// Normalize any raw category label → a canonical CATEGORIES key (or 'default').
+function normCat(raw) {
+  const c = (raw || '').toLowerCase().trim().replace(/[\s_]+/g, '-');
+  if (CATEGORIES[c]) return c;
+  if (CATEGORY_ALIASES[c]) return CATEGORY_ALIASES[c];
+  return 'default';
+}
+
+// Resolve the category key for THEME/services (rich preset).
+const catKeyFor = (row) => normCat(row.category);
+
+// Resolve the category key for LIBRARY ART (only folders that exist).
+const artKeyFor = (catKey) => (ART_CATEGORIES.has(catKey) ? catKey : 'default');
 
 // Has the agent already dropped real photos for this slug into
 // src/assets/prospects/<slug>/ (the strongest tier)? If so, use them ALL —
@@ -829,6 +996,9 @@ async function main() {
   const base = process.env.GALLERY_BASE_URL?.replace(/\/$/, '') ?? '';
   const links = [];
   const built = [];
+  // Tracks every hero headline already used this batch so the template path can
+  // pick a DIFFERENT one for same-bank siblings (anti-cookie-cutter).
+  const usedHeadlines = new Set();
 
   for (const row of rows) {
     if (!row.name) continue;
@@ -843,12 +1013,16 @@ async function main() {
     //    authoritative (already fact-checked) — use it for BOTH enrichment and
     //    copy, and skip the best-effort live scrape entirely.
     const research = await loadResearch(slug);
+    // confirmed:true = human-verified prose (authoritative). confirmed:false =
+    // an auto file from build-research.mjs: a cached scrape, trusted for FACTS
+    // but run through the normal (gated) copy path so thin ones still flag.
+    const authoritative = research?.confirmed === true;
 
     // 1) Otherwise scrape their existing site for real facts (best-effort, key-free).
     let e = null;
     if (research) {
-      e = enrichmentFromResearch(research, row);
-      console.log(`  · ${row.name}: using verified research (data/research/${slug}.json)`);
+      e = enrichmentFromResearch(research, row, { authoritative });
+      console.log(`  · ${row.name}: using ${authoritative ? 'verified' : 'auto'} research (data/research/${slug}.json)`);
     } else if (row.website) {
       process.stdout.write(`  · ${row.name}: scraping ${row.website} … `);
       e = await scrapeSite(row.website);
@@ -880,7 +1054,12 @@ async function main() {
     }
 
     // 3) Copy: verified research as-is, else Claude/scrape; 4) depth + layout.
-    const copy = research ? copyFromResearch(research, row) : await generateCopy(row, preset, e);
+    // Authoritative research → use its written prose as-is. Otherwise (auto
+    // research OR a live scrape) write copy from the facts through the normal
+    // path, so templated fields are tracked and weak sites flag needs-review.
+    const copy = authoritative ? copyFromResearch(research, row) : await generateCopy(row, preset, e, usedHeadlines);
+    // Reserve this headline so the next same-bank sibling picks a different one.
+    if (copy?.heroHeading) usedHeadlines.add(copy.heroHeading);
     const sections = buildSections(row, e, copy);
     const layout = layoutFor(slug);
 
@@ -952,7 +1131,7 @@ async function main() {
 }
 
 // Exported for tests; only auto-run when invoked directly (not when imported).
-export { buildConfig, slugify, parseCsv, researchCopy, fallbackCopy, buildSections, layoutFor, CATEGORIES, loadResearch, enrichmentFromResearch, copyFromResearch };
+export { buildConfig, slugify, parseCsv, researchCopy, fallbackCopy, buildSections, layoutFor, CATEGORIES, loadResearch, enrichmentFromResearch, copyFromResearch, normCat, generateCopyWithClaude };
 
 // Run main() only when invoked directly (not when imported by tests).
 // Use pathToFileURL so this works on Windows (file:///C:/…) as well as POSIX.
