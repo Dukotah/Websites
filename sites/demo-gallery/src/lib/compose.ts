@@ -601,6 +601,10 @@ function dedupeSections(sections: Section[]): Section[] {
   for (let i = sections.length - 1; i >= 0; i--) {
     if (sections[i].type === 'cta') { lastCta = i; break; }
   }
+  // `feature-split` and `services-detailed` both render config.services — showing
+  // both repeats the exact same services (with placeholder art on image-poor
+  // sites). Keep only the richer services-detailed grid when both are present.
+  const hasServicesGrid = sections.some((s) => s.type === 'services-detailed');
   const seen = new Set<string>();
   const out: Section[] = [];
   sections.forEach((s, i) => {
@@ -608,6 +612,7 @@ function dedupeSections(sections: Section[]): Section[] {
       if (i === lastCta) out.push(s);
       return;
     }
+    if (s.type === 'feature-split' && hasServicesGrid) return; // redundant w/ services grid
     if (seen.has(s.type)) return; // drop a repeated non-cta section type
     seen.add(s.type);
     out.push(s);
