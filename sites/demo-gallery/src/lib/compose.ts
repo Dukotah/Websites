@@ -588,6 +588,28 @@ function dropCanonicalContactSections(sections: Section[]): Section[] {
   return sections.filter((s) => s.type !== 'map' && s.type !== 'hours-contact');
 }
 
+/**
+ * Reorder authored sections to follow the category RECIPE's narrative (spec §8.2)
+ * instead of the order the generator happened to emit them in. This reclaims the
+ * per-category section order for generated sites (which always carry an authored
+ * `config.sections`, so they otherwise never benefit from the recipe spine).
+ *
+ * Stable, loss-free: sections whose type the recipe doesn't list keep their
+ * relative order and sit just before the closing CTA, so nothing is dropped.
+ * `cta` is always forced last — fixes the "FAQ rendered after the closing CTA" bug.
+ */
+function orderByRecipe(sections: Section[], recipeOrder: RecipeSectionType[]): Section[] {
+  const rank = (type: string): number => {
+    if (type === 'cta') return Number.MAX_SAFE_INTEGER;
+    const i = recipeOrder.indexOf(type as RecipeSectionType);
+    return i === -1 ? recipeOrder.length : i;
+  };
+  return sections
+    .map((s, i) => ({ s, i, r: rank(s.type) }))
+    .sort((a, b) => a.r - b.r || a.i - b.i)
+    .map((x) => x.s);
+}
+
 function assignTones(sections: Section[], seed: number): Section[] {
   // jitter the starting index so two slugs don't start on the same tone
   const offset = seed % TONE_CYCLE.length;
@@ -678,6 +700,20 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
       const fs = instantiateSection('feature-split', config);
       if (fs) authored.splice(Math.min(2, authored.length), 0, fs);
     }
+    // Highlights band: generated configs never emit `feature-grid`, so the quick
+    // "3 reasons to trust us" rail was missing on every page. Inject it when the
+    // category recipe calls for one and the data (highlights/services) supports it.
+    const recipe = RECIPES[ad.category] ?? RECIPES.default;
+    if (
+      recipe.sectionOrder.includes('feature-grid') &&
+      !authored.some((s) => s.type === 'feature-grid')
+    ) {
+      const fg = instantiateSection('feature-grid', config);
+      if (fg) authored.push(fg); // final position is set by orderByRecipe below
+    }
+    // Reclaim the category narrative: order the authored sections by the recipe
+    // (and force the CTA last) rather than shipping the generator's emit order.
+    authored = orderByRecipe(authored, recipe.sectionOrder);
     // Ensure CTA is present
     const hasCta = authored.some((s) => s.type === 'cta');
     const withTrailingCta = hasCta
