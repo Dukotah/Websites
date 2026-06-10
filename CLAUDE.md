@@ -38,6 +38,30 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
    > photos are auto-flagged `needs-review` on the dashboard — never send those
    > as-is.
 
+   > **From the lead-scraper?** If the CSV came from the scraper (a wide
+   > `…_ENRICHED_crm.csv` or trimmed `…_FOCUS.csv`), run the bridge FIRST:
+   > `npm run build-research -- <scraper.csv> --state CA`. It normalizes the
+   > scraper's Title-Case columns into the lean builder set, does the deep
+   > research pass ONCE per lead up front (services, hours, reviews, photos —
+   > deeper than the inline build-time scrape), fuses in the owner/socials the
+   > scraper already found, and caches each as `data/research/<slug>.json`
+   > (`confirmed:false`). It prints the clean builder CSV to feed step 4. Those
+   > auto files are treated as a *cached scrape* — real quality gates still
+   > apply, so thin ones still flag `needs-review`. Promote a file to
+   > `confirmed:true` (with verified prose) after the research pass in step 2 to
+   > make it authoritative. Never overwrites a `confirmed:true` file.
+
+   > **Then clean + promote:** `npm run verify-research` scrubs scrape noise from
+   > the `confirmed:false` files (form fields mis-extracted as services, section
+   > headings as testimonials, "call us at…" about lines) and recomputes honest
+   > richness — a key-free quality win on its own. With `ANTHROPIC_API_KEY`,
+   > `npm run verify-research -- --promote` ALSO writes tagline/hero/about/service
+   > copy from the cleaned facts and flips `confirmed:true`. (Copy is written from
+   > the site's OWN facts — still independently verify reviews/awards/founding
+   > year for the top bar.) `--dry-run` reports without writing. Skips
+   > `confirmed:true` files. Full chain: `build-research` → `verify-research`
+   > [→ `--promote`] → `generate-prospects` → review dashboard → `push-to-crm`.
+
 2. **RESEARCH each business first — this is the job, not an optional polish.**
    Every site must feel custom and be *accurate*. Generic template copy is a
    last resort, never the deliverable. For each row, use web search (and Yelp,

@@ -72,7 +72,9 @@ async function loadEntries(manifestPath) {
     const slug = file.replace(/\.json$/, '');
     const cfg = JSON.parse(await readFile(join(PROSPECTS_DIR, file), 'utf8'));
     if (!cfg?.name) continue;
-    entries.push({ name: cfg.name, link: `${base}/p/${slug}`, status: 'ready' });
+    // Carry the real status so --only-ready can still skip flagged demos when
+    // reconstructing from prospect files (the manifest may be absent).
+    entries.push({ name: cfg.name, link: `${base}/p/${slug}`, status: cfg.status ?? 'ready' });
   }
   return { source: `${PROSPECTS_DIR} (+ GALLERY_BASE_URL)`, entries };
 }
@@ -117,6 +119,15 @@ async function main() {
   for (const e of entries) {
     const flag = e.status === 'needs-review' ? '  ⚠ needs-review' : '';
     console.log(`  · ${e.name}  →  ${e.link}${flag}`);
+  }
+
+  const needsReview = entries.filter((e) => e.status === 'needs-review').length;
+  if (needsReview && !opts.onlyReady) {
+    console.log(
+      `\n⚠ ${needsReview} of these are flagged NEEDS-REVIEW and will be pushed as-is.\n` +
+        `  A flagged demo is unfinished (thin facts, no real photos, generic hours…) and\n` +
+        `  reads as low-effort to the prospect. Re-run with --only-ready to skip them.`,
+    );
   }
 
   if (opts.dryRun) {

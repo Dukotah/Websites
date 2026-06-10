@@ -592,4 +592,4 @@ function scoreRichness(e) {
   return s;
 }
 
-export { stripTags, decodeEntities, parseJsonLd };
+export { stripTags, decodeEntities, parseJsonLd, scoreRichness };

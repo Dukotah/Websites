@@ -6,6 +6,8 @@
   "scripts": {
     "new-site": "node scripts/new-site.mjs",
     "fetch-photos": "node scripts/fetch-photos.mjs",
+    "build-research": "node scripts/build-research.mjs",
+    "verify-research": "node scripts/verify-research.mjs",
     "generate-prospects": "node scripts/generate-prospects.mjs",
     "push-to-crm": "node scripts/push-to-crm.mjs",
     "make-thumbnail": "node scripts/make-thumbnail.mjs",
