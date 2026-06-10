@@ -194,6 +194,9 @@ const SECTION_FAMILY = {
   gallery: 'gallery', gu: 'gallery', gf: 'gallery',
   tms: 'testimonials', tmsl: 'testimonials',
   'cta-band': 'cta', ctapanel: 'cta', ctabanner: 'cta',
+  // cta-inline is a DISTINCT family — one slim mid-page nudge + one closing
+  // banner is intentional, not a duplicate. Two of either still flags.
+  ctainline: 'cta-inline',
 };
 
 function auditComposedDupes(html) {

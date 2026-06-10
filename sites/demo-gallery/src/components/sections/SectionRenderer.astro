@@ -39,6 +39,7 @@ import StatsInline from './StatsInline.astro';
 import ServicesDetailedBento from './ServicesDetailedBento.astro';
 import CtaPanel from './CtaPanel.astro';
 import CtaBanner from './CtaBanner.astro';
+import CtaInline from './CtaInline.astro';
 import FaqAccordion from './FaqAccordion.astro';
 
 interface Props {
@@ -96,6 +97,8 @@ function variantOf<T>(pool: T[], variant?: number): T {
         const C = variantOf(CTA, section.variant);
         return <C {...section} index={index} />;
       }
+      case 'cta-inline':
+        return <CtaInline {...section} index={index} />;
       case 'gallery': {
         const C = variantOf(GALLERY, section.variant);
         return <C {...section} index={index} />;

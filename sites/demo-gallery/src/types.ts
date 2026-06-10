@@ -78,6 +78,15 @@ export type Section =
       buttonText?: string;
       buttonHref?: string;
     } & SectionEnvelope)
+  // Slim, single-line mid-page conversion nudge. DELIBERATELY a different type
+  // (and a different, low-profile silhouette) from the full closing `cta` banner
+  // so the two never read as a duplicate. Placed mid-page at the credibility peak.
+  | ({
+      type: 'cta-inline';
+      heading: string;
+      buttonText?: string;
+      buttonHref?: string;
+    } & SectionEnvelope)
   // ── new rich sections (spec §6 / §9) ──────────────────────────────────────
   | ({
       type: 'gallery';

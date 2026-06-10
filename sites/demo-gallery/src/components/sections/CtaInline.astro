@@ -1,0 +1,100 @@
+---
+/**
+ * CtaInline — a slim, single-line mid-page conversion nudge.
+ *
+ * DELIBERATELY NOT a banner: this is a low-profile horizontal strip (headline on
+ * the left, one button on the right) sitting on a hairline-bordered surface, not
+ * a full-bleed brand wash. It exists so a page can capture intent at the
+ * credibility peak (right after testimonials) WITHOUT looking like a second copy
+ * of the closing CtaBanner — the duplicate-CTA problem. One line, contained width.
+ */
+import type { Section } from '../../types';
+
+type Props = Extract<Section, { type: 'cta-inline' }> & { index?: number };
+
+const {
+  heading,
+  buttonText = 'Get in touch',
+  buttonHref = '#contact',
+  tone = 'default',
+  index: _index,
+} = Astro.props as Props;
+---
+
+<section class="section ctainline" data-tone={tone}>
+  <div class="container ctainline__inner" data-reveal>
+    <p class="ctainline__text">{heading}</p>
+    {buttonText && (
+      <a href={buttonHref} class="ctainline__btn">
+        {buttonText}
+        <svg class="ctainline__arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+          <path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    )}
+  </div>
+</section>
+
+<style>
+  .ctainline {
+    padding-block: clamp(1.25rem, 2.5vw, 2rem);
+    background: var(--bg);
+  }
+  .container { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+  .ctainline__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+    padding: clamp(1rem, 2.2vw, 1.6rem) clamp(1.25rem, 3vw, 2.25rem);
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: var(--border-weight, 1px) solid var(--border);
+    border-left: 4px solid var(--brand);
+  }
+  .ctainline__text {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-1);
+    line-height: 1.2;
+    letter-spacing: var(--tracking-display);
+    color: var(--text);
+  }
+  .ctainline__btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.7em 1.5em;
+    border-radius: var(--radius-pill, var(--radius));
+    background: var(--brand);
+    color: var(--brand-contrast);
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step--1);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform var(--motion-fade, 0.2s) var(--motion-ease, ease);
+  }
+  .ctainline__arrow { width: 1em; height: 1em; transition: transform var(--motion-fade, 0.2s) var(--motion-ease, ease); }
+  .ctainline__btn:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .ctainline__btn:hover { transform: translateY(-2px); }
+    .ctainline__btn:hover .ctainline__arrow { transform: translateX(3px); }
+  }
+
+  /* Tones — keep it quiet; it should never out-shout the closing banner. */
+  [data-tone='alt'].ctainline { background: var(--bg-alt); }
+  [data-tone='deep'].ctainline { background: var(--bg-deep); }
+  [data-tone='deep'].ctainline .ctainline__inner {
+    background: color-mix(in srgb, var(--text-on-dark) 6%, transparent);
+    border-color: color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+  }
+  [data-tone='deep'].ctainline .ctainline__text { color: var(--text-on-dark); }
+
+  @media (max-width: 520px) {
+    .ctainline__inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>

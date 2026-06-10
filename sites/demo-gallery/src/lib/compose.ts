@@ -557,6 +557,32 @@ function withRatingStat(sections: Section[], config: ProspectConfig): Section[] 
  *
  * Keeps the CLOSING cta (last occurrence) and the FIRST of every other type.
  */
+/**
+ * CRO: a slim mid-page conversion nudge at the credibility peak (right after
+ * testimonials). Uses the distinct `cta-inline` type (a low-profile single-line
+ * strip), NOT a second `cta` banner — so it can never read as a duplicate of the
+ * closing CTA and `dedupeSections` keeps both (different types). Only added when
+ * testimonials exist and the nudge won't sit adjacent to the closing CTA.
+ */
+function insertInlineCta(sections: Section[], config: ProspectConfig, category: string): Section[] {
+  const tIdx = sections.findIndex((s) => s.type === 'testimonials');
+  if (tIdx === -1) return sections; // no credibility peak → no mid-page nudge
+  const afterIdx = tIdx + 1;
+  if (afterIdx >= sections.length) return sections; // testimonials is last → skip
+  const next = sections[afterIdx].type;
+  if (next === 'cta' || next === 'cta-inline') return sections; // don't stack CTAs
+  const label = serviceCtaFor(category);
+  const inline: Section = {
+    type: 'cta-inline',
+    heading: 'Ready to get started?',
+    buttonText: label,
+    buttonHref: serviceCtaHref(config, label),
+  };
+  const out = [...sections];
+  out.splice(afterIdx, 0, inline);
+  return out;
+}
+
 function dedupeSections(sections: Section[]): Section[] {
   let lastCta = -1;
   for (let i = sections.length - 1; i >= 0; i--) {
@@ -718,12 +744,13 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     const withTrailingCta = hasCta
       ? authored
       : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
+    const plan = insertInlineCta(withTrailingCta, config, ad.category);
     return {
       hero,
       sections: dedupeSections(
         dropCanonicalContactSections(
           assignVariants(
-            assignTones(withRatingStat(ensureMinimum(withTrailingCta, config, seed), config), seed),
+            assignTones(withRatingStat(ensureMinimum(plan, config, seed), config), seed),
             seed,
             ad.category,
           ),
@@ -758,12 +785,13 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     }
   }
 
+  const planWithInline = insertInlineCta(sections, config, ad.category);
   return {
     hero,
     sections: dedupeSections(
       dropCanonicalContactSections(
         assignVariants(
-          assignTones(withRatingStat(ensureMinimum(sections, config, seed), config), seed),
+          assignTones(withRatingStat(ensureMinimum(planWithInline, config, seed), config), seed),
           seed,
           ad.category,
         ),
