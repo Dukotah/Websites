@@ -201,21 +201,21 @@ export const RECIPES: Record<string, Recipe> = {
   towing: {
     heroVariant: 'panel',
     sectionOrder: [
-      'feature-grid', 'services-detailed', 'stats', 'service-area',
+      'feature-grid', 'services-detailed', 'stats', 'gallery', 'service-area',
       'testimonials', 'process', 'hours-contact', 'cta',
     ],
   },
   plumbing: {
     heroVariant: 'split',
     sectionOrder: [
-      'services-detailed', 'feature-grid', 'process', 'stats',
+      'services-detailed', 'feature-grid', 'process', 'stats', 'gallery',
       'service-area', 'testimonials', 'faq', 'hours-contact', 'cta',
     ],
   },
   'auto-repair': {
     heroVariant: 'split',
     sectionOrder: [
-      'services-detailed', 'stats', 'before-after', 'feature-grid',
+      'services-detailed', 'stats', 'before-after', 'feature-grid', 'gallery',
       'testimonials', 'logos', 'faq', 'hours-contact', 'cta',
     ],
   },
@@ -548,33 +548,32 @@ function withRatingStat(sections: Section[], config: ProspectConfig): Section[] 
 }
 
 /**
- * CRO: Insert a CTA immediately after any `testimonials` section that is not
- * already followed by one. Captures lead intent at the credibility peak rather
- * than letting momentum dissipate to the page footer.
+ * Final guarantee that NO section type renders more than once. Previously a
+ * "mid-page CTA after testimonials" was added on top of the closing CTA, so
+ * every site with testimonials shipped TWO near-identical CTA banners (the
+ * duplicate-section bug). The page is short enough that one strong closing CTA
+ * is the right call; a mid-page nudge, if ever wanted, should be a visually
+ * DISTINCT component, not a second copy of the same banner.
  *
- * Rules (avoids adjacent-duplicate CTAs):
- *   - Only acts when `testimonials` appears in the list.
- *   - Skips the insertion if the section immediately following `testimonials`
- *     is already a `cta` (authored or previously appended).
- *   - The mid-page CTA is distinct from the closing CTA; both may coexist on
- *     the page — they are separated by at least one non-CTA section.
- *   - Only inserts when `instantiateSection('cta', config)` returns a real
- *     section (defensive null-guard, though `cta` is always satisfiable).
+ * Keeps the CLOSING cta (last occurrence) and the FIRST of every other type.
  */
-function insertCtaAfterTestimonials(sections: Section[], config: ProspectConfig): Section[] {
-  const testimonialsIdx = sections.findIndex((s) => s.type === 'testimonials');
-  if (testimonialsIdx === -1) return sections;
-
-  const afterIdx = testimonialsIdx + 1;
-  // Already a CTA immediately after testimonials — nothing to do.
-  if (afterIdx < sections.length && sections[afterIdx].type === 'cta') return sections;
-
-  const midCta = instantiateSection('cta', config);
-  if (!midCta) return sections;
-
-  const result = [...sections];
-  result.splice(afterIdx, 0, midCta);
-  return result;
+function dedupeSections(sections: Section[]): Section[] {
+  let lastCta = -1;
+  for (let i = sections.length - 1; i >= 0; i--) {
+    if (sections[i].type === 'cta') { lastCta = i; break; }
+  }
+  const seen = new Set<string>();
+  const out: Section[] = [];
+  sections.forEach((s, i) => {
+    if (s.type === 'cta') {
+      if (i === lastCta) out.push(s);
+      return;
+    }
+    if (seen.has(s.type)) return; // drop a repeated non-cta section type
+    seen.add(s.type);
+    out.push(s);
+  });
+  return out;
 }
 
 /**
@@ -719,15 +718,15 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     const withTrailingCta = hasCta
       ? authored
       : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
-    // CRO: insert a mid-page CTA immediately after testimonials (credibility peak).
-    const plan = insertCtaAfterTestimonials(withTrailingCta, config);
     return {
       hero,
-      sections: dropCanonicalContactSections(
-        assignVariants(
-          assignTones(withRatingStat(ensureMinimum(plan, config, seed), config), seed),
-          seed,
-          ad.category,
+      sections: dedupeSections(
+        dropCanonicalContactSections(
+          assignVariants(
+            assignTones(withRatingStat(ensureMinimum(withTrailingCta, config, seed), config), seed),
+            seed,
+            ad.category,
+          ),
         ),
       ),
     };
@@ -759,16 +758,15 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     }
   }
 
-  // CRO: insert a mid-page CTA immediately after testimonials (credibility peak).
-  const sectionsWithMidCta = insertCtaAfterTestimonials(sections, config);
-
   return {
     hero,
-    sections: dropCanonicalContactSections(
-      assignVariants(
-        assignTones(withRatingStat(ensureMinimum(sectionsWithMidCta, config, seed), config), seed),
-        seed,
-        ad.category,
+    sections: dedupeSections(
+      dropCanonicalContactSections(
+        assignVariants(
+          assignTones(withRatingStat(ensureMinimum(sections, config, seed), config), seed),
+          seed,
+          ad.category,
+        ),
       ),
     ),
   };

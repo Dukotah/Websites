@@ -179,6 +179,36 @@ const CONTRAST_PAIRS = [
   ['accent-contrast', 'accent', 'text on accent'],
 ];
 
+// ── Duplicate sections (the bug audit.mjs was blind to) ──────────────────────
+// The config-level checks above can't see the COMPOSED page, so a duplicate
+// section produced at compose-time (e.g. a mid-page CTA on top of the closing
+// CTA → two identical banners) shipped undetected. This parses the built page's
+// section wrappers (`class="section <token>"`) and maps each variant token back
+// to its logical family, so a repeated family is caught regardless of variant.
+const SECTION_FAMILY = {
+  svc: 'services-detailed', svcrows: 'services-detailed', bento: 'services-detailed',
+  fg: 'feature-grid', fgb: 'feature-grid',
+  'stats-section': 'stats', 'stats-band': 'stats', 'stats-inline': 'stats',
+  faq: 'faq', faqa: 'faq',
+  fs: 'feature-split', fsf: 'feature-split',
+  gallery: 'gallery', gu: 'gallery', gf: 'gallery',
+  tms: 'testimonials', tmsl: 'testimonials',
+  'cta-band': 'cta', ctapanel: 'cta', ctabanner: 'cta',
+};
+
+function auditComposedDupes(html) {
+  const counts = {};
+  for (const m of html.matchAll(/class="section ([a-z0-9-]+)/g)) {
+    const fam = SECTION_FAMILY[m[1]];
+    if (fam) counts[fam] = (counts[fam] ?? 0) + 1;
+  }
+  const issues = [];
+  for (const [fam, n] of Object.entries(counts)) {
+    if (n > 1) issues.push(['critical', `duplicate "${fam}" section ×${n} on the page (composed twice)`]);
+  }
+  return issues;
+}
+
 function auditContrast(tokens) {
   const issues = [];
   for (const [fg, bg, desc] of CONTRAST_PAIRS) {
@@ -218,8 +248,10 @@ async function main() {
     const issues = auditProspect(slug, c);
     // Measured WCAG contrast from the built page (needs a prior `npm run build`).
     const distHtml = await readFile(join(DIST, 'p', slug, 'index.html'), 'utf8').catch(() => null);
-    if (distHtml) issues.push(...auditContrast(parseTokens(distHtml)));
-    else missingDist = true;
+    if (distHtml) {
+      issues.push(...auditComposedDupes(distHtml));
+      issues.push(...auditContrast(parseTokens(distHtml)));
+    } else missingDist = true;
     const crit = issues.filter((i) => i[0] === 'critical');
     critical += crit.length;
     if (issues.length === 0) {
