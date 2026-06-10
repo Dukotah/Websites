@@ -583,6 +583,19 @@ function insertInlineCta(sections: Section[], config: ProspectConfig, category: 
   return out;
 }
 
+/**
+ * INVARIANT (the contract): a composed page renders AT MOST ONE section of each
+ * type. This pass is the final, authoritative guarantee — every earlier stage
+ * (recipe assembly, author-section injection, ensureMinimum, the inline-CTA
+ * nudge) may propose sections freely; this is what makes "no duplicate sections"
+ * actually true. audit.mjs independently re-checks the built HTML and FAILS the
+ * build if any family is composed twice, so the contract is enforced on both ends.
+ *
+ * The only intentional "two CTAs" case is allowed because it is two DIFFERENT
+ * types: the slim mid-page `cta-inline` nudge + the full closing `cta` banner.
+ * For the repeatable `cta` type we keep the CLOSING one (last); for every other
+ * type we keep the FIRST. Anything beyond that is dropped.
+ */
 function dedupeSections(sections: Section[]): Section[] {
   let lastCta = -1;
   for (let i = sections.length - 1; i >= 0; i--) {
@@ -619,15 +632,27 @@ function dropCanonicalContactSections(sections: Section[]): Section[] {
  * per-category section order for generated sites (which always carry an authored
  * `config.sections`, so they otherwise never benefit from the recipe spine).
  *
- * Stable, loss-free: sections whose type the recipe doesn't list keep their
- * relative order and sit just before the closing CTA, so nothing is dropped.
- * `cta` is always forced last — fixes the "FAQ rendered after the closing CTA" bug.
+ * Stable, loss-free: a section type the recipe doesn't list is treated as a body
+ * content band and slotted just BEFORE the recipe's tail (faq/cta), not dumped
+ * after it — otherwise a feature-split/gallery the recipe omits strands itself
+ * below the FAQ, reading like footer debris. `cta` is always forced last.
  */
+// Sections that belong at the END of the page, in this order. An unlisted body
+// band must rank ahead of these so it lands in the narrative, not the footer.
+const TAIL_TYPES: RecipeSectionType[] = ['faq', 'hours-contact', 'cta'];
+
 function orderByRecipe(sections: Section[], recipeOrder: RecipeSectionType[]): Section[] {
+  // Where the recipe's tail begins — unlisted body bands slot just before it.
+  let firstTail = recipeOrder.findIndex((t) => TAIL_TYPES.includes(t));
+  if (firstTail === -1) firstTail = recipeOrder.length;
+
   const rank = (type: string): number => {
     if (type === 'cta') return Number.MAX_SAFE_INTEGER;
     const i = recipeOrder.indexOf(type as RecipeSectionType);
-    return i === -1 ? recipeOrder.length : i;
+    if (i !== -1) return i;
+    // Unlisted type: if it's a tail kind keep it at the end, else treat as a body
+    // band placed right before the recipe's tail (faq/cta).
+    return TAIL_TYPES.includes(type as RecipeSectionType) ? recipeOrder.length : firstTail - 0.5;
   };
   return sections
     .map((s, i) => ({ s, i, r: rank(s.type) }))

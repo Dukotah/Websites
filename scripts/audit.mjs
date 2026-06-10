@@ -199,17 +199,42 @@ const SECTION_FAMILY = {
   ctainline: 'cta-inline',
 };
 
-function auditComposedDupes(html) {
-  const counts = {};
+// Content bands that look wrong stranded BELOW the FAQ (the FAQ reads as a
+// near-the-end "wrap up", so a gallery/feature band after it looks misplaced).
+const BURY_AFTER_FAQ = new Set(['gallery', 'feature-grid', 'feature-split', 'services-detailed']);
+
+function auditComposedStructure(html) {
+  // Section families in document order (matchAll preserves order).
+  const seq = [];
   for (const m of html.matchAll(/class="section ([a-z0-9-]+)/g)) {
     const fam = SECTION_FAMILY[m[1]];
-    if (fam) counts[fam] = (counts[fam] ?? 0) + 1;
+    if (fam) seq.push(fam);
   }
   const issues = [];
+
+  // 1) Duplicate sections (the bug audit was blind to).
+  const counts = {};
+  for (const f of seq) counts[f] = (counts[f] ?? 0) + 1;
   for (const [fam, n] of Object.entries(counts)) {
     if (n > 1) issues.push(['critical', `duplicate "${fam}" section ×${n} on the page (composed twice)`]);
   }
-  return issues;
+
+  // 2) Ordering sanity: a content band stranded after the FAQ reads as misplaced.
+  const faqIdx = seq.indexOf('faq');
+  if (faqIdx !== -1) {
+    const buried = seq.slice(faqIdx + 1).filter((f) => BURY_AFTER_FAQ.has(f));
+    for (const f of new Set(buried)) {
+      issues.push(['warn', `"${f}" section sits after the FAQ — content band looks stranded near the footer`]);
+    }
+  }
+
+  // 3) The closing CTA should be the last composed band (FAQ before it, not after).
+  const lastContentful = seq[seq.length - 1];
+  if (seq.includes('cta') && lastContentful !== 'cta') {
+    issues.push(['warn', `page doesn't end on the closing CTA (ends on "${lastContentful}")`]);
+  }
+
+  return { issues, seq };
 }
 
 function auditContrast(tokens) {
@@ -251,8 +276,11 @@ async function main() {
     const issues = auditProspect(slug, c);
     // Measured WCAG contrast from the built page (needs a prior `npm run build`).
     const distHtml = await readFile(join(DIST, 'p', slug, 'index.html'), 'utf8').catch(() => null);
+    let seq = null;
     if (distHtml) {
-      issues.push(...auditComposedDupes(distHtml));
+      const structure = auditComposedStructure(distHtml);
+      seq = structure.seq;
+      issues.push(...structure.issues);
       issues.push(...auditContrast(parseTokens(distHtml)));
     } else missingDist = true;
     const crit = issues.filter((i) => i[0] === 'critical');
@@ -266,6 +294,9 @@ async function main() {
         console.log(`      [${mark}] ${msg}`);
       }
     }
+    // Composed section order — so a human/loop can SEE the structure, not just
+    // the pass/fail. (Hero + About precede these; Contact follows.)
+    if (seq) console.log(`      ↳ ${seq.join(' › ')}`);
   }
 
   if (missingDist) {
