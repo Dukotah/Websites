@@ -81,8 +81,13 @@ async function auditTokens() {
 const isStock = (src) => !src || src.includes('/images/library/') || src.endsWith('.svg');
 const TEMPLATED = /professional \w+ for \w+ and nearby|service (one|two|three|four)/i;
 // Text-forward hero variants are photo-free BY DESIGN (huge type, no image) —
-// not a defect. pickHero() falls back to these when no real photo exists.
-const TEXT_HEROES = new Set(['statement', 'editorial', 'panel']);
+// not a defect. pickHero()/divergence fall back to these when no real photo
+// exists; editorial-asym collapses to a full-width type column without one.
+const TEXT_HEROES = new Set(['statement', 'editorial', 'panel', 'typographic', 'editorial-asym']);
+// Local-business headline clichés — the "AI batch" tell. A headline should make
+// a specific, earned promise, not reach for one of these filler phrases.
+const HEADLINE_CLICHES =
+  /\b(done right|you can trust|second to none|no job too (big|small)|one[- ]stop shop|a cut above|exceed(s|ing)? (your )?expectations|where quality meets|satisfaction (is )?(our |)guarantee|we'?ve got you covered|rain or shine|quality you can|your trusted partner)\b/i;
 
 function auditProspect(slug, c) {
   const issues = [];
@@ -105,7 +110,25 @@ function auditProspect(slug, c) {
   }
   if ((c.services ?? []).some((s) => TEMPLATED.test(s.description ?? '') || TEMPLATED.test(s.title ?? '')))
     issues.push(['warn', 'templated service copy left in place']);
-  if (!(c.sections ?? []).some((s) => s.type === 'testimonials')) issues.push(['info', 'no testimonials (trust signal)']);
+  // Cliché headline — the most important line on the page reaching for filler.
+  const heading = c.hero?.heading ?? '';
+  if (HEADLINE_CLICHES.test(heading))
+    issues.push(['warn', `cliché headline "${heading}" — rewrite with a specific, earned promise`]);
+  // Social proof: a rating OR real testimonials. Missing BOTH is a real gap
+  // (93% of buyers weigh reviews); missing only quotes (but has a rating) is minor.
+  const hasTestimonials = (c.sections ?? []).some(
+    (s) => s.type === 'testimonials' && (s.items?.length ?? 0) > 0,
+  );
+  const hasRating =
+    (c.rating?.count ?? 0) > 0 ||
+    (c.sections ?? []).some(
+      (s) =>
+        s.type === 'stats' &&
+        (s.items ?? []).some((it) => /★|star|review|rating/i.test(`${it.label} ${it.value}`)),
+    );
+  if (!hasTestimonials && !hasRating)
+    issues.push(['warn', 'no social proof — add a rating or a real testimonial before sending']);
+  else if (!hasTestimonials) issues.push(['info', 'no testimonials (has rating; quotes would help)']);
   return issues;
 }
 
