@@ -1,0 +1,173 @@
+{
+  "name": "Salon Matheson",
+  "category": "salon",
+  "tagline": "A calm, skilled hair salon in the heart of downtown Healdsburg.",
+  "seoDescription": "Salon Matheson — a welcoming hair salon in downtown Healdsburg, CA, known for skilled stylists and a peaceful, immaculate space.",
+  "area": "Healdsburg, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 433-5696",
+    "email": "",
+    "address": "139 Matheson St, Healdsburg, CA 95448"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Your chair in downtown Healdsburg.",
+    "subheading": "A welcoming salon on Matheson Street known for skilled stylists, a peaceful space, and easy street parking.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "5★ rated"
+  ],
+  "images": {
+    "hero": "/images/library/salon/hero.svg",
+    "heroAlt": "Salon Matheson in Healdsburg, CA",
+    "story": "/images/library/salon/story.svg",
+    "storyAlt": "About Salon Matheson",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/salon/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About Salon Matheson",
+    "body": [
+      "Salon Matheson sits in the heart of downtown Healdsburg on Matheson Street, where guests come for skilled stylists and a calm, immaculate space — with reasonable prices and easy street parking right out front."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "In the chair",
+  "services": [
+    {
+      "title": "Haircuts & styling",
+      "description": ""
+    },
+    {
+      "title": "Color & highlights",
+      "description": ""
+    },
+    {
+      "title": "Treatments",
+      "description": ""
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "9:00 AM – 5:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "10:00 AM – 5:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "feature-grid",
+      "eyebrow": "What we do",
+      "heading": "How we can help",
+      "items": [
+        {
+          "label": "Haircuts & styling"
+        },
+        {
+          "label": "Color & highlights"
+        },
+        {
+          "label": "Treatments"
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "5★",
+          "label": "Customer rating"
+        },
+        {
+          "value": "3",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 139 Matheson St, Healdsburg, CA 95448."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon – Fri: 9:00 AM – 5:00 PM; Saturday: 10:00 AM – 5:00 PM; Sunday: Closed."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Healdsburg, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 433-5696 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "map",
+      "address": "139 Matheson St, Healdsburg, CA 95448"
+    },
+    {
+      "type": "hours-contact",
+      "heading": "Get in touch",
+      "hours": [
+        {
+          "day": "Mon – Fri",
+          "hours": "9:00 AM – 5:00 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "10:00 AM – 5:00 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "Closed"
+        }
+      ],
+      "phone": "(707) 433-5696",
+      "cta": {
+        "text": "Contact us",
+        "href": "#contact"
+      }
+    },
+    {
+      "type": "cta",
+      "heading": "Get in touch with Salon Matheson",
+      "text": "Call (707) 433-5696 or send a message — we'll get right back to you.",
+      "buttonText": "Get in touch",
+      "buttonHref": "#contact"
+    }
+  ],
+  "layout": "classic",
+  "status": "needs-review",
+  "flags": [
+    "No real photos — using library art; add their real photos before sending",
+    "no email — add a real email or contact form before sending",
+    "hero is stock/library art — no real photo"
+  ],
+  "theme": {
+    "brand": "#b5557f",
+    "brandDark": "#2e2230"
+  }
+}

@@ -89,8 +89,11 @@ async function auditTokens() {
 const isStock = isStockImage;
 const TEMPLATED = new RegExp(`${FILLER_DESC_RE.source}|${TEMPLATED_SERVICE_RE.source}`, 'i');
 // Text-forward hero variants are photo-free BY DESIGN (huge type, no image) —
-// not a defect. pickHero() falls back to these when no real photo exists.
-const TEXT_HEROES = new Set(['statement', 'editorial', 'panel']);
+// not a defect. pickHero() falls back to these when no real photo exists. This
+// set MUST match the photo-free heroes in compose.ts/divergence.mjs.
+const TEXT_HEROES = new Set(['statement', 'editorial', 'panel', 'typographic', 'editorial-asym']);
+// Heroes that REQUIRE a real photo — staging stock art in one of these looks broken.
+const PHOTO_HEROES = new Set(['cinematic', 'split', 'collage']);
 
 function auditProspect(slug, c) {
   const issues = [];
@@ -99,14 +102,18 @@ function auditProspect(slug, c) {
   for (const err of validateProspectConfig(c).errors) {
     issues.push(['critical', `contract violation: ${err}`]);
   }
-  const textHero = TEXT_HEROES.has(c.heroVariant);
+  // When heroVariant is absent the renderer (pickHero) picks a photo-free TEXT
+  // hero for a stock image, so stock art only looks broken when a PHOTO hero is
+  // explicitly pinned (forcing stock into an image layout). A photo-less site is
+  // still flagged needs-review by the generator/contract — that's the right
+  // severity (a deliverability note), not a build-blocking critical.
+  const pinnedPhotoHero = PHOTO_HEROES.has(c.heroVariant);
+  const textHero = !c.heroVariant || TEXT_HEROES.has(c.heroVariant);
   if (isStock(c.images?.hero)) {
-    if (textHero) {
-      // Intentional text hero (e.g. honest placeholder, or a business with no
-      // congruent real photo). Looks deliberate, not slop — just note it.
-      issues.push(['info', `text hero (no photo) — deliberate "${c.heroVariant}" layout`]);
+    if (pinnedPhotoHero) {
+      issues.push(['critical', `photo hero "${c.heroVariant}" pinned but hero is stock/SVG art (no real photo)`]);
     } else {
-      issues.push(['critical', 'hero is stock/SVG art (no real photo)']);
+      issues.push(['info', `no real hero photo — renders a deliberate text hero${c.heroVariant ? ` ("${c.heroVariant}")` : ''}`]);
     }
   }
   // Only warn about missing alt when a hero photo is actually rendered.

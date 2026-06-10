@@ -1,0 +1,192 @@
+{
+  "name": "Mauritson Wines",
+  "category": "winery",
+  "tagline": "Six generations in Dry Creek Valley — small-production, single-vineyard wines.",
+  "seoDescription": "Mauritson Wines — a six-generation Dry Creek Valley family winery in Healdsburg crafting single-vineyard Zinfandel and Bordeaux varietals.",
+  "area": "Healdsburg, CA",
+  "established": "Est. 1998",
+  "contact": {
+    "phone": "(707) 431-0804",
+    "email": "info@mauritsonwines.com",
+    "address": "2859 Dry Creek Road, Healdsburg, CA 95448"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Rooted in Dry Creek since 1868.",
+    "subheading": "A six-generation family winery crafting small-production, single-vineyard wines from Dry Creek Valley, Alexander Valley, and Rockpile.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Serving since 1998",
+    "4.6★ · 54 reviews"
+  ],
+  "images": {
+    "hero": "/images/library/winery/hero.svg",
+    "heroAlt": "Mauritson Wines in Healdsburg, CA",
+    "story": "/images/library/winery/story.svg",
+    "storyAlt": "About Mauritson Wines",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/winery/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About Mauritson Wines",
+    "body": [
+      "The Mauritson family has farmed the Dry Creek Valley since 1868 — six generations from sheep ranching to grape-growing. In the mid-1990s Clay Mauritson returned home determined to take the family’s fruit in a new direction, and released his first Zinfandel in 1998.",
+      "Today the estate produces small-lot, single-vineyard wines from three distinct appellations — Dry Creek Valley, Alexander Valley, and the rugged, high-elevation Rockpile."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "Visit & taste",
+  "services": [
+    {
+      "title": "Seated wine tastings",
+      "description": "Reserve a seated flight of small-production, single-vineyard wines at the Dry Creek Valley estate."
+    },
+    {
+      "title": "Wine club",
+      "description": "First access to limited Rockpile and Dry Creek releases for club members."
+    },
+    {
+      "title": "Estate & single-vineyard wines",
+      "description": "Zinfandel and Bordeaux varietals grown across Dry Creek Valley, Alexander Valley, and Rockpile."
+    },
+    {
+      "title": "Private group tastings",
+      "description": "Reservations available for groups; required for parties of six or more."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Daily",
+      "hours": "10:00 AM – 5:00 PM"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Visit & taste",
+      "items": [
+        {
+          "title": "Seated wine tastings",
+          "description": "Reserve a seated flight of small-production, single-vineyard wines at the Dry Creek Valley estate."
+        },
+        {
+          "title": "Wine club",
+          "description": "First access to limited Rockpile and Dry Creek releases for club members."
+        },
+        {
+          "title": "Estate & single-vineyard wines",
+          "description": "Zinfandel and Bordeaux varietals grown across Dry Creek Valley, Alexander Valley, and Rockpile."
+        },
+        {
+          "title": "Private group tastings",
+          "description": "Reservations available for groups; required for parties of six or more."
+        }
+      ]
+    },
+    {
+      "type": "feature-split",
+      "eyebrow": "What sets us apart",
+      "heading": "Visit & taste",
+      "rows": [
+        {
+          "heading": "Seated wine tastings",
+          "body": "Reserve a seated flight of small-production, single-vineyard wines at the Dry Creek Valley estate."
+        },
+        {
+          "heading": "Wine club",
+          "body": "First access to limited Rockpile and Dry Creek releases for club members."
+        },
+        {
+          "heading": "Estate & single-vineyard wines",
+          "body": "Zinfandel and Bordeaux varietals grown across Dry Creek Valley, Alexander Valley, and Rockpile."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "28+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.6★",
+          "label": "54 reviews"
+        },
+        {
+          "value": "4",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 2859 Dry Creek Road, Healdsburg, CA 95448."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Daily: 10:00 AM – 5:00 PM."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Healdsburg, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 431-0804 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "map",
+      "address": "2859 Dry Creek Road, Healdsburg, CA 95448"
+    },
+    {
+      "type": "hours-contact",
+      "heading": "Get in touch",
+      "hours": [
+        {
+          "day": "Daily",
+          "hours": "10:00 AM – 5:00 PM"
+        }
+      ],
+      "phone": "(707) 431-0804",
+      "cta": {
+        "text": "Contact us",
+        "href": "#contact"
+      }
+    },
+    {
+      "type": "cta",
+      "heading": "Get in touch with Mauritson Wines",
+      "text": "Call (707) 431-0804 or send a message — we'll get right back to you.",
+      "buttonText": "Get in touch",
+      "buttonHref": "#contact"
+    }
+  ],
+  "layout": "split",
+  "status": "needs-review",
+  "flags": [
+    "No real photos — using library art; add their real photos before sending",
+    "hero is stock/library art — no real photo"
+  ],
+  "theme": {
+    "brand": "#6b2737",
+    "brandDark": "#2b1a1f"
+  }
+}

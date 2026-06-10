@@ -1,0 +1,195 @@
+{
+  "name": "Lala's Creamery",
+  "category": "cafe",
+  "tagline": "Handmade small-batch ice cream from organic, grass-fed milk.",
+  "seoDescription": "Lala's Creamery — handmade small-batch ice cream from organic grass-fed milk, from-scratch baked goods, and a classic soda fountain in downtown Petaluma.",
+  "area": "Petaluma, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 774-6567",
+    "email": "",
+    "address": "134 Petaluma Blvd N, Petaluma, CA 94952"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Small batches. Big scoops.",
+    "subheading": "Handmade ice cream from organic, grass-fed milk, from-scratch baked goods, and an old-fashioned soda fountain in downtown Petaluma.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [],
+  "images": {
+    "hero": "/images/library/cafe/hero.svg",
+    "heroAlt": "Lala's Creamery in Petaluma, CA",
+    "story": "/images/library/cafe/story.svg",
+    "storyAlt": "About Lala's Creamery",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/cafe/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About Lala's Creamery",
+    "body": [
+      "Lala's Creamery makes ice cream the slow way — handmade in small batches from organic milk sourced from grass-fed cows, with from-scratch baked goods made from local, natural, and organic ingredients.",
+      "There’s always a rotating lineup of vegan, dairy-free, and gluten-free options, served at a classic soda-fountain counter in the heart of downtown Petaluma."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "On the menu",
+  "services": [
+    {
+      "title": "Small-batch ice cream",
+      "description": "Handmade in small batches from organic milk sourced from grass-fed cows."
+    },
+    {
+      "title": "Vegan & dairy-free scoops",
+      "description": "A rotating selection of vegan, dairy-free, and gluten-free flavors made in-house."
+    },
+    {
+      "title": "From-scratch baked goods",
+      "description": "Cookies, cones, and treats baked from scratch with local, natural ingredients."
+    },
+    {
+      "title": "Classic soda fountain",
+      "description": "Floats, sundaes, and shakes served at an old-fashioned soda-fountain counter."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Thu",
+      "hours": "12:00 PM – 9:30 PM"
+    },
+    {
+      "day": "Fri – Sat",
+      "hours": "12:00 PM – 10:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "12:00 PM – 9:30 PM"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "feature-split",
+      "eyebrow": "What sets us apart",
+      "heading": "On the menu",
+      "rows": [
+        {
+          "heading": "Small-batch ice cream",
+          "body": "Handmade in small batches from organic milk sourced from grass-fed cows."
+        },
+        {
+          "heading": "Vegan & dairy-free scoops",
+          "body": "A rotating selection of vegan, dairy-free, and gluten-free flavors made in-house."
+        },
+        {
+          "heading": "From-scratch baked goods",
+          "body": "Cookies, cones, and treats baked from scratch with local, natural ingredients."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 134 Petaluma Blvd N, Petaluma, CA 94952."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon – Thu: 12:00 PM – 9:30 PM; Fri – Sat: 12:00 PM – 10:00 PM; Sunday: 12:00 PM – 9:30 PM."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Petaluma, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 774-6567 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "map",
+      "address": "134 Petaluma Blvd N, Petaluma, CA 94952"
+    },
+    {
+      "type": "hours-contact",
+      "heading": "Get in touch",
+      "hours": [
+        {
+          "day": "Mon – Thu",
+          "hours": "12:00 PM – 9:30 PM"
+        },
+        {
+          "day": "Fri – Sat",
+          "hours": "12:00 PM – 10:00 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "12:00 PM – 9:30 PM"
+        }
+      ],
+      "phone": "(707) 774-6567",
+      "cta": {
+        "text": "Contact us",
+        "href": "#contact"
+      }
+    },
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "On the menu",
+      "items": [
+        {
+          "title": "Small-batch ice cream",
+          "description": "Handmade in small batches from organic milk sourced from grass-fed cows."
+        },
+        {
+          "title": "Vegan & dairy-free scoops",
+          "description": "A rotating selection of vegan, dairy-free, and gluten-free flavors made in-house."
+        },
+        {
+          "title": "From-scratch baked goods",
+          "description": "Cookies, cones, and treats baked from scratch with local, natural ingredients."
+        },
+        {
+          "title": "Classic soda fountain",
+          "description": "Floats, sundaes, and shakes served at an old-fashioned soda-fountain counter."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Get in touch with Lala's Creamery",
+      "text": "Call (707) 774-6567 or send a message — we'll get right back to you.",
+      "buttonText": "Get in touch",
+      "buttonHref": "#contact"
+    }
+  ],
+  "layout": "editorial",
+  "status": "needs-review",
+  "flags": [
+    "No real photos — using library art; add their real photos before sending",
+    "no email — add a real email or contact form before sending",
+    "hero is stock/library art — no real photo"
+  ],
+  "theme": {
+    "brand": "#c2683a",
+    "brandDark": "#3b2f2a"
+  },
+  "artDirection": {
+    "fontId": "editorial-serif",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "bigquote"
+  },
+  "heroVariant": "statement"
+}

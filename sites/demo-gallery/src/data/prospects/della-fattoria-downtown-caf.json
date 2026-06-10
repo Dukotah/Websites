@@ -1,0 +1,194 @@
+{
+  "name": "Della Fattoria Downtown Café",
+  "category": "cafe",
+  "tagline": "Naturally leavened sourdough and from-scratch pastries in downtown Petaluma.",
+  "seoDescription": "Della Fattoria Downtown Café — artisanal sourdough, pastries, and full breakfast & lunch in downtown Petaluma, CA.",
+  "area": "Petaluma, CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 763-0161",
+    "email": "",
+    "address": "143 Petaluma Blvd N, Petaluma, CA 94952"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "The bread that built a reputation.",
+    "subheading": "Artisanal sourdough, fresh pastries, and a seasonal breakfast & lunch — served in a 150-year-old downtown building.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "4.5★ · 1,191 reviews"
+  ],
+  "images": {
+    "hero": "/images/library/cafe/hero.svg",
+    "heroAlt": "Della Fattoria Downtown Café in Petaluma, CA",
+    "story": "/images/library/cafe/story.svg",
+    "storyAlt": "About Della Fattoria Downtown Café",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/cafe/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About Della Fattoria",
+    "body": [
+      "Della Fattoria began when Kathleen and Ed Weber turned a personal passion for bread — born on the family ranch in Petaluma in the early 1990s — into a nationally acclaimed bakery.",
+      "Today the downtown café serves naturally leavened sourdough, from-scratch pastries, and a full breakfast and lunch menu out of a charming 150-year-old building on Petaluma Boulevard."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we bake",
+  "services": [
+    {
+      "title": "Artisanal sourdough breads",
+      "description": "Naturally leavened loaves, hand-built and baked fresh — the breads that earned Della Fattoria its national reputation."
+    },
+    {
+      "title": "Fresh-baked pastries",
+      "description": "A daily case of from-scratch pastries made with the same care as the bakery’s celebrated breads."
+    },
+    {
+      "title": "Breakfast",
+      "description": "Full-service breakfast served Thursday through Sunday in the historic downtown café."
+    },
+    {
+      "title": "Lunch",
+      "description": "A seasonal lunch menu built on local ingredients and house-baked bread."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Thu – Sun",
+      "hours": "8:00 AM – 2:00 PM"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we bake",
+      "items": [
+        {
+          "title": "Artisanal sourdough breads",
+          "description": "Naturally leavened loaves, hand-built and baked fresh — the breads that earned Della Fattoria its national reputation."
+        },
+        {
+          "title": "Fresh-baked pastries",
+          "description": "A daily case of from-scratch pastries made with the same care as the bakery’s celebrated breads."
+        },
+        {
+          "title": "Breakfast",
+          "description": "Full-service breakfast served Thursday through Sunday in the historic downtown café."
+        },
+        {
+          "title": "Lunch",
+          "description": "A seasonal lunch menu built on local ingredients and house-baked bread."
+        }
+      ]
+    },
+    {
+      "type": "feature-split",
+      "eyebrow": "What sets us apart",
+      "heading": "What we bake",
+      "rows": [
+        {
+          "heading": "Artisanal sourdough breads",
+          "body": "Naturally leavened loaves, hand-built and baked fresh — the breads that earned Della Fattoria its national reputation."
+        },
+        {
+          "heading": "Fresh-baked pastries",
+          "body": "A daily case of from-scratch pastries made with the same care as the bakery’s celebrated breads."
+        },
+        {
+          "heading": "Breakfast",
+          "body": "Full-service breakfast served Thursday through Sunday in the historic downtown café."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "4.5★",
+          "label": "1191 reviews"
+        },
+        {
+          "value": "4",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 143 Petaluma Blvd N, Petaluma, CA 94952."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Thu – Sun: 8:00 AM – 2:00 PM."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Petaluma, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 763-0161 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "map",
+      "address": "143 Petaluma Blvd N, Petaluma, CA 94952"
+    },
+    {
+      "type": "hours-contact",
+      "heading": "Get in touch",
+      "hours": [
+        {
+          "day": "Thu – Sun",
+          "hours": "8:00 AM – 2:00 PM"
+        }
+      ],
+      "phone": "(707) 763-0161",
+      "cta": {
+        "text": "Contact us",
+        "href": "#contact"
+      }
+    },
+    {
+      "type": "cta",
+      "heading": "Get in touch with Della Fattoria Downtown Café",
+      "text": "Call (707) 763-0161 or send a message — we'll get right back to you.",
+      "buttonText": "Get in touch",
+      "buttonHref": "#contact"
+    }
+  ],
+  "layout": "editorial",
+  "status": "needs-review",
+  "flags": [
+    "No real photos — using library art; add their real photos before sending",
+    "no email — add a real email or contact form before sending",
+    "hero is stock/library art — no real photo"
+  ],
+  "theme": {
+    "brand": "#c2683a",
+    "brandDark": "#3b2f2a"
+  },
+  "artDirection": {
+    "fontId": "warm-humanist",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "bigquote"
+  },
+  "heroVariant": "editorial"
+}
