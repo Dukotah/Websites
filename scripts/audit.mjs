@@ -126,9 +126,19 @@ function auditProspect(slug, c) {
         s.type === 'stats' &&
         (s.items ?? []).some((it) => /★|star|review|rating/i.test(`${it.label} ${it.value}`)),
     );
-  if (!hasTestimonials && !hasRating)
-    issues.push(['warn', 'no social proof — add a rating or a real testimonial before sending']);
-  else if (!hasTestimonials) issues.push(['info', 'no testimonials (has rating; quotes would help)']);
+  // Verified third-party credentials (certs/licenses/warranties) are legitimate
+  // trust — a new/small business with no public reviews YET still converts on
+  // "ASE Blue Seal", "CAMTC Licensed", "Licensed & insured", "36-month warranty".
+  // So a credential-backed site is shippable; a review just makes it stronger.
+  const CREDENTIAL = /certified|licensed|insured|bonded|accredited|warrant|guarantee|\bASE\b|\bBBB\b|NAPA|CAMTC|AMTA|board[- ]certified|member|#\s?\d/i;
+  const hasCredentials = (c.highlights ?? []).some((h) => CREDENTIAL.test(h));
+  if (hasTestimonials || hasRating) {
+    if (!hasTestimonials) issues.push(['info', 'no testimonials (has rating; quotes would help)']);
+  } else if (hasCredentials) {
+    issues.push(['info', 'no reviews yet — trust carried by verified credentials; add a review when available']);
+  } else {
+    issues.push(['warn', 'no social proof — add a rating, a real testimonial, or a credential']);
+  }
   return issues;
 }
 
