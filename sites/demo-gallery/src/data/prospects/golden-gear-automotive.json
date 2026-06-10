@@ -119,6 +119,29 @@
       ]
     },
     {
+      "type": "gallery",
+      "eyebrow": "Gallery",
+      "heading": "A look around",
+      "images": [
+        {
+          "src": "/images/golden-gear-automotive/story.png",
+          "alt": "Golden Gear Automotive in Sebastopol, CA — photo 1"
+        },
+        {
+          "src": "/images/golden-gear-automotive/photo-2.png",
+          "alt": "Golden Gear Automotive in Sebastopol, CA — photo 2"
+        },
+        {
+          "src": "/images/golden-gear-automotive/photo-3.png",
+          "alt": "Golden Gear Automotive in Sebastopol, CA — photo 3"
+        },
+        {
+          "src": "/images/golden-gear-automotive/photo-4.png",
+          "alt": "Golden Gear Automotive in Sebastopol, CA — photo 4"
+        }
+      ]
+    },
+    {
       "type": "faq",
       "eyebrow": "Good to know",
       "heading": "Common questions",

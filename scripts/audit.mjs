@@ -21,6 +21,12 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, dirname, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  validateProspectConfig,
+  isStockImage,
+  FILLER_DESC_RE,
+  TEMPLATED_SERVICE_RE,
+} from '../sites/demo-gallery/src/lib/contract.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
@@ -78,14 +84,21 @@ async function auditTokens() {
   return byToken;
 }
 
-const isStock = (src) => !src || src.includes('/images/library/') || src.endsWith('.svg');
-const TEMPLATED = /professional \w+ for \w+ and nearby|service (one|two|three|four)/i;
+// Reuse the data contract's predicates so the audit gate and the generator agree
+// on what counts as stock art / templated slop (single source of truth).
+const isStock = isStockImage;
+const TEMPLATED = new RegExp(`${FILLER_DESC_RE.source}|${TEMPLATED_SERVICE_RE.source}`, 'i');
 // Text-forward hero variants are photo-free BY DESIGN (huge type, no image) —
 // not a defect. pickHero() falls back to these when no real photo exists.
 const TEXT_HEROES = new Set(['statement', 'editorial', 'panel']);
 
 function auditProspect(slug, c) {
   const issues = [];
+  // Structural contract gate — a config that violates the data contract is a hard
+  // fail (it would break the build at the render boundary).
+  for (const err of validateProspectConfig(c).errors) {
+    issues.push(['critical', `contract violation: ${err}`]);
+  }
   const textHero = TEXT_HEROES.has(c.heroVariant);
   if (isStock(c.images?.hero)) {
     if (textHero) {

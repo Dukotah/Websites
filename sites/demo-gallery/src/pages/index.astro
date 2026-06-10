@@ -5,6 +5,7 @@ import { resolveArtDirection } from '../lib/art-direction';
 import { composePage } from '../lib/compose';
 import { scoreProspect } from '../lib/score';
 import { scoreUniqueness } from '../lib/uniqueness';
+import { assertValidProspectConfig } from '../lib/contract.mjs';
 
 // Internal dashboard of every demo — YOUR view, not prospect-facing. It scores
 // each demo (spec §10) so you can tell a genuinely strong, unique site from a
@@ -16,6 +17,7 @@ const modules = import.meta.glob<ProspectConfig>('../data/prospects/*.json', {
 
 const base = Object.entries(modules).map(([path, config]) => {
   const slug = path.split('/').pop()!.replace(/\.json$/, '');
+  assertValidProspectConfig(config, slug);
   const ad = resolveArtDirection(config);
   const plan = composePage(config, ad);
   const s = scoreProspect(config, ad, plan);

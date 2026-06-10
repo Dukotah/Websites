@@ -634,45 +634,26 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
   const hero: HeroVariant =
     config.heroVariant ?? pickHero(ad, inventory, seed);
 
-  // If the config explicitly provides a sections array (author override), respect it.
-  // The engine only adds hero + connective tissue (cta at min).
+  // SINGLE STRUCTURE OWNER: when the config carries a sections array, the
+  // GENERATOR (scripts/generate-prospects.mjs) has already decided the page's
+  // full, hard-gated, ordered structure — including the photo service grid,
+  // gallery, feature bands, mid/closing CTAs. The composer no longer injects or
+  // reorders sections at render time (that render-time improvisation was the root
+  // architectural defect). It only:
+  //   (a) guarantees a closing CTA as a safety net for hand-authored configs that
+  //       omit one, then
+  //   (b) applies purely PRESENTATIONAL passes — real-rating stat swap,
+  //       alternating surface tones, and deterministic layout variants.
+  // What you see in the JSON is what renders.
   if (config.sections && config.sections.length > 0) {
-    let authored = [...config.sections];
-    // Every site gets a photo service-card grid (the bear-flag look) — inject one
-    // from config.services if the author didn't include it.
-    if (!authored.some((s) => s.type === 'services-detailed')) {
-      const sd = instantiateSection('services-detailed', config);
-      if (sd) authored = [authored[0], sd, ...authored.slice(1)];
-    }
-    // Show their REAL photos big — inject a gallery when we have ≥3 real images.
-    if (!authored.some((s) => s.type === 'gallery')) {
-      const g = instantiateSection('gallery', config);
-      if (g) authored.splice(Math.min(2, authored.length), 0, g);
-    }
-    // No gallery (<3 real images) but a story photo + described services? Inject
-    // ONE feature-split so 2-image sites get an editorial image band instead of a
-    // blank gap between About and Services. Skipped if a feature-split is already
-    // present (e.g. one the divergence pass added), so the two never double up.
-    if (
-      !authored.some((s) => s.type === 'gallery') &&
-      !authored.some((s) => s.type === 'feature-split') &&
-      inventory.hasFeatureSplit &&
-      inventory.imageCount < 3
-    ) {
-      const fs = instantiateSection('feature-split', config);
-      if (fs) authored.splice(Math.min(2, authored.length), 0, fs);
-    }
-    // Ensure CTA is present
-    const hasCta = authored.some((s) => s.type === 'cta');
-    const withTrailingCta = hasCta
+    const authored = [...config.sections];
+    const withClosingCta = authored.some((s) => s.type === 'cta')
       ? authored
       : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
-    // CRO: insert a mid-page CTA immediately after testimonials (credibility peak).
-    const plan = insertCtaAfterTestimonials(withTrailingCta, config);
     return {
       hero,
       sections: assignVariants(
-        assignTones(withRatingStat(ensureMinimum(plan, config, seed), config), seed),
+        assignTones(withRatingStat(ensureMinimum(withClosingCta, config, seed), config), seed),
         seed,
         ad.category,
       ),
