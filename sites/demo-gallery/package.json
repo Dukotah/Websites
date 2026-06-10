@@ -9,6 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "shots": "node scripts/screenshot-audit.mjs",
+    "mobile-shots": "node scripts/mobile-shot.mjs",
     "vision-qa": "node scripts/vision-qa.mjs",
     "astro": "astro"
   },
