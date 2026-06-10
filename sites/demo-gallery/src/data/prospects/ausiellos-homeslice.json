@@ -204,5 +204,11 @@
     "Pizza",
     "Italian",
     "American"
-  ]
+  ],
+  "artDirection": {
+    "fontId": "handcrafted",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "feature-split"
+  },
+  "heroVariant": "editorial-asym"
 }

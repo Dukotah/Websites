@@ -36,11 +36,26 @@
     "placeholder": "/images/library/restaurant/hero.svg"
   },
   "galleryImages": [
-    { "src": "/images/del-valle-mexican-restaurant/photo-2.webp", "alt": "Molcajete at Del Valle Mexican Restaurant" },
-    { "src": "/images/del-valle-mexican-restaurant/photo-3.webp", "alt": "Fish tacos at Del Valle Mexican Restaurant" },
-    { "src": "/images/del-valle-mexican-restaurant/photo-4.webp", "alt": "Chimichanga at Del Valle Mexican Restaurant" },
-    { "src": "/images/del-valle-mexican-restaurant/photo-5.webp", "alt": "Carne asada plate at Del Valle Mexican Restaurant" },
-    { "src": "/images/del-valle-mexican-restaurant/photo-6.webp", "alt": "Enchiladas Michoacanas at Del Valle Mexican Restaurant" }
+    {
+      "src": "/images/del-valle-mexican-restaurant/photo-2.webp",
+      "alt": "Molcajete at Del Valle Mexican Restaurant"
+    },
+    {
+      "src": "/images/del-valle-mexican-restaurant/photo-3.webp",
+      "alt": "Fish tacos at Del Valle Mexican Restaurant"
+    },
+    {
+      "src": "/images/del-valle-mexican-restaurant/photo-4.webp",
+      "alt": "Chimichanga at Del Valle Mexican Restaurant"
+    },
+    {
+      "src": "/images/del-valle-mexican-restaurant/photo-5.webp",
+      "alt": "Carne asada plate at Del Valle Mexican Restaurant"
+    },
+    {
+      "src": "/images/del-valle-mexican-restaurant/photo-6.webp",
+      "alt": "Enchiladas Michoacanas at Del Valle Mexican Restaurant"
+    }
   ],
   "about": {
     "heading": "About Del Valle Mexican Restaurant",
@@ -94,37 +109,6 @@
   "hoursNote": "",
   "sections": [
     {
-      "type": "services-detailed",
-      "eyebrow": "Services",
-      "heading": "On the menu",
-      "items": [
-        {
-          "title": "Tacos",
-          "description": "Street-style tacos with your choice of meats, plus fish tacos topped with fresh ingredients."
-        },
-        {
-          "title": "Burritos",
-          "description": "Regular and Super Burritos with rice, beans and up to eight meat choices, wrapped to order."
-        },
-        {
-          "title": "Mariscos",
-          "description": "Seafood specialties like molcajete de mariscos, ceviche and shrimp tostadas, and camarones con tocino."
-        },
-        {
-          "title": "Molcajetes & Fajitas",
-          "description": "Steak, chicken, shrimp or mixed molcajetes and fajitas served with rice, beans and tortillas."
-        },
-        {
-          "title": "Breakfast",
-          "description": "Morning plates including chilaquiles con huevo, huevos con bistec and traditional Mexican breakfasts."
-        },
-        {
-          "title": "Catering",
-          "description": "Taco bars, burrito bowls, quesadillas, sopes, tortas and large-batch pozole, menudo and birria for events."
-        }
-      ]
-    },
-    {
       "type": "stats",
       "items": [
         {
@@ -163,6 +147,37 @@
           "a": "Call us at 707-595-1081 — we're glad to help."
         }
       ]
+    },
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "On the menu",
+      "items": [
+        {
+          "title": "Tacos",
+          "description": "Street-style tacos with your choice of meats, plus fish tacos topped with fresh ingredients."
+        },
+        {
+          "title": "Burritos",
+          "description": "Regular and Super Burritos with rice, beans and up to eight meat choices, wrapped to order."
+        },
+        {
+          "title": "Mariscos",
+          "description": "Seafood specialties like molcajete de mariscos, ceviche and shrimp tostadas, and camarones con tocino."
+        },
+        {
+          "title": "Molcajetes & Fajitas",
+          "description": "Steak, chicken, shrimp or mixed molcajetes and fajitas served with rice, beans and tortillas."
+        },
+        {
+          "title": "Breakfast",
+          "description": "Morning plates including chilaquiles con huevo, huevos con bistec and traditional Mexican breakfasts."
+        },
+        {
+          "title": "Catering",
+          "description": "Taco bars, burrito bowls, quesadillas, sopes, tortas and large-batch pozole, menudo and birria for events."
+        }
+      ]
     }
   ],
   "layout": "classic",
@@ -175,5 +190,11 @@
   "priceRange": "$$",
   "servesCuisine": [
     "Mexican"
-  ]
+  ],
+  "artDirection": {
+    "fontId": "classic-trad",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "timeline"
+  },
+  "heroVariant": "editorial"
 }

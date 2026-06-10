@@ -16,7 +16,7 @@
     "google": ""
   },
   "hero": {
-    "heading": "Honest Auto Repair Done Right",
+    "heading": "Family-owned auto repair, backed for 2 years",
     "subheading": "A family-owned, full-service maintenance and repair shop in Santa Rosa with ASE-trained technicians who service all makes and models, foreign and domestic.",
     "ctaText": "Get in touch",
     "ctaHref": "#contact"
@@ -181,5 +181,6 @@
   "theme": {
     "brand": "#e08a1e",
     "brandDark": "#23272e"
-  }
+  },
+  "heroVariant": "split"
 }

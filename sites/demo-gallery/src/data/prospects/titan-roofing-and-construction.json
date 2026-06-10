@@ -16,7 +16,7 @@
     "google": ""
   },
   "hero": {
-    "heading": "Trusted Santa Rosa Roofing Done Right",
+    "heading": "Family-owned Santa Rosa roofers since 1999",
     "subheading": "Licensed and experienced roof repair and replacement for homes and businesses across Santa Rosa, with free estimates and honest, dependable work.",
     "ctaText": "Get in touch",
     "ctaHref": "#contact"
@@ -181,5 +181,6 @@
   "theme": {
     "brand": "#c2683a",
     "brandDark": "#243b53"
-  }
+  },
+  "heroVariant": "editorial-asym"
 }

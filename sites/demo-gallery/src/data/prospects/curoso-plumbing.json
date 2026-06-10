@@ -186,5 +186,6 @@
   "theme": {
     "brand": "#1f6feb",
     "brandDark": "#16324f"
-  }
+  },
+  "heroVariant": "panel"
 }

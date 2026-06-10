@@ -173,5 +173,6 @@
   "theme": {
     "brand": "#2f8f3e",
     "brandDark": "#22321f"
-  }
+  },
+  "heroVariant": "collage"
 }

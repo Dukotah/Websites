@@ -116,6 +116,78 @@ function hasRealPhoto(config) {
   return Boolean(src) && !src.includes('/images/library/') && !src.endsWith('.svg');
 }
 
+/** How many real gallery photos beyond the hero — collage needs ≥2. */
+function galleryDepth(config) {
+  return Array.isArray(config?.galleryImages) ? config.galleryImages.length : 0;
+}
+
+// Global silhouette rotations, ordered by how "photo-forward" each hero reads.
+// The cross-category pass cycles these so a MIXED batch (all-different
+// categories, where the per-category loop never fires) still gets varied
+// silhouettes instead of every photo-rich site defaulting to split/cinematic.
+const PHOTO_HERO_ROTATION = ['cinematic', 'split', 'editorial-asym', 'collage', 'editorial'];
+const TEXT_HERO_ROTATION = ['statement', 'typographic', 'editorial', 'panel', 'editorial-asym'];
+
+/**
+ * Cross-category silhouette diversity for the WHOLE batch. The per-category loop
+ * only fires for ≥2 same-category siblings; a batch of all-distinct categories
+ * therefore gets NO hero diversity from it, and every photo-rich site collapses
+ * to compose.ts's split/cinematic default — the "looks like one template" tell.
+ *
+ * This balances hero usage across the entire batch and avoids adjacent repeats
+ * (by stable slug order), choosing a silhouette appropriate to each site's photo
+ * inventory. Respects any heroVariant already pinned (author or per-category pass).
+ */
+function diversifyHeroesGlobally(prospects, report) {
+  const ordered = [...prospects].sort((a, b) => a.slug.localeCompare(b.slug));
+
+  // Seed usage counts with heroes already pinned, so the global fill BALANCES
+  // against them rather than ignoring them.
+  const counts = {};
+  for (const p of ordered) {
+    const h = p.config.heroVariant;
+    if (h) counts[h] = (counts[h] ?? 0) + 1;
+  }
+
+  let prev = '';
+  for (const p of ordered) {
+    const cfg = p.config;
+    if (cfg.heroVariant) { prev = cfg.heroVariant; continue; } // respect pins
+
+    const photo = hasRealPhoto(cfg);
+    let rotation = photo ? PHOTO_HERO_ROTATION : TEXT_HERO_ROTATION;
+    if (photo && galleryDepth(cfg) < 2) rotation = rotation.filter((h) => h !== 'collage');
+    // `statement` and `typographic` render the headline as ONE giant stacked
+    // word-stack — gorgeous for a short punch, but a long headline overflows the
+    // fold (clipped "…SINCE 1982"). For long headlines, drop them in favor of the
+    // wrap-friendly editorial/panel heroes. (Keep at least one option.)
+    const headlineLen = (cfg.hero?.heading ?? '').trim().length;
+    if (headlineLen > 24) {
+      const wrapped = rotation.filter((h) => h !== 'statement' && h !== 'typographic');
+      if (wrapped.length) rotation = wrapped;
+    }
+
+    // Least-used hero in the rotation that isn't the previous site's silhouette;
+    // usage dominates, rotation order tie-breaks (keeps it deterministic).
+    let best = '';
+    let bestScore = Infinity;
+    rotation.forEach((h, idx) => {
+      if (h === prev && rotation.length > 1) return;
+      const score = (counts[h] ?? 0) * 100 + idx;
+      if (score < bestScore) { bestScore = score; best = h; }
+    });
+    if (!best) best = rotation[0];
+
+    cfg.heroVariant = best;
+    counts[best] = (counts[best] ?? 0) + 1;
+    prev = best;
+
+    const entry = report.find((r) => r.slug === p.slug);
+    if (entry) entry.changes.push(`hero=${best}`);
+    else report.push({ slug: p.slug, changes: [`hero=${best}`] });
+  }
+}
+
 /** Rotate the section array by `n`, keeping any trailing `cta` pinned last. */
 function rotateSections(sections, n) {
   if (!Array.isArray(sections) || sections.length < 3) return sections;
@@ -233,6 +305,12 @@ export function diversifyBatch(prospects) {
       if (changes.length) report.push({ slug: p.slug, changes });
     });
   }
+
+  // Cross-category silhouette pass: gives a mixed batch (where the per-category
+  // loop above never fires) varied, balanced hero silhouettes. Runs last so it
+  // respects every heroVariant the per-category pass and author pins already set.
+  diversifyHeroesGlobally(prospects, report);
+
   return report;
 }
 

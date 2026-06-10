@@ -201,5 +201,6 @@
     "brand": "#b5557f",
     "brandDark": "#2e2230"
   },
-  "priceRange": "$$"
+  "priceRange": "$$",
+  "heroVariant": "collage"
 }

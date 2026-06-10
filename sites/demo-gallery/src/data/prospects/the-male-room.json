@@ -206,5 +206,6 @@
     "brand": "#c2683a",
     "brandDark": "#243b53"
   },
-  "priceRange": "$$"
+  "priceRange": "$$",
+  "heroVariant": "split"
 }
