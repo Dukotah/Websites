@@ -37,6 +37,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { scrapeSite, stripTags } from './lib/scrape-site.mjs';
 import { acquirePhotos } from './lib/images.mjs';
 import { diversifyBatch } from './lib/divergence.mjs';
+import { scorePhoto } from './lib/photo-score.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
@@ -753,14 +754,42 @@ const catKeyFor = (row) =>
 // theirs, so more real photos = a richer page, never stock).
 async function agentDroppedPhotos(slug) {
   try {
-    const files = (await readdir(join(PUBLIC_IMAGES, slug)))
+    const dir = join(PUBLIC_IMAGES, slug);
+    const files = (await readdir(dir))
       .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f))
       .sort();
     if (!files.length) return [];
-    const hero = files.find((f) => f.startsWith('hero')) ?? files[0];
-    const story = files.find((f) => f.startsWith('story')) ?? files.find((f) => f !== hero);
-    // hero, then story, then everything else — de-duped, order preserved.
-    const ordered = [hero, story, ...files].filter(
+
+    // Score every curated photo so the BEST frame wins the hero slot — not
+    // whatever file was literally named "hero". (The Jun 9 batch had to hand-
+    // override hero=story.jpg because the literal hero.jpg wasn't the strongest
+    // shot; scoring removes that manual step.) Key-free: photo-score.mjs judges
+    // entropy/tonal richness/aspect and flags logos/flat graphics.
+    const scored = [];
+    for (const f of files) {
+      let score = 0;
+      let landscape = false;
+      let graphic = false;
+      try {
+        const q = await scorePhoto(await readFile(join(dir, f)));
+        score = q?.score ?? 0;
+        graphic = Boolean(q?.isGraphic);
+        landscape = q?.w && q?.h ? q.w >= q.h * 1.1 : false;
+      } catch { /* unreadable → leave at score 0 */ }
+      scored.push({ f, score, landscape, graphic });
+    }
+
+    // Hero: highest-scoring LANDSCAPE non-graphic frame (a wide photo fills the
+    // stage; a square logo doesn't). Fall back to best overall, then to file
+    // order. Story: next best. Remaining files: gallery fodder, score order.
+    const byScore = [...scored].sort((a, b) => b.score - a.score);
+    const heroPick =
+      byScore.find((s) => s.landscape && !s.graphic) ??
+      byScore.find((s) => !s.graphic) ??
+      byScore[0];
+    const hero = heroPick.f;
+    const story = (byScore.find((s) => s.f !== hero) ?? heroPick).f;
+    const ordered = [hero, story, ...byScore.map((s) => s.f)].filter(
       (f, i, a) => f && a.indexOf(f) === i,
     );
     return ordered.map((f) => ({ path: `/images/${slug}/${f}`, credit: '' }));
