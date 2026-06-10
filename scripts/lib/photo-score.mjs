@@ -9,6 +9,8 @@
  *
  *   • entropy        — flat graphics/logos have low histogram entropy; photos high
  *   • channel stdev  — real photos carry rich tonal variation; UI/flat art doesn't
+ *   • channel spread — logos/badges are dominated by one hue (wide R/G/B mean gap)
+ *                      or sit on the black/white rails (masks/plates); photos don't
  *   • transparency   — a real photo is never transparent; logos/icons usually are
  *   • aspect ratio   — extreme banners are decoration, not photography
  *
@@ -44,20 +46,33 @@ export async function scorePhoto(buf) {
   const rgb = stats.channels.slice(0, 3);
   const meanStdev = rgb.reduce((a, c) => a + c.stdev, 0) / (rgb.length || 1);
 
+  // Channel-balance signal: a real photograph carries correlated, varied colour
+  // across R/G/B, so the per-channel means spread out and no single channel sits
+  // pinned at an extreme. Logos / flat UI / single-hue badges are dominated by
+  // one channel (or pure black/white), which shows up as a very wide gap between
+  // the channels' means or a mean parked at the 0/255 rails. Cheap, no extra work.
+  const means = rgb.map((c) => c.mean);
+  const meanSpread = means.length ? Math.max(...means) - Math.min(...means) : 0;
+  const railed = means.every((m) => m < 14 || m > 241); // every channel at a rail → solid fill / mask
+
   // --- classify: is this decoration (logo / screenshot / flat art) not a photo? ---
   const reasons = [];
   if (hasAlpha) reasons.push('transparent');
   if (entropy < 4.2) reasons.push('low-entropy');
   if (meanStdev < 38) reasons.push('flat-tones');
   if (ar >= 4 || ar <= 0.32) reasons.push('banner-aspect');
+  if (meanSpread > 110) reasons.push('channel-skew'); // one hue dominates → brand graphic
+  if (railed) reasons.push('railed-fill');
   // High entropy means real photographic detail even when contrast is low (fog,
   // night, monochrome), so the "flat" signals must NOT veto a high-entropy image.
   const photographic = entropy >= 5.5;
   const isGraphic =
     !photographic &&
-    ((hasAlpha && entropy < 5.2) || // transparent + not richly detailed → logo/icon
+    (railed || // a flat black/white/solid plate is never a photo
+      (hasAlpha && entropy < 5.2) || // transparent + not richly detailed → logo/icon
       entropy < 3.6 || // extremely flat → illustration/logo
       meanStdev < 26 || // almost no tonal variation → UI/flat fill
+      (meanSpread > 110 && entropy < 5.2) || // one-hue brand art that isn't richly detailed
       reasons.length >= 2); // multiple weak signals stack into a verdict
 
   // --- photographic quality score (0..1) for ranking the survivors ---

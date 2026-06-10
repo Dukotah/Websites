@@ -57,6 +57,55 @@ CRM_ADMIN_TOKEN=… GALLERY_BASE_URL=https://demos.copperbaytech.com npm run pus
 - `claimByDate` comes from each prospect's `outreach.claimByDate` block; unset → no
   expiry shown anywhere (honest, no fake countdown).
 
+## On-demand generation (the "Generate Website" button)
+
+Instead of running CSV batches, the CRM can generate a single lead's demo from a
+button on its profile. The button fires a **GitHub `repository_dispatch`**, which
+runs `.github/workflows/generate-demo.yml` on a network-enabled runner (so the
+scraper + deep photo crawl actually pull the business's real facts and photos),
+commits the new prospect to `main` (Vercel deploys on push), and runs
+`push-to-crm` to attach the live link back to the lead.
+
+**The button = one API call** from the CRM backend (token kept server-side):
+
+```bash
+curl -X POST https://api.github.com/repos/Dukotah/Websites/dispatches \
+  -H "Authorization: Bearer $GH_DISPATCH_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  -d '{
+        "event_type": "generate-demo",
+        "client_payload": {
+          "name": "Smitty's Towing",
+          "website": "https://smittystowing.com",
+          "category": "towing",
+          "city": "Healdsburg", "state": "CA",
+          "phone": "(707) 555-0142", "email": "", "address": ""
+        }
+      }'
+```
+
+`client_payload` is exactly a CSV row as JSON (`name` required; everything else
+optional — `website` is the biggest quality lever). `GH_DISPATCH_TOKEN` is a
+fine-grained PAT with **Contents: read/write** on this repo.
+
+**The link is deterministic**, so the template can use it immediately (before the
+build even finishes) — the slug is `name` lowercased with non-alphanumerics
+collapsed to hyphens (matching `slugify` in `generate-prospects.mjs`):
+
+```
+slug = name.toLowerCase().replace(/['’]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')
+link = `${GALLERY_BASE_URL}/p/${slug}`     // e.g. https://demos.copperbaytech.com/p/smittys-towing
+```
+
+So the CRM can drop `link` into the outreach template the moment the button is
+clicked; the `push-to-crm` step then confirms it and sets the **status pill**
+(`ready` vs `needs-review`) once the runner finishes (~1–2 min). A
+`needs-review` result still gates the Send button, exactly as the batch path does.
+
+**Repo setup (owner, one-time):** add Actions **secrets** `CRM_BASE_URL` +
+`CRM_ADMIN_TOKEN` and an Actions **variable** `GALLERY_BASE_URL`. The workflow
+also runs manually from the Actions tab (`workflow_dispatch`) for testing.
+
 ## Env (owner to-dos)
 
 - `CRM_ADMIN_TOKEN` — must equal the value in the duke app (the push is token-gated).

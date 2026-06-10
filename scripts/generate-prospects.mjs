@@ -37,6 +37,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { scrapeSite, stripTags } from './lib/scrape-site.mjs';
 import { acquirePhotos } from './lib/images.mjs';
 import { diversifyBatch } from './lib/divergence.mjs';
+import { validateProspectConfig } from '../sites/demo-gallery/src/lib/contract.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
@@ -187,23 +188,18 @@ function pickHeroHeadline(row, e, what, area) {
 }
 
 // ---------------------------------------------------------------------------
-// Service-description derivation (key-free path). The old fallback wrote
-// "<Title> for <city> and the surrounding community." for every service — pure
-// filler. Instead: pull a real sentence from the business's about copy that
-// mentions the service, and only if none exists fall back to one of several
-// varied, concrete templates (rotated by seed so siblings don't all match).
+// Service-description derivation (key-free, hard-gated). We ONLY describe a
+// service from the business's OWN words — a real sentence in their about/scrape
+// copy that names the service. If none exists we return '' rather than invent a
+// generic line: an undescribed service is still surfaced honestly as a
+// "what we do" label (feature-grid) — it just won't claim specifics we can't
+// back up. (The old "<Title> for <city>…" / "We handle X with care" templates
+// were filler and are gone.)
 // ---------------------------------------------------------------------------
-const SERVICE_DESC_TEMPLATES = [
-  (t, city) => `We handle ${t.toLowerCase()} with care${city ? ` for ${city}` : ''} — and we do it right the first time.`,
-  (t, city) => `Count on our team for ${t.toLowerCase()}${city ? ` across ${city}` : ''}, start to finish.`,
-  (t) => `Real experience behind every ${t.toLowerCase()} job, big or small.`,
-  (t, city) => `${t} you can trust${city ? `, right here in ${city}` : ''}.`,
-];
-
 function deriveServiceDesc(title, aboutText, city, seed, used) {
-  // 1) A real sentence from their own copy that names this service — but NOT one
-  //    already used for another service (two services often share a keyword, and
-  //    repeating one sentence verbatim across cards looks worse than a template).
+  // A real sentence from their own copy that names this service — but NOT one
+  // already used for another service (two services often share a keyword, and
+  // repeating one sentence verbatim across cards reads worse than no copy).
   const key = title.toLowerCase().split(/\s+/).find((w) => /[a-z]{4,}/i.test(w));
   if (key && aboutText) {
     const hit = aboutText
@@ -221,9 +217,8 @@ function deriveServiceDesc(title, aboutText, city, seed, used) {
       return clip(hit, 200);
     }
   }
-  // 2) Varied, concrete fallback (action verb + the service noun phrase).
-  const tpl = SERVICE_DESC_TEMPLATES[seed % SERVICE_DESC_TEMPLATES.length];
-  return tpl(titleCase(title), city);
+  // No real source sentence — honest empty description (gated downstream).
+  return '';
 }
 
 // Trim a long string to a sentence boundary near `max` chars, falling back to
@@ -355,46 +350,39 @@ function researchCopy(row, preset, e) {
   } else if (e?.description && e.description.length > 80) {
     aboutBody = [clip(e.description, 320)];
   } else {
+    // No real about/story text — gate rather than fabricate a neighborly origin
+    // story. The About region still renders the heading, photo, and highlights;
+    // it just won't invent a history we can't verify. Flagged needs-review.
     templated.push('about');
-    aboutBody = [
-      `${row.name} is a locally owned ${what} proudly serving ${area || 'the area'}. ` +
-        `We treat every customer like a neighbor — because most of them are.`,
-      'Reliable work, fair prices, and people who pick up the phone. ' +
-        "That's what's kept folks coming back to us.",
-    ];
+    aboutBody = [];
   }
 
   // Services: real scraped service names beat generic presets. We only have
   // their titles, so descriptions are derived from their own about copy where
   // possible (a sentence that names the service), else a varied concrete line.
-  let services;
-  if (e?.services?.length >= 3) {
+  // Services: ONLY the business's real, scraped service names — never the generic
+  // category preset (that was the "Service one/two/three" slop). Descriptions are
+  // pulled from their own copy where a real sentence names the service, else left
+  // empty (the service still lists as an honest label, just without invented prose).
+  let services = [];
+  if (e?.services?.length) {
     const aboutText = realParas.join(' ') || e?.description || '';
     const sseed = hashStr(slugify(row.name));
     const usedDescs = new Set();
-    services = e.services.slice(0, 5).map((title, i) => ({
+    services = e.services.slice(0, 6).map((title, i) => ({
       title: titleCase(title),
       description: deriveServiceDesc(title, aboutText, row.city, sseed + i, usedDescs),
     }));
-    // No longer flagged 'service-descriptions': derived from real copy or a
-    // concrete, non-filler template — not the old "<Title> for <city>…" stub.
-  } else {
-    templated.push('services');
-    services = preset.services.map((title) => ({
-      title,
-      description: `Professional ${title.toLowerCase()} for ${row.city || 'the local area'} and nearby.`,
-    }));
   }
+  if (!services.length) templated.push('services');
 
-  // Highlights: prefer concrete real facts over generic adjectives.
+  // Highlights: ONLY concrete, verifiable facts (founding year, real rating). The
+  // old code padded to three with generic category adjectives ("24/7 dispatch",
+  // "Licensed & insured") — claims that can be FALSE for this specific business.
+  // Per the hard-gate rule we assert nothing we can't back up; fewer is fine.
   const highlights = [];
   if (e?.established) highlights.push(`Serving since ${e.established}`);
   if (e?.rating) highlights.push(`${e.rating}★${e.reviewCount ? ` · ${e.reviewCount} reviews` : ''}`);
-  while (highlights.length < 3) {
-    const next = preset.highlights[highlights.length] ?? preset.highlights[0];
-    if (!highlights.includes(next)) highlights.push(next);
-    else break;
-  }
 
   const tagline = e?.description
     ? clip(e.description, 110)
@@ -434,29 +422,97 @@ function fallbackCopy(row, preset) {
   return researchCopy(row, preset, null);
 }
 
-// Compose a RICH depth-section spine from REAL data only — never fabricated.
-// Every section is data-gated: it appears only when the scrape (or CSV row)
-// actually provides the facts to fill it, so the FIRST build lands rich instead
-// of thin. Photos/gallery are deliberately NOT built here — that lever lives in
-// the media pipeline so we never pad a gallery with stock.
-function buildSections(row, e, copy) {
+// The business's OWN photos beyond the hero, as gallery items (never stock). A
+// media item is "own" when it carries no credit and isn't library/SVG art. Pulled
+// out of buildConfig so buildSections (the structure owner) can emit the gallery
+// section from the same source the config field uses.
+const GALLERY_MAX = 10;
+function computeGalleryImages(row, media = []) {
+  const area = [row.city, row.state].filter(Boolean).join(', ');
+  const heroPhoto = media[0];
+  const isOwn = (m) => m?.path && !m.credit && !m.path.includes('/images/library/');
+  const ownPhotos = media.filter(isOwn);
+  if (ownPhotos[0] && heroPhoto && ownPhotos[0].path === heroPhoto.path) {
+    return ownPhotos.slice(1, 1 + GALLERY_MAX).map((m, i) => ({
+      src: m.path,
+      alt: `${row.name}${area ? ` in ${area}` : ''} — photo ${i + 1}`,
+    }));
+  }
+  return [];
+}
+
+// A conversion CTA section. Honest by nature (it asks the visitor to reach out —
+// it asserts no facts), so it's the one section that's always allowed.
+function ctaSection(row, phone, kind) {
+  return {
+    type: 'cta',
+    heading: kind === 'mid' ? 'Ready when you are' : `Get in touch with ${row.name}`,
+    text: phone
+      ? `Call ${phone} or send a message — we'll get right back to you.`
+      : "Send a message and we'll get right back to you.",
+    buttonText: 'Get in touch',
+    buttonHref: '#contact',
+  };
+}
+
+// Compose the COMPLETE, ordered page structure from REAL data only — this is now
+// the SINGLE owner of page structure (the render-time composer just passes it
+// through). Every section is hard-gated: it appears only when the scrape (or CSV
+// row) actually provides the facts to fill it, so a thin business yields a
+// shorter honest page rather than a padded fabricated one. Gallery is built here
+// (from the business's own photos), never padded with stock.
+function buildSections(row, e, copy, galleryImages = []) {
   const sections = [];
   const area = [row.city, row.state].filter(Boolean).join(', ');
   const phone = e?.phone || row.phone || '';
   const address = e?.address || row.address || '';
 
-  // 1) Services as the rich grid — the visible spine of the page.
-  const svc = (copy?.services ?? []).filter((s) => s.title);
-  if (svc.length) {
+  const describedSvc = (copy?.services ?? []).filter(
+    (s) => s.title && s.description && s.description.trim().length > 20,
+  );
+  const allSvc = (copy?.services ?? []).filter((s) => s.title);
+  const highlights = (copy?.highlights ?? []).filter(Boolean);
+
+  // 1) Feature grid — honest, scannable labels of their REAL services. Used only
+  //    when we have ≥3 real service TITLES but couldn't describe them (so it never
+  //    duplicates the rich grid below). Built from real titles, NOT generic
+  //    category claims — a business with no real services gets no grid (gated).
+  if (!describedSvc.length && allSvc.length >= 3) {
+    const items = allSvc.slice(0, 6).map((s) => ({ label: s.title }));
+    sections.push({ type: 'feature-grid', eyebrow: 'What we do', heading: 'How we can help', items });
+  }
+
+  // 2) Services as the rich grid — ONLY services with a REAL description (the
+  //    visible spine when we have real prose to back each card).
+  if (describedSvc.length) {
     sections.push({
       type: 'services-detailed',
       eyebrow: 'Services',
       heading: copy.servicesHeading || 'What we do',
-      items: svc.map((s) => ({ title: s.title, description: s.description })),
+      items: describedSvc.map((s) => ({ title: s.title, description: s.description })),
     });
   }
 
-  // 2) Stats from real numbers only.
+  // 3) Their REAL photos. ≥3 of their own → a gallery; otherwise, if there's a
+  //    story photo's worth of described services, ONE editorial feature-split band
+  //    so a 2-image site still gets an image break instead of a blank gap.
+  if (galleryImages.length >= 3) {
+    sections.push({
+      type: 'gallery',
+      eyebrow: 'Gallery',
+      heading: 'A look around',
+      images: galleryImages.slice(0, GALLERY_MAX).map((g) => ({ src: g.src, alt: g.alt })),
+    });
+  } else if (describedSvc.length) {
+    sections.push({
+      type: 'feature-split',
+      eyebrow: 'What sets us apart',
+      heading: copy.servicesHeading || 'What we do',
+      rows: describedSvc.slice(0, 3).map((s) => ({ heading: s.title, body: s.description })),
+    });
+  }
+
+  // 4) Stats from real numbers only.
   const stats = [];
   if (e?.established) {
     const yrs = new Date().getFullYear() - Number(e.established);
@@ -467,7 +523,8 @@ function buildSections(row, e, copy) {
   if (e?.services?.length >= 3) stats.push({ value: `${e.services.length}`, label: 'Services offered' });
   if (stats.length >= 2) sections.push({ type: 'stats', items: stats.slice(0, 4) });
 
-  // 3) Testimonials from scraped reviews.
+  // 5) Testimonials from scraped reviews — then a mid-page CTA at the credibility
+  //    peak (the CRO move the composer used to inject; now owned here).
   if (e?.testimonials?.length) {
     sections.push({
       type: 'testimonials',
@@ -475,9 +532,10 @@ function buildSections(row, e, copy) {
       heading: 'What customers say',
       items: e.testimonials.slice(0, 3).map((t) => ({ quote: clip(t.quote, 280), author: t.author })),
     });
+    sections.push(ctaSection(row, phone, 'mid'));
   }
 
-  // 4) FAQ — every answer comes straight from a REAL scraped fact (location,
+  // 6) FAQ — every answer comes straight from a REAL scraped fact (location,
   //    hours, phone, area). Honest by construction; adds depth + local SEO.
   const faq = [];
   if (address) faq.push({ q: 'Where are you located?', a: `You'll find us at ${address}.` });
@@ -495,10 +553,10 @@ function buildSections(row, e, copy) {
     sections.push({ type: 'faq', eyebrow: 'Good to know', heading: 'Common questions', items: faq.slice(0, 4) });
   }
 
-  // 5) Map locator from a real address (hours live in hours-contact, not here).
+  // 7) Map locator from a real address (hours live in hours-contact, not here).
   if (address) sections.push({ type: 'map', address });
 
-  // 6) Hours + phone close with a contact CTA.
+  // 8) Hours + phone contact band.
   if (e?.hours?.length || phone) {
     sections.push({
       type: 'hours-contact',
@@ -508,6 +566,9 @@ function buildSections(row, e, copy) {
       cta: { text: 'Contact us', href: '#contact' },
     });
   }
+
+  // 9) Closing CTA — always (a conversion close, not fabricated content).
+  sections.push(ctaSection(row, phone, 'close'));
 
   return sections;
 }
@@ -568,32 +629,21 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
   const [heroPhoto, storyPhoto] = media;
   const lib = `/images/library/${catKey}`;
 
-  // Gallery = the business's OWN photos beyond the hero (never stock). A media
-  // item is "own" when it carries no credit and isn't library/SVG art; stock
-  // tiers (Wikimedia/Openverse/library) are credited or live under /library/.
-  const GALLERY_MAX = 8;
-  const isOwn = (m) => m?.path && !m.credit && !m.path.includes('/images/library/');
-  const ownPhotos = media.filter(isOwn);
-  const galleryImages =
-    ownPhotos[0] && heroPhoto && ownPhotos[0].path === heroPhoto.path
-      ? ownPhotos.slice(1, 1 + GALLERY_MAX).map((m, i) => ({
-          src: m.path,
-          alt: `${row.name}${area ? ` in ${area}` : ''} — photo ${i + 1}`,
-        }))
-      : [];
+  // Gallery = the business's OWN photos beyond the hero (computed once in main
+  // and threaded through extras so buildSections and the config field agree).
+  const galleryImages = extras.galleryImages ?? [];
 
-  const phone = e?.phone || row.phone || '(555) 555-5555';
-  const address = e?.address || row.address || area;
+  // No fabricated contact facts. A guessed phone/address reads as fake to the
+  // prospect and the audit flags it; empty values render nothing (the components
+  // guard them) and deriveStatus/the contract flag the gap for a real one.
+  const phone = e?.phone || row.phone || '';
+  const address = e?.address || row.address || '';
   const established = (e?.established || row.established || '').toString().replace(/^est\.?\s*/i, '');
 
-  // Hours: real scraped hours beat the generic default.
-  const hours = e?.hours?.length
-    ? e.hours
-    : [
-        { day: 'Mon – Fri', hours: '8:00 AM – 6:00 PM' },
-        { day: 'Saturday', hours: '9:00 AM – 2:00 PM' },
-        { day: 'Sunday', hours: 'Closed' },
-      ];
+  // Hours: real scraped hours ONLY — no generic Mon–Fri 8–6 default (it's wrong
+  // for wineries/marinas/weekend & seasonal businesses). Empty when unknown; the
+  // contact band falls back to phone-only and the site is flagged needs-review.
+  const hours = e?.hours?.length ? e.hours : [];
 
   const storyCredit = storyPhoto?.credit
     ? `Photo: ${storyPhoto.credit}`
@@ -663,16 +713,11 @@ function deriveStatus(row, e, media, photoSource, templated) {
   else if (!e) flags.push('Website unreachable — copy not built from real data');
   else if ((e.richness ?? 0) < 35) flags.push('Thin research — verify facts & rewrite copy');
   if (!realPhotos) flags.push(`No real/AI photos — using ${photoSource || 'stock'} art`);
-  if (templated.includes('services')) flags.push('Services are template defaults — replace with real ones');
-  if (templated.includes('service-descriptions')) flags.push('Service descriptions need a polish pass');
-  if (templated.includes('about')) flags.push('About copy is templated — rewrite from research');
-  // Contact completeness: never silently ship a guessed email. If we found no
-  // real email, flag the gap so a real non-phone contact method gets added.
-  const hasRealEmail = Boolean(e?.email || row.email);
-  if (!hasRealEmail) flags.push('No email found — add a real email or contact form before sending');
-  // Hours fell back to the generic Mon–Fri 8–6 default (buildConfig) — wrong for
-  // wineries, marinas, weekend/seasonal businesses. Flag so it's verified.
-  if (!e?.hours?.length) flags.push('Hours are a generic default (Mon–Fri 8–6) — verify before sending');
+  if (templated.includes('services')) flags.push('No real services found — add the real ones before sending');
+  if (templated.includes('about')) flags.push('No about/story copy found — write it from research');
+  // Email, default/empty hours, templated copy and stock hero are detected by the
+  // data contract (validateProspectConfig) and merged in by the caller — not
+  // duplicated here.
   const status = flags.length ? 'needs-review' : 'ready';
   return { status, flags };
 }
@@ -705,18 +750,36 @@ async function agentDroppedPhotos(slug) {
 
 // ---------------------------------------------------------------------------
 async function main() {
-  let csv;
-  try {
-    csv = await readFile(csvPath, 'utf8');
-  } catch {
-    console.error(`Could not read CSV: ${csvPath}`);
-    console.error('Pass a path or create data/prospects.sample.csv (see docs/outreach-pipeline.md).');
-    process.exit(1);
+  let rows;
+  // ON-DEMAND single-lead trigger (the CRM "Generate Website" button → GitHub
+  // Action). When LEAD_JSON is set it carries one lead object (or an array) and
+  // we skip the CSV entirely — same per-row pipeline, just one business.
+  if (process.env.LEAD_JSON) {
+    try {
+      const parsed = JSON.parse(process.env.LEAD_JSON);
+      rows = (Array.isArray(parsed) ? parsed : [parsed]).map((r) =>
+        Object.fromEntries(
+          Object.entries(r).map(([k, v]) => [k.toLowerCase().trim(), v == null ? '' : String(v).trim()]),
+        ),
+      );
+    } catch (err) {
+      console.error(`LEAD_JSON is not valid JSON: ${err.message}`);
+      process.exit(1);
+    }
+    console.log(`Generating from LEAD_JSON (${rows.length} lead${rows.length === 1 ? '' : 's'}).`);
+  } else {
+    let csv;
+    try {
+      csv = await readFile(csvPath, 'utf8');
+    } catch {
+      console.error(`Could not read CSV: ${csvPath}`);
+      console.error('Pass a path or create data/prospects.sample.csv (see docs/outreach-pipeline.md).');
+      process.exit(1);
+    }
+    rows = parseCsv(csv);
   }
-
-  const rows = parseCsv(csv);
   if (!rows.length) {
-    console.error('No data rows found in CSV.');
+    console.error('No lead rows found.');
     process.exit(1);
   }
 
@@ -764,24 +827,28 @@ async function main() {
       const got = await acquirePhotos(row, e, {
         destDir: PUBLIC_IMAGES,
         slug,
-        ownMax: 9,
+        ownMax: 12,
         min: 2,
         skipWikimedia,
         // Their og:image / primary structured image is usually their intended
         // hero — hand it to the downloader so it wins the hero slot over a
         // merely higher-scoring (but off-brand) photo.
         heroHint: e?.images?.[0],
+        // Deep-crawl their gallery/portfolio/menu/about subpages for MORE of
+        // their real photos (not just the homepage). Their own domain only.
+        siteUrl: e?.sourceUrl || row.website,
       });
       media = got.media;
       photoSource = got.source;
     }
 
-    // 3) Copy from real facts; 4) depth sections + layout.
+    // 3) Copy from real facts; 4) gallery + the full page structure.
     const copy = await generateCopy(row, preset, e);
-    const sections = buildSections(row, e, copy);
+    const galleryImages = computeGalleryImages(row, media);
+    const sections = buildSections(row, e, copy, galleryImages);
     const layout = layoutFor(slug);
 
-    // 5) Quality gate.
+    // 5) Research/photo flags (content-quality flags come from the contract below).
     const { status, flags } = deriveStatus(row, e, media, photoSource, copy._templated ?? []);
 
     const config = buildConfig(row, copy, preset, catKey, media, e, {
@@ -789,12 +856,28 @@ async function main() {
       layout,
       status,
       flags,
+      galleryImages,
       formspreeId: row.formspree_id || row.formspree || '',
       bookingUrl: row.booking_url || row.booking || '',
     });
+
+    // 6) CONTRACT ENFORCEMENT. A structurally-invalid config is NEVER written
+    //    (it would break the build at the render boundary); its quality warnings
+    //    are folded into the dashboard flags and force needs-review, so nothing
+    //    weak ships silently.
+    const check = validateProspectConfig(config);
+    if (!check.valid) {
+      console.warn(`  ✗ ${row.name}: config violates the data contract — skipped.`);
+      for (const err of check.errors) console.warn(`      • ${err}`);
+      continue;
+    }
+    const mergedFlags = [...new Set([...flags, ...check.warnings])];
+    config.flags = mergedFlags;
+    config.status = mergedFlags.length ? 'needs-review' : 'ready';
+
     // Keep row/e/copy on the entry (not serialized) so the post-divergence pass
     // can build the depth section the divergence hint requests.
-    built.push({ slug, catKey, config, row, e, copy, link: `${base}/p/${slug}`, status, photoSource, flags });
+    built.push({ slug, catKey, config, row, e, copy, link: `${base}/p/${slug}`, status: config.status, photoSource, flags: mergedFlags });
   }
 
   // Anti-cookie-cutter: hand same-category siblings DISTINCT font/hero/temp/order

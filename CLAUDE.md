@@ -17,6 +17,39 @@ find photos, and launch them so the user gets live demo links to email.
 - `scripts/build-image-library.mjs` — regenerates the built-in fallback art.
 - `data/` — input CSVs and the generated `outreach-links.json` manifest.
 
+## Architecture: three stages + a data contract (read this first)
+
+The pipeline is now three clean stages with ONE owner each — don't blur them:
+
+1. **Extract** (`scripts/lib/scrape-site.mjs`, `scripts/lib/images.mjs`): pull
+   REAL facts + the business's own photos off their existing site into an
+   `enrichment` object. Never fabricates; omits what it can't find.
+2. **Assemble + gate** (`scripts/generate-prospects.mjs`): turn enrichment +
+   CSV into a `ProspectConfig` JSON. This stage is the **SINGLE OWNER of page
+   structure** — `buildSections()` emits the complete, ordered, hard-gated
+   section list (services, gallery, stats, testimonials, faq, map, contact,
+   CTAs). **Hard-gate rule:** a section appears only when the real data to fill
+   it exists. Missing data → the section is dropped (a thinner, honest page),
+   **never** template filler. No fake phone, no generic Mon–Fri hours, no preset
+   "Service one/two", no invented about-story, no unverifiable highlight claims.
+3. **Render** (`sites/demo-gallery`): `compose.ts` is now a **pass-through** —
+   it does NOT invent or reorder sections at render time. It renders the JSON's
+   section list verbatim and only applies presentational passes (tones, layout
+   variants, real-rating stat). What you see in the JSON is what renders.
+
+**The data contract** (`sites/demo-gallery/src/lib/contract.mjs`) is the seam
+between stages, imported by all three (generator, renderer, audit):
+- `validateProspectConfig(config)` → `{ valid, errors, warnings }`. **Errors** =
+  structural violations (block the build; the generator refuses to write them and
+  the renderer throws on load). **Warnings** = quality gaps (no real email, stock
+  hero, templated copy) → drive `needs-review`, never a hard block.
+- The generator validates before writing; structurally-invalid configs are
+  skipped, not shipped. `[slug].astro` / `index.astro` assert on load.
+
+Practical upshot for you: improve OUTPUT by improving the SCRAPE (more real
+facts) or by hand-editing copy FIELDS — not by loosening the gates. A sparse
+business is *supposed* to yield a short, honest, needs-review page.
+
 ## THE MAIN TASK: "build me N sites from this CSV"
 
 No keys, no external setup beyond the one-time Vercel connection. Do this:
@@ -150,9 +183,11 @@ looking alike, and photos/layout that "don't look right." These close that gap:
   Build-success and grep hide visual breakage — REVIEW `.shots/fold/<slug>.png`
   (the cold-link first impression) before sending. The in-session agent is the
   vision reviewer (no API key needed on Pro).
-- **Mechanical QA** (`node scripts/audit.mjs`, from repo root): dead-token +
-  measured WCAG contrast + empty-section + templated-copy + missing-email gate;
-  understands intentional text heroes (statement/editorial/panel). Non-zero exit
-  on criticals → can gate deploy.
+- **Mechanical QA** (`node scripts/audit.mjs`, from repo root): **data-contract
+  validation** (structural violations = critical) + dead-token + measured WCAG
+  contrast + empty-section + templated-copy + missing-email gate; understands
+  intentional text heroes (statement/editorial/panel). Reuses the same
+  predicates as `contract.mjs` so the gate and the generator agree. Non-zero
+  exit on criticals → can gate deploy.
 - Heroes are length-robust: `HeroEditorial` wraps long (full-sentence) headlines
   instead of clipping them off the right edge.

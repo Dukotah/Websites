@@ -13,14 +13,21 @@
  *   4. The built-in category SVG library — handled by the caller when this
  *      returns nothing, so a page always renders.
  *
- * Real photos are filtered by actual pixel dimensions (decoded from the file
- * header, no image library) so logos/icons/thumbnails don't become heroes.
+ * Relevance is enforced in three cheap layers, strongest-first so we never waste
+ * a download on junk: (1) a URL filter that rejects logos, map pins, payment /
+ * award badges, app-store buttons, tracking pixels, and third-party STOCK CDNs,
+ * and prefers the business's OWN domain; (2) pixel-dimension minimums decoded
+ * from the file header (no image library); (3) the pixel-stats scorer
+ * (photo-score.mjs) that separates real photographs from logos / screenshots /
+ * flat art. The hero is then chosen for a sane full-bleed aspect ratio, not just
+ * the top score, so a portrait or banner sliver never lands behind the headline.
  */
 
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { getRealPhotos } from './photos.mjs';
+import { collectSiteImages } from './scrape-site.mjs';
 import { scorePhoto, dhash, hamming, NEAR_DUP_DISTANCE } from './photo-score.mjs';
 
 const UA =
@@ -29,10 +36,66 @@ const UA =
 const MIN_W = 600; // below this an image is almost certainly a logo/icon/thumb
 const MIN_H = 360;
 
+// Hero aspect sanity: a full-bleed hero crops cleanly from a moderately wide
+// shot, but extreme banners/slivers (sliced site headers, ribbon graphics) and
+// tall portraits read as broken backgrounds. Used only to GATE hero candidates,
+// not to drop a photo from the gallery.
+const HERO_AR_MIN = 1.15; // narrower than this is portrait-ish → poor full-bleed hero
+const HERO_AR_MAX = 3.2; // wider than this is a banner sliver, not a scene
+
 const EXT_BY_MIME = {
   'image/jpeg': 'jpg', 'image/jpg': 'jpg', 'image/png': 'png',
   'image/webp': 'webp', 'image/avif': 'avif',
 };
+
+// --- URL-level relevance filter (cheap, runs before any download) -----------
+
+/**
+ * Reject by URL path/host the assets that are never a business PHOTO, even when
+ * they'd survive the size + pixel-stats gates: social-icon sprites, map-pin /
+ * marker tiles, payment / badge / award / app-store logos, tracking pixels, and
+ * anything whose path strongly implies a logo / icon / UI sprite. This catches
+ * junk *before* we spend a download + decode on it, and complements scrape-site's
+ * IMG_REJECT (which only saw a coarser pattern).
+ */
+const URL_REJECT =
+  /(?:^|[/_-])(?:logo|logos|icon|icons|favicon|sprite|sprites|symbol|glyph|badge|seal|award|cert|emblem|watermark|placeholder|pixel|spacer|blank|loader|spinner|avatar|profile-pic|map[-_]?pin|marker|pin|google[-_]?map|staticmap|payment|payments|visa|mastercard|amex|paypal|stripe|app[-_]?store|google[-_]?play|play[-_]?store|social|facebook|instagram|twitter|x[-_]logo|tiktok|yelp|tripadvisor|powered[-_]?by|theme|plugin|wp-includes|wp-content\/themes|assets\/ui|\/ui\/|button|btn|arrow|chevron|bullet|divider|pattern|texture|bg-pattern)(?:[/_.-]|$)/i;
+
+// Third-party stock-photo CDN host fragments. Photos served from these are
+// generic stock, not the business's own work — drop them so a stock shot can't
+// masquerade as authentic in a gallery (only OWN photos may fill the gallery).
+const STOCK_HOST =
+  /(?:images\.unsplash\.com|unsplash\.com|images\.pexels\.com|pexels\.com|pixabay\.com|istockphoto\.com|shutterstock\.com|gettyimages\.com|stock\.adobe\.com|fbcdn\.net|gstatic\.com|googleusercontent\.com\/.*=s\d|depositphotos\.com|dreamstime\.com|123rf\.com|freepik\.com)/i;
+
+/** True when the URL is obviously a non-photo asset or third-party stock. */
+function isJunkUrl(url) {
+  let path = url;
+  let host = '';
+  try {
+    const u = new URL(url);
+    path = u.pathname;
+    host = u.host;
+  } catch {
+    /* keep the raw string */
+  }
+  if (STOCK_HOST.test(host) || STOCK_HOST.test(url)) return true;
+  return URL_REJECT.test(path);
+}
+
+/**
+ * Registrable-ish host for "is this the business's own domain?" comparison —
+ * drop a leading www. and keep the last two labels (foo.com from img.foo.com,
+ * cdn-host bridged via the site's own subdomain). Best-effort; '' on failure.
+ */
+function rootHost(url) {
+  try {
+    const h = new URL(url).host.toLowerCase().replace(/^www\./, '');
+    const parts = h.split('.');
+    return parts.length > 2 ? parts.slice(-2).join('.') : h;
+  } catch {
+    return '';
+  }
+}
 
 // --- decode width/height from the file header (no dependencies) -------------
 
@@ -123,11 +186,32 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
   const outDir = join(destDir, slug);
   await mkdir(outDir, { recursive: true });
 
+  // The business's OWN domain — inferred from the hero hint (their og:image, on
+  // their own site) or, failing that, the most common host among the candidates.
+  // Photos served from this domain are preferred over third-party hosts, which
+  // are more likely to be embedded stock / widgets than the business's own work.
+  let ownHost = rootHost(heroHint || '');
+  if (!ownHost) {
+    const tally = new Map();
+    for (const u of urls) {
+      const r = rootHost(u);
+      if (r) tally.set(r, (tally.get(r) || 0) + 1);
+    }
+    ownHost = [...tally.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || '';
+  }
+  const isOwnHost = (url) => Boolean(ownHost) && rootHost(url) === ownHost;
+
+  // Drop obvious non-photo assets and third-party stock by URL BEFORE downloading
+  // (cheap), while preserving the incoming order (which is hero-hint-first). The
+  // hero hint is always kept even if its path trips a pattern — it's the
+  // business's declared hero and gets re-validated by the pixel scorer below.
+  const filtered = urls.filter((u) => u === heroHint || !isJunkUrl(u));
+
   // Collapse size-variants of the same photo up front, so the candidate budget
   // is spent on distinct images rather than re-fetching one shot many times.
   const seenBase = new Set();
   const distinctUrls = [];
-  for (const url of urls) {
+  for (const url of filtered) {
     const b = baseIdentity(url);
     if (seenBase.has(b)) continue;
     seenBase.add(b);
@@ -158,22 +242,30 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     const ph = await dhash(got.buf);
     if (ph != null && seenPhash.some((p) => hamming(p, ph) <= NEAR_DUP_DISTANCE)) continue;
     if (ph != null) seenPhash.push(ph);
-    kept.push({ buf: got.buf, ext, url, w: dims?.w ?? q.w, h: dims?.h ?? q.h, score: q.score });
+    const w = dims?.w ?? q.w;
+    const h = dims?.h ?? q.h;
+    // Prefer the business's own-domain photos: a small score nudge so a genuine
+    // own-site shot outranks an equally-pretty third-party one, without letting
+    // a poor own photo beat a clearly better one.
+    const score = (q.score ?? 0) + (isOwnHost(url) ? 0.06 : 0);
+    kept.push({ buf: got.buf, ext, url, w, h, score, own: isOwnHost(url) });
   }
 
   // Rank survivors by photographic quality (entropy + tonal richness + landscape
-  // + area) — this is the GALLERY order, best-first.
+  // + area, plus the own-domain nudge) — this is the GALLERY order, best-first.
   kept.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 
   // Choose the HERO deliberately — it carries the whole page, so "best photo" is
   // the wrong default (a striking portrait crops badly full-bleed). Preference:
   //   1. the business's OWN og:image/hero hint, when it survived as a real photo
-  //      (graphics were already dropped, so a surviving hint is trustworthy);
-  //   2. else the best-scored LANDSCAPE shot (wide reads as intentional);
-  //   3. else the best overall.
-  const isLandscape = (k) => k.w && k.h && k.w / k.h >= 1.2;
-  let heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint) : -1;
-  if (heroIdx < 0) heroIdx = kept.findIndex(isLandscape);
+  //      (graphics were already dropped, so a surviving hint is trustworthy) AND
+  //      it crops sanely full-bleed (not a portrait/banner sliver);
+  //   2. else the best-scored shot with a HERO-SANE aspect ratio (wide-ish,
+  //      neither portrait nor banner) — that reads as an intentional full-bleed;
+  //   3. else the best overall (better a square hero than no hero).
+  const heroSaneAr = (k) => k.w && k.h && k.w / k.h >= HERO_AR_MIN && k.w / k.h <= HERO_AR_MAX;
+  let heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint && heroSaneAr(k)) : -1;
+  if (heroIdx < 0) heroIdx = kept.findIndex(heroSaneAr);
   if (heroIdx < 0) heroIdx = 0;
   if (heroIdx > 0) {
     const [h] = kept.splice(heroIdx, 1);
@@ -277,7 +369,7 @@ export async function generateImages(facts, { destDir, slug, startIndex = 0, nee
 export async function acquirePhotos(
   row,
   enrichment,
-  { destDir, slug, ownMax = 9, min = 2, skipWikimedia = false, heroHint } = {},
+  { destDir, slug, ownMax = 12, min = 2, skipWikimedia = false, heroHint, siteUrl, deepCrawlPages = 10 } = {},
 ) {
   const facts = {
     name: row.name,
@@ -286,13 +378,33 @@ export async function acquirePhotos(
     city: row.city,
   };
 
-  // Tier 1: their own scraped photos — pulled GENEROUSLY (up to ownMax). Every
-  // one is genuinely theirs, so a richer real-photo gallery is pure upside.
-  let media = await downloadScrapedPhotos(enrichment?.images, {
+  // Tier 1: their OWN photos. Source the candidate pool from BOTH the homepage
+  // scrape (enrichment.images — which carries the og:image / intended hero) AND a
+  // DEEP CRAWL of their gallery / portfolio / menu / about subpages, where the
+  // strongest shots usually live. Both come from the business's own domain, so
+  // the pool stays "genuinely theirs" (never random web stock) while
+  // autonomously surfacing far more real photos than the homepage alone.
+  let ownUrls = [...(enrichment?.images ?? [])];
+  if (siteUrl) {
+    try {
+      const deep = await collectSiteImages(siteUrl, { maxPages: deepCrawlPages });
+      // enrichment.images first (hero intent), then the deep finds. The downloader
+      // de-dupes by size-agnostic identity + exact bytes + perceptual hash, so the
+      // same shot served across pages/sizes still counts once.
+      ownUrls = [...ownUrls, ...deep];
+    } catch {
+      /* deep crawl is best-effort — homepage photos still apply on failure */
+    }
+  }
+
+  let media = await downloadScrapedPhotos(ownUrls, {
     destDir,
     slug,
     max: ownMax,
-    maxCandidates: 60,
+    // Consider a large candidate pool from the deep crawl, then keep the best
+    // `ownMax` after scoring/relevance/dedup — "as many of THEIR real photos as
+    // we can find," without ever padding with stock.
+    maxCandidates: 160,
     heroHint,
   });
   // If we have at least the essential slots from their OWN photos, stop here —

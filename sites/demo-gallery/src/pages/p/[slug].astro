@@ -9,6 +9,7 @@ import HeroRenderer from '../../components/heroes/HeroRenderer.astro';
 import SectionRenderer from '../../components/sections/SectionRenderer.astro';
 import { resolveArtDirection } from '../../lib/art-direction';
 import { composePage } from '../../lib/compose';
+import { assertValidProspectConfig } from '../../lib/contract.mjs';
 import type { ProspectConfig } from '../../types';
 
 // One static page per prospect JSON in src/data/prospects/.
@@ -21,6 +22,10 @@ export async function getStaticPaths() {
 
   return Object.entries(modules).map(([path, config]) => {
     const slug = path.split('/').pop()!.replace(/\.json$/, '');
+    // Enforce the data contract at the render boundary: a structurally-broken
+    // config fails the build loudly (with the slug + reason) instead of silently
+    // rendering a half-empty page.
+    assertValidProspectConfig(config, slug);
     return { params: { slug }, props: { config } satisfies { config: ProspectConfig } };
   });
 }

@@ -1,0 +1,84 @@
+name: Generate demo site (on-demand)
+
+# The CRM "Generate Website" button triggers this per lead. It runs on a
+# network-enabled GitHub runner — so the scraper AND the deep photo crawl work
+# here even though a restricted dev sandbox can't reach the live web — then
+# commits the new prospect to `main` (Vercel deploys on push) and notifies the
+# CRM with the live link so it can drop it into the outreach template.
+#
+# Two triggers:
+#   • repository_dispatch (event_type: generate-demo)  ← the CRM button (API call)
+#   • workflow_dispatch                                ← manual run from the Actions tab
+on:
+  repository_dispatch:
+    types: [generate-demo]
+  workflow_dispatch:
+    inputs:
+      name:     { description: 'Business name (required)', required: true }
+      website:  { description: 'Existing website URL (the #1 quality lever)', required: false }
+      category: { description: 'towing | cafe | plumbing | salon | landscaping | auto-repair | winery | …', required: false }
+      city:     { description: 'City', required: false }
+      state:    { description: 'State', required: false }
+      phone:    { description: 'Phone', required: false }
+      email:    { description: 'Email', required: false }
+      address:  { description: 'Street address', required: false }
+
+# Serialize runs so concurrent button clicks don't race on the push to main.
+concurrency:
+  group: generate-demo
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          # persist-credentials (default) lets the final step push back to main.
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Generate the demo site
+        # LEAD_JSON is assigned directly from the trigger context (no shell
+        # interpolation → no injection). repository_dispatch carries the lead in
+        # client_payload; workflow_dispatch carries it in inputs.
+        env:
+          LEAD_JSON: ${{ github.event_name == 'repository_dispatch' && toJSON(github.event.client_payload) || toJSON(github.event.inputs) }}
+          GALLERY_BASE_URL: ${{ vars.GALLERY_BASE_URL }}
+        run: node scripts/generate-prospects.mjs
+
+      - name: Commit & deploy (push to main → Vercel rebuilds)
+        run: |
+          git config user.name  "demo-bot"
+          git config user.email "demo-bot@users.noreply.github.com"
+          git add sites/demo-gallery/src/data/prospects sites/demo-gallery/src/assets/prospects
+          if git diff --cached --quiet; then
+            echo "No new/changed prospect — nothing to deploy."; exit 0
+          fi
+          git commit -m "Generate demo site (on-demand)"
+          git push origin HEAD:main
+
+      - name: Notify the CRM with the live link
+        # Reuses the existing push-to-crm path: POSTs {name, link, status, …} to
+        # the CRM, which attaches it to the lead and makes it available to the
+        # outreach template. No-ops (and never fails the run) if secrets are unset.
+        continue-on-error: true
+        env:
+          CRM_BASE_URL:    ${{ secrets.CRM_BASE_URL }}
+          CRM_ADMIN_TOKEN: ${{ secrets.CRM_ADMIN_TOKEN }}
+          GALLERY_BASE_URL: ${{ vars.GALLERY_BASE_URL }}
+        run: |
+          if [ -z "$CRM_BASE_URL" ] || [ -z "$CRM_ADMIN_TOKEN" ]; then
+            echo "CRM secrets not set — skipping CRM notify (link is live at GALLERY_BASE_URL/p/<slug>)."
+            exit 0
+          fi
+          node scripts/push-to-crm.mjs

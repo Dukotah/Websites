@@ -121,7 +121,10 @@ function typeOf(node) {
 function fromJsonLd(nodes, base) {
   const out = {};
   const biz = nodes.find((n) => BUSINESS_TYPES.test(typeOf(n)));
+  // Reviews appear both as standalone Review nodes AND nested under the business
+  // node's `review` property — collect both so we don't miss real author names.
   const review = nodes.filter((n) => /Review/i.test(typeOf(n)));
+  if (biz && biz.review) review.push(...[].concat(biz.review).filter((r) => r && typeof r === 'object'));
 
   if (biz) {
     if (biz.name) out.name = clean(String(biz.name));
@@ -164,20 +167,72 @@ function fromJsonLd(nodes, base) {
     const same = [].concat(biz.sameAs ?? []).filter(Boolean);
     if (same.length) out.social = same;
     if (biz.description) out.description = clean(String(biz.description));
+    // Services from structured offers — the most trustworthy source, since the
+    // business explicitly catalogued these (vs. us guessing from <li>s).
+    const services = servicesFromJsonLd(biz);
+    if (services.length) out.services = services;
   }
 
-  // Reviews → testimonials
+  // Reviews → testimonials. KEEP the real author name when the source carries
+  // one; mark missing names with '' so the HTML-merge step can decide whether a
+  // rotating generic attribution is warranted (it never overwrites a real name).
   const testimonials = review
     .map((rv) => {
       const body = clean(String(rv.reviewBody ?? rv.description ?? ''));
+      const a = rv.author;
       const author =
-        typeof rv.author === 'object' ? clean(String(rv.author?.name ?? '')) : clean(String(rv.author ?? ''));
-      return body ? { quote: body, author: author || 'Verified customer' } : null;
+        a && typeof a === 'object'
+          ? clean(String(a.name ?? a['@name'] ?? ''))
+          : clean(String(a ?? ''));
+      return body ? { quote: body, author } : null;
     })
     .filter(Boolean);
-  if (testimonials.length) out.testimonials = testimonials.slice(0, 4);
+  if (testimonials.length) out.testimonials = testimonials.slice(0, 6);
 
   return out;
+}
+
+// Pull service names out of JSON-LD offer structures. Handles the common shapes:
+//   hasOfferCatalog.itemListElement[].itemOffered.name
+//   makesOffer[].itemOffered.name  /  makesOffer[].name
+//   <node @type=Service>.name elsewhere in the graph
+// Returns clean, title-like, deduped names (no prices, no fabrication).
+function servicesFromJsonLd(biz) {
+  const names = [];
+  const pushName = (v) => {
+    if (!v) return;
+    const n = clean(String(v));
+    if (n) names.push(n);
+  };
+  const fromOffer = (offer) => {
+    if (!offer || typeof offer !== 'object') return;
+    const item = offer.itemOffered ?? offer.item ?? null;
+    if (item && typeof item === 'object') pushName(item.name ?? item['@name']);
+    else if (typeof item === 'string') pushName(item);
+    else pushName(offer.name);
+  };
+  // hasOfferCatalog → itemListElement → (Offer | OfferCatalog | Service)
+  const catalogs = [].concat(biz.hasOfferCatalog ?? []);
+  for (const cat of catalogs) {
+    if (!cat || typeof cat !== 'object') continue;
+    for (const el of [].concat(cat.itemListElement ?? [])) {
+      if (!el || typeof el !== 'object') continue;
+      // A nested catalog (category → its own items).
+      if (Array.isArray(el.itemListElement)) {
+        for (const sub of el.itemListElement) fromOffer(sub);
+      } else if (el.itemOffered || el['@type'] === 'Offer') {
+        fromOffer(el);
+      } else {
+        pushName(el.name);
+      }
+    }
+  }
+  for (const offer of [].concat(biz.makesOffer ?? [])) fromOffer(offer);
+  // Direct service array some schemas use.
+  for (const svc of [].concat(biz.makesOffer ?? [], biz.serviceType ?? [])) {
+    if (typeof svc === 'string') pushName(svc);
+  }
+  return dedupeCI(names.filter(isServiceLike)).slice(0, 8);
 }
 
 const DAY_ABBR = {
@@ -217,62 +272,269 @@ function fmtTime(t) {
 // --- visible-HTML heuristics (fallbacks when no JSON-LD) --------------------
 
 const SERVICE_HINT =
-  /\b(service|repair|install|cleaning|towing|recovery|catering|styling|color|maintenance|detailing|design|estimate|delivery|grooming|tasting|tour|menu|treatment|landscap|plumb|electric|roof|hvac|paint)/i;
+  /\b(service|repair|install|cleaning|towing|recovery|catering|styling|color|maintenance|detailing|design|estimate|delivery|grooming|tasting|tour|menu|treatment|landscap|plumb|electric|roof|hvac|paint|wash|haul|excavat|remodel|inspect|wax|trim|massage|facial|manicure|pedicure|brew|espresso|wine|pizza|grill|bbq)/i;
 
-function extractServices(html) {
-  // Prefer list items inside sections that mention services; else any short,
-  // service-flavored <li>/<h3> on the page. Keep distinct, title-like phrases.
-  const candidates = [
-    ...matchAll(html, 'li'),
-    ...matchAll(html, 'h3'),
-    ...matchAll(html, 'h4'),
-  ]
-    .map(stripTags)
-    .filter((t) => t && t.length >= 4 && t.length <= 60)
-    .filter((t) => SERVICE_HINT.test(t))
-    // Drop nav/footer noise and calls-to-action that aren't real services.
-    .filter((t) => !/(home|about|contact|privacy|terms|login|cart|©|copyright|sign in|read more|learn more)/i.test(t))
-    .filter((t) => !/^(call|request|rate|review|reviews|book|schedule|get|view|see|shop|order)\b/i.test(t))
-    // Phone numbers / digit-heavy strings aren't services.
-    .filter((t) => !/\d{3}[\s.-]?\d{3,4}/.test(t));
-  return dedupeCI(candidates).slice(0, 8);
+// Navigation / footer / legal / CTA noise that masquerades as a service.
+const SERVICE_NOISE =
+  /\b(home|about(?:\s+us)?|contact(?:\s+us)?|privacy|terms|cookie|login|log in|sign in|sign up|register|cart|checkout|account|©|copyright|all rights reserved|read more|learn more|view all|see all|click here|follow us|newsletter|subscribe|faq|blog|news|gallery|careers|jobs|sitemap|directions|reviews?|testimonials?|our team|meet the team|hours|location)\b/i;
+
+// Leading CTA verbs we strip ("Book Oil Change" → "Oil Change") or, if the line
+// is *only* a CTA, reject entirely.
+const CTA_LEAD =
+  /^(call|request|rate|review|book|schedule|get(?:\s+a)?|view|see|shop|order|buy|find|learn|read|click|contact|explore|discover|start|try)\b[\s:–-]*/i;
+
+const GENERIC_SINGLE =
+  /^(services?|products?|menu|info|information|details|more|options|solutions|quality|welcome|overview|pricing|prices|specials?|offers?|deals?)$/i;
+
+// Is this string a plausible, human-recognizable service NAME (not a sentence,
+// price, phone number, nav item, or single generic word)?
+function isServiceLike(raw) {
+  let t = clean(raw).replace(CTA_LEAD, '').trim();
+  // Strip a leading or trailing price ("$49 Oil Change", "Oil Change – $49").
+  t = t.replace(/^[\s–—-]*\$\s?\d[\d.,]*\+?\s*[–—-]?\s*/i, '')
+       .replace(/\s*[–—:-]?\s*\$\s?\d[\d.,]*\+?\s*$/i, '')
+       .replace(/\s*[–—:-]\s*(?:from\s+)?\$?\d[\d.,]*\+?$/i, '')
+       .trim();
+  if (!t || t.length < 4 || t.length > 60) return false;
+  if (SERVICE_NOISE.test(t)) return false;
+  if (CTA_LEAD.test(t)) return false; // was *only* a CTA verb
+  if (GENERIC_SINGLE.test(t)) return false;
+  // Phone numbers / digit-heavy strings aren't services.
+  if (/\d{3}[\s.-]?\d{3,4}/.test(t)) return false;
+  // Reject full sentences (services are phrases, not prose).
+  const words = t.split(/\s+/);
+  if (words.length > 7) return false;
+  if (/[.!?]\s/.test(t)) return false; // sentence punctuation mid-string
+  // Reject a lone generic word with no service signal.
+  if (words.length === 1 && !SERVICE_HINT.test(t)) return false;
+  return true;
 }
 
-function extractParagraphs(html) {
-  return matchAll(html, 'p')
+// Tidy a raw candidate into its clean service name (mirrors isServiceLike's
+// stripping). Assumes isServiceLike already passed.
+function cleanServiceName(raw) {
+  return clean(raw)
+    .replace(CTA_LEAD, '')
+    .replace(/^[\s–—-]*\$\s?\d[\d.,]*\+?\s*[–—-]?\s*/i, '')
+    .replace(/\s*[–—:-]?\s*\$\s?\d[\d.,]*\+?\s*$/i, '')
+    .replace(/\s*[–—:-]\s*(?:from\s+)?\$?\d[\d.,]*\+?$/i, '')
+    .trim();
+}
+
+// Find HTML blocks that are explicitly about services (heading text or container
+// class mentions services/what-we-do/menu/offerings). Returns their inner HTML.
+function serviceSections(html) {
+  const blocks = [];
+  const SECTION_HINT =
+    /(our[-\s]?services|what[-\s]?we[-\s]?(?:do|offer)|services?|offerings?|specialties|menu|treatments?)/i;
+  // Sections / divs whose class hints at services.
+  for (const m of html.matchAll(
+    /<(?:section|div|ul)\b[^>]*class\s*=\s*["']([^"']*)["'][^>]*>([\s\S]*?)<\/(?:section|div|ul)>/gi,
+  )) {
+    if (SECTION_HINT.test(m[1])) blocks.push(m[2]);
+  }
+  // Region following a heading whose text mentions services (grab ~4kB after it).
+  for (const m of html.matchAll(/<h[1-4]\b[^>]*>([\s\S]*?)<\/h[1-4]>/gi)) {
+    const heading = stripTags(m[1]);
+    if (/\b(services?|what we (?:do|offer)|our offerings?|menu|specialties|treatments?)\b/i.test(heading)) {
+      const start = m.index + m[0].length;
+      blocks.push(html.slice(start, start + 4000));
+    }
+  }
+  return blocks;
+}
+
+function extractServices(html) {
+  // Tier 1: items that live inside an explicit services section/heading region.
+  const scoped = [];
+  for (const block of serviceSections(html)) {
+    for (const item of [...matchAll(block, 'li'), ...matchAll(block, 'h3'), ...matchAll(block, 'h4')]) {
+      const t = stripTags(item);
+      if (isServiceLike(t)) scoped.push(cleanServiceName(t));
+    }
+  }
+  if (dedupeCI(scoped).length >= 3) return dedupeCI(scoped).slice(0, 8);
+
+  // Tier 2 fallback: any short, service-flavored <li>/<h3>/<h4> on the page that
+  // also passes the precision filter. (Merge in whatever the scoped pass found.)
+  const loose = [...matchAll(html, 'li'), ...matchAll(html, 'h3'), ...matchAll(html, 'h4')]
     .map(stripTags)
-    .filter((t) => t.length >= 80 && t.length <= 600)
-    // Skip cookie/legal boilerplate.
-    .filter((t) => !/(cookie|privacy policy|all rights reserved|terms of service)/i.test(t));
+    .filter((t) => SERVICE_HINT.test(t) && isServiceLike(t))
+    .map(cleanServiceName);
+  return dedupeCI([...scoped, ...loose]).slice(0, 8);
+}
+
+// Boilerplate that masquerades as an about paragraph.
+const ABOUT_NOISE =
+  /(cookie|privacy policy|all rights reserved|terms of service|terms and conditions|©|copyright|subscribe to our|sign up for|enable javascript|your browser|404|page not found)/i;
+
+// SEO keyword-stuffing heuristic: a "paragraph" that's really a comma/pipe list
+// of locations or keywords (few sentences, many short comma-separated chunks).
+function looksKeywordStuffed(t) {
+  const commaChunks = t.split(/[,|·•]/).length;
+  const sentences = (t.match(/[.!?](?:\s|$)/g) || []).length;
+  return commaChunks >= 6 && sentences <= 1;
+}
+
+// Score a paragraph by how "about-the-business" it reads: first-person plural,
+// brand mention, founding/story language all raise it; generic marketing lowers.
+function aboutScore(t, brand) {
+  let s = 0;
+  if (/\b(we|our|us|i'?m|i've|my|family[- ]owned|locally owned)\b/i.test(t)) s += 3;
+  if (/\b(founded|established|since \d{4}|started|began|years? of|generations?|history|story|proud|serving)\b/i.test(t)) s += 2;
+  if (brand && t.toLowerCase().includes(brand.toLowerCase())) s += 2;
+  if (t.length >= 140 && t.length <= 480) s += 1; // a real paragraph, not a blurb
+  return s;
+}
+
+// Inner HTML of containers/regions whose class or preceding heading marks them
+// as about/story/history. Used to prefer truly on-topic paragraphs.
+function aboutRegions(html) {
+  const regions = [];
+  for (const m of html.matchAll(
+    /<(?:section|div|article)\b[^>]*(?:class|id)\s*=\s*["']([^"']*)["'][^>]*>([\s\S]*?)<\/(?:section|div|article)>/gi,
+  )) {
+    if (/\b(about|our[-\s]?story|story|history|who[-\s]?we[-\s]?are|mission)\b/i.test(m[1])) regions.push(m[2]);
+  }
+  for (const m of html.matchAll(/<h[1-4]\b[^>]*>([\s\S]*?)<\/h[1-4]>/gi)) {
+    if (/\b(about|our story|our history|who we are|why choose|the story)\b/i.test(stripTags(m[1]))) {
+      const start = m.index + m[0].length;
+      regions.push(html.slice(start, start + 3000));
+    }
+  }
+  return regions;
+}
+
+// Prefer paragraphs inside an about/story region and those that read like real
+// brand prose; fall back to any clean body paragraph. Returns the best 2–4.
+function extractParagraphs(html, brand = '') {
+  const valid = (t) => t.length >= 80 && t.length <= 600 && !ABOUT_NOISE.test(t) && !looksKeywordStuffed(t);
+
+  // 1) Paragraphs that live inside an explicit about/story region.
+  const regionParas = [];
+  for (const region of aboutRegions(html)) {
+    for (const p of matchAll(region, 'p')) {
+      const t = stripTags(p);
+      if (valid(t)) regionParas.push(t);
+    }
+  }
+
+  // 2) Everything else on the page, as a backstop.
+  const pageParas = matchAll(html, 'p').map(stripTags).filter(valid);
+
+  // Merge (region paras first, deduped), then rank by about-ness so the strongest
+  // prose floats to the top. Stable order within equal scores via index.
+  const merged = dedupeCI([...regionParas, ...pageParas]);
+  return merged
+    .map((t, i) => ({ t, k: aboutScore(t, brand) * 100 - i }))
+    .sort((a, b) => b.k - a.k)
+    .map((x) => x.t)
+    .slice(0, 4);
 }
 
 // Pull customer-review text from visible HTML (most small-business reviews live
 // as plain text, not JSON-LD): <blockquote>s, and elements whose class mentions
-// review/testimonial/quote. Key-free, best-effort. We don't invent an author —
-// scraped reviews rarely carry a clean name, so they're attributed generically.
+// review/testimonial/quote. Key-free, best-effort. We KEEP a real author name
+// when an adjacent <cite>/author element supplies one, and only fall back to a
+// rotating generic attribution when none exists — never overwriting a real name.
 const REVIEW_NOISE =
-  /(leave a review|write a review|read more|view all|see all|google|yelp|facebook|trustpilot|powered by|©|copyright)/i;
+  /(leave a review|write a review|read more|view all|see all|powered by|©|copyright|star rating|out of 5|rate us|click to rate|based on \d+ review)/i;
+
+// A plausible person/handle name for an attribution (not a sentence/CTA).
+function looksLikeAuthor(s) {
+  const t = clean(s).replace(/^[-–—\s~]+/, '').trim(); // strip leading "— "
+  if (!t || t.length > 60) return false;
+  // Names may carry an initial's period ("Mark T.", "J. Smith") but not sentence
+  // punctuation (a period FOLLOWED by a space+word, or any ? / !).
+  if (/[?!]/.test(t) || /\.\s+\S/.test(t)) return false;
+  if (REVIEW_NOISE.test(t) || SERVICE_NOISE.test(t)) return false;
+  // Should read like a name/handle: letters dominate, not a digit-led string.
+  if (!/[A-Za-z]/.test(t) || /^\d/.test(t)) return false;
+  const words = t.split(/\s+/);
+  return words.length >= 1 && words.length <= 5;
+}
+
+// Find an author name adjacent to a review's inner HTML: a <cite>, or an element
+// whose class mentions author/name/by/reviewer, or a leading "— Name" line.
+function authorFrom(rawInner) {
+  const cite = matchAll(rawInner, 'cite')[0];
+  if (cite) {
+    const n = stripTags(cite);
+    if (looksLikeAuthor(n)) return n.replace(/^[-–—\s~]+/, '').trim();
+  }
+  const m = rawInner.match(
+    /<(?:span|p|div|h[3-6]|footer|small)\b[^>]*class\s*=\s*["'][^"']*(?:author|reviewer|name|byline|by|attribution)[^"']*["'][^>]*>([\s\S]*?)<\//i,
+  );
+  if (m) {
+    const n = stripTags(m[1]);
+    if (looksLikeAuthor(n)) return n.replace(/^[-–—\s~]+/, '').trim();
+  }
+  // Trailing "— Jane D." emdash attribution in plain text.
+  const tail = stripTags(rawInner).match(/[—–-]{1,2}\s*([A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+){0,3})\s*$/);
+  if (tail && looksLikeAuthor(tail[1])) return tail[1].trim();
+  return '';
+}
 
 function extractTestimonials(html) {
-  const quotes = [];
+  const found = []; // { quote, author }
+  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const consider = (raw) => {
-    const q = stripTags(raw);
-    if (q.length >= 40 && q.length <= 400 && !REVIEW_NOISE.test(q)) quotes.push(q);
+    let q = stripTags(raw);
+    const author = authorFrom(raw);
+    // Drop a trailing attribution (with or without an emdash separator) so the
+    // author name isn't duplicated inside the quote text.
+    if (author) {
+      q = q.replace(new RegExp(`\\s*[—–-]{0,2}\\s*${esc(author)}\\s*$`), '').trim();
+    }
+    if (q.length >= 40 && q.length <= 400 && !REVIEW_NOISE.test(q)) found.push({ quote: q, author });
   };
   for (const bq of matchAll(html, 'blockquote')) consider(bq);
   // Elements explicitly classed as a review/testimonial/quote (non-greedy, so a
   // deeply-nested card may truncate — acceptable for a best-effort heuristic).
   for (const m of html.matchAll(
-    /<(?:div|li|article|p|figure)\b[^>]*class\s*=\s*["'][^"']*(?:review|testimonial|quote)[^"']*["'][^>]*>([\s\S]*?)<\/(?:div|li|article|p|figure)>/gi,
+    /<(?:div|li|article|figure)\b[^>]*class\s*=\s*["'][^"']*(?:review|testimonial|quote)[^"']*["'][^>]*>([\s\S]*?)<\/(?:div|li|article|figure)>/gi,
   )) {
     consider(m[1]);
   }
-  // Rotate generic attributions — four identical "Verified customer" lines read
-  // as fabricated. Still honest (no invented names); just less template-looking.
-  const ATTRIB = ['Local customer', 'Happy customer', 'Returning customer', 'Satisfied customer'];
-  return dedupeCI(quotes)
-    .slice(0, 4)
-    .map((quote, i) => ({ quote, author: ATTRIB[i % ATTRIB.length] }));
+  // Dedupe by quote text, but PREFER the variant that carries a real author —
+  // the same review often appears both as a bare <blockquote> and inside a
+  // testimonial card with a <cite>. Also collapse one quote being a prefix of
+  // another (card text = blockquote text + trailing author leftovers).
+  const byKey = new Map();
+  for (const t of found) {
+    const k = t.quote.toLowerCase().replace(/\s+/g, ' ').trim();
+    const prev = byKey.get(k);
+    if (!prev) byKey.set(k, t);
+    else if (!prev.author && t.author) byKey.set(k, t); // upgrade to the named one
+  }
+  let list = [...byKey.values()];
+  // Prefix-merge: if quote A starts with quote B (or vice versa), keep the one
+  // with an author (or the shorter, cleaner one) and drop the duplicate.
+  list = list.filter((a, i) =>
+    !list.some((b, j) => {
+      if (i === j) return false;
+      const an = a.quote.toLowerCase(), bn = b.quote.toLowerCase();
+      if (an === bn) return false;
+      if (!bn.startsWith(an) && !an.startsWith(bn)) return false;
+      // `a` is dropped if `b` is the better representative.
+      if (b.author && !a.author) return true;
+      if (a.author && !b.author) return false;
+      return a.quote.length > b.quote.length; // keep the shorter (cleaner) one
+    }),
+  );
+  return finalizeTestimonials(list).slice(0, 4);
+}
+
+// Rotate generic attributions ONLY for quotes that lack a real name — four
+// identical "Verified customer" lines read as fabricated; real names are kept
+// verbatim. Honest (no invented names), just less template-looking.
+const GENERIC_ATTRIB = ['Local customer', 'Happy customer', 'Returning customer', 'Satisfied customer'];
+function finalizeTestimonials(list) {
+  let g = 0;
+  return list.map((t) => ({
+    quote: t.quote,
+    author: t.author && t.author.trim() ? t.author.trim() : GENERIC_ATTRIB[g++ % GENERIC_ATTRIB.length],
+  }));
 }
 
 // Many builder CDNs (GoDaddy/wsimg, Wix, Squarespace, Cloudinary, Shopify)
@@ -374,9 +636,30 @@ function findEmail(html) {
   return m ? m[0] : '';
 }
 
-function findEstablished(text) {
-  const m = text.match(/\b(?:since|est(?:ablished)?\.?|founded(?:\s+in)?|serving\s+\w+\s+since)\s*(\d{4})/i);
-  return m ? m[1] : '';
+// Resolve a founding YEAR from prose. Strongest signals first; the "for over N
+// years" / "celebrating N years" forms are derived relative to the current year;
+// a copyright-range start is a weak last resort. Years are sanity-bounded.
+function findEstablished(text, nowYear = new Date().getFullYear()) {
+  const sane = (y) => (y >= 1850 && y <= nowYear ? String(y) : '');
+
+  // 1) Explicit "since/established/founded YYYY" — most trustworthy.
+  let m = text.match(/\b(?:since|est(?:ablished)?\.?|founded(?:\s+in)?|serving\s+[\w\s]+?\s+since|in\s+business\s+since)\s*(\d{4})/i);
+  if (m && sane(+m[1])) return m[1];
+
+  // 2) Relative "for over 20 years" / "20+ years" / "celebrating 35 years".
+  m = text.match(/\b(?:for\s+(?:over|more than|nearly|almost)?\s*|celebrating\s+(?:over\s+)?|proudly\s+serving[\w\s]*?for\s+(?:over\s+)?)(\d{1,3})\+?\s+years\b/i)
+    || text.match(/\b(\d{1,3})\+?\s+years\s+(?:of\s+(?:experience|service|business)|in\s+business|serving)\b/i);
+  if (m) {
+    const n = +m[1];
+    if (n >= 3 && n <= 150) return sane(nowYear - n);
+  }
+
+  // 3) Weak last resort: a copyright RANGE whose start year looks like founding
+  //    ("© 1998–2026"). A lone "© 2026" is just this year, so we ignore it.
+  m = text.match(/(?:©|copyright|\(c\))\s*(\d{4})\s*[–—-]\s*(?:\d{4}|present)/i);
+  if (m && sane(+m[1]) && nowYear - +m[1] >= 3) return m[1];
+
+  return '';
 }
 
 function findSocial(html) {
@@ -388,6 +671,139 @@ function findSocial(html) {
     if (!out.google && /(g\.page|maps\.google|goo\.gl\/maps|business\.google)/i.test(u)) out.google = u;
   }
   return out;
+}
+
+// --- schema.org MICRODATA fallback (when JSON-LD is absent) ------------------
+// Reads itemprop-tagged values from visible HTML. Best-effort: a value can live
+// in an attribute (content="", href="tel:") or as the element's text.
+function microdataValue(html, prop) {
+  // Element carrying itemprop="prop": prefer content=, then tel/mailto href, then text.
+  const re = new RegExp(
+    `<([a-z0-9]+)\\b[^>]*\\bitemprop\\s*=\\s*["'][^"']*\\b${prop}\\b[^"']*["'][^>]*>([\\s\\S]*?)<\\/\\1>`,
+    'i',
+  );
+  const m = html.match(re);
+  if (!m) {
+    // Self-closing / void element (e.g. <meta itemprop="..." content="...">).
+    const re2 = new RegExp(`<[a-z0-9]+\\b[^>]*\\bitemprop\\s*=\\s*["'][^"']*\\b${prop}\\b[^"']*["'][^>]*>`, 'i');
+    const tag = html.match(re2)?.[0];
+    if (!tag) return '';
+    return attr(tag, 'content') || clean(attr(tag, 'href').replace(/^(?:tel:|mailto:)/i, ''));
+  }
+  const openTag = m[0].match(/^<[^>]*>/)?.[0] ?? '';
+  return (
+    attr(openTag, 'content') ||
+    clean(attr(openTag, 'href').replace(/^(?:tel:|mailto:)/i, '')) ||
+    stripTags(m[2])
+  );
+}
+
+function fromMicrodata(html) {
+  const out = {};
+  const name = microdataValue(html, 'name');
+  if (name && name.length <= 80) out.name = name;
+  const tel = microdataValue(html, 'telephone');
+  if (tel) out.phone = tel;
+  const email = microdataValue(html, 'email');
+  if (email && /@/.test(email)) out.email = email;
+  // Address: prefer a composed PostalAddress, else a flat streetAddress/address.
+  const street = microdataValue(html, 'streetAddress');
+  const locality = microdataValue(html, 'addressLocality');
+  const region = microdataValue(html, 'addressRegion');
+  const postal = microdataValue(html, 'postalCode');
+  const parts = [street, locality, region, postal].filter(Boolean);
+  if (parts.length) out.address = parts.join(', ');
+  else {
+    const addr = microdataValue(html, 'address');
+    if (addr && addr.length <= 160) out.address = addr;
+  }
+  if (locality) out.city = locality;
+  if (region) out.state = region;
+  return out;
+}
+
+// --- visible HOURS parsing (when JSON-LD openingHoursSpecification is absent) -
+// Scans for "Day: 9:00 AM – 5:00 PM" lines in a hours table/list. Conservative:
+// only emits a row when both a day token and a time range (or "Closed") parse.
+// Non-capturing so it can be interpolated into parseHoursLine's regex without
+// shifting that regex's own capture-group indices.
+const DAY_WORDS =
+  /\b(?:Mon(?:day)?|Tue(?:s|sday)?|Wed(?:nesday)?|Thu(?:r|rs|rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)\b/i;
+const DAY_NORM = {
+  mon: 'Mon', monday: 'Mon', tue: 'Tue', tues: 'Tue', tuesday: 'Tue',
+  wed: 'Wed', wednesday: 'Wed', thu: 'Thu', thur: 'Thu', thurs: 'Thu', thursday: 'Thu',
+  fri: 'Fri', friday: 'Fri', sat: 'Sat', saturday: 'Sat', sun: 'Sun', sunday: 'Sun',
+};
+const normDay = (d) => DAY_NORM[String(d).toLowerCase()] ?? clean(d);
+
+// Matches a "9", "9am", "9:30 AM", "17:00" time token.
+const TIME_TOK = /\b(\d{1,2}(?::\d{2})?\s*(?:[ap]\.?m\.?)?)\b/i;
+
+function parseHoursLine(line) {
+  const dayM = line.match(
+    new RegExp(`^\\s*(${DAY_WORDS.source})(?:\\s*[-–—]\\s*(${DAY_WORDS.source}))?\\s*[:\\u2013\\u2014-]?\\s*(.+)$`, 'i'),
+  );
+  if (!dayM) return null;
+  const d1 = normDay(dayM[1]);
+  const d2 = dayM[2] ? normDay(dayM[2]) : '';
+  const label = d2 ? `${d1} – ${d2}` : d1;
+  const rest = dayM[3] || '';
+  if (/closed/i.test(rest)) return { day: label, hours: 'Closed' };
+  if (/24\s*(?:hours|hrs|\/7)/i.test(rest)) return { day: label, hours: 'Open 24 hours' };
+  // Find two time tokens forming a range.
+  const times = [...rest.matchAll(new RegExp(TIME_TOK.source, 'gi'))].map((t) => t[1].trim());
+  if (times.length >= 2) {
+    return { day: label, hours: `${fmtVisibleTime(times[0])} – ${fmtVisibleTime(times[1])}` };
+  }
+  return null;
+}
+
+// Normalize a loose visible time ("9", "9am", "5:00 PM") to "9:00 AM".
+function fmtVisibleTime(t) {
+  const m = String(t).match(/(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?/i);
+  if (m) {
+    let h = +m[1] % 12 || 12;
+    const ap = m[3].toUpperCase() + 'M';
+    return `${h}:${m[2] ?? '00'} ${ap}`;
+  }
+  // 24h form.
+  const h24 = String(t).match(/^(\d{1,2}):?(\d{2})?$/);
+  if (h24) return fmtTime(`${h24[1]}:${h24[2] ?? '00'}`);
+  return clean(t);
+}
+
+function extractHours(html) {
+  // Look line-by-line through stripped text limited to hours-flavored regions to
+  // avoid catching random times. We slice ~600 chars after a "hours" cue.
+  const out = [];
+  const seen = new Set();
+  const lower = html.toLowerCase();
+  const regions = [];
+  for (const cue of ['hours', 'opening hours', 'business hours', 'we are open', 'open hours']) {
+    let idx = lower.indexOf(cue);
+    while (idx !== -1 && regions.length < 6) {
+      regions.push(html.slice(idx, idx + 700));
+      idx = lower.indexOf(cue, idx + cue.length);
+    }
+  }
+  // Also consider any <table>/<ul> that contains day words (a hours widget).
+  for (const block of [...matchAll(html, 'table'), ...matchAll(html, 'ul')]) {
+    if (DAY_WORDS.test(stripTags(block))) regions.push(block);
+  }
+  for (const region of regions) {
+    // Break a region into candidate lines on tags and common separators.
+    const lines = stripTags(region.replace(/<\/(?:li|tr|td|th|p|div|br)>/gi, '\n').replace(/<br\s*\/?>/gi, '\n'))
+      .split(/\n|(?=\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun))/i);
+    for (const line of lines) {
+      const row = parseHoursLine(line);
+      if (row && !seen.has(row.day)) {
+        seen.add(row.day);
+        out.push(row);
+      }
+    }
+    if (out.length >= 7) break;
+  }
+  return out.slice(0, 7);
 }
 
 // --- main -------------------------------------------------------------------
@@ -426,6 +842,9 @@ export async function scrapeSite(url, { timeoutMs = 12000 } = {}) {
 
   const base = finalUrl;
   const ld = fromJsonLd(parseJsonLd(html), base);
+  // schema.org microdata fills gaps when JSON-LD is absent (weaker than LD,
+  // stronger than raw title/regex), so it sits between the two in precedence.
+  const md = fromMicrodata(html);
 
   const title = clean(matchAll(html, 'title')[0] ?? '');
   const ogTitle = metaContent(html, 'og:title');
@@ -440,26 +859,38 @@ export async function scrapeSite(url, { timeoutMs = 12000 } = {}) {
     ...extractImages(html, base),
   ]);
 
+  const brand = ld.name || md.name || ogTitle || title.split(/[|\-–—]/)[0].trim() || '';
+
+  // Prefer JSON-LD services; else mine the HTML with the precision filter.
+  const services = (ld.services?.length ? ld.services : extractServices(html));
+
+  // Testimonials: JSON-LD reviews are authoritative (real names kept), topped up
+  // from visible HTML when thin. Run BOTH lists through finalizeTestimonials so
+  // any LD review missing a name gets a generic attribution (never overwriting a
+  // real one), matching the HTML path's behavior.
+  const ldTestimonials = finalizeTestimonials(ld.testimonials ?? []);
+  const testimonials = (ldTestimonials.length >= 2
+    ? ldTestimonials
+    : [...ldTestimonials, ...extractTestimonials(html)]
+  ).slice(0, 4);
+
   const enrichment = {
     sourceUrl: finalUrl,
-    name: ld.name || ogTitle || title.split(/[|\-–—]/)[0].trim() || '',
+    name: brand,
     description: ld.description || ogDesc || metaDesc || '',
-    phone: ld.phone || findPhone(html),
-    email: ld.email || findEmail(html),
-    address: ld.address || '',
-    city: ld.city || '',
-    state: ld.state || '',
+    phone: ld.phone || md.phone || findPhone(html),
+    email: ld.email || md.email || findEmail(html),
+    address: ld.address || md.address || '',
+    city: ld.city || md.city || '',
+    state: ld.state || md.state || '',
     established: ld.established || findEstablished(text),
-    hours: ld.hours?.length ? ld.hours : [],
+    // Visible hours table/list is the fallback when LD has no opening spec.
+    hours: ld.hours?.length ? ld.hours : extractHours(html),
     rating: ld.rating,
     reviewCount: ld.reviewCount,
-    services: extractServices(html),
-    about: extractParagraphs(html).slice(0, 4),
-    // Prefer authoritative JSON-LD reviews; top up from visible HTML when thin.
-    testimonials: ((ld.testimonials ?? []).length >= 2
-      ? ld.testimonials
-      : [...(ld.testimonials ?? []), ...extractTestimonials(html)]
-    ).slice(0, 4),
+    services,
+    about: extractParagraphs(html, brand).slice(0, 4),
+    testimonials,
     images: usefulImages([...(ld.images ?? []), ...heuristicImages]),
     social: mergeSocial(ld.social, findSocial(html)),
   };
@@ -517,10 +948,17 @@ async function fetchHtml(url, timeoutMs = 12000) {
   }
 }
 
-// Internal links worth crawling for photos (galleries/services/about pages).
-const PHOTO_PAGE_HINT = /gallery|galleries|photos?|portfolio|work|projects?|services?|about|menu|team|recent|featured|our-/i;
+// Internal links worth crawling for photos. Broadened well beyond the homepage
+// so we reach every page a business stashes real photos on — galleries,
+// portfolios, menus, food/drink, rooms/spaces/venue, services, team, locations,
+// shop/products, results/before-after, etc. (Non-photo pages — cart, account,
+// privacy, terms, login, blog/news — are excluded by the reject list below.)
+const PHOTO_PAGE_HINT =
+  /gallery|galleries|photos?|portfolio|work|projects?|services?|about|menu|team|staff|recent|featured|our-|food|drinks?|wines?|beer|tasting|rooms?|spaces?|venue|events?|specials?|shop|store|products?|catalog(?:ue)?|collections?|locations?|visit|fleet|equipment|results?|treatments?|before-?after|interior|space/i;
+// Pages that match a hint word but are NOT photo galleries — skip them.
+const PHOTO_PAGE_REJECT = /privacy|terms|cart|checkout|account|login|signin|sign-in|policy|careers?|jobs|gift-?cards?|blog|news\b/i;
 
-function findInternalPhotoLinks(html, base, max = 5) {
+function findInternalPhotoLinks(html, base, max = 12) {
   const host = (() => { try { return new URL(base).host; } catch { return ''; } })();
   const out = [];
   const seen = new Set();
@@ -528,6 +966,7 @@ function findInternalPhotoLinks(html, base, max = 5) {
     const href = m[1];
     const text = stripTags(m[2] || '');
     if (!PHOTO_PAGE_HINT.test(href) && !PHOTO_PAGE_HINT.test(text)) continue;
+    if (PHOTO_PAGE_REJECT.test(href)) continue; // hint word but not a photo page
     const abs = absolutize(href, base);
     if (!abs) continue;
     try {
@@ -548,7 +987,7 @@ function findInternalPhotoLinks(html, base, max = 5) {
  * photo-likely subpages (gallery/services/about). Key-free, best-effort.
  * Returns a deduped, logo-filtered list of absolute image URLs.
  */
-export async function collectSiteImages(url, { maxPages = 4, timeoutMs = 12000 } = {}) {
+export async function collectSiteImages(url, { maxPages = 10, timeoutMs = 12000 } = {}) {
   const home = await fetchHtml(url, timeoutMs);
   if (!home) return [];
   const base = home.finalUrl;
@@ -577,19 +1016,35 @@ function mergeSocial(sameAs = [], found) {
   return out;
 }
 
-// 0–100ish score: how confidently can we build a CUSTOM site from this?
+// 0–100 score: how confidently can we build a CUSTOM site from this? Weighted
+// toward the signals that actually make a site feel bespoke — real descriptive
+// prose (description + about), recognizable services, and real photos. Refined
+// to NOT inflate: it rewards depth (a paragraph or two of real about text, a few
+// real services) but caps each bucket so one noisy field can't fake confidence.
 function scoreRichness(e) {
   let s = 0;
-  if (e.description && e.description.length > 60) s += 20;
-  if (e.about.length) s += Math.min(20, e.about.length * 8);
+  // Self-description / meta blurb — table stakes.
+  if (e.description && e.description.length > 60) s += 15;
+  // About prose: the strongest "this is a real, specific business" signal.
+  // Reward length of real copy, not just count of paragraphs.
+  const aboutChars = (e.about || []).join(' ').length;
+  if (aboutChars > 120) s += Math.min(25, Math.round(aboutChars / 40));
+  // Services: real, recognizable names. 3+ is the threshold the generator uses.
   if (e.services.length >= 3) s += 20;
-  if (e.images.length) s += Math.min(20, e.images.length * 7);
-  if (e.phone) s += 5;
-  if (e.address) s += 5;
-  if (e.hours.length) s += 5;
-  if (e.established) s += 5;
-  if (e.testimonials.length) s += 5;
-  return s;
+  else if (e.services.length) s += e.services.length * 4;
+  // Photos: their own imagery is what sells the demo.
+  if (e.images.length) s += Math.min(20, e.images.length * 5);
+  // Contact + trust facts — each a small, capped bump.
+  if (e.phone) s += 4;
+  if (e.address) s += 4;
+  if (e.hours.length) s += 4;
+  if (e.established) s += 4;
+  // Testimonials weigh more when they carry a REAL author name (not generic).
+  if (e.testimonials.length) {
+    const named = e.testimonials.some((t) => t.author && !GENERIC_ATTRIB.includes(t.author));
+    s += named ? 6 : 3;
+  }
+  return Math.min(100, s);
 }
 
 export { stripTags, decodeEntities, parseJsonLd };

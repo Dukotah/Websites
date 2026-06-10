@@ -135,6 +135,45 @@
       ]
     },
     {
+      "type": "gallery",
+      "eyebrow": "Gallery",
+      "heading": "A look around",
+      "images": [
+        {
+          "src": "/images/petaluma-pie-company/story.jpg",
+          "alt": "Petaluma Pie Company in Petaluma, CA — photo 1"
+        },
+        {
+          "src": "/images/petaluma-pie-company/photo-2.jpg",
+          "alt": "Petaluma Pie Company in Petaluma, CA — photo 2"
+        },
+        {
+          "src": "/images/petaluma-pie-company/photo-3.jpg",
+          "alt": "Petaluma Pie Company in Petaluma, CA — photo 3"
+        },
+        {
+          "src": "/images/petaluma-pie-company/photo-4.jpg",
+          "alt": "Petaluma Pie Company in Petaluma, CA — photo 4"
+        },
+        {
+          "src": "/images/petaluma-pie-company/photo-5.jpg",
+          "alt": "Petaluma Pie Company in Petaluma, CA — photo 5"
+        },
+        {
+          "src": "/images/petaluma-pie-company/photo-6.png",
+          "alt": "Petaluma Pie Company in Petaluma, CA — photo 6"
+        },
+        {
+          "src": "/images/petaluma-pie-company/photo-7.jpg",
+          "alt": "Petaluma Pie Company in Petaluma, CA — photo 7"
+        },
+        {
+          "src": "/images/petaluma-pie-company/photo-8.jpg",
+          "alt": "Petaluma Pie Company in Petaluma, CA — photo 8"
+        }
+      ]
+    },
+    {
       "type": "faq",
       "eyebrow": "Good to know",
       "heading": "Common questions",
