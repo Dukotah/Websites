@@ -948,10 +948,17 @@ async function fetchHtml(url, timeoutMs = 12000) {
   }
 }
 
-// Internal links worth crawling for photos (galleries/services/about pages).
-const PHOTO_PAGE_HINT = /gallery|galleries|photos?|portfolio|work|projects?|services?|about|menu|team|recent|featured|our-/i;
+// Internal links worth crawling for photos. Broadened well beyond the homepage
+// so we reach every page a business stashes real photos on — galleries,
+// portfolios, menus, food/drink, rooms/spaces/venue, services, team, locations,
+// shop/products, results/before-after, etc. (Non-photo pages — cart, account,
+// privacy, terms, login, blog/news — are excluded by the reject list below.)
+const PHOTO_PAGE_HINT =
+  /gallery|galleries|photos?|portfolio|work|projects?|services?|about|menu|team|staff|recent|featured|our-|food|drinks?|wines?|beer|tasting|rooms?|spaces?|venue|events?|specials?|shop|store|products?|catalog(?:ue)?|collections?|locations?|visit|fleet|equipment|results?|treatments?|before-?after|interior|space/i;
+// Pages that match a hint word but are NOT photo galleries — skip them.
+const PHOTO_PAGE_REJECT = /privacy|terms|cart|checkout|account|login|signin|sign-in|policy|careers?|jobs|gift-?cards?|blog|news\b/i;
 
-function findInternalPhotoLinks(html, base, max = 5) {
+function findInternalPhotoLinks(html, base, max = 12) {
   const host = (() => { try { return new URL(base).host; } catch { return ''; } })();
   const out = [];
   const seen = new Set();
@@ -959,6 +966,7 @@ function findInternalPhotoLinks(html, base, max = 5) {
     const href = m[1];
     const text = stripTags(m[2] || '');
     if (!PHOTO_PAGE_HINT.test(href) && !PHOTO_PAGE_HINT.test(text)) continue;
+    if (PHOTO_PAGE_REJECT.test(href)) continue; // hint word but not a photo page
     const abs = absolutize(href, base);
     if (!abs) continue;
     try {
@@ -979,7 +987,7 @@ function findInternalPhotoLinks(html, base, max = 5) {
  * photo-likely subpages (gallery/services/about). Key-free, best-effort.
  * Returns a deduped, logo-filtered list of absolute image URLs.
  */
-export async function collectSiteImages(url, { maxPages = 4, timeoutMs = 12000 } = {}) {
+export async function collectSiteImages(url, { maxPages = 10, timeoutMs = 12000 } = {}) {
   const home = await fetchHtml(url, timeoutMs);
   if (!home) return [];
   const base = home.finalUrl;

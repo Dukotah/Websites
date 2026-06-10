@@ -426,7 +426,7 @@ function fallbackCopy(row, preset) {
 // media item is "own" when it carries no credit and isn't library/SVG art. Pulled
 // out of buildConfig so buildSections (the structure owner) can emit the gallery
 // section from the same source the config field uses.
-const GALLERY_MAX = 8;
+const GALLERY_MAX = 10;
 function computeGalleryImages(row, media = []) {
   const area = [row.city, row.state].filter(Boolean).join(', ');
   const heroPhoto = media[0];
@@ -750,18 +750,36 @@ async function agentDroppedPhotos(slug) {
 
 // ---------------------------------------------------------------------------
 async function main() {
-  let csv;
-  try {
-    csv = await readFile(csvPath, 'utf8');
-  } catch {
-    console.error(`Could not read CSV: ${csvPath}`);
-    console.error('Pass a path or create data/prospects.sample.csv (see docs/outreach-pipeline.md).');
-    process.exit(1);
+  let rows;
+  // ON-DEMAND single-lead trigger (the CRM "Generate Website" button → GitHub
+  // Action). When LEAD_JSON is set it carries one lead object (or an array) and
+  // we skip the CSV entirely — same per-row pipeline, just one business.
+  if (process.env.LEAD_JSON) {
+    try {
+      const parsed = JSON.parse(process.env.LEAD_JSON);
+      rows = (Array.isArray(parsed) ? parsed : [parsed]).map((r) =>
+        Object.fromEntries(
+          Object.entries(r).map(([k, v]) => [k.toLowerCase().trim(), v == null ? '' : String(v).trim()]),
+        ),
+      );
+    } catch (err) {
+      console.error(`LEAD_JSON is not valid JSON: ${err.message}`);
+      process.exit(1);
+    }
+    console.log(`Generating from LEAD_JSON (${rows.length} lead${rows.length === 1 ? '' : 's'}).`);
+  } else {
+    let csv;
+    try {
+      csv = await readFile(csvPath, 'utf8');
+    } catch {
+      console.error(`Could not read CSV: ${csvPath}`);
+      console.error('Pass a path or create data/prospects.sample.csv (see docs/outreach-pipeline.md).');
+      process.exit(1);
+    }
+    rows = parseCsv(csv);
   }
-
-  const rows = parseCsv(csv);
   if (!rows.length) {
-    console.error('No data rows found in CSV.');
+    console.error('No lead rows found.');
     process.exit(1);
   }
 
@@ -809,7 +827,7 @@ async function main() {
       const got = await acquirePhotos(row, e, {
         destDir: PUBLIC_IMAGES,
         slug,
-        ownMax: 9,
+        ownMax: 12,
         min: 2,
         skipWikimedia,
         // Their og:image / primary structured image is usually their intended

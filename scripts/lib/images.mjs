@@ -369,7 +369,7 @@ export async function generateImages(facts, { destDir, slug, startIndex = 0, nee
 export async function acquirePhotos(
   row,
   enrichment,
-  { destDir, slug, ownMax = 9, min = 2, skipWikimedia = false, heroHint, siteUrl, deepCrawlPages = 5 } = {},
+  { destDir, slug, ownMax = 12, min = 2, skipWikimedia = false, heroHint, siteUrl, deepCrawlPages = 10 } = {},
 ) {
   const facts = {
     name: row.name,
@@ -401,7 +401,10 @@ export async function acquirePhotos(
     destDir,
     slug,
     max: ownMax,
-    maxCandidates: 80,
+    // Consider a large candidate pool from the deep crawl, then keep the best
+    // `ownMax` after scoring/relevance/dedup — "as many of THEIR real photos as
+    // we can find," without ever padding with stock.
+    maxCandidates: 160,
     heroHint,
   });
   // If we have at least the essential slots from their OWN photos, stop here —
