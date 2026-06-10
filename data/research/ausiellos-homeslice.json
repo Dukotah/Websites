@@ -17,23 +17,62 @@
     "Homeslice is a local, cocktail-forward restaurant and full bar built around wood-fired oven pizzas, smash burgers, house-made plates and a rotating menu of handcrafted drinks, served in a friendly and familiar atmosphere."
   ],
   "services": [
-    { "title": "Wood-Fired Pizza", "description": "Pizzas baked in a wood-fired oven for a crispy, browned crust, with varieties like Margherita, pesto and mushroom, and Korean short rib." },
-    { "title": "Shareable Plates", "description": "Starters and small plates such as Grandma's meatballs, crispy Brussels sprouts, hot cheese dip and crispy rice with ahi tartare." },
-    { "title": "Burgers & Sandwiches", "description": "Fan favorites including the smash burger and a crispy chicken sandwich with tangy slaw and kimchi mayo." },
-    { "title": "Pasta", "description": "House pasta dishes such as stuffed shells with herb ricotta and roasted garlic pesto." },
-    { "title": "Craft Cocktails & Full Bar", "description": "A cocktail-forward full bar with classic and contemporary handcrafted drinks." },
-    { "title": "Happy Hour", "description": "Daily happy hour with food and drink specials in a relaxed, family-friendly setting." }
+    {
+      "title": "Wood-Fired Pizza",
+      "description": "Pizzas baked in a wood-fired oven for a crispy, browned crust, with varieties like Margherita, pesto and mushroom, and Korean short rib."
+    },
+    {
+      "title": "Shareable Plates",
+      "description": "Starters and small plates such as Grandma's meatballs, crispy Brussels sprouts, hot cheese dip and crispy rice with ahi tartare."
+    },
+    {
+      "title": "Burgers & Sandwiches",
+      "description": "Fan favorites including the smash burger and a crispy chicken sandwich with tangy slaw and kimchi mayo."
+    },
+    {
+      "title": "Pasta",
+      "description": "House pasta dishes such as stuffed shells with herb ricotta and roasted garlic pesto."
+    },
+    {
+      "title": "Craft Cocktails & Full Bar",
+      "description": "A cocktail-forward full bar with classic and contemporary handcrafted drinks."
+    },
+    {
+      "title": "Happy Hour",
+      "description": "Daily happy hour with food and drink specials in a relaxed, family-friendly setting."
+    }
   ],
   "hours": [
-    { "day": "Mon – Thu", "hours": "3:00 PM – 10:00 PM" },
-    { "day": "Fri", "hours": "11:30 AM – 11:00 PM" },
-    { "day": "Sat", "hours": "11:30 AM – 11:00 PM" },
-    { "day": "Sun", "hours": "11:30 AM – 10:00 PM" }
+    {
+      "day": "Mon – Thu",
+      "hours": "3:00 PM – 10:00 PM"
+    },
+    {
+      "day": "Fri",
+      "hours": "11:30 AM – 11:00 PM"
+    },
+    {
+      "day": "Sat",
+      "hours": "11:30 AM – 11:00 PM"
+    },
+    {
+      "day": "Sun",
+      "hours": "11:30 AM – 10:00 PM"
+    }
   ],
-  "testimonials": [],
+  "testimonials": [
+    {
+      "quote": "This is a great restaurant with a full bar to watch your favorite team playing on their TVs.",
+      "author": "Mauro, via TripAdvisor"
+    }
+  ],
   "rating": null,
   "priceRange": "$$",
-  "servesCuisine": ["Pizza", "Italian", "American"],
+  "servesCuisine": [
+    "Pizza",
+    "Italian",
+    "American"
+  ],
   "social": {
     "facebook": "https://www.facebook.com/p/Ausiellos-Homeslice-Restaurant-Bar-61553783382660/",
     "instagram": "https://www.instagram.com/ausiellos_homeslice/",

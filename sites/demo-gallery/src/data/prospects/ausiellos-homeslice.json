@@ -190,6 +190,17 @@
           "a": "Call us at (707) 595-3923 — we're glad to help."
         }
       ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "This is a great restaurant with a full bar to watch your favorite team playing on their TVs.",
+          "author": "Mauro, via TripAdvisor"
+        }
+      ]
     }
   ],
   "layout": "editorial",

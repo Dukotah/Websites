@@ -162,6 +162,19 @@
         "text": "Contact us",
         "href": "#contact"
       }
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "4.6 ★",
+          "label": "Average rating"
+        },
+        {
+          "value": "387",
+          "label": "Google reviews"
+        }
+      ]
     }
   ],
   "layout": "classic",

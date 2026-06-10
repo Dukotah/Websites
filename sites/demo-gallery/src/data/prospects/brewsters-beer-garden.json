@@ -170,6 +170,19 @@
         "text": "Contact us",
         "href": "#contact"
       }
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "4.4 ★",
+          "label": "Average rating"
+        },
+        {
+          "value": "2,000+",
+          "label": "Reviews & counting"
+        }
+      ]
     }
   ],
   "layout": "classic",

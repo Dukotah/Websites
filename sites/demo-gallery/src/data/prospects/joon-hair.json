@@ -171,6 +171,19 @@
         "text": "Contact us",
         "href": "#contact"
       }
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "4.8 ★",
+          "label": "Google rating"
+        },
+        {
+          "value": "40+",
+          "label": "Years in business"
+        }
+      ]
     }
   ],
   "layout": "editorial",
