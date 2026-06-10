@@ -816,6 +816,9 @@ async function main() {
         // hero — hand it to the downloader so it wins the hero slot over a
         // merely higher-scoring (but off-brand) photo.
         heroHint: e?.images?.[0],
+        // Deep-crawl their gallery/portfolio/menu/about subpages for MORE of
+        // their real photos (not just the homepage). Their own domain only.
+        siteUrl: e?.sourceUrl || row.website,
       });
       media = got.media;
       photoSource = got.source;

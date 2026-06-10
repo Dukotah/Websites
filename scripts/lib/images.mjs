@@ -27,6 +27,7 @@ import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { getRealPhotos } from './photos.mjs';
+import { collectSiteImages } from './scrape-site.mjs';
 import { scorePhoto, dhash, hamming, NEAR_DUP_DISTANCE } from './photo-score.mjs';
 
 const UA =
@@ -368,7 +369,7 @@ export async function generateImages(facts, { destDir, slug, startIndex = 0, nee
 export async function acquirePhotos(
   row,
   enrichment,
-  { destDir, slug, ownMax = 9, min = 2, skipWikimedia = false, heroHint } = {},
+  { destDir, slug, ownMax = 9, min = 2, skipWikimedia = false, heroHint, siteUrl, deepCrawlPages = 5 } = {},
 ) {
   const facts = {
     name: row.name,
@@ -377,13 +378,30 @@ export async function acquirePhotos(
     city: row.city,
   };
 
-  // Tier 1: their own scraped photos — pulled GENEROUSLY (up to ownMax). Every
-  // one is genuinely theirs, so a richer real-photo gallery is pure upside.
-  let media = await downloadScrapedPhotos(enrichment?.images, {
+  // Tier 1: their OWN photos. Source the candidate pool from BOTH the homepage
+  // scrape (enrichment.images — which carries the og:image / intended hero) AND a
+  // DEEP CRAWL of their gallery / portfolio / menu / about subpages, where the
+  // strongest shots usually live. Both come from the business's own domain, so
+  // the pool stays "genuinely theirs" (never random web stock) while
+  // autonomously surfacing far more real photos than the homepage alone.
+  let ownUrls = [...(enrichment?.images ?? [])];
+  if (siteUrl) {
+    try {
+      const deep = await collectSiteImages(siteUrl, { maxPages: deepCrawlPages });
+      // enrichment.images first (hero intent), then the deep finds. The downloader
+      // de-dupes by size-agnostic identity + exact bytes + perceptual hash, so the
+      // same shot served across pages/sizes still counts once.
+      ownUrls = [...ownUrls, ...deep];
+    } catch {
+      /* deep crawl is best-effort — homepage photos still apply on failure */
+    }
+  }
+
+  let media = await downloadScrapedPhotos(ownUrls, {
     destDir,
     slug,
     max: ownMax,
-    maxCandidates: 60,
+    maxCandidates: 80,
     heroHint,
   });
   // If we have at least the essential slots from their OWN photos, stop here —
