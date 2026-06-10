@@ -103,10 +103,17 @@
 
 html {
   scroll-behavior: smooth;
+  /* Containment safety net: decorative hero shapes (and any full-bleed element)
+     bleed a few % past the viewport edge by design. Without this, that bleed
+     widens the page on narrow screens and clips every section at the right edge
+     (the mobile "everything cut off" bug). `clip` contains it without creating a
+     scroll container, so sticky headers still work. */
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
   font-family: var(--font-body);
   font-size: var(--step-0);
   font-weight: var(--fw-body);
@@ -393,6 +400,10 @@ img {
   color: var(--text-muted);
   margin-top: 0.75rem;
   margin-bottom: 0;
+  /* Cap the lede measure so a long intro keeps a comfortable reading line
+   * rather than running edge-to-edge. Harmless for the --center variant,
+   * whose parent is already capped tighter at 40ch. */
+  max-width: 62ch;
 }
 
 [data-tone="deep"] .section-header .intro,

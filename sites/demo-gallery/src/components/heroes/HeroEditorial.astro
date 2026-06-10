@@ -223,10 +223,12 @@ const longTitle = (hero.heading ?? '').length > 24;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     opacity: 0.75;
-    white-space: nowrap;
+    max-width: 168px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 110px;
+    line-height: 1.2;
   }
 
   /* ── ⑤ Content layer ────────────────────────────────────────────────────── */

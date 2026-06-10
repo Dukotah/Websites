@@ -47,7 +47,7 @@ const rightItems = items.slice(mid);
     <SectionHead {index} {eyebrow} {heading} {intro} align={align} />
 
     {items.length > 0 && (
-      <div class="faqa__cols" data-reveal data-reveal-stagger>
+      <div class="faqa__cols" data-count={items.length} data-reveal data-reveal-stagger>
 
         {/* Left column */}
         <div class="faqa__col">
@@ -126,6 +126,32 @@ const rightItems = items.slice(mid);
       grid-template-columns: 1fr 1fr;
       column-gap: clamp(2rem, 4vw, 4rem);
     }
+
+    /*
+     * Low-count intent: with 3 or fewer questions the two-column split leaves
+     * one lonely item stranded in the right column and reads as half-empty.
+     * Keep these as a single centered column with a comfortable reading
+     * measure so a short FAQ list looks deliberate, not unfinished.
+     */
+    .faqa__cols[data-count='1'],
+    .faqa__cols[data-count='2'],
+    .faqa__cols[data-count='3'] {
+      grid-template-columns: 1fr;
+      max-width: 56rem;
+      margin-inline: auto;
+    }
+  }
+
+  /*
+   * Short lists also benefit from taller, airier rows so the accordion fills
+   * its band rather than sitting as a thin stack. A min row height plus a touch
+   * more vertical padding gives each question real presence at low counts.
+   */
+  .faqa__cols[data-count='1'] .faqa__summary,
+  .faqa__cols[data-count='2'] .faqa__summary,
+  .faqa__cols[data-count='3'] .faqa__summary {
+    padding-block: clamp(1.4rem, 2.6vw, 2rem);
+    min-height: clamp(3.75rem, 7vw, 4.75rem);
   }
 
   /* ── Individual accordion item ──────────────────────────────────────── */

@@ -130,6 +130,13 @@ const count = imgs.length; // 1 | 2 | 3
     inset: 0;
     z-index: 0;
     display: grid;
+    /*
+     * Always define a single full-height row by default so frames stretch to
+     * fill the absolute media area (their aspect-ratio acts only as a fallback
+     * box, never shrinking the tile below the hero height). Multi-row layouts
+     * override grid-template-rows below.
+     */
+    grid-template-rows: 1fr;
     gap: 3px;
     background: var(--bg-deep);
   }
@@ -155,12 +162,30 @@ const count = imgs.length; // 1 | 2 | 3
     overflow: hidden;
     background: var(--bg-deep);
     position: relative;
+    /*
+     * Robustness: mismatched source aspect ratios must not inflate grid tracks.
+     * min-height/min-width:0 lets the frame shrink to its grid cell instead of
+     * its image's intrinsic size; aspect-ratio is a fallback box so the tile
+     * keeps a tidy shape even where the grid can't constrain its height
+     * (overridden to fill its cell via the absolute img below).
+     */
+    min-height: 0;
+    min-width: 0;
+    aspect-ratio: 4 / 3;
     will-change: transform; /* only primary gets parallax but ok on siblings */
   }
+  /*
+   * The img is absolutely positioned to fill the frame regardless of the
+   * frame's intrinsic-size negotiation, so any aspect ratio crops cleanly via
+   * object-fit: cover instead of stretching or leaving gaps.
+   */
   .col-hero__frame img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
     transition: transform 0.6s var(--motion-ease);
   }
@@ -243,10 +268,12 @@ const count = imgs.length; // 1 | 2 | 3
     text-transform: uppercase;
     letter-spacing: 0.1em;
     opacity: 0.75;
-    white-space: nowrap;
+    max-width: 168px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 110px;
+    line-height: 1.2;
   }
 
   /*
