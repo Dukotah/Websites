@@ -7,26 +7,47 @@ import type { ProspectConfig } from '../types';
 import SiteImage from './SiteImage.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { about, images, highlights = [], established, name } = config;
+const { about, images, highlights = [], established, name, tagline } = config;
 const badgeLine = (established || '').toString().replace(/^est\.?\s*/i, '');
+
+// A story photo only counts if it's a REAL image — not the category SVG/library
+// placeholder. Stretching that placeholder into the media frame reads as an empty
+// gradient box ("looks unfinished"). When there's no real photo we render an
+// intentional typographic pull-quote panel instead, so the column still has weight.
+const storySrc = images.story || images.hero || '';
+const hasRealStory =
+  Boolean(storySrc) && !storySrc.includes('/images/library/') && !storySrc.endsWith('.svg');
+// The quote draws from the tagline, else the opening line of the story.
+const pullQuote = (tagline || about.body?.[0] || '').toString();
+const aboutClass = hasRealStory ? 'section about' : 'section about about--noimg';
 ---
 
-<section class="section about" id="about" data-tone="alt">
+<section class={aboutClass} id="about" data-tone="alt">
   <div class="container about__inner">
-    <div class="about__media" data-frame data-reveal>
-      <SiteImage
-        src={images.story || images.hero}
-        alt={images.storyAlt || `Inside ${name}`}
-        placeholder="/images/about.svg"
-        sizes="(min-width: 768px) 50vw, 100vw"
-      />
-      {badgeLine && (
-        <div class="about__badge">
-          <strong>{badgeLine}</strong>
-          <span>Established</span>
-        </div>
-      )}
-    </div>
+    {hasRealStory ? (
+      <div class="about__media" data-frame data-reveal>
+        <SiteImage
+          src={storySrc}
+          alt={images.storyAlt || `Inside ${name}`}
+          placeholder="/images/about.svg"
+          sizes="(min-width: 768px) 50vw, 100vw"
+        />
+        {badgeLine && (
+          <div class="about__badge">
+            <strong>{badgeLine}</strong>
+            <span>Established</span>
+          </div>
+        )}
+      </div>
+    ) : (
+      <figure class="about__quote" data-frame data-reveal>
+        <span class="about__quotemark" aria-hidden="true">&ldquo;</span>
+        <blockquote class="about__quotetext">{pullQuote}</blockquote>
+        <figcaption class="about__quotecite">
+          {name}{badgeLine ? ` · Est. ${badgeLine}` : ''}
+        </figcaption>
+      </figure>
+    )}
 
     <div class="about__copy" data-reveal>
       <p class="eyebrow">Our story</p>
@@ -81,6 +102,53 @@ const badgeLine = (established || '').toString().replace(/^est\.?\s*/i, '');
   }
   .about__badge strong { display: block; font-family: var(--font-display); font-size: 1.3rem; line-height: 1; }
   .about__badge span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.9; }
+
+  /* No-photo fallback: a deliberate typographic pull-quote panel instead of an
+     empty image frame. Branded surface, oversized quote mark, display-font line. */
+  .about__quote {
+    position: relative;
+    margin: 0;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--brand) 10%, var(--surface));
+    border: var(--border-weight, 1px) solid color-mix(in srgb, var(--brand) 22%, transparent);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 18rem;
+    overflow: hidden;
+  }
+  .about__quotemark {
+    position: absolute;
+    top: clamp(-0.5rem, -1vw, -1rem);
+    left: 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 14vw, 10rem);
+    line-height: 1;
+    color: color-mix(in srgb, var(--brand) 22%, transparent);
+    pointer-events: none;
+  }
+  .about__quotetext {
+    position: relative;
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: var(--step-2);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text);
+    text-wrap: balance;
+  }
+  .about__quotecite {
+    margin-top: 1.25rem;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--brand);
+  }
 
   .eyebrow {
     font-family: var(--font-body); font-size: var(--step--1); font-weight: var(--fw-bold);
