@@ -1,0 +1,95 @@
+{
+  "slug": "john-owens-services-inc",
+  "confirmed": true,
+  "established": "Est. 1986",
+  "tagline": "Family-run plumbing, heating & air serving Sonoma and Marin since 1986 — repair first, replace only when needed.",
+  "seoDescription": "John Owens Services: family-run plumbing, heating & AC across Sonoma & Marin since 1986. 4.9★ on Google. Repair-first pricing, same-day service.",
+  "heroHeading": "North Bay comfort, done right since 1986",
+  "heroSubheading": "A local, family-run team handling plumbing, heating, cooling and water heaters across Sonoma and Marin — with an honest repair-first promise and a 4.9-star reputation built over 40 years.",
+  "highlights": [
+    "Family-run and trusted since 1986 — 40 years in the North Bay",
+    "Repair first, replace only when needed — honest, upfront pricing",
+    "4.9★ across hundreds of Google reviews · BBB A+"
+  ],
+  "aboutHeading": "About John Owens Services",
+  "aboutBody": [
+    "John Owens Services has been a local, family-run fixture in the North Bay since 1986. Over 40 years the team has grown to three offices — Santa Rosa, Petaluma and San Rafael — while keeping the same straightforward promise: fix what can be fixed, and only recommend a replacement when it truly makes sense.",
+    "That repair-first philosophy, backed by five trade licenses covering plumbing, radiant heating, HVAC, electrical and general building, is why homeowners across Sonoma and Marin keep calling back. The work spans everyday plumbing and drain cleaning to water heaters, furnaces, heat pumps and indoor air quality — including specialty service for the area’s classic Eichler homes."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Plumbing repair & installation",
+      "description": "Toilets, faucets, fixtures, pipes and disposals repaired or replaced — fast, clean, and done right the first time."
+    },
+    {
+      "title": "Sewer & drain cleaning",
+      "description": "Rooter service, clog clearing and descaling to get stubborn drains and main lines flowing freely again."
+    },
+    {
+      "title": "Leak detection",
+      "description": "Pinpoint water, gas and slab leaks before they cause damage — then fix them right."
+    },
+    {
+      "title": "Heating & furnaces",
+      "description": "Repair and installation of furnaces, hydronic systems and boilers to keep your home warm through North Bay winters."
+    },
+    {
+      "title": "Air conditioning & heat pumps",
+      "description": "AC repair, maintenance and installs, plus efficient heat pumps and ductless mini-splits for year-round comfort."
+    },
+    {
+      "title": "Water heaters",
+      "description": "Standard, tankless, heat-pump and commercial water heaters — repaired same-day or replaced with the right fit."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "7:30 AM – 5:30 PM"
+    },
+    {
+      "day": "Sat – Sun",
+      "hours": "By appointment"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "John Owens Services were so responsive and Keith was so helpful. Prompt, courteous, knowledgeable, efficient. The installation team listened to us when we had questions.",
+      "author": "North Bay homeowner"
+    },
+    {
+      "quote": "I highly recommend Max — he was knowledgeable and neat and tried the less expensive option first. He explained every step of the way, getting approval before moving forward when he had to use an alternate solution.",
+      "author": "Santa Rosa customer"
+    },
+    {
+      "quote": "I used John Owens Services to replace my water heater at my Petaluma home. Two technicians named Will and Will came out the same day my old water heater died and replaced it in no time. Fast, efficient, and professional.",
+      "author": "Petaluma customer"
+    }
+  ],
+  "rating": {
+    "value": 4.9,
+    "count": 315,
+    "source": "google"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/johnowensservicessonomacounty/",
+    "instagram": "https://www.instagram.com/johnowensservices/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://johnowensservices.com/wp-content/uploads/Background-Image-.webp",
+    "https://johnowensservices.com/wp-content/uploads/jos-hero-poster.jpg?v=1",
+    "https://johnowensservices.com/wp-content/uploads/marin-sonoma-hero.jpg?v=9",
+    "https://johnowensservices.com/wp-content/uploads/jos-hero-montage.mp4?v=1",
+    "https://johnowensservices.com/wp-content/uploads/DSC04773-1024x576.jpg",
+    "https://johnowensservices.com/wp-content/uploads/071619_JohnOwensServices_-2511-3-1024x683.jpg",
+    "https://johnowensservices.com/wp-content/uploads/IMG_2455-2-1024x768.jpg",
+    "https://johnowensservices.com/wp-content/uploads/Faucet-Installation-Will-C-768x1024.jpg",
+    "https://johnowensservices.com/wp-content/uploads/jos-visuals-20260604/drain-cleaning/tiburon/01-drain-services-tiburon.webp",
+    "https://johnowensservices.com/wp-content/uploads/jos-visuals-20260604/drain-cleaning/tiburon/02-hydrojetter-services-in-tiburon.webp",
+    "https://johnowensservices.com/wp-content/uploads/jos-visuals-20260604/leak-detection/petaluma/02-leak-detection-petaluma.webp",
+    "https://johnowensservices.com/wp-content/uploads/jos-visuals-20260604/leak-detection/petaluma/03-petaluma-gas-leak-detection.webp"
+  ],
+  "notes": "Verified via johnowensservices.com + Yelp/Birdeye/HomeAdvisor (Jun 2026). Established 1986; 3 offices (Santa Rosa/Petaluma/San Rafael); licenses #501853 plumbing, C36/C4/C20/C10/B. 4.9★ Google across 300+ reviews. Testimonials are real (reviewer first names verified; surnames not public, attributed by area). Repair-first philosophy confirmed on their site."
+}

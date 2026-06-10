@@ -1,0 +1,235 @@
+{
+  "name": "John Owens Services, Inc.",
+  "category": "hvac_services",
+  "tagline": "Family-run plumbing, heating & air serving Sonoma and Marin since 1986 — repair first, replace only when needed.",
+  "seoDescription": "John Owens Services: family-run plumbing, heating & AC across Sonoma & Marin since 1986. 4.9★ on Google. Repair-first pricing, same-day service.",
+  "area": "Santa Rosa, CA",
+  "established": "Est. 1986",
+  "contact": {
+    "phone": "+17072032517",
+    "email": "leads.johnowensservices@gmail.com",
+    "address": "3471 Regional Pkwy Ste C"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/johnowensservicessonomacounty/",
+    "instagram": "https://www.instagram.com/johnowensservices/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "North Bay comfort, done right since 1986",
+    "subheading": "A local, family-run team handling plumbing, heating, cooling and water heaters across Sonoma and Marin — with an honest repair-first promise and a 4.9-star reputation built over 40 years.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Family-run and trusted since 1986 — 40 years in the North Bay",
+    "Repair first, replace only when needed — honest, upfront pricing",
+    "4.9★ across hundreds of Google reviews · BBB A+"
+  ],
+  "images": {
+    "hero": "/images/john-owens-services-inc/photo-2.webp",
+    "heroAlt": "John Owens Services, Inc. in Santa Rosa, CA",
+    "story": "/images/john-owens-services-inc/story.jpg",
+    "storyAlt": "About John Owens Services, Inc.",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/john-owens-services-inc/story.jpg",
+      "alt": "John Owens Services, Inc. in Santa Rosa, CA — photo 1"
+    },
+    {
+      "src": "/images/john-owens-services-inc/photo-3.webp",
+      "alt": "John Owens Services, Inc. in Santa Rosa, CA — photo 2"
+    },
+    {
+      "src": "/images/john-owens-services-inc/photo-4.webp",
+      "alt": "John Owens Services, Inc. in Santa Rosa, CA — photo 3"
+    },
+    {
+      "src": "/images/john-owens-services-inc/photo-5.webp",
+      "alt": "John Owens Services, Inc. in Santa Rosa, CA — photo 4"
+    },
+    {
+      "src": "/images/john-owens-services-inc/hero.webp",
+      "alt": "John Owens Services, Inc. in Santa Rosa, CA — photo 5"
+    },
+    {
+      "src": "/images/john-owens-services-inc/photo-6.jpg",
+      "alt": "John Owens Services, Inc. in Santa Rosa, CA — photo 6"
+    },
+    {
+      "src": "/images/john-owens-services-inc/photo-7.jpg",
+      "alt": "John Owens Services, Inc. in Santa Rosa, CA — photo 7"
+    },
+    {
+      "src": "/images/john-owens-services-inc/photo-8.jpg",
+      "alt": "John Owens Services, Inc. in Santa Rosa, CA — photo 8"
+    }
+  ],
+  "about": {
+    "heading": "About John Owens Services",
+    "body": [
+      "John Owens Services has been a local, family-run fixture in the North Bay since 1986. Over 40 years the team has grown to three offices — Santa Rosa, Petaluma and San Rafael — while keeping the same straightforward promise: fix what can be fixed, and only recommend a replacement when it truly makes sense.",
+      "That repair-first philosophy, backed by five trade licenses covering plumbing, radiant heating, HVAC, electrical and general building, is why homeowners across Sonoma and Marin keep calling back. The work spans everyday plumbing and drain cleaning to water heaters, furnaces, heat pumps and indoor air quality — including specialty service for the area’s classic Eichler homes."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Plumbing repair & installation",
+      "description": "Toilets, faucets, fixtures, pipes and disposals repaired or replaced — fast, clean, and done right the first time."
+    },
+    {
+      "title": "Sewer & drain cleaning",
+      "description": "Rooter service, clog clearing and descaling to get stubborn drains and main lines flowing freely again."
+    },
+    {
+      "title": "Leak detection",
+      "description": "Pinpoint water, gas and slab leaks before they cause damage — then fix them right."
+    },
+    {
+      "title": "Heating & furnaces",
+      "description": "Repair and installation of furnaces, hydronic systems and boilers to keep your home warm through North Bay winters."
+    },
+    {
+      "title": "Air conditioning & heat pumps",
+      "description": "AC repair, maintenance and installs, plus efficient heat pumps and ductless mini-splits for year-round comfort."
+    },
+    {
+      "title": "Water heaters",
+      "description": "Standard, tankless, heat-pump and commercial water heaters — repaired same-day or replaced with the right fit."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "7:30 AM – 5:30 PM"
+    },
+    {
+      "day": "Sat – Sun",
+      "hours": "By appointment"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "40+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.9★",
+          "label": "315 reviews"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "eyebrow": "Our story",
+      "heading": "How we got here",
+      "items": [
+        {
+          "year": "1986",
+          "title": "John Owens Services, Inc. opened its doors",
+          "body": "John Owens Services has been a local, family-run fixture in the North Bay since 1986"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "John Owens Services were so responsive and Keith was so helpful. Prompt, courteous, knowledgeable, efficient. The installation team listened to us when we had questions.",
+          "author": "North Bay homeowner"
+        },
+        {
+          "quote": "I highly recommend Max — he was knowledgeable and neat and tried the less expensive option first. He explained every step of the way, getting approval before moving forward when he had to use an alternate solution.",
+          "author": "Santa Rosa customer"
+        },
+        {
+          "quote": "I used John Owens Services to replace my water heater at my Petaluma home. Two technicians named Will and Will came out the same day my old water heater died and replaced it in no time. Fast, efficient, and professional.",
+          "author": "Petaluma customer"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 3471 Regional Pkwy Ste C."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon – Fri: 7:30 AM – 5:30 PM; Sat – Sun: By appointment."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17072032517 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Plumbing repair & installation",
+          "description": "Toilets, faucets, fixtures, pipes and disposals repaired or replaced — fast, clean, and done right the first time."
+        },
+        {
+          "title": "Sewer & drain cleaning",
+          "description": "Rooter service, clog clearing and descaling to get stubborn drains and main lines flowing freely again."
+        },
+        {
+          "title": "Leak detection",
+          "description": "Pinpoint water, gas and slab leaks before they cause damage — then fix them right."
+        },
+        {
+          "title": "Heating & furnaces",
+          "description": "Repair and installation of furnaces, hydronic systems and boilers to keep your home warm through North Bay winters."
+        },
+        {
+          "title": "Air conditioning & heat pumps",
+          "description": "AC repair, maintenance and installs, plus efficient heat pumps and ductless mini-splits for year-round comfort."
+        },
+        {
+          "title": "Water heaters",
+          "description": "Standard, tankless, heat-pump and commercial water heaters — repaired same-day or replaced with the right fit."
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "ready",
+  "flags": [],
+  "theme": {
+    "brand": "#c2683a",
+    "brandDark": "#243b53"
+  },
+  "artDirection": {
+    "fontId": "classic-trad",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "timeline"
+  },
+  "heroVariant": "split"
+}
