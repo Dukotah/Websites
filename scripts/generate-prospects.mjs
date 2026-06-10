@@ -434,6 +434,78 @@ function fallbackCopy(row, preset) {
   return researchCopy(row, preset, null);
 }
 
+// ---------------------------------------------------------------------------
+// Verified-research path. A human/agent research pass can drop a hand-checked
+// fact file at data/research/<slug>.json (schema below). When present it is the
+// AUTHORITATIVE source — it bypasses both the live scrape AND the Claude copy
+// step, because its facts are already verified (with `notes` recording anything
+// that couldn't be confirmed). This is the highest-fidelity input the factory
+// accepts; the scrape is the best-effort fallback when no research file exists.
+//
+//   { slug, confirmed, established, tagline, seoDescription, heroHeading,
+//     heroSubheading, highlights[], aboutHeading, aboutBody[],
+//     servicesHeading?, services:[{title,description}], hours:[{day,hours}],
+//     testimonials:[{quote,author}], rating:{value,count,source}, priceRange?,
+//     servesCuisine?[], social:{facebook,instagram,google}, realPhotoUrls[],
+//     notes }
+// ---------------------------------------------------------------------------
+const RESEARCH_DIR = join(ROOT, 'data', 'research');
+
+async function loadResearch(slug) {
+  try {
+    const raw = await readFile(join(RESEARCH_DIR, `${slug}.json`), 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return null; // no research file (or unreadable/invalid) — fall back to scrape
+  }
+}
+
+// Shape a research file into the `enrichment` (e) object the rest of the
+// pipeline expects from scrapeSite — so buildSections / buildConfig / photos /
+// deriveStatus all consume verified facts through the SAME code paths as a scrape.
+function enrichmentFromResearch(r, row) {
+  const year = (r.established || '').toString().replace(/^est\.?\s*/i, '').match(/\d{4}/)?.[0] || '';
+  return {
+    description: r.tagline || r.seoDescription || '',
+    about: Array.isArray(r.aboutBody) ? r.aboutBody : [],
+    services: (r.services ?? []).map((s) => s.title).filter(Boolean),
+    established: year,
+    rating: r.rating?.value,
+    reviewCount: r.rating?.count,
+    hours: Array.isArray(r.hours) ? r.hours : [],
+    testimonials: Array.isArray(r.testimonials) ? r.testimonials : [],
+    social: r.social ?? {},
+    // Contact facts come from the verified CSV row, not the research blob —
+    // research `notes` flag any phone/email/address that couldn't be confirmed.
+    phone: row.phone || '',
+    email: row.email || '',
+    address: row.address || '',
+    city: row.city || '',
+    state: row.state || '',
+    images: Array.isArray(r.realPhotoUrls) ? r.realPhotoUrls : [],
+    // Verified by construction — never trips the "thin research" quality gate.
+    richness: 100,
+    _fromResearch: true,
+  };
+}
+
+// Map a research file straight into the `copy` object (no Claude call needed —
+// the prose is already written and verified).
+function copyFromResearch(r, row) {
+  return {
+    tagline: r.tagline ?? '',
+    seoDescription: r.seoDescription ?? '',
+    heroHeading: r.heroHeading ?? '',
+    heroSubheading: r.heroSubheading ?? '',
+    highlights: Array.isArray(r.highlights) ? r.highlights : [],
+    aboutHeading: r.aboutHeading || `About ${row.name}`,
+    aboutBody: Array.isArray(r.aboutBody) ? r.aboutBody : [],
+    servicesHeading: r.servicesHeading || 'What we do',
+    services: Array.isArray(r.services) ? r.services : [],
+    _templated: [], // fully authored from verified facts
+  };
+}
+
 // Compose a RICH depth-section spine from REAL data only — never fabricated.
 // Every section is data-gated: it appears only when the scrape (or CSV row)
 // actually provides the facts to fill it, so the FIRST build lands rich instead
@@ -650,7 +722,9 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
 // Decide ready vs needs-review from how much REAL material we got.
 function deriveStatus(row, e, media, photoSource, templated) {
   const flags = [];
-  const realPhotos = /business-site|ai-generated/.test(photoSource);
+  // agent-supplied photos (dropped into src/assets/prospects/<slug>/) ARE real —
+  // they only land there because someone curated genuine business photos.
+  const realPhotos = /business-site|ai-generated|agent-supplied/.test(photoSource);
   if (!row.website) flags.push('No website provided — research & verify manually');
   else if (!e) flags.push('Website unreachable — copy not built from real data');
   else if ((e.richness ?? 0) < 35) flags.push('Thin research — verify facts & rewrite copy');
@@ -736,14 +810,22 @@ async function main() {
     // Accept either `website` or `existing_website` as the column header.
     row.website = row.website || row.existing_website || '';
 
-    // 1) Scrape their existing site for real facts (best-effort, key-free).
+    // 0) Verified research file wins. If data/research/<slug>.json exists it is
+    //    authoritative (already fact-checked) — use it for BOTH enrichment and
+    //    copy, and skip the best-effort live scrape entirely.
+    const research = await loadResearch(slug);
+
+    // 1) Otherwise scrape their existing site for real facts (best-effort, key-free).
     let e = null;
-    if (row.website) {
+    if (research) {
+      e = enrichmentFromResearch(research, row);
+      console.log(`  · ${row.name}: using verified research (data/research/${slug}.json)`);
+    } else if (row.website) {
       process.stdout.write(`  · ${row.name}: scraping ${row.website} … `);
       e = await scrapeSite(row.website);
       console.log(e ? `ok (richness ${e.richness})` : 'unreachable');
     }
-    // Backfill missing CSV location fields from the scrape.
+    // Backfill missing CSV location fields from the scrape/research.
     if (e) {
       row.city = row.city || e.city || '';
       row.state = row.state || e.state || '';
@@ -768,8 +850,8 @@ async function main() {
       photoSource = got.source;
     }
 
-    // 3) Copy from real facts; 4) depth sections + layout.
-    const copy = await generateCopy(row, preset, e);
+    // 3) Copy: verified research as-is, else Claude/scrape; 4) depth + layout.
+    const copy = research ? copyFromResearch(research, row) : await generateCopy(row, preset, e);
     const sections = buildSections(row, e, copy);
     const layout = layoutFor(slug);
 
@@ -784,6 +866,10 @@ async function main() {
       formspreeId: row.formspree_id || row.formspree || '',
       bookingUrl: row.booking_url || row.booking || '',
     });
+    // Verified structured-data extras (schema.org rich results) — only from a
+    // research file, never guessed.
+    if (research?.priceRange) config.priceRange = research.priceRange;
+    if (research?.servesCuisine?.length) config.servesCuisine = research.servesCuisine;
     // Keep row/e/copy on the entry (not serialized) so the post-divergence pass
     // can build the depth section the divergence hint requests.
     built.push({ slug, catKey, config, row, e, copy, link: `${base}/p/${slug}`, status, photoSource, flags });
@@ -837,7 +923,7 @@ async function main() {
 }
 
 // Exported for tests; only auto-run when invoked directly (not when imported).
-export { buildConfig, slugify, parseCsv, researchCopy, fallbackCopy, buildSections, layoutFor, CATEGORIES };
+export { buildConfig, slugify, parseCsv, researchCopy, fallbackCopy, buildSections, layoutFor, CATEGORIES, loadResearch, enrichmentFromResearch, copyFromResearch };
 
 // Run main() only when invoked directly (not when imported by tests).
 // Use pathToFileURL so this works on Windows (file:///C:/…) as well as POSIX.
