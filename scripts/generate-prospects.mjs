@@ -993,7 +993,10 @@ async function main() {
       `${skipWikimedia ? '' : 'Wikimedia → '}library\n`,
   );
 
-  const base = process.env.GALLERY_BASE_URL?.replace(/\/$/, '') ?? '';
+  // Default to the live custom domain so every batch's links look like ours
+  // (demos.copperbaytech.com/p/<slug>) with no per-run config. Override with
+  // GALLERY_BASE_URL if the gallery ever moves.
+  const base = (process.env.GALLERY_BASE_URL || 'https://demos.copperbaytech.com').replace(/\/$/, '');
   const links = [];
   const built = [];
   // Tracks every hero headline already used this batch so the template path can

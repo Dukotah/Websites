@@ -22,7 +22,7 @@ const H = 630;
 const PROSPECTS_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
 const OUT_DIR = join(ROOT, 'data', 'thumbnails');
 const PUBLISH_DIR = join(ROOT, 'sites', 'demo-gallery', 'public', 'thumbnails');
-const BASE_URL = (process.env.GALLERY_BASE_URL || 'yourdomain.com').replace(/^https?:\/\//, '').replace(/\/$/, '');
+const BASE_URL = (process.env.GALLERY_BASE_URL || 'demos.copperbaytech.com').replace(/^https?:\/\//, '').replace(/\/$/, '');
 
 const escapeXml = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
