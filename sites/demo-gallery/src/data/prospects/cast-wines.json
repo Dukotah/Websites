@@ -1,0 +1,181 @@
+{
+  "name": "CAST Wines",
+  "category": "winery",
+  "tagline": "Celebrate every day",
+  "seoDescription": "CAST Wines — a boutique Geyserville winery crafting limited-production Zinfandel, Sauvignon Blanc and Cabernet from a CCOF Certified Organic estate vineyard in Dry Creek Valley.",
+  "area": "Geyserville, CA",
+  "established": "Est. 2012",
+  "contact": {
+    "phone": "+17074311225",
+    "email": "",
+    "address": "8500 Dry Creek Rd"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/castwines/",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Certified organic estate wines in Dry Creek Valley",
+    "subheading": "A boutique Geyserville winery crafting limited-production Zinfandel, Sauvignon Blanc, and Cabernet from a Certified Organic estate vineyard.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Certified Organic estate vineyard",
+    "Sustainable farming since 2012",
+    "Boutique, limited production",
+    "Vineyard terrace tastings",
+    "4.7 stars on TripAdvisor"
+  ],
+  "images": {
+    "hero": "/images/cast-wines/hero.jpg",
+    "heroAlt": "CAST Wines in Geyserville, CA",
+    "story": "/images/cast-wines/story.webp",
+    "storyAlt": "About CAST Wines",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/winery/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/cast-wines/story.webp",
+      "alt": "CAST Wines in Geyserville, CA — photo 1"
+    },
+    {
+      "src": "/images/cast-wines/photo-2.webp",
+      "alt": "CAST Wines in Geyserville, CA — photo 2"
+    }
+  ],
+  "about": {
+    "heading": "Our Story",
+    "body": [
+      "CAST Wines opened in 2012 when founding proprietor Jack Seifrick and a small group of friends fell under the spell of a beautiful property in Sonoma's Dry Creek Valley. The name comes from the spell that was cast over them on that first visit — a feeling they have worked to preserve and share ever since.",
+      "The wines are made by Mikael Gulyash, a Northern California native who has spent virtually his entire career in the Sonoma County wine business. After earning a degree in organic chemistry, he honed his craft at Sonoma's legendary Jordan Estate before becoming a winemaker in his own right.",
+      "CAST has farmed sustainably since day one, and the estate vineyard is now officially CCOF Certified Organic under the USDA National Organic Program. The result is a boutique, limited-production portfolio that reflects both the land and the care behind it."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "Tastings & Experiences",
+  "services": [
+    {
+      "title": "Terrace & Tasting Room Flights",
+      "description": "Guided seated tastings on the outdoor terrace overlooking the vineyards, or indoors in the tasting room. Walk-ins welcome; reservations recommended."
+    },
+    {
+      "title": "Vineyard Tour & Tasting",
+      "description": "A reservable tour of the estate vineyard paired with a wine tasting and an accompaniment of cheese and charcuterie."
+    },
+    {
+      "title": "Barrel Room Tasting",
+      "description": "An intimate seated tasting in the barrel room by advance reservation, for a behind-the-scenes look at the wines."
+    }
+  ],
+  "hours": [
+    "Open daily, 10:00 AM – 5:00 PM",
+    "Final reservation at 3:30 PM",
+    "Walk-ins welcome, reservations recommended"
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "14+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.7★",
+          "label": "73 reviews"
+        },
+        {
+          "value": "3",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "bigquote",
+      "quote": "Cast is a great winery for a tasting. Joe walked us through a variety of wines with great information and an even better view.",
+      "author": "Margo L."
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "Cast is a great winery for a tasting. Joe walked us through a variety of wines with great information and an even better view.",
+          "author": "Margo L."
+        },
+        {
+          "quote": "Joe and Corey were great hosts! They walked us through a variety of delicious wines.",
+          "author": "Brenda H."
+        },
+        {
+          "quote": "Our hotel recommended Cast as the best place to sip and savor the view — otherwise we probably would have driven right by.",
+          "author": "ScottD58"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 8500 Dry Creek Rd."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined; undefined: undefined; undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Geyserville, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17074311225 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Tastings & Experiences",
+      "items": [
+        {
+          "title": "Terrace & Tasting Room Flights",
+          "description": "Guided seated tastings on the outdoor terrace overlooking the vineyards, or indoors in the tasting room. Walk-ins welcome; reservations recommended."
+        },
+        {
+          "title": "Vineyard Tour & Tasting",
+          "description": "A reservable tour of the estate vineyard paired with a wine tasting and an accompaniment of cheese and charcuterie."
+        },
+        {
+          "title": "Barrel Room Tasting",
+          "description": "An intimate seated tasting in the barrel room by advance reservation, for a behind-the-scenes look at the wines."
+        }
+      ]
+    }
+  ],
+  "layout": "classic",
+  "status": "ready",
+  "flags": [
+    "No email found — add a real email or contact form before sending"
+  ],
+  "theme": {
+    "brand": "#6b2737",
+    "brandDark": "#2b1a1f"
+  },
+  "priceRange": "$$",
+  "artDirection": {
+    "fontId": "organic-serif",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "bigquote"
+  },
+  "heroVariant": "cinematic"
+}

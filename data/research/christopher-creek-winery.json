@@ -1,0 +1,53 @@
+{
+  "slug": "christopher-creek-winery",
+  "confirmed": true,
+  "established": "Est. 1974",
+  "tagline": "Real wine, real people",
+  "seoDescription": "Christopher Creek Winery — a family-owned boutique winery on Limerick Lane in Healdsburg, crafting award-winning, estate-bottled Petite Sirah, Syrah and Cabernet from Russian River and Dry Creek Valley fruit.",
+  "heroHeading": "Estate Petite Sirah from vines planted in 1972",
+  "heroSubheading": "A family-owned boutique winery on Limerick Lane in Healdsburg, crafting roughly 4,000 cases a year of award-winning, estate-bottled wine.",
+  "highlights": [
+    "Family-owned boutique winery",
+    "Estate-bottled, ~4,000 cases/year",
+    "Original 1972 vines still producing",
+    "Award-winning Petite Sirah",
+    "Poolside vineyard-view tasting"
+  ],
+  "aboutHeading": "Our Story",
+  "aboutBody": [
+    "Christopher Creek opened in 1974, the year after its first grapes were planted on Limerick Lane in 1972. Those original vines are still producing today, bottled as the Reserve Petite Sirah and Reserve Syrah you can taste daily.",
+    "In 2012, the Foppoli family and a few close friends took over the winery, keeping the small, family-run feel intact. The family has made wine for generations, a tradition that traces back through California to Italy.",
+    "Wines are grown on eleven rolling acres in the Russian River Valley and high on Bradford Mountain in the Dry Creek Valley. Alongside the legendary Petite Sirah, Syrah and Cabernet Franc, the portfolio now spans Cabernet Sauvignon, Zinfandel, Pinot Noir, Chardonnay, Viognier, Rosé and Port."
+  ],
+  "servicesHeading": "Tastings & Wines",
+  "services": [
+    { "title": "Wine Tasting", "description": "Sample across a deep portfolio in an intimate tasting room, from approachable Pinot Noir to bold estate Petite Sirah. Reservations recommended." },
+    { "title": "Poolside & Vineyard-View Tasting", "description": "On nice days, taste poolside on a large deck with sweeping valley and vineyard views." },
+    { "title": "Private Barrel Room Groups", "description": "A barrel room is available for private group tastings and gatherings." },
+    { "title": "Wine Club Membership", "description": "Join the Christopher Creek family with a membership built around their award-winning estate-bottled wines." }
+  ],
+  "hours": ["Open daily: 10:00 AM – 6:00 PM"],
+  "testimonials": [
+    { "quote": "Bucket-list winery stop in Sonoma County. Best wine in wine country!", "author": "Aristide F." },
+    { "quote": "Quite simply the best winery you will ever visit — we like them ALL!", "author": "Tyler J." },
+    { "quote": "If you want great wine in a relaxed atmosphere, this is the place. The pours are generous, and the best part is the vibe — so friendly and accommodating.", "author": "TripAdvisor reviewer" }
+  ],
+  "rating": { "value": 4.7, "count": 89, "source": "TripAdvisor" },
+  "priceRange": "$$",
+  "social": {
+    "facebook": "https://www.facebook.com/christophercreekwinery",
+    "instagram": "https://www.instagram.com/christophercreekwinetrips/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://christophercreek.com/wp-content/uploads/Featured-image-1.jpg",
+    "https://christophercreek.com/wp-content/uploads/IMG_2364-scaled-e1760396252855-1080x1198.jpg",
+    "https://christophercreek.com/wp-content/uploads/About-Us-1-480x789.jpg",
+    "https://christophercreek.com/wp-content/uploads/About-Us-2-480x803.jpg",
+    "https://christophercreek.com/wp-content/uploads/Pinot-Noir_Reserve-480x480.jpg"
+  ],
+  "notes": "Rating TripAdvisor 4.7/89 (verified); Yelp ~224 reviews (value blocked) — confirm before swapping. Hours 10–6 daily confirmed; reservations via Tock — verify policy. Owners: Foppoli family; winemaker Mike Brunson (2012) — double-check spelling/current staff. AVAs: Russian River Valley + Dry Creek/Bradford Mountain.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": { "name": "Christopher Creek Winery", "category": "winery", "city": "Healdsburg", "state": "CA", "phone": "+17074332001", "email": "", "address": "641 Limerick Ln", "owner": "Foppoli family" }
+}

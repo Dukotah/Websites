@@ -1,0 +1,49 @@
+{
+  "slug": "albini-family-vineyards",
+  "confirmed": true,
+  "established": "Est. 1991",
+  "tagline": "Handmade Russian River wine",
+  "seoDescription": "Albini Family Vineyards — a tiny family-owned Windsor estate making about 500 cases a year of unfiltered, hand-bottled Russian River Valley Merlot and Zinfandel. By appointment.",
+  "heroHeading": "Two wines, made entirely by hand",
+  "heroSubheading": "A tiny Windsor estate winery producing about 500 cases of unfiltered, hand-bottled Merlot and Zinfandel each year.",
+  "highlights": [
+    "Family-owned since 1991",
+    "About 500 cases a year",
+    "Russian River Valley estate",
+    "Wild-yeast, unfiltered, hand-bottled",
+    "By-appointment tastings"
+  ],
+  "aboutHeading": "The Albini Family",
+  "aboutBody": [
+    "Albini Family Vineyards was established in 1991 by Don and Lynne Albini, who still run their small Windsor estate by hand. Although they are tiny by winery standards, their Merlot and Zinfandel have earned national attention for their quality and distinctive style.",
+    "Everything follows a natural, hands-on approach. Vineyard yields are kept low at two to three tons per acre, and all grapes are handpicked and sorted. Fermentation happens in small open-top fermenters using indigenous wild yeast, with the cap punched down three to four times a day before the wine is pressed in a half-ton basket press and hand-bucketed into barrels.",
+    "Don famously moves his wine with buckets rather than pumps, and has been known to sleep in the barn so he can hand-punch the fruit through the night. Both wines are unfiltered and hand-bottled at the estate — a no-frills, artisan winery where guests are walked through the whole operation by the winemaker himself."
+  ],
+  "servicesHeading": "Our Wines",
+  "services": [
+    { "title": "Russian River Valley Merlot", "description": "Aged 20 months in a mix of French and American oak — a richer, more complex style with notes of dark berry, plum and spice. Unfiltered and hand-bottled." },
+    { "title": "Russian River Valley Zinfandel", "description": "100% Zinfandel aged 18 to 20 months in primarily American oak. Bold and peppery with ripe red and black fruit and big tannins." },
+    { "title": "Library & Reserve Releases", "description": "Older library and reserve vintages of both the Merlot and Zinfandel are poured at the estate, offering a look at how the wines age." },
+    { "title": "Private Estate Tasting", "description": "By-appointment tastings where Don personally walks guests through the barn and the entire hands-on winemaking process. Reservations required." }
+  ],
+  "hours": ["By appointment only — reservations required"],
+  "testimonials": [
+    { "quote": "After seeing how hands-on Don is with his wine — walking through his tiny barn and watching everything done by hand — I have a deeper respect for him. No employees, just family, friends and volunteers.", "author": "Yelp reviewer" },
+    { "quote": "Through word of mouth we visited for a private tasting and were delighted with the whole visit.", "author": "Yelp reviewer" }
+  ],
+  "rating": { "value": 5.0, "count": 12, "source": "Yelp" },
+  "priceRange": "$$",
+  "social": {
+    "facebook": "https://www.facebook.com/albinifamily.vineyard/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "http://www.albinifamilyvineyards.com/uploads/4/9/2/1/4921119/header_images/1288025815.jpg",
+    "http://www.albinifamilyvineyards.com/uploads/4/9/2/1/4921119/3172773.jpg"
+  ],
+  "notes": "Owner/winemaker Don Albini; wife Lynne. Russian River Valley appellation. Yelp 5.0 from 12 reviews — small sample; no Google rating found. Testimonials paraphrased from Yelp snippets — verify verbatim/attribution before relying on names. Wine Advocate scored the 2015 Merlot 90 pts (critic, not a guest). Only two real site photos — supplement with vineyard imagery if needed.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": { "name": "Albini Family Vineyards", "category": "winery", "city": "Windsor", "state": "CA", "phone": "+17078389249", "email": "", "address": "886 Jensen Ln", "owner": "Don & Lynne Albini" }
+}

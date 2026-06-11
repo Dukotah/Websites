@@ -1,0 +1,48 @@
+{
+  "slug": "d-l-carinalli-vineyards",
+  "confirmed": true,
+  "established": "Est. 1996",
+  "tagline": "A Sonoma family's love of the land",
+  "seoDescription": "D & L Carinalli Vineyards — estate Russian River Valley Pinot Noir and Chardonnay from a Sonoma County farming family with roots since 1921. Small-lot, gold-medal wines, visits by appointment.",
+  "heroHeading": "Estate Russian River wine from a century-old farming family",
+  "heroSubheading": "Domenico and Lynda Carinalli hand-tend a small Sebastopol vineyard of Chardonnay and Pinot Noir, bottling just a few hundred cases a year.",
+  "highlights": [
+    "Family farming since 1921",
+    "Russian River Valley estate fruit",
+    "Small-lot, hand-tended wines",
+    "Gold-medal Pinot & Chardonnay",
+    "Visits by appointment"
+  ],
+  "aboutHeading": "A Century Rooted in Sonoma County",
+  "aboutBody": [
+    "The Carinalli story begins in 1921, when Domenico Carinalli, Sr. left Germasino, Italy for west Sonoma County. The family started milking cows and raising chickens, and in 1946 bought the ranch on Gravenstein Highway between Cotati and Sebastopol that the family still calls home. In 2024, the Sonoma County Farm Bureau named the Carinallis its Farm Family of the Year.",
+    "Since 1996, Domenico Carinalli, Jr. and his wife Lynda have nurtured a small Russian River Valley vineyard of Chardonnay and Pinot Noir. They released their first wines from the 2003 vintage and added Rosé and Pinot Grigio in 2009. Every bottle carries the image of the family's ancestral church in Italy — a symbol of tradition, quality workmanship and love of the land.",
+    "This is a genuinely small, hand-farmed operation, producing roughly 300 cases of Pinot Noir and 150 cases of Chardonnay each year. The wines are sold through the winery's mailing list and a handful of retailers, so each vintage is made in strictly limited quantity."
+  ],
+  "servicesHeading": "Our Wines",
+  "services": [
+    { "title": "Estate Pinot Noir", "description": "The flagship: about 300 cases a year of Russian River Valley estate Pinot Noir, fermented and aged in French and American oak. The 2023 earned Gold at the San Francisco Chronicle Wine Competition." },
+    { "title": "Estate Chardonnay", "description": "Roughly 150 cases a year of Russian River Valley Chardonnay, with vintages earning Double Gold and Best of Class honors at the San Francisco Chronicle Wine Competition." },
+    { "title": "Estate Pinot Grigio", "description": "A crisp Russian River Valley Pinot Grigio first bottled in 2009 and made in small lots, with recent gold-medal recognition." },
+    { "title": "Rosé", "description": "A small-production Rosé of Pinot Noir, first bottled in 2009, rounding out the family's estate lineup." }
+  ],
+  "hours": ["Visits and tastings by appointment only — please call first (no public tasting room)"],
+  "testimonials": [],
+  "priceRange": "$$",
+  "social": {
+    "facebook": "https://www.facebook.com/p/D-L-Carinalli-Vineyards-100057225710259/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://dlcarinallivineyards.com/wp-content/uploads/2018/11/01.png",
+    "https://dlcarinallivineyards.com/wp-content/uploads/2018/11/01-1-300x300.jpg",
+    "https://dlcarinallivineyards.com/wp-content/uploads/2018/11/02-1-300x300.jpg",
+    "https://dlcarinallivineyards.com/wp-content/uploads/2018/11/03-1-300x300.jpg",
+    "https://dlcarinallivineyards.com/wp-content/uploads/2018/11/04-1-300x300.jpg"
+  ],
+  "notes": "Could not verify a Google/Yelp star rating or attributed review quotes (403s) — rating and testimonials intentionally omitted; social proof leans on Farm Family of the Year 2024 + SF Chronicle gold medals. A human should add 2–3 real Google/Yelp quotes. Public tasting phone on the official site is 707-795-7052 (lead lists 707-823-2220) — confirm the public number before publishing.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": { "name": "D & L Carinalli Vineyards", "category": "winery", "city": "Sebastopol", "state": "CA", "phone": "+17078232220", "email": "", "address": "4905 Gravenstein Hwy S", "owner": "Domenico & Lynda Carinalli" }
+}

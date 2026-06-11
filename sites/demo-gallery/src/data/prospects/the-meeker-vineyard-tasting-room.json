@@ -1,0 +1,190 @@
+{
+  "name": "The Meeker Vineyard Tasting Room",
+  "category": "winery",
+  "tagline": "Wines with character, by hand",
+  "seoDescription": "The Meeker Vineyard Tasting Room — a second-generation Sonoma family winery a block off the Healdsburg Plaza, famous for the hand-painted Winemaker's Handprint Merlot and bold Dry Creek Valley reds.",
+  "area": "Healdsburg, CA",
+  "established": "Est. 1977",
+  "contact": {
+    "phone": "+17074312148",
+    "email": "",
+    "address": "5 Fitch St"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/meekerwine/",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Every Handprint Merlot bottle is painted by hand",
+    "subheading": "A second-generation Sonoma family winery a block off the Healdsburg Plaza, pouring bold reds in a restored early-1900s bank building.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Family-owned since 1977",
+    "Famous Handprint Merlot",
+    "Walk-ins welcome daily",
+    "Bold Dry Creek reds",
+    "Fun, no-snob tasting room"
+  ],
+  "images": {
+    "hero": "/images/the-meeker-vineyard-tasting-room/hero.jpg",
+    "heroAlt": "The Meeker Vineyard Tasting Room in Healdsburg, CA",
+    "story": "/images/the-meeker-vineyard-tasting-room/story.jpg",
+    "storyAlt": "About The Meeker Vineyard Tasting Room",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/winery/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/the-meeker-vineyard-tasting-room/story.jpg",
+      "alt": "The Meeker Vineyard Tasting Room in Healdsburg, CA — photo 1"
+    },
+    {
+      "src": "/images/the-meeker-vineyard-tasting-room/photo-2.jpg",
+      "alt": "The Meeker Vineyard Tasting Room in Healdsburg, CA — photo 2"
+    },
+    {
+      "src": "/images/the-meeker-vineyard-tasting-room/photo-3.jpg",
+      "alt": "The Meeker Vineyard Tasting Room in Healdsburg, CA — photo 3"
+    }
+  ],
+  "about": {
+    "heading": "The Meeker Family Story",
+    "body": [
+      "Molly and Charlie Meeker started home winemaking in a basement in the early 1970s, and in 1977 they bought their first vineyard at the end of West Dry Creek Road in Sonoma County's Dry Creek Valley. They founded The Meeker Vineyard in 1984, with Charlie as winemaker, earning early acclaim for Zinfandel, Cabernet Sauvignon and Chardonnay.",
+      "Today the winery is run by the second generation. Son Lucas joined full-time in 2007, starting by scrubbing tanks and washing glasses and working his way up to head winemaker. Together the family focuses on big, characterful reds — hand-pressing their colorful signature handprints onto thousands of bottles of Winemaker's Handprint Merlot each year.",
+      "The tasting room sits just a block off the Healdsburg Plaza in a restored early-1900s bank building. It is known for a relaxed, genuinely fun experience that is decidedly not snobby, where Charlie and the team love to share wild stories from decades of winemaking."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "Tastings & Wines",
+  "services": [
+    {
+      "title": "Tasting Room Visits",
+      "description": "Open daily for tastings just off the Healdsburg Plaza in a historic bank building. Reservations recommended, but walk-ins are welcome."
+    },
+    {
+      "title": "Winemaker's Handprint Merlot",
+      "description": "The signature wine, with each bottle wrapped by hand in the winemaker's multicolor painted handprints — making every bottle a one-of-a-kind work of art."
+    },
+    {
+      "title": "Bold Reds & Beyond",
+      "description": "Best known for bold reds like the Four Kings Bordeaux blend, Dry Creek Valley Zinfandel, Cabernet Franc and Petite Sirah, alongside whites, rosés and dessert wines."
+    }
+  ],
+  "hours": [
+    "Open daily: 10:30 AM – 4:30 PM"
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Tastings & Wines",
+      "items": [
+        {
+          "title": "Tasting Room Visits",
+          "description": "Open daily for tastings just off the Healdsburg Plaza in a historic bank building. Reservations recommended, but walk-ins are welcome."
+        },
+        {
+          "title": "Winemaker's Handprint Merlot",
+          "description": "The signature wine, with each bottle wrapped by hand in the winemaker's multicolor painted handprints — making every bottle a one-of-a-kind work of art."
+        },
+        {
+          "title": "Bold Reds & Beyond",
+          "description": "Best known for bold reds like the Four Kings Bordeaux blend, Dry Creek Valley Zinfandel, Cabernet Franc and Petite Sirah, alongside whites, rosés and dessert wines."
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "eyebrow": "Our story",
+      "heading": "How we got here",
+      "items": [
+        {
+          "year": "1977",
+          "title": "The Meeker Vineyard Tasting Room opened its doors",
+          "body": "Molly and Charlie Meeker started home winemaking in a basement in the early 1970s, and in 1977 they bought their first vineyard at the end of West Dry Creek"
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "49+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.7★",
+          "label": "30 reviews"
+        },
+        {
+          "value": "3",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "The owner, Charlie, was there when we visited. He was incredible — so many great stories.",
+          "author": "Cynthia P."
+        },
+        {
+          "quote": "Absolutely phenomenal wines. Great hostess. DO NOT skip out on this gem.",
+          "author": "Chad P."
+        },
+        {
+          "quote": "Very much enjoyed the Handprint Merlot and the Russian River Syrah. Catherine was extremely knowledgeable.",
+          "author": "Tina C."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 5 Fitch St."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Healdsburg, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17074312148 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "ready",
+  "flags": [
+    "No email found — add a real email or contact form before sending"
+  ],
+  "theme": {
+    "brand": "#6b2737",
+    "brandDark": "#2b1a1f"
+  },
+  "priceRange": "$$",
+  "artDirection": {
+    "fontId": "handcrafted",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "timeline"
+  },
+  "heroVariant": "split"
+}

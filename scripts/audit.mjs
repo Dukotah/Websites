@@ -154,7 +154,10 @@ function auditProspect(slug, c, confirmed = false) {
   // trust — a new/small business with no public reviews YET still converts on
   // "ASE Blue Seal", "CAMTC Licensed", "Licensed & insured", "36-month warranty".
   // So a credential-backed site is shippable; a review just makes it stronger.
-  const CREDENTIAL = /certified|licensed|insured|bonded|accredited|warrant|guarantee|\bASE\b|\bBBB\b|NAPA|CAMTC|AMTA|board[- ]certified|member|#\s?\d/i;
+  // Awards/competition honors are the winery/food equivalent: a tiny by-appointment
+  // estate with no scrapeable reviews still earns trust from a real "Double Gold",
+  // a "Wine of the Year" pedigree, or "Farm Family of the Year".
+  const CREDENTIAL = /certified|licensed|insured|bonded|accredited|warrant|guarantee|\bASE\b|\bBBB\b|NAPA|CAMTC|AMTA|board[- ]certified|member|#\s?\d|medal|award[- ]winning|wine of the year|best of class|double gold|family of the year|\d{2,3}\s*points/i;
   const hasCredentials = (c.highlights ?? []).some((h) => CREDENTIAL.test(h));
   if (hasTestimonials || hasRating) {
     if (!hasTestimonials) issues.push(['info', 'no testimonials (has rating; quotes would help)']);

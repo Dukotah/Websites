@@ -1,0 +1,63 @@
+{
+  "slug": "char-vale-vineyards-and-winery",
+  "confirmed": true,
+  "established": "Est. 2014",
+  "tagline": "Boutique without the snobbery",
+  "seoDescription": "Char Vale Vineyards and Winery — a family-run micro-winery in the Green Valley of the Russian River Valley, pouring estate-grown Pinot Noir, Rosé, Riesling and Chardonnay from a renovated farmhouse in Sebastopol.",
+  "heroHeading": "Estate Pinot Noir from ten acres of Green Valley",
+  "heroSubheading": "A family-run micro-winery in the Russian River Valley, pouring estate-grown wines from a renovated farmhouse overlooking the vineyard.",
+  "highlights": [
+    "Family-owned since 2014",
+    "Estate-grown Pinot Noir",
+    "Green Valley, Russian River Valley",
+    "Intimate seated vineyard tastings",
+    "5.0 stars on TripAdvisor"
+  ],
+  "aboutHeading": "A Family-Run Operation",
+  "aboutBody": [
+    "Char Vale is a family-owned vineyard and winery in the renowned Green Valley of the Russian River Valley appellation in Sonoma County. We farm ten contiguous acres of world-class grape varietals, and our newly renovated tasting room — set in the original family farmhouse — sits just one mile west of Highway 116 on Occidental Road.",
+    "Founded in 2014, we are proud to pour award-winning estate Pinot Noir, estate Rosé of Pinot Noir, estate Riesling, single-vineyard Chardonnay and Pinot Gris. As a true micro-winery producing only a small number of cases per varietal, every pour is poured with care.",
+    "The vibe at Char Vale is friendly, intimate and unpretentious. Tastings are seated, overlooking or right next to the vines, and the deck facing the vineyard makes the perfect backdrop for a glass of Pinot Noir."
+  ],
+  "servicesHeading": "Estate Wines",
+  "services": [
+    { "title": "Estate Pinot Noir", "description": "Our flagship, grown on ten estate acres in the cool Green Valley of the Russian River Valley. Small-lot and award-winning." },
+    { "title": "Estate Rosé of Pinot Noir", "description": "A refreshing, vineyard-grown rosé made from our estate Pinot Noir." },
+    { "title": "Estate Riesling", "description": "Estate-grown Riesling that reflects Green Valley's cool-climate character." },
+    { "title": "Single-Vineyard Chardonnay & Pinot Gris", "description": "Single-vineyard Chardonnay and Pinot Gris rounding out the estate lineup." },
+    { "title": "Vineyard Tastings", "description": "Seated tastings overlooking or next to the vineyard, with a deck for taking in the view. Reservations preferred; walk-ins welcome as space allows." }
+  ],
+  "hours": [
+    "Monday: 11:00 AM – 4:30 PM",
+    "Tuesday: Closed",
+    "Wednesday: Closed",
+    "Thursday: 11:00 AM – 4:30 PM",
+    "Friday: 11:00 AM – 4:30 PM",
+    "Saturday: 11:00 AM – 4:30 PM",
+    "Sunday: 11:00 AM – 4:30 PM"
+  ],
+  "testimonials": [
+    { "quote": "Great Pinot, and Rosé, in an unpretentious setting. What California wine tasting should aspire to be.", "author": "Jeffrey P." },
+    { "quote": "Wonderful small winery. This is 'boutique' without the snobbery. I really enjoyed the flight of Pinots.", "author": "TripAdvisor reviewer" },
+    { "quote": "This was a very intimate experience with the staff and owner. We were so glad we discovered Char Vale.", "author": "Donna D." }
+  ],
+  "rating": { "value": 5.0, "count": 14, "source": "TripAdvisor" },
+  "priceRange": "$$",
+  "social": {
+    "facebook": "https://www.facebook.com/CharValeVineyardandWinery/",
+    "instagram": "https://www.instagram.com/charvalevineyard",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://charvalewinery.com/wp-content/uploads/2022/08/photo-1.jpg",
+    "https://charvalewinery.com/wp-content/uploads/2022/08/photo-2.jpg",
+    "https://charvalewinery.com/wp-content/uploads/2022/11/charvale-photo-3.jpg",
+    "https://charvalewinery.com/wp-content/uploads/2022/08/photo-4.jpg",
+    "https://charvalewinery.com/wp-content/uploads/2023/01/charvale-wine-30.jpg",
+    "https://charvalewinery.com/wp-content/uploads/2022/08/photo-8.jpg"
+  ],
+  "notes": "Founded 2014; family-run. Rating TripAdvisor 5.0/14 (verified); Yelp 54 reviews (value blocked) — confirm before swapping. Hours verified from /visit page (Thu–Mon 11–4:30, closed Tue/Wed). Host frequently named 'Nicholas' in reviews; winemaker referenced as Tim Callahan — confirm current staff. Awards ('98 points / Double Gold') referenced on their blog — confirm wine/competition before featuring.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": { "name": "Char Vale Vineyards and Winery", "category": "winery", "city": "Sebastopol", "state": "CA", "phone": "+17078276102", "email": "", "address": "9280 Occidental Rd", "owner": "" }
+}

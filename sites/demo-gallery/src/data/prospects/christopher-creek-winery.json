@@ -1,0 +1,192 @@
+{
+  "name": "Christopher Creek Winery",
+  "category": "winery",
+  "tagline": "Real wine, real people",
+  "seoDescription": "Christopher Creek Winery — a family-owned boutique winery on Limerick Lane in Healdsburg, crafting award-winning, estate-bottled Petite Sirah, Syrah and Cabernet from Russian River and Dry Creek Valley fruit.",
+  "area": "Healdsburg, CA",
+  "established": "Est. 1974",
+  "contact": {
+    "phone": "+17074332001",
+    "email": "",
+    "address": "641 Limerick Ln"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/christophercreekwinery",
+    "instagram": "https://www.instagram.com/christophercreekwinetrips/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Estate Petite Sirah from vines planted in 1972",
+    "subheading": "A family-owned boutique winery on Limerick Lane in Healdsburg, crafting roughly 4,000 cases a year of award-winning, estate-bottled wine.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Family-owned boutique winery",
+    "Estate-bottled, ~4,000 cases/year",
+    "Original 1972 vines still producing",
+    "Award-winning Petite Sirah",
+    "Poolside vineyard-view tasting"
+  ],
+  "images": {
+    "hero": "/images/christopher-creek-winery/hero.jpg",
+    "heroAlt": "Christopher Creek Winery in Healdsburg, CA",
+    "story": "/images/christopher-creek-winery/hero.jpg",
+    "storyAlt": "About Christopher Creek Winery",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/winery/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "Our Story",
+    "body": [
+      "Christopher Creek opened in 1974, the year after its first grapes were planted on Limerick Lane in 1972. Those original vines are still producing today, bottled as the Reserve Petite Sirah and Reserve Syrah you can taste daily.",
+      "In 2012, the Foppoli family and a few close friends took over the winery, keeping the small, family-run feel intact. The family has made wine for generations, a tradition that traces back through California to Italy.",
+      "Wines are grown on eleven rolling acres in the Russian River Valley and high on Bradford Mountain in the Dry Creek Valley. Alongside the legendary Petite Sirah, Syrah and Cabernet Franc, the portfolio now spans Cabernet Sauvignon, Zinfandel, Pinot Noir, Chardonnay, Viognier, Rosé and Port."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "Tastings & Wines",
+  "services": [
+    {
+      "title": "Wine Tasting",
+      "description": "Sample across a deep portfolio in an intimate tasting room, from approachable Pinot Noir to bold estate Petite Sirah. Reservations recommended."
+    },
+    {
+      "title": "Poolside & Vineyard-View Tasting",
+      "description": "On nice days, taste poolside on a large deck with sweeping valley and vineyard views."
+    },
+    {
+      "title": "Private Barrel Room Groups",
+      "description": "A barrel room is available for private group tastings and gatherings."
+    },
+    {
+      "title": "Wine Club Membership",
+      "description": "Join the Christopher Creek family with a membership built around their award-winning estate-bottled wines."
+    }
+  ],
+  "hours": [
+    "Open daily: 10:00 AM – 6:00 PM"
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 641 Limerick Ln."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Healdsburg, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17074332001 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "feature-split",
+      "eyebrow": "What sets us apart",
+      "heading": "Tastings & Wines",
+      "rows": [
+        {
+          "heading": "Wine Tasting",
+          "body": "Sample across a deep portfolio in an intimate tasting room, from approachable Pinot Noir to bold estate Petite Sirah. Reservations recommended."
+        },
+        {
+          "heading": "Poolside & Vineyard-View Tasting",
+          "body": "On nice days, taste poolside on a large deck with sweeping valley and vineyard views."
+        },
+        {
+          "heading": "Private Barrel Room Groups",
+          "body": "A barrel room is available for private group tastings and gatherings."
+        }
+      ]
+    },
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Tastings & Wines",
+      "items": [
+        {
+          "title": "Wine Tasting",
+          "description": "Sample across a deep portfolio in an intimate tasting room, from approachable Pinot Noir to bold estate Petite Sirah. Reservations recommended."
+        },
+        {
+          "title": "Poolside & Vineyard-View Tasting",
+          "description": "On nice days, taste poolside on a large deck with sweeping valley and vineyard views."
+        },
+        {
+          "title": "Private Barrel Room Groups",
+          "description": "A barrel room is available for private group tastings and gatherings."
+        },
+        {
+          "title": "Wine Club Membership",
+          "description": "Join the Christopher Creek family with a membership built around their award-winning estate-bottled wines."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "52+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.7★",
+          "label": "89 reviews"
+        },
+        {
+          "value": "4",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "Bucket-list winery stop in Sonoma County. Best wine in wine country!",
+          "author": "Aristide F."
+        },
+        {
+          "quote": "Quite simply the best winery you will ever visit — we like them ALL!",
+          "author": "Tyler J."
+        },
+        {
+          "quote": "If you want great wine in a relaxed atmosphere, this is the place. The pours are generous, and the best part is the vibe — so friendly and accommodating.",
+          "author": "TripAdvisor reviewer"
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "ready",
+  "flags": [
+    "No email found — add a real email or contact form before sending"
+  ],
+  "theme": {
+    "brand": "#6b2737",
+    "brandDark": "#2b1a1f"
+  },
+  "priceRange": "$$",
+  "artDirection": {
+    "fontId": "handcrafted",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "feature-split"
+  },
+  "heroVariant": "editorial-asym"
+}

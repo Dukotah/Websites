@@ -1,0 +1,52 @@
+{
+  "slug": "the-meeker-vineyard-tasting-room",
+  "confirmed": true,
+  "established": "Est. 1977",
+  "tagline": "Wines with character, by hand",
+  "seoDescription": "The Meeker Vineyard Tasting Room — a second-generation Sonoma family winery a block off the Healdsburg Plaza, famous for the hand-painted Winemaker's Handprint Merlot and bold Dry Creek Valley reds.",
+  "heroHeading": "Every Handprint Merlot bottle is painted by hand",
+  "heroSubheading": "A second-generation Sonoma family winery a block off the Healdsburg Plaza, pouring bold reds in a restored early-1900s bank building.",
+  "highlights": [
+    "Family-owned since 1977",
+    "Famous Handprint Merlot",
+    "Walk-ins welcome daily",
+    "Bold Dry Creek reds",
+    "Fun, no-snob tasting room"
+  ],
+  "aboutHeading": "The Meeker Family Story",
+  "aboutBody": [
+    "Molly and Charlie Meeker started home winemaking in a basement in the early 1970s, and in 1977 they bought their first vineyard at the end of West Dry Creek Road in Sonoma County's Dry Creek Valley. They founded The Meeker Vineyard in 1984, with Charlie as winemaker, earning early acclaim for Zinfandel, Cabernet Sauvignon and Chardonnay.",
+    "Today the winery is run by the second generation. Son Lucas joined full-time in 2007, starting by scrubbing tanks and washing glasses and working his way up to head winemaker. Together the family focuses on big, characterful reds — hand-pressing their colorful signature handprints onto thousands of bottles of Winemaker's Handprint Merlot each year.",
+    "The tasting room sits just a block off the Healdsburg Plaza in a restored early-1900s bank building. It is known for a relaxed, genuinely fun experience that is decidedly not snobby, where Charlie and the team love to share wild stories from decades of winemaking."
+  ],
+  "servicesHeading": "Tastings & Wines",
+  "services": [
+    { "title": "Tasting Room Visits", "description": "Open daily for tastings just off the Healdsburg Plaza in a historic bank building. Reservations recommended, but walk-ins are welcome." },
+    { "title": "Winemaker's Handprint Merlot", "description": "The signature wine, with each bottle wrapped by hand in the winemaker's multicolor painted handprints — making every bottle a one-of-a-kind work of art." },
+    { "title": "Bold Reds & Beyond", "description": "Best known for bold reds like the Four Kings Bordeaux blend, Dry Creek Valley Zinfandel, Cabernet Franc and Petite Sirah, alongside whites, rosés and dessert wines." }
+  ],
+  "hours": ["Open daily: 10:30 AM – 4:30 PM"],
+  "testimonials": [
+    { "quote": "The owner, Charlie, was there when we visited. He was incredible — so many great stories.", "author": "Cynthia P." },
+    { "quote": "Absolutely phenomenal wines. Great hostess. DO NOT skip out on this gem.", "author": "Chad P." },
+    { "quote": "Very much enjoyed the Handprint Merlot and the Russian River Syrah. Catherine was extremely knowledgeable.", "author": "Tina C." }
+  ],
+  "rating": { "value": 4.7, "count": 30, "source": "Google" },
+  "priceRange": "$$",
+  "social": {
+    "facebook": "https://www.facebook.com/meekerwine/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "http://meekerwine.com/wp-content/uploads/2018/10/IMG_0843-e1539786201280.jpg",
+    "http://meekerwine.com/wp-content/uploads/2016/02/Handprint-plaster-mold.jpeg",
+    "http://meekerwine.com/wp-content/uploads/2016/01/vineyard-meekerwine-rev2.jpg",
+    "http://meekerwine.com/wp-content/uploads/2016/01/winemaking-meekerwine-rev2.jpg",
+    "http://meekerwine.com/wp-content/uploads/2016/02/Four-Kings.jpg"
+  ],
+  "notes": "Vineyard purchased 1977 (origin point the family uses); winery founded 1984. Rating Google 4.7/30 per aggregator (Yelp 51, TripAdvisor 4.5/24) — verify Google count directly. Hours 10:30–4:30 confirmed (one listing showed later) — confirm seasonal. Shares 5 Fitch St building with Longboard Vineyards (entrance Unit B at back). Review quotes from Google aggregation — confirm verbatim/names before sending.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": { "name": "The Meeker Vineyard Tasting Room", "category": "winery", "city": "Healdsburg", "state": "CA", "phone": "+17074312148", "email": "", "address": "5 Fitch St", "owner": "Meeker family" }
+}
