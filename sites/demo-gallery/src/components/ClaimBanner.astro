@@ -19,10 +19,12 @@ import type { ProspectConfig } from '../types';
 const { config } = Astro.props as { config: ProspectConfig };
 const o = config.outreach ?? {};
 
-// CTA target: explicit claim link → else call them → else jump to contact.
-const telHref = config.contact?.phone
-  ? `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`
-  : '';
+// CTA target: explicit claim link → else call the REP who built this demo (NOT
+// the business's own number — the prospect is claiming the site FROM us) → else
+// jump to contact. Rep number is configurable via REP_PHONE; defaults to the
+// Copper Bay Tech line used across outreach.
+const REP_PHONE = import.meta.env.REP_PHONE || import.meta.env.PUBLIC_REP_PHONE || '+17072396725';
+const telHref = REP_PHONE ? `tel:${REP_PHONE.replace(/[^+\d]/g, '')}` : '';
 const claimHref = o.claimUrl || telHref || '#contact';
 const claimLabel = o.claimUrl ? 'Claim this site' : telHref ? 'Call to claim it' : 'Claim this site';
 
