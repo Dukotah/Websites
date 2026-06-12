@@ -32,6 +32,9 @@
  */
 
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { scrapeSite, stripTags, scoreRichness } from './lib/scrape-site.mjs';
@@ -1129,6 +1132,27 @@ async function main() {
   console.log(`\nWrote ${links.length} site(s) to sites/demo-gallery/src/data/prospects/`);
   if (review) console.log(`  ${review} flagged needs-review — open the dashboard (npm run dev → /) before sending.`);
   console.log('Links manifest: data/outreach-links.json');
+
+  // Auto-sync the finished batch into the Duke CRM "New" tab — creates a lead +
+  // attaches the demo (link + thumbnail + status) for each prospect, so
+  // generating IS the push. Opt out with --no-crm-sync or CRM_SYNC=off. Runs the
+  // Duke sync script (it has the Upstash creds); never fails the generate run.
+  const noSync = process.argv.includes('--no-crm-sync') || process.env.CRM_SYNC === 'off';
+  const dukeDir = process.env.DUKE_DIR || 'C:/Users/dukot/projects/Duke';
+  const syncScript = join(dukeDir, 'scripts', 'sync-demos-to-crm.mjs');
+  if (!noSync && existsSync(syncScript)) {
+    console.log('\nSyncing the batch into the CRM New tab…');
+    try {
+      const { stdout, stderr } = await promisify(execFile)(process.execPath, [syncScript, '--commit', '--websites', ROOT]);
+      if (stdout) process.stdout.write(stdout);
+      if (stderr) process.stderr.write(stderr);
+    } catch (e) {
+      console.warn(`  ⚠ CRM sync skipped (${(e.message || String(e)).split('\n')[0]}). Run it manually: node "${syncScript}" --commit`);
+    }
+  } else if (!noSync) {
+    console.log(`\n(CRM auto-sync off — ${syncScript} not found. Set DUKE_DIR or run the sync manually.)`);
+  }
+
   console.log('\nNext: cd sites/demo-gallery && npm install && npm run dev   (preview at /p/<slug>)');
   console.log('Then commit + push — Vercel rebuilds the gallery and your links go live.');
 }
