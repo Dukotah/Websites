@@ -28,15 +28,20 @@
     "Locally based in Santa Rosa"
   ],
   "images": {
-    "hero": "/images/library/plumbing/hero.svg",
+    "hero": "/images/lysell-plumbing-heating/story.jpg",
     "heroAlt": "Lysell Plumbing & Heating in Santa Rosa, CA",
-    "story": "/images/library/plumbing/story.svg",
+    "story": "/images/lysell-plumbing-heating/hero.jpg",
     "storyAlt": "About Lysell Plumbing & Heating",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/plumbing/hero.svg"
   },
-  "galleryImages": [],
+  "galleryImages": [
+    {
+      "src": "/images/lysell-plumbing-heating/hero.jpg",
+      "alt": "Lysell Plumbing & Heating in Santa Rosa, CA — photo 1"
+    }
+  ],
   "about": {
     "heading": "About Lysell Plumbing & Heating",
     "body": [
@@ -120,12 +125,11 @@
   "status": "needs-review",
   "flags": [
     "No website provided — research & verify manually",
-    "No real/AI photos — using library art",
     "No email found — add a real email or contact form before sending"
   ],
   "theme": {
     "brand": "#1f6feb",
     "brandDark": "#16324f"
   },
-  "heroVariant": "panel"
+  "heroVariant": "cinematic"
 }

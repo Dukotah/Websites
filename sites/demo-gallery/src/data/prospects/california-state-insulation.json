@@ -29,15 +29,20 @@
     "Local to Sonoma County"
   ],
   "images": {
-    "hero": "/images/library/default/hero.svg",
+    "hero": "/images/california-state-insulation/hero.jpg",
     "heroAlt": "California State Insulation in Santa Rosa, CA",
-    "story": "/images/library/default/story.svg",
+    "story": "/images/california-state-insulation/story.jpg",
     "storyAlt": "About California State Insulation",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
-  "galleryImages": [],
+  "galleryImages": [
+    {
+      "src": "/images/california-state-insulation/story.jpg",
+      "alt": "California State Insulation in Santa Rosa, CA — photo 1"
+    }
+  ],
   "about": {
     "heading": "About California State Insulation",
     "body": [
@@ -178,7 +183,6 @@
   "status": "needs-review",
   "flags": [
     "No website provided — research & verify manually",
-    "No real/AI photos — using library art",
     "No email found — add a real email or contact form before sending"
   ],
   "theme": {
@@ -191,5 +195,5 @@
     "neutralTemp": "warm",
     "preferredDepthSection": "timeline"
   },
-  "heroVariant": "panel"
+  "heroVariant": "editorial-asym"
 }

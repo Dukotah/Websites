@@ -29,15 +29,20 @@
     "Serving Sonoma County"
   ],
   "images": {
-    "hero": "/images/library/default/hero.svg",
+    "hero": "/images/gonnella-carpet-installation/hero.jpg",
     "heroAlt": "Gonnella Carpet Installation in Santa Rosa, CA",
-    "story": "/images/library/default/story.svg",
+    "story": "/images/gonnella-carpet-installation/story.jpg",
     "storyAlt": "About Gonnella Carpet Installation",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
-  "galleryImages": [],
+  "galleryImages": [
+    {
+      "src": "/images/gonnella-carpet-installation/story.jpg",
+      "alt": "Gonnella Carpet Installation in Santa Rosa, CA — photo 1"
+    }
+  ],
   "about": {
     "heading": "Two generations, one standard",
     "body": [
@@ -166,7 +171,6 @@
   "status": "needs-review",
   "flags": [
     "No website provided — research & verify manually",
-    "No real/AI photos — using library art",
     "No email found — add a real email or contact form before sending"
   ],
   "theme": {
@@ -179,5 +183,5 @@
     "neutralTemp": "cool",
     "preferredDepthSection": "feature-split"
   },
-  "heroVariant": "editorial-asym"
+  "heroVariant": "editorial"
 }

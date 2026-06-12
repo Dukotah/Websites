@@ -29,15 +29,20 @@
     "5-star reviewed"
   ],
   "images": {
-    "hero": "/images/library/default/hero.svg",
+    "hero": "/images/envision-beauty-llc/story.jpg",
     "heroAlt": "EnVision Beauty LLC in Santa Rosa, CA",
-    "story": "/images/library/default/story.svg",
+    "story": "/images/envision-beauty-llc/hero.jpg",
     "storyAlt": "About EnVision Beauty LLC",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
-  "galleryImages": [],
+  "galleryImages": [
+    {
+      "src": "/images/envision-beauty-llc/hero.jpg",
+      "alt": "EnVision Beauty LLC in Santa Rosa, CA — photo 1"
+    }
+  ],
   "about": {
     "heading": "About EnVision Beauty",
     "body": [
@@ -164,7 +169,6 @@
   "status": "needs-review",
   "flags": [
     "No website provided — research & verify manually",
-    "No real/AI photos — using library art",
     "No email found — add a real email or contact form before sending"
   ],
   "theme": {
@@ -177,5 +181,5 @@
     "neutralTemp": "warm",
     "preferredDepthSection": "feature-split"
   },
-  "heroVariant": "statement"
+  "heroVariant": "panel"
 }

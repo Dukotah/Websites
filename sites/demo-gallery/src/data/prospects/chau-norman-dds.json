@@ -29,15 +29,20 @@
     "English & Spanish spoken"
   ],
   "images": {
-    "hero": "/images/library/default/hero.svg",
+    "hero": "/images/chau-norman-dds/story.jpg",
     "heroAlt": "Chau Norman DDS in Santa Rosa, CA",
-    "story": "/images/library/default/story.svg",
+    "story": "/images/chau-norman-dds/hero.jpg",
     "storyAlt": "About Chau Norman DDS",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
-  "galleryImages": [],
+  "galleryImages": [
+    {
+      "src": "/images/chau-norman-dds/hero.jpg",
+      "alt": "Chau Norman DDS in Santa Rosa, CA — photo 1"
+    }
+  ],
   "about": {
     "heading": "About Dr. Norman Chau, DDS",
     "body": [
@@ -126,7 +131,6 @@
   "status": "needs-review",
   "flags": [
     "No website provided — research & verify manually",
-    "No real/AI photos — using library art",
     "No email found — add a real email or contact form before sending"
   ],
   "theme": {
@@ -134,5 +138,5 @@
     "brandDark": "#243b53"
   },
   "priceRange": "$$",
-  "heroVariant": "editorial"
+  "heroVariant": "split"
 }

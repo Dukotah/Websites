@@ -29,15 +29,20 @@
     "Residential furnace & AC"
   ],
   "images": {
-    "hero": "/images/library/default/hero.svg",
+    "hero": "/images/facciano-hvac-and-sheet-metal/story.jpg",
     "heroAlt": "Facciano HVAC and Sheet Metal in Santa Rosa, CA",
-    "story": "/images/library/default/story.svg",
+    "story": "/images/facciano-hvac-and-sheet-metal/hero.jpg",
     "storyAlt": "About Facciano HVAC and Sheet Metal",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
-  "galleryImages": [],
+  "galleryImages": [
+    {
+      "src": "/images/facciano-hvac-and-sheet-metal/hero.jpg",
+      "alt": "Facciano HVAC and Sheet Metal in Santa Rosa, CA — photo 1"
+    }
+  ],
   "about": {
     "heading": "About Facciano HVAC",
     "body": [
@@ -156,7 +161,6 @@
   "status": "needs-review",
   "flags": [
     "No website provided — research & verify manually",
-    "No real/AI photos — using library art",
     "No email found — add a real email or contact form before sending",
     "Hours are a generic default (Mon–Fri 8–6) — verify before sending"
   ],
@@ -169,5 +173,5 @@
     "neutralTemp": "warm",
     "preferredDepthSection": "feature-split"
   },
-  "heroVariant": "editorial"
+  "heroVariant": "cinematic"
 }
