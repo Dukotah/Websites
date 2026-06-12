@@ -1,0 +1,183 @@
+{
+  "name": "WarPigs Craft Kitchen",
+  "category": "restaurant",
+  "tagline": "Life's too short to eat bad barbecue.",
+  "seoDescription": "WarPigs (a.k.a. BBQ Hustlers) is a craft barbecue catering and pop-up operation in Sonoma County, led by pitmaster Larry Hillix since 2011. 12-hour smoked pulled pork, brisket, ribs, and house-made sausage for events, weddings, and brewery & winery pop-ups. Call (707) 508-5551.",
+  "area": "Cotati, CA",
+  "established": "Est. 2011",
+  "contact": {
+    "phone": "+17075085551",
+    "email": "warpigsbbq@yahoo.com",
+    "address": "8492 Gravenstein Hwy"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/WarPigsBBQinCali/",
+    "instagram": "https://www.instagram.com/warpigs_craft_kitchen/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Craft Barbecue, Smoked Low & Slow",
+    "subheading": "Pitmaster Larry Hillix brings 12-hour smoked pulled pork, brisket, ribs, and house-made sausage to Sonoma County through catering and pop-ups.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Pitmaster-owned by Larry Hillix, smoking craft barbecue since 2011",
+    "12-hour smoked pulled pork, plus brisket, ribs, and house-made sausage",
+    "Scratch-made sides and seasonal California ingredients",
+    "Full-service catering for weddings, corporate, and private events",
+    "Pop-ups and collaborations with local breweries and wineries",
+    "4.5-star rated on Yelp"
+  ],
+  "images": {
+    "hero": "/images/warpigs-craft-kitchen/gallery-1.jpg",
+    "heroAlt": "WarPigs Craft Kitchen in Cotati, CA",
+    "story": "/images/warpigs-craft-kitchen/hero.jpg",
+    "storyAlt": "About WarPigs Craft Kitchen",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/warpigs-craft-kitchen/hero.jpg",
+      "alt": "WarPigs Craft Kitchen in Cotati, CA — photo 1"
+    },
+    {
+      "src": "/images/warpigs-craft-kitchen/story.jpg",
+      "alt": "WarPigs Craft Kitchen in Cotati, CA — photo 2"
+    },
+    {
+      "src": "/images/warpigs-craft-kitchen/gallery-2.jpg",
+      "alt": "WarPigs Craft Kitchen in Cotati, CA — photo 3"
+    }
+  ],
+  "about": {
+    "heading": "Real Craft Barbecue, Built on Passion",
+    "body": [
+      "WarPigs Craft Kitchen started in 2011, when owner and pitmaster Larry Hillix decided Sonoma County was ready for serious barbecue. What began as a roving catering and pop-up operation grew into a beloved local name, built on a simple belief: life's too short to eat bad barbecue. A special blend of spices and rubs, inspired by the legendary Gary Park of G's Slow Smoked BBQ, became the backbone of the WarPigs style.",
+      "The kitchen specializes in modern Americana cuisine rooted in comfort, craft, and regional influence. Drawing from Southern smokehouse traditions and seasonal California ingredients, Larry and the team slow-smoke their meats for hours and make their sides from scratch. The result is barbecue that is both approachable and memorable, from the 12-hour pulled pork and brisket to the fried Brussels sprouts and loaded dirty fries that regulars rave about.",
+      "Today WarPigs Craft Kitchen serves the community from 8492 S. Gravenstein Hwy in Cotati, while continuing to cater weddings, corporate events, and private gatherings and to host pop-ups with breweries and wineries throughout Sonoma County. Customers describe the food as 'seriously delicious' and praise Larry's contagious passion for the craft."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What We Smoke",
+  "services": [
+    {
+      "title": "Slow-Smoked Meats",
+      "description": "12-hour smoked pulled pork, brisket, ribs, house-made sausage, smoked chicken wings, and smoked chicken, cooked low and slow with a signature blend of rubs."
+    },
+    {
+      "title": "Sandwiches & Plates",
+      "description": "Pulled pork sandwich on brioche, BBQ pork sandwich, spicy chicken sandwich, fried chicken, sliders, and a house-ground burger served with generous portions."
+    },
+    {
+      "title": "Loaded Dirty Fries",
+      "description": "Fries piled with cheese, BBQ sauce, slow-smoked pulled pork, and coleslaw, one of the most-loved items on the menu."
+    },
+    {
+      "title": "Scratch-Made Sides",
+      "description": "Fried Brussels sprouts with balsamic, parmesan, and bacon, baked beans, potato salad, coleslaw, and other made-from-scratch favorites."
+    },
+    {
+      "title": "Event & Wedding Catering",
+      "description": "Full-service catering tailored to your guest count and vision for weddings, corporate events, and private gatherings, with perfectly smoked brisket and pulled pork."
+    },
+    {
+      "title": "Brewery & Winery Pop-Ups",
+      "description": "Regular pop-ups and collaborations with local breweries and wineries, including stops like Iron Ox Brewing, bringing craft barbecue across Sonoma County."
+    }
+  ],
+  "hours": [
+    "Monday: 11:30 AM - 8:00 PM",
+    "Tuesday: 11:30 AM - 8:00 PM",
+    "Wednesday: 11:30 AM - 8:00 PM",
+    "Thursday: 11:30 AM - 8:00 PM",
+    "Friday: 11:30 AM - 8:00 PM",
+    "Saturday: 11:30 AM - 8:00 PM",
+    "Sunday: 11:30 AM - 8:00 PM"
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What We Smoke",
+      "items": [
+        {
+          "title": "Slow-Smoked Meats",
+          "description": "12-hour smoked pulled pork, brisket, ribs, house-made sausage, smoked chicken wings, and smoked chicken, cooked low and slow with a signature blend of rubs."
+        },
+        {
+          "title": "Sandwiches & Plates",
+          "description": "Pulled pork sandwich on brioche, BBQ pork sandwich, spicy chicken sandwich, fried chicken, sliders, and a house-ground burger served with generous portions."
+        },
+        {
+          "title": "Loaded Dirty Fries",
+          "description": "Fries piled with cheese, BBQ sauce, slow-smoked pulled pork, and coleslaw, one of the most-loved items on the menu."
+        },
+        {
+          "title": "Scratch-Made Sides",
+          "description": "Fried Brussels sprouts with balsamic, parmesan, and bacon, baked beans, potato salad, coleslaw, and other made-from-scratch favorites."
+        },
+        {
+          "title": "Event & Wedding Catering",
+          "description": "Full-service catering tailored to your guest count and vision for weddings, corporate events, and private gatherings, with perfectly smoked brisket and pulled pork."
+        },
+        {
+          "title": "Brewery & Winery Pop-Ups",
+          "description": "Regular pop-ups and collaborations with local breweries and wineries, including stops like Iron Ox Brewing, bringing craft barbecue across Sonoma County."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "15+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.5★",
+          "label": "22 reviews"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 8492 Gravenstein Hwy."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Cotati, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17075085551 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "ready",
+  "flags": [],
+  "theme": {
+    "brand": "#b5462f",
+    "brandDark": "#2c1d18"
+  },
+  "priceRange": "$$",
+  "heroVariant": "split"
+}
