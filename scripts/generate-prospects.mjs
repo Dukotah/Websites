@@ -751,19 +751,27 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
   const [heroPhoto, storyPhoto] = media;
   const lib = `/images/library/${artKeyFor(catKey)}`;
 
+  // A hero renders full-bleed (~1600px+ wide). A smaller source upscales and
+  // looks fuzzy/blown out, so only use a real photo as the hero when it's big
+  // enough; otherwise fall back to clean library art. The small shot isn't
+  // wasted — it stays available for the gallery. (Width is known for scraped
+  // photos; unknown-width stock/AI heroes are accepted.)
+  const HERO_MIN_W = 1200;
+  const usableHero = heroPhoto && (heroPhoto.w == null || heroPhoto.w >= HERO_MIN_W) ? heroPhoto : null;
+
   // Gallery = the business's OWN photos beyond the hero (never stock). A media
   // item is "own" when it carries no credit and isn't library/SVG art; stock
   // tiers (Wikimedia/Openverse/library) are credited or live under /library/.
   const GALLERY_MAX = 8;
   const isOwn = (m) => m?.path && !m.credit && !m.path.includes('/images/library/');
   const ownPhotos = media.filter(isOwn);
-  const galleryImages =
-    ownPhotos[0] && heroPhoto && ownPhotos[0].path === heroPhoto.path
-      ? ownPhotos.slice(1, 1 + GALLERY_MAX).map((m, i) => ({
-          src: m.path,
-          alt: `${row.name}${area ? ` in ${area}` : ''} — photo ${i + 1}`,
-        }))
-      : [];
+  const galleryImages = ownPhotos
+    .filter((m) => m.path !== usableHero?.path)
+    .slice(0, GALLERY_MAX)
+    .map((m, i) => ({
+      src: m.path,
+      alt: `${row.name}${area ? ` in ${area}` : ''} — photo ${i + 1}`,
+    }));
 
   const phone = e?.phone || row.phone || '(555) 555-5555';
   const address = e?.address || row.address || area;
@@ -780,8 +788,8 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
 
   const storyCredit = storyPhoto?.credit
     ? `Photo: ${storyPhoto.credit}`
-    : heroPhoto?.credit
-      ? `Photo: ${heroPhoto.credit}`
+    : usableHero?.credit
+      ? `Photo: ${usableHero.credit}`
       : '';
 
   return {
@@ -812,9 +820,9 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
     },
     highlights: copy.highlights,
     images: {
-      hero: heroPhoto?.path ?? `${lib}/hero.svg`,
+      hero: usableHero?.path ?? `${lib}/hero.svg`,
       heroAlt: `${row.name} in ${area}`,
-      story: storyPhoto?.path ?? heroPhoto?.path ?? `${lib}/story.svg`,
+      story: storyPhoto?.path ?? usableHero?.path ?? `${lib}/story.svg`,
       storyAlt: `About ${row.name}`,
       storyCaption: '',
       storyCredit,

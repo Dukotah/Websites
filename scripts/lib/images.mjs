@@ -172,7 +172,17 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
   //   2. else the best-scored LANDSCAPE shot (wide reads as intentional);
   //   3. else the best overall.
   const isLandscape = (k) => k.w && k.h && k.w / k.h >= 1.2;
-  let heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint) : -1;
+  // A hero is full-bleed (rendered ~1600px+ wide); a smaller source upscales and
+  // looks fuzzy/blown out. So PREFER a hero-sized landscape — their hint, then the
+  // best big landscape, then any big shot — before falling back to the old prefs.
+  // When nothing is big enough, the small shot is still kept (for the gallery) but
+  // buildConfig swaps in clean library art for the hero rather than upscaling it.
+  const HERO_MIN_W = 1200;
+  const bigEnough = (k) => (k.w ?? 0) >= HERO_MIN_W;
+  let heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint && bigEnough(k)) : -1;
+  if (heroIdx < 0) heroIdx = kept.findIndex((k) => bigEnough(k) && isLandscape(k));
+  if (heroIdx < 0) heroIdx = kept.findIndex(bigEnough);
+  if (heroIdx < 0) heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint) : -1;
   if (heroIdx < 0) heroIdx = kept.findIndex(isLandscape);
   if (heroIdx < 0) heroIdx = 0;
   if (heroIdx > 0) {
