@@ -30,7 +30,7 @@
     "Ambulatory farm calls plus haul-in options — call to check availability"
   ],
   "images": {
-    "hero": "/images/empire-equine/story.jpg",
+    "hero": "/images/library/default/hero.svg",
     "heroAlt": "Empire Equine in Santa Rosa, CA",
     "story": "/images/empire-equine/gallery-1.png",
     "storyAlt": "About Empire Equine",
@@ -40,12 +40,16 @@
   },
   "galleryImages": [
     {
-      "src": "/images/empire-equine/gallery-1.png",
+      "src": "/images/empire-equine/story.jpg",
       "alt": "Empire Equine in Santa Rosa, CA — photo 1"
     },
     {
-      "src": "/images/empire-equine/hero.jpg",
+      "src": "/images/empire-equine/gallery-1.png",
       "alt": "Empire Equine in Santa Rosa, CA — photo 2"
+    },
+    {
+      "src": "/images/empire-equine/hero.jpg",
+      "alt": "Empire Equine in Santa Rosa, CA — photo 3"
     }
   ],
   "about": {
@@ -152,5 +156,5 @@
     "brand": "#c2683a",
     "brandDark": "#243b53"
   },
-  "heroVariant": "split"
+  "heroVariant": "editorial-asym"
 }

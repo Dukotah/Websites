@@ -30,7 +30,7 @@
     "5.0-star Google rating from Sonoma County clients"
   ],
   "images": {
-    "hero": "/images/elevate-fitness/hero.jpg",
+    "hero": "/images/library/default/hero.svg",
     "heroAlt": "Elevate Fitness in Santa Rosa, CA",
     "story": "/images/elevate-fitness/story.jpg",
     "storyAlt": "About Elevate Fitness",
@@ -40,8 +40,12 @@
   },
   "galleryImages": [
     {
-      "src": "/images/elevate-fitness/story.jpg",
+      "src": "/images/elevate-fitness/hero.jpg",
       "alt": "Elevate Fitness in Santa Rosa, CA — photo 1"
+    },
+    {
+      "src": "/images/elevate-fitness/story.jpg",
+      "alt": "Elevate Fitness in Santa Rosa, CA — photo 2"
     }
   ],
   "about": {
@@ -183,5 +187,5 @@
     "brand": "#c2683a",
     "brandDark": "#243b53"
   },
-  "heroVariant": "cinematic"
+  "heroVariant": "panel"
 }

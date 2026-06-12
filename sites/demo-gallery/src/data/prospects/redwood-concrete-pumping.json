@@ -30,7 +30,7 @@
     "Crews specializing in long-distance and hillside pours"
   ],
   "images": {
-    "hero": "/images/redwood-concrete-pumping/hero.jpg",
+    "hero": "/images/library/default/hero.svg",
     "heroAlt": "Redwood Concrete Pumping in Santa Rosa, CA",
     "story": "/images/redwood-concrete-pumping/story.jpg",
     "storyAlt": "About Redwood Concrete Pumping",
@@ -40,8 +40,12 @@
   },
   "galleryImages": [
     {
-      "src": "/images/redwood-concrete-pumping/story.jpg",
+      "src": "/images/redwood-concrete-pumping/hero.jpg",
       "alt": "Redwood Concrete Pumping in Santa Rosa, CA — photo 1"
+    },
+    {
+      "src": "/images/redwood-concrete-pumping/story.jpg",
+      "alt": "Redwood Concrete Pumping in Santa Rosa, CA — photo 2"
     }
   ],
   "about": {

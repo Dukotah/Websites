@@ -946,22 +946,30 @@ async function agentDroppedPhotos(slug) {
     const scored = [];
     for (const f of files) {
       let score = 0;
-      let landscape = false;
+      let w = 0;
+      let h = 0;
       let graphic = false;
       try {
         const q = await scorePhoto(await readFile(join(dir, f)));
         score = q?.score ?? 0;
         graphic = Boolean(q?.isGraphic);
-        landscape = q?.w && q?.h ? q.w >= q.h * 1.1 : false;
+        w = q?.w ?? 0;
+        h = q?.h ?? 0;
       } catch { /* unreadable → leave at score 0 */ }
-      scored.push({ f, score, landscape, graphic });
+      const landscape = w && h ? w >= h * 1.1 : false;
+      scored.push({ f, score, landscape, graphic, w, h });
     }
 
-    // Hero: highest-scoring LANDSCAPE non-graphic frame (a wide photo fills the
-    // stage; a square logo doesn't). Fall back to best overall, then to file
-    // order. Story: next best. Remaining files: gallery fodder, score order.
+    // Hero: a full-bleed photo must be wide AND big (>=1200px), or it upscales
+    // blurry. Prefer a big landscape non-graphic frame; fall back to best overall.
+    // Story: next best. Remaining files: gallery fodder, score order. Dimensions
+    // ride along on each item so buildConfig's hero-resolution gate can swap in
+    // clean library art when even the best frame is too small.
+    const HERO_MIN_W = 1200;
     const byScore = [...scored].sort((a, b) => b.score - a.score);
     const heroPick =
+      byScore.find((s) => s.landscape && !s.graphic && s.w >= HERO_MIN_W) ??
+      byScore.find((s) => !s.graphic && s.w >= HERO_MIN_W) ??
       byScore.find((s) => s.landscape && !s.graphic) ??
       byScore.find((s) => !s.graphic) ??
       byScore[0];
@@ -970,7 +978,8 @@ async function agentDroppedPhotos(slug) {
     const ordered = [hero, story, ...byScore.map((s) => s.f)].filter(
       (f, i, a) => f && a.indexOf(f) === i,
     );
-    return ordered.map((f) => ({ path: `/images/${slug}/${f}`, credit: '' }));
+    const dimOf = (f) => scored.find((s) => s.f === f) ?? {};
+    return ordered.map((f) => ({ path: `/images/${slug}/${f}`, credit: '', w: dimOf(f).w, h: dimOf(f).h }));
   } catch {
     return [];
   }

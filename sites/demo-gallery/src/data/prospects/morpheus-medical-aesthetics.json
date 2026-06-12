@@ -30,15 +30,20 @@
     "Dr. Chilcott trains other physicians and nurses in cosmetic injection technique and speaks on emerging aesthetic technologies"
   ],
   "images": {
-    "hero": "/images/library/default/hero.svg",
+    "hero": "/images/morpheus-medical-aesthetics/hero.jpg",
     "heroAlt": "Morpheus Medical Aesthetics in Santa Rosa, CA",
-    "story": "/images/library/default/story.svg",
+    "story": "/images/morpheus-medical-aesthetics/story.jpg",
     "storyAlt": "About Morpheus Medical Aesthetics",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
-  "galleryImages": [],
+  "galleryImages": [
+    {
+      "src": "/images/morpheus-medical-aesthetics/story.jpg",
+      "alt": "Morpheus Medical Aesthetics in Santa Rosa, CA — photo 1"
+    }
+  ],
   "about": {
     "heading": "Medical aesthetics, led by a physician who treats the face as her medium",
     "body": [
@@ -118,6 +123,11 @@
       ]
     },
     {
+      "type": "bigquote",
+      "quote": "I have been having facial treatments in several cities across the United States and by far Dr. Chilcott is the best!",
+      "author": "Ellen O."
+    },
+    {
       "type": "stats",
       "items": [
         {
@@ -170,14 +180,17 @@
     }
   ],
   "layout": "split",
-  "status": "needs-review",
-  "flags": [
-    "No real/AI photos — using library art"
-  ],
+  "status": "ready",
+  "flags": [],
   "theme": {
     "brand": "#8a6bb0",
     "brandDark": "#2a2433"
   },
   "priceRange": "$$-$$$",
-  "heroVariant": "editorial"
+  "artDirection": {
+    "fontId": "classic-trad",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "bigquote"
+  },
+  "heroVariant": "statement"
 }
