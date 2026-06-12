@@ -1,0 +1,67 @@
+{
+  "slug": "chau-norman-dds",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Gentle, established Santa Rosa dentistry",
+  "seoDescription": "Dr. Norman Chau, DDS — friendly, gentle general dentistry on Cleveland Avenue in Santa Rosa. English and Spanish spoken; Medi-Cal accepted.",
+  "heroHeading": "Pain-free dentistry in Santa Rosa",
+  "heroSubheading": "Dr. Norman Chau, DDS provides friendly, gentle general dental care on Cleveland Avenue, with a welcoming team patients trust.",
+  "highlights": [
+    "Long-established local practice",
+    "Gentle, pain-free care",
+    "Welcoming, helpful staff",
+    "Medi-Cal accepted",
+    "English & Spanish spoken"
+  ],
+  "aboutHeading": "About Dr. Norman Chau, DDS",
+  "aboutBody": [
+    "Dr. Norman Chau is a general dentist serving Santa Rosa from his office on Cleveland Avenue. A graduate of the LSU School of Dentistry, he has built a long-standing reputation in the community for treating patients with patience and care.",
+    "Patients consistently describe their visits as professional, friendly, and pain-free. The office is known for being clean and comfortable, with a staff that is welcoming and helpful — including with young children and nervous patients.",
+    "Dr. Chau and his team see both English- and Spanish-speaking patients and accept Medi-Cal, making everyday dental care accessible to families across Santa Rosa."
+  ],
+  "servicesHeading": "Our Services",
+  "services": [
+    {
+      "title": "Exams & Cleanings",
+      "description": "Regular checkups and professional cleanings to keep your smile healthy and catch issues early."
+    },
+    {
+      "title": "Fillings & Cavity Care",
+      "description": "Treatment of cavities and repair or replacement of fillings for lasting comfort."
+    },
+    {
+      "title": "General Family Dentistry",
+      "description": "Everyday dental care for patients of all ages, including gentle treatment for children."
+    }
+  ],
+  "hours": [
+    "Monday – Thursday: 8:00 AM – 3:30 PM",
+    "Friday – Sunday: Closed"
+  ],
+  "testimonials": [
+    {
+      "quote": "This was probably the first time in my life I was truly at ease with a dentist. Dr. Chau was professional, friendly, knowledgeable, patient, and best of all pain-free.",
+      "author": "Cynthia C."
+    }
+  ],
+  "priceRange": "$$",
+  "social": {
+    "facebook": "https://www.facebook.com/p/Norman-Chau-DDS-100071069707957/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "Solo practice, no website. No reliable Google rating (Healthgrades 4.4/7) → omitted. Confirm new-patient status (sources conflict) + present Medi-Cal factually. Phone (707) 544-4818, 2921 Cleveland Ave. No photos found.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": {
+    "name": "Chau Norman DDS",
+    "category": "dentist",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17075444818",
+    "email": "",
+    "address": "2921 Cleveland Ave",
+    "owner": "Dr. Norman Chau"
+  }
+}

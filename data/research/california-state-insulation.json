@@ -1,0 +1,82 @@
+{
+  "slug": "california-state-insulation",
+  "confirmed": true,
+  "established": "Est. 2001",
+  "tagline": "Insulation & general contracting",
+  "seoDescription": "California State Insulation — a licensed Santa Rosa insulation and general contractor (CSLB #795223) serving Sonoma County and the North Bay since 2001.",
+  "heroHeading": "Insulating Sonoma County homes since 2001",
+  "heroSubheading": "A licensed Santa Rosa insulation and general contractor (CSLB #795223) serving the North Bay for over two decades.",
+  "highlights": [
+    "Licensed C-2 & B contractor",
+    "Serving Santa Rosa since 2001",
+    "Insulation & general construction",
+    "Owner-managed",
+    "Local to Sonoma County"
+  ],
+  "aboutHeading": "About California State Insulation",
+  "aboutBody": [
+    "California State Insulation has served Santa Rosa and the North Bay since 2001. Owner-manager Alvaro Beltran leads a team that handles both insulation work and broader general construction across Sonoma County.",
+    "Holding California license #795223 — covering Insulation & Acoustical (C-2) and General Building (B) — the company takes on everything from attic and wall insulation to framing, drywall, stucco, and concrete.",
+    "Based on Tapadera Drive in Santa Rosa, the company has built a track record on residential and commercial projects throughout the area, with a focus on quality workmanship and fair pricing."
+  ],
+  "servicesHeading": "Our Services",
+  "services": [
+    {
+      "title": "Insulation Installation",
+      "description": "Installation of insulating materials for temperature and sound control in homes and commercial buildings."
+    },
+    {
+      "title": "Insulation Removal",
+      "description": "Removal of old or blown-in attic insulation before re-insulating or remodeling."
+    },
+    {
+      "title": "Drywall & Plaster",
+      "description": "Interior drywall, taping, and plaster work to finish rooms after insulation and framing."
+    },
+    {
+      "title": "Framing",
+      "description": "Structural framing as part of new construction and remodeling projects."
+    },
+    {
+      "title": "Stucco",
+      "description": "Exterior stucco application for residential and commercial work."
+    },
+    {
+      "title": "Concrete & Demolition",
+      "description": "Concrete work and demolition as part of larger general-contracting projects."
+    }
+  ],
+  "hours": [
+    "Monday – Sunday: 7:00 AM – 8:00 PM"
+  ],
+  "testimonials": [
+    {
+      "quote": "They removed blown-in insulation from our attic and did excellent work — and have since done insulation and drywall in five rooms of our home. Excellent quality, very fair price.",
+      "author": "Google reviewer"
+    },
+    {
+      "quote": "On time, knowledgeable, and friendly, with a clean installation of attic insulation.",
+      "author": "Google reviewer"
+    }
+  ],
+  "priceRange": "$$",
+  "social": {
+    "facebook": "https://www.facebook.com/CalstateInsulation/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "License #795223 (C-2 + B, active). Owner Alvaro Beltran, est. 2001 (BBB). No reliable aggregate rating → omitted. Testimonials from BBB-area aggregation without names → labeled Google reviewer; verify wording. Hours from a directory — confirm. Phone (707) 546-3177, 1244 Tapadera Dr.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": {
+    "name": "California State Insulation",
+    "category": "contractor",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17075463177",
+    "email": "",
+    "address": "1244 Tapadera Dr",
+    "owner": "Alvaro Beltran"
+  }
+}

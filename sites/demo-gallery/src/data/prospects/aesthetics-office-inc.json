@@ -1,0 +1,186 @@
+{
+  "name": "Aesthetics Office Inc",
+  "category": "spa",
+  "tagline": "Everyone is beautiful",
+  "seoDescription": "Aesthetics Office — injectables, lasers, and body contouring from a nurse-and-physician team (Nancie Fox, RN and Dr. Adrian de la Torre, MD) at the Larkfield Center in Santa Rosa.",
+  "area": "Santa Rosa, CA",
+  "established": "",
+  "contact": {
+    "phone": "+17075778888",
+    "email": "",
+    "address": "648 Larkfield Center"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/aestheticsofficeinc/",
+    "instagram": "https://www.instagram.com/aestheticsofficeinc/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Aesthetic care from a nurse and physician team",
+    "subheading": "Nurse Nancie Fox, RN and board-certified physician Dr. Adrian de la Torre offer injectables, lasers, and body contouring at the Larkfield office in Santa Rosa.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "RN and MD provider team",
+    "Complimentary consultations",
+    "Botox, fillers and lasers",
+    "Body contouring & skin tightening",
+    "Personalized aesthetic care"
+  ],
+  "images": {
+    "hero": "/images/library/default/hero.svg",
+    "heroAlt": "Aesthetics Office Inc in Santa Rosa, CA",
+    "story": "/images/library/default/story.svg",
+    "storyAlt": "About Aesthetics Office Inc",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "Meet Your Providers",
+    "body": [
+      "Aesthetics Office is led by Nurse Nancie Fox, RN, BSN, who earned her BS in Nursing with a minor in Psychology and Women's Studies and has worked in the aesthetics industry since the early 1990s.",
+      "Dr. Adrian de la Torre, the practice’s board-certified Chief Medical Officer, earned his MD from the University of Minnesota and brings more than 20 years of experience with injectables and dermal fillers. Nancie and Dr. de la Torre have practiced together since 2014.",
+      "The practice operates from the Larkfield Center in Santa Rosa, offering complimentary consultations so every treatment plan is tailored to the individual."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "Treatments",
+  "services": [
+    {
+      "title": "Injectables",
+      "description": "Botox, Dysport, and dermal fillers including Juvederm, Restylane, Sculptra, Radiesse, and Kybella."
+    },
+    {
+      "title": "Laser Treatments",
+      "description": "Laser hair and tattoo removal, skin tightening, vein treatment, photo rejuvenation, and fractional resurfacing."
+    },
+    {
+      "title": "Body Contouring & Skin Tightening",
+      "description": "Nonsurgical body sculpting and skin tightening using devices such as Emsculpt and Vanquish."
+    },
+    {
+      "title": "Anti-Aging & Hair Regrowth",
+      "description": "IV therapy, red-light therapy, and hair-regrowth options including Nutrafol."
+    },
+    {
+      "title": "Skincare & Chemical Peels",
+      "description": "Chemical peels and medical-grade skincare lines including Obagi, EltaMD, and Latisse."
+    }
+  ],
+  "hours": [
+    "Tuesday – Thursday: 10:00 AM – 4:00 PM",
+    "Monday & Friday: By appointment",
+    "Saturday – Sunday: Closed"
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Treatments",
+      "items": [
+        {
+          "title": "Injectables",
+          "description": "Botox, Dysport, and dermal fillers including Juvederm, Restylane, Sculptra, Radiesse, and Kybella."
+        },
+        {
+          "title": "Laser Treatments",
+          "description": "Laser hair and tattoo removal, skin tightening, vein treatment, photo rejuvenation, and fractional resurfacing."
+        },
+        {
+          "title": "Body Contouring & Skin Tightening",
+          "description": "Nonsurgical body sculpting and skin tightening using devices such as Emsculpt and Vanquish."
+        },
+        {
+          "title": "Anti-Aging & Hair Regrowth",
+          "description": "IV therapy, red-light therapy, and hair-regrowth options including Nutrafol."
+        },
+        {
+          "title": "Skincare & Chemical Peels",
+          "description": "Chemical peels and medical-grade skincare lines including Obagi, EltaMD, and Latisse."
+        }
+      ]
+    },
+    {
+      "type": "bigquote",
+      "quote": "Everyone I met at Aesthetics Office was so friendly and professional. I felt at ease from the moment I entered.",
+      "author": "Beth"
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "5★",
+          "label": "19 reviews"
+        },
+        {
+          "value": "5",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "Everyone I met at Aesthetics Office was so friendly and professional. I felt at ease from the moment I entered.",
+          "author": "Beth"
+        },
+        {
+          "quote": "She explained the laser neck and face treatment with such in-depth knowledge and experience. I felt at ease and informed.",
+          "author": "Tammy"
+        },
+        {
+          "quote": "I love Nancie and her team! They always make me feel welcome, answer all my questions, and put me at ease.",
+          "author": "April"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 648 Larkfield Center."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined; undefined: undefined; undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17075778888 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "editorial",
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually",
+    "No real/AI photos — using library art",
+    "No email found — add a real email or contact form before sending"
+  ],
+  "theme": {
+    "brand": "#8a6bb0",
+    "brandDark": "#2a2433"
+  },
+  "priceRange": "$$$",
+  "artDirection": {
+    "fontId": "classic-trad",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "bigquote"
+  },
+  "heroVariant": "typographic"
+}

@@ -1,0 +1,183 @@
+{
+  "name": "Gonnella Carpet Installation",
+  "category": "contractor",
+  "tagline": "Father-and-son carpet craftsmen",
+  "seoDescription": "Gonnella Carpet Installation — a father-and-son team installing and repairing carpet and flooring across Santa Rosa and Sonoma County since 1980. BBB A+ rated.",
+  "area": "Santa Rosa, CA",
+  "established": "Est. 1980",
+  "contact": {
+    "phone": "+17075287636",
+    "email": "",
+    "address": "1315 Hahman Dr"
+  },
+  "social": {
+    "facebook": "https://m.facebook.com/Gonnella-Carpet-Installation-234613363236181/",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Santa Rosa's family carpet installer since 1980",
+    "subheading": "Dennis and Jeff Gonnella, a father-and-son team, have installed and repaired carpet and flooring across Sonoma County for over four decades.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Family-owned since 1980",
+    "Father-and-son installers",
+    "BBB A+ rated",
+    "Carpet, repair & flooring",
+    "Serving Sonoma County"
+  ],
+  "images": {
+    "hero": "/images/library/default/hero.svg",
+    "heroAlt": "Gonnella Carpet Installation in Santa Rosa, CA",
+    "story": "/images/library/default/story.svg",
+    "storyAlt": "About Gonnella Carpet Installation",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "Two generations, one standard",
+    "body": [
+      "Gonnella Carpet Installation has been a fixture in Santa Rosa since 1980. Owner Dennis Gonnella runs the business as a small, hands-on operation alongside his son Jeff — a true father-and-son team who handle the installations themselves.",
+      "Working out of Santa Rosa and serving the wider Bay Area, the Gonnellas specialize in carpet installation, carpet repair, and a range of flooring including laminate, prefinished hardwood, and vinyl. They start with a visit to view the space and advise on the best plan before any work begins.",
+      "Customers consistently note that the team shows up on time, works diligently through the day, and cleans up before they leave. After more than four decades and a BBB A+ rating, the Gonnella name still stands for careful, personal workmanship."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What We Install",
+  "services": [
+    {
+      "title": "Carpet Installation",
+      "description": "Professional carpet installation for homes and businesses, planned with an on-site visit before the job begins."
+    },
+    {
+      "title": "Carpet Repair & Restretch",
+      "description": "Repairs and refastening to bring tired or loose carpet back to life."
+    },
+    {
+      "title": "Hardwood & Laminate Flooring",
+      "description": "Installation of prefinished hardwood and laminate flooring."
+    },
+    {
+      "title": "Vinyl & Vinyl Tile",
+      "description": "Vinyl flooring and vinyl tile installation for kitchens, baths, and high-traffic areas."
+    }
+  ],
+  "hours": [
+    "Monday – Friday: 9:00 AM – 6:00 PM",
+    "Saturday – Sunday: Closed"
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "46+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "feature-split",
+      "eyebrow": "What sets us apart",
+      "heading": "What We Install",
+      "rows": [
+        {
+          "heading": "Carpet Installation",
+          "body": "Professional carpet installation for homes and businesses, planned with an on-site visit before the job begins."
+        },
+        {
+          "heading": "Carpet Repair & Restretch",
+          "body": "Repairs and refastening to bring tired or loose carpet back to life."
+        },
+        {
+          "heading": "Hardwood & Laminate Flooring",
+          "body": "Installation of prefinished hardwood and laminate flooring."
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "From our first phone call until the job was expertly finished, Gonnella Carpet was perfection!",
+          "author": "Mary Lynne Richardson"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 1315 Hahman Dr."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined; undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17075287636 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What We Install",
+      "items": [
+        {
+          "title": "Carpet Installation",
+          "description": "Professional carpet installation for homes and businesses, planned with an on-site visit before the job begins."
+        },
+        {
+          "title": "Carpet Repair & Restretch",
+          "description": "Repairs and refastening to bring tired or loose carpet back to life."
+        },
+        {
+          "title": "Hardwood & Laminate Flooring",
+          "description": "Installation of prefinished hardwood and laminate flooring."
+        },
+        {
+          "title": "Vinyl & Vinyl Tile",
+          "description": "Vinyl flooring and vinyl tile installation for kitchens, baths, and high-traffic areas."
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually",
+    "No real/AI photos — using library art",
+    "No email found — add a real email or contact form before sending"
+  ],
+  "theme": {
+    "brand": "#c77d2a",
+    "brandDark": "#26211b"
+  },
+  "priceRange": "$$",
+  "artDirection": {
+    "fontId": "editorial-serif",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "feature-split"
+  },
+  "heroVariant": "editorial-asym"
+}

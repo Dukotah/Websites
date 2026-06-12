@@ -1,0 +1,138 @@
+{
+  "name": "Chau Norman DDS",
+  "category": "dentist",
+  "tagline": "Gentle, established Santa Rosa dentistry",
+  "seoDescription": "Dr. Norman Chau, DDS — friendly, gentle general dentistry on Cleveland Avenue in Santa Rosa. English and Spanish spoken; Medi-Cal accepted.",
+  "area": "Santa Rosa, CA",
+  "established": "",
+  "contact": {
+    "phone": "+17075444818",
+    "email": "",
+    "address": "2921 Cleveland Ave"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/p/Norman-Chau-DDS-100071069707957/",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Pain-free dentistry in Santa Rosa",
+    "subheading": "Dr. Norman Chau, DDS provides friendly, gentle general dental care on Cleveland Avenue, with a welcoming team patients trust.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Long-established local practice",
+    "Gentle, pain-free care",
+    "Welcoming, helpful staff",
+    "Medi-Cal accepted",
+    "English & Spanish spoken"
+  ],
+  "images": {
+    "hero": "/images/library/default/hero.svg",
+    "heroAlt": "Chau Norman DDS in Santa Rosa, CA",
+    "story": "/images/library/default/story.svg",
+    "storyAlt": "About Chau Norman DDS",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About Dr. Norman Chau, DDS",
+    "body": [
+      "Dr. Norman Chau is a general dentist serving Santa Rosa from his office on Cleveland Avenue. A graduate of the LSU School of Dentistry, he has built a long-standing reputation in the community for treating patients with patience and care.",
+      "Patients consistently describe their visits as professional, friendly, and pain-free. The office is known for being clean and comfortable, with a staff that is welcoming and helpful — including with young children and nervous patients.",
+      "Dr. Chau and his team see both English- and Spanish-speaking patients and accept Medi-Cal, making everyday dental care accessible to families across Santa Rosa."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "Our Services",
+  "services": [
+    {
+      "title": "Exams & Cleanings",
+      "description": "Regular checkups and professional cleanings to keep your smile healthy and catch issues early."
+    },
+    {
+      "title": "Fillings & Cavity Care",
+      "description": "Treatment of cavities and repair or replacement of fillings for lasting comfort."
+    },
+    {
+      "title": "General Family Dentistry",
+      "description": "Everyday dental care for patients of all ages, including gentle treatment for children."
+    }
+  ],
+  "hours": [
+    "Monday – Thursday: 8:00 AM – 3:30 PM",
+    "Friday – Sunday: Closed"
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Our Services",
+      "items": [
+        {
+          "title": "Exams & Cleanings",
+          "description": "Regular checkups and professional cleanings to keep your smile healthy and catch issues early."
+        },
+        {
+          "title": "Fillings & Cavity Care",
+          "description": "Treatment of cavities and repair or replacement of fillings for lasting comfort."
+        },
+        {
+          "title": "General Family Dentistry",
+          "description": "Everyday dental care for patients of all ages, including gentle treatment for children."
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "This was probably the first time in my life I was truly at ease with a dentist. Dr. Chau was professional, friendly, knowledgeable, patient, and best of all pain-free.",
+          "author": "Cynthia C."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 2921 Cleveland Ave."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined; undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17075444818 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually",
+    "No real/AI photos — using library art",
+    "No email found — add a real email or contact form before sending"
+  ],
+  "theme": {
+    "brand": "#c2683a",
+    "brandDark": "#243b53"
+  },
+  "priceRange": "$$",
+  "heroVariant": "editorial"
+}

@@ -1,0 +1,131 @@
+{
+  "name": "Lysell Plumbing & Heating",
+  "category": "plumbing",
+  "tagline": "Plumbing, heating & AC in Santa Rosa",
+  "seoDescription": "Lysell Plumbing & Heating — a local Santa Rosa contractor handling plumbing, heating, furnace, and air-conditioning service for homes and businesses.",
+  "area": "Santa Rosa, CA",
+  "established": "",
+  "contact": {
+    "phone": "+17075761334",
+    "email": "",
+    "address": "1809 Sansone Dr"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Plumbing, heating and AC service in Santa Rosa",
+    "subheading": "A local Santa Rosa contractor handling plumbing, heating, furnace, and air-conditioning repair for homes and businesses.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Plumbing & heating",
+    "Furnace repair & cleaning",
+    "Air conditioning service",
+    "Locally based in Santa Rosa"
+  ],
+  "images": {
+    "hero": "/images/library/plumbing/hero.svg",
+    "heroAlt": "Lysell Plumbing & Heating in Santa Rosa, CA",
+    "story": "/images/library/plumbing/story.svg",
+    "storyAlt": "About Lysell Plumbing & Heating",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/plumbing/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About Lysell Plumbing & Heating",
+    "body": [
+      "Lysell Plumbing & Heating is a Santa Rosa contractor serving the local community with plumbing and heating services for homes and businesses.",
+      "The company handles plumbing repairs, heating-equipment service, furnace repair and cleaning, and air-conditioning work across the Santa Rosa area. Give them a call to ask about availability, scheduling, or a quote."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "Our Services",
+  "services": [
+    {
+      "title": "Plumbing",
+      "description": "Repair and service for residential and commercial plumbing systems."
+    },
+    {
+      "title": "Heating Repair",
+      "description": "Repair and maintenance of heating equipment and systems."
+    },
+    {
+      "title": "Furnace Repair & Cleaning",
+      "description": "Furnace repair and cleaning to keep your system running through the colder months."
+    },
+    {
+      "title": "Air Conditioning",
+      "description": "Air-conditioning service for homes and businesses in the Santa Rosa area."
+    }
+  ],
+  "hours": [
+    "Monday – Friday: 8:00 AM – 5:00 PM"
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Our Services",
+      "items": [
+        {
+          "title": "Plumbing",
+          "description": "Repair and service for residential and commercial plumbing systems."
+        },
+        {
+          "title": "Heating Repair",
+          "description": "Repair and maintenance of heating equipment and systems."
+        },
+        {
+          "title": "Furnace Repair & Cleaning",
+          "description": "Furnace repair and cleaning to keep your system running through the colder months."
+        },
+        {
+          "title": "Air Conditioning",
+          "description": "Air-conditioning service for homes and businesses in the Santa Rosa area."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 1809 Sansone Dr."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17075761334 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually",
+    "No real/AI photos — using library art",
+    "No email found — add a real email or contact form before sending"
+  ],
+  "theme": {
+    "brand": "#1f6feb",
+    "brandDark": "#16324f"
+  },
+  "heroVariant": "panel"
+}

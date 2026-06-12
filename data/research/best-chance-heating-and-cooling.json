@@ -1,0 +1,95 @@
+{
+  "slug": "best-chance-heating-and-cooling",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Quality HVAC in Sonoma & Marin",
+  "seoDescription": "Best Chance HVAC — owner-operated heating and cooling for Sonoma and Marin County homes and businesses. Heat-pump specialists, licensed CSLB #1107468, 24-hour emergency service.",
+  "heroHeading": "15+ years of HVAC experience, now local and owner-operated",
+  "heroSubheading": "Owner-operator Chance Rosado brings over 15 years of hands-on HVAC experience to homes and businesses across Sonoma and Marin Counties.",
+  "highlights": [
+    "Locally owned & operated",
+    "Over 15 years experience",
+    "Licensed & insured (#1107468)",
+    "24-hour emergency service",
+    "Heat-pump specialists"
+  ],
+  "aboutHeading": "About Best Chance HVAC",
+  "aboutBody": [
+    "Best Chance HVAC is owned and operated by Chance Rosado, who brings over 15 years of hands-on industry experience to every job. After more than a decade in the trade, Chance started his own company to deliver the quality service and reliable systems homeowners deserve year-round.",
+    "Based in Santa Rosa, the company is locally owned and operated, serving residential and commercial customers throughout Sonoma County and into Marin. Best Chance specializes in high-efficiency heat-pump systems and energy-efficient installations suited to the region's climate.",
+    "The team is fully licensed and insured (CSLB #1107468), with a reputation built on responsive, honest, and competitively priced work."
+  ],
+  "servicesHeading": "Our Services",
+  "services": [
+    {
+      "title": "AC Installation",
+      "description": "Efficient installation of central air conditioning and cooling systems for homes and businesses."
+    },
+    {
+      "title": "Ductless Mini-Splits",
+      "description": "Zone-specific cooling and heating without the need for extensive ductwork."
+    },
+    {
+      "title": "Heat Pumps",
+      "description": "High-efficiency systems that provide both cooling and heating — a company specialty."
+    },
+    {
+      "title": "Heating & Furnaces",
+      "description": "Furnace and heating system installation, repair, and replacement for winter comfort."
+    },
+    {
+      "title": "Maintenance",
+      "description": "Proactive maintenance to maximize efficiency, prevent breakdowns, and extend system life."
+    },
+    {
+      "title": "24-Hour Emergency Service",
+      "description": "Around-the-clock emergency HVAC service available (emergency fee applies)."
+    }
+  ],
+  "hours": [
+    "Monday – Friday: 8:00 AM – 5:00 PM",
+    "24-hour emergency service available"
+  ],
+  "testimonials": [
+    {
+      "quote": "Very knowledgeable. They fixed the problem quickly at reasonable rates — one of the best HVAC people I have ever worked with.",
+      "author": "HomeAdvisor reviewer"
+    },
+    {
+      "quote": "Our furnace replacement went above expectations. The technician explained everything and showed me how the system worked. I would recommend them to family and friends.",
+      "author": "HomeAdvisor reviewer"
+    },
+    {
+      "quote": "Chance is extremely responsive and trustworthy, and very experienced. He is the best there is.",
+      "author": "Google reviewer"
+    }
+  ],
+  "rating": {
+    "value": 5,
+    "count": 46,
+    "source": "HomeAdvisor"
+  },
+  "priceRange": "$$",
+  "social": {
+    "facebook": "https://www.facebook.com/61574951143312",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://images.squarespace-cdn.com/content/v1/6581ead9a4c08f07b698ae42/1703013835674-MNJ0QZYT6X6308U7MG6J/image-asset.jpeg",
+    "https://images.squarespace-cdn.com/content/v1/6581ead9a4c08f07b698ae42/1714004740781-AMY5LMOGZACVBABW6267/image-asset.jpeg"
+  ],
+  "notes": "Owner Chance Rosado. License #1107468 (verify class/status). Rating 5.0/46 is HomeAdvisor (Super Service) — not Google; confirm before relabeling. Phone (707) 900-8381 (a 336-9800 also appeared). Founding year unconfirmed → left blank. Photos from their Squarespace CDN — eyeball.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": {
+    "name": "Best Chance Heating and Cooling",
+    "category": "hvac",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17079008381",
+    "email": "",
+    "address": "2697 Coors Ct Unit D",
+    "owner": "Chance Rosado"
+  }
+}
