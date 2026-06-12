@@ -39,3 +39,8 @@ proof/
 data/thumbnails/
 
 # Published thumbnails (sites/demo-gallery/public/thumbnails/) ARE committed — stable hosted path for email + CRM
+
+# morning-batch local state/logs
+data/morning-done.txt
+data/morning-batch.log
+data/morning-*.csv
