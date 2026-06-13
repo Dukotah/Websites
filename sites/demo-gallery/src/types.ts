@@ -210,7 +210,9 @@ export type HeroVariant =
   | 'collage'
   | 'statement'
   | 'typographic'
-  | 'editorial-asym';
+  | 'editorial-asym'
+  | 'spotlight'
+  | 'feature-stat';
 
 /**
  * Cold-outreach funnel config. The demo gallery is an OUTREACH asset: until a
@@ -270,8 +272,18 @@ export interface ProspectConfig {
   images: {
     hero: string;
     heroAlt: string;
+    /**
+     * CSS object-position string ("X% Y%") for the hero photo, computed
+     * deterministically from its pixels (energy-weighted centroid on an 8x8 edge
+     * grid). Passed to <SiteImage objectPosition> so object-fit:cover keeps the
+     * subject in frame when re-cropping at off-build aspect ratios. Only set for
+     * real photos; library/SVG heroes default to "50% 50%". Default "50% 50%".
+     */
+    heroFocal?: string;
     story: string;
     storyAlt: string;
+    /** As `heroFocal`, for the story photo. Default "50% 50%". */
+    storyFocal?: string;
     storyCaption: string;
     storyCredit: string;
     placeholder: string;
@@ -317,8 +329,13 @@ export interface ProspectConfig {
   /** Cold-outreach funnel settings (claim banner + index gating). */
   outreach?: OutreachConfig;
 
-  /** Extra real photos the generator collected (feeds gallery/collage). */
-  galleryImages?: { src: string; alt: string }[];
+  /**
+   * Extra real photos the generator collected (feeds gallery/collage). Each
+   * carries an optional `focal` — a CSS object-position string ("X% Y%") computed
+   * deterministically from that photo's pixels, so object-fit:cover crops keep the
+   * subject in frame. Absent → "50% 50%".
+   */
+  galleryImages?: { src: string; alt: string; focal?: string }[];
 
   /**
    * Optional explicit business category. When absent the art-direction engine

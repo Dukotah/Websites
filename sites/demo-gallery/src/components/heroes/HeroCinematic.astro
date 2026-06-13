@@ -27,12 +27,19 @@ const longTitle = (hero.heading ?? '').length > 28;
 
   <!-- ① Full-bleed photo — parallax target -->
   <div class="cin-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.4">
+    <!-- Full-bleed `hero-fullbleed` slot: the box IS the viewport, so it keeps
+         its viewport height (no fixed aspect-ratio to fight). object-position is
+         set HERE as a prop — Astro scopes the parent's `.cin-hero__media img`
+         rule to this component and it does NOT pierce into the SiteImage child,
+         so the "center 30%" framing must travel on the prop to actually reach
+         the <img>. 30% keeps the subject high under the bottom scrim. -->
     <SiteImage
       src={images.hero}
       alt={images.heroAlt}
       placeholder={images.placeholder}
       fetchpriority="high"
       loading="eager"
+      objectPosition={config.images.heroFocal ?? 'center'}
       sizes="100vw"
     />
   </div>

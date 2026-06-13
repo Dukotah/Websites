@@ -41,6 +41,8 @@ interface GalleryImage {
   src: string;
   alt: string;
   caption?: string;
+  /** Per-image focal point as a CSS object-position string ("X% Y%"). */
+  focal?: string;
 }
 
 interface Props extends SectionEnvelope {
@@ -78,6 +80,7 @@ const {
                 src={img.src}
                 alt={img.alt}
                 class="gu__img"
+                objectPosition={img.focal ?? 'center'}
                 sizes="(min-width: 768px) 33vw, (min-width: 480px) 50vw, 100vw"
               />
               {img.caption && (

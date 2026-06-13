@@ -51,13 +51,20 @@ const eyebrow = [badgeYear ? '' : established, area].filter(Boolean).join(' · '
         data-parallax-speed="0.2"
         data-parallax-axis="y"
       >
+        <!-- The photo inset box is clamp(220px, 34vw, 500px) wide (see
+             .stmt-hero__photo-wrap). Match `sizes` to that real width so the
+             browser picks a big-enough variant without over-fetching; the 36vw
+             hint sits just above the box so it can never under-size into blur.
+             Below 900px the inset is hidden (display:none), so the mobile arm
+             is moot — keep 100vw as a harmless fallback. -->
         <SiteImage
           src={images.hero}
           alt={images.heroAlt}
           placeholder={images.placeholder}
-          sizes="(min-width: 880px) 45vw, 100vw"
+          sizes="(min-width: 880px) min(36vw, 540px), 100vw"
           loading="eager"
           fetchpriority="high"
+          objectPosition={config.images.heroFocal ?? 'center'}
         />
       </div>
       <!-- Trust badge on photo inset -->

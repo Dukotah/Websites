@@ -264,15 +264,41 @@ export function pickHero(
 
   const { imageCount, heroIsReal } = inventory;
 
+  // 'side'-tier photos are only medium-res — a full-bleed `cinematic`/`spotlight`
+  // hero would upscale them blurry. For these, show the photo in a side-column
+  // hero (split / editorial-asym / feature-stat / collage) where it renders
+  // smaller (contained card / column) and stays sharp.
+  const sideTier = ad.heroPhotoTier === 'side';
+
+  // The two new variants (mined from Fulldev UI) are added to the union by the
+  // wiring phase (types.ts HeroVariant + HeroRenderer). Cast their literals so
+  // this selector stays build-safe regardless of when the union lands:
+  //   - 'spotlight'    full-bleed photo + opaque boxed content card (full-bleed
+  //                    only — keep it OUT of the 'side' rotation, like cinematic)
+  //   - 'feature-stat' offset image CARD + stat strip (contained image → safe on
+  //                    any tier, including 'side')
+  const SPOTLIGHT = 'spotlight' as HeroVariant;
+  const FEATURE_STAT = 'feature-stat' as HeroVariant;
+
   if (imageCount >= 2) {
-    // Favor the full-bleed cinematic hero — a strong real photo deserves the
-    // whole stage (a split panel chops the money shot in half).
-    return pick(seed ^ 0x3f4a8b1c, ['cinematic', 'cinematic', 'split', 'collage'] as const);
+    // Favor the full-bleed cinematic/spotlight heroes — a strong real photo
+    // deserves the whole stage (a split panel chops the money shot in half) —
+    // UNLESS the photo is only 'side'-tier, where a side-column hero (incl. the
+    // contained feature-stat card) keeps it sharp.
+    if (sideTier) {
+      return pick(seed ^ 0x3f4a8b1c, ['split', 'editorial-asym', FEATURE_STAT, 'collage'] as const);
+    }
+    return pick(seed ^ 0x3f4a8b1c, ['cinematic', SPOTLIGHT, 'split', 'collage'] as const);
   }
   if (heroIsReal) {
-    // One strong photo: cinematic/split, or the type-dominant asymmetric split
-    // (wide display column beside a narrow tight crop) — the editorial move.
-    return pick(seed ^ 0x7e2c9d44, ['cinematic', 'split', 'editorial-asym'] as const);
+    // One strong photo: cinematic/spotlight/split, the type-dominant asymmetric
+    // split, or the offset-image-plus-stats feature-stat — the editorial moves.
+    // For a 'side'-tier photo, drop the full-bleed variants and keep the
+    // side-column / contained-card heroes.
+    if (sideTier) {
+      return pick(seed ^ 0x7e2c9d44, ['split', 'editorial-asym', FEATURE_STAT] as const);
+    }
+    return pick(seed ^ 0x7e2c9d44, ['cinematic', SPOTLIGHT, 'split', 'editorial-asym', FEATURE_STAT] as const);
   }
   // No real photo (missing or stock art) — text-forward variants that look
   // intentional rather than stretching a flat stock SVG full-bleed. The

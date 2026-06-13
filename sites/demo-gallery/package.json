@@ -32,6 +32,10 @@
     "@fontsource/spectral": "^5.0.0",
     "@fontsource/zilla-slab": "^5.0.0",
     "astro": "^5.4.0",
-    "open-props": "^1.7.23"
+    "open-props": "^1.7.23",
+    "utopia-core": "^1.6.0"
+  },
+  "devDependencies": {
+    "schema-dts": "^2.0.0"
   }
 }

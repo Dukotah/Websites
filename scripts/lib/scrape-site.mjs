@@ -278,12 +278,58 @@ function extractTestimonials(html) {
 // Many builder CDNs (GoDaddy/wsimg, Wix, Squarespace, Cloudinary, Shopify)
 // append a transform path after the real file, e.g.
 //   …/IMG_1920.jpeg/:/cr=t:0%25,…/fx-gs   (the /:/… part, often grayscale).
-// Strip it so we download the clean, full-resolution original.
+// Strip it so we download the clean, full-resolution original. ALSO strip the
+// width/resize QUERY tokens those CDNs add (?w=400, ?width=600, ?h=, ?fit=,
+// ?resize=, ?q=, Wix's w_400,h_300 path segment) so we fetch the LARGEST native
+// frame instead of a thumbnail — the #1 "that's my business" resolution lever.
+const RESIZE_QUERY = /^(w|width|h|height|fit|crop|resize|quality|q|dpr|sz|size|maxwidth|max-w|format|fm|auto)$/i;
+
 function cleanImageUrl(u) {
   if (!u) return u;
   let s = u.trim().replace(/^["']|["']$/g, '');
   s = s.split('/:/')[0]; // wsimg / isteam transform suffix
+  // Wix-style inline transform segment: …/v1/fill/w_400,h_300,al_c,q_80/file.jpg
+  s = s.replace(/\/(?:fill|fit|crop|scale)\/[^/]*\d+[^/]*\//i, '/');
+  try {
+    const url = new URL(s, 'https://_base_/'); // base lets us parse relative URLs
+    let changed = false;
+    for (const key of [...url.searchParams.keys()]) {
+      if (RESIZE_QUERY.test(key)) { url.searchParams.delete(key); changed = true; }
+    }
+    if (changed) {
+      // Rebuild keeping the original (possibly relative) form when there was no host.
+      s = url.host === '_base_' ? url.pathname + (url.search || '') : url.href;
+    }
+  } catch { /* leave s as-is on parse failure */ }
   return s;
+}
+
+// Parse a srcset / "url 1x, url 2x" list and return the LARGEST candidate URL.
+// srcset entries are "<url> <descriptor>" where the descriptor is a width (640w)
+// or density (2x); we pick the biggest by width, then by density, then last.
+// Returns '' when the set is empty. (The old code blindly took the LAST entry,
+// which on density lists is the largest but on some width lists is NOT.)
+function largestFromSrcset(set) {
+  if (!set) return '';
+  const entries = set
+    .split(',')
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const [url, descriptor = ''] = part.split(/\s+/);
+      const wMatch = descriptor.match(/^(\d+)w$/i);
+      const xMatch = descriptor.match(/^([\d.]+)x$/i);
+      return {
+        url,
+        w: wMatch ? Number(wMatch[1]) : 0,
+        x: xMatch ? Number(xMatch[1]) : 0,
+      };
+    })
+    .filter((e) => e.url);
+  if (!entries.length) return '';
+  // Prefer the widest explicit width; else the highest density; else the last.
+  entries.sort((a, b) => b.w - a.w || b.x - a.x);
+  return entries[0].url;
 }
 
 function extractImages(html, base) {
@@ -292,12 +338,17 @@ function extractImages(html, base) {
     const abs = absolutize(cleanImageUrl(u), base);
     if (abs) out.push(abs);
   };
-  // Pick the largest URL out of a srcset/“url 1x, url 2x” list.
-  const fromSrcset = (set) => set?.split(',').pop()?.trim().split(/\s+/)[0];
+  // Pick the LARGEST URL out of a srcset / “url 1x, url 2x” list (not just the
+  // last entry) — see largestFromSrcset.
+  const fromSrcset = (set) => largestFromSrcset(set);
 
   // <img> and friends — including the lazy-load attributes builder sites use
-  // (data-src, data-srcset, data-srcsetlazy, data-srclazy, data-original).
+  // (data-src, data-srcset, data-srcsetlazy, data-srclazy, data-original). When
+  // a tag declares an intrinsic WIDTH below the photo floor, skip it: an <img
+  // width="80"> is a logo/thumb no matter what its src looks like.
   for (const tag of html.match(/<img\b[^>]*>/gi) ?? []) {
+    const declaredW = Number(attr(tag, 'width')) || 0;
+    if (declaredW && declaredW < 200) continue; // intrinsic thumbnail → skip
     const srcset =
       attr(tag, 'srcset') || attr(tag, 'data-srcset') ||
       attr(tag, 'data-srcsetlazy') || attr(tag, 'data-lazy-srcset');
@@ -323,13 +374,32 @@ function extractImages(html, base) {
   return out;
 }
 
-// Skip logos, icons, sprites, tracking pixels, SVGs — keep real photos.
-const IMG_REJECT = /(logo|icon|sprite|favicon|badge|avatar|placeholder|pixel|spinner|loader|svg|\.gif(\?|$))/i;
+// Skip logos, icons, sprites, tracking pixels, SVGs — keep real photos. Broadened
+// over the original to catch more decoration: social-share glyphs, payment-card
+// art, stars/ratings, emoji/flags, base64 data URIs, and 1×1 spacers.
+const IMG_REJECT =
+  /(logo|icon|sprite|favicon|badge|avatar|placeholder|pixel|spinner|loader|\bsvg\b|\.svg(\?|$)|\.gif(\?|$)|social|share|payment|visa|mastercard|paypal|stars?[-_]?rating|rating|emoji|flag|spacer|blank|transparent|1x1)/i;
+
+// A size token in the URL (…-150x150., …_300x200., …/w_120/…, …?w=80) lets us
+// reject obvious thumbnails BEFORE downloading — a cheap pre-filter so the
+// downloader's byte budget is spent on candidates that can clear the photo floor.
+const MIN_URL_DIM = 400;
+
+function urlTooSmall(u) {
+  // WxH token right before the extension: name-1200x800.jpg
+  const wh = u.match(/[-_/](\d{2,4})x(\d{2,4})(?=\.[a-z0-9]+($|\?))/i);
+  if (wh && (Number(wh[1]) < MIN_URL_DIM || Number(wh[2]) < MIN_URL_DIM)) return true;
+  // Builder width segment/param: /w_120/  or  ?w=80  or  ?width=120
+  const w = u.match(/[/?&](?:w|width)[=_](\d{2,4})\b/i);
+  if (w && Number(w[1]) < MIN_URL_DIM) return true;
+  return false;
+}
 
 function usefulImages(urls) {
   return dedupe(
     urls.filter((u) => {
       if (!u || !/^https?:/i.test(u) || IMG_REJECT.test(u)) return false;
+      if (urlTooSmall(u)) return false; // URL says it's a thumbnail → skip
       // Reject bare origins (no real path) — e.g. "https://example.com/".
       try {
         const { pathname } = new URL(u);
@@ -543,28 +613,111 @@ function findInternalPhotoLinks(html, base, max = 5) {
   return out;
 }
 
+// Pull the largest image URLs declared in JSON-LD (the business's OWN structured
+// data — `image`/`photo`/`logo` on the LocalBusiness node, plus any ImageObject
+// `contentUrl`). Authoritative and usually full-resolution. Logo is included on
+// purpose so usefulImages' name filter can drop it (it's named "logo").
+function imagesFromJsonLd(html, base) {
+  const out = [];
+  const visit = (n) => {
+    if (Array.isArray(n)) { n.forEach(visit); return; }
+    if (!n || typeof n !== 'object') return;
+    for (const key of ['image', 'photo', 'logo', 'contentUrl', 'thumbnailUrl']) {
+      const v = n[key];
+      if (typeof v === 'string') out.push(v);
+      else if (v && typeof v === 'object') {
+        if (typeof v.url === 'string') out.push(v.url);
+        else if (typeof v.contentUrl === 'string') out.push(v.contentUrl);
+      } else if (Array.isArray(v)) {
+        for (const i of v) {
+          if (typeof i === 'string') out.push(i);
+          else if (i && typeof i === 'object' && typeof (i.url || i.contentUrl) === 'string') {
+            out.push(i.url || i.contentUrl);
+          }
+        }
+      }
+    }
+  };
+  parseJsonLd(html).forEach(visit);
+  return out.map((u) => absolutize(cleanImageUrl(u), base)).filter(Boolean);
+}
+
+// Size-agnostic identity for one image URL: collapse "same photo at many widths"
+// (hero.jpg, hero-1024x768.jpg, hero-scaled.jpg, hero@2x.jpg) so a list de-dupes
+// to DISTINCT photos. Mirrors images.mjs' baseIdentity; a URL-stage perceptual
+// de-dupe that needs no pixel decode (byte-level dHash de-dup still runs later in
+// images.mjs on what we actually download).
+function photoIdentity(url) {
+  try {
+    const u = new URL(url);
+    let p = u.pathname.toLowerCase();
+    p = p.replace(/[-_@](?:\d{2,4}x\d{2,4}|\d{2,4}w|\dx|scaled|thumb(?:nail)?|small|medium|large)(?=\.[a-z0-9]+$)/g, '');
+    return u.host + p;
+  } catch {
+    return url;
+  }
+}
+
 /**
  * Collect real photo URLs from a site by scraping its homepage AND a few
  * photo-likely subpages (gallery/services/about). Key-free, best-effort.
- * Returns a deduped, logo-filtered list of absolute image URLs.
+ * Returns a deduped, logo-filtered list of absolute image URLs, ordered so the
+ * business's intended hero (og/twitter/JSON-LD) leads.
+ *
+ * Hardening (the #1 "that's me" lever):
+ *   • og:image / twitter:image / JSON-LD image|photo|contentUrl are followed and
+ *     placed FIRST so the downloader prefers the business's own intended hero.
+ *   • srcset is resolved to the LARGEST candidate and CDN resize tokens are
+ *     stripped (largestFromSrcset + cleanImageUrl) so we fetch native-res frames.
+ *   • obvious gallery/about/portfolio/services subpages are crawled for more.
+ *   • icons/sprites/logos and sub-min-res thumbnails are dropped (usefulImages).
+ *   • DISTINCT photos only: collapse size-variants of one shot to its largest URL
+ *     (photoIdentity) so the candidate budget buys variety, not duplicates.
  */
 export async function collectSiteImages(url, { maxPages = 4, timeoutMs = 12000 } = {}) {
   const home = await fetchHtml(url, timeoutMs);
   if (!home) return [];
   const base = home.finalUrl;
   // og:image / twitter:image is usually the business's intended hero — put it
-  // first so the downloader can prefer it for the hero slot.
-  const ogImages = ['og:image', 'og:image:url', 'twitter:image']
-    .map((k) => absolutize(metaContent(home.html, k), base))
+  // first so the downloader can prefer it for the hero slot. JSON-LD image/photo
+  // is the business's OWN structured data, so it leads too (right after og).
+  const ogImages = ['og:image', 'og:image:url', 'og:image:secure_url', 'twitter:image', 'twitter:image:src']
+    .map((k) => absolutize(cleanImageUrl(metaContent(home.html, k)), base))
     .filter(Boolean);
-  let images = [...ogImages, ...extractImages(home.html, base)];
+  const ldImages = imagesFromJsonLd(home.html, base);
+  let images = [...ogImages, ...ldImages, ...extractImages(home.html, base)];
 
   const links = findInternalPhotoLinks(home.html, base, maxPages);
   for (const link of links) {
     const page = await fetchHtml(link, timeoutMs);
-    if (page) images = images.concat(extractImages(page.html, page.finalUrl));
+    if (!page) continue;
+    images = images.concat(
+      imagesFromJsonLd(page.html, page.finalUrl),
+      extractImages(page.html, page.finalUrl),
+    );
   }
-  return usefulImages(images);
+
+  // Filter to real photos, THEN collapse size-variants of the same shot to its
+  // single largest URL — preserving first-seen order (og/JSON-LD hero stays
+  // first). Among variants of one photo, keep the candidate with the longest
+  // path/dimension signature (a heuristic for "biggest native frame").
+  const useful = usefulImages(images);
+  const bestByIdentity = new Map();
+  const order = [];
+  const sizeHint = (u) => {
+    const wh = u.match(/[-_/](\d{2,4})x(\d{2,4})(?=\.[a-z0-9]+($|\?))/i);
+    if (wh) return Number(wh[1]) * Number(wh[2]);
+    const w = u.match(/[/?&](?:w|width)[=_](\d{2,4})\b/i);
+    return w ? Number(w[1]) : 0;
+  };
+  for (const u of useful) {
+    const id = photoIdentity(u);
+    const prev = bestByIdentity.get(id);
+    if (prev == null) { bestByIdentity.set(id, u); order.push(id); continue; }
+    // Same photo seen again: keep whichever URL advertises the larger size.
+    if (sizeHint(u) > sizeHint(prev)) bestByIdentity.set(id, u);
+  }
+  return order.map((id) => bestByIdentity.get(id));
 }
 
 function mergeSocial(sameAs = [], found) {

@@ -22,10 +22,16 @@ const eyebrow = [badgeYear ? '' : established, area].filter(Boolean).join(' · '
 const longTitle = (hero.heading ?? '').length > 28;
 
 // Collect real images: primary hero first, then gallery extras.
-type ImgSlot = { src: string; alt: string };
+// Each slot carries its own focal so cover keeps the SUBJECT framed: the
+// primary hero uses heroFocal, gallery extras use their own per-image focal.
+type ImgSlot = { src: string; alt: string; focal?: string };
 const allImages: ImgSlot[] = [];
 if (config.images?.hero) {
-  allImages.push({ src: config.images.hero, alt: config.images.heroAlt ?? config.name });
+  allImages.push({
+    src: config.images.hero,
+    alt: config.images.heroAlt ?? config.name,
+    focal: config.images.heroFocal,
+  });
 }
 for (const gi of config.galleryImages ?? []) {
   if (allImages.length >= 3) break;
@@ -49,13 +55,18 @@ const count = imgs.length; // 1 | 2 | 3
         data-parallax={i === 0 ? '' : undefined}
         data-parallax-speed={i === 0 ? '0.3' : undefined}
       >
+        {/* Sizes must match the REAL rendered tile width or the browser picks a
+            too-small variant → blur. A 1-image collage is full-bleed (100vw); a
+            2/3-image collage splits ~55–62% to the primary column, so 50vw at the
+            grid breakpoint is the right hint. */}
         <SiteImage
           src={img.src}
           alt={img.alt}
           placeholder={config.images?.placeholder ?? ''}
           fetchpriority={i === 0 ? 'high' : 'auto'}
           loading={i === 0 ? 'eager' : 'lazy'}
-          sizes="(min-width: 640px) 50vw, 100vw"
+          objectPosition={img.focal ?? 'center'}
+          sizes={count === 1 ? '100vw' : '(min-width: 640px) 50vw, 100vw'}
         />
       </div>
     ))}

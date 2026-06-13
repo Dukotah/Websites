@@ -31,20 +31,25 @@
   "images": {
     "hero": "/images/cast-wines/hero.jpg",
     "heroAlt": "CAST Wines in Geyserville",
-    "story": "/images/cast-wines/story.webp",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/cast-wines/photo-2.webp",
     "storyAlt": "About CAST Wines",
+    "storyFocal": "50% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "galleryImages": [
     {
-      "src": "/images/cast-wines/story.webp",
-      "alt": "CAST Wines in Geyserville — photo 1"
+      "src": "/images/cast-wines/photo-2.webp",
+      "alt": "CAST Wines in Geyserville — photo 1",
+      "focal": "50% 50%"
     },
     {
-      "src": "/images/cast-wines/photo-2.webp",
-      "alt": "CAST Wines in Geyserville — photo 2"
+      "src": "/images/cast-wines/story.webp",
+      "alt": "CAST Wines in Geyserville — photo 2",
+      "focal": "50% 50%"
     }
   ],
   "about": {
@@ -186,11 +191,12 @@
     "brand": "#6b2737",
     "brandDark": "#2b1a1f"
   },
-  "priceRange": "$$",
   "artDirection": {
+    "heroPhotoTier": "fullbleed",
     "fontId": "classic-trad",
     "neutralTemp": "cool",
     "preferredDepthSection": "feature-split"
   },
-  "heroVariant": "panel"
+  "priceRange": "$$",
+  "heroVariant": "cinematic"
 }

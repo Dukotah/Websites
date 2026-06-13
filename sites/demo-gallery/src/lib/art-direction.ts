@@ -11,13 +11,30 @@
 import type { ProspectConfig, ArtDirectionConfig, TokenOverrides } from '../types';
 import { hash, pick, chance } from './seed';
 import { derivePalette, derivePaletteFromPreset, type Palette } from './palette';
-import { pickFont, FONT_BY_ID, type FontPairing, type TypeScaleDef, TYPE_SCALES } from './fonts';
+import {
+  pickFont,
+  FONT_BY_ID,
+  type FontPairing,
+  type TypeScaleDef,
+  TYPE_SCALES,
+  verticalScaleFor,
+  VERTICAL_SCALES,
+  type VerticalScaleDef,
+} from './fonts';
 
 export type ShapeFamily = 'soft' | 'sharp' | 'editorial' | 'rounded-pill' | 'framed';
 export type MotionLevel = 'none' | 'subtle' | 'expressive';
 export type Density = 'compact' | 'standard' | 'spacious';
 export type NeutralTemp = 'warm' | 'cool';
 export type Archetype = 'classic' | 'editorial' | 'utility' | 'magazine';
+/**
+ * Hero-photo tier (set by the generator from the source photo's pixel width):
+ *  - 'fullbleed' (>=1600w): any hero incl. cinematic full-bleed is allowed.
+ *  - 'side'      (1000-1599w): keep the real photo but in a side-column hero —
+ *    NEVER cinematic/full-bleed (it would upscale blurry).
+ *  - 'none'      (<1000w): too small to show → text hero.
+ */
+export type HeroPhotoTier = 'fullbleed' | 'side' | 'none';
 
 /** Page architecture per category (honored unless config.artDirection.archetype pins one). */
 const ARCHETYPE_BY_CAT: Record<string, Archetype> = {
@@ -50,11 +67,27 @@ export interface ArtDirection {
   fontId: string;
   fontPairing: FontPairing;
   typeScale: TypeScaleDef;
+  /**
+   * Per-vertical fluid scale personality (utopia-core inputs). Layered ON TOP
+   * of `typeScale`: `typeScale` carries the font pairing's intrinsic feel
+   * (tracking, weights, leading) while `verticalScale` gives the business
+   * category its own fluid type/space RHYTHM so a dentist and a tow company
+   * differ beyond color/font. tokens.ts turns this into the --step-* + --space-*
+   * clamp ladders. Defaults to the category scale; pinnable via
+   * config.artDirection.scaleId (a KNOWN_CATEGORIES key into VERTICAL_SCALES).
+   */
+  verticalScale: VerticalScaleDef;
   shape: ShapeFamily;
   motion: MotionLevel;
   density: Density;
   archetype: Archetype;
   neutralTemp: NeutralTemp;
+  /**
+   * Hero-photo tier from the generator (by source photo width). When 'side', the
+   * photo is only medium-res, so consumers (compose.ts pickHero) must NOT pick a
+   * full-bleed `cinematic` hero — it would upscale blurry. Undefined → unconstrained.
+   */
+  heroPhotoTier?: HeroPhotoTier;
   /** carry-through of explicit token overrides for tokens.ts to apply last */
   tokenOverrides?: TokenOverrides;
 }
@@ -318,12 +351,29 @@ export function resolveArtDirection(config: ProspectConfig, slug?: string): ArtD
   const fontPairing = FONT_BY_ID[fontId];
   const typeScale = TYPE_SCALES[fontPairing.typeScale];
 
+  // ── per-vertical fluid scale ────────────────────────────────────────────
+  // Give each business vertical its own type/space RHYTHM (utopia-core), so a
+  // dentist and a tow company differ at the token level — not just in color.
+  // Pinnable via config.artDirection.scaleId (a VERTICAL_SCALES key); read
+  // through a cast since it is engine-internal and not in ArtDirectionConfig.
+  const scaleIdRaw = (ad as { scaleId?: unknown }).scaleId;
+  const scaleId =
+    typeof scaleIdRaw === 'string' && VERTICAL_SCALES[scaleIdRaw] ? scaleIdRaw : category;
+  const verticalScale = verticalScaleFor(scaleId);
+
   // ── shape / motion / density ───────────────────────────────────────────────
   const shape = pickShape(category, seed, ad.shape as ShapeFamily | undefined);
   const motion = pickMotion(category, seed, ad.motion as MotionLevel | undefined);
   const density = (ad.density as Density | undefined) ?? densityForFont(fontPairing, seed);
   const archetype: Archetype =
     (ad.archetype as Archetype | undefined) ?? ARCHETYPE_BY_CAT[category] ?? 'classic';
+
+  // Hero-photo tier hint from the generator (config.artDirection.heroPhotoTier).
+  // Read through a cast since it is generator-internal and not in the shared
+  // ArtDirectionConfig type. Only a valid tier is threaded; anything else → undefined.
+  const rawTier = (ad as { heroPhotoTier?: unknown }).heroPhotoTier;
+  const heroPhotoTier: HeroPhotoTier | undefined =
+    rawTier === 'fullbleed' || rawTier === 'side' || rawTier === 'none' ? rawTier : undefined;
 
   return {
     seed,
@@ -332,11 +382,13 @@ export function resolveArtDirection(config: ProspectConfig, slug?: string): ArtD
     fontId,
     fontPairing,
     typeScale,
+    verticalScale,
     shape,
     motion,
     density,
     archetype,
     neutralTemp,
+    heroPhotoTier,
     tokenOverrides: config.tokens,
   };
 }

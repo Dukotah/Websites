@@ -23,11 +23,19 @@
  */
 
 // Hero variants that need a real photo vs. those that stand on type alone.
-const PHOTO_HEROES = ['cinematic', 'split', 'collage'];
-const TEXT_HEROES = ['statement', 'editorial', 'panel', 'typographic', 'editorial-asym'];
-// `editorial`, `typographic`, and `editorial-asym` read well with OR without a
-// photo (editorial-asym collapses to a full-width type column when none), so
-// they bridge both pools and are safe to assign regardless of photo inventory.
+// `spotlight` is a full-bleed photo hero (opaque content card over the image),
+// so it lives with the photo-only set alongside cinematic/split/collage.
+const PHOTO_HEROES = ['cinematic', 'spotlight', 'split', 'collage'];
+// Full-bleed photo heroes — these fill the viewport, so a medium-res 'side'-tier
+// photo would upscale blurry in them. They're stripped from a site's options when
+// its tier is 'side' (see photoRotationForTier + the per-category hero pass).
+const FULLBLEED_PHOTO_HEROES = ['cinematic', 'spotlight'];
+const TEXT_HEROES = ['statement', 'editorial', 'panel', 'typographic', 'editorial-asym', 'feature-stat'];
+// `editorial`, `typographic`, `editorial-asym`, and `feature-stat` read well with
+// OR without a photo (each collapses to a full-width type/stat column when none),
+// so they bridge both pools and are safe to assign regardless of photo inventory.
+// `feature-stat` renders its photo in a CONTAINED card (never full-bleed), so it
+// is also sharp for medium-res 'side'-tier photos.
 
 // Per-category font pools — distinct pairings, ordered best-first. Mirror of the
 // `categories` arrays in fonts.ts (plus a rustic extra or two for variety).
@@ -55,17 +63,17 @@ const FONT_POOLS = {
 // siblings alternate "big photo" vs "big type". Filtered per-site by photo
 // availability at assignment time.
 const HERO_POOLS = {
-  winery: ['cinematic', 'split', 'editorial-asym', 'editorial', 'statement', 'panel'],
-  cafe: ['cinematic', 'editorial-asym', 'editorial', 'collage', 'statement'],
-  salon: ['editorial-asym', 'editorial', 'split', 'typographic', 'statement', 'cinematic'],
-  tattoo: ['cinematic', 'statement', 'typographic', 'split', 'editorial'],
-  landscaping: ['cinematic', 'split', 'editorial-asym', 'editorial', 'panel'],
-  plumbing: ['statement', 'split', 'typographic', 'cinematic', 'panel'],
-  'auto-repair': ['cinematic', 'statement', 'typographic', 'split', 'panel'],
-  towing: ['collage', 'cinematic', 'statement', 'typographic', 'split'],
-  marina: ['split', 'cinematic', 'editorial-asym', 'editorial', 'statement'],
-  restaurant: ['cinematic', 'editorial-asym', 'editorial', 'collage', 'statement'],
-  default: ['cinematic', 'split', 'editorial-asym', 'editorial', 'typographic', 'statement', 'panel', 'collage'],
+  winery: ['cinematic', 'split', 'editorial-asym', 'feature-stat', 'editorial', 'statement', 'panel'],
+  cafe: ['cinematic', 'editorial-asym', 'feature-stat', 'editorial', 'collage', 'statement'],
+  salon: ['editorial-asym', 'editorial', 'split', 'feature-stat', 'typographic', 'statement', 'cinematic'],
+  tattoo: ['cinematic', 'spotlight', 'statement', 'typographic', 'split', 'editorial'],
+  landscaping: ['cinematic', 'spotlight', 'split', 'editorial-asym', 'feature-stat', 'editorial', 'panel'],
+  plumbing: ['statement', 'spotlight', 'split', 'feature-stat', 'typographic', 'cinematic', 'panel'],
+  'auto-repair': ['cinematic', 'spotlight', 'statement', 'feature-stat', 'typographic', 'split', 'panel'],
+  towing: ['collage', 'spotlight', 'cinematic', 'statement', 'feature-stat', 'typographic', 'split'],
+  marina: ['split', 'cinematic', 'editorial-asym', 'feature-stat', 'editorial', 'statement'],
+  restaurant: ['cinematic', 'editorial-asym', 'feature-stat', 'editorial', 'collage', 'statement'],
+  default: ['cinematic', 'spotlight', 'split', 'editorial-asym', 'feature-stat', 'editorial', 'typographic', 'statement', 'panel', 'collage'],
 };
 
 // Per-category pool of distinctive "depth" sections handed out one-per-sibling so
@@ -125,8 +133,23 @@ function galleryDepth(config) {
 // The cross-category pass cycles these so a MIXED batch (all-different
 // categories, where the per-category loop never fires) still gets varied
 // silhouettes instead of every photo-rich site defaulting to split/cinematic.
-const PHOTO_HERO_ROTATION = ['cinematic', 'split', 'editorial-asym', 'collage', 'editorial'];
-const TEXT_HERO_ROTATION = ['statement', 'typographic', 'editorial', 'panel', 'editorial-asym'];
+const PHOTO_HERO_ROTATION = ['cinematic', 'spotlight', 'split', 'editorial-asym', 'feature-stat', 'collage', 'editorial'];
+const TEXT_HERO_ROTATION = ['statement', 'typographic', 'editorial', 'feature-stat', 'panel', 'editorial-asym'];
+
+/**
+ * Hero-photo TIER contract (set by generate-prospects from the source photo
+ * width): a 'side'-tier hero is only medium-res, so a FULL-BLEED hero
+ * (`cinematic` or `spotlight`) would upscale it blurry. Strip both from a site's
+ * photo rotation when its tier is 'side' (keep the side-column / contained-card
+ * heroes — split / editorial-asym / feature-stat / collage / editorial — which
+ * render the photo smaller and stay sharp). Other tiers ('fullbleed', 'none', or
+ * unset) are unaffected. (FULLBLEED_PHOTO_HEROES is defined at the top.)
+ */
+function photoRotationForTier(cfg) {
+  const tier = cfg?.artDirection?.heroPhotoTier;
+  if (tier === 'side') return PHOTO_HERO_ROTATION.filter((h) => !FULLBLEED_PHOTO_HEROES.includes(h));
+  return PHOTO_HERO_ROTATION;
+}
 
 /**
  * Cross-category silhouette diversity for the WHOLE batch. The per-category loop
@@ -155,7 +178,7 @@ function diversifyHeroesGlobally(prospects, report) {
     if (cfg.heroVariant) { prev = cfg.heroVariant; continue; } // respect pins
 
     const photo = hasRealPhoto(cfg);
-    let rotation = photo ? PHOTO_HERO_ROTATION : TEXT_HERO_ROTATION;
+    let rotation = photo ? photoRotationForTier(cfg) : TEXT_HERO_ROTATION;
     if (photo && galleryDepth(cfg) < 2) rotation = rotation.filter((h) => h !== 'collage');
     // `statement` and `typographic` render the headline as ONE giant stacked
     // word-stack — gorgeous for a short punch, but a long headline overflows the
@@ -258,8 +281,20 @@ export function diversifyBatch(prospects) {
       // ── Hero: distinct per sibling, valid for the site's photo inventory ────
       if (!cfg.heroVariant) {
         const real = hasRealPhoto(cfg);
-        const ordered = heroPool.filter((h) => (real ? true : !PHOTO_HEROES.includes(h)));
-        const pool = ordered.length ? ordered : real ? PHOTO_HEROES : TEXT_HEROES;
+        // A 'side'-tier photo is only medium-res — a FULL-BLEED hero (cinematic
+        // or spotlight) would upscale it blurry, so drop both from this site's
+        // options (keep the side-column / contained-card photo heroes, incl.
+        // feature-stat). Other tiers are unaffected.
+        const sideTier = real && cfg.artDirection?.heroPhotoTier === 'side';
+        const ordered = heroPool.filter(
+          (h) => (real ? true : !PHOTO_HEROES.includes(h)) && !(sideTier && FULLBLEED_PHOTO_HEROES.includes(h)),
+        );
+        const fallback = real
+          ? sideTier
+            ? PHOTO_HEROES.filter((h) => !FULLBLEED_PHOTO_HEROES.includes(h))
+            : PHOTO_HEROES
+          : TEXT_HEROES;
+        const pool = ordered.length ? ordered : fallback;
         let hero = pool[(offset + i) % pool.length];
         if (usedHeroes.has(hero)) hero = pool.find((h) => !usedHeroes.has(h)) ?? hero;
         usedHeroes.add(hero);

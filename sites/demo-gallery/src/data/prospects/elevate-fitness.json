@@ -32,22 +32,16 @@
   "images": {
     "hero": "/images/library/default/hero.svg",
     "heroAlt": "Elevate Fitness in Santa Rosa",
-    "story": "/images/elevate-fitness/story.jpg",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/library/default/story.svg",
     "storyAlt": "About Elevate Fitness",
+    "storyFocal": "50% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
-  "galleryImages": [
-    {
-      "src": "/images/elevate-fitness/hero.jpg",
-      "alt": "Elevate Fitness in Santa Rosa — photo 1"
-    },
-    {
-      "src": "/images/elevate-fitness/story.jpg",
-      "alt": "Elevate Fitness in Santa Rosa — photo 2"
-    }
-  ],
+  "galleryImages": [],
   "about": {
     "heading": "About Elevate Fitness",
     "body": [
@@ -183,7 +177,8 @@
   "layout": "split",
   "status": "needs-review",
   "flags": [
-    "No website provided — research & verify manually"
+    "No website provided — research & verify manually",
+    "hero photo below resolution floor — text hero used"
   ],
   "theme": {
     "brand": "#c2683a",

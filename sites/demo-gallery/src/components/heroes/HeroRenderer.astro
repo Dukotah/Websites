@@ -13,6 +13,8 @@ import HeroCollage from './HeroCollage.astro';
 import HeroStatement from './HeroStatement.astro';
 import HeroTypographicFill from './HeroTypographicFill.astro';
 import HeroEditorialAsym from './HeroEditorialAsym.astro';
+import HeroSpotlight from './HeroSpotlight.astro';
+import HeroFeatureStat from './HeroFeatureStat.astro';
 
 interface Props {
   config: ProspectConfig;
@@ -30,3 +32,5 @@ const { config, variant = 'split' } = Astro.props as Props;
 {variant === 'statement' && <HeroStatement config={config} />}
 {variant === 'typographic' && <HeroTypographicFill config={config} />}
 {variant === 'editorial-asym' && <HeroEditorialAsym config={config} />}
+{variant === 'spotlight' && <HeroSpotlight config={config} />}
+{variant === 'feature-stat' && <HeroFeatureStat config={config} />}

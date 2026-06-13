@@ -6,9 +6,9 @@
   "area": "Santa Rosa",
   "established": "Est. 2015",
   "contact": {
-    "phone": "+17074836754",
+    "phone": "+17075401258",
     "email": "",
-    "address": "3480 Chanate Ct"
+    "address": "Santa Rosa"
   },
   "social": {
     "facebook": "https://www.facebook.com/p/Facciano-HVAC-and-Sheet-Metal-100047791212153/",
@@ -29,18 +29,22 @@
     "Residential furnace & AC"
   ],
   "images": {
-    "hero": "/images/facciano-hvac-and-sheet-metal/story.jpg",
+    "hero": "/images/facciano-hvac-and-sheet-metal/hero.jpg",
     "heroAlt": "Facciano HVAC and Sheet Metal in Santa Rosa",
-    "story": "/images/facciano-hvac-and-sheet-metal/hero.jpg",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/facciano-hvac-and-sheet-metal/story.jpg",
     "storyAlt": "About Facciano HVAC and Sheet Metal",
+    "storyFocal": "50% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
   "galleryImages": [
     {
-      "src": "/images/facciano-hvac-and-sheet-metal/hero.jpg",
-      "alt": "Facciano HVAC and Sheet Metal in Santa Rosa — photo 1"
+      "src": "/images/facciano-hvac-and-sheet-metal/story.jpg",
+      "alt": "Facciano HVAC and Sheet Metal in Santa Rosa — photo 1",
+      "focal": "50% 50%"
     }
   ],
   "about": {
@@ -121,11 +125,11 @@
       "items": [
         {
           "q": "Where are you located?",
-          "a": "You'll find us at 3480 Chanate Ct."
+          "a": "You'll find us at Santa Rosa."
         },
         {
           "q": "What are your hours?",
-          "a": "Hours can vary — give us a call at +17074836754 and we'll let you know when we're open."
+          "a": "Hours can vary — give us a call at +17075401258 and we'll let you know when we're open."
         },
         {
           "q": "What areas do you serve?",
@@ -133,7 +137,7 @@
         },
         {
           "q": "How do I get in touch?",
-          "a": "Call us at +17074836754 — we're glad to help."
+          "a": "Call us at +17075401258 — we're glad to help."
         }
       ]
     }
@@ -149,5 +153,8 @@
     "brand": "#1f8a8a",
     "brandDark": "#17323a"
   },
-  "heroVariant": "editorial-asym"
+  "artDirection": {
+    "heroPhotoTier": "fullbleed"
+  },
+  "heroVariant": "spotlight"
 }

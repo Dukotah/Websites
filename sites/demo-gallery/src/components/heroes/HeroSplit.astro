@@ -80,12 +80,18 @@ const longTitle = (hero.heading ?? '').length > 28;
 
     <!-- Parallax photo — inset bleed so parallax never exposes edges -->
     <div class="spl-hero__media" data-parallax data-parallax-speed="0.3" aria-hidden="true">
+      <!-- LOCKED CONTRACT `hero-split` side column. The column fills the full
+           hero height (taller than the 4/5 slot — the intended tight crop), so
+           `sizes` only needs the real 45vw column width; object-position:center
+           keeps the attention-cropped subject framed when the box is taller
+           than 4/5. -->
       <SiteImage
         src={images.hero}
         alt={images.heroAlt}
         placeholder={images.placeholder}
         fetchpriority="high"
         loading="eager"
+        objectPosition={config.images.heroFocal ?? 'center'}
         sizes="(min-width: 880px) 45vw, 100vw"
       />
     </div>

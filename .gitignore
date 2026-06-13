@@ -44,3 +44,4 @@ data/thumbnails/
 data/morning-done.txt
 data/morning-batch.log
 data/morning-*.csv
+data/cache/

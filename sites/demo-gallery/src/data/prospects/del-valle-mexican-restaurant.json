@@ -3,12 +3,12 @@
   "category": "restaurant",
   "tagline": "Family-owned taqueria serving authentic Mexican flavors in Santa Rosa's Roseland District since 2017",
   "seoDescription": "Del Valle Mexican Restaurant in Santa Rosa, CA. Authentic family-owned Mexican food, mariscos, tacos, burritos and catering on Sebastopol Rd.",
-  "area": "Santa Rosa",
+  "area": "Santa Rosa, CA",
   "established": "Est. 2017",
   "contact": {
-    "phone": "+17075951081",
+    "phone": "707-595-1081",
     "email": "luz@delvallemex.com",
-    "address": "2000 Sebastopol Rd"
+    "address": "2000 Sebastopol Road Santa Rosa, CA, 95407 United States"
   },
   "social": {
     "facebook": "https://www.facebook.com/delvallemex/",
@@ -27,40 +27,18 @@
     "Full catering with taco bars, burrito bowls, fajitas, pozole and birria"
   ],
   "images": {
-    "hero": "/images/del-valle-mexican-restaurant/hero.jpg",
-    "heroAlt": "Del Valle Mexican Restaurant in Santa Rosa",
-    "story": "/images/del-valle-mexican-restaurant/photo-4.webp",
+    "hero": "/images/library/default/hero.svg",
+    "heroAlt": "Del Valle Mexican Restaurant in Santa Rosa, CA",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/library/default/story.svg",
     "storyAlt": "About Del Valle Mexican Restaurant",
+    "storyFocal": "50% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
-  "galleryImages": [
-    {
-      "src": "/images/del-valle-mexican-restaurant/photo-4.webp",
-      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 1"
-    },
-    {
-      "src": "/images/del-valle-mexican-restaurant/photo-3.webp",
-      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 2"
-    },
-    {
-      "src": "/images/del-valle-mexican-restaurant/story.webp",
-      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 3"
-    },
-    {
-      "src": "/images/del-valle-mexican-restaurant/photo-5.webp",
-      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 4"
-    },
-    {
-      "src": "/images/del-valle-mexican-restaurant/photo-6.webp",
-      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 5"
-    },
-    {
-      "src": "/images/del-valle-mexican-restaurant/photo-2.webp",
-      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 6"
-    }
-  ],
+  "galleryImages": [],
   "about": {
     "heading": "About Del Valle Mexican Restaurant",
     "body": [
@@ -144,6 +122,25 @@
       ]
     },
     {
+      "type": "feature-split",
+      "eyebrow": "What sets us apart",
+      "heading": "What we do",
+      "rows": [
+        {
+          "heading": "Tacos",
+          "body": "Street-style tacos with your choice of meats, plus fish tacos topped with fresh ingredients."
+        },
+        {
+          "heading": "Burritos",
+          "body": "Regular and Super Burritos with rice, beans and up to eight meat choices, wrapped to order."
+        },
+        {
+          "heading": "Mariscos",
+          "body": "Seafood specialties like molcajete de mariscos, ceviche and shrimp tostadas, and camarones con tocino."
+        }
+      ]
+    },
+    {
       "type": "stats",
       "items": [
         {
@@ -167,7 +164,7 @@
       "items": [
         {
           "q": "Where are you located?",
-          "a": "You'll find us at 2000 Sebastopol Rd."
+          "a": "You'll find us at 2000 Sebastopol Road Santa Rosa, CA, 95407 United States."
         },
         {
           "q": "What are your hours?",
@@ -175,18 +172,21 @@
         },
         {
           "q": "What areas do you serve?",
-          "a": "We proudly serve Santa Rosa and the surrounding community."
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
         },
         {
           "q": "How do I get in touch?",
-          "a": "Call us at +17075951081 — we're glad to help."
+          "a": "Call us at 707-595-1081 — we're glad to help."
         }
       ]
     }
   ],
   "layout": "classic",
-  "status": "ready",
-  "flags": [],
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually",
+    "hero photo below resolution floor — text hero used"
+  ],
   "theme": {
     "brand": "#b5462f",
     "brandDark": "#2c1d18"
@@ -195,5 +195,10 @@
   "servesCuisine": [
     "Mexican"
   ],
-  "heroVariant": "split"
+  "artDirection": {
+    "fontId": "handcrafted",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "feature-split"
+  },
+  "heroVariant": "editorial"
 }

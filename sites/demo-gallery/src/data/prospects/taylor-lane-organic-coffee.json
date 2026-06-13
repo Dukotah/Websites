@@ -27,46 +27,57 @@
     "Cafe and espresso bar at The Barlow with free Wi-Fi and seating"
   ],
   "images": {
-    "hero": "/images/taylor-lane-organic-coffee/hero.jpg",
+    "hero": "/images/taylor-lane-organic-coffee/photo-2.webp",
     "heroAlt": "Taylor Lane Organic Coffee in Sebastopol, CA",
-    "story": "/images/taylor-lane-organic-coffee/story.jpg",
+    "heroFocal": "32% 50%",
+    "heroCredit": "",
+    "story": "/images/taylor-lane-organic-coffee/photo-8.jpg",
     "storyAlt": "About Taylor Lane Organic Coffee",
+    "storyFocal": "77% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/cafe/hero.svg"
   },
   "galleryImages": [
     {
+      "src": "/images/taylor-lane-organic-coffee/photo-8.jpg",
+      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 1",
+      "focal": "77% 50%"
+    },
+    {
       "src": "/images/taylor-lane-organic-coffee/story.jpg",
-      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 1"
+      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 2",
+      "focal": "50% 50%"
     },
     {
-      "src": "/images/taylor-lane-organic-coffee/photo-2.png",
-      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 2"
-    },
-    {
-      "src": "/images/taylor-lane-organic-coffee/photo-3.jpg",
-      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 3"
+      "src": "/images/taylor-lane-organic-coffee/hero.jpg",
+      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 3",
+      "focal": "49% 50%"
     },
     {
       "src": "/images/taylor-lane-organic-coffee/photo-4.jpg",
-      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 4"
-    },
-    {
-      "src": "/images/taylor-lane-organic-coffee/photo-5.jpg",
-      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 5"
-    },
-    {
-      "src": "/images/taylor-lane-organic-coffee/photo-6.jpg",
-      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 6"
+      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 4",
+      "focal": "50% 50%"
     },
     {
       "src": "/images/taylor-lane-organic-coffee/photo-7.jpg",
-      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 7"
+      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 5",
+      "focal": "50% 50%"
     },
     {
-      "src": "/images/taylor-lane-organic-coffee/photo-8.jpg",
-      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 8"
+      "src": "/images/taylor-lane-organic-coffee/photo-6.jpg",
+      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 6",
+      "focal": "50% 50%"
+    },
+    {
+      "src": "/images/taylor-lane-organic-coffee/photo-5.jpg",
+      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 7",
+      "focal": "50% 50%"
+    },
+    {
+      "src": "/images/taylor-lane-organic-coffee/photo-3.jpg",
+      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 8",
+      "focal": "50% 67%"
     }
   ],
   "about": {
@@ -205,16 +216,17 @@
     "brand": "#c2683a",
     "brandDark": "#3b2f2a"
   },
+  "artDirection": {
+    "heroPhotoTier": "side",
+    "fontId": "editorial-serif",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "timeline"
+  },
   "priceRange": "$$",
   "servesCuisine": [
     "Coffee",
     "Cafe",
     "Tea"
   ],
-  "artDirection": {
-    "fontId": "editorial-serif",
-    "neutralTemp": "cool",
-    "preferredDepthSection": "timeline"
-  },
   "heroVariant": "editorial"
 }

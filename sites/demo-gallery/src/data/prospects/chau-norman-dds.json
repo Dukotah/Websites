@@ -29,18 +29,22 @@
     "Accepting new patients"
   ],
   "images": {
-    "hero": "/images/chau-norman-dds/story.jpg",
+    "hero": "/images/chau-norman-dds/hero.jpg",
     "heroAlt": "Chau Norman DDS in Santa Rosa",
-    "story": "/images/chau-norman-dds/hero.jpg",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/chau-norman-dds/story.jpg",
     "storyAlt": "About Chau Norman DDS",
+    "storyFocal": "50% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
   "galleryImages": [
     {
-      "src": "/images/chau-norman-dds/hero.jpg",
-      "alt": "Chau Norman DDS in Santa Rosa — photo 1"
+      "src": "/images/chau-norman-dds/story.jpg",
+      "alt": "Chau Norman DDS in Santa Rosa — photo 1",
+      "focal": "50% 50%"
     }
   ],
   "about": {
@@ -145,6 +149,9 @@
     "brand": "#c2683a",
     "brandDark": "#243b53"
   },
+  "artDirection": {
+    "heroPhotoTier": "fullbleed"
+  },
   "priceRange": "$$",
-  "heroVariant": "cinematic"
+  "heroVariant": "editorial-asym"
 }

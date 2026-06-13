@@ -12,9 +12,15 @@
     "push-to-crm": "node scripts/push-to-crm.mjs",
     "make-thumbnail": "node scripts/make-thumbnail.mjs",
     "sameness-check": "node scripts/sameness-check.mjs",
-    "qa": "npm --prefix sites/demo-gallery run build && node scripts/audit.mjs && npm --prefix sites/demo-gallery run shots -- --no-build && node scripts/sameness-check.mjs"
+    "image-qa": "node scripts/image-qa.mjs",
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "qa": "npm --prefix sites/demo-gallery run build && node scripts/audit.mjs && npm --prefix sites/demo-gallery run shots -- --no-build && node scripts/sameness-check.mjs && node scripts/image-qa.mjs"
   },
   "devDependencies": {
-    "sharp": "^0.34.0"
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^13.4.0",
+    "sharp": "^0.34.0",
+    "smartcrop": "^2.0.5",
+    "smartcrop-sharp": "^2.0.8"
   }
 }

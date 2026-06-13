@@ -43,12 +43,19 @@ const longTitle = (hero.heading ?? '').length > 24;
   <!-- ① Photo — parallax target, reveals "beneath" the oversized type on scroll -->
   {hasPhoto && (
     <div class="ed-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.35">
+      <!-- Full-bleed `hero-fullbleed` slot: the box is the viewport (keeps its
+           viewport height, no fixed aspect to fight). object-position is set as
+           a prop because Astro scopes the parent's `.ed-hero__media img` rule
+           to this component and it does NOT reach the SiteImage child <img> —
+           so "center 30%" must travel on the prop. 30% keeps the subject high
+           so it isn't buried by the bottom-anchored copy + scrim. -->
       <SiteImage
         src={images.hero}
         alt={images.heroAlt}
         placeholder={images.placeholder}
         fetchpriority="high"
         loading="eager"
+        objectPosition={config.images.heroFocal ?? 'center'}
         sizes="100vw"
       />
     </div>

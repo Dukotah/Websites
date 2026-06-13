@@ -30,10 +30,13 @@
     "Founder Christian Andersen comes from a Sonoma County building family"
   ],
   "images": {
-    "hero": "/images/brm-builders/story.jpg",
+    "hero": "/images/brm-builders/hero.jpg",
     "heroAlt": "BRM Builders in Santa Rosa",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
     "story": "/images/brm-builders/gallery-1.jpg",
     "storyAlt": "About BRM Builders",
+    "storyFocal": "50% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
@@ -41,19 +44,23 @@
   "galleryImages": [
     {
       "src": "/images/brm-builders/gallery-1.jpg",
-      "alt": "BRM Builders in Santa Rosa — photo 1"
+      "alt": "BRM Builders in Santa Rosa — photo 1",
+      "focal": "50% 50%"
     },
     {
-      "src": "/images/brm-builders/hero.jpg",
-      "alt": "BRM Builders in Santa Rosa — photo 2"
+      "src": "/images/brm-builders/story.jpg",
+      "alt": "BRM Builders in Santa Rosa — photo 2",
+      "focal": "50% 50%"
     },
     {
       "src": "/images/brm-builders/gallery-2.jpg",
-      "alt": "BRM Builders in Santa Rosa — photo 3"
+      "alt": "BRM Builders in Santa Rosa — photo 3",
+      "focal": "50% 50%"
     },
     {
       "src": "/images/brm-builders/gallery-3.jpg",
-      "alt": "BRM Builders in Santa Rosa — photo 4"
+      "alt": "BRM Builders in Santa Rosa — photo 4",
+      "focal": "50% 50%"
     }
   ],
   "about": {
@@ -174,6 +181,9 @@
     "brand": "#c77d2a",
     "brandDark": "#26211b"
   },
+  "artDirection": {
+    "heroPhotoTier": "fullbleed"
+  },
   "priceRange": "$$",
-  "heroVariant": "collage"
+  "heroVariant": "spotlight"
 }

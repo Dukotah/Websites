@@ -59,7 +59,12 @@ const longTitle = (hero.heading ?? '').length > 28;
     </div>
   </div>
 
-  <!-- ② Photo column (35%, full-height tight crop) — decorative -->
+  <!-- ② Photo column (35%, full-height tight crop) — decorative.
+       This is the LOCKED CONTRACT `hero-split` side-column slot (4/5 portrait):
+       the build attention-crop already produces a 4/5 subject-centered crop, so
+       `sizes` is set to the real ~35vw rendered width (a too-small sizes is the
+       #1 cause of blur even with a sharp source). The box carries the 4/5 floor
+       below so cover never re-crops to the grid's incidental row height. -->
   {hasPhoto && (
     <div class="ea-hero__media" aria-hidden="true">
       <SiteImage
@@ -70,6 +75,7 @@ const longTitle = (hero.heading ?? '').length > 28;
         loading="eager"
         fetchpriority="high"
         fit="cover"
+        objectPosition={config.images.heroFocal ?? 'center'}
       />
     </div>
   )}
@@ -236,15 +242,27 @@ const longTitle = (hero.heading ?? '').length > 28;
     color: var(--text-muted);
   }
 
-  /* Photo column — full height, tight crop. SiteImage fills it (inline cover). */
+  /* Photo column — full height, tight crop. SiteImage fills it (inline cover).
+     LOCKED CONTRACT: this is the `hero-split` side-column slot → 4/5 portrait.
+     On desktop the grid stretches this column to the full hero height (taller
+     than 4/5, which is the intended "full-height tight crop"); the 4/5 floor
+     only matters when the column would otherwise collapse shorter than its
+     slot — so it's enforced as a min-block-size derived from the column width.
+     object-position:center keeps the attention-cropped subject in frame. */
   .ea-hero__media {
     position: relative;
     overflow: hidden;
     background: var(--bg-alt, var(--surface));
+    /* 4/5 floor: never let the side photo box read shorter than its slot. The
+       grid row can still stretch it TALLER; this only sets the minimum. 35vw
+       column → height floor = width * 5/4. */
+    min-block-size: calc(35vw * 5 / 4);
   }
   .ea-hero__media :global(img) {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   /* ── Mobile: stack type over a shorter photo band ───────────────────────── */
@@ -257,7 +275,12 @@ const longTitle = (hero.heading ?? '').length > 28;
       margin-inline: auto;
     }
     .ea-hero__media {
+      /* Stacked full-width band on mobile: drop the desktop 4/5 column floor
+         (which was width-relative to a 35vw column) and use a fixed band
+         height + the 4/5 slot aspect so the photo keeps a portrait-ish crop. */
+      min-block-size: 0;
       min-height: 280px;
+      aspect-ratio: 4 / 5;
       order: 2;
     }
   }

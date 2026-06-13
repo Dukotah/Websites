@@ -68,10 +68,16 @@ function fmtFolio(n: number): string {
                       data-frame="editorial"
                       data-treat="grade"
                     >
+                      {/* `story`/editorial slot — portrait 3:4 box. The scoped
+                          `.ef__img { object-position }` rule below does NOT
+                          pierce into the SiteImage child <img> (Astro style
+                          scoping), so the high-subject framing must travel on
+                          the prop. 60vw matches the wider image column. */}
                       <SiteImage
                         src={row.image}
                         alt={row.imageAlt ?? row.heading}
                         class="ef__img"
+                        objectPosition="center 25%"
                         sizes="(min-width: 768px) 60vw, 100vw"
                       />
                     </figure>

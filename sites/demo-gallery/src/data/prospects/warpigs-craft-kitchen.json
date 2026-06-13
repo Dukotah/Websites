@@ -30,26 +30,32 @@
     "4.5-star rated on Yelp"
   ],
   "images": {
-    "hero": "/images/warpigs-craft-kitchen/gallery-1.jpg",
+    "hero": "/images/warpigs-craft-kitchen/hero.jpg",
     "heroAlt": "WarPigs Craft Kitchen in Cotati",
-    "story": "/images/warpigs-craft-kitchen/hero.jpg",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/warpigs-craft-kitchen/gallery-1.jpg",
     "storyAlt": "About WarPigs Craft Kitchen",
+    "storyFocal": "70% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/default/hero.svg"
   },
   "galleryImages": [
     {
-      "src": "/images/warpigs-craft-kitchen/hero.jpg",
-      "alt": "WarPigs Craft Kitchen in Cotati — photo 1"
+      "src": "/images/warpigs-craft-kitchen/gallery-1.jpg",
+      "alt": "WarPigs Craft Kitchen in Cotati — photo 1",
+      "focal": "70% 50%"
     },
     {
       "src": "/images/warpigs-craft-kitchen/story.jpg",
-      "alt": "WarPigs Craft Kitchen in Cotati — photo 2"
+      "alt": "WarPigs Craft Kitchen in Cotati — photo 2",
+      "focal": "50% 50%"
     },
     {
       "src": "/images/warpigs-craft-kitchen/gallery-2.jpg",
-      "alt": "WarPigs Craft Kitchen in Cotati — photo 3"
+      "alt": "WarPigs Craft Kitchen in Cotati — photo 3",
+      "focal": "50% 67%"
     }
   ],
   "about": {
@@ -192,11 +198,12 @@
     "brand": "#b5462f",
     "brandDark": "#2c1d18"
   },
-  "priceRange": "$$",
   "artDirection": {
+    "heroPhotoTier": "fullbleed",
     "fontId": "classic-trad",
     "neutralTemp": "cool",
     "preferredDepthSection": "timeline"
   },
-  "heroVariant": "editorial"
+  "priceRange": "$$",
+  "heroVariant": "statement"
 }

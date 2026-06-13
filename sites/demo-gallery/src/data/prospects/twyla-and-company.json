@@ -29,44 +29,55 @@
   "images": {
     "hero": "/images/twyla-and-company/story.jpg",
     "heroAlt": "Twyla and Company in Santa Rosa, CA",
-    "story": "/images/twyla-and-company/hero.jpg",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/twyla-and-company/photo-7.jpg",
     "storyAlt": "About Twyla and Company",
+    "storyFocal": "70% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/salon/hero.svg"
   },
   "galleryImages": [
     {
-      "src": "/images/twyla-and-company/hero.jpg",
-      "alt": "Twyla and Company in Santa Rosa, CA — photo 1"
-    },
-    {
-      "src": "/images/twyla-and-company/photo-2.jpg",
-      "alt": "Twyla and Company in Santa Rosa, CA — photo 2"
-    },
-    {
-      "src": "/images/twyla-and-company/photo-3.jpg",
-      "alt": "Twyla and Company in Santa Rosa, CA — photo 3"
-    },
-    {
-      "src": "/images/twyla-and-company/photo-4.jpg",
-      "alt": "Twyla and Company in Santa Rosa, CA — photo 4"
-    },
-    {
-      "src": "/images/twyla-and-company/photo-5.jpg",
-      "alt": "Twyla and Company in Santa Rosa, CA — photo 5"
+      "src": "/images/twyla-and-company/photo-7.jpg",
+      "alt": "Twyla and Company in Santa Rosa, CA — photo 1",
+      "focal": "70% 50%"
     },
     {
       "src": "/images/twyla-and-company/photo-6.jpg",
-      "alt": "Twyla and Company in Santa Rosa, CA — photo 6"
-    },
-    {
-      "src": "/images/twyla-and-company/photo-7.jpg",
-      "alt": "Twyla and Company in Santa Rosa, CA — photo 7"
+      "alt": "Twyla and Company in Santa Rosa, CA — photo 2",
+      "focal": "50% 50%"
     },
     {
       "src": "/images/twyla-and-company/photo-8.jpg",
-      "alt": "Twyla and Company in Santa Rosa, CA — photo 8"
+      "alt": "Twyla and Company in Santa Rosa, CA — photo 3",
+      "focal": "50% 50%"
+    },
+    {
+      "src": "/images/twyla-and-company/photo-4.jpg",
+      "alt": "Twyla and Company in Santa Rosa, CA — photo 4",
+      "focal": "50% 50%"
+    },
+    {
+      "src": "/images/twyla-and-company/photo-5.jpg",
+      "alt": "Twyla and Company in Santa Rosa, CA — photo 5",
+      "focal": "50% 50%"
+    },
+    {
+      "src": "/images/twyla-and-company/photo-3.jpg",
+      "alt": "Twyla and Company in Santa Rosa, CA — photo 6",
+      "focal": "50% 50%"
+    },
+    {
+      "src": "/images/twyla-and-company/hero.jpg",
+      "alt": "Twyla and Company in Santa Rosa, CA — photo 7",
+      "focal": "50% 50%"
+    },
+    {
+      "src": "/images/twyla-and-company/photo-2.jpg",
+      "alt": "Twyla and Company in Santa Rosa, CA — photo 8",
+      "focal": "50% 32%"
     }
   ],
   "about": {
@@ -236,11 +247,12 @@
     "brand": "#b5557f",
     "brandDark": "#2e2230"
   },
-  "priceRange": "$$",
   "artDirection": {
+    "heroPhotoTier": "fullbleed",
     "fontId": "warm-humanist",
     "neutralTemp": "cool",
     "preferredDepthSection": "feature-split"
   },
-  "heroVariant": "typographic"
+  "priceRange": "$$",
+  "heroVariant": "cinematic"
 }

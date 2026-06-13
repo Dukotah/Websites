@@ -38,7 +38,7 @@ import { promisify } from 'node:util';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { scrapeSite, stripTags, scoreRichness } from './lib/scrape-site.mjs';
-import { acquirePhotos } from './lib/images.mjs';
+import { acquirePhotos, processDroppedPhotos } from './lib/images.mjs';
 import { diversifyBatch } from './lib/divergence.mjs';
 import { scorePhoto } from './lib/photo-score.mjs';
 
@@ -637,6 +637,66 @@ function enrichmentFromResearch(r, row, { authoritative = true } = {}) {
   return e;
 }
 
+// ---------------------------------------------------------------------------
+// OSM/Wikidata fact backfill. The photo tier (images.mjs/acquirePhotos) looks a
+// business up in OpenStreetMap/Wikidata to find a photo; that lookup also yields
+// public CONTACT FACTS (opening hours, phone, address) for free. When the live
+// scrape (or thin research) left those blank, we fill them in from OSM so the
+// page isn't missing hours/phone/address it could honestly show.
+//
+// GUARD RAILS (deliberately conservative — OSM is community data, not verified):
+//   • Only fills a field that is currently EMPTY. Never overwrites a value the
+//     scrape/research already found (a confirmed value always wins).
+//   • Never runs against a confirmed:true research file — that's human-verified
+//     and authoritative; OSM must not touch it. (Caller gates on `authoritative`.)
+//   • Every backfilled fact is ATTRIBUTED via a needs-review note so a human
+//     re-checks the OSM data before it's emailed out, and `e._osmBackfilled`
+//     records exactly which fields came from OSM.
+// Returns the list of field names that were filled (for the note/flag), or [].
+//
+// `facts` is shape-tolerant (the photo agent may name fields loosely): we accept
+// `hours` as either an [{day,hours}] array or a raw string, and read phone/
+// address/openingHours under a few common aliases.
+function backfillFromOsm(row, e, facts) {
+  if (!facts || typeof facts !== 'object' || !e) return [];
+  const filled = [];
+
+  // Hours: enrichment uses [{day, hours}]; accept that, or a raw OSM
+  // opening_hours string we keep verbatim under a single "Hours" row.
+  if (!e.hours?.length) {
+    const raw = facts.hours ?? facts.openingHours ?? facts.opening_hours;
+    if (Array.isArray(raw) && raw.length) {
+      e.hours = raw.filter((h) => h && h.day && h.hours);
+      if (e.hours.length) filled.push('hours');
+      else delete e.hours; // nothing usable in the array → leave it blank
+    } else if (typeof raw === 'string' && raw.trim()) {
+      e.hours = [{ day: 'Hours', hours: clip(raw.trim(), 160) }];
+      filled.push('hours');
+    }
+  }
+
+  // Phone: backfill both the enrichment and the row so buildConfig (which reads
+  // e?.phone || row.phone) and downstream consumers agree.
+  if (!e.phone && !row.phone) {
+    const ph = (facts.phone ?? facts.telephone ?? facts.tel ?? '').toString().trim();
+    if (ph) { e.phone = ph; row.phone = ph; filled.push('phone'); }
+  }
+
+  // Address: same dual backfill so the contact block + FAQ pick it up.
+  if (!e.address && !row.address) {
+    const addr = (facts.address ?? facts.addr ?? '').toString().trim();
+    if (addr) { e.address = addr; row.address = addr; filled.push('address'); }
+  }
+
+  if (filled.length) {
+    // Record provenance on the enrichment so it's never mistaken for a confirmed
+    // scrape, and downgrade richness-derived trust is left alone (OSM facts are
+    // contact-only, they don't make thin prose rich).
+    e._osmBackfilled = filled;
+  }
+  return filled;
+}
+
 // Map a research file straight into the `copy` object (no Claude call needed —
 // the prose is already written and verified).
 function copyFromResearch(r, row) {
@@ -780,13 +840,25 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
   const [heroPhoto, storyPhoto] = media;
   const lib = `/images/library/${artKeyFor(catKey)}`;
 
-  // A hero renders full-bleed (~1600px+ wide). A smaller source upscales and
-  // looks fuzzy/blown out, so only use a real photo as the hero when it's big
-  // enough; otherwise fall back to clean library art. The small shot isn't
-  // wasted — it stays available for the gallery. (Width is known for scraped
-  // photos; unknown-width stock/AI heroes are accepted.)
-  const HERO_MIN_W = 1200;
-  const usableHero = heroPhoto && (heroPhoto.w == null || heroPhoto.w >= HERO_MIN_W) ? heroPhoto : null;
+  // Whether a real photo is sharp enough to headline is now decided UPSTREAM by
+  // the resolution-tier system (fullbleed >=1600 source / side 1000-1599 / drop
+  // <1000), which crops a kept "side" hero into a small side column. So this gate
+  // only needs the SIDE floor — the old 1200 value rejected legitimately-kept
+  // side heroes (a 1489px stylist shot cropped to a 4:5 column) and fell back to
+  // the stock SVG, the joon-hair regression. Keep accepting unknown-width
+  // stock/AI heroes (w == null).
+  const HERO_MIN_W = 800;
+  let usableHero = heroPhoto && (heroPhoto.w == null || heroPhoto.w >= HERO_MIN_W) ? heroPhoto : null;
+  // SAFETY NET: never ship a stock library hero when the business has a real photo
+  // that clears the floor. If the position-0 hero is missing/too-small but other
+  // OWN photos qualify, promote the WIDEST one — a site with great photos (e.g.
+  // joon-hair's 2486px shots) must never fall back to /library/<cat>/hero.svg.
+  if (!usableHero) {
+    const ownBig = media.filter(
+      (m) => m?.path && !m.credit && !m.path.includes('/images/library/') && (m.w == null || m.w >= HERO_MIN_W),
+    );
+    if (ownBig.length) usableHero = ownBig.slice().sort((a, b) => (b.w ?? 0) - (a.w ?? 0))[0];
+  }
 
   // Gallery = the business's OWN photos beyond the hero (never stock). A media
   // item is "own" when it carries no credit and isn't library/SVG art; stock
@@ -800,6 +872,11 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
     .map((m, i) => ({
       src: m.path,
       alt: `${row.name}${area ? ` in ${area}` : ''} — photo ${i + 1}`,
+      // Per-image focal point (CSS object-position string) computed deterministically
+      // from the photo's own pixels (media pipeline). Only real photos reach the
+      // gallery (isOwn), so set it whenever present; absent → omitted (defaults
+      // to "50% 50%" at render).
+      ...(m.focalCss ? { focal: m.focalCss } : {}),
     }));
 
   const phone = e?.phone || row.phone || '(555) 555-5555';
@@ -815,11 +892,21 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
         { day: 'Sunday', hours: 'Closed' },
       ];
 
-  const storyCredit = storyPhoto?.credit
-    ? `Photo: ${storyPhoto.credit}`
-    : usableHero?.credit
-      ? `Photo: ${usableHero.credit}`
-      : '';
+  // Photo attribution. Stock/OSM/Wikidata/Panoramax tiers stamp `credit` (and may
+  // also carry a `license`, e.g. "CC BY-SA 4.0") on the media descriptor; the
+  // business's OWN scraped/agent-dropped photos carry no credit (none is owed).
+  // We carry the credit straight into the config so CC-BY-SA images are properly
+  // attributed on the page — a license requirement, not a nicety. Format once,
+  // appending the license when present ("Photo: <author> (CC BY-SA 4.0)").
+  const fmtCredit = (m) => {
+    if (!m?.credit) return '';
+    return m.license ? `Photo: ${m.credit} (${m.license})` : `Photo: ${m.credit}`;
+  };
+  // Hero credit: only the photo that actually renders as the hero (usableHero).
+  const heroCredit = fmtCredit(usableHero);
+  // Story credit: the story photo if there is one, else the hero (the story IMAGE
+  // falls back to the hero source above, so the credit must follow the same source).
+  const storyCredit = storyPhoto?.credit ? fmtCredit(storyPhoto) : fmtCredit(usableHero);
 
   return {
     name: row.name,
@@ -851,8 +938,20 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
     images: {
       hero: usableHero?.path ?? `${lib}/hero.svg`,
       heroAlt: `${row.name} in ${area}`,
+      // Focal point as a CSS object-position string ("X% Y%"), computed
+      // deterministically from the hero photo's own pixels (media pipeline). Keeps
+      // the subject in frame when object-fit:cover re-crops at off-build aspects.
+      // Only real photos carry focalCss; library/SVG heroes fall to "50% 50%".
+      heroFocal: usableHero?.focalCss ?? '50% 50%',
+      // Attribution for the hero when it's a credited stock/OSM/Wikidata/Panoramax
+      // photo (CC-BY-SA etc.). Empty for the business's own photos + library art,
+      // where no credit is owed. Required for license compliance on the page.
+      heroCredit,
       story: storyPhoto?.path ?? usableHero?.path ?? `${lib}/story.svg`,
       storyAlt: `About ${row.name}`,
+      // Story focal follows the same source the story IMAGE resolves to
+      // (story photo → else hero photo); library/SVG → "50% 50%".
+      storyFocal: storyPhoto?.focalCss ?? usableHero?.focalCss ?? '50% 50%',
       storyCaption: '',
       storyCredit,
       placeholder: `${lib}/hero.svg`,
@@ -1105,9 +1204,51 @@ async function main() {
     }
 
     // 2) Photos: agent-dropped → their site → AI-gen → Wikimedia → library.
+    // Extra needs-review flags raised during the photo step (deriveStatus rebuilds
+    // its own flag list from scratch, so we collect ours here and merge them in
+    // after it runs — see the deriveStatus call below).
+    const photoFlags = [];
+    // OSM/Wikidata facts (hours/phone/address) that the photo tier may surface as
+    // a free side-effect of looking the business up. Captured here from the
+    // acquirePhotos return so the backfill step (below) can fill gaps the scrape
+    // missed. Stays null when no photo lookup ran (agent-dropped path) or the
+    // tier returned no facts — backfill is then a no-op. (Shape-tolerant: the
+    // photo agent may name it `.facts`, `.osm`, or `.osmFacts`.)
+    let osmFacts = null;
     let media = await agentDroppedPhotos(slug);
     let photoSource = media.length ? 'agent-supplied' : '';
-    if (!media.length) {
+    // Track whether the chosen hero clears the LOCKED resolution floor and is
+    // otherwise usable. Defaults to true; the two acquisition paths below set it.
+    // Below floor / not usable → drop the photo hero so the page renders a clean
+    // TEXT hero instead of a blurry full-bleed photo (a crisp text hero beats a
+    // soft photo). Agent-dropped REAL photos are still preferred — they only get
+    // dropped here when genuinely too small to render sharp.
+    let heroResOk = true;
+    let heroUsable = true;
+    // LOCKED hero-photo TIER (by hero SOURCE width, set by img-core; never upscale):
+    //   'fullbleed' (>=1600w) → any hero incl. cinematic full-bleed is allowed.
+    //   'side'      (1000-1599) → KEEP the real photo but render it in a smaller
+    //                             SIDE-COLUMN hero so it stays sharp (never full-bleed).
+    //   'none'      (<1000w)    → genuinely too small → DROP photo → clean TEXT hero.
+    // Defaults to 'fullbleed' so a missing signal never needlessly shrinks a hero;
+    // the real drop guard is heroUsable/'none' below.
+    let heroTier = 'fullbleed';
+    if (media.length) {
+      // The user's REAL photos must get the SAME treatment as everything else —
+      // attention-crop to the contract slots + resolution floor. Previously
+      // agent-dropped media bypassed all of this (img-core's #1 fix): the sites
+      // people actually look at use agent-dropped photos, so they're exactly the
+      // ones that most need the crop/floor. processDroppedPhotos rewrites/crops
+      // the files in place and reports usability per the LOCKED contract. Fails
+      // soft (returns the originals) so a usable photo is never lost.
+      const dropped = await processDroppedPhotos(media, { category: catKey });
+      media = dropped.media ?? media;
+      // heroResOk: hero source cleared the slot's minW floor (no upscale-blur).
+      // usable: hero is renderable per the contract (floor + crop succeeded).
+      heroResOk = dropped.heroResOk !== false;
+      heroUsable = dropped.usable !== false;
+      if (dropped.heroTier) heroTier = dropped.heroTier;
+    } else {
       const got = await acquirePhotos(row, e, {
         destDir: PUBLIC_IMAGES,
         slug,
@@ -1121,6 +1262,15 @@ async function main() {
       });
       media = got.media;
       photoSource = got.source;
+      heroResOk = got.heroResOk !== false;
+      // acquirePhotos' existing usability signal: heroUsable is the score gate;
+      // fold in `usable` too if img-core now exports it.
+      heroUsable = got.heroUsable !== false && got.usable !== false;
+      if (got.heroTier) heroTier = got.heroTier;
+      // Free OSM/Wikidata side-facts from the photo lookup (shape-tolerant). Used
+      // ONLY to backfill hours/phone/address the scrape couldn't find — never to
+      // overwrite a confirmed value. See the backfill step below.
+      osmFacts = got.facts ?? got.osm ?? got.osmFacts ?? null;
       // QUALITY FLOOR (Fable item 1): if the best acquired photo scores below the
       // hero floor, don't headline a weak/off-brand image. Drop it so the page
       // falls back to a deliberate text/library hero (render-time pickHero makes
@@ -1130,6 +1280,54 @@ async function main() {
         console.log(`    ↳ hero photo below quality floor (score ${got.heroScore?.toFixed?.(2) ?? '0'}) → text hero`);
         media = [];
         photoSource = got.source ? `${got.source}:below-floor` : 'below-floor';
+      }
+    }
+    // RESOLUTION TIER (locked contract): the real photo is the "that's my
+    // business" hook — SHOW it sharp whenever we can; only fall back to text when
+    // it would actually be blurry. Three outcomes, by hero SOURCE width:
+    //   • heroUsable === false  → bad/off-brand hero → HARD DROP → clean TEXT hero.
+    //   • tier 'none' (<1000w)  → genuinely too small → DROP → clean TEXT hero.
+    //   • tier 'side' (1000-1599) → KEEP the real photo; render it in a smaller
+    //       SIDE-COLUMN hero (sharp), NOT full-bleed cinematic. This is a GOOD
+    //       outcome, so it does NOT raise a needs-review flag.
+    //   • tier 'fullbleed' (>=1600w) → KEEP as today; any hero incl. cinematic.
+    // Applies to agent-dropped REAL photos too. This is IN ADDITION to the
+    // score-based drop above.
+    // Resolved tier to stamp onto config.artDirection AFTER buildConfig runs
+    // (config isn't constructed until below). '' = no photo hero / nothing to set.
+    let heroPhotoTierToSet = '';
+    if (media.length && (!heroUsable || heroTier === 'none')) {
+      const why = !heroUsable ? 'below quality floor' : 'below resolution floor';
+      console.log(`    ↳ hero photo ${why} → text hero`);
+      media = [];
+      photoSource = photoSource ? `${photoSource}:below-floor` : 'below-floor';
+      photoFlags.push(`hero photo ${why} — text hero used`);
+    } else if (media.length && heroTier === 'side') {
+      // KEEP the real photo but tell the hero-variant picker (divergence/compose)
+      // to use a side-column hero so it displays smaller and stays sharp — never
+      // full-bleed cinematic for a 1000-1599w source. A sharp side-column real
+      // photo is a GOOD result, so we deliberately do NOT flag needs-review.
+      heroPhotoTierToSet = 'side';
+      console.log(`    ↳ hero photo medium-res → side-column hero (kept sharp)`);
+    } else if (media.length) {
+      // tier 'fullbleed' (or unknown→default): surface the tier so the picker may
+      // allow cinematic full-bleed. Keep as today.
+      heroPhotoTierToSet = 'fullbleed';
+    }
+
+    // 2b) Backfill missing CONTACT facts (hours/phone/address) from the free
+    //     OSM/Wikidata lookup the photo tier already did. Gap-fill ONLY: never on
+    //     a confirmed:true research file (authoritative, human-verified), and
+    //     never over a value the scrape/research already found. Each filled field
+    //     gets a needs-review note so a human re-checks community data before it
+    //     ships. Requires an enrichment to attach to (e) — when the site was
+    //     unreachable we leave the "no real data" status honest rather than
+    //     manufacturing an enrichment out of OSM alone.
+    if (!authoritative && e && osmFacts) {
+      const filled = backfillFromOsm(row, e, osmFacts);
+      if (filled.length) {
+        console.log(`    ↳ backfilled ${filled.join(', ')} from OpenStreetMap/Wikidata`);
+        photoFlags.push(`Backfilled ${filled.join(', ')} from OpenStreetMap/Wikidata — community data, verify before sending`);
       }
     }
 
@@ -1144,7 +1342,12 @@ async function main() {
     const layout = layoutFor(slug);
 
     // 5) Quality gate.
-    const { status, flags } = deriveStatus(row, e, media, photoSource, copy._templated ?? [], mismatchName);
+    const { status: baseStatus, flags } = deriveStatus(row, e, media, photoSource, copy._templated ?? [], mismatchName);
+    // Merge in flags raised during the photo step (e.g. hero dropped below the
+    // resolution floor). Any extra flag forces needs-review even if deriveStatus
+    // alone said ready.
+    flags.push(...photoFlags);
+    const status = flags.length ? 'needs-review' : baseStatus;
 
     const config = buildConfig(row, copy, preset, catKey, media, e, {
       sections,
@@ -1154,6 +1357,13 @@ async function main() {
       formspreeId: row.formspree_id || row.formspree || '',
       bookingUrl: row.booking_url || row.booking || '',
     });
+    // LOCKED tier contract: surface the resolved hero-photo tier so the
+    // hero-variant picker (divergence / compose) obeys it — 'side' forces a
+    // sharp side-column hero (never full-bleed cinematic) for 1000-1599w sources;
+    // 'fullbleed' allows cinematic. Only set when a photo hero survived.
+    if (heroPhotoTierToSet) {
+      config.artDirection = { ...(config.artDirection || {}), heroPhotoTier: heroPhotoTierToSet };
+    }
     // Verified structured-data extras (schema.org rich results) — only from a
     // research file, never guessed.
     if (research?.priceRange) config.priceRange = research.priceRange;

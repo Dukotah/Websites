@@ -3,12 +3,12 @@
   "category": "salon",
   "tagline": "Soul and beloved, in historic downtown Santa Rosa",
   "seoDescription": "Joon Hair — a luxury hair salon in historic downtown Santa Rosa, CA, specializing in precision cuts, custom color, balayage, keratin smoothing, extensions, and special-event styling.",
-  "area": "Santa Rosa",
+  "area": "Santa Rosa, CA",
   "established": "",
   "contact": {
-    "phone": "+17075751474",
+    "phone": "(707) 575-1474",
     "email": "letschat@joonhair.net",
-    "address": "205 5th St Ste D"
+    "address": "205 5th ST Santa Rosa, CA 95401 United States"
   },
   "social": {
     "facebook": "",
@@ -29,42 +29,52 @@
     "Woman-owned"
   ],
   "images": {
-    "hero": "/images/joon-hair/story.webp",
-    "heroAlt": "Joon Hair in Santa Rosa",
-    "story": "/images/joon-hair/photo-2.webp",
+    "hero": "/images/joon-hair/photo-7.webp",
+    "heroAlt": "Joon Hair in Santa Rosa, CA",
+    "heroFocal": "50% 53%",
+    "heroCredit": "",
+    "story": "/images/joon-hair/photo-8.webp",
     "storyAlt": "About Joon Hair",
+    "storyFocal": "53% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/salon/hero.svg"
   },
   "galleryImages": [
     {
-      "src": "/images/joon-hair/photo-2.webp",
-      "alt": "Joon Hair in Santa Rosa — photo 1"
-    },
-    {
-      "src": "/images/joon-hair/photo-3.webp",
-      "alt": "Joon Hair in Santa Rosa — photo 2"
+      "src": "/images/joon-hair/photo-8.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 1",
+      "focal": "53% 50%"
     },
     {
       "src": "/images/joon-hair/photo-4.webp",
-      "alt": "Joon Hair in Santa Rosa — photo 3"
+      "alt": "Joon Hair in Santa Rosa, CA — photo 2",
+      "focal": "50% 50%"
     },
     {
-      "src": "/images/joon-hair/photo-5.webp",
-      "alt": "Joon Hair in Santa Rosa — photo 4"
+      "src": "/images/joon-hair/photo-3.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 3",
+      "focal": "50% 50%"
+    },
+    {
+      "src": "/images/joon-hair/story.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 4",
+      "focal": "50% 50%"
     },
     {
       "src": "/images/joon-hair/photo-6.webp",
-      "alt": "Joon Hair in Santa Rosa — photo 5"
+      "alt": "Joon Hair in Santa Rosa, CA — photo 5",
+      "focal": "50% 50%"
     },
     {
-      "src": "/images/joon-hair/photo-7.webp",
-      "alt": "Joon Hair in Santa Rosa — photo 6"
+      "src": "/images/joon-hair/photo-5.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 6",
+      "focal": "50% 32%"
     },
     {
-      "src": "/images/joon-hair/photo-8.webp",
-      "alt": "Joon Hair in Santa Rosa — photo 7"
+      "src": "/images/joon-hair/photo-2.webp",
+      "alt": "Joon Hair in Santa Rosa, CA — photo 7",
+      "focal": "50% 32%"
     }
   ],
   "about": {
@@ -146,13 +156,17 @@
       ]
     },
     {
+      "type": "bigquote",
+      "quote": "Soul and beloved, in historic downtown Santa Rosa"
+    },
+    {
       "type": "faq",
       "eyebrow": "Good to know",
       "heading": "Common questions",
       "items": [
         {
           "q": "Where are you located?",
-          "a": "You'll find us at 205 5th St Ste D."
+          "a": "You'll find us at 205 5th ST Santa Rosa, CA 95401 United States."
         },
         {
           "q": "What are your hours?",
@@ -160,22 +174,30 @@
         },
         {
           "q": "What areas do you serve?",
-          "a": "We proudly serve Santa Rosa and the surrounding community."
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
         },
         {
           "q": "How do I get in touch?",
-          "a": "Call us at +17075751474 — we're glad to help."
+          "a": "Call us at (707) 575-1474 — we're glad to help."
         }
       ]
     }
   ],
   "layout": "editorial",
-  "status": "ready",
-  "flags": [],
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually"
+  ],
   "theme": {
     "brand": "#b5557f",
     "brandDark": "#2e2230"
   },
+  "artDirection": {
+    "heroPhotoTier": "fullbleed",
+    "fontId": "classic-trad",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "bigquote"
+  },
   "priceRange": "$$$",
-  "heroVariant": "editorial"
+  "heroVariant": "statement"
 }

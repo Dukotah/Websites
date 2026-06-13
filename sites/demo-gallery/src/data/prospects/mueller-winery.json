@@ -29,26 +29,32 @@
     "Downtown tasting room on North St"
   ],
   "images": {
-    "hero": "/images/mueller-winery/story.jpg",
+    "hero": "/images/mueller-winery/hero.jpg",
     "heroAlt": "Mueller Winery in Healdsburg",
-    "story": "/images/mueller-winery/hero.jpg",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/mueller-winery/photo-2.jpg",
     "storyAlt": "About Mueller Winery",
+    "storyFocal": "50% 50%",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/winery/hero.svg"
   },
   "galleryImages": [
     {
-      "src": "/images/mueller-winery/hero.jpg",
-      "alt": "Mueller Winery in Healdsburg — photo 1"
-    },
-    {
       "src": "/images/mueller-winery/photo-2.jpg",
-      "alt": "Mueller Winery in Healdsburg — photo 2"
+      "alt": "Mueller Winery in Healdsburg — photo 1",
+      "focal": "50% 50%"
     },
     {
       "src": "/images/mueller-winery/photo-3.jpg",
-      "alt": "Mueller Winery in Healdsburg — photo 3"
+      "alt": "Mueller Winery in Healdsburg — photo 2",
+      "focal": "50% 50%"
+    },
+    {
+      "src": "/images/mueller-winery/story.jpg",
+      "alt": "Mueller Winery in Healdsburg — photo 3",
+      "focal": "50% 50%"
     }
   ],
   "about": {
@@ -88,29 +94,6 @@
   "hoursNote": "",
   "sections": [
     {
-      "type": "services-detailed",
-      "eyebrow": "Services",
-      "heading": "Our Wines",
-      "items": [
-        {
-          "title": "Pinot Noir",
-          "description": "Small-lot Russian River Valley Pinot Noir, including the acclaimed 'Emily's Cuvée' and 'Hogan's Run,' with deep black cherry and blackberry character."
-        },
-        {
-          "title": "Chardonnay",
-          "description": "Russian River Valley Chardonnay such as the 'LB' — rich with pear, pineapple and banana, full-bodied with a spicy oak finish."
-        },
-        {
-          "title": "Zinfandel & Syrah",
-          "description": "Old-vine Zinfandel and Syrah round out the lineup of small-production wines from select Sonoma County vineyards."
-        },
-        {
-          "title": "Tasting Room",
-          "description": "Sample the current releases at the downtown Healdsburg tasting room on North Street, open Friday through Sunday and weekdays by appointment."
-        }
-      ]
-    },
-    {
       "type": "stats",
       "items": [
         {
@@ -122,6 +105,11 @@
           "label": "Services offered"
         }
       ]
+    },
+    {
+      "type": "bigquote",
+      "quote": "Really good wine, and friendly tasting room staff. The top winery of the day among the six we visited — you just will not want to leave.",
+      "author": "Yelp reviewer"
     },
     {
       "type": "testimonials",
@@ -160,17 +148,47 @@
           "a": "Call us at +17074738086 — we're glad to help."
         }
       ]
+    },
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Our Wines",
+      "items": [
+        {
+          "title": "Pinot Noir",
+          "description": "Small-lot Russian River Valley Pinot Noir, including the acclaimed 'Emily's Cuvée' and 'Hogan's Run,' with deep black cherry and blackberry character."
+        },
+        {
+          "title": "Chardonnay",
+          "description": "Russian River Valley Chardonnay such as the 'LB' — rich with pear, pineapple and banana, full-bodied with a spicy oak finish."
+        },
+        {
+          "title": "Zinfandel & Syrah",
+          "description": "Old-vine Zinfandel and Syrah round out the lineup of small-production wines from select Sonoma County vineyards."
+        },
+        {
+          "title": "Tasting Room",
+          "description": "Sample the current releases at the downtown Healdsburg tasting room on North Street, open Friday through Sunday and weekdays by appointment."
+        }
+      ]
     }
   ],
   "layout": "classic",
   "status": "needs-review",
   "flags": [
+    "No website provided — research & verify manually",
     "No email found — add a real email or contact form before sending"
   ],
   "theme": {
     "brand": "#6b2737",
     "brandDark": "#2b1a1f"
   },
+  "artDirection": {
+    "heroPhotoTier": "side",
+    "fontId": "organic-serif",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "bigquote"
+  },
   "priceRange": "$$",
-  "heroVariant": "cinematic"
+  "heroVariant": "split"
 }
