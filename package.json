@@ -11,7 +11,8 @@
     "generate-prospects": "node scripts/generate-prospects.mjs",
     "push-to-crm": "node scripts/push-to-crm.mjs",
     "make-thumbnail": "node scripts/make-thumbnail.mjs",
-    "qa": "npm --prefix sites/demo-gallery run build && node scripts/audit.mjs && npm --prefix sites/demo-gallery run shots -- --no-build"
+    "sameness-check": "node scripts/sameness-check.mjs",
+    "qa": "npm --prefix sites/demo-gallery run build && node scripts/audit.mjs && npm --prefix sites/demo-gallery run shots -- --no-build && node scripts/sameness-check.mjs"
   },
   "devDependencies": {
     "sharp": "^0.34.0"

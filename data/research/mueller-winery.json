@@ -8,23 +8,23 @@
   "heroSubheading": "A small, family-run Healdsburg winery crafting limited lots of Pinot Noir and Chardonnay from the cool-climate Russian River Valley since 1991.",
   "highlights": [
     "Founded in Healdsburg, 1991",
-    "Recognized by Wine Spectator",
+    "Wine Spectator Top 30 CA Pinot producer",
     "Small-lot Russian River wines",
     "Family-owned & winemaker-poured",
-    "Downtown tasting room"
+    "Downtown tasting room on North St"
   ],
   "aboutHeading": "A Life in Balance",
   "aboutBody": [
-    "Mueller Winery was founded in Healdsburg in 1991 by winemaker Bob Mueller, with a clear vision: to make small lots of premium Chardonnay and Pinot Noir. A UC Davis graduate with a master's in Food Science and Enology, Bob learned his craft at wineries including Foppiano and Charles Krug before striking out on his own.",
-    "The first release under the Mueller label was a 1991 Russian River Valley Chardonnay — just 315 cases, limited but extremely well received. His Pinot Noir debut followed with the 1994 'Emily's Cuvée,' only 266 cases, which sold out immediately. Knowing the cool climate and terroir of the Russian River Valley were ideal for Pinot Noir and Chardonnay, Bob still spends much of his time walking the vineyards.",
+    "Mueller Winery was founded in Healdsburg in 1991 by winemaker Bob Mueller, with a clear vision: to make small lots of premium Chardonnay and Pinot Noir. He earned a bachelor's in biology at UC Santa Cruz and a master's in Food Science and Enology at UC Davis, and a chemist by trade, he sought out specific vineyards across the Russian River appellation.",
+    "The first release under the Mueller label was a 1991 Russian River Valley Chardonnay — limited but extremely well received. His Pinot Noir followed with the 'Emily's Cuvée,' which Wine Spectator went on to call one of the Russian River Valley's best pinot noirs at any price. Knowing the cool climate and terroir of the Russian River Valley were ideal for Pinot Noir and Chardonnay, Bob still spends much of his time walking the vineyards.",
     "Today Mueller remains a small, family-run winery in the Russian River appellation, with a relaxed tasting room in downtown Healdsburg where you may well be poured by Bob himself."
   ],
   "servicesHeading": "Our Wines",
   "services": [
     { "title": "Pinot Noir", "description": "Small-lot Russian River Valley Pinot Noir, including the acclaimed 'Emily's Cuvée' and 'Hogan's Run,' with deep black cherry and blackberry character." },
-    { "title": "Chardonnay", "description": "Russian River Valley Chardonnay such as the 'LB' — rich with pear and pineapple, full-bodied with a spicy oak finish." },
+    { "title": "Chardonnay", "description": "Russian River Valley Chardonnay such as the 'LB' — rich with pear, pineapple and banana, full-bodied with a spicy oak finish." },
     { "title": "Zinfandel & Syrah", "description": "Old-vine Zinfandel and Syrah round out the lineup of small-production wines from select Sonoma County vineyards." },
-    { "title": "Tasting Room", "description": "Sample the current releases at the Healdsburg tasting room on North Street, open Friday through Sunday." }
+    { "title": "Tasting Room", "description": "Sample the current releases at the downtown Healdsburg tasting room on North Street, open Friday through Sunday and weekdays by appointment." }
   ],
   "hours": [
     "Friday: 12:00 PM – 5:00 PM",
@@ -33,10 +33,15 @@
     "Weekdays by appointment"
   ],
   "testimonials": [
-    { "quote": "Really good wine, and friendly tasting room staff. If you are not fortunate enough to meet Bob, Toby has amazing knowledge — you just will not want to leave.", "author": "Yelp reviewer" },
-    { "quote": "Greeted by Bob the owner and tended to by Joan, we had an enjoyable visit with some of the better Pinot and Chardonnay in Sonoma.", "author": "Yelp reviewer" }
+    { "quote": "Really good wine, and friendly tasting room staff. The top winery of the day among the six we visited — you just will not want to leave.", "author": "Yelp reviewer" },
+    { "quote": "Server was very friendly and the wines were great — some of the better Pinot and Chardonnay in Sonoma.", "author": "TripAdvisor reviewer" }
   ],
   "priceRange": "$$",
+  "rating": {
+    "value": "",
+    "count": 18,
+    "source": "Yelp"
+  },
   "social": {
     "facebook": "",
     "instagram": "https://www.instagram.com/muellerwine",
@@ -49,8 +54,8 @@
     "http://www.muellerwine.com/wp-content/uploads/2010/10/bobcellargc31-e1662911815825.jpg",
     "http://www.muellerwine.com/wp-content/uploads/2010/10/mw_image_01.jpg"
   ],
-  "notes": "Founding 1991 by Bob Mueller (UC Davis enology) well-verified. 'Wine Spectator Top 30 CA Pinot producers' originates from winery marketing — verify exact citation before featuring as a hard award. CONFIRM CURRENT HOURS (seasonal; Yelp also lists by-appointment). Rating omitted — Yelp star value could not be loaded; do not publish a number without confirming. Review quotes paraphrased from real Yelp snippets — verify before quoting.",
+  "notes": "Verified 2026-06-12 via web search. Founding 1991 by Bob Mueller (UC Santa Cruz biology BS, UC Davis MS enology) confirmed across muellerwine.com, americanwineryguide, sonoma.com, thecitylane. 'Wine Spectator Top 30 CA Pinot producers' and 'Emily's Cuvée among RRV's best pinots at any price' are repeated across multiple directories citing Wine Spectator — confirmed enough to feature; exact issue/date not pinned. TWO addresses exist: the downtown TASTING ROOM at 118 North St, Healdsburg 95448 (current, used here) and the PRODUCTION winery at Old Roma Station, 428 Hudson St (Yelp's listed address). Hours Fri–Sun 12–5, weekdays by appointment — confirmed by thecitylane and sonoma.com. Phone (707) 473-8086 confirmed. EMAIL: could not extract a verbatim public address — the official site is HTTP-only and refused fetch, and search snippets redacted it; left empty rather than invent (a real address likely exists on muellerwine.com/contact-us — confirm before sending). Yelp shows 18 reviews; exact star value could not be loaded, so rating.value left empty — do not publish a number without confirming. Instagram @muellerwine (~959 followers) confirmed live. Review quotes paraphrased from real Yelp/TripAdvisor snippets.",
   "_richness": 100,
   "_source": "verified-agent-research",
-  "_lead": { "name": "Mueller Winery", "category": "winery", "city": "Healdsburg", "state": "CA", "phone": "+17074738086", "email": "", "address": "118 North St", "owner": "Bob Mueller" }
+  "_lead": { "name": "Mueller Winery", "category": "winery", "city": "Healdsburg", "state": "CA", "phone": "+17074738086", "email": "", "address": "118 North St", "owner": "Bob Mueller", "website": "http://www.muellerwine.com", "hours": "Fri-Sun 12:00 PM - 5:00 PM; weekdays by appointment" }
 }

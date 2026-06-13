@@ -2,13 +2,13 @@
   "name": "Facciano HVAC and Sheet Metal",
   "category": "hvac",
   "tagline": "Family-run HVAC & sheet metal",
-  "seoDescription": "Facciano HVAC and Sheet Metal — a family-owned, fully licensed heating, cooling, and custom sheet-metal contractor serving Santa Rosa and Sonoma County since 2015.",
-  "area": "Santa Rosa, CA",
+  "seoDescription": "Facciano HVAC and Sheet Metal — a family-owned, licensed heating, cooling, and custom sheet-metal contractor serving Santa Rosa and Sonoma County since 2015.",
+  "area": "Santa Rosa",
   "established": "Est. 2015",
   "contact": {
-    "phone": "+17075401258",
+    "phone": "+17074836754",
     "email": "",
-    "address": "Santa Rosa"
+    "address": "3480 Chanate Ct"
   },
   "social": {
     "facebook": "https://www.facebook.com/p/Facciano-HVAC-and-Sheet-Metal-100047791212153/",
@@ -17,7 +17,7 @@
   },
   "hero": {
     "heading": "Santa Rosa's Facciano family HVAC and sheet metal",
-    "subheading": "A family-owned, fully licensed heating, cooling, and sheet-metal contractor serving Santa Rosa and Sonoma County since 2015.",
+    "subheading": "A family-owned, licensed heating, cooling, and sheet-metal contractor serving Santa Rosa and Sonoma County since 2015.",
     "ctaText": "Get in touch",
     "ctaHref": "#contact"
   },
@@ -30,7 +30,7 @@
   ],
   "images": {
     "hero": "/images/facciano-hvac-and-sheet-metal/story.jpg",
-    "heroAlt": "Facciano HVAC and Sheet Metal in Santa Rosa, CA",
+    "heroAlt": "Facciano HVAC and Sheet Metal in Santa Rosa",
     "story": "/images/facciano-hvac-and-sheet-metal/hero.jpg",
     "storyAlt": "About Facciano HVAC and Sheet Metal",
     "storyCaption": "",
@@ -40,14 +40,14 @@
   "galleryImages": [
     {
       "src": "/images/facciano-hvac-and-sheet-metal/hero.jpg",
-      "alt": "Facciano HVAC and Sheet Metal in Santa Rosa, CA — photo 1"
+      "alt": "Facciano HVAC and Sheet Metal in Santa Rosa — photo 1"
     }
   ],
   "about": {
     "heading": "About Facciano HVAC",
     "body": [
-      "Facciano HVAC and Sheet Metal is a family-run contractor based in Santa Rosa, owned by Mark and Carl Facciano. The company has been licensed and operating since 2015.",
-      "Holding California license #1009408 for warm-air heating, ventilating, air conditioning, and sheet-metal work, the team handles furnace and air-conditioning installation and replacement along with custom sheet-metal fabrication and ductwork for homes across the Santa Rosa area."
+      "Facciano HVAC and Sheet Metal is a family-run contractor based on Chanate Court in Santa Rosa, owned by brothers Mark and Carl Facciano. The company has been licensed and operating since 2015.",
+      "Holding California license #1009408 for warm-air heating, ventilating, air conditioning, and sheet-metal work, the team handles residential furnace and air-conditioning installation and replacement along with custom sheet-metal fabrication and ductwork for homes across the Santa Rosa area."
     ],
     "signature": ""
   },
@@ -55,15 +55,15 @@
   "services": [
     {
       "title": "Heating & Furnace Installation",
-      "description": "Installation and replacement of warm-air heating and furnace systems for residential homes."
+      "description": "Installation and replacement of warm-air heating and furnace systems for Santa Rosa homes."
     },
     {
       "title": "Air Conditioning",
-      "description": "AC installation and replacement to keep your home comfortable through Sonoma County summers."
+      "description": "Residential AC installation and replacement to keep your home comfortable through Sonoma County summers."
     },
     {
       "title": "Sheet Metal & Ductwork",
-      "description": "Custom sheet-metal fabrication and ductwork, backed by a CSLB sheet-metal classification."
+      "description": "Custom sheet-metal fabrication and ductwork, backed by the company's CSLB sheet-metal classification."
     }
   ],
   "hours": [
@@ -83,6 +83,25 @@
   "hoursNote": "",
   "sections": [
     {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Our Services",
+      "items": [
+        {
+          "title": "Heating & Furnace Installation",
+          "description": "Installation and replacement of warm-air heating and furnace systems for Santa Rosa homes."
+        },
+        {
+          "title": "Air Conditioning",
+          "description": "Residential AC installation and replacement to keep your home comfortable through Sonoma County summers."
+        },
+        {
+          "title": "Sheet Metal & Ductwork",
+          "description": "Custom sheet-metal fabrication and ductwork, backed by the company's CSLB sheet-metal classification."
+        }
+      ]
+    },
+    {
       "type": "stats",
       "items": [
         {
@@ -96,63 +115,25 @@
       ]
     },
     {
-      "type": "feature-split",
-      "eyebrow": "What sets us apart",
-      "heading": "Our Services",
-      "rows": [
-        {
-          "heading": "Heating & Furnace Installation",
-          "body": "Installation and replacement of warm-air heating and furnace systems for residential homes."
-        },
-        {
-          "heading": "Air Conditioning",
-          "body": "AC installation and replacement to keep your home comfortable through Sonoma County summers."
-        },
-        {
-          "heading": "Sheet Metal & Ductwork",
-          "body": "Custom sheet-metal fabrication and ductwork, backed by a CSLB sheet-metal classification."
-        }
-      ]
-    },
-    {
       "type": "faq",
       "eyebrow": "Good to know",
       "heading": "Common questions",
       "items": [
         {
           "q": "Where are you located?",
-          "a": "You'll find us at Santa Rosa."
+          "a": "You'll find us at 3480 Chanate Ct."
         },
         {
           "q": "What are your hours?",
-          "a": "Hours can vary — give us a call at +17075401258 and we'll let you know when we're open."
+          "a": "Hours can vary — give us a call at +17074836754 and we'll let you know when we're open."
         },
         {
           "q": "What areas do you serve?",
-          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+          "a": "We proudly serve Santa Rosa and the surrounding community."
         },
         {
           "q": "How do I get in touch?",
-          "a": "Call us at +17075401258 — we're glad to help."
-        }
-      ]
-    },
-    {
-      "type": "services-detailed",
-      "eyebrow": "Services",
-      "heading": "Our Services",
-      "items": [
-        {
-          "title": "Heating & Furnace Installation",
-          "description": "Installation and replacement of warm-air heating and furnace systems for residential homes."
-        },
-        {
-          "title": "Air Conditioning",
-          "description": "AC installation and replacement to keep your home comfortable through Sonoma County summers."
-        },
-        {
-          "title": "Sheet Metal & Ductwork",
-          "description": "Custom sheet-metal fabrication and ductwork, backed by a CSLB sheet-metal classification."
+          "a": "Call us at +17074836754 — we're glad to help."
         }
       ]
     }
@@ -168,10 +149,5 @@
     "brand": "#1f8a8a",
     "brandDark": "#17323a"
   },
-  "artDirection": {
-    "fontId": "modern-grotesk",
-    "neutralTemp": "warm",
-    "preferredDepthSection": "feature-split"
-  },
-  "heroVariant": "cinematic"
+  "heroVariant": "editorial-asym"
 }

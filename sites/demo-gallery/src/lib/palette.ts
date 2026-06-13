@@ -25,6 +25,11 @@ export type NeutralTemp = 'warm' | 'cool';
 /** Full color palette — keys map 1:1 to the §2.1 color tokens. */
 export interface Palette {
   brand: string;
+  /** A brighter, confidently-chromatic brand for SOLID FILLS (claim bar, pills,
+   *  badges) so the chrome reads as real color, not near-black. Paired with
+   *  brandVividContrast for legible text. `brand` stays the (darker) text/link hue. */
+  brandVivid: string;
+  brandVividContrast: string;
   brandDark: string;
   brandContrast: string;
   accent: string;
@@ -77,6 +82,8 @@ export const PALETTE_PRESETS: Record<
 function safePalette(): Palette {
   return {
     brand: '#2b2b2b',
+    brandVivid: '#3a3a3a',
+    brandVividContrast: '#ffffff',
     brandDark: '#141414',
     brandContrast: '#ffffff',
     accent: '#b6794a',
@@ -110,19 +117,32 @@ export function derivePalette(brand: string, opts: DerivePaletteOptions = {}): P
     const seed = opts.seed ?? hash(String(brand ?? ''));
     const baseHsl: Hsl = toHsl(brand);
 
+    // Per-business identity + vividness (the two color failures Fable flagged):
+    //   1. siblings sharing a category preset color rendered the IDENTICAL hex —
+    //      so nudge the hue by a seeded ±8° to give each its own shade;
+    //   2. the preset brands were muddy + dark, so the chrome read as near-black —
+    //      floor the chroma to a confident level on darker brands.
+    // Lightness is left untouched so the WCAG contrast pass below stays stable.
+    const jitter = rangeInt(seed ^ 0x68bc21, 0, 16) - 8; // -8..+8°
+    const vivBrand: Hsl = {
+      h: (baseHsl.h + jitter + 360) % 360,
+      s: baseHsl.l < 60 ? Math.max(baseHsl.s, 58) : baseHsl.s,
+      l: baseHsl.l,
+    };
+
     // Guard: a fully invalid/black-zero input toHsl still returns something
     // usable; we proceed and let the contrast pass clean it up.
-    const hue = baseHsl.h;
-    const brandSat = baseHsl.s;
+    const hue = vivBrand.h;
+    const brandSat = vivBrand.s;
 
     const neutralTemp: NeutralTemp =
       opts.neutralTemp ?? (chance(seed ^ 0x9e3779b1, 0.5) ? 'warm' : 'cool');
     const accentStrategy: AccentStrategy =
       opts.accentStrategy ?? (chance(seed ^ 0x85ebca6b, 0.5) ? 'complementary' : 'analogous');
 
-    // Brand kept as authored (it is the literal config color), but normalized
+    // Brand: the authored color, vivified + hue-jittered (above), normalized
     // through hsl→hex so downstream math is consistent.
-    const brandHex = toHex(baseHsl);
+    const brandHex = toHex(vivBrand);
 
     // brand-dark: provided override (if valid & distinct) else derived deep.
     let brandDark: string;
@@ -148,8 +168,12 @@ export function derivePalette(brand: string, opts: DerivePaletteOptions = {}): P
     });
 
     // Neutral temperament: warm tilts hue toward 35° amber, cool toward 215°.
-    const neutralHue = neutralTemp === 'warm' ? blendHue(hue, 35, 0.55) : blendHue(hue, 215, 0.5);
-    const neutralSat = neutralTemp === 'warm' ? 8 : 6;
+    // Bias kept closer to the BRAND hue (lower blend weight) and a touch more
+    // saturated, so the cream/paper visibly belongs to this brand — a wine site
+    // gets warm wine-cream, a teal HVAC site a cool tinted paper — instead of the
+    // same near-white on every page. (Contrast pass below self-corrects text.)
+    const neutralHue = neutralTemp === 'warm' ? blendHue(hue, 35, 0.45) : blendHue(hue, 215, 0.42);
+    const neutralSat = neutralTemp === 'warm' ? 11 : 8;
 
     const bg = tintedNeutral(neutralHue, neutralSat - 2, neutralTemp === 'warm' ? 97 : 98);
     const bgAlt = tintedNeutral(neutralHue, neutralSat, neutralTemp === 'warm' ? 92 : 93);
@@ -157,8 +181,17 @@ export function derivePalette(brand: string, opts: DerivePaletteOptions = {}): P
     const surface2 = tintedNeutral(neutralHue, neutralSat, 95);
     const border = tintedNeutral(neutralHue, neutralSat, 87);
 
-    // bg-deep: near-black tinted with brand hue, L 10–16%.
-    const bgDeep = toHex({ h: hue, s: Math.min(40, brandSat), l: rangeInt(seed ^ 0xdeadbeef, 10, 16) });
+    // bg-deep: a true BRAND-dark, not near-black. This is the surface that dark
+    // hero panels, dark bands and the footer sit on — the #1 reason every page
+    // read as black+cream was that brand chroma was capped at 40 and lightness at
+    // 16. Let the brand hue + chroma actually show (a winery reads wine-dark, an
+    // HVAC site teal-dark) while staying dark enough (L 14–21) that the contrast
+    // pass keeps light text ≥4.5. Truly neutral brands (ink default) stay neutral.
+    const bgDeep = toHex({
+      h: hue,
+      s: brandSat < 6 ? brandSat : Math.max(30, Math.min(70, brandSat + 16)),
+      l: rangeInt(seed ^ 0xdeadbeef, 14, 21),
+    });
 
     // Text colors — contrast pass against bg.
     let text = toHex({ h: neutralHue, s: Math.min(18, neutralSat + 8), l: 12 });
@@ -167,6 +200,18 @@ export function derivePalette(brand: string, opts: DerivePaletteOptions = {}): P
     textMuted = ensureContrast(textMuted, bg, 4.5); // AA body min
     let textOnDark = toHex({ h: neutralHue, s: 8, l: 92 });
     textOnDark = ensureContrast(textOnDark, bgDeep, 4.5);
+
+    // brand-vivid: the brand at a confident display lightness so SOLID FILLS
+    // (claim bar, header pill, badges) read as real color instead of near-black.
+    // Darker brands are lifted into a 42–54 band; its own contrast color is then
+    // measured so the label stays legible whatever the hue (white on wine, dark
+    // on bright teal, etc.).
+    const brandVivid = toHex({
+      h: hue,
+      s: Math.max(brandSat, 60),
+      l: Math.min(54, Math.max(42, toHsl(brandHex).l + 12)),
+    });
+    const brandVividContrast = ensureContrast(bestTextOn(brandVivid), brandVivid, 4.5);
 
     // Contrast text for solid brand / accent fills.
     const brandContrast = ensureContrast(bestTextOn(brandHex), brandHex, 4.5);
@@ -183,6 +228,8 @@ export function derivePalette(brand: string, opts: DerivePaletteOptions = {}): P
 
     return {
       brand: brandHex,
+      brandVivid,
+      brandVividContrast,
       brandDark,
       brandContrast,
       accent,

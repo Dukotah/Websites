@@ -10,12 +10,19 @@ const { config } = Astro.props as { config: ProspectConfig };
 
 const { hero, images, contact, highlights = [], established, area } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
-const eyebrow = [established, area].filter(Boolean).join(' · ');
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
+// De-dup (Fable): the trust badge already states the founding year, so drop
+// `established` from the eyebrow when the badge owns it (keep the area). Falls
+// back to the full eyebrow when the badge has no year to surface.
+const eyebrow = [badgeYear ? '' : established, area].filter(Boolean).join(' · ');
+// Headline fit-to-box (Fable): the display headline runs at clamp(2.8–6.2rem),
+// tuned for a short phrase. A full-sentence headline at that scale dominates the
+// panel, so step the clamp down + add a measure by char count.
+const longTitle = (hero.heading ?? '').length > 28;
 ---
 
-<section class="panel-hero" id="top" data-tone="deep">
+<section class="panel-hero" id="top" data-tone="deep" data-long-title={longTitle ? 'true' : undefined}>
 
   <!-- ① Gradient-mesh background layer -->
   <div class="panel-hero__bg" aria-hidden="true"></div>
@@ -241,6 +248,21 @@ const trustLine = highlights[0] ?? '';
     margin-bottom: 1.1rem;
     overflow-wrap: break-word;
     hyphens: auto;
+  }
+
+  /* Long (full-sentence) headline: step the clamp down and add a measure so a
+     sentence wraps to a readable block instead of dominating the panel. Balanced
+     wrap evens the lines; the smaller clamp is the CSS fallback where text-wrap:
+     balance is unsupported. */
+  /* Scoped to >=641px so the (lower-specificity) mobile title rule still wins on
+     phones; the doubled attribute raises specificity above the [data-archetype]
+     title bumps so a long headline stays scaled down on every archetype. */
+  @media (min-width: 641px) {
+    [data-long-title][data-long-title] .panel-hero__title {
+      font-size: clamp(2.4rem, 5.5vw, 5rem);
+      max-width: 22ch;
+      text-wrap: balance;
+    }
   }
 
   .panel-hero__sub {

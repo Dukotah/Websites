@@ -118,7 +118,7 @@ export const FONT_REGISTRY: FontPairing[] = [
       '@fontsource-variable/source-serif-4',
     ],
     mood: 'refined editorial',
-    categories: ['winery', 'cafe', 'salon', 'default'],
+    categories: ['winery', 'cafe', 'salon', 'spa', 'medical', 'default'],
     typeScale: 'editorial',
   },
   {
@@ -127,7 +127,7 @@ export const FONT_REGISTRY: FontPairing[] = [
     body: `'Inter Variable', 'Inter', ${SANS_FB}`,
     fontsourcePackages: ['@fontsource-variable/space-grotesk', '@fontsource-variable/inter'],
     mood: 'crisp modern',
-    categories: ['plumbing', 'auto-repair', 'tech', 'default'],
+    categories: ['plumbing', 'auto-repair', 'hvac', 'electrician', 'fitness', 'tech', 'default'],
     typeScale: 'geometric',
   },
   {
@@ -136,7 +136,7 @@ export const FONT_REGISTRY: FontPairing[] = [
     body: `'Figtree Variable', 'Figtree', ${SANS_FB}`,
     fontsourcePackages: ['@fontsource-variable/bricolage-grotesque', '@fontsource-variable/figtree'],
     mood: 'friendly, approachable',
-    categories: ['cafe', 'salon', 'landscaping'],
+    categories: ['cafe', 'restaurant', 'salon', 'spa', 'cleaning', 'landscaping'],
     typeScale: 'humanist',
   },
   {
@@ -145,7 +145,7 @@ export const FONT_REGISTRY: FontPairing[] = [
     body: `'Inter Variable', 'Inter', ${SANS_FB}`,
     fontsourcePackages: ['@fontsource-variable/bitter', '@fontsource/zilla-slab', '@fontsource-variable/inter'],
     mood: 'sturdy, blue-collar',
-    categories: ['towing', 'auto-repair', 'construction'],
+    categories: ['towing', 'auto-repair', 'construction', 'contractor', 'roofing', 'hvac'],
     typeScale: 'tight',
   },
   {
@@ -154,7 +154,7 @@ export const FONT_REGISTRY: FontPairing[] = [
     body: `'Lora Variable', 'Lora', ${SERIF_FB}`,
     fontsourcePackages: ['@fontsource-variable/playfair-display', '@fontsource-variable/lora'],
     mood: 'established, traditional',
-    categories: ['salon', 'winery', 'law', 'default'],
+    categories: ['salon', 'winery', 'medical', 'restaurant', 'law', 'default'],
     typeScale: 'editorial',
   },
   {
@@ -163,7 +163,7 @@ export const FONT_REGISTRY: FontPairing[] = [
     body: `'Albert Sans Variable', 'Albert Sans', ${SANS_FB}`,
     fontsourcePackages: ['@fontsource-variable/albert-sans'],
     mood: 'minimal, neutral',
-    categories: ['plumbing', 'default', 'tech'],
+    categories: ['plumbing', 'electrician', 'cleaning', 'medical', 'default', 'tech'],
     typeScale: 'geometric',
   },
   {
@@ -172,7 +172,7 @@ export const FONT_REGISTRY: FontPairing[] = [
     body: `'Spectral', ${SERIF_FB}`,
     fontsourcePackages: ['@fontsource/spectral'],
     mood: 'botanical, calm',
-    categories: ['landscaping', 'winery', 'wellness'],
+    categories: ['landscaping', 'winery', 'wellness', 'spa', 'medical', 'marina'],
     typeScale: 'humanist',
   },
   {
@@ -181,7 +181,7 @@ export const FONT_REGISTRY: FontPairing[] = [
     body: `'Archivo Variable', 'Archivo', ${SANS_FB}`,
     fontsourcePackages: ['@fontsource-variable/archivo'],
     mood: 'confident, loud',
-    categories: ['auto-repair', 'towing', 'fitness', 'tattoo'],
+    categories: ['auto-repair', 'towing', 'fitness', 'tattoo', 'roofing', 'contractor', 'barber'],
     typeScale: 'tight',
   },
   {
@@ -190,7 +190,7 @@ export const FONT_REGISTRY: FontPairing[] = [
     body: `'Mulish Variable', 'Mulish', ${SANS_FB}`,
     fontsourcePackages: ['@fontsource/cormorant-garamond', '@fontsource-variable/mulish'],
     mood: 'luxe, high-contrast',
-    categories: ['salon', 'winery', 'boutique', 'tattoo'],
+    categories: ['salon', 'spa', 'winery', 'restaurant', 'boutique', 'tattoo'],
     typeScale: 'editorial',
   },
   {
@@ -199,7 +199,7 @@ export const FONT_REGISTRY: FontPairing[] = [
     body: `'Schibsted Grotesk Variable', 'Schibsted Grotesk', ${SANS_FB}`,
     fontsourcePackages: ['@fontsource-variable/schibsted-grotesk'],
     mood: 'crafted, indie',
-    categories: ['cafe', 'bakery', 'makers'],
+    categories: ['cafe', 'restaurant', 'barber', 'bakery', 'makers'],
     typeScale: 'friendly',
   },
 ];

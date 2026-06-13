@@ -22,12 +22,24 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { getRealPhotos } from './photos.mjs';
 import { scorePhoto, dhash, hamming, NEAR_DUP_DISTANCE } from './photo-score.mjs';
+import { composeHero, gradeForCategory } from './photo-art.mjs';
 
 const UA =
   'Mozilla/5.0 (compatible; websites-outreach/1.0; +https://github.com/dukotah/websites)';
 
 const MIN_W = 600; // below this an image is almost certainly a logo/icon/thumb
 const MIN_H = 360;
+
+// QUALITY FLOOR for the hero slot. Below this photographic-quality score (0..1)
+// the best surviving photo isn't good enough to carry a full-bleed hero — better
+// to ship a clean TEXT hero than a muddy/off scraped frame. Surfaced via the
+// acquirePhotos return (`heroUsable`) so the generator can fall back without
+// this module needing to know about layouts. Tuned just under typical real-
+// storefront scores so genuine photos pass and weak filler is flagged.
+const MIN_HERO_SCORE = 0.4;
+
+// Target aspect for a full-bleed hero (matches the gallery's 16:9-ish fold).
+const HERO_ASPECT = 16 / 9;
 
 const EXT_BY_MIME = {
   'image/jpeg': 'jpg', 'image/jpg': 'jpg', 'image/png': 'png',
@@ -118,7 +130,7 @@ function baseIdentity(url) {
  * (de-duped by size-agnostic URL identity and by exact bytes). Returns saved
  * media descriptors. Best-effort; network failures just yield fewer results.
  */
-export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxCandidates = 8, heroHint } = {}) {
+export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxCandidates = 8, heroHint, category } = {}) {
   if (!urls?.length) return [];
   const outDir = join(destDir, slug);
   await mkdir(outDir, { recursive: true });
@@ -192,9 +204,27 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
 
   const saved = [];
   for (const img of kept.slice(0, max)) {
-    const fileName = nameFor(saved.length, img.ext);
-    await writeFile(join(outDir, fileName), img.buf);
-    saved.push({ path: `/images/${slug}/${fileName}`, credit: '', source: img.url, alt: '', w: img.w, h: img.h });
+    const isHero = saved.length === 0;
+    // ART DIRECTION (hero only): recompose the scraped frame to the hero aspect
+    // with a content-aware (attention) crop so the subject is centred, then lay
+    // a subtle palette-derived duotone + scrim for a deliberate, legible hero.
+    // Story/gallery shots are left untouched (shown at varied sizes/crops).
+    let buf = img.buf;
+    let ext = img.ext;
+    if (isHero) {
+      const composed = await composeHero(img.buf, {
+        category,
+        aspect: HERO_ASPECT,
+        // Keep the source codec; composeHero re-encodes deterministically.
+        format: ext === 'png' ? 'png' : ext === 'webp' ? 'webp' : 'jpeg',
+      });
+      // composeHero fails soft (returns the input) — only swap if it produced
+      // something, and never change the extension we report.
+      if (composed && composed.length) buf = composed;
+    }
+    const fileName = nameFor(saved.length, ext);
+    await writeFile(join(outDir, fileName), buf);
+    saved.push({ path: `/images/${slug}/${fileName}`, credit: '', source: img.url, alt: '', w: img.w, h: img.h, score: img.score ?? 0 });
   }
   return saved;
 }
@@ -278,8 +308,15 @@ export async function generateImages(facts, { destDir, slug, startIndex = 0, nee
 
 /**
  * Get up to `max` photos for a prospect, strongest source first. Returns
- * { media, source } where source is the tier that satisfied it. When media is
- * empty, the caller uses the built-in category SVG library.
+ * { media, source, heroUsable, heroScore }:
+ *   • media      — saved photo descriptors (best-first; [0] is the hero).
+ *   • source     — the tier(s) that satisfied it.
+ *   • heroUsable — QUALITY FLOOR signal: false when no candidate cleared
+ *                  MIN_HERO_SCORE, so the generator can fall back to a TEXT hero
+ *                  instead of shipping a weak photo. (Exposed only — this module
+ *                  does NOT choose the layout.)
+ *   • heroScore  — the hero photo's 0..1 score (0 when no photo / library).
+ * When media is empty, the caller uses the built-in category SVG library.
  *
  * @param {object} row        CSV row (name, category, city, state, ...)
  * @param {object|null} enrichment  scrape-site.mjs output (may be null)
@@ -296,6 +333,20 @@ export async function acquirePhotos(
     city: row.city,
   };
 
+  // QUALITY FLOOR helper. The hero is media[0]. A scraped photo carries its own
+  // 0..1 score; Wikimedia/Openverse heroes already passed their own MIN_PHOTO_
+  // SCORE gate (≥0.45, above our floor) so they count as usable; AI-generated is
+  // a bespoke render so it's deliberately usable. Library (no media) is text-only
+  // territory, so heroUsable is false there. Pure read of the chosen hero.
+  const heroQuality = (m, src) => {
+    if (!m.length) return { heroUsable: false, heroScore: 0 };
+    const top = m[0];
+    if (typeof top.score === 'number') return { heroUsable: top.score >= MIN_HERO_SCORE, heroScore: top.score };
+    // No score on the descriptor → it came from a pre-gated source (ai/wiki/
+    // openverse), which only ships photos it already judged good enough.
+    return { heroUsable: src !== 'library', heroScore: 0 };
+  };
+
   // Tier 1: their own scraped photos — pulled GENEROUSLY (up to ownMax). Every
   // one is genuinely theirs, so a richer real-photo gallery is pure upside.
   let media = await downloadScrapedPhotos(enrichment?.images, {
@@ -304,10 +355,11 @@ export async function acquirePhotos(
     max: ownMax,
     maxCandidates: 60,
     heroHint,
+    category: row.category, // drives the deterministic hero grade
   });
   // If we have at least the essential slots from their OWN photos, stop here —
   // stock must NEVER pad a gallery (that's the "looks like a template" tell).
-  if (media.length >= min) return { media, source: 'business-site' };
+  if (media.length >= min) return { media, source: 'business-site', ...heroQuality(media, 'business-site') };
   let source = media.length ? 'business-site' : '';
 
   // Below the essentials (≤1 own photo): backfill ONLY the hero/story slots
@@ -317,7 +369,7 @@ export async function acquirePhotos(
   if (generated.length) {
     media = media.concat(generated);
     source = source ? `${source}+ai` : 'ai-generated';
-    if (media.length >= min) return { media, source };
+    if (media.length >= min) return { media, source, ...heroQuality(media, source) };
   }
 
   // Tier 3: Wikimedia Commons (free) — still only up to the essentials.
@@ -334,5 +386,6 @@ export async function acquirePhotos(
     }
   }
 
-  return { media, source: source || 'library' };
+  source = source || 'library';
+  return { media, source, ...heroQuality(media, source) };
 }

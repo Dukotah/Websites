@@ -13,7 +13,7 @@
  */
 
 import type { ProspectConfig, Section, SectionType } from '../types';
-import type { ArtDirection } from './art-direction';
+import type { ArtDirection, Archetype } from './art-direction';
 import type { HeroVariant, Tone } from '../types';
 import { pick, shuffle } from './seed';
 import { assignVariants } from './variants';
@@ -665,6 +665,62 @@ function orderByRecipe(sections: Section[], recipeOrder: RecipeSectionType[]): S
     .map((x) => x.s);
 }
 
+/**
+ * Archetype rhythm — make the four page ARCHETYPES genuinely distinct page
+ * SYSTEMS, not just a hero/max-width swap. After the category recipe has chosen
+ * WHICH sections appear and their narrative order, this pass re-weights that
+ * order per archetype so the page "bones" differ:
+ *
+ *   - magazine : gallery-forward — pull visual bands (gallery/feature-split/
+ *                before-after) up toward the top so the page leads with imagery
+ *                (the cover-story rhythm).
+ *   - utility  : data-first — surface the trust/credibility bands (stats,
+ *                feature-grid, services-detailed) ahead of softer story content
+ *                so the dense conversion-focused spine reads first.
+ *   - editorial: narrative chapters — lead with the story/about content and the
+ *                chaptered MAJOR bands; keep accent bands (stats/logos) interleaved
+ *                after, so the numbered chapters read as the spine.
+ *   - classic  : unchanged — the balanced category-recipe order is the baseline.
+ *
+ * SAFETY: this is a pure, stable REORDER. It never adds, removes, duplicates, or
+ * mutates sections, so every downstream guarantee still holds — dedupeSections,
+ * dropCanonicalContactSections, and the closing-CTA-last rule all run afterwards.
+ * The closing `cta` (and the slim `cta-inline` nudge, when present) are pinned to
+ * the tail here too so a reorder can never float a CTA into the middle.
+ */
+// Section families each archetype wants to FRONT-LOAD, highest priority first.
+const ARCHETYPE_LEAD: Record<Archetype, SectionType[]> = {
+  magazine: ['gallery', 'feature-split', 'before-after', 'bigquote'],
+  utility: ['stats', 'feature-grid', 'services-detailed', 'process'],
+  editorial: ['bigquote', 'feature-split', 'gallery'],
+  classic: [],
+};
+
+function applyArchetypeRhythm(sections: Section[], archetype: Archetype): Section[] {
+  const lead = ARCHETYPE_LEAD[archetype] ?? [];
+  if (!lead.length) return sections; // classic (and any unknown) keep recipe order
+
+  // Tail families are pinned to the end regardless of archetype so a reorder can
+  // never strand a CTA/FAQ mid-page (mirrors orderByRecipe's TAIL contract).
+  const TAIL: SectionType[] = ['faq', 'cta-inline', 'cta'];
+
+  const rank = (type: string): number => {
+    const t = TAIL.indexOf(type as SectionType);
+    if (t !== -1) return 1000 + t; // tail block, in TAIL order, always last
+    const l = lead.indexOf(type as SectionType);
+    if (l !== -1) return l; // front-loaded family, by archetype priority
+    return 100; // body band — keeps its relative position between lead and tail
+  };
+
+  // Stable sort: equal ranks preserve the incoming (recipe) order, so we only
+  // pull the lead families up and push the tail families down — everything else
+  // floats in the middle exactly as the recipe arranged it.
+  return sections
+    .map((s, i) => ({ s, i, r: rank(s.type) }))
+    .sort((a, b) => a.r - b.r || a.i - b.i)
+    .map((x) => x.s);
+}
+
 function assignTones(sections: Section[], seed: number): Section[] {
   // jitter the starting index so two slugs don't start on the same tone
   const offset = seed % TONE_CYCLE.length;
@@ -774,7 +830,10 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
     const withTrailingCta = hasCta
       ? authored
       : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
-    const plan = insertInlineCta(withTrailingCta, config, ad.category);
+    const planAuthored = insertInlineCta(withTrailingCta, config, ad.category);
+    // Re-weight section order for the page archetype (gallery-forward magazine,
+    // data-first utility, narrative editorial; classic keeps recipe order).
+    const plan = applyArchetypeRhythm(planAuthored, ad.archetype);
     return {
       hero,
       sections: dedupeSections(
@@ -816,12 +875,14 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
   }
 
   const planWithInline = insertInlineCta(sections, config, ad.category);
+  // Re-weight section order for the page archetype (see applyArchetypeRhythm).
+  const planRecipe = applyArchetypeRhythm(planWithInline, ad.archetype);
   return {
     hero,
     sections: dedupeSections(
       dropCanonicalContactSections(
         assignVariants(
-          assignTones(withRatingStat(ensureMinimum(planWithInline, config, seed), config), seed),
+          assignTones(withRatingStat(ensureMinimum(planRecipe, config, seed), config), seed),
           seed,
           ad.category,
         ),

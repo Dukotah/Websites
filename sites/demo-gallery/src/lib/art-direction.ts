@@ -23,12 +23,22 @@ export type Archetype = 'classic' | 'editorial' | 'utility' | 'magazine';
 const ARCHETYPE_BY_CAT: Record<string, Archetype> = {
   winery: 'editorial',
   salon: 'editorial',
+  spa: 'editorial',
+  medical: 'editorial',
   cafe: 'editorial',
+  restaurant: 'magazine',
   tattoo: 'editorial',
   landscaping: 'editorial',
+  barber: 'magazine',
   towing: 'utility',
   plumbing: 'utility',
+  hvac: 'utility',
+  electrician: 'utility',
+  roofing: 'utility',
+  contractor: 'utility',
+  cleaning: 'utility',
   'auto-repair': 'utility',
+  fitness: 'magazine',
 };
 
 export interface ArtDirection {
@@ -53,23 +63,88 @@ export interface ArtDirection {
 export const KNOWN_CATEGORIES = [
   'winery',
   'cafe',
+  'restaurant',
   'towing',
   'plumbing',
   'auto-repair',
+  'hvac',
+  'roofing',
+  'electrician',
+  'contractor',
+  'cleaning',
   'salon',
+  'spa',
+  'barber',
+  'medical',
+  'fitness',
   'landscaping',
   'tattoo',
+  'marina',
   'default',
 ] as const;
+
+/**
+ * Raw category labels (from the scraper / CSV) → a canonical KNOWN_CATEGORIES key.
+ * The generator writes the RAW label (e.g. "medical_spa", "hvac_services",
+ * "dentist") into config.category; without this, every trade/medical/restaurant
+ * lead fell through to `default` and got dressed as a winery. Keys are
+ * lowercased + space/underscore-collapsed before lookup (see `canonCategory`).
+ */
+const CATEGORY_ALIASES: Record<string, string> = {
+  // food & drink
+  coffee: 'cafe', 'coffee-shop': 'cafe', coffeehouse: 'cafe', espresso: 'cafe', roaster: 'cafe', bakery: 'cafe', patisserie: 'cafe', bistro: 'cafe',
+  restaurants: 'restaurant', eatery: 'restaurant', diner: 'restaurant', grill: 'restaurant', taqueria: 'restaurant', pizzeria: 'restaurant', pizza: 'restaurant', 'mexican-restaurant': 'restaurant', 'craft-kitchen': 'restaurant', 'beer-garden': 'restaurant', brewery: 'restaurant', pub: 'restaurant',
+  // beauty & wellness
+  hair: 'salon', hairdresser: 'salon', 'hair-salon': 'salon', beauty: 'salon', 'beauty-salon': 'salon', nail: 'salon', nails: 'salon', 'nail-salon': 'salon', stylist: 'salon', lash: 'salon',
+  massage: 'spa', 'medical-spa': 'spa', 'med-spa': 'spa', medspa: 'spa', 'day-spa': 'spa', wellness: 'spa', esthetician: 'spa', skincare: 'spa', 'medical-aesthetics': 'spa', aesthetics: 'spa', ayurveda: 'spa',
+  barbershop: 'barber', 'barber-shop': 'barber',
+  // medical
+  dentist: 'medical', dental: 'medical', 'dental-clinic': 'medical', dds: 'medical', orthodontist: 'medical', doctor: 'medical', physician: 'medical', clinic: 'medical', chiropractor: 'medical', 'medical-office': 'medical', optometrist: 'medical', veterinary: 'medical', vet: 'medical', equine: 'medical',
+  // fitness
+  gym: 'fitness', 'fitness-center': 'fitness', crossfit: 'fitness', yoga: 'fitness', pilates: 'fitness', 'personal-training': 'fitness',
+  // trades
+  plumber: 'plumbing', 'plumbing-heating': 'plumbing', drain: 'plumbing', rooter: 'plumbing',
+  electrical: 'electrician', electric: 'electrician', electricians: 'electrician',
+  heating: 'hvac', cooling: 'hvac', 'air-conditioning': 'hvac', ac: 'hvac', 'hvac-contractor': 'hvac', 'hvac-services': 'hvac', 'heating-and-cooling': 'hvac', 'heating-and-air-conditioning': 'hvac', 'sheet-metal': 'hvac',
+  roof: 'roofing', roofer: 'roofing', 'roofing-contractor': 'roofing', 'roofing-and-construction': 'roofing',
+  'general-contractor': 'contractor', builder: 'contractor', builders: 'contractor', construction: 'contractor', remodeling: 'contractor', remodeler: 'contractor', handyman: 'contractor', concrete: 'contractor', insulation: 'contractor', carpet: 'contractor', painting: 'contractor', painter: 'contractor', flooring: 'contractor', masonry: 'contractor',
+  // home services
+  landscaper: 'landscaping', landscape: 'landscaping', lawn: 'landscaping', 'lawn-care': 'landscaping', gardening: 'landscaping', yard: 'landscaping', 'property-maintenance': 'landscaping',
+  'house-cleaning': 'cleaning', housekeeping: 'cleaning', janitorial: 'cleaning', maid: 'cleaning',
+  // auto & misc
+  auto: 'auto-repair', mechanic: 'auto-repair', automotive: 'auto-repair', 'auto-body': 'auto-repair', 'body-shop': 'auto-repair', 'car-repair': 'auto-repair',
+  tow: 'towing', 'tow-truck': 'towing', 'towing-service': 'towing',
+  wineries: 'winery', vineyard: 'winery', vineyards: 'winery', 'tasting-room': 'winery', cellars: 'winery', cellar: 'winery', wine: 'winery',
+  marinas: 'marina', harbor: 'marina',
+};
+
+/** Normalize any raw category label → a canonical KNOWN_CATEGORIES key, or null. */
+export function canonCategory(raw?: string): string | null {
+  const c = (raw ?? '').toLowerCase().trim().replace(/[\s_]+/g, '-');
+  if (!c) return null;
+  if ((KNOWN_CATEGORIES as readonly string[]).includes(c)) return c;
+  if (CATEGORY_ALIASES[c]) return CATEGORY_ALIASES[c];
+  return null;
+}
 
 /** keyword → category inference table (checked against name + services). */
 const CATEGORY_KEYWORDS: Record<string, string[]> = {
   winery: ['winery', 'vineyard', 'wine', 'cellar', 'tasting'],
   cafe: ['cafe', 'café', 'coffee', 'bakery', 'espresso', 'roaster', 'bistro', 'patisserie'],
+  restaurant: ['restaurant', 'kitchen', 'eatery', 'taqueria', 'pizzeria', 'grill', 'brewery', 'beer garden', 'bar & grill'],
   towing: ['tow', 'towing', 'recovery', 'roadside', 'wrecker', 'flatbed'],
   plumbing: ['plumb', 'plumbing', 'drain', 'sewer', 'pipe', 'water heater', 'rooter'],
+  hvac: ['hvac', 'heating', 'cooling', 'air conditioning', 'furnace', 'heat pump', 'ductwork'],
+  roofing: ['roof', 'roofing', 'shingle', 'gutter', 're-roof'],
+  electrician: ['electric', 'electrical', 'electrician', 'wiring', 'panel upgrade', 'lighting install'],
+  contractor: ['contractor', 'construction', 'remodel', 'builder', 'concrete', 'insulation', 'carpentry', 'masonry', 'flooring', 'painting'],
+  cleaning: ['cleaning', 'janitorial', 'housekeeping', 'maid'],
   'auto-repair': ['auto', 'mechanic', 'repair', 'transmission', 'brake', 'tire', 'collision', 'body shop', 'garage'],
-  salon: ['salon', 'hair', 'spa', 'barber', 'beauty', 'nail', 'stylist', 'lash', 'aesthetic'],
+  salon: ['salon', 'hair', 'barber', 'beauty', 'nail', 'stylist', 'lash'],
+  spa: ['spa', 'massage', 'aesthetic', 'skincare', 'wellness', 'ayurveda', 'facial'],
+  barber: ['barber', 'barbershop', 'fade', 'grooming'],
+  medical: ['dentist', 'dental', 'dds', 'orthodont', 'clinic', 'physician', 'chiropract', 'veterinary', 'optometr', 'medical'],
+  fitness: ['fitness', 'gym', 'crossfit', 'yoga', 'pilates', 'training', 'strength'],
   landscaping: ['landscap', 'lawn', 'garden', 'tree', 'yard', 'hardscape', 'irrigation', 'nursery'],
   tattoo: ['tattoo', 'piercing', 'pierc', 'ink', 'body art', 'tooth gem', 'flash'],
 };
@@ -77,16 +152,23 @@ const CATEGORY_KEYWORDS: Record<string, string[]> = {
 /**
  * Categories that should be tonally serious — caps motion to at most 'subtle'.
  */
-const SERIOUS_CATEGORIES = new Set(['towing', 'plumbing', 'auto-repair']);
+const SERIOUS_CATEGORIES = new Set([
+  'towing', 'plumbing', 'auto-repair', 'hvac', 'roofing', 'electrician', 'contractor', 'cleaning',
+]);
 /** Categories that may go 'expressive'. */
-const EXPRESSIVE_CATEGORIES = new Set(['cafe', 'salon', 'winery', 'landscaping', 'tattoo']);
+const EXPRESSIVE_CATEGORIES = new Set([
+  'cafe', 'restaurant', 'salon', 'spa', 'winery', 'landscaping', 'tattoo', 'fitness', 'barber',
+]);
 
 /** Infer a business category from config when not explicitly set. */
 export function inferCategory(config: ProspectConfig): string {
-  if (config.category && KNOWN_CATEGORIES.includes(config.category as any)) {
-    return config.category;
+  // Normalize an explicit (possibly raw scraper) label first — "medical_spa",
+  // "hvac_services", "dentist" all resolve to a real canonical category instead
+  // of leaking through and falling back to the winery-serif default.
+  if (config.category) {
+    const canon = canonCategory(config.category);
+    if (canon) return canon;
   }
-  if (config.category) return config.category; // honor unknown explicit value
   const hay = [
     config.name ?? '',
     config.tagline ?? '',
@@ -106,12 +188,23 @@ export function inferCategory(config: ProspectConfig): string {
 const CATEGORY_PRESET: Record<string, string> = {
   winery: 'vineyard',
   cafe: 'clay-warm',
+  restaurant: 'clay-warm',
   towing: 'recovery-red',
   plumbing: 'slate-utility',
+  hvac: 'slate-utility',
+  electrician: 'slate-utility',
+  roofing: 'recovery-red',
+  contractor: 'ink-neutral',
+  cleaning: 'coastal',
   'auto-repair': 'recovery-red',
   salon: 'boutique-rose',
+  spa: 'boutique-rose',
+  barber: 'ink-neutral',
+  medical: 'coastal',
+  fitness: 'recovery-red',
   landscaping: 'garden',
   tattoo: 'boutique-rose',
+  marina: 'coastal',
   default: 'ink-neutral',
 };
 
@@ -119,12 +212,23 @@ const CATEGORY_PRESET: Record<string, string> = {
 const CATEGORY_SHAPES: Record<string, ShapeFamily[]> = {
   winery: ['editorial', 'soft', 'framed'],
   cafe: ['soft', 'rounded-pill', 'framed'],
+  restaurant: ['soft', 'editorial', 'rounded-pill'],
   towing: ['sharp', 'framed'],
   plumbing: ['sharp', 'soft'],
+  hvac: ['sharp', 'soft'],
+  electrician: ['sharp', 'framed'],
+  roofing: ['sharp', 'framed'],
+  contractor: ['sharp', 'framed', 'soft'],
+  cleaning: ['rounded-pill', 'soft'],
   'auto-repair': ['sharp', 'framed'],
   salon: ['editorial', 'rounded-pill', 'soft'],
+  spa: ['soft', 'editorial', 'rounded-pill'],
+  barber: ['sharp', 'framed', 'editorial'],
+  medical: ['soft', 'rounded-pill', 'framed'],
+  fitness: ['sharp', 'framed'],
   landscaping: ['soft', 'editorial', 'framed'],
   tattoo: ['editorial', 'sharp', 'soft'],
+  marina: ['soft', 'framed', 'editorial'],
   default: ['soft', 'sharp', 'editorial'],
 };
 
@@ -148,7 +252,7 @@ function densityForFont(font: FontPairing, seed: number): Density {
 function pickNeutralTemp(category: string, seed: number, override?: NeutralTemp): NeutralTemp {
   if (override) return override;
   // Warm categories lean cream; utility leans cool — but still seeded.
-  const warmBias = ['cafe', 'winery', 'salon', 'landscaping'].includes(category);
+  const warmBias = ['cafe', 'restaurant', 'winery', 'salon', 'spa', 'barber', 'landscaping'].includes(category);
   return chance(seed ^ 0x2545f491, warmBias ? 0.7 : 0.4) ? 'warm' : 'cool';
 }
 

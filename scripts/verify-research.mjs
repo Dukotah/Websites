@@ -10,26 +10,34 @@
  * picks up "Call us at 707-…" lines. This pass scrubs that noise so the facts
  * the generator builds from are clean — a key-free win on its own.
  *
- * Tiers of trust (deliberate):
- *   • clean (default) ............ scrub noise, keep confirmed:false. The site
- *       still goes through the generator's gated copy path, so it can still flag
- *       needs-review — but from clean facts now.
- *   • --promote (needs ANTHROPIC_API_KEY) ... ALSO write tagline/hero/about/
- *       service-descriptions with Claude FROM THE CLEANED FACTS, then set
- *       confirmed:true so the generator uses that prose verbatim.
+ * Tiers of trust (deliberate) — `confirmed` is a three-state flag:
+ *   • confirmed:false (default clean) ... scrub noise, keep confirmed:false. The
+ *       site still goes through the generator's gated copy path on its HONEST
+ *       _richness, so a thin scrape can still flag needs-review — but from clean
+ *       facts now.
+ *   • confirmed:"auto" (--promote, needs ANTHROPIC_API_KEY) ... ALSO write
+ *       tagline/hero/about/service-descriptions with Claude FROM THE CLEANED
+ *       FACTS. This is polished prose, but it is still derived from the site's
+ *       OWN unverified scrape — so we DELIBERATELY do NOT set confirmed:true.
+ *       Downstream (generate-prospects.mjs) treats anything other than the
+ *       literal `true` as non-authoritative: it keeps the honest _richness, so
+ *       the thin-research gate STILL FIRES and a thin scrape can't masquerade as
+ *       authoritative just because prose was generated over it.
+ *   • confirmed:true ... RESERVED for independently web-verified files (reviews,
+ *       awards, founding year, licenses cross-checked off-site). This script
+ *       NEVER sets confirmed:true and NEVER touches a file that already has it
+ *       (those are human-verified). Promote to true by hand after verifying.
  *
  * IMPORTANT: --promote writes copy from the SITE'S OWN scraped facts. That is
- * not the same as independent web verification (reviews, awards, founding year,
- * licenses). For the highest bar, an agent should still cross-check those — this
- * just removes the blank-page problem and the template-copy look. A confirmed:true
- * file written here is annotated as such in `notes`.
- *
- * Never touches a file that is already confirmed:true (those are human-verified).
+ * not the same as independent web verification. It removes the blank-page
+ * problem and the template-copy look, but the file stays gated (confirmed:"auto")
+ * until an agent cross-checks the facts and flips it to true. The tier + caveat
+ * are annotated in `notes`.
  *
  * Usage:
  *   node scripts/verify-research.mjs                 # clean every confirmed:false file
  *   node scripts/verify-research.mjs <slug…>         # clean only these slugs
- *   node scripts/verify-research.mjs --promote       # + write copy & confirm (needs key)
+ *   node scripts/verify-research.mjs --promote       # + write copy, confirmed:"auto" (needs key, still gated)
  *   node scripts/verify-research.mjs --dry-run       # report only, write nothing
  */
 import { readFile, writeFile, readdir } from 'node:fs/promises';
@@ -154,7 +162,7 @@ async function main() {
 
   console.log(
     `Verifying ${targets.length} auto-research file(s).\n` +
-      `  Mode: ${promote ? 'clean + write copy + confirm (Claude)' : 'clean noise only'}` +
+      `  Mode: ${promote ? 'clean + write copy → confirmed:"auto" (Claude, still gated)' : 'clean noise only'}` +
       `${dryRun ? ' · DRY RUN' : ''}\n`,
   );
 
@@ -191,10 +199,14 @@ async function main() {
         r.aboutBody = Array.isArray(copy.aboutBody) && copy.aboutBody.length ? copy.aboutBody : r.aboutBody;
         r.servicesHeading = copy.servicesHeading || 'What we do';
         if (Array.isArray(copy.services) && copy.services.length) r.services = copy.services;
-        r.confirmed = true;
-        note += ' Copy written by Claude from the cleaned scraped facts and marked confirmed:true — independently verify reviews/awards/founding year.';
+        // The prose is polished but still derived from the SITE'S OWN unverified
+        // scrape. Mark the intermediate "auto" tier — NOT true — so downstream
+        // keeps the honest _richness (preserved above) and the thin-research gate
+        // still fires. confirmed:true is reserved for independently-verified files.
+        r.confirmed = 'auto';
+        note += ' Copy written by Claude from the cleaned scraped facts and marked confirmed:"auto" (gated, not authoritative) — web-verify reviews/awards/founding year, then set confirmed:true by hand.';
         promoted++;
-        console.log(`  ✓ ${lead.name || file}: cleaned + copy written → confirmed:true`);
+        console.log(`  ✓ ${lead.name || file}: cleaned + copy written → confirmed:"auto" (still gated)`);
       } catch (err) {
         note += ` Copy step failed (${err.message}); left confirmed:false.`;
         console.log(`  · ${lead.name || file}: cleaned (copy step failed: ${err.message})`);
@@ -212,11 +224,17 @@ async function main() {
     if (!dryRun) await writeFile(join(RESEARCH_DIR, file), JSON.stringify(r, null, 2) + '\n');
   }
 
-  console.log(`\nDone. ${cleaned} file(s) cleaned${promoted ? `, ${promoted} promoted to confirmed:true` : ''}${dryRun ? ' (dry run — nothing written)' : ''}.`);
-  if (!promote) {
+  console.log(`\nDone. ${cleaned} file(s) cleaned${promoted ? `, ${promoted} given polished copy at confirmed:"auto" (still gated)` : ''}${dryRun ? ' (dry run — nothing written)' : ''}.`);
+  if (promote) {
+    console.log(
+      `  confirmed:"auto" files have prose but are NOT authoritative — they keep their\n` +
+        `  honest richness and still flag needs-review if thin. To finish them:\n` +
+        `    • web-verify reviews/awards/founding year, then set confirmed:true by hand.`,
+    );
+  } else {
     console.log(
       `  These stay confirmed:false (gated). To finish them:\n` +
-        `    • set ANTHROPIC_API_KEY and rerun with --promote to auto-write prose, OR\n` +
+        `    • set ANTHROPIC_API_KEY and rerun with --promote to auto-write prose (→ confirmed:"auto"), OR\n` +
         `    • have an agent web-verify facts + write the copy, then set confirmed:true by hand.`,
     );
     if (stillThin) console.log(`  ${stillThin} are still thin even after cleaning — those most need a web-research pass.`);

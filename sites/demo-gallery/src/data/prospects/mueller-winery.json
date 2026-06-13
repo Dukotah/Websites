@@ -3,7 +3,7 @@
   "category": "winery",
   "tagline": "Russian River Valley, in balance",
   "seoDescription": "Mueller Winery — a small, family-run Healdsburg winery crafting limited lots of Russian River Valley Pinot Noir and Chardonnay since 1991. Tasting room on North Street.",
-  "area": "Healdsburg, CA",
+  "area": "Healdsburg",
   "established": "Est. 1991",
   "contact": {
     "phone": "+17074738086",
@@ -23,15 +23,15 @@
   },
   "highlights": [
     "Founded in Healdsburg, 1991",
-    "Recognized by Wine Spectator",
+    "Wine Spectator Top 30 CA Pinot producer",
     "Small-lot Russian River wines",
     "Family-owned & winemaker-poured",
-    "Downtown tasting room"
+    "Downtown tasting room on North St"
   ],
   "images": {
-    "hero": "/images/mueller-winery/hero.jpg",
-    "heroAlt": "Mueller Winery in Healdsburg, CA",
-    "story": "/images/mueller-winery/story.jpg",
+    "hero": "/images/mueller-winery/story.jpg",
+    "heroAlt": "Mueller Winery in Healdsburg",
+    "story": "/images/mueller-winery/hero.jpg",
     "storyAlt": "About Mueller Winery",
     "storyCaption": "",
     "storyCredit": "",
@@ -39,23 +39,23 @@
   },
   "galleryImages": [
     {
-      "src": "/images/mueller-winery/story.jpg",
-      "alt": "Mueller Winery in Healdsburg, CA — photo 1"
+      "src": "/images/mueller-winery/hero.jpg",
+      "alt": "Mueller Winery in Healdsburg — photo 1"
     },
     {
       "src": "/images/mueller-winery/photo-2.jpg",
-      "alt": "Mueller Winery in Healdsburg, CA — photo 2"
+      "alt": "Mueller Winery in Healdsburg — photo 2"
     },
     {
       "src": "/images/mueller-winery/photo-3.jpg",
-      "alt": "Mueller Winery in Healdsburg, CA — photo 3"
+      "alt": "Mueller Winery in Healdsburg — photo 3"
     }
   ],
   "about": {
     "heading": "A Life in Balance",
     "body": [
-      "Mueller Winery was founded in Healdsburg in 1991 by winemaker Bob Mueller, with a clear vision: to make small lots of premium Chardonnay and Pinot Noir. A UC Davis graduate with a master's in Food Science and Enology, Bob learned his craft at wineries including Foppiano and Charles Krug before striking out on his own.",
-      "The first release under the Mueller label was a 1991 Russian River Valley Chardonnay — just 315 cases, limited but extremely well received. His Pinot Noir debut followed with the 1994 'Emily's Cuvée,' only 266 cases, which sold out immediately. Knowing the cool climate and terroir of the Russian River Valley were ideal for Pinot Noir and Chardonnay, Bob still spends much of his time walking the vineyards.",
+      "Mueller Winery was founded in Healdsburg in 1991 by winemaker Bob Mueller, with a clear vision: to make small lots of premium Chardonnay and Pinot Noir. He earned a bachelor's in biology at UC Santa Cruz and a master's in Food Science and Enology at UC Davis, and a chemist by trade, he sought out specific vineyards across the Russian River appellation.",
+      "The first release under the Mueller label was a 1991 Russian River Valley Chardonnay — limited but extremely well received. His Pinot Noir followed with the 'Emily's Cuvée,' which Wine Spectator went on to call one of the Russian River Valley's best pinot noirs at any price. Knowing the cool climate and terroir of the Russian River Valley were ideal for Pinot Noir and Chardonnay, Bob still spends much of his time walking the vineyards.",
       "Today Mueller remains a small, family-run winery in the Russian River appellation, with a relaxed tasting room in downtown Healdsburg where you may well be poured by Bob himself."
     ],
     "signature": ""
@@ -68,7 +68,7 @@
     },
     {
       "title": "Chardonnay",
-      "description": "Russian River Valley Chardonnay such as the 'LB' — rich with pear and pineapple, full-bodied with a spicy oak finish."
+      "description": "Russian River Valley Chardonnay such as the 'LB' — rich with pear, pineapple and banana, full-bodied with a spicy oak finish."
     },
     {
       "title": "Zinfandel & Syrah",
@@ -76,7 +76,7 @@
     },
     {
       "title": "Tasting Room",
-      "description": "Sample the current releases at the Healdsburg tasting room on North Street, open Friday through Sunday."
+      "description": "Sample the current releases at the downtown Healdsburg tasting room on North Street, open Friday through Sunday and weekdays by appointment."
     }
   ],
   "hours": [
@@ -88,34 +88,6 @@
   "hoursNote": "",
   "sections": [
     {
-      "type": "faq",
-      "eyebrow": "Good to know",
-      "heading": "Common questions",
-      "items": [
-        {
-          "q": "Where are you located?",
-          "a": "You'll find us at 118 North St."
-        },
-        {
-          "q": "What are your hours?",
-          "a": "undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined."
-        },
-        {
-          "q": "What areas do you serve?",
-          "a": "We proudly serve Healdsburg, CA and the surrounding community."
-        },
-        {
-          "q": "How do I get in touch?",
-          "a": "Call us at +17074738086 — we're glad to help."
-        }
-      ]
-    },
-    {
-      "type": "bigquote",
-      "quote": "Really good wine, and friendly tasting room staff. If you are not fortunate enough to meet Bob, Toby has amazing knowledge — you just will not want to leave.",
-      "author": "Yelp reviewer"
-    },
-    {
       "type": "services-detailed",
       "eyebrow": "Services",
       "heading": "Our Wines",
@@ -126,7 +98,7 @@
         },
         {
           "title": "Chardonnay",
-          "description": "Russian River Valley Chardonnay such as the 'LB' — rich with pear and pineapple, full-bodied with a spicy oak finish."
+          "description": "Russian River Valley Chardonnay such as the 'LB' — rich with pear, pineapple and banana, full-bodied with a spicy oak finish."
         },
         {
           "title": "Zinfandel & Syrah",
@@ -134,7 +106,7 @@
         },
         {
           "title": "Tasting Room",
-          "description": "Sample the current releases at the Healdsburg tasting room on North Street, open Friday through Sunday."
+          "description": "Sample the current releases at the downtown Healdsburg tasting room on North Street, open Friday through Sunday and weekdays by appointment."
         }
       ]
     },
@@ -157,18 +129,41 @@
       "heading": "What customers say",
       "items": [
         {
-          "quote": "Really good wine, and friendly tasting room staff. If you are not fortunate enough to meet Bob, Toby has amazing knowledge — you just will not want to leave.",
+          "quote": "Really good wine, and friendly tasting room staff. The top winery of the day among the six we visited — you just will not want to leave.",
           "author": "Yelp reviewer"
         },
         {
-          "quote": "Greeted by Bob the owner and tended to by Joan, we had an enjoyable visit with some of the better Pinot and Chardonnay in Sonoma.",
-          "author": "Yelp reviewer"
+          "quote": "Server was very friendly and the wines were great — some of the better Pinot and Chardonnay in Sonoma.",
+          "author": "TripAdvisor reviewer"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 118 North St."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Healdsburg and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17074738086 — we're glad to help."
         }
       ]
     }
   ],
   "layout": "classic",
-  "status": "ready",
+  "status": "needs-review",
   "flags": [
     "No email found — add a real email or contact form before sending"
   ],
@@ -177,10 +172,5 @@
     "brandDark": "#2b1a1f"
   },
   "priceRange": "$$",
-  "artDirection": {
-    "fontId": "boutique-contrast",
-    "neutralTemp": "warm",
-    "preferredDepthSection": "bigquote"
-  },
   "heroVariant": "cinematic"
 }

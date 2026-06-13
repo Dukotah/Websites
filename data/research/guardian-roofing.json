@@ -13,8 +13,8 @@
   ],
   "aboutHeading": "About Guardian Roofing",
   "aboutBody": [
-    "Guardian Roofing is a family-owned, licensed roofing company started in 2019 by John, who was born and raised in Sonoma County and brings more than a decade of roofing experience to every job. He runs Guardian alongside his wife Heather, who keeps the office responsive and the schedule on track.",
-    "What sets Guardian apart is that John isn’t just the owner — he’s the project manager on site for the entirety of each install, demanding quality and clear communication from estimate to cleanup. As a GAF-certified contractor (CSLB #1062288), the team handles everything from CertainTeed Landmark shingle re-roofs to metal and heat-welded commercial TPO, for homes and businesses across Sonoma, Napa and Marin."
+    "Guardian Roofing is a family-owned, licensed roofing company started in 2019 by John, a Sonoma County native who began roofing in 2009. He spent about a decade with a local family-owned roofer — including the post-fire rebuild of hundreds of homes in Santa Rosa's Coffee Park neighborhood — before studying nights for his contractor's license and launching Guardian. He runs the company alongside his partner Heather, whose background in accounting and management keeps the office responsive and the schedule on track.",
+    "What sets Guardian apart is that John isn’t just the owner — he’s the project manager on site for the entirety of each install, demanding quality and clear communication from estimate to cleanup. As a GAF-certified contractor (CSLB #1062288), the team handles everything from CertainTeed Landmark shingle re-roofs to metal and heat-welded commercial TPO, for homes and businesses across Sonoma County, Napa and all of Marin."
   ],
   "servicesHeading": "What we do",
   "services": [
@@ -69,7 +69,7 @@
     "source": "yelp"
   },
   "social": {
-    "facebook": "",
+    "facebook": "https://www.facebook.com/profile.php?id=100064048422771",
     "instagram": "",
     "google": ""
   },
@@ -99,5 +99,18 @@
     "https://guardianroofllc.com/wp-content/uploads/2021/06/Santa-Rosa.-Sonoma-County.-Dry-Rot-Repair.-Roof.-MID-672x448.jpg",
     "https://guardianroofllc.com/wp-content/uploads/2021/06/Santa-Rosa.-Sonoma-County.-Roof-Repair.-Dry-Rot.-BEFORE-scaled-e1664575666165-672x448.jpg"
   ],
-  "notes": "Verified via guardianroofllc.com + Yelp/Angi/HomeAdvisor/BBB (Jun 2026). Family-owned; started 2019 by owner John (Sonoma County native, 13+ yrs roofing) with wife Heather in office; CSLB #1062288; GAF-certified. 5.0★ across review sites (exact count not public — left 0). Testimonials are real, attributed by area. Photos are real project shots from their site."
+  "notes": "Re-verified Jun 2026 via guardianroofllc.com (about-us) + Angi/HomeAdvisor/BBB/GAF directory. Confirmed this is the Santa Rosa / Sonoma County company (guardianroofllc.com), distinct from other 'Guardian Roofing' firms nationally (e.g. WA-based, and Guardian Rain Gutters in San Juan Capistrano). Family-owned; started 2019 by owner John (Sonoma County native, began roofing 2009, ~10 yrs with a local roofer before launching, incl. Coffee Park fire rebuilds) with partner Heather (accounting/management) in office. Phone (707) 843-3526; email guardianroofllc@gmail.com; CSLB #1062288 (Roofing); GAF Certified (2024). Hours Mon-Fri 7am-4pm. Service area: Santa Rosa, Roseland, Windsor, Sonoma, Napa, all of Marin. Address 2210 Dennis Lane, Santa Rosa, CA 95403 (per contact-us / directories). Rating: review sites show strong/5-star sentiment but Yelp page returned 403 and exact review COUNT is not publicly scrapable — count left 0; do not publish a hard star count without confirming on the live page. Testimonials are real, attributed by area. Photos are real project shots from their site.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": {
+    "name": "Guardian Roofing",
+    "category": "roofing",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17078433526",
+    "email": "guardianroofllc@gmail.com",
+    "website": "https://guardianroofllc.com",
+    "address": "2210 Dennis Lane",
+    "owner": "John"
+  }
 }

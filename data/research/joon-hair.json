@@ -1,0 +1,61 @@
+{
+  "slug": "joon-hair",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Soul and beloved, in historic downtown Santa Rosa",
+  "seoDescription": "Joon Hair — a luxury hair salon in historic downtown Santa Rosa, CA, specializing in precision cuts, custom color, balayage, keratin smoothing, extensions, and special-event styling.",
+  "heroHeading": "A Persian word for beloved, a salon to match",
+  "heroSubheading": "Joon Hair is a luxury salon in the heart of historic downtown Santa Rosa, where a team of skilled stylists creates custom cuts, color, and special-event looks for every client.",
+  "highlights": [
+    "Historic downtown Santa Rosa, on 5th St",
+    "Custom color & balayage specialists",
+    "Special-event & bridal styling",
+    "4.5 stars across 100+ Yelp reviews",
+    "Woman-owned"
+  ],
+  "aboutHeading": "The Meaning of Joon",
+  "aboutBody": [
+    "Joon Hair sits in the heart of historic downtown Santa Rosa on 5th Street. The name 'Joon' is a Persian term of endearment meaning 'soul' and 'beloved' — chosen by the salon's owners, a married couple of Persian heritage, to set the open, welcoming tone they wanted their clients to feel from the moment they walk in.",
+    "The salon's approach blends classic technique with current trends, tailoring each look to the individual rather than forcing a single style. Its stylists specialize in custom color — balayage, foilyage, tint, and corrective work — alongside precision cuts for women and men, blowout styling, keratin smoothing, and hair extensions.",
+    "Joon Hair is also a go-to for special-event styling, from bridal hair and makeup to birthdays and business looks. The team includes stylists Shireen, Aliyah, Terra, Lori, Lupe, Shana, Nina, and Alex."
+  ],
+  "servicesHeading": "What We Do",
+  "services": [
+    { "title": "Haircuts & Styling", "description": "Precision cuts for women ($80–$160) and men ($90–$120), plus blowout styling from $60. Each cut is tailored to the individual rather than a one-size template." },
+    { "title": "Custom Color", "description": "Single-process tint from $75, full highlights, and corrective color, by stylists who specialize in customized, natural-looking results." },
+    { "title": "Balayage & Foilyage", "description": "Hand-painted balayage and foilyage from $75 up to $325+, for lived-in, dimensional color that grows out gracefully." },
+    { "title": "Keratin & Treatments", "description": "Keratin smoothing treatments from $165 (consultation required) to tame frizz and add shine and manageability." },
+    { "title": "Extensions", "description": "Hair extensions for length and volume, fitted after a personal consultation." },
+    { "title": "Special-Event & Bridal", "description": "Updos and styling for weddings, business, and celebrations, plus bridal makeup from $300." }
+  ],
+  "hours": [
+    "Monday: Closed",
+    "Tuesday: 9:00 AM – 7:00 PM",
+    "Wednesday: 9:00 AM – 7:00 PM",
+    "Thursday: 9:00 AM – 7:00 PM",
+    "Friday: 9:00 AM – 7:00 PM",
+    "Saturday: 9:00 AM – 4:00 PM",
+    "Sunday: Closed"
+  ],
+  "testimonials": [],
+  "priceRange": "$$$",
+  "social": {
+    "facebook": "",
+    "instagram": "https://www.instagram.com/joon__hair/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "/images/joon-hair/story.webp",
+    "/images/joon-hair/photo-2.webp",
+    "/images/joon-hair/photo-3.webp",
+    "/images/joon-hair/photo-4.webp",
+    "/images/joon-hair/photo-5.webp",
+    "/images/joon-hair/photo-6.webp",
+    "/images/joon-hair/photo-7.webp",
+    "/images/joon-hair/photo-8.webp"
+  ],
+  "notes": "Verified via official site joonhair.net, Yelp, Fresha, Instagram (June 2026). Owners: married wife-wife couple of Persian heritage (names not publicly listed — left out of copy). Phone (707) 575-1474 and email letschat@joonhair.net confirmed on official site. Address 205 5th St Ste D, Santa Rosa CA 95401. Hours Tue–Fri 9–7, Sat 9–4, closed Sun/Mon (official site; some directories list Tue 9–6 — site value used). Rating 4.5 stars / 100 reviews per Yelp (count grows; site shows real photos so no number is fabricated). Prices from official site service menu. Instagram handle is @joon__hair (double underscore) — verified; the joonhair.net footer's @joon.hair appears to be a typo. A 'Since 1985' line appears in directory blurbs but traces to a stylist-network education program, NOT Joon Hair's founding — established left blank. realPhotoUrls preserved as the existing local /images/joon-hair/*.webp wiring (real salon photos already downloaded); actual source images are on squarespace-cdn.com.",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": { "name": "Joon Hair", "category": "salon", "city": "Santa Rosa", "state": "CA", "phone": "+17075751474", "email": "letschat@joonhair.net", "address": "205 5th St Ste D", "owner": "", "website": "https://www.joonhair.net/" }
+}

@@ -10,12 +10,20 @@ const { config } = Astro.props as { config: ProspectConfig };
 
 const { hero, images, contact, highlights = [], established, area, name } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
-const eyebrow = [established, area].filter(Boolean).join(' · ');
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
+// De-dup (Fable): the trust badge already states the founding year ("1991 / Est."),
+// so drop `established` from the eyebrow when the badge owns it — otherwise the same
+// fact reads twice ("EST. 1991 · CITY" above the badge). Keep the area either way;
+// if the badge has no year to show, the eyebrow falls back to the full string.
+const eyebrow = [badgeYear ? '' : established, area].filter(Boolean).join(' · ');
+// Headline fit-to-box (Fable): the display headline runs at clamp(2.8–5.6rem) /
+// 18ch, tuned for a short phrase. A full-sentence headline at that scale crowds
+// the scrim and dominates the fold, so step the clamp down by char count.
+const longTitle = (hero.heading ?? '').length > 28;
 ---
 
-<section class="cin-hero" id="top" aria-label="Hero">
+<section class="cin-hero" id="top" aria-label="Hero" data-long-title={longTitle ? 'true' : undefined}>
 
   <!-- ① Full-bleed photo — parallax target -->
   <div class="cin-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.4">
@@ -261,6 +269,21 @@ const trustLine = highlights[0] ?? '';
     margin: 0 0 1rem;
     text-shadow: 0 2px 32px color-mix(in srgb, var(--bg-deep) 50%, transparent);
     max-width: 18ch;
+    text-wrap: balance;
+  }
+
+  /* Long (full-sentence) headline: step the clamp down and widen the measure so a
+     sentence wraps to a tidy block over the photo instead of dominating the fold.
+     Balanced wrap evens the lines; the smaller clamp is the CSS fallback where
+     text-wrap: balance is unsupported. */
+  /* Scoped to >=641px so the (lower-specificity) mobile title rule still wins on
+     phones; the doubled attribute raises specificity above the [data-archetype]
+     title bump so a long headline stays scaled down on the magazine archetype. */
+  @media (min-width: 641px) {
+    [data-long-title][data-long-title] .cin-hero__title {
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      max-width: 24ch;
+    }
   }
 
   /* ── Subheading ──────────────────────────────────────────────────────────── */

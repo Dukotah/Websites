@@ -3,7 +3,7 @@
   "category": "restaurant",
   "tagline": "Life's too short to eat bad barbecue.",
   "seoDescription": "WarPigs (a.k.a. BBQ Hustlers) is a craft barbecue catering and pop-up operation in Sonoma County, led by pitmaster Larry Hillix since 2011. 12-hour smoked pulled pork, brisket, ribs, and house-made sausage for events, weddings, and brewery & winery pop-ups. Call (707) 508-5551.",
-  "area": "Cotati, CA",
+  "area": "Cotati",
   "established": "Est. 2011",
   "contact": {
     "phone": "+17075085551",
@@ -31,7 +31,7 @@
   ],
   "images": {
     "hero": "/images/warpigs-craft-kitchen/gallery-1.jpg",
-    "heroAlt": "WarPigs Craft Kitchen in Cotati, CA",
+    "heroAlt": "WarPigs Craft Kitchen in Cotati",
     "story": "/images/warpigs-craft-kitchen/hero.jpg",
     "storyAlt": "About WarPigs Craft Kitchen",
     "storyCaption": "",
@@ -41,15 +41,15 @@
   "galleryImages": [
     {
       "src": "/images/warpigs-craft-kitchen/hero.jpg",
-      "alt": "WarPigs Craft Kitchen in Cotati, CA — photo 1"
+      "alt": "WarPigs Craft Kitchen in Cotati — photo 1"
     },
     {
       "src": "/images/warpigs-craft-kitchen/story.jpg",
-      "alt": "WarPigs Craft Kitchen in Cotati, CA — photo 2"
+      "alt": "WarPigs Craft Kitchen in Cotati — photo 2"
     },
     {
       "src": "/images/warpigs-craft-kitchen/gallery-2.jpg",
-      "alt": "WarPigs Craft Kitchen in Cotati, CA — photo 3"
+      "alt": "WarPigs Craft Kitchen in Cotati — photo 3"
     }
   ],
   "about": {
@@ -100,6 +100,58 @@
   "hoursNote": "",
   "sections": [
     {
+      "type": "stats",
+      "items": [
+        {
+          "value": "15+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.5★",
+          "label": "22 reviews"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "eyebrow": "Our story",
+      "heading": "How we got here",
+      "items": [
+        {
+          "year": "2011",
+          "title": "WarPigs Craft Kitchen opened its doors",
+          "body": "WarPigs Craft Kitchen started in 2011, when owner and pitmaster Larry Hillix decided Sonoma County was ready for serious barbecue"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 8492 Gravenstein Hwy."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Cotati and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17075085551 — we're glad to help."
+        }
+      ]
+    },
+    {
       "type": "services-detailed",
       "eyebrow": "Services",
       "heading": "What We Smoke",
@@ -129,55 +181,22 @@
           "description": "Regular pop-ups and collaborations with local breweries and wineries, including stops like Iron Ox Brewing, bringing craft barbecue across Sonoma County."
         }
       ]
-    },
-    {
-      "type": "stats",
-      "items": [
-        {
-          "value": "15+",
-          "label": "Years in business"
-        },
-        {
-          "value": "4.5★",
-          "label": "22 reviews"
-        },
-        {
-          "value": "6",
-          "label": "Services offered"
-        }
-      ]
-    },
-    {
-      "type": "faq",
-      "eyebrow": "Good to know",
-      "heading": "Common questions",
-      "items": [
-        {
-          "q": "Where are you located?",
-          "a": "You'll find us at 8492 Gravenstein Hwy."
-        },
-        {
-          "q": "What are your hours?",
-          "a": "undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined."
-        },
-        {
-          "q": "What areas do you serve?",
-          "a": "We proudly serve Cotati, CA and the surrounding community."
-        },
-        {
-          "q": "How do I get in touch?",
-          "a": "Call us at +17075085551 — we're glad to help."
-        }
-      ]
     }
   ],
   "layout": "split",
-  "status": "ready",
-  "flags": [],
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually"
+  ],
   "theme": {
     "brand": "#b5462f",
     "brandDark": "#2c1d18"
   },
   "priceRange": "$$",
-  "heroVariant": "collage"
+  "artDirection": {
+    "fontId": "classic-trad",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "timeline"
+  },
+  "heroVariant": "editorial"
 }

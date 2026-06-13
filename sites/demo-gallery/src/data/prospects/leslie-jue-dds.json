@@ -3,7 +3,7 @@
   "category": "dental",
   "tagline": "Authentic, personalized dentistry rooted in Sonoma County.",
   "seoDescription": "Leslie Jue, DDS at SoCo Dental Studio in Santa Rosa, CA offers cosmetic, preventive, restorative and implant dentistry. With 36+ years of experience and a family legacy of care, Dr. Jue and the SoCo team deliver gentle, modern dentistry. Call (707) 537-1904.",
-  "area": "Santa Rosa, CA",
+  "area": "Santa Rosa",
   "established": "",
   "contact": {
     "phone": "+17075371904",
@@ -31,7 +31,7 @@
   ],
   "images": {
     "hero": "/images/leslie-jue-dds/story.webp",
-    "heroAlt": "Leslie Jue DDS in Santa Rosa, CA",
+    "heroAlt": "Leslie Jue DDS in Santa Rosa",
     "story": "/images/leslie-jue-dds/gallery-2.webp",
     "storyAlt": "About Leslie Jue DDS",
     "storyCaption": "",
@@ -41,15 +41,15 @@
   "galleryImages": [
     {
       "src": "/images/leslie-jue-dds/gallery-2.webp",
-      "alt": "Leslie Jue DDS in Santa Rosa, CA — photo 1"
+      "alt": "Leslie Jue DDS in Santa Rosa — photo 1"
     },
     {
       "src": "/images/leslie-jue-dds/hero.webp",
-      "alt": "Leslie Jue DDS in Santa Rosa, CA — photo 2"
+      "alt": "Leslie Jue DDS in Santa Rosa — photo 2"
     },
     {
       "src": "/images/leslie-jue-dds/gallery-1.jpg",
-      "alt": "Leslie Jue DDS in Santa Rosa, CA — photo 3"
+      "alt": "Leslie Jue DDS in Santa Rosa — photo 3"
     }
   ],
   "about": {
@@ -177,7 +177,7 @@
         },
         {
           "q": "What areas do you serve?",
-          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+          "a": "We proudly serve Santa Rosa and the surrounding community."
         },
         {
           "q": "How do I get in touch?",
@@ -187,8 +187,10 @@
     }
   ],
   "layout": "classic",
-  "status": "ready",
-  "flags": [],
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually"
+  ],
   "theme": {
     "brand": "#c2683a",
     "brandDark": "#243b53"

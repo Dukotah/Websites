@@ -16,12 +16,20 @@ const { config } = Astro.props as { config: ProspectConfig };
 
 const { hero, images, contact, highlights = [], established, area } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
-const eyebrow = [established, area].filter(Boolean).join(' · ');
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
+// De-dup (Fable): the trust badge already states the founding year, so drop
+// `established` from the eyebrow when the badge owns it (keep the area). Falls
+// back to the full eyebrow when the badge has no year to surface.
+const eyebrow = [badgeYear ? '' : established, area].filter(Boolean).join(' · ');
+// Headline fit-to-box (Fable): the headline runs at clamp(2.8–5.4rem) in the copy
+// panel, tuned for a short phrase. A full-sentence headline at that scale forces a
+// tall stack that pushes the CTA below the fold, so step the clamp down by char
+// count (the 38ch panel measure already wraps it).
+const longTitle = (hero.heading ?? '').length > 28;
 ---
 
-<section class="spl-hero" id="top" aria-label="Hero">
+<section class="spl-hero" id="top" aria-label="Hero" data-long-title={longTitle ? 'true' : undefined}>
 
   <!-- ① Deep copy panel (55%) -->
   <div class="spl-hero__panel">
@@ -179,6 +187,19 @@ const trustLine = highlights[0] ?? '';
     color: var(--text-on-dark);
     margin: 0 0 1.25rem;
     text-wrap: balance;
+  }
+
+  /* Long (full-sentence) headline: step the clamp down so a sentence wraps to a
+     compact block that keeps the CTA on the fold. Balanced wrap evens the lines;
+     the smaller clamp is the CSS fallback where text-wrap: balance is
+     unsupported. */
+  /* Scoped to >=861px so the (lower-specificity) mobile title rule still wins on
+     phones/tablets; the doubled attribute raises specificity above the
+     [data-archetype] title bump so a long headline stays scaled down on magazine. */
+  @media (min-width: 861px) {
+    [data-long-title][data-long-title] .spl-hero__title {
+      font-size: clamp(2.4rem, 4.4vw, 4.2rem);
+    }
   }
 
   .spl-hero__sub {

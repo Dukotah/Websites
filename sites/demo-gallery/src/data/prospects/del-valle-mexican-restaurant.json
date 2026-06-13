@@ -3,15 +3,15 @@
   "category": "restaurant",
   "tagline": "Family-owned taqueria serving authentic Mexican flavors in Santa Rosa's Roseland District since 2017",
   "seoDescription": "Del Valle Mexican Restaurant in Santa Rosa, CA. Authentic family-owned Mexican food, mariscos, tacos, burritos and catering on Sebastopol Rd.",
-  "area": "Santa Rosa, CA",
+  "area": "Santa Rosa",
   "established": "Est. 2017",
   "contact": {
-    "phone": "707-595-1081",
+    "phone": "+17075951081",
     "email": "luz@delvallemex.com",
-    "address": "2000 Sebastopol Road Santa Rosa, CA, 95407 United States"
+    "address": "2000 Sebastopol Rd"
   },
   "social": {
-    "facebook": "https://www.facebook.com/delvallemex",
+    "facebook": "https://www.facebook.com/delvallemex/",
     "instagram": "https://www.instagram.com/delvallemex/",
     "google": ""
   },
@@ -28,44 +28,48 @@
   ],
   "images": {
     "hero": "/images/del-valle-mexican-restaurant/hero.jpg",
-    "heroAlt": "Del Valle Mexican Restaurant in Santa Rosa, CA",
-    "story": "/images/del-valle-mexican-restaurant/story.webp",
-    "storyAlt": "Street-style tacos at Del Valle Mexican Restaurant",
+    "heroAlt": "Del Valle Mexican Restaurant in Santa Rosa",
+    "story": "/images/del-valle-mexican-restaurant/photo-4.webp",
+    "storyAlt": "About Del Valle Mexican Restaurant",
     "storyCaption": "",
     "storyCredit": "",
-    "placeholder": "/images/library/restaurant/hero.svg"
+    "placeholder": "/images/library/default/hero.svg"
   },
   "galleryImages": [
     {
-      "src": "/images/del-valle-mexican-restaurant/photo-2.webp",
-      "alt": "Molcajete at Del Valle Mexican Restaurant"
+      "src": "/images/del-valle-mexican-restaurant/photo-4.webp",
+      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 1"
     },
     {
       "src": "/images/del-valle-mexican-restaurant/photo-3.webp",
-      "alt": "Fish tacos at Del Valle Mexican Restaurant"
+      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 2"
     },
     {
-      "src": "/images/del-valle-mexican-restaurant/photo-4.webp",
-      "alt": "Chimichanga at Del Valle Mexican Restaurant"
+      "src": "/images/del-valle-mexican-restaurant/story.webp",
+      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 3"
     },
     {
       "src": "/images/del-valle-mexican-restaurant/photo-5.webp",
-      "alt": "Carne asada plate at Del Valle Mexican Restaurant"
+      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 4"
     },
     {
       "src": "/images/del-valle-mexican-restaurant/photo-6.webp",
-      "alt": "Enchiladas Michoacanas at Del Valle Mexican Restaurant"
+      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 5"
+    },
+    {
+      "src": "/images/del-valle-mexican-restaurant/photo-2.webp",
+      "alt": "Del Valle Mexican Restaurant in Santa Rosa — photo 6"
     }
   ],
   "about": {
     "heading": "About Del Valle Mexican Restaurant",
     "body": [
-      "Since 2017, Del Valle Mexican Restaurant has been a cornerstone of Santa Rosa's Roseland District, serving up the rich, authentic flavors of Mexico with exceptional service. This family-owned taqueria on Sebastopol Road brings bold, traditional tastes to the neighborhood every day of the week.",
-      "From sizzling fajitas and hearty molcajetes to fresh mariscos, breakfast chilaquiles and street-style tacos, the kitchen cooks the dishes families grew up on. Whether you dine in, order takeout, or book catering for an event, Del Valle delivers the genuine taste of home."
+      "Since 2017, Del Valle Mexican Restaurant has been a cornerstone of Santa Rosa's Roseland District, serving up the rich, authentic flavors of Mexico with exceptional service. This family-owned spot on Sebastopol Road brings bold, traditional tastes to the neighborhood seven days a week.",
+      "From sizzling fajitas and hearty molcajetes to fresh mariscos, a recently added breakfast menu and street-style tacos, the kitchen cooks the dishes families grew up on. Regulars come back for the molcajete de mariscos, super burritos, carne asada, chimichangas and shrimp tacos. Whether you dine in, order takeout, or book catering for an event, Del Valle delivers the genuine taste of home."
     ],
     "signature": ""
   },
-  "servicesHeading": "On the menu",
+  "servicesHeading": "What we do",
   "services": [
     {
       "title": "Tacos",
@@ -109,49 +113,9 @@
   "hoursNote": "",
   "sections": [
     {
-      "type": "stats",
-      "items": [
-        {
-          "value": "9+",
-          "label": "Years in business"
-        },
-        {
-          "value": "4.2★",
-          "label": "142 reviews"
-        },
-        {
-          "value": "6",
-          "label": "Services offered"
-        }
-      ]
-    },
-    {
-      "type": "faq",
-      "eyebrow": "Good to know",
-      "heading": "Common questions",
-      "items": [
-        {
-          "q": "Where are you located?",
-          "a": "You'll find us at 2000 Sebastopol Road Santa Rosa, CA, 95407 United States."
-        },
-        {
-          "q": "What are your hours?",
-          "a": "Mon – Thu: 10:00 AM – 8:00 PM; Fri – Sat: 9:00 AM – 9:00 PM; Sun: 8:00 AM – 8:00 PM."
-        },
-        {
-          "q": "What areas do you serve?",
-          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
-        },
-        {
-          "q": "How do I get in touch?",
-          "a": "Call us at 707-595-1081 — we're glad to help."
-        }
-      ]
-    },
-    {
       "type": "services-detailed",
       "eyebrow": "Services",
-      "heading": "On the menu",
+      "heading": "What we do",
       "items": [
         {
           "title": "Tacos",
@@ -178,6 +142,46 @@
           "description": "Taco bars, burrito bowls, quesadillas, sopes, tortas and large-batch pozole, menudo and birria for events."
         }
       ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "9+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.4★",
+          "label": "413 reviews"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 2000 Sebastopol Rd."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon – Thu: 10:00 AM – 8:00 PM; Fri – Sat: 9:00 AM – 9:00 PM; Sun: 8:00 AM – 8:00 PM."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17075951081 — we're glad to help."
+        }
+      ]
     }
   ],
   "layout": "classic",
@@ -191,10 +195,5 @@
   "servesCuisine": [
     "Mexican"
   ],
-  "artDirection": {
-    "fontId": "classic-trad",
-    "neutralTemp": "cool",
-    "preferredDepthSection": "timeline"
-  },
-  "heroVariant": "editorial"
+  "heroVariant": "split"
 }

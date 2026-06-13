@@ -3,7 +3,7 @@
   "category": "winery",
   "tagline": "Celebrate every day",
   "seoDescription": "CAST Wines — a boutique Geyserville winery crafting limited-production Zinfandel, Sauvignon Blanc and Cabernet from a CCOF Certified Organic estate vineyard in Dry Creek Valley.",
-  "area": "Geyserville, CA",
+  "area": "Geyserville",
   "established": "Est. 2012",
   "contact": {
     "phone": "+17074311225",
@@ -30,7 +30,7 @@
   ],
   "images": {
     "hero": "/images/cast-wines/hero.jpg",
-    "heroAlt": "CAST Wines in Geyserville, CA",
+    "heroAlt": "CAST Wines in Geyserville",
     "story": "/images/cast-wines/story.webp",
     "storyAlt": "About CAST Wines",
     "storyCaption": "",
@@ -40,11 +40,11 @@
   "galleryImages": [
     {
       "src": "/images/cast-wines/story.webp",
-      "alt": "CAST Wines in Geyserville, CA — photo 1"
+      "alt": "CAST Wines in Geyserville — photo 1"
     },
     {
       "src": "/images/cast-wines/photo-2.webp",
-      "alt": "CAST Wines in Geyserville, CA — photo 2"
+      "alt": "CAST Wines in Geyserville — photo 2"
     }
   ],
   "about": {
@@ -79,6 +79,44 @@
   "hoursNote": "",
   "sections": [
     {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "Tastings & Experiences",
+      "items": [
+        {
+          "title": "Terrace & Tasting Room Flights",
+          "description": "Guided seated tastings on the outdoor terrace overlooking the vineyards, or indoors in the tasting room. Walk-ins welcome; reservations recommended."
+        },
+        {
+          "title": "Vineyard Tour & Tasting",
+          "description": "A reservable tour of the estate vineyard paired with a wine tasting and an accompaniment of cheese and charcuterie."
+        },
+        {
+          "title": "Barrel Room Tasting",
+          "description": "An intimate seated tasting in the barrel room by advance reservation, for a behind-the-scenes look at the wines."
+        }
+      ]
+    },
+    {
+      "type": "feature-split",
+      "eyebrow": "What sets us apart",
+      "heading": "Tastings & Experiences",
+      "rows": [
+        {
+          "heading": "Terrace & Tasting Room Flights",
+          "body": "Guided seated tastings on the outdoor terrace overlooking the vineyards, or indoors in the tasting room. Walk-ins welcome; reservations recommended."
+        },
+        {
+          "heading": "Vineyard Tour & Tasting",
+          "body": "A reservable tour of the estate vineyard paired with a wine tasting and an accompaniment of cheese and charcuterie."
+        },
+        {
+          "heading": "Barrel Room Tasting",
+          "body": "An intimate seated tasting in the barrel room by advance reservation, for a behind-the-scenes look at the wines."
+        }
+      ]
+    },
+    {
       "type": "stats",
       "items": [
         {
@@ -94,11 +132,6 @@
           "label": "Services offered"
         }
       ]
-    },
-    {
-      "type": "bigquote",
-      "quote": "Cast is a great winery for a tasting. Joe walked us through a variety of wines with great information and an even better view.",
-      "author": "Margo L."
     },
     {
       "type": "testimonials",
@@ -134,37 +167,19 @@
         },
         {
           "q": "What areas do you serve?",
-          "a": "We proudly serve Geyserville, CA and the surrounding community."
+          "a": "We proudly serve Geyserville and the surrounding community."
         },
         {
           "q": "How do I get in touch?",
           "a": "Call us at +17074311225 — we're glad to help."
         }
       ]
-    },
-    {
-      "type": "services-detailed",
-      "eyebrow": "Services",
-      "heading": "Tastings & Experiences",
-      "items": [
-        {
-          "title": "Terrace & Tasting Room Flights",
-          "description": "Guided seated tastings on the outdoor terrace overlooking the vineyards, or indoors in the tasting room. Walk-ins welcome; reservations recommended."
-        },
-        {
-          "title": "Vineyard Tour & Tasting",
-          "description": "A reservable tour of the estate vineyard paired with a wine tasting and an accompaniment of cheese and charcuterie."
-        },
-        {
-          "title": "Barrel Room Tasting",
-          "description": "An intimate seated tasting in the barrel room by advance reservation, for a behind-the-scenes look at the wines."
-        }
-      ]
     }
   ],
   "layout": "classic",
-  "status": "ready",
+  "status": "needs-review",
   "flags": [
+    "No website provided — research & verify manually",
     "No email found — add a real email or contact form before sending"
   ],
   "theme": {
@@ -173,9 +188,9 @@
   },
   "priceRange": "$$",
   "artDirection": {
-    "fontId": "organic-serif",
-    "neutralTemp": "warm",
-    "preferredDepthSection": "bigquote"
+    "fontId": "classic-trad",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "feature-split"
   },
-  "heroVariant": "cinematic"
+  "heroVariant": "panel"
 }

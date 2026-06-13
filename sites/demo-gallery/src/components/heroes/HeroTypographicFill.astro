@@ -15,9 +15,14 @@ const { config } = Astro.props as { config: ProspectConfig };
 const { hero, contact, highlights = [], established, area } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
+// Headline fit-to-box (Fable): this "type IS the hero" variant runs the headline
+// at clamp(3–8.5rem). A full-sentence headline at that scale overflows / eats the
+// whole fold, so step the clamp down + widen the measure by char count. Threshold
+// ~28 keeps short brand phrases at full viewport-scale.
+const longTitle = (hero.heading ?? '').length > 28;
 ---
 
-<section class="tf-hero" id="top" aria-label="Hero">
+<section class="tf-hero" id="top" aria-label="Hero" data-long-title={longTitle ? 'true' : undefined}>
   <div class="tf-hero__bg" aria-hidden="true"></div>
 
   <div class="container tf-hero__inner">
@@ -114,6 +119,20 @@ const eyebrow = [established, area].filter(Boolean).join(' · ');
     margin: 0;
     max-width: 18ch;
     text-wrap: balance;
+  }
+
+  /* Long (full-sentence) headline: step the viewport-scale clamp down and widen
+     the measure so a sentence wraps to a readable block instead of filling the
+     fold. Balanced wrap evens the lines; the smaller clamp is the CSS fallback
+     where text-wrap: balance is unsupported. */
+  /* Scoped to >=641px so the (lower-specificity) mobile title rule still wins on
+     phones; the doubled attribute raises specificity above the [data-archetype]
+     title bumps so a long headline stays scaled down on magazine/editorial. */
+  @media (min-width: 641px) {
+    [data-long-title][data-long-title] .tf-hero__title {
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      max-width: 24ch;
+    }
   }
 
   .tf-hero__sub {

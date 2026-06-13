@@ -3,9 +3,9 @@
   "confirmed": true,
   "established": "Est. 2015",
   "tagline": "Family-run HVAC & sheet metal",
-  "seoDescription": "Facciano HVAC and Sheet Metal — a family-owned, fully licensed heating, cooling, and custom sheet-metal contractor serving Santa Rosa and Sonoma County since 2015.",
+  "seoDescription": "Facciano HVAC and Sheet Metal — a family-owned, licensed heating, cooling, and custom sheet-metal contractor serving Santa Rosa and Sonoma County since 2015.",
   "heroHeading": "Santa Rosa's Facciano family HVAC and sheet metal",
-  "heroSubheading": "A family-owned, fully licensed heating, cooling, and sheet-metal contractor serving Santa Rosa and Sonoma County since 2015.",
+  "heroSubheading": "A family-owned, licensed heating, cooling, and sheet-metal contractor serving Santa Rosa and Sonoma County since 2015.",
   "highlights": [
     "Family-owned & operated",
     "Licensed CSLB #1009408",
@@ -15,22 +15,22 @@
   ],
   "aboutHeading": "About Facciano HVAC",
   "aboutBody": [
-    "Facciano HVAC and Sheet Metal is a family-run contractor based in Santa Rosa, owned by Mark and Carl Facciano. The company has been licensed and operating since 2015.",
-    "Holding California license #1009408 for warm-air heating, ventilating, air conditioning, and sheet-metal work, the team handles furnace and air-conditioning installation and replacement along with custom sheet-metal fabrication and ductwork for homes across the Santa Rosa area."
+    "Facciano HVAC and Sheet Metal is a family-run contractor based on Chanate Court in Santa Rosa, owned by brothers Mark and Carl Facciano. The company has been licensed and operating since 2015.",
+    "Holding California license #1009408 for warm-air heating, ventilating, air conditioning, and sheet-metal work, the team handles residential furnace and air-conditioning installation and replacement along with custom sheet-metal fabrication and ductwork for homes across the Santa Rosa area."
   ],
   "servicesHeading": "Our Services",
   "services": [
     {
       "title": "Heating & Furnace Installation",
-      "description": "Installation and replacement of warm-air heating and furnace systems for residential homes."
+      "description": "Installation and replacement of warm-air heating and furnace systems for Santa Rosa homes."
     },
     {
       "title": "Air Conditioning",
-      "description": "AC installation and replacement to keep your home comfortable through Sonoma County summers."
+      "description": "Residential AC installation and replacement to keep your home comfortable through Sonoma County summers."
     },
     {
       "title": "Sheet Metal & Ductwork",
-      "description": "Custom sheet-metal fabrication and ductwork, backed by a CSLB sheet-metal classification."
+      "description": "Custom sheet-metal fabrication and ductwork, backed by the company's CSLB sheet-metal classification."
     }
   ],
   "hours": [],
@@ -42,7 +42,7 @@
     "google": ""
   },
   "realPhotoUrls": [],
-  "notes": "Owners Mark & Carl Facciano (CSLB-confirmed → family-run). Est. 2015 (BBB). No reviews/rating/hours/photos found — leans on license + family credential. Phone + address conflict across listings — confirm before send.",
+  "notes": "Verified 2026-06-12 via CSLB/BBB/BuildZoom/NCBE chamber. Owners Mark Andrew & Carl Edwin Facciano (BuildZoom-confirmed brothers → family-run). License CSLB #1009408 active, exp 1/31/2027 (warm-air heating/vent/AC + sheet metal); older #718101 sheet-metal now inactive. Started 12/4/2015. Business address 3480 Chanate Ct, Santa Rosa 95404 (CSLB/BBB/BuildZoom); chamber listing shows an alternate mailing address at 2175 Bluebell Dr #C. Phone (707) 483-6754 corroborated on BOTH BBB and the chamber listing — chose it over BuildZoom's 975-5930 and the prior 540-1258, neither corroborated. NO official website exists (directory listings only). No public email, no published hours, no Google/Yelp star rating found — BBB is Not Rated, BuildZoom score 100 is a license-completeness metric, not customer reviews. No real photos located.",
   "_richness": 100,
   "_source": "verified-agent-research",
   "_lead": {
@@ -50,9 +50,10 @@
     "category": "hvac",
     "city": "Santa Rosa",
     "state": "CA",
-    "phone": "+17075401258",
+    "phone": "+17074836754",
     "email": "",
-    "address": "Santa Rosa, CA",
-    "owner": "Mark & Carl Facciano"
+    "address": "3480 Chanate Ct, Santa Rosa, CA 95404",
+    "owner": "Mark & Carl Facciano",
+    "website": ""
   }
 }

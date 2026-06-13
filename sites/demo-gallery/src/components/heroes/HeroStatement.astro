@@ -20,13 +20,22 @@ const { config } = Astro.props as { config: ProspectConfig };
 
 const { hero, images, contact, highlights = [], established, area } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
-const eyebrow = [established, area].filter(Boolean).join(' · ');
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
 const hasPhoto = Boolean(images?.hero);
+// Headline fit-to-box (Fable): the 14ch / clamp(3.2–8rem) display scale is tuned
+// for a SHORT statement (2–4 words). A full-sentence headline at that size would
+// dominate the whole fold, so scale the clamp down + widen the measure by char
+// count. Threshold ~28 keeps brand phrases big while taming sentences like
+// "Sonoma County's Private Training Studio".
+const longTitle = (hero.heading ?? '').length > 28;
+// De-dup (Fable): the trust badge (on-photo or the inline no-photo fallback)
+// already states the founding year, so drop `established` from the eyebrow when
+// the badge owns it (keep the area). Falls back to the full eyebrow with no year.
+const eyebrow = [badgeYear ? '' : established, area].filter(Boolean).join(' · ');
 ---
 
-<section class="stmt-hero" id="top" aria-label="Hero">
+<section class="stmt-hero" id="top" aria-label="Hero" data-long-title={longTitle ? 'true' : undefined}>
 
   <!-- ① Gradient-mesh background (subtle, light) -->
   <div class="stmt-hero__bg" aria-hidden="true"></div>
@@ -305,6 +314,20 @@ const hasPhoto = Boolean(images?.hero);
     /* Max-width forces 2–3 word cascade (award anti-generic pattern) */
     max-width: 14ch;
     text-wrap: balance;
+  }
+
+  /* Long (full-sentence) headline: step the clamp down and widen the measure so
+     it wraps to a readable block instead of swallowing the fold. Balanced wrap
+     keeps the lines even (CSS fallback for browsers without text-wrap: balance
+     is simply normal wrapping at the smaller scale). */
+  /* Scoped to >=641px so the (lower-specificity) mobile title rule still wins on
+     phones; the doubled attribute raises specificity above the [data-archetype]
+     title bump so a long headline stays scaled down on the magazine archetype. */
+  @media (min-width: 641px) {
+    [data-long-title][data-long-title] .stmt-hero__title {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      max-width: 22ch;
+    }
   }
 
   /* Secondary thin full-width rule — minimal, the "single keyline" award move */

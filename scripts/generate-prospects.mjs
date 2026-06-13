@@ -381,6 +381,35 @@ function parseCsv(text) {
 }
 
 // ---------------------------------------------------------------------------
+// name ↔ website sanity check (ported from build-research.mjs).
+// build-research.mjs guards its deep-scrape path against a scraper CSV that pairs
+// a business with the WRONG site (another company's services/photos). The INLINE
+// scrape path here (when no research file exists and we scrape row.website live)
+// needs the SAME guard — otherwise a wrong-site scrape leaks straight onto the
+// page. Logic is kept identical to build-research.mjs so both paths agree.
+// ---------------------------------------------------------------------------
+const NAME_STOP = new Set(['the', 'and', 'inc', 'llc', 'co', 'company', 'corp', 'ltd', 'services', 'service', 'group']);
+const sigTokens = (s) =>
+  (s || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((t) => t.length >= 4 && !NAME_STOP.has(t));
+
+// Returns { ok, siteName }. ok=false ⇒ likely wrong website. We key on the
+// DISTINCTIVE brand token (the first significant word of the business name, e.g.
+// "lysell", "guardian") rather than generic category words — otherwise any
+// plumber's site "matches" any other plumber. Bias toward flagging: building
+// from the wrong site (then emailing it) is far worse than a quick re-check, and
+// a flagged lead is recoverable (thin file + note), never silently wrong.
+function nameMatchesSite(leadName, e) {
+  const tokens = sigTokens(leadName);
+  if (!tokens.length || !e) return { ok: true, siteName: e?.name || '' };
+  const hay = [e.name, e.description, e.sourceUrl].filter(Boolean).join(' ').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const brand = tokens[0]; // distinctive lead word
+  // Pass if the brand appears, OR if ALL remaining tokens hit (strong overlap).
+  const brandHit = hay.includes(brand);
+  const allHit = tokens.every((t) => hay.includes(t));
+  return { ok: brandHit || allHit, siteName: e.name || '' };
+}
+
+// ---------------------------------------------------------------------------
 // Copy generation. Tries Claude (rich real-fact prompt); otherwise reuses the
 // business's own scraped prose + services, falling back to template only for
 // fields with no real source (those get flagged for a polish pass).
@@ -847,12 +876,15 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
 }
 
 // Decide ready vs needs-review from how much REAL material we got.
-function deriveStatus(row, e, media, photoSource, templated) {
+function deriveStatus(row, e, media, photoSource, templated, mismatchName = '') {
   const flags = [];
   // agent-supplied photos (dropped into src/assets/prospects/<slug>/) ARE real —
   // they only land there because someone curated genuine business photos.
   const realPhotos = /business-site|ai-generated|agent-supplied/.test(photoSource);
   if (!row.website) flags.push('No website provided — research & verify manually');
+  // A wrong-site scrape (CSV `website` belongs to another business) had its facts
+  // discarded — call it out explicitly instead of the generic "unreachable".
+  else if (mismatchName) flags.push(`Website mismatch — ${row.website} identifies as "${mismatchName}", not ${row.name}; scraped facts/photos discarded. Verify the correct URL.`);
   else if (!e) flags.push('Website unreachable — copy not built from real data');
   else if ((e.richness ?? 0) < 35) flags.push('Thin research — verify facts & rewrite copy');
   if (!realPhotos) flags.push(`No real/AI photos — using ${photoSource || 'stock'} art`);
@@ -1043,13 +1075,28 @@ async function main() {
 
     // 1) Otherwise scrape their existing site for real facts (best-effort, key-free).
     let e = null;
+    // Set when the live scrape clearly belongs to a DIFFERENT business (wrong
+    // `website` in the CSV) — drives a needs-review flag so a wrong-site scrape
+    // never ships silently. (The research-file path is already mismatch-guarded
+    // upstream by build-research.mjs, so this only covers the inline scrape.)
+    let mismatchName = '';
     if (research) {
       e = enrichmentFromResearch(research, row, { authoritative });
       console.log(`  · ${row.name}: using ${authoritative ? 'verified' : 'auto'} research (data/research/${slug}.json)`);
     } else if (row.website) {
       process.stdout.write(`  · ${row.name}: scraping ${row.website} … `);
       e = await scrapeSite(row.website);
-      console.log(e ? `ok (richness ${e.richness})` : 'unreachable');
+      // Guard the #1 quality lever: if the scraped site identifies as a different
+      // business, DISCARD its facts/photos rather than building from the wrong
+      // one (e.g. "Lysell Plumbing" paired with a drilling company's site).
+      const match = nameMatchesSite(row.name, e);
+      if (e && !match.ok) {
+        mismatchName = match.siteName || row.website;
+        console.log(`⚠ wrong site? identifies as "${mismatchName}" — facts discarded`);
+        e = null; // drop the foreign site's content entirely
+      } else {
+        console.log(e ? `ok (richness ${e.richness})` : 'unreachable');
+      }
     }
     // Backfill missing CSV location fields from the scrape/research.
     if (e) {
@@ -1074,6 +1121,16 @@ async function main() {
       });
       media = got.media;
       photoSource = got.source;
+      // QUALITY FLOOR (Fable item 1): if the best acquired photo scores below the
+      // hero floor, don't headline a weak/off-brand image. Drop it so the page
+      // falls back to a deliberate text/library hero (render-time pickHero makes
+      // the swap when imageCount is 0) and record why — a sub-bar stock photo
+      // never ships full-bleed, and deriveStatus flags it for a finishing pass.
+      if (got.heroUsable === false && media.length) {
+        console.log(`    ↳ hero photo below quality floor (score ${got.heroScore?.toFixed?.(2) ?? '0'}) → text hero`);
+        media = [];
+        photoSource = got.source ? `${got.source}:below-floor` : 'below-floor';
+      }
     }
 
     // 3) Copy: verified research as-is, else Claude/scrape; 4) depth + layout.
@@ -1087,7 +1144,7 @@ async function main() {
     const layout = layoutFor(slug);
 
     // 5) Quality gate.
-    const { status, flags } = deriveStatus(row, e, media, photoSource, copy._templated ?? []);
+    const { status, flags } = deriveStatus(row, e, media, photoSource, copy._templated ?? [], mismatchName);
 
     const config = buildConfig(row, copy, preset, catKey, media, e, {
       sections,

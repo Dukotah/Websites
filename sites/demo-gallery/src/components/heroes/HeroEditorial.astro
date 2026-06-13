@@ -19,10 +19,13 @@ const { config } = Astro.props as { config: ProspectConfig };
 
 const { hero, images, contact, highlights = [], established, area } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
-const eyebrow = [established, area].filter(Boolean).join('  ·  ');
 const hasPhoto = Boolean(images?.hero);
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
+// De-dup (Fable): the trust badge already states the founding year, so drop
+// `established` from the eyebrow when the badge owns it (keep the area). Falls
+// back to the full eyebrow when the badge has no year to surface.
+const eyebrow = [badgeYear ? '' : established, area].filter(Boolean).join('  ·  ');
 // The edge-overflow move (white-space:nowrap) only reads as intentional for a
 // SHORT evocative phrase. A full-sentence headline would clip mid-word, so wrap
 // it to 2–3 lines at a smaller scale instead of running off the right edge.
@@ -289,11 +292,17 @@ const longTitle = (hero.heading ?? '').length > 24;
 
   /* Long (full-sentence) headline: wrap to a readable block instead of clipping
      off the right edge. Smaller fluid scale + a measure that forces 2–3 lines. */
-  [data-long-title] .ed-hero__title {
-    white-space: normal;
-    text-wrap: balance;
-    font-size: clamp(2.6rem, 6.2vw, 5.6rem);
-    max-width: 16ch;
+  /* Scoped to >=721px so the (lower-specificity) mobile title rule still wins on
+     phones; the doubled attribute raises specificity above the [data-archetype]
+     title bumps so a long headline stays scaled down (and wrapping, not
+     overflowing) on magazine/classic archetypes. */
+  @media (min-width: 721px) {
+    [data-long-title][data-long-title] .ed-hero__title {
+      white-space: normal;
+      text-wrap: balance;
+      font-size: clamp(2.6rem, 6.2vw, 5.6rem);
+      max-width: 16ch;
+    }
   }
 
   /* Accent mid-rule below headline: left-anchored, short brand bar */

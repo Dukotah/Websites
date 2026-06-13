@@ -36,9 +36,23 @@ if (o.claimByDate) {
     claimBy = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   }
 }
+
+// De-templated chrome: vary the bar SHAPE on the same per-business seed the
+// Header uses (djb2 over config.name), so the very first strip of every site
+// isn't visually identical across the batch. Deterministic + key-free; markup
+// is unchanged, only a `data-claim-variant` attribute toggles the silhouette.
+//   0 — full-width brand bar (the original)
+//   1 — full bar with a thick left accent rail
+//   2 — left-rounded "chip" that doesn't span the full width (inset)
+function hashSeed(s: string): number {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+  return h;
+}
+const claimVariant = hashSeed(config.name || '') % 3;
 ---
 
-<aside class="claim-bar" data-claim-bar aria-label="Demo site offer">
+<aside class="claim-bar" data-claim-variant={claimVariant} data-claim-bar aria-label="Demo site offer">
   <div class="claim-bar__inner">
     <p class="claim-bar__msg">
       <strong class="claim-bar__lead">This site was custom-built for {config.name}.</strong>
@@ -79,9 +93,27 @@ if (o.claimByDate) {
 
 <style>
   .claim-bar {
-    background: var(--brand);
-    color: var(--brand-contrast);
-    border-bottom: 2px solid color-mix(in srgb, var(--brand-contrast) 18%, transparent);
+    background: var(--brand-vivid, var(--brand));
+    color: var(--brand-vivid-contrast, var(--brand-contrast));
+    border-bottom: 2px solid color-mix(in srgb, var(--brand-vivid-contrast, var(--brand-contrast)) 18%, transparent);
+  }
+
+  /* Variant 1 — full bar with a thick left accent rail (same colors, new shape). */
+  .claim-bar[data-claim-variant="1"] {
+    border-left: 6px solid color-mix(in srgb, var(--brand-vivid-contrast, var(--brand-contrast)) 55%, transparent);
+  }
+
+  /* Variant 2 — inset rounded "chip" that doesn't span the full width, so the
+     strip reads as a card rather than a banner. Transparent gutter on the sides. */
+  .claim-bar[data-claim-variant="2"] {
+    background: transparent;
+    border-bottom: none;
+    padding: 0.6rem var(--gutter);
+  }
+  .claim-bar[data-claim-variant="2"] .claim-bar__inner {
+    background: var(--brand-vivid, var(--brand));
+    border-radius: var(--radius);
+    padding: 0.7rem 1.1rem;
   }
   .claim-bar__inner {
     max-width: var(--maxw);
@@ -120,8 +152,8 @@ if (o.claimByDate) {
   .claim-bar__cta {
     display: inline-flex;
     align-items: center;
-    background: var(--brand-contrast);
-    color: var(--brand);
+    background: var(--brand-vivid-contrast, var(--brand-contrast));
+    color: var(--brand-vivid, var(--brand));
     font-family: var(--font-body);
     font-weight: var(--fw-bold);
     font-size: var(--step--1);

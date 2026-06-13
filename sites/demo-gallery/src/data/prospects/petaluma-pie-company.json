@@ -1,8 +1,8 @@
 {
   "name": "Petaluma Pie Company",
   "category": "cafe",
-  "tagline": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic",
-  "seoDescription": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients",
+  "tagline": "Cafe you can count on in Petaluma, CA.",
+  "seoDescription": "Petaluma Pie Company — trusted cafe serving Petaluma, CA. Call today for friendly, reliable service.",
   "area": "Petaluma, CA",
   "established": "",
   "contact": {
@@ -11,20 +11,20 @@
     "address": "Petaluma, CA"
   },
   "social": {
-    "facebook": "https://www.facebook.com/petalumapiecompany/",
-    "instagram": "https://www.instagram.com/petalumapie/",
+    "facebook": "",
+    "instagram": "",
     "google": ""
   },
   "hero": {
-    "heading": "Handmade pies, sweet and savory.",
-    "subheading": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients. You can order online to pick up in the shop",
+    "heading": "Your new favorite morning.",
+    "subheading": "Serving Petaluma, CA with honest work and a friendly face.",
     "ctaText": "Get in touch",
     "ctaHref": "#contact"
   },
   "highlights": [
-    "Made from scratch",
-    "Local & organic",
-    "Sweet & savory pies"
+    "Locally roasted",
+    "Fresh daily",
+    "Cozy atmosphere"
   ],
   "images": {
     "hero": "/images/petaluma-pie-company/hero.jpg",
@@ -70,29 +70,30 @@
     }
   ],
   "about": {
-    "heading": "About Petaluma Pie Company",
+    "heading": "About us",
     "body": [
-      "Petaluma Pie Company makes sweet and savory pies from scratch using local and organic ingredients — the kind of pie you'd make at home if you had all day. Order online and pick up fresh at our shop in downtown Petaluma."
+      "Petaluma Pie Company is a locally owned cafe proudly serving Petaluma, CA. We treat every customer like a neighbor — because most of them are.",
+      "Reliable work, fair prices, and people who pick up the phone. That's what's kept folks coming back to us."
     ],
     "signature": ""
   },
   "servicesHeading": "What we do",
   "services": [
     {
-      "title": "Sweet pies",
-      "description": "Seasonal fruit and cream pies made from scratch with local and organic fruit."
+      "title": "Espresso & pour-over",
+      "description": "Professional espresso & pour-over for Petaluma, CA and nearby."
     },
     {
-      "title": "Savory pies",
-      "description": "Hand pies and savory pot pies — a whole meal you can hold in one hand."
+      "title": "Fresh-baked pastries",
+      "description": "Professional fresh-baked pastries for Petaluma, CA and nearby."
     },
     {
-      "title": "Whole pies to order",
-      "description": "Order a whole pie for the holidays, a party, or just because."
+      "title": "Breakfast & lunch",
+      "description": "Professional breakfast & lunch for Petaluma, CA and nearby."
     },
     {
-      "title": "Online ordering & pickup",
-      "description": "Order online and pick up fresh at our shop in downtown Petaluma."
+      "title": "Catering & to-go",
+      "description": "Professional catering & to-go for Petaluma, CA and nearby."
     }
   ],
   "hours": [
@@ -117,20 +118,39 @@
       "heading": "What we do",
       "items": [
         {
-          "title": "Sweet pies",
-          "description": "Seasonal fruit and cream pies made from scratch with local and organic fruit."
+          "title": "Espresso & pour-over",
+          "description": "Professional espresso & pour-over for Petaluma, CA and nearby."
         },
         {
-          "title": "Savory pies",
-          "description": "Hand pies and savory pot pies — a whole meal you can hold in one hand."
+          "title": "Fresh-baked pastries",
+          "description": "Professional fresh-baked pastries for Petaluma, CA and nearby."
         },
         {
-          "title": "Whole pies to order",
-          "description": "Order a whole pie for the holidays, a party, or just because."
+          "title": "Breakfast & lunch",
+          "description": "Professional breakfast & lunch for Petaluma, CA and nearby."
         },
         {
-          "title": "Online ordering & pickup",
-          "description": "Order online and pick up fresh at our shop in downtown Petaluma."
+          "title": "Catering & to-go",
+          "description": "Professional catering & to-go for Petaluma, CA and nearby."
+        }
+      ]
+    },
+    {
+      "type": "feature-split",
+      "eyebrow": "What sets us apart",
+      "heading": "What we do",
+      "rows": [
+        {
+          "heading": "Espresso & pour-over",
+          "body": "Professional espresso & pour-over for Petaluma, CA and nearby."
+        },
+        {
+          "heading": "Fresh-baked pastries",
+          "body": "Professional fresh-baked pastries for Petaluma, CA and nearby."
+        },
+        {
+          "heading": "Breakfast & lunch",
+          "body": "Professional breakfast & lunch for Petaluma, CA and nearby."
         }
       ]
     },
@@ -139,6 +159,10 @@
       "eyebrow": "Good to know",
       "heading": "Common questions",
       "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at Petaluma, CA."
+        },
         {
           "q": "What are your hours?",
           "a": "Hours can vary — give us a call at (707) 766-6743 and we'll let you know when we're open."
@@ -152,36 +176,24 @@
           "a": "Call us at (707) 766-6743 — we're glad to help."
         }
       ]
-    },
-    {
-      "type": "hours-contact",
-      "heading": "Get in touch",
-      "hours": [],
-      "phone": "(707) 766-6743",
-      "cta": {
-        "text": "Contact us",
-        "href": "#contact"
-      }
-    },
-    {
-      "type": "stats",
-      "items": [
-        {
-          "value": "4.6 ★",
-          "label": "Average rating"
-        },
-        {
-          "value": "387",
-          "label": "Google reviews"
-        }
-      ]
     }
   ],
   "layout": "classic",
-  "status": "ready",
-  "flags": [],
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually",
+    "Services are template defaults — replace with real ones",
+    "About copy is templated — rewrite from research",
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending"
+  ],
   "theme": {
     "brand": "#c2683a",
     "brandDark": "#3b2f2a"
-  }
+  },
+  "artDirection": {
+    "fontId": "warm-humanist",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "feature-split"
+  },
+  "heroVariant": "editorial-asym"
 }

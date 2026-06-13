@@ -11,7 +11,7 @@
     "address": "6790 McKinley Ave Ste 170"
   },
   "social": {
-    "facebook": "https://www.facebook.com/brewtaylorlane",
+    "facebook": "https://www.facebook.com/brewtaylorlane/",
     "instagram": "https://www.instagram.com/brewtaylorlane/",
     "google": ""
   },
@@ -27,17 +27,17 @@
     "Cafe and espresso bar at The Barlow with free Wi-Fi and seating"
   ],
   "images": {
-    "hero": "/images/taylor-lane-organic-coffee/story.jpg",
-    "heroAlt": "A barista pouring a latte at Taylor Lane Organic Coffee",
-    "story": "/images/taylor-lane-organic-coffee/photo-3.jpg",
-    "storyAlt": "Pour-over coffee brewing at Taylor Lane Organic Coffee",
+    "hero": "/images/taylor-lane-organic-coffee/hero.jpg",
+    "heroAlt": "Taylor Lane Organic Coffee in Sebastopol, CA",
+    "story": "/images/taylor-lane-organic-coffee/story.jpg",
+    "storyAlt": "About Taylor Lane Organic Coffee",
     "storyCaption": "",
     "storyCredit": "",
     "placeholder": "/images/library/cafe/hero.svg"
   },
   "galleryImages": [
     {
-      "src": "/images/taylor-lane-organic-coffee/hero.jpg",
+      "src": "/images/taylor-lane-organic-coffee/story.jpg",
       "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 1"
     },
     {
@@ -45,24 +45,28 @@
       "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 2"
     },
     {
-      "src": "/images/taylor-lane-organic-coffee/photo-4.jpg",
+      "src": "/images/taylor-lane-organic-coffee/photo-3.jpg",
       "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 3"
     },
     {
-      "src": "/images/taylor-lane-organic-coffee/photo-5.jpg",
+      "src": "/images/taylor-lane-organic-coffee/photo-4.jpg",
       "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 4"
     },
     {
-      "src": "/images/taylor-lane-organic-coffee/photo-6.jpg",
+      "src": "/images/taylor-lane-organic-coffee/photo-5.jpg",
       "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 5"
     },
     {
-      "src": "/images/taylor-lane-organic-coffee/photo-7.jpg",
+      "src": "/images/taylor-lane-organic-coffee/photo-6.jpg",
       "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 6"
     },
     {
-      "src": "/images/taylor-lane-organic-coffee/photo-8.jpg",
+      "src": "/images/taylor-lane-organic-coffee/photo-7.jpg",
       "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 7"
+    },
+    {
+      "src": "/images/taylor-lane-organic-coffee/photo-8.jpg",
+      "alt": "Taylor Lane Organic Coffee in Sebastopol, CA — photo 8"
     }
   ],
   "about": {
@@ -73,7 +77,7 @@
     ],
     "signature": ""
   },
-  "servicesHeading": "On the menu",
+  "servicesHeading": "What we do",
   "services": [
     {
       "title": "Small-batch organic coffee",
@@ -109,9 +113,61 @@
   "hoursNote": "",
   "sections": [
     {
+      "type": "stats",
+      "items": [
+        {
+          "value": "33+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.1★",
+          "label": "339 reviews"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "eyebrow": "Our story",
+      "heading": "How we got here",
+      "items": [
+        {
+          "year": "1993",
+          "title": "Taylor Lane Organic Coffee opened its doors",
+          "body": "Taylor Lane Organic Coffee was founded in 1993, when Chris and Terry Martin set out to roast specialty organic coffee in Sonoma County, California"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 6790 McKinley Ave Ste 170."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon – Sun: 7:00 AM – 5:00 PM."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Sebastopol, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 634-7129 — we're glad to help."
+        }
+      ]
+    },
+    {
       "type": "services-detailed",
       "eyebrow": "Services",
-      "heading": "On the menu",
+      "heading": "What we do",
       "items": [
         {
           "title": "Small-batch organic coffee",
@@ -138,51 +194,13 @@
           "description": "A coworking area inside the Sebastopol cafe with free Wi-Fi for working, meeting, and lingering over coffee."
         }
       ]
-    },
-    {
-      "type": "stats",
-      "items": [
-        {
-          "value": "33+",
-          "label": "Years in business"
-        },
-        {
-          "value": "4.1★",
-          "label": "339 reviews"
-        },
-        {
-          "value": "6",
-          "label": "Services offered"
-        }
-      ]
-    },
-    {
-      "type": "faq",
-      "eyebrow": "Good to know",
-      "heading": "Common questions",
-      "items": [
-        {
-          "q": "Where are you located?",
-          "a": "You'll find us at 6790 McKinley Ave Ste 170."
-        },
-        {
-          "q": "What are your hours?",
-          "a": "Mon – Sun: 7:00 AM – 5:00 PM."
-        },
-        {
-          "q": "What areas do you serve?",
-          "a": "We proudly serve Sebastopol, CA and the surrounding community."
-        },
-        {
-          "q": "How do I get in touch?",
-          "a": "Call us at (707) 634-7129 — we're glad to help."
-        }
-      ]
     }
   ],
   "layout": "editorial",
-  "status": "ready",
-  "flags": [],
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually"
+  ],
   "theme": {
     "brand": "#c2683a",
     "brandDark": "#3b2f2a"
@@ -193,5 +211,10 @@
     "Cafe",
     "Tea"
   ],
-  "heroVariant": "cinematic"
+  "artDirection": {
+    "fontId": "editorial-serif",
+    "neutralTemp": "cool",
+    "preferredDepthSection": "timeline"
+  },
+  "heroVariant": "editorial"
 }

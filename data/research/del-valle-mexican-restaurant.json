@@ -13,8 +13,8 @@
   ],
   "aboutHeading": "About Del Valle Mexican Restaurant",
   "aboutBody": [
-    "Since 2017, Del Valle Mexican Restaurant has been a cornerstone of Santa Rosa's Roseland District, serving up the rich, authentic flavors of Mexico with exceptional service. This family-owned taqueria on Sebastopol Road brings bold, traditional tastes to the neighborhood every day of the week.",
-    "From sizzling fajitas and hearty molcajetes to fresh mariscos, breakfast chilaquiles and street-style tacos, the kitchen cooks the dishes families grew up on. Whether you dine in, order takeout, or book catering for an event, Del Valle delivers the genuine taste of home."
+    "Since 2017, Del Valle Mexican Restaurant has been a cornerstone of Santa Rosa's Roseland District, serving up the rich, authentic flavors of Mexico with exceptional service. This family-owned spot on Sebastopol Road brings bold, traditional tastes to the neighborhood seven days a week.",
+    "From sizzling fajitas and hearty molcajetes to fresh mariscos, a recently added breakfast menu and street-style tacos, the kitchen cooks the dishes families grew up on. Regulars come back for the molcajete de mariscos, super burritos, carne asada, chimichangas and shrimp tacos. Whether you dine in, order takeout, or book catering for an event, Del Valle delivers the genuine taste of home."
   ],
   "services": [
     {"title": "Tacos", "description": "Street-style tacos with your choice of meats, plus fish tacos topped with fresh ingredients."},
@@ -30,7 +30,7 @@
     {"day": "Sun", "hours": "8:00 AM – 8:00 PM"}
   ],
   "testimonials": [],
-  "rating": {"value": 4.2, "count": 142, "source": "restaurantji"},
+  "rating": {"value": 4.4, "count": 413, "source": "google"},
   "priceRange": "$$",
   "servesCuisine": ["Mexican"],
   "social": {
@@ -46,5 +46,8 @@
     "https://images.squarespace-cdn.com/content/v1/5952725de6f2e1b8842a41de/1511751909466-R4U1K8236R43INJZP0K0/Carne+Asada+Plate",
     "https://images.squarespace-cdn.com/content/v1/5952725de6f2e1b8842a41de/1525054655994-IN7ZHMF2EQ6KG2JTZ2QL/Enchiladas+Michoacanas+v2.jpg"
   ],
-  "notes": "Established 2017 confirmed from delvallemex.com catering page. Family-owned and Roseland District confirmed via search summaries. Hours from official site footer/locations page (site also shows conflicting alt hours of Mon-Thu 10-9; used the more consistently listed schedule). Rating 4.2/142 from Restaurantji; Yelp listed ~129 reviews and another aggregate showed 4.5/300+, but those could not be directly verified (Yelp/DoorDash/Tripadvisor blocked or no reviews), so a conservative confirmed figure is used. No verbatim attributed customer review quotes could be confirmed from a primary source, so testimonials left empty. Signature dishes (molcajete de mariscos, chimichanga, shrimp/fish tacos, carne asada, super burrito) corroborated across sources. Photo URLs are real, pulled directly from the restaurant's own Squarespace food gallery (delvallemex.com/gallery)."
+  "notes": "VERIFIED June 2026. Official site delvallemex.com confirmed. Phone (707) 595-1081 confirmed on site + Yelp/DoorDash. Address 2000 Sebastopol Rd, Santa Rosa CA 95407 confirmed. Public email luz@delvallemex.com pulled directly from the official site footer (real, verified). Established 'Since 2017' confirmed verbatim from delvallemex.com catering page (opened June 2017). Family-owned and Roseland District location confirmed. HOURS CONFLICT across the site itself: the locations page lists Mon-Thu 10-8 / Fri-Sat 9-9 / Sun 8-8, while the homepage hours table shows Mon-Thu 10-9 / Fri-Sat 10-10 / Sun 10-10. Kept the locations-page schedule; confirm with the owner before publishing. Rating set to Google 4.4/413 (RestaurantGuru aggregate of Google reviews) as the strongest verified figure; Restaurantji separately shows 4.3/148, Yelp ~4.0/129. Signature dishes corroborated across Restaurantji + RestaurantGuru: molcajete de mariscos, super burrito, carne asada, chimichanga, shrimp/fish tacos, chicken fajitas, chile relleno. No verbatim attributed review quotes confirmed from a primary source, so testimonials left empty. Photo URLs are real, from the restaurant's own Squarespace gallery (delvallemex.com/gallery).",
+  "_richness": 100,
+  "_source": "verified-agent-research",
+  "_lead": { "name": "Del Valle Mexican Restaurant", "category": "restaurant", "city": "Santa Rosa", "state": "CA", "phone": "+17075951081", "email": "luz@delvallemex.com", "website": "https://www.delvallemex.com/", "address": "2000 Sebastopol Rd", "owner": "" }
 }

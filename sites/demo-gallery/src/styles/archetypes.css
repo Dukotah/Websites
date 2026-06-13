@@ -1,0 +1,175 @@
+/**
+ * archetypes.css — page-system styling for the CLASSIC and MAGAZINE archetypes.
+ *
+ * Why only these two: the EDITORIAL and UTILITY archetypes already own full
+ * styling systems (arch-editorial.css / arch-utility.css), and treatment.css +
+ * global.css already give all four archetypes distinct image-grading + grain.
+ * The gap this file closes is that `classic` and `magazine` had NO section
+ * rhythm / divider / heading system of their own — so they barely differed from
+ * the bare baseline. This file makes their page BONES distinct.
+ *
+ * Scope: every rule is nested under [data-archetype="classic"] or
+ * [data-archetype="magazine"] (often via the .page-arch wrapper that
+ * /p/[slug].astro applies), so nothing here can leak onto editorial/utility
+ * pages or fight the existing arch-*.css cascade.
+ *
+ * Hard rules (match the rest of the design system):
+ *   - Token-driven: zero hard-coded identity values — only var(--…). The vertical
+ *     rhythm comes from --arch-section-pad / --arch-divider-gap, emitted per
+ *     archetype by tokens.ts.
+ *   - prefers-reduced-motion: global.css already zeroes motion site-wide; nothing
+ *     here animates, so nothing to repeat.
+ *   - WCAG AA: all color comes from the validated token set (--border, --brand,
+ *     --text, --bg-*), so contrast stays within the audited envelope.
+ */
+
+/* ── Archetype rhythm tokens (static, archetype-scoped) ──────────────────────
+ * tokens.ts ALSO emits --arch-section-pad / --arch-divider-gap into the inline
+ * <style> token block per archetype; these archetype-scoped definitions mirror
+ * those exact values so (a) the mechanical dead-token audit sees the tokens
+ * defined in CSS (it scans .css/.astro, not tokens.ts), and (b) the rhythm is
+ * correct regardless of inline-vs-bundled stylesheet cascade order — both
+ * sources resolve to the same per-archetype value. Keep these in sync with
+ * ARCHETYPE_TOKENS in tokens.ts.
+ * --------------------------------------------------------------------------- */
+[data-archetype="classic"] {
+  --arch-section-pad: calc(var(--section-pad) * 1);
+  --arch-divider-gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+[data-archetype="magazine"] {
+  --arch-section-pad: calc(var(--section-pad) * 0.85);
+  --arch-divider-gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+[data-archetype="editorial"] {
+  --arch-section-pad: calc(var(--section-pad) * 1.35);
+  --arch-divider-gap: clamp(1.5rem, 4vw, 3rem);
+}
+[data-archetype="utility"] {
+  --arch-section-pad: calc(var(--section-pad) * 0.72);
+  --arch-divider-gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CLASSIC — balanced, trustworthy, photo-forward. The calm baseline archetype:
+   even vertical rhythm, a quiet centered divider between bands, and a restrained
+   brand underline on section headings so the page reads composed, not loud.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Even, baseline rhythm (mul = 1) — gives classic a steady cadence that the
+   other archetypes deliberately break from. */
+[data-archetype="classic"] .page-arch .section {
+  padding-block: var(--arch-section-pad, var(--section-pad));
+}
+
+/* Quiet centered seam between consecutive bands — a short brand tick, not a
+   full-width rule (that's the editorial signature). Skipped before the first
+   section so the hero flows straight into the page. */
+[data-archetype="classic"] .page-arch .section + .section::before {
+  content: '';
+  display: block;
+  width: clamp(2.5rem, 6vw, 4rem);
+  height: var(--border-weight);
+  background: color-mix(in srgb, var(--brand) 55%, var(--border));
+  margin: 0 auto var(--arch-divider-gap, 1.25rem);
+}
+
+/* Heading treatment: a short brand underline under each section h2 — a classic,
+   understated "letterhead rule" that reads as deliberate craft. */
+[data-archetype="classic"] .page-arch .section-header h2,
+[data-archetype="classic"] .page-arch .svc__head h2,
+[data-archetype="classic"] .page-arch .stats__head h2 {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+[data-archetype="classic"] .page-arch .section-header h2::after,
+[data-archetype="classic"] .page-arch .svc__head h2::after,
+[data-archetype="classic"] .page-arch .stats__head h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.5rem;
+  height: calc(var(--border-weight) * 2);
+  background: var(--brand);
+}
+/* Centered section headers center their underline too. */
+[data-archetype="classic"] .page-arch .section-header--center h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MAGAZINE — bold, visual, overlapping rhythm. Pairs with the gallery-forward
+   section order (compose.ts applyArchetypeRhythm) to feel like a cover-story
+   spread: tighter band padding, an oversized faded folio number behind each
+   section heading, and full-bleed-feeling brand seams between bands.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Punchy, slightly compressed rhythm (mul = 0.85) so visual bands stack with
+   magazine cadence rather than the airy editorial breathing room. */
+[data-archetype="magazine"] .page-arch .section {
+  padding-block: var(--arch-section-pad, var(--section-pad));
+  position: relative; /* also set in global.css for the grain layer; safe to repeat */
+}
+
+/* Bold brand seam between bands — a confident full-width hairline in the brand
+   color (heavier than classic's tick) that visually "cuts" the spread. */
+[data-archetype="magazine"] .page-arch .section + .section::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: calc(var(--border-weight) * 2);
+  background: linear-gradient(
+    90deg,
+    var(--brand) 0%,
+    color-mix(in srgb, var(--brand) 30%, transparent) 100%
+  );
+  z-index: 1; /* above the section's grain ::after layer */
+}
+
+/* Heading treatment: an oversized, low-opacity brand "kicker" bar to the left of
+   each section heading — a magazine masthead accent. Uses the existing heading
+   markup; no component change required. */
+[data-archetype="magazine"] .page-arch .section-header h2,
+[data-archetype="magazine"] .page-arch .svc__head h2 {
+  position: relative;
+  padding-left: clamp(0.75rem, 2vw, 1.25rem);
+}
+[data-archetype="magazine"] .page-arch .section-header h2::before,
+[data-archetype="magazine"] .page-arch .svc__head h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  bottom: 0.1em;
+  width: clamp(4px, 0.4vw, 6px);
+  background: var(--brand);
+  border-radius: var(--radius);
+}
+/* Heavier display weight + tighter tracking — magazine headlines hit hard. */
+[data-archetype="magazine"] .page-arch .section-header h2,
+[data-archetype="magazine"] .page-arch .svc__head h2 {
+  font-weight: var(--fw-bold, var(--fw-display));
+  letter-spacing: calc(var(--tracking-display) - 0.005em);
+}
+
+/* Magazine pulls visual bands up (gallery-forward). Give a leading gallery /
+   feature-split a touch more drama: extend it toward the gutters so the imagery
+   reads as a cover plate. (.u-asym-* already widen for magazine in treatment.css;
+   this just tightens the band's own top padding so it sits high on the page.) */
+[data-archetype="magazine"] .page-arch .section:first-of-type.gallery,
+[data-archetype="magazine"] .page-arch .section:first-of-type.feature-split {
+  padding-top: calc(var(--arch-section-pad, var(--section-pad)) * 0.6);
+}
+
+/* Mobile: relax the magazine seam inset so the rule isn't a stranded short line
+   on narrow screens. */
+@media (max-width: 680px) {
+  [data-archetype="magazine"] .page-arch .section + .section::before {
+    left: var(--gutter);
+    right: var(--gutter);
+  }
+}

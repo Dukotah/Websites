@@ -1,9 +1,9 @@
 {
   "name": "Chau Norman DDS",
   "category": "dentist",
-  "tagline": "Gentle, established Santa Rosa dentistry",
-  "seoDescription": "Dr. Norman Chau, DDS — friendly, gentle general dentistry on Cleveland Avenue in Santa Rosa. English and Spanish spoken; Medi-Cal accepted.",
-  "area": "Santa Rosa, CA",
+  "tagline": "Gentle general dentistry on Cleveland Avenue",
+  "seoDescription": "Dr. Norman Chau, DDS — friendly, gentle general dentistry at 2921 Cleveland Avenue in Santa Rosa. Medi-Cal accepted; now accepting new patients.",
+  "area": "Santa Rosa",
   "established": "",
   "contact": {
     "phone": "+17075444818",
@@ -16,21 +16,21 @@
     "google": ""
   },
   "hero": {
-    "heading": "Pain-free dentistry in Santa Rosa",
-    "subheading": "Dr. Norman Chau, DDS provides friendly, gentle general dental care on Cleveland Avenue, with a welcoming team patients trust.",
+    "heading": "Gentle, pain-free dentistry in Santa Rosa",
+    "subheading": "Dr. Norman Chau, DDS provides friendly, low-stress general dental care on Cleveland Avenue, with a welcoming team patients trust.",
     "ctaText": "Get in touch",
     "ctaHref": "#contact"
   },
   "highlights": [
-    "Long-established local practice",
+    "General dentistry in Santa Rosa",
     "Gentle, pain-free care",
     "Welcoming, helpful staff",
     "Medi-Cal accepted",
-    "English & Spanish spoken"
+    "Accepting new patients"
   ],
   "images": {
     "hero": "/images/chau-norman-dds/story.jpg",
-    "heroAlt": "Chau Norman DDS in Santa Rosa, CA",
+    "heroAlt": "Chau Norman DDS in Santa Rosa",
     "story": "/images/chau-norman-dds/hero.jpg",
     "storyAlt": "About Chau Norman DDS",
     "storyCaption": "",
@@ -40,15 +40,15 @@
   "galleryImages": [
     {
       "src": "/images/chau-norman-dds/hero.jpg",
-      "alt": "Chau Norman DDS in Santa Rosa, CA — photo 1"
+      "alt": "Chau Norman DDS in Santa Rosa — photo 1"
     }
   ],
   "about": {
     "heading": "About Dr. Norman Chau, DDS",
     "body": [
-      "Dr. Norman Chau is a general dentist serving Santa Rosa from his office on Cleveland Avenue. A graduate of the LSU School of Dentistry, he has built a long-standing reputation in the community for treating patients with patience and care.",
+      "Dr. Norman Chau is a general dentist serving Santa Rosa from his office at 2921 Cleveland Avenue. He treats patients with patience and a gentle touch, focusing on everyday dental care that keeps families healthy.",
       "Patients consistently describe their visits as professional, friendly, and pain-free. The office is known for being clean and comfortable, with a staff that is welcoming and helpful — including with young children and nervous patients.",
-      "Dr. Chau and his team see both English- and Spanish-speaking patients and accept Medi-Cal, making everyday dental care accessible to families across Santa Rosa."
+      "The practice accepts Medi-Cal and is currently welcoming new patients, making routine dental care accessible to families across Santa Rosa and Sonoma County."
     ],
     "signature": ""
   },
@@ -63,8 +63,12 @@
       "description": "Treatment of cavities and repair or replacement of fillings for lasting comfort."
     },
     {
+      "title": "Crowns & Restorations",
+      "description": "Crowns and restorative work to repair damaged or worn teeth and restore comfortable function."
+    },
+    {
       "title": "General Family Dentistry",
-      "description": "Everyday dental care for patients of all ages, including gentle treatment for children."
+      "description": "Everyday dental care for patients of all ages, including gentle treatment for children and nervous patients."
     }
   ],
   "hours": [
@@ -87,8 +91,12 @@
           "description": "Treatment of cavities and repair or replacement of fillings for lasting comfort."
         },
         {
+          "title": "Crowns & Restorations",
+          "description": "Crowns and restorative work to repair damaged or worn teeth and restore comfortable function."
+        },
+        {
           "title": "General Family Dentistry",
-          "description": "Everyday dental care for patients of all ages, including gentle treatment for children."
+          "description": "Everyday dental care for patients of all ages, including gentle treatment for children and nervous patients."
         }
       ]
     },
@@ -118,7 +126,7 @@
         },
         {
           "q": "What areas do you serve?",
-          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+          "a": "We proudly serve Santa Rosa and the surrounding community."
         },
         {
           "q": "How do I get in touch?",
@@ -138,5 +146,5 @@
     "brandDark": "#243b53"
   },
   "priceRange": "$$",
-  "heroVariant": "split"
+  "heroVariant": "cinematic"
 }

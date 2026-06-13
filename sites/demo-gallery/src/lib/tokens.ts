@@ -200,6 +200,27 @@ export function artDirectionToCss(ad: ArtDirection): string {
   // ── motion ───────────────────────────────────────────────────────────────
   const motionT = MOTION_TOKENS[motion] ?? MOTION_TOKENS.subtle;
 
+  // ── archetype rhythm ──────────────────────────────────────────────────────
+  // Each archetype gets a distinct vertical RHYTHM so the page bones differ, not
+  // just the hero. These tokens are consumed by archetypes.css. We emit them for
+  // every archetype but only classic/magazine read --arch-section-pad here —
+  // editorial/utility already set their own .section padding in arch-*.css, so we
+  // leave those untouched to avoid a cascade clash. The divider/heading-accent
+  // tokens style the section seams + heading rules that give classic & magazine a
+  // signature spine.
+  const ARCHETYPE_TOKENS: Record<string, { sectionPadMul: string; dividerGap: string }> = {
+    // Classic — balanced, calm rhythm; baseline padding, gentle seams.
+    classic:   { sectionPadMul: '1',    dividerGap: 'clamp(0.75rem, 2vw, 1.5rem)' },
+    // Magazine — punchy, overlapping rhythm: tighter band padding + a bolder seam
+    // so dense visual bands stack with editorial cadence.
+    magazine:  { sectionPadMul: '0.85', dividerGap: 'clamp(1.25rem, 3vw, 2.5rem)' },
+    // editorial/utility carry their own padding in arch-*.css — mirror sensible
+    // values here only so the tokens always resolve (CSS for them ignores the mul).
+    editorial: { sectionPadMul: '1.35', dividerGap: 'clamp(1.5rem, 4vw, 3rem)' },
+    utility:   { sectionPadMul: '0.72', dividerGap: 'clamp(0.5rem, 1.5vw, 1rem)' },
+  };
+  const archT = ARCHETYPE_TOKENS[ad.archetype] ?? ARCHETYPE_TOKENS.classic;
+
   // ── pattern opacity — seeded subtle decoration ────────────────────────────
   // Framed/editorial shapes get a bit more pattern; others minimal.
   const patternOpacity =
@@ -209,6 +230,8 @@ export function artDirectionToCss(ad: ArtDirection): string {
   const props: Record<string, string> = {
     // color
     '--brand': palette.brand,
+    '--brand-vivid': palette.brandVivid,
+    '--brand-vivid-contrast': palette.brandVividContrast,
     '--brand-dark': palette.brandDark,
     '--brand-contrast': palette.brandContrast,
     '--accent': palette.accent,
@@ -261,6 +284,10 @@ export function artDirectionToCss(ad: ArtDirection): string {
     '--motion-fade': motionT.motionFade,
     '--motion-rise': motionT.motionRise,
     '--motion-ease': motionT.motionEase,
+
+    // archetype rhythm (consumed by archetypes.css for classic/magazine)
+    '--arch-section-pad': `calc(var(--section-pad) * ${archT.sectionPadMul})`,
+    '--arch-divider-gap': archT.dividerGap,
 
     // decoration
     '--pattern-opacity': patternOpacity,

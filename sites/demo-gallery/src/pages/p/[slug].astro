@@ -10,6 +10,11 @@ import SectionRenderer from '../../components/sections/SectionRenderer.astro';
 import { resolveArtDirection } from '../../lib/art-direction';
 import { composePage } from '../../lib/compose';
 import type { ProspectConfig } from '../../types';
+// Archetype page-system styling (rhythm / dividers / heading accents for the
+// classic + magazine archetypes; editorial/utility own their own arch-*.css).
+// Imported here — BaseLayout is owned elsewhere — and scoped under
+// [data-archetype][.page-arch] so it stays inert on the other archetypes.
+import '../../styles/archetypes.css';
 
 // One static page per prospect JSON in src/data/prospects/.
 // Add a file there (e.g. via the generator) and a new /p/<slug> appears.
@@ -36,7 +41,11 @@ const plan = composePage(config, ad);
 <BaseLayout config={config}>
   {!config.outreach?.published && <ClaimBanner config={config} />}
   <Header config={config} />
-  <main id="main">
+  {/* .page-arch is the hook for archetypes.css; `data-archetype` is set on
+      <body> by BaseLayout, so the archetype page systems resolve via
+      [data-archetype="…"] .page-arch … . The archetype value is also surfaced
+      here for any per-page styling/debugging. */}
+  <main id="main" class="page-arch" data-page-archetype={ad.archetype}>
     <HeroRenderer config={config} variant={plan.hero} />
     <About config={config} />
     <SectionRenderer sections={plan.sections} />

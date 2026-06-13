@@ -21,9 +21,13 @@ const { hero, images, contact, highlights = [], established, area } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
 const hasPhoto = Boolean(images?.hero);
+// Headline fit-to-box (Fable): the dominant type column runs at clamp(2.8–6.5rem)
+// / 16ch, tuned for a short phrase. A full-sentence headline at that scale eats
+// the column, so step the clamp down + widen the measure by char count.
+const longTitle = (hero.heading ?? '').length > 28;
 ---
 
-<section class="ea-hero" id="top" aria-label="Hero" data-has-photo={hasPhoto ? 'true' : undefined}>
+<section class="ea-hero" id="top" aria-label="Hero" data-has-photo={hasPhoto ? 'true' : undefined} data-long-title={longTitle ? 'true' : undefined}>
   <!-- ① Type column (65%, dominant) -->
   <div class="ea-hero__copy">
     <div class="ea-hero__copy-inner">
@@ -133,6 +137,20 @@ const hasPhoto = Boolean(images?.hero);
     margin: 0;
     max-width: 16ch;
     text-wrap: balance;
+  }
+
+  /* Long (full-sentence) headline: step the clamp down and widen the measure so a
+     sentence wraps to a readable block instead of dominating the type column.
+     Balanced wrap evens the lines; the smaller clamp is the CSS fallback where
+     text-wrap: balance is unsupported. */
+  /* Scoped to >=641px so the (lower-specificity) mobile title rule still wins on
+     phones; the doubled attribute raises specificity above the [data-archetype]
+     title bumps so a long headline stays scaled down on magazine/editorial. */
+  @media (min-width: 641px) {
+    [data-long-title][data-long-title] .ea-hero__title {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      max-width: 22ch;
+    }
   }
 
   .ea-hero__sub {

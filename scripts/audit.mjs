@@ -45,7 +45,7 @@ async function isConfirmed(slug) {
 
 // Tokens injected at runtime by tokens.ts (artDirectionToCss) — always present.
 const INJECTED = new Set([
-  'brand','brand-dark','brand-contrast','accent','accent-contrast','bg','bg-alt','bg-deep',
+  'brand','brand-vivid','brand-vivid-contrast','brand-dark','brand-contrast','accent','accent-contrast','bg','bg-alt','bg-deep',
   'surface','surface-2','text','text-muted','text-on-dark','border','ring',
   'font-display','font-body','fw-display','fw-body','fw-bold','tracking-display','tracking-eyebrow',
   'leading-display','leading-body','radius','radius-lg','radius-pill','border-weight',
@@ -213,6 +213,7 @@ const CONTRAST_PAIRS = [
   ['text-muted', 'bg', 'muted text on page'],
   ['text-on-dark', 'bg-deep', 'text on dark sections'],
   ['brand-contrast', 'brand', 'button label on brand'],
+  ['brand-vivid-contrast', 'brand-vivid', 'label on the brand bar/pill'],
   ['accent-contrast', 'accent', 'text on accent'],
 ];
 

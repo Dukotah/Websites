@@ -1,35 +1,37 @@
 {
   "name": "Joon Hair",
   "category": "salon",
-  "tagline": "Joon Hair specializes in hair color, haircutting, and special event styling (bridal, business, birthday",
-  "seoDescription": "Joon Hair specializes in hair color, haircutting, and special event styling (bridal, business, birthday, etc.)",
-  "area": "Santa Rosa, CA",
+  "tagline": "Soul and beloved, in historic downtown Santa Rosa",
+  "seoDescription": "Joon Hair — a luxury hair salon in historic downtown Santa Rosa, CA, specializing in precision cuts, custom color, balayage, keratin smoothing, extensions, and special-event styling.",
+  "area": "Santa Rosa",
   "established": "",
   "contact": {
-    "phone": "(707) 575-1474",
+    "phone": "+17075751474",
     "email": "letschat@joonhair.net",
-    "address": "205 5th ST Santa Rosa, CA 95401 United States"
+    "address": "205 5th St Ste D"
   },
   "social": {
     "facebook": "",
-    "instagram": "https://www.instagram.com/joon.hair/",
+    "instagram": "https://www.instagram.com/joon__hair/",
     "google": ""
   },
   "hero": {
-    "heading": "Honest advice, beautiful results.",
-    "subheading": "Joon Hair specializes in hair color, haircutting, and special event styling (bridal, business, birthday, etc.)",
+    "heading": "A Persian word for beloved, a salon to match",
+    "subheading": "Joon Hair is a luxury salon in the heart of historic downtown Santa Rosa, where a team of skilled stylists creates custom cuts, color, and special-event looks for every client.",
     "ctaText": "Get in touch",
     "ctaHref": "#contact"
   },
   "highlights": [
-    "Walk-ins welcome",
-    "Experienced stylists",
-    "Relaxed setting"
+    "Historic downtown Santa Rosa, on 5th St",
+    "Custom color & balayage specialists",
+    "Special-event & bridal styling",
+    "4.5 stars across 100+ Yelp reviews",
+    "Woman-owned"
   ],
   "images": {
-    "hero": "/images/joon-hair/photo-2.webp",
-    "heroAlt": "A stylist at Joon Hair in downtown Santa Rosa",
-    "story": "/images/joon-hair/story.webp",
+    "hero": "/images/joon-hair/story.webp",
+    "heroAlt": "Joon Hair in Santa Rosa",
+    "story": "/images/joon-hair/photo-2.webp",
     "storyAlt": "About Joon Hair",
     "storyCaption": "",
     "storyCredit": "",
@@ -37,101 +39,109 @@
   },
   "galleryImages": [
     {
-      "src": "/images/joon-hair/story.webp",
-      "alt": "Joon Hair in Santa Rosa, CA — photo 1"
-    },
-    {
       "src": "/images/joon-hair/photo-2.webp",
-      "alt": "Joon Hair in Santa Rosa, CA — photo 2"
+      "alt": "Joon Hair in Santa Rosa — photo 1"
     },
     {
       "src": "/images/joon-hair/photo-3.webp",
-      "alt": "Joon Hair in Santa Rosa, CA — photo 3"
+      "alt": "Joon Hair in Santa Rosa — photo 2"
     },
     {
       "src": "/images/joon-hair/photo-4.webp",
-      "alt": "Joon Hair in Santa Rosa, CA — photo 4"
+      "alt": "Joon Hair in Santa Rosa — photo 3"
     },
     {
       "src": "/images/joon-hair/photo-5.webp",
-      "alt": "Joon Hair in Santa Rosa, CA — photo 5"
+      "alt": "Joon Hair in Santa Rosa — photo 4"
     },
     {
       "src": "/images/joon-hair/photo-6.webp",
-      "alt": "Joon Hair in Santa Rosa, CA — photo 6"
+      "alt": "Joon Hair in Santa Rosa — photo 5"
     },
     {
       "src": "/images/joon-hair/photo-7.webp",
-      "alt": "Joon Hair in Santa Rosa, CA — photo 7"
+      "alt": "Joon Hair in Santa Rosa — photo 6"
     },
     {
       "src": "/images/joon-hair/photo-8.webp",
-      "alt": "Joon Hair in Santa Rosa, CA — photo 8"
+      "alt": "Joon Hair in Santa Rosa — photo 7"
     }
   ],
   "about": {
-    "heading": "About Joon Hair",
+    "heading": "The Meaning of Joon",
     "body": [
-      "Welcome to Joon Hair, a beautiful salon in the heart of historic downtown Santa Rosa. Our name “Joon”, is a Persian term of endearment meaning “soul” and “beloved” — a reflection of the warmth and care we bring to each of our guests.",
-      "Owned by a wife-wife duo with Persian Ancestry, Joon was created to be a luxury salon with an open and welcoming spirit. Our team includes some of Sonoma county’s most talented stylists, all highly skilled ad dedicated to their craft. From Precision cuts to custom color and transformative treatments, we’re here to celebrate your unique beauty."
+      "Joon Hair sits in the heart of historic downtown Santa Rosa on 5th Street. The name 'Joon' is a Persian term of endearment meaning 'soul' and 'beloved' — chosen by the salon's owners, a married couple of Persian heritage, to set the open, welcoming tone they wanted their clients to feel from the moment they walk in.",
+      "The salon's approach blends classic technique with current trends, tailoring each look to the individual rather than forcing a single style. Its stylists specialize in custom color — balayage, foilyage, tint, and corrective work — alongside precision cuts for women and men, blowout styling, keratin smoothing, and hair extensions.",
+      "Joon Hair is also a go-to for special-event styling, from bridal hair and makeup to birthdays and business looks. The team includes stylists Shireen, Aliyah, Terra, Lori, Lupe, Shana, Nina, and Alex."
     ],
     "signature": ""
   },
-  "servicesHeading": "What we do",
+  "servicesHeading": "What We Do",
   "services": [
     {
-      "title": "Cuts & styling",
-      "description": "Precision cuts and styling tailored to your hair and your routine, by stylists who actually listen."
+      "title": "Haircuts & Styling",
+      "description": "Precision cuts for women ($80–$160) and men ($90–$120), plus blowout styling from $60. Each cut is tailored to the individual rather than a one-size template."
     },
     {
-      "title": "Color & highlights",
-      "description": "Custom color, balayage, and dimensional highlights — from a subtle refresh to a full transformation."
+      "title": "Custom Color",
+      "description": "Single-process tint from $75, full highlights, and corrective color, by stylists who specialize in customized, natural-looking results."
     },
     {
-      "title": "Treatments",
-      "description": "Conditioning and bond-repair treatments that bring over-processed or damaged hair back to life."
+      "title": "Balayage & Foilyage",
+      "description": "Hand-painted balayage and foilyage from $75 up to $325+, for lived-in, dimensional color that grows out gracefully."
     },
     {
-      "title": "Special occasions",
-      "description": "Bridal, business, and birthday styling to get you camera-ready for the moment that matters."
+      "title": "Keratin & Treatments",
+      "description": "Keratin smoothing treatments from $165 (consultation required) to tame frizz and add shine and manageability."
+    },
+    {
+      "title": "Extensions",
+      "description": "Hair extensions for length and volume, fitted after a personal consultation."
+    },
+    {
+      "title": "Special-Event & Bridal",
+      "description": "Updos and styling for weddings, business, and celebrations, plus bridal makeup from $300."
     }
   ],
   "hours": [
-    {
-      "day": "Mon – Fri",
-      "hours": "8:00 AM – 6:00 PM"
-    },
-    {
-      "day": "Saturday",
-      "hours": "9:00 AM – 2:00 PM"
-    },
-    {
-      "day": "Sunday",
-      "hours": "Closed"
-    }
+    "Monday: Closed",
+    "Tuesday: 9:00 AM – 7:00 PM",
+    "Wednesday: 9:00 AM – 7:00 PM",
+    "Thursday: 9:00 AM – 7:00 PM",
+    "Friday: 9:00 AM – 7:00 PM",
+    "Saturday: 9:00 AM – 4:00 PM",
+    "Sunday: Closed"
   ],
   "hoursNote": "",
   "sections": [
     {
       "type": "services-detailed",
       "eyebrow": "Services",
-      "heading": "What we do",
+      "heading": "What We Do",
       "items": [
         {
-          "title": "Cuts & styling",
-          "description": "Precision cuts and styling tailored to your hair and your routine, by stylists who actually listen."
+          "title": "Haircuts & Styling",
+          "description": "Precision cuts for women ($80–$160) and men ($90–$120), plus blowout styling from $60. Each cut is tailored to the individual rather than a one-size template."
         },
         {
-          "title": "Color & highlights",
-          "description": "Custom color, balayage, and dimensional highlights — from a subtle refresh to a full transformation."
+          "title": "Custom Color",
+          "description": "Single-process tint from $75, full highlights, and corrective color, by stylists who specialize in customized, natural-looking results."
         },
         {
-          "title": "Treatments",
-          "description": "Conditioning and bond-repair treatments that bring over-processed or damaged hair back to life."
+          "title": "Balayage & Foilyage",
+          "description": "Hand-painted balayage and foilyage from $75 up to $325+, for lived-in, dimensional color that grows out gracefully."
         },
         {
-          "title": "Special occasions",
-          "description": "Bridal, business, and birthday styling to get you camera-ready for the moment that matters."
+          "title": "Keratin & Treatments",
+          "description": "Keratin smoothing treatments from $165 (consultation required) to tame frizz and add shine and manageability."
+        },
+        {
+          "title": "Extensions",
+          "description": "Hair extensions for length and volume, fitted after a personal consultation."
+        },
+        {
+          "title": "Special-Event & Bridal",
+          "description": "Updos and styling for weddings, business, and celebrations, plus bridal makeup from $300."
         }
       ]
     },
@@ -142,56 +152,30 @@
       "items": [
         {
           "q": "Where are you located?",
-          "a": "You'll find us at 205 5th ST Santa Rosa, CA 95401 United States."
+          "a": "You'll find us at 205 5th St Ste D."
         },
         {
           "q": "What are your hours?",
-          "a": "Hours can vary — give us a call at (707) 575-1474 and we'll let you know when we're open."
+          "a": "undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined; undefined: undefined."
         },
         {
           "q": "What areas do you serve?",
-          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+          "a": "We proudly serve Santa Rosa and the surrounding community."
         },
         {
           "q": "How do I get in touch?",
-          "a": "Call us at (707) 575-1474 — we're glad to help."
-        }
-      ]
-    },
-    {
-      "type": "map",
-      "address": "205 5th ST Santa Rosa, CA 95401 United States"
-    },
-    {
-      "type": "hours-contact",
-      "heading": "Get in touch",
-      "hours": [],
-      "phone": "(707) 575-1474",
-      "cta": {
-        "text": "Contact us",
-        "href": "#contact"
-      }
-    },
-    {
-      "type": "stats",
-      "items": [
-        {
-          "value": "4.8 ★",
-          "label": "Google rating"
-        },
-        {
-          "value": "40+",
-          "label": "Years in business"
+          "a": "Call us at +17075751474 — we're glad to help."
         }
       ]
     }
   ],
   "layout": "editorial",
-  "heroVariant": "editorial-asym",
   "status": "ready",
   "flags": [],
   "theme": {
     "brand": "#b5557f",
     "brandDark": "#2e2230"
-  }
+  },
+  "priceRange": "$$$",
+  "heroVariant": "editorial"
 }

@@ -3,7 +3,7 @@
   "category": "electrician",
   "tagline": "Powering the North Bay since 1981",
   "seoDescription": "O'Rourke Electric, Inc. is a electrical contractor in Santa Rosa, CA, serving the North Bay and San Francisco Bay Area since 1981. IBEW-trained, state-licensed electricians for residential, commercial, and industrial projects, including panel and meter upgrades and EV charging. Call (707) 528-8539.",
-  "area": "Santa Rosa, CA",
+  "area": "Santa Rosa",
   "established": "Est. 1981",
   "contact": {
     "phone": "+17075288539",
@@ -31,7 +31,7 @@
   ],
   "images": {
     "hero": "/images/orourke-electric-inc/hero.jpg",
-    "heroAlt": "ORourke Electric Inc in Santa Rosa, CA",
+    "heroAlt": "ORourke Electric Inc in Santa Rosa",
     "story": "/images/orourke-electric-inc/story.jpg",
     "storyAlt": "About ORourke Electric Inc",
     "storyCaption": "",
@@ -41,7 +41,7 @@
   "galleryImages": [
     {
       "src": "/images/orourke-electric-inc/story.jpg",
-      "alt": "ORourke Electric Inc in Santa Rosa, CA — photo 1"
+      "alt": "ORourke Electric Inc in Santa Rosa — photo 1"
     }
   ],
   "about": {
@@ -169,7 +169,7 @@
         },
         {
           "q": "What areas do you serve?",
-          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+          "a": "We proudly serve Santa Rosa and the surrounding community."
         },
         {
           "q": "How do I get in touch?",
@@ -179,8 +179,10 @@
     }
   ],
   "layout": "classic",
-  "status": "ready",
-  "flags": [],
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually"
+  ],
   "theme": {
     "brand": "#e0a11e",
     "brandDark": "#1c2733"

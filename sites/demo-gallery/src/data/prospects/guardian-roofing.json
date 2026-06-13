@@ -3,15 +3,15 @@
   "category": "roofing",
   "tagline": "A family-owned, GAF-certified Santa Rosa roofer — owner John on site for every install, with a perfect 5-star record.",
   "seoDescription": "Guardian Roofing: family-owned, GAF-certified roofing in Santa Rosa since 2019. CSLB #1062288. Re-roofs, repairs, TPO & metal. 5.0★ rated.",
-  "area": "Santa Rosa, CA",
+  "area": "Santa Rosa",
   "established": "Est. 2019",
   "contact": {
     "phone": "+17078433526",
     "email": "guardianroofllc@gmail.com",
-    "address": "2210 Dennis Ln"
+    "address": "2210 Dennis Lane"
   },
   "social": {
-    "facebook": "",
+    "facebook": "https://www.facebook.com/profile.php?id=100064048422771",
     "instagram": "",
     "google": ""
   },
@@ -28,7 +28,7 @@
   ],
   "images": {
     "hero": "/images/guardian-roofing/hero.jpg",
-    "heroAlt": "Guardian Roofing in Santa Rosa, CA",
+    "heroAlt": "Guardian Roofing in Santa Rosa",
     "story": "/images/guardian-roofing/story.jpg",
     "storyAlt": "About Guardian Roofing",
     "storyCaption": "",
@@ -38,42 +38,42 @@
   "galleryImages": [
     {
       "src": "/images/guardian-roofing/story.jpg",
-      "alt": "Guardian Roofing in Santa Rosa, CA — photo 1"
+      "alt": "Guardian Roofing in Santa Rosa — photo 1"
     },
     {
       "src": "/images/guardian-roofing/photo-2.jpg",
-      "alt": "Guardian Roofing in Santa Rosa, CA — photo 2"
+      "alt": "Guardian Roofing in Santa Rosa — photo 2"
     },
     {
       "src": "/images/guardian-roofing/photo-3.jpg",
-      "alt": "Guardian Roofing in Santa Rosa, CA — photo 3"
+      "alt": "Guardian Roofing in Santa Rosa — photo 3"
     },
     {
       "src": "/images/guardian-roofing/photo-4.jpg",
-      "alt": "Guardian Roofing in Santa Rosa, CA — photo 4"
+      "alt": "Guardian Roofing in Santa Rosa — photo 4"
     },
     {
       "src": "/images/guardian-roofing/photo-5.jpg",
-      "alt": "Guardian Roofing in Santa Rosa, CA — photo 5"
+      "alt": "Guardian Roofing in Santa Rosa — photo 5"
     },
     {
       "src": "/images/guardian-roofing/photo-6.jpg",
-      "alt": "Guardian Roofing in Santa Rosa, CA — photo 6"
+      "alt": "Guardian Roofing in Santa Rosa — photo 6"
     },
     {
       "src": "/images/guardian-roofing/photo-7.jpg",
-      "alt": "Guardian Roofing in Santa Rosa, CA — photo 7"
+      "alt": "Guardian Roofing in Santa Rosa — photo 7"
     },
     {
       "src": "/images/guardian-roofing/photo-8.jpg",
-      "alt": "Guardian Roofing in Santa Rosa, CA — photo 8"
+      "alt": "Guardian Roofing in Santa Rosa — photo 8"
     }
   ],
   "about": {
     "heading": "About Guardian Roofing",
     "body": [
-      "Guardian Roofing is a family-owned, licensed roofing company started in 2019 by John, who was born and raised in Sonoma County and brings more than a decade of roofing experience to every job. He runs Guardian alongside his wife Heather, who keeps the office responsive and the schedule on track.",
-      "What sets Guardian apart is that John isn’t just the owner — he’s the project manager on site for the entirety of each install, demanding quality and clear communication from estimate to cleanup. As a GAF-certified contractor (CSLB #1062288), the team handles everything from CertainTeed Landmark shingle re-roofs to metal and heat-welded commercial TPO, for homes and businesses across Sonoma, Napa and Marin."
+      "Guardian Roofing is a family-owned, licensed roofing company started in 2019 by John, a Sonoma County native who began roofing in 2009. He spent about a decade with a local family-owned roofer — including the post-fire rebuild of hundreds of homes in Santa Rosa's Coffee Park neighborhood — before studying nights for his contractor's license and launching Guardian. He runs the company alongside his partner Heather, whose background in accounting and management keeps the office responsive and the schedule on track.",
+      "What sets Guardian apart is that John isn’t just the owner — he’s the project manager on site for the entirety of each install, demanding quality and clear communication from estimate to cleanup. As a GAF-certified contractor (CSLB #1062288), the team handles everything from CertainTeed Landmark shingle re-roofs to metal and heat-welded commercial TPO, for homes and businesses across Sonoma County, Napa and all of Marin."
     ],
     "signature": ""
   },
@@ -186,7 +186,7 @@
       "items": [
         {
           "q": "Where are you located?",
-          "a": "You'll find us at 2210 Dennis Ln."
+          "a": "You'll find us at 2210 Dennis Lane."
         },
         {
           "q": "What are your hours?",
@@ -194,7 +194,7 @@
         },
         {
           "q": "What areas do you serve?",
-          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+          "a": "We proudly serve Santa Rosa and the surrounding community."
         },
         {
           "q": "How do I get in touch?",

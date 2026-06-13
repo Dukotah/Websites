@@ -11,8 +11,15 @@
 
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { scorePhoto, dhash, hamming, NEAR_DUP_DISTANCE } from './photo-score.mjs';
 
 const API = 'https://api.openverse.org/v1/images/';
+
+// Below this photographic-quality score (0..1) an Openverse result isn't worth
+// shipping — Openverse aggregates CC art/illustrations/clip-art alongside real
+// photos, so (like Wikimedia) we judge the PIXELS and reject graphics + off-
+// quality frames rather than trusting the search rank. Mirrors photos.mjs.
+const MIN_PHOTO_SCORE = 0.45;
 const UA = 'websites-outreach/1.0 (+https://github.com/dukotah/websites)';
 
 const EXT_BY_MIME = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/avif': 'avif' };
@@ -62,14 +69,17 @@ export async function getOpenversePhotos(queries, { destDir, slug, max = 2, star
   const outDir = join(destDir, slug);
   await mkdir(outDir, { recursive: true });
 
-  const saved = [];
+  // Gather + SCORE candidates across queries, THEN rank — so the best real photo
+  // wins the hero slot rather than whatever Openverse happened to return first.
+  const scored = [];
   const seen = new Set();
+  const hashes = []; // perceptual hashes of survivors, for near-dup rejection
 
   for (const q of queries) {
-    if (saved.length >= max) break;
+    if (scored.length >= max * 3) break; // enough survivors to choose from
     const results = await search(q, { aspect });
     for (const r of results) {
-      if (saved.length >= max) break;
+      if (scored.length >= max * 3) break;
       // Prefer the original; fall back to Openverse's thumbnail proxy.
       const src = r.url || r.thumbnail;
       if (!src || seen.has(src)) continue;
@@ -79,16 +89,41 @@ export async function getOpenversePhotos(queries, { destDir, slug, max = 2, star
       if (!got) continue;
       const ext = EXT_BY_MIME[got.mime] || (r.filetype === 'png' ? 'png' : 'jpg');
       if (got.buf.length < 12000) continue; // too small to be a real photo
-      const idx = startIndex + saved.length;
-      const fileName = nameFor(idx, ext);
-      await writeFile(join(outDir, fileName), got.buf);
-      saved.push({
-        path: `/images/${slug}/${fileName}`,
+      // CONTENT GATE (Fable #8): Openverse mixes CC illustrations/clip-art/logos
+      // in with photos. scorePhoto judges the pixels — reject graphics + frames
+      // below the quality floor so off-topic art never becomes a hero.
+      const judged = await scorePhoto(got.buf);
+      if (!judged.ok || judged.isGraphic || judged.score < MIN_PHOTO_SCORE) continue;
+      // Drop near-duplicates (same shot at another size/crop already kept).
+      const dh = await dhash(got.buf);
+      if (dh != null && hashes.some((h) => hamming(h, dh) <= NEAR_DUP_DISTANCE)) continue;
+      if (dh != null) hashes.push(dh);
+      scored.push({
+        buf: got.buf,
+        ext,
+        score: judged.score,
         credit: r.creator || 'Openverse',
         license: r.license ? `${r.license} ${r.license_version ?? ''}`.trim() : 'CC',
         source: r.foreign_landing_url || r.url || '',
       });
     }
+  }
+
+  scored.sort((a, b) => b.score - a.score); // best photo wins the hero slot
+
+  const saved = [];
+  for (let i = 0; i < scored.length && saved.length < max; i++) {
+    const s = scored[i];
+    const idx = startIndex + saved.length;
+    const fileName = nameFor(idx, s.ext);
+    await writeFile(join(outDir, fileName), s.buf);
+    saved.push({
+      path: `/images/${slug}/${fileName}`,
+      credit: s.credit,
+      license: s.license,
+      source: s.source,
+      score: s.score,
+    });
   }
   return saved;
 }
