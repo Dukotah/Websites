@@ -1315,6 +1315,16 @@ async function main() {
       heroPhotoTierToSet = 'fullbleed';
     }
 
+    // RELEVANCE FLAG: a GENERIC STOCK hero (Wikimedia/Openverse) is a real photo
+    // but it's NOT the business's own — shipping it as "we built YOUR site" reads
+    // as low-effort (and risks the off-topic "pears for a contractor" class). It's
+    // fine as honest filler, but never auto-send it: flag needs-review so a human
+    // confirms relevance or swaps in a real photo. Own-site/OSM/Wikidata/agent
+    // photos are inherently theirs and are NOT flagged.
+    if (media.length && /wikimedia|openverse|commons/i.test(photoSource)) {
+      photoFlags.push('hero is generic stock (not the business’s own photo) — verify relevance or replace before sending');
+    }
+
     // 2b) Backfill missing CONTACT facts (hours/phone/address) from the free
     //     OSM/Wikidata lookup the photo tier already did. Gap-fill ONLY: never on
     //     a confirmed:true research file (authoritative, human-verified), and
