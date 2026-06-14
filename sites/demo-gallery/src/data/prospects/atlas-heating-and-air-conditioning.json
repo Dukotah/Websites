@@ -1,0 +1,184 @@
+{
+  "name": "Atlas Heating and Air Conditioning",
+  "category": "hvac",
+  "tagline": "Honest HVAC for Sonoma County since 2008",
+  "seoDescription": "Atlas Heating and Air Conditioning is a family-run Santa Rosa HVAC contractor offering honest heating, AC, and mini-split service across Sonoma County.",
+  "area": "Santa Rosa, CA",
+  "established": "Est. 2008",
+  "contact": {
+    "phone": "(707) 571-7522",
+    "email": "atlashvac@yahoo.com",
+    "address": "560 Silva Ave"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Santa Rosa's straight-shooting heating and cooling team",
+    "subheading": "Owner Ryan Gordon and his crew have kept Sonoma County homes comfortable since 2008 with honest diagnostics and fair pricing.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Family-owned and operating since 2008",
+    "BBB A+ rated, fully licensed (CSLB #917129)",
+    "Trane and Daikin mini-split dealer",
+    "Honest diagnostics, no upsell pressure",
+    "Free estimates on new installations"
+  ],
+  "images": {
+    "hero": "/images/library/default/hero.svg",
+    "heroAlt": "Atlas Heating and Air Conditioning in Santa Rosa, CA",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/library/default/story.svg",
+    "storyAlt": "About Atlas Heating and Air Conditioning",
+    "storyFocal": "50% 50%",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About Atlas Heating and Air Conditioning",
+    "body": [
+      "Atlas Heating and Air Conditioning is a small, family-oriented company founded in Santa Rosa in 2008 by owner Ryan Gordon. From the shop on Silva Avenue, the team serves homeowners and businesses across Sonoma County and the surrounding North Bay.",
+      "Customers consistently point to the same thing: honest assessments and fair pricing. Atlas is known for recommending the right repair instead of pushing a full replacement, and for leaving the job site cleaner than they found it. The company holds a BBB A+ rating and carries a current California contractor's license (#917129)."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Heating Repair & Installation",
+      "description": "Furnace and heating system service, repair, and new installations, including dual-zone setups."
+    },
+    {
+      "title": "Air Conditioning",
+      "description": "AC installation and repair to keep your home comfortable through Sonoma County summers."
+    },
+    {
+      "title": "Ductless Mini-Splits",
+      "description": "Local Trane and Daikin dealer specializing in efficient ductless mini-split systems."
+    },
+    {
+      "title": "Water Heaters",
+      "description": "Installation of both tank and tankless water heaters."
+    },
+    {
+      "title": "Maintenance & Diagnostics",
+      "description": "Preventive maintenance and thorough diagnostic assessments with clear, detailed findings."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Thu",
+      "hours": "9am–5pm"
+    },
+    {
+      "day": "Fri–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Heating Repair & Installation",
+          "description": "Furnace and heating system service, repair, and new installations, including dual-zone setups."
+        },
+        {
+          "title": "Air Conditioning",
+          "description": "AC installation and repair to keep your home comfortable through Sonoma County summers."
+        },
+        {
+          "title": "Ductless Mini-Splits",
+          "description": "Local Trane and Daikin dealer specializing in efficient ductless mini-split systems."
+        },
+        {
+          "title": "Water Heaters",
+          "description": "Installation of both tank and tankless water heaters."
+        },
+        {
+          "title": "Maintenance & Diagnostics",
+          "description": "Preventive maintenance and thorough diagnostic assessments with clear, detailed findings."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "18+",
+          "label": "Years in business"
+        },
+        {
+          "value": "5★",
+          "label": "38 reviews"
+        },
+        {
+          "value": "5",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "Ryan went above and beyond in service, even added some things not in the quote.",
+          "author": "Richard I."
+        },
+        {
+          "quote": "Friendly, honest and reasonably priced.",
+          "author": "Debbie K."
+        },
+        {
+          "quote": "Ryan and his team are amazing!",
+          "author": "Ryan G."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 560 Silva Ave."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon–Thu: 9am–5pm; Fri–Sun: Closed."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at (707) 571-7522 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "needs-review",
+  "flags": [
+    "No real/AI photos — using library art"
+  ],
+  "theme": {
+    "brand": "#1f8a8a",
+    "brandDark": "#17323a"
+  },
+  "heroVariant": "editorial-asym"
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "atlas-heating-and-air-conditioning",
+  "confirmed": true,
+  "established": "2008",
+  "tagline": "Honest HVAC for Sonoma County since 2008",
+  "seoDescription": "Atlas Heating and Air Conditioning is a family-run Santa Rosa HVAC contractor offering honest heating, AC, and mini-split service across Sonoma County.",
+  "heroHeading": "Santa Rosa's straight-shooting heating and cooling team",
+  "heroSubheading": "Owner Ryan Gordon and his crew have kept Sonoma County homes comfortable since 2008 with honest diagnostics and fair pricing.",
+  "highlights": [
+    "Family-owned and operating since 2008",
+    "BBB A+ rated, fully licensed (CSLB #917129)",
+    "Trane and Daikin mini-split dealer",
+    "Honest diagnostics, no upsell pressure",
+    "Free estimates on new installations"
+  ],
+  "aboutHeading": "About Atlas Heating and Air Conditioning",
+  "aboutBody": [
+    "Atlas Heating and Air Conditioning is a small, family-oriented company founded in Santa Rosa in 2008 by owner Ryan Gordon. From the shop on Silva Avenue, the team serves homeowners and businesses across Sonoma County and the surrounding North Bay.",
+    "Customers consistently point to the same thing: honest assessments and fair pricing. Atlas is known for recommending the right repair instead of pushing a full replacement, and for leaving the job site cleaner than they found it. The company holds a BBB A+ rating and carries a current California contractor's license (#917129)."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {"title": "Heating Repair & Installation", "description": "Furnace and heating system service, repair, and new installations, including dual-zone setups."},
+    {"title": "Air Conditioning", "description": "AC installation and repair to keep your home comfortable through Sonoma County summers."},
+    {"title": "Ductless Mini-Splits", "description": "Local Trane and Daikin dealer specializing in efficient ductless mini-split systems."},
+    {"title": "Water Heaters", "description": "Installation of both tank and tankless water heaters."},
+    {"title": "Maintenance & Diagnostics", "description": "Preventive maintenance and thorough diagnostic assessments with clear, detailed findings."}
+  ],
+  "hours": [
+    {"day": "Mon–Thu", "hours": "9am–5pm"},
+    {"day": "Fri–Sun", "hours": "Closed"}
+  ],
+  "testimonials": [
+    {"quote": "Ryan went above and beyond in service, even added some things not in the quote.", "author": "Richard I."},
+    {"quote": "Friendly, honest and reasonably priced.", "author": "Debbie K."},
+    {"quote": "Ryan and his team are amazing!", "author": "Ryan G."}
+  ],
+  "rating": {"value": 5.0, "count": 38, "source": "Yelp"},
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED OPEN and active (BBB A+, current CSLB license #917129, recent 2023 reviews). The outreach site URL (atlasheatingandairconditioninginc.com) was UNREACHABLE during research; the company's working web presence is heatingservicesantarosa.com (also refused direct connection). Established Feb 2008, owner Ryan Gordon, office manager Stacey Searles. NOTE: a separate, much older 'Atlas Heating & Ventilating' (est. 1908, SF/Oakland) is a DIFFERENT company — not this one. Rating cross-checked: Yelp 38 reviews, Yahoo/Yelp 5.0 of ~40, Angi 5.0, BBB A+. No verified first-party photos obtainable (Yelp 403, site down) so realPhotoUrls left empty.",
+  "_richness": 0,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "Atlas Heating and Air Conditioning",
+    "category": "hvac",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 571-7522",
+    "email": "atlashvac@yahoo.com",
+    "address": "560 Silva Ave",
+    "owner": ""
+  }
+}

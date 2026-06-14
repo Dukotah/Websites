@@ -1,0 +1,54 @@
+{
+  "slug": "brm-builders",
+  "confirmed": true,
+  "established": "2006",
+  "tagline": "Sonoma County general contractor since 2006",
+  "seoDescription": "Building Repair & Management (BRM Builders) is a Santa Rosa general contractor for custom homes, remodels, additions, and foundation repair. CA Lic. #903189.",
+  "heroHeading": "From foundation lifts to finished custom homes in the North Bay",
+  "heroSubheading": "Family-rooted Santa Rosa general contractor with 47 years of combined building experience and a CA general contractor license.",
+  "highlights": [
+    "Licensed CA general contractor (Lic. #903189)",
+    "BBB Accredited, A+ rating",
+    "47 years of combined building experience",
+    "Locally owned and operated in Sonoma County",
+    "Free estimates across Sonoma County"
+  ],
+  "aboutHeading": "About BRM Builders",
+  "aboutBody": [
+    "BRM Builders is the working name of Building Repair & Management, Inc., a locally owned and operated general contractor serving Santa Rosa and the wider Sonoma County area. President Christian Andersen comes from a North Bay building family — he learned his standards from his father, respected Sonoma County builder Marsh Andersen — and has since built and renovated countless homes across the region.",
+    "The team handles everything from new custom homes and major remodels to structural and foundation repair, including complex restorations like a 1906 Healdsburg historic home that needed its foundation rebuilt while preserving the original character. The company holds California license #903189 and is BBB Accredited with an A+ rating."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {"title": "New custom homes", "description": "Ground-up residential construction built to high North Bay standards."},
+    {"title": "Remodels & additions", "description": "Kitchen, bath, and room additions that expand and update existing homes."},
+    {"title": "Foundation & structural repair", "description": "Foundation rebuilds, structural repair, and historic-home restoration."},
+    {"title": "Damage restoration", "description": "Fire, smoke, and water damage repair and rebuilds."},
+    {"title": "Tenant & commercial improvements", "description": "Tenant improvements and commercial build-out projects."},
+    {"title": "Design-build", "description": "Architectural drawings, engineering, and design coordination through construction."}
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/BuildingRepairManagementInc/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://brmbuild.com/images/homerenovations1.jpg",
+    "https://brmbuild.com/images/homerenovations5.jpg"
+  ],
+  "notes": "CONFIRMED: BRM Builders = Building Repair & Management, Inc. (BRM is the acronym) — same Santa Rosa business; verified via brmbuild.com, BBB, Facebook (both 'Building Repair & Management Inc.' and 'BRM Builders' pages), BuildZoom, Houzz. CA Contractors State License Board #903189 (expires 2027-09-30). Owner/President: Christian (Michael) Andersen. BBB Accredited since 2018-11-09, A+. Corporation established ~2006-2007; site frames it as '47 years of combined experience.' Two phone numbers appear publicly: (707) 481-6228 (site/contact) and (707) 527-8797 (directories). PHOTO NOTE: brmbuild.com/images/customkitchen.jpg is a STOCK family-in-kitchen image and was EXCLUDED; custombathroom.jpg could not be verified as BRM's own and was excluded. Only the two confirmed real jobsite photos (a house on cribbing for a foundation lift, and active framing with the builders on site) are included. No real aggregate rating with a credible count was found (Birdeye lists 5 stars on only 3 reviews; Houzz had none) — rating OMITTED. Hours and attributable testimonial quotes were not verifiable — left empty.",
+  "_richness": 0,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "BRM Builders",
+    "category": "contractor",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17074816228",
+    "email": "chris@brmbuild.com",
+    "address": "1851 Piner Rd",
+    "owner": ""
+  }
+}

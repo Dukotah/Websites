@@ -1,0 +1,63 @@
+{
+  "slug": "leslie-jue-dds",
+  "confirmed": true,
+  "established": "1987",
+  "tagline": "A legacy of trust in Sonoma County dentistry",
+  "seoDescription": "SOCO Dental Studio in Santa Rosa, CA offers cosmetic, restorative, and preventive dentistry. Dr. Leslie Jue has cared for smiles since 1987.",
+  "heroHeading": "Three generations of dentists, one Santa Rosa practice",
+  "heroSubheading": "SOCO Dental Studio brings Dr. Leslie Jue's decades of cosmetic and family care together with Drs. Louie and Baird at 55 Mission Circle.",
+  "highlights": [
+    "Dr. Leslie Jue caring for smiles since 1987",
+    "University of the Pacific, Dugoni School of Dentistry trained",
+    "Cosmetic, Invisalign, implants & full-mouth care",
+    "4.9-star rated by Sonoma County patients",
+    "Serving Santa Rosa, Windsor & Healdsburg"
+  ],
+  "aboutHeading": "About SOCO Dental Studio",
+  "aboutBody": [
+    "SOCO Dental Studio was formed when Dr. Michael Louie merged two long-established Santa Rosa practices into one home for multi-generational families across Sonoma County. The result is a team built on a legacy of trust, with three generations of dental experience under one roof.",
+    "Dr. Leslie Jue has delivered outstanding dental care since 1987. A UC Davis physiology graduate and University of the Pacific, Arthur A. Dugoni School of Dentistry alumna, she is a member of the American Academy of Cosmetic Dentistry and a longtime fixture of the local dental community."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {"title": "Cosmetic Dentistry", "description": "Veneers, bonding, teeth whitening, and full smile makeovers tailored to each patient."},
+    {"title": "Invisalign", "description": "Clear, removable aligners that straighten teeth without traditional metal braces."},
+    {"title": "Restorative Care", "description": "Crowns, fillings, root canal therapy, and full-mouth rehabilitation to restore function."},
+    {"title": "Dental Implants", "description": "Permanent, natural-looking replacements for missing or failing teeth."},
+    {"title": "Preventive & Hygiene", "description": "Cleanings, exams, sealants, and periodontal care to keep smiles healthy long term."},
+    {"title": "Emergency Dentistry", "description": "Prompt care for dental pain, breaks, and other urgent situations."}
+  ],
+  "hours": [
+    {"day": "Mon–Thu", "hours": "8am–5pm"},
+    {"day": "Fri–Sun", "hours": "Closed"}
+  ],
+  "testimonials": [],
+  "rating": {"value": 4.9, "count": 63, "source": "Birdeye"},
+  "social": {
+    "facebook": "https://www.facebook.com/LeslieJueDDS/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://cdn.prod.website-files.com/67fed9e72f240cb210fdc4fb/68af18c00e0e1a4ba7b0942c_DSC05248.webp",
+    "https://cdn.prod.website-files.com/67fed9e72f240cb210fdc4fb/687d31b43159133f6b2da270_DSC00459.webp",
+    "https://cdn.prod.website-files.com/67fed9e72f240cb210fdc4fb/687d31067f5a6d6d68330298__DSC3088.webp",
+    "https://cdn.prod.website-files.com/67fed9e72f240cb210fdc4fb/687d370a90f266e6183d74bb_DSC00449.webp",
+    "https://cdn.prod.website-files.com/67fed9e72f240cb210fdc4fb/68af19c1fd0c534c53fe6730_DSC05337.webp",
+    "https://cdn.prod.website-files.com/67fed9e72f240cb210fdc4fb/68af19e5dcba608bc90c9641_DSC04901.webp",
+    "https://cdn.prod.website-files.com/67fed9e72f240cb210fdc4fb/68af22324058daeed89658e1_DSC04895.webp"
+  ],
+  "notes": "CONFIRMED via web search: socodentalstudio.com IS Dr. Leslie Jue's practice. SOCO Dental Studio is the merged practice (formerly Jue Smiles / juesmiles.com) of Dr. Michael Louie, Dr. Leslie Jue, and Dr. Gregory Baird at 55 Mission Cir, Santa Rosa — same address/phone as the lead. The guard 'mismatch' was a FALSE positive: the site is the rebrand. RECOMMENDED DISPLAY NAME for the rep: \"SOCO Dental Studio\" (the public brand), with Dr. Leslie Jue featured prominently as a named provider — not \"Leslie Jue DDS\" as the title. Rating 4.9/63 from Birdeye; Yelp shows 19 reviews; Healthgrades has none. Site footer social links are placeholder '#' anchors; the confirmed Facebook page is facebook.com/LeslieJueDDS. realPhotoUrls are the practice's own office/interior photos from its Webflow CDN (verified HTTP 200 image/webp). No real patient quotes captured with attribution, so testimonials left empty.",
+  "_richness": 0,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "Leslie Jue DDS",
+    "category": "dental",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17075371904",
+    "email": "jueinfo@sonic.net",
+    "address": "55 Mission Cir",
+    "owner": ""
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "orourke-electric-inc",
+  "confirmed": true,
+  "established": "Est. 1981",
+  "tagline": "Quality electrical work in the North Bay since 1981",
+  "seoDescription": "O'Rourke Electric Inc has provided residential, commercial, and industrial electrical work in Santa Rosa and the North Bay since 1981. Licensed, IBEW-trained.",
+  "heroHeading": "Santa Rosa's electrical contractor since 1981",
+  "heroSubheading": "Family-run, IBEW-trained electricians serving homes, businesses, and industry across the North Bay.",
+  "highlights": [
+    "Serving the North Bay since 1981",
+    "IBEW Local 551 trained, state-certified electricians",
+    "Residential, commercial & industrial work",
+    "California Certified Small Business",
+    "CSLB License No. 682968"
+  ],
+  "aboutHeading": "About O'Rourke Electric",
+  "aboutBody": [
+    "Founded in 1981 by Daniel T. O'Rourke and still led by Dan O'Rourke, O'Rourke Electric, Inc. has spent over four decades wiring homes, businesses, and industrial facilities across Santa Rosa and the greater San Francisco North Bay.",
+    "The team pairs IBEW Local 551 trained, state-certified electricians with experienced project managers, and is a California Certified Small Business and member of the North Coast Builders Exchange and the National Fire Protection Association."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Residential Electrical",
+      "description": "Wiring, upgrades, lighting, and repairs for homes throughout the North Bay."
+    },
+    {
+      "title": "Commercial Electrical",
+      "description": "Electrical installation and service for offices, retail, and commercial buildings."
+    },
+    {
+      "title": "Industrial Electrical",
+      "description": "Power distribution and equipment wiring for industrial and manufacturing facilities."
+    }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "7am–5pm" },
+    { "day": "Sat–Sun", "hours": "Closed" }
+  ],
+  "testimonials": [
+    {
+      "quote": "The many times we have had O'Rourke Electric solve our electrical problems, we have had 100% success.",
+      "author": "Karen Derkos"
+    },
+    {
+      "quote": "O'Rourke Electric Inc is completing a job where I work that required their expertise in providing power to machinery that was consolidated into two areas. They performed admirably.",
+      "author": "Alan Hennessy"
+    }
+  ],
+  "rating": { "value": 4.5, "count": 8, "source": "Birdeye" },
+  "social": {
+    "facebook": "https://www.facebook.com/orourkeelectric/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://nebula.wsimg.com/05e84c024a5a62e7710c4a2a18b246b1?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/9a42b49e5a30c98cd5ffc5d53a35dc10?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/a407036a6b8cfde754ca85aefcd4632e?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/442f410d4aa5b299f5103e81c62d63eb?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/411510e3ece3a51a82c437cc9752a0c6?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/8406f119a912101239f04dd8fe8fbfa0?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/f6bb3cd825a0e05faf2b770b5c99957b?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/2f28bd79d06673cee467028bd07d165c?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/acc976af2a4d02729f874a9f4422de8a?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/81c0cb51eec508689449099cc8a64278?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1",
+    "https://nebula.wsimg.com/0da0faec693f1b950fae8ffcfb7ea9b9?AccessKeyId=946325BDC10A4CED35EC&disposition=0&alloworigin=1"
+  ],
+  "notes": "Rating 4.5/8 matches across Birdeye and Yelp (Yelp 'Updated April 2026'). Founder Daniel T. O'Rourke; current president Dan O'Rourke; staff Jeff Jones (estimator), Lori Lee (accounting). CSLB License 682968 (Electrical + General Building). Address 3347 Industrial Dr #4, Santa Rosa CA 95403; fax (707) 528-2506. Facebook page confirmed live. No Instagram or Google Business profile URL found. realPhotoUrls are wsimg/nebula assets from their own GoDaddy-hosted site (filtered to image-only nebula URLs); verify each renders as a real business photo before publishing — site also had logo/icon assets removed.",
+  "_richness": 46,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "ORourke Electric Inc",
+    "category": "electrician",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17075288539",
+    "email": "dan@orourke-electric.com",
+    "address": "3347 Industrial Dr",
+    "owner": ""
+  }
+}

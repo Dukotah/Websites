@@ -1,0 +1,210 @@
+{
+  "name": "Thomas Ayurveda",
+  "category": "spa",
+  "tagline": "Chiropractic meets Ayurveda in Sonoma County",
+  "seoDescription": "Dr. Helen Thomas, DC blends chiropractic and Ayurvedic medicine in Santa Rosa — 40+ years of holistic care for pain, allergies, digestion, and stress.",
+  "area": "Santa Rosa, CA",
+  "established": "Est. 1982",
+  "contact": {
+    "phone": "+17075277313",
+    "email": "drst@sonic.net",
+    "address": "2635 Cleveland Ave Ste 2"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/Thomas-Ayurveda-158828097505738",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Forty Years of Healing, East Meets West",
+    "subheading": "Dr. Helen Thomas, DC pairs chiropractic with Ayurvedic medicine she studied under Deepak Chopra and master physicians in Pune, India.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Doctor of Chiropractic, Palmer College graduate (1982)",
+    "Practicing Ayurvedic physician since 1984",
+    "Studied with Deepak Chopra, Vasant Lad & Dr. Narendra Pendse, MD",
+    "Author of \"Ayurveda: The A-Z Guide to Healing Techniques from Ancient India\"",
+    "40+ year Sonoma County practice"
+  ],
+  "images": {
+    "hero": "/images/thomas-ayurveda/hero.webp",
+    "heroAlt": "Thomas Ayurveda in Santa Rosa, CA",
+    "heroFocal": "50% 25%",
+    "heroCredit": "",
+    "story": "/images/thomas-ayurveda/hero.webp",
+    "storyAlt": "About Thomas Ayurveda",
+    "storyFocal": "50% 25%",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About Thomas Ayurveda",
+    "body": [
+      "Dr. Helen Mary Thomas is a California native and longtime Sonoma County resident who has practiced chiropractic since graduating from Palmer College of Chiropractic in 1982. In 1984 she began training as an Ayurvedic physician — one of the first chiropractors to study with Deepak Chopra and Vaidya J.R. Ragu — later completing coursework at Maharishi International University and residencies in Pune and Mumbai, India under her mentor Dr. Narendra Pendse, MD.",
+      "Her Santa Rosa clinic synthesizes chiropractic, Ayurveda, NAET allergy elimination, bodywork, and bioenergetics into one holistic, personalized approach. She is also the author of \"Ayurveda: The A-Z Guide to Healing Techniques from Ancient India.\""
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Chiropractic Care",
+      "description": "Gentle, precise adjustments to relieve pain and restore alignment, including Impulse IQ instrument adjusting."
+    },
+    {
+      "title": "Ayurvedic Medicine",
+      "description": "Personalized Ayurvedic assessment and therapies rooted in decades of training in India's ancient healing system."
+    },
+    {
+      "title": "NAET Allergy Elimination",
+      "description": "Non-invasive allergy and sensitivity treatment to address reactions at their source."
+    },
+    {
+      "title": "Digestion & IBS Care",
+      "description": "Ayurvedic treatment for chronic indigestion and IBS to rebuild healthy digestion."
+    },
+    {
+      "title": "Zerona Laser Weight Loss",
+      "description": "Cold-laser body-contouring therapy for non-invasive weight loss support."
+    },
+    {
+      "title": "Stress Relief Therapy",
+      "description": "Relaxation and stress-relief sessions to calm the nervous system and support whole-body wellness."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "9:00 AM – 2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "44+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.5★",
+          "label": "22 reviews"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "eyebrow": "Our story",
+      "heading": "How we got here",
+      "items": [
+        {
+          "year": "1982",
+          "title": "Thomas Ayurveda opened its doors",
+          "body": "Dr. Helen Mary Thomas is a California native and longtime Sonoma County resident who has practiced chiropractic since graduating from Palmer College"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What customers say",
+      "items": [
+        {
+          "quote": "Dr. Thomas is a healer in every sense of the word and a genuinely kind, caring person who is passionate about the work she does.",
+          "author": "Elaine"
+        },
+        {
+          "quote": "YES, she is a great doctor. Knowledgeable in her field, honest, transparent and has her patients' interest at heart always!",
+          "author": "Lety Assad"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 2635 Cleveland Ave Ste 2."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Hours can vary — give us a call at +17075277313 and we'll let you know when we're open."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17075277313 — we're glad to help."
+        }
+      ]
+    },
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Chiropractic Care",
+          "description": "Gentle, precise adjustments to relieve pain and restore alignment, including Impulse IQ instrument adjusting."
+        },
+        {
+          "title": "Ayurvedic Medicine",
+          "description": "Personalized Ayurvedic assessment and therapies rooted in decades of training in India's ancient healing system."
+        },
+        {
+          "title": "NAET Allergy Elimination",
+          "description": "Non-invasive allergy and sensitivity treatment to address reactions at their source."
+        },
+        {
+          "title": "Digestion & IBS Care",
+          "description": "Ayurvedic treatment for chronic indigestion and IBS to rebuild healthy digestion."
+        },
+        {
+          "title": "Zerona Laser Weight Loss",
+          "description": "Cold-laser body-contouring therapy for non-invasive weight loss support."
+        },
+        {
+          "title": "Stress Relief Therapy",
+          "description": "Relaxation and stress-relief sessions to calm the nervous system and support whole-body wellness."
+        }
+      ]
+    }
+  ],
+  "layout": "split",
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending"
+  ],
+  "theme": {
+    "brand": "#8a6bb0",
+    "brandDark": "#2a2433"
+  },
+  "artDirection": {
+    "heroPhotoTier": "fullbleed",
+    "fontId": "clean-sans",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "timeline"
+  },
+  "heroVariant": "panel"
+}

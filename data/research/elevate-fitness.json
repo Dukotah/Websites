@@ -1,0 +1,87 @@
+{
+  "slug": "elevate-fitness",
+  "confirmed": true,
+  "established": "Est. 2016",
+  "tagline": "Sonoma County's premier private training studio",
+  "seoDescription": "Elevate Fitness is a private personal training studio in Santa Rosa offering NeuroKinetic Therapy, strength, yoga and nutrition coaching with founder Josh Mesa.",
+  "heroHeading": "Customized training that ends pain and builds real strength",
+  "heroSubheading": "Founder Josh Mesa pairs 11+ years of coaching with Level 3 NeuroKinetic Therapy to fix imbalances, not just chase reps.",
+  "highlights": [
+    "5.0-star Google rating",
+    "Founder is a Level 3 NeuroKinetic Therapy specialist",
+    "Private one-on-one studio, not a crowded big-box gym",
+    "Training, NKT pain relief, yoga therapy & nutrition under one roof",
+    "Serving Sonoma County since 2016"
+  ],
+  "aboutHeading": "About Elevate Fitness",
+  "aboutBody": [
+    "Elevate Fitness is a private training studio in Santa Rosa founded by Josh Mesa, who went full-time as a personal trainer in 2009 after watching family and friends struggle with pain and health conditions. He opened Elevate to break away from cookie-cutter programs and deliver a truly customized experience.",
+    "Josh is a Certified Personal Trainer, Corrective Exercise and Performance Enhancement specialist, and a Level 3 NeuroKinetic Therapist. That blend lets him bridge injury rehab and athletic performance, helping clients break through plateaus, get out of pain, and stay active for the long run."
+  ],
+  "servicesHeading": "What we offer",
+  "services": [
+    {
+      "title": "NeuroKinetic Therapy (Pain Relief)",
+      "description": "Targets the nervous system and muscular imbalances to find the source of pain and correct it at the root."
+    },
+    {
+      "title": "NeuroKinetic Therapy (Strength & Athletes)",
+      "description": "Bridges rehab and performance by retraining movement patterns to prevent injury and break through performance barriers."
+    },
+    {
+      "title": "Personal Training",
+      "description": "One-on-one programs combining resistance training, cardio, mobility, nutrition, and expert instruction."
+    },
+    {
+      "title": "Group Training",
+      "description": "Dynamic, community-focused workouts with expert coaching for all fitness levels."
+    },
+    {
+      "title": "Yoga Therapy",
+      "description": "Mind-body sessions focused on stress reduction, balance, and injury prevention."
+    },
+    {
+      "title": "Nutrition Coaching",
+      "description": "One-on-one and group guidance on macros, diet selection, and strategies to support your goals."
+    }
+  ],
+  "hours": [],
+  "testimonials": [
+    {
+      "quote": "Many thanks to Elevate Fitness. I had reached a major plateau and couldn't figure out what was next. Josh helped me break through and experience a new kind of workout. He also supported my son in rehabilitating his arm in preparation for college baseball. Can't thank him enough for what he's done for us.",
+      "author": "Elevate Fitness client"
+    },
+    {
+      "quote": "I've been working with Josh since 2012. I've got a congenital back problem and he's helped me keep my active lifestyle, riding bikes and motorcycles. He's kept me functional, healthy and in good shape and out of pain. I recommend him highly.",
+      "author": "Long-time client"
+    },
+    {
+      "quote": "I'm a track sprinter and high jumper, and I've worked with Elevate Fitness since my senior year of high school. His belief in me and training helped me become a league champion, and now I'm running at the collegiate level.",
+      "author": "Collegiate athlete"
+    }
+  ],
+  "rating": {
+    "value": 5.0,
+    "count": 3,
+    "source": "Google"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/weelevatefitness/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "The provided website URL (http://weelevatefitness.com/) was unreachable during scraping, but it is now live again (weelevatefitness.com loads). Business is CONFIRMED OPEN: consistent address/phone across Google, Facebook, Atly, Nextdoor and other directories; active Facebook page shows 'Open now'; Google rating 5.0 from 3 reviews. Founder/owner is Josh Mesa (Level 3 NeuroKinetic Therapist). Founded ~2016 (about page said 'seven years ago' as of 2023); Josh has trained full-time since 2009. Address is 3451 Airway Dr Suite M, Santa Rosa, CA 95403. No verifiable hours found (directories say 'contact for hours'), so hours left empty. realPhotoUrls left EMPTY: the prior auto-scrape list was mostly stock/generic stock-photo filenames (e.g. '...2022-12-15-utc.jpg', podcast/boardroom images) hosted on the site's CDN, not verified real photos of this gym's space/members; no clearly-theirs landscape images confirmed. Instagram 'elevatefitness_oc' belongs to a different Orange County business and was excluded.",
+  "_richness": 75,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "Elevate Fitness",
+    "category": "fitness",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17073326760",
+    "email": "weelevatefitness@gmail.com",
+    "address": "3451 Airway Dr",
+    "owner": ""
+  }
+}

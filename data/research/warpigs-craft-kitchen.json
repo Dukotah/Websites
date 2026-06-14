@@ -1,0 +1,101 @@
+{
+  "slug": "warpigs-craft-kitchen",
+  "confirmed": true,
+  "established": "2011",
+  "tagline": "Slow-smoked craft BBQ from Sonoma County",
+  "seoDescription": "WarPigs Craft Kitchen in Cotati, CA serves 12-hour smoked meats, scratch-made sides, and full-service catering rooted in Modern Americana comfort food.",
+  "heroHeading": "12-Hour Smoked Meats, Made the Hard Way",
+  "heroSubheading": "Pitmaster Larry Hillix has been slow-smoking craft barbecue for Sonoma County since 2011.",
+  "highlights": [
+    "Smoked low and slow up to 12 hours",
+    "Scratch-made sides and house sauces",
+    "Full-service catering for weddings & events",
+    "Sonoma County pop-ups & brewery collabs",
+    "4.5 stars on Yelp"
+  ],
+  "aboutHeading": "About WarPigs Craft Kitchen",
+  "aboutBody": [
+    "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for War Pigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park of G's Slow Smoked BBQ. The idea was simple: pair real precision and quality with the familiar flavors of hanging out with family around the grill.",
+    "Today WarPigs is a Northern California craft kitchen drawing on classic American comfort food, Southern smokehouse tradition, and seasonal California ingredients. Beyond the kitchen they cater corporate events, weddings, and private gatherings, and regularly host pop-ups with local breweries, wineries, and community venues."
+  ],
+  "servicesHeading": "On the menu",
+  "services": [
+    {
+      "title": "12-Hour Smoked Pulled Pork Sandwich",
+      "description": "Crispy pork bark and velvety shreds on toasted brioche, finished with tangy red sauce."
+    },
+    {
+      "title": "Dirty Fries",
+      "description": "Fries piled with cheese, BBQ sauce, pulled pork, and coleslaw."
+    },
+    {
+      "title": "Smoked Meats",
+      "description": "Brisket, ribs, smoked chicken wings, and house-made sausage."
+    },
+    {
+      "title": "Scratch-Made Sides",
+      "description": "Fried Brussels sprouts, onion rings, and house coleslaw."
+    },
+    {
+      "title": "Full-Service Catering",
+      "description": "Custom menus for weddings, corporate events, and private gatherings across Sonoma County."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Sun",
+      "hours": "11:30am–8pm"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Awesome brisket! Great pulled pork!",
+      "author": "Yelp reviewer"
+    },
+    {
+      "quote": "The bbq pork sandwich was perfect. The sides are great as well.",
+      "author": "Yelp reviewer"
+    }
+  ],
+  "rating": {
+    "value": 4.5,
+    "count": 22,
+    "source": "Yelp"
+  },
+  "priceRange": "$$",
+  "servesCuisine": [
+    "Barbecue",
+    "American"
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/WarPigsBBQinCali",
+    "instagram": "https://www.instagram.com/warpigs_craft_kitchen/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1597267772313-999GIPM9QCBS4VBUHLFK/Windsor_thursday-2.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598145343230-EGF2LCT4BT6DLUNAEVGV/michellege-25.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598145780437-BR2TW9SOEE51X013H52A/michellege-24.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598215095318-PURBZ8KBOXBTWKR18W6J/michellege-26.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598215390687-YTK6EUQPYZCEKL8UTD2N/michellege-27.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598215468766-ARLVT259C77T6326CTIT/michellege-28.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598215313439-EVZ9GO025A0WBPCRAL3M/michellege-23.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598630145525-6TI67FXR83VKR041J55T/IMG_2378.JPG",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598630198808-ZCRIBEHHUSP7GZL9KAGW/IMG_2026.JPG",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598630213783-R434EQ935BKPNIJRXQST/IMG_2025.JPG",
+    "https://images.squarespace-cdn.com/content/v1/5f1225b96ed93f6ce3cc4a70/1598630277653-1SOUEQGHPZQUNSMDBVP0/IMG_0101.JPG"
+  ],
+  "notes": "Two locations exist: this Cotati address (8492 Gravenstein Hwy, matches _lead) plus a newer Santa Rosa brick-and-mortar inside The Clubhouse Bar & Grill (3082 Marlow Rd). Current official site is warpigsbarbeque.com (the squarespace lead URL is the older site). Rating 4.5/22 is Yelp for the Cotati listing. Photos are from the business's own (older) Squarespace site; verify they still represent current food/space before sending. Prices noted from Sonoma Magazine (sandwich ~$15, dirty fries ~$16).",
+  "_richness": 66,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "WarPigs Craft Kitchen",
+    "category": "restaurant",
+    "city": "Cotati",
+    "state": "CA",
+    "phone": "+17075085551",
+    "email": "warpigsbbq@yahoo.com",
+    "address": "8492 Gravenstein Hwy",
+    "owner": ""
+  }
+}

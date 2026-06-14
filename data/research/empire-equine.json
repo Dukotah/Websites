@@ -1,0 +1,87 @@
+{
+  "slug": "empire-equine",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Compassionate equine care, up-to-date treatment",
+  "seoDescription": "Empire Equine: mobile equine veterinary care in Sonoma County led by Dr. Michelle Beko (UC Davis '91). Preventative, dental, lameness, reproduction, 24hr emergency.",
+  "heroHeading": "Expert horse care from a Sonoma County vet who rides",
+  "heroSubheading": "Dr. Michelle Beko, a UC Davis graduate and lifelong horsewoman, has cared for the area's horses through Empire Equine since 1992.",
+  "highlights": [
+    "Led by Dr. Michelle Beko, UC Davis DVM (1992)",
+    "24-hour emergency service",
+    "Full-service equine care across Sonoma County",
+    "Member, AAEP & AVMA",
+    "From backyard companions to upper-level sport horses"
+  ],
+  "aboutHeading": "About Empire Equine",
+  "aboutBody": [
+    "Empire Equine was founded decades ago by Dr. Jack Woolsey and Dr. Bob Norrie. Today it is owned by Dr. Michelle Beko, a UC Davis veterinary graduate, former Eventing competitor, and seasoned horse owner who joined the practice in 1992 and continues their legacy of excellence.",
+    "From our base at 2318 Olivet Ln in Santa Rosa, we provide up-to-date, high-quality, and compassionate care to all kinds of horses, donkeys, mules, ponies, and miniatures, ranging from high-performance athletes to pleasure, backyard, and elderly horses. We welcome novice owners with full support and education."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Preventative & Wellness Care",
+      "description": "Routine exams, vaccinations, and parasite control to keep your horse healthy year-round."
+    },
+    {
+      "title": "Annual Health Maintenance Program",
+      "description": "Two yearly visits bundling physical exam, vaccinations, deworming, and teeth floating."
+    },
+    {
+      "title": "Dental Care",
+      "description": "Teeth floating and dental treatments to support comfort and proper nutrition."
+    },
+    {
+      "title": "Lameness Evaluations",
+      "description": "Diagnostic workups to find and address the source of lameness and performance issues."
+    },
+    {
+      "title": "Advanced Diagnostics",
+      "description": "On-site diagnostic tools to investigate illness and injury accurately."
+    },
+    {
+      "title": "Reproductive Services",
+      "description": "Breeding support including live cover and artificial insemination."
+    },
+    {
+      "title": "Prepurchase Examinations",
+      "description": "Thorough evaluations to inform your decision before buying a horse."
+    },
+    {
+      "title": "24-Hour Emergency Care",
+      "description": "Round-the-clock urgent care for when your horse needs help right away."
+    }
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/Michelle+SCHJ-1920w.jpg",
+    "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/Michelle+%281%29-1920w.JPG",
+    "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/Michelle-1920w.JPG",
+    "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/teeth+floating-1920w.JPG",
+    "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/IMG_5984-1920w.JPG",
+    "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/IMG_3294-1920w.JPG",
+    "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/IMG_1376+%282%29-1920w.JPG",
+    "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/IMG_5935+%282%29-1920w.JPG",
+    "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/IMG_20210313_110408529_HDR-1920w.jpg"
+  ],
+  "notes": "Exact founding year not stated (site says founded 'decades ago' by Dr. Jack Woolsey and Dr. Bob Norrie). Dr. Beko: UC Davis vet school 1991, joined Empire Equine 1992, member AAEP & AVMA (confirmed via web search of practice profile). Hours left empty: current site says 'open 24 hours' / 24hr emergency but no weekday office hours verifiable; established field left blank pending exact year. No aggregate star rating with a real review count could be confirmed (Yelp page returned 403; no Google/Yelp numeric rating surfaced) — rating OMITTED. No Facebook/Instagram/Google social URLs found. No real testimonials retrievable — left empty. realPhotoUrls filtered to clearly-theirs images (Dr. Beko, IMG_*, teeth-floating); all shutterstock_* stock images and logos excluded.",
+  "_richness": 95,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "Empire Equine",
+    "category": "veterinary",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "7075453909",
+    "email": "empireequine@comcast.net",
+    "address": "2318 Olivet Ln",
+    "owner": ""
+  }
+}

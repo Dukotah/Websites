@@ -1,0 +1,205 @@
+{
+  "name": "Leslie Jue DDS",
+  "category": "dental",
+  "tagline": "A legacy of trust in Sonoma County dentistry",
+  "seoDescription": "SOCO Dental Studio in Santa Rosa, CA offers cosmetic, restorative, and preventive dentistry. Dr. Leslie Jue has cared for smiles since 1987.",
+  "area": "Santa Rosa, CA",
+  "established": "Est. 1987",
+  "contact": {
+    "phone": "+17075371904",
+    "email": "jueinfo@sonic.net",
+    "address": "55 Mission Cir"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/LeslieJueDDS/",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Three generations of dentists, one Santa Rosa practice",
+    "subheading": "SOCO Dental Studio brings Dr. Leslie Jue's decades of cosmetic and family care together with Drs. Louie and Baird at 55 Mission Circle.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Dr. Leslie Jue caring for smiles since 1987",
+    "University of the Pacific, Dugoni School of Dentistry trained",
+    "Cosmetic, Invisalign, implants & full-mouth care",
+    "4.9-star rated by Sonoma County patients",
+    "Serving Santa Rosa, Windsor & Healdsburg"
+  ],
+  "images": {
+    "hero": "/images/leslie-jue-dds/hero.webp",
+    "heroAlt": "Leslie Jue DDS in Santa Rosa, CA",
+    "heroFocal": "50% 42%",
+    "heroCredit": "",
+    "story": "/images/leslie-jue-dds/story.webp",
+    "storyAlt": "About Leslie Jue DDS",
+    "storyFocal": "65% 50%",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/leslie-jue-dds/story.webp",
+      "alt": "Leslie Jue DDS in Santa Rosa, CA — photo 1",
+      "focal": "65% 50%"
+    },
+    {
+      "src": "/images/leslie-jue-dds/photo-2.webp",
+      "alt": "Leslie Jue DDS in Santa Rosa, CA — photo 2",
+      "focal": "55% 50%"
+    },
+    {
+      "src": "/images/leslie-jue-dds/photo-3.webp",
+      "alt": "Leslie Jue DDS in Santa Rosa, CA — photo 3",
+      "focal": "55% 50%"
+    },
+    {
+      "src": "/images/leslie-jue-dds/photo-4.webp",
+      "alt": "Leslie Jue DDS in Santa Rosa, CA — photo 4",
+      "focal": "47% 50%"
+    },
+    {
+      "src": "/images/leslie-jue-dds/photo-5.webp",
+      "alt": "Leslie Jue DDS in Santa Rosa, CA — photo 5",
+      "focal": "50% 39%"
+    },
+    {
+      "src": "/images/leslie-jue-dds/photo-6.webp",
+      "alt": "Leslie Jue DDS in Santa Rosa, CA — photo 6",
+      "focal": "50% 32%"
+    }
+  ],
+  "about": {
+    "heading": "About SOCO Dental Studio",
+    "body": [
+      "SOCO Dental Studio was formed when Dr. Michael Louie merged two long-established Santa Rosa practices into one home for multi-generational families across Sonoma County. The result is a team built on a legacy of trust, with three generations of dental experience under one roof.",
+      "Dr. Leslie Jue has delivered outstanding dental care since 1987. A UC Davis physiology graduate and University of the Pacific, Arthur A. Dugoni School of Dentistry alumna, she is a member of the American Academy of Cosmetic Dentistry and a longtime fixture of the local dental community."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Cosmetic Dentistry",
+      "description": "Veneers, bonding, teeth whitening, and full smile makeovers tailored to each patient."
+    },
+    {
+      "title": "Invisalign",
+      "description": "Clear, removable aligners that straighten teeth without traditional metal braces."
+    },
+    {
+      "title": "Restorative Care",
+      "description": "Crowns, fillings, root canal therapy, and full-mouth rehabilitation to restore function."
+    },
+    {
+      "title": "Dental Implants",
+      "description": "Permanent, natural-looking replacements for missing or failing teeth."
+    },
+    {
+      "title": "Preventive & Hygiene",
+      "description": "Cleanings, exams, sealants, and periodontal care to keep smiles healthy long term."
+    },
+    {
+      "title": "Emergency Dentistry",
+      "description": "Prompt care for dental pain, breaks, and other urgent situations."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Thu",
+      "hours": "8am–5pm"
+    },
+    {
+      "day": "Fri–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Cosmetic Dentistry",
+          "description": "Veneers, bonding, teeth whitening, and full smile makeovers tailored to each patient."
+        },
+        {
+          "title": "Invisalign",
+          "description": "Clear, removable aligners that straighten teeth without traditional metal braces."
+        },
+        {
+          "title": "Restorative Care",
+          "description": "Crowns, fillings, root canal therapy, and full-mouth rehabilitation to restore function."
+        },
+        {
+          "title": "Dental Implants",
+          "description": "Permanent, natural-looking replacements for missing or failing teeth."
+        },
+        {
+          "title": "Preventive & Hygiene",
+          "description": "Cleanings, exams, sealants, and periodontal care to keep smiles healthy long term."
+        },
+        {
+          "title": "Emergency Dentistry",
+          "description": "Prompt care for dental pain, breaks, and other urgent situations."
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "39+",
+          "label": "Years in business"
+        },
+        {
+          "value": "4.9★",
+          "label": "63 reviews"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 55 Mission Cir."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Mon–Thu: 8am–5pm; Fri–Sun: Closed."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17075371904 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "classic",
+  "status": "ready",
+  "flags": [],
+  "theme": {
+    "brand": "#c2683a",
+    "brandDark": "#243b53"
+  },
+  "artDirection": {
+    "heroPhotoTier": "fullbleed"
+  },
+  "heroVariant": "spotlight"
+}

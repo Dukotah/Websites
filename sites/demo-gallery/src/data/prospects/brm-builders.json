@@ -1,0 +1,191 @@
+{
+  "name": "BRM Builders",
+  "category": "contractor",
+  "tagline": "Sonoma County general contractor since 2006",
+  "seoDescription": "Building Repair & Management (BRM Builders) is a Santa Rosa general contractor for custom homes, remodels, additions, and foundation repair. CA Lic. #903189.",
+  "area": "Santa Rosa, CA",
+  "established": "Est. 2006",
+  "contact": {
+    "phone": "+17074816228",
+    "email": "chris@brmbuild.com",
+    "address": "1851 Piner Rd"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/BuildingRepairManagementInc/",
+    "instagram": "",
+    "google": ""
+  },
+  "hero": {
+    "heading": "From foundation lifts to finished custom homes in the North Bay",
+    "subheading": "Family-rooted Santa Rosa general contractor with 47 years of combined building experience and a CA general contractor license.",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Licensed CA general contractor (Lic. #903189)",
+    "BBB Accredited, A+ rating",
+    "47 years of combined building experience",
+    "Locally owned and operated in Sonoma County",
+    "Free estimates across Sonoma County"
+  ],
+  "images": {
+    "hero": "/images/library/default/hero.svg",
+    "heroAlt": "BRM Builders in Santa Rosa, CA",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/library/default/story.svg",
+    "storyAlt": "About BRM Builders",
+    "storyFocal": "50% 50%",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/default/hero.svg"
+  },
+  "galleryImages": [],
+  "about": {
+    "heading": "About BRM Builders",
+    "body": [
+      "BRM Builders is the working name of Building Repair & Management, Inc., a locally owned and operated general contractor serving Santa Rosa and the wider Sonoma County area. President Christian Andersen comes from a North Bay building family — he learned his standards from his father, respected Sonoma County builder Marsh Andersen — and has since built and renovated countless homes across the region.",
+      "The team handles everything from new custom homes and major remodels to structural and foundation repair, including complex restorations like a 1906 Healdsburg historic home that needed its foundation rebuilt while preserving the original character. The company holds California license #903189 and is BBB Accredited with an A+ rating."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "New custom homes",
+      "description": "Ground-up residential construction built to high North Bay standards."
+    },
+    {
+      "title": "Remodels & additions",
+      "description": "Kitchen, bath, and room additions that expand and update existing homes."
+    },
+    {
+      "title": "Foundation & structural repair",
+      "description": "Foundation rebuilds, structural repair, and historic-home restoration."
+    },
+    {
+      "title": "Damage restoration",
+      "description": "Fire, smoke, and water damage repair and rebuilds."
+    },
+    {
+      "title": "Tenant & commercial improvements",
+      "description": "Tenant improvements and commercial build-out projects."
+    },
+    {
+      "title": "Design-build",
+      "description": "Architectural drawings, engineering, and design coordination through construction."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "9:00 AM – 2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "New custom homes",
+          "description": "Ground-up residential construction built to high North Bay standards."
+        },
+        {
+          "title": "Remodels & additions",
+          "description": "Kitchen, bath, and room additions that expand and update existing homes."
+        },
+        {
+          "title": "Foundation & structural repair",
+          "description": "Foundation rebuilds, structural repair, and historic-home restoration."
+        },
+        {
+          "title": "Damage restoration",
+          "description": "Fire, smoke, and water damage repair and rebuilds."
+        },
+        {
+          "title": "Tenant & commercial improvements",
+          "description": "Tenant improvements and commercial build-out projects."
+        },
+        {
+          "title": "Design-build",
+          "description": "Architectural drawings, engineering, and design coordination through construction."
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "eyebrow": "Our story",
+      "heading": "How we got here",
+      "items": [
+        {
+          "year": "2006",
+          "title": "BRM Builders opened its doors",
+          "body": "BRM Builders is the working name of Building Repair & Management, Inc., a locally owned and operated general contractor serving Santa Rosa and the wider Sonoma"
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "20+",
+          "label": "Years in business"
+        },
+        {
+          "value": "6",
+          "label": "Services offered"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Where are you located?",
+          "a": "You'll find us at 1851 Piner Rd."
+        },
+        {
+          "q": "What are your hours?",
+          "a": "Hours can vary — give us a call at +17074816228 and we'll let you know when we're open."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at +17074816228 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "classic",
+  "status": "needs-review",
+  "flags": [
+    "No real/AI photos — using library art",
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending"
+  ],
+  "theme": {
+    "brand": "#c77d2a",
+    "brandDark": "#26211b"
+  },
+  "artDirection": {
+    "fontId": "warm-humanist",
+    "neutralTemp": "warm",
+    "preferredDepthSection": "timeline"
+  },
+  "heroVariant": "editorial"
+}
