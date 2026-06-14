@@ -180,3 +180,26 @@ looking alike, and photos/layout that "don't look right." These close that gap:
   on criticals → can gate deploy.
 - Heroes are length-robust: `HeroEditorial` wraps long (full-sentence) headlines
   instead of clipping them off the right edge.
+
+## Seam contract — `data/outreach-links.json` (DO NOT BREAK)
+
+The Copper Bay CRM (`projects/Duke`) consumes this manifest to attach demos to
+leads and to gate outreach. It matches demos to leads by **normalized business
+name** and refuses to send any lead whose demo `status` is `needs-review`. If you
+rename these fields or change the `status` vocabulary, the CRM silently stops
+matching — it will attach nothing, or (worse) let an unreviewed demo get emailed.
+
+**Each entry MUST keep these keys and meanings. Add fields freely; never rename or
+repurpose these:**
+
+| Field | Meaning | Why the CRM needs it |
+|---|---|---|
+| `name` | business name | the join key (`previewKey(name)` match) |
+| `slug` | stable demo id | preview link + thumbnail path |
+| `link` | `https://demos.copperbaytech.com/p/<slug>` | the URL emailed to the prospect |
+| `status` | `ready` \| `needs_review` \| `needs-review` | **the send gate** — both spellings are honored; keep them |
+| `email`, `category`, `area`, `thumbnailUrl` | lead enrichment | the CRM lead card |
+
+A demo only becomes sendable when `status: "ready"`. The CRM sync
+(`Duke/scripts/sync-demos-to-crm.mjs --only-ready`) and the server-side gate both
+key off this exact string. See `Duke/ACTIVATION-RUNBOOK.md` for the full pipeline.
