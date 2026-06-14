@@ -32,13 +32,13 @@
  */
 
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { scrapeSite, stripTags, scoreRichness } from './lib/scrape-site.mjs';
-import { acquirePhotos, processDroppedPhotos } from './lib/images.mjs';
+import { acquirePhotos, processDroppedPhotos, imageSize } from './lib/images.mjs';
 import { diversifyBatch } from './lib/divergence.mjs';
 import { scorePhoto } from './lib/photo-score.mjs';
 
@@ -837,7 +837,7 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
   // inferCategory() re-guesses from name/service keywords (less reliable); with
   // it, the engine and batch-divergence grouping agree on one value.
   const rawCat = (row.category || '').toLowerCase().trim();
-  const [heroPhoto, storyPhoto] = media;
+  const [heroPhoto, storyCandidate] = media;
   const lib = `/images/library/${artKeyFor(catKey)}`;
 
   // Whether a real photo is sharp enough to headline is now decided UPSTREAM by
@@ -847,18 +847,68 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
   // side heroes (a 1489px stylist shot cropped to a 4:5 column) and fell back to
   // the stock SVG, the joon-hair regression. Keep accepting unknown-width
   // stock/AI heroes (w == null).
-  const HERO_MIN_W = 800;
-  let usableHero = heroPhoto && (heroPhoto.w == null || heroPhoto.w >= HERO_MIN_W) ? heroPhoto : null;
+  // ── Render-slot resolution contract (mirrors image-qa's LOCKED CONTRACT) ──
+  // A photo fills a slot sharply only if it can yield a `minW`-wide crop AT THE
+  // SLOT'S ASPECT without upscaling. A LANDSCAPE source cropped to a TALL slot
+  // (hero-split / story are 4:5) narrows BELOW its source width — so source width
+  // alone isn't enough: the EFFECTIVE width after the slot crop is what ships and
+  // what image-qa measures. effW = min(srcW, srcH × aspect).
+  //   hero-split 4:5 (0.80)  minW 1000 — the floor to show ANY photo hero
+  //   story      4:5 (0.80)  minW 900
+  //   gallery    4:3 (1.333) minW 640
+  // Unknown dimensions (stock/library art, w==null) are kept as-is so we never
+  // over-drop. slotUsable===false means processSlot already judged it too small.
+  const ASPECT = { heroSplit: 4 / 5, story: 4 / 5, gallery: 4 / 3 };
+  const effW = (m, aspect) => {
+    const sw = m?.srcW ?? m?.w ?? null;
+    const sh = m?.srcH ?? m?.h ?? null;
+    if (sw == null) return null; // unknown width → don't gate (stock/AI/library)
+    if (sh == null) return sw; // height unknown → best-effort on width alone
+    return Math.min(sw, Math.round(sh * aspect));
+  };
+  const clearsSlot = (m, aspect, minW) =>
+    !!m && m.slotUsable !== false && (effW(m, aspect) == null || effW(m, aspect) >= minW);
+
+  // HERO: a real photo can headline if it fills EITHER hero slot sharply — a 16:9
+  // full-bleed (≥1600w) for a landscape source, OR a 4:5 side-column (≥1000w) for
+  // a portrait. Tested against BOTH so a wide landscape isn't wrongly judged by
+  // the portrait floor (and vice-versa); this mirrors image-qa, which picks the
+  // hero slot by tier. Below both → no photo hero (a crisp text hero beats a
+  // soft/upscaled one). Unknown-width stock/AI heroes (effW null) are kept.
+  const FULLBLEED = 16 / 9;
+  const heroOk = (m) => clearsSlot(m, FULLBLEED, 1600) || clearsSlot(m, ASPECT.heroSplit, 1000);
+  const heroReach = (m) => Math.max(effW(m, FULLBLEED) ?? 0, effW(m, ASPECT.heroSplit) ?? 0);
+  let usableHero = heroOk(heroPhoto) ? heroPhoto : null;
   // SAFETY NET: never ship a stock library hero when the business has a real photo
-  // that clears the floor. If the position-0 hero is missing/too-small but other
-  // OWN photos qualify, promote the WIDEST one — a site with great photos (e.g.
-  // joon-hair's 2486px shots) must never fall back to /library/<cat>/hero.svg.
+  // that clears a hero floor. If position-0 is missing/too-small but another OWN
+  // photo qualifies, promote the one with the widest EFFECTIVE hero crop — a site
+  // with great photos (e.g. joon-hair's 2486px shots) must never fall to library.
   if (!usableHero) {
     const ownBig = media.filter(
-      (m) => m?.path && !m.credit && !m.path.includes('/images/library/') && (m.w == null || m.w >= HERO_MIN_W),
+      (m) => m?.path && !m.credit && !m.path.includes('/images/library/') && heroOk(m),
     );
-    if (ownBig.length) usableHero = ownBig.slice().sort((a, b) => (b.w ?? 0) - (a.w ?? 0))[0];
+    if (ownBig.length) usableHero = ownBig.slice().sort((a, b) => heroReach(b) - heroReach(a))[0];
   }
+
+  // SECONDARY-SLOT FLOORS — gate the story + gallery on the ACTUAL on-disk file
+  // width (what image-qa measures), not the descriptor's source width. processSlot
+  // can crop a source NARROWER than its width (a landscape cropped into a tall 4:5
+  // story slot), and cross-run re-crops compound it, so only the rendered file is
+  // truth. A file under its slot floor would upscale/blur → drop it. Unmeasurable
+  // stock/library art (path not under /images/<slug>/) is kept, never over-dropped.
+  const fileWidthOf = (m) => {
+    const mm = /^\/images\/([^/]+)\/(.+)$/.exec(m?.path || '');
+    if (!mm) return null;
+    try { return imageSize(readFileSync(join(PUBLIC_IMAGES, mm[1], mm[2])))?.w ?? null; }
+    catch { return null; }
+  };
+  const fileW = new Map();
+  for (const m of media) if (m?.path) fileW.set(m, fileWidthOf(m));
+  const clearsFileFloor = (m, minW) => !!m && (fileW.get(m) == null || fileW.get(m) >= minW);
+
+  // The About side image must clear the story slot (≥900w) or it blurs; else null
+  // → falls back to the hero/library image at render.
+  const storyPhoto = clearsFileFloor(storyCandidate, 900) ? storyCandidate : null;
 
   // Gallery = the business's OWN photos beyond the hero (never stock). A media
   // item is "own" when it carries no credit and isn't library/SVG art; stock
@@ -868,6 +918,8 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
   const ownPhotos = media.filter(isOwn);
   const galleryImages = ownPhotos
     .filter((m) => m.path !== usableHero?.path)
+    // Drop gallery tiles whose rendered file is under the 640w gallery floor.
+    .filter((m) => clearsFileFloor(m, 640))
     .slice(0, GALLERY_MAX)
     .map((m, i) => ({
       src: m.path,

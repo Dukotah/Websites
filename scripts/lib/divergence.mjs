@@ -30,12 +30,16 @@ const PHOTO_HEROES = ['cinematic', 'spotlight', 'split', 'collage'];
 // photo would upscale blurry in them. They're stripped from a site's options when
 // its tier is 'side' (see photoRotationForTier + the per-category hero pass).
 const FULLBLEED_PHOTO_HEROES = ['cinematic', 'spotlight'];
-const TEXT_HEROES = ['statement', 'editorial', 'panel', 'typographic', 'editorial-asym', 'feature-stat'];
-// `editorial`, `typographic`, `editorial-asym`, and `feature-stat` read well with
-// OR without a photo (each collapses to a full-width type/stat column when none),
-// so they bridge both pools and are safe to assign regardless of photo inventory.
-// `feature-stat` renders its photo in a CONTAINED card (never full-bleed), so it
-// is also sharp for medium-res 'side'-tier photos.
+const TEXT_HEROES = ['statement', 'editorial', 'panel', 'typographic', 'editorial-asym'];
+// `editorial`, `typographic`, and `editorial-asym` read well with OR without a
+// photo (each collapses to a full-width type column when none), so they bridge
+// both pools and are safe to assign regardless of photo inventory.
+// `feature-stat` is DELIBERATELY NOT in TEXT_HEROES: its component renders a
+// contained image/stat CARD that falls back to stock/SVG art (not clean type)
+// when there's no photo — the audit flags that as a critical stock hero, and
+// compose.ts's render-time pickHero already excludes it from the no-photo
+// branch. It stays a PHOTO hero (contained card, so it's still sharp on a
+// medium-res 'side'-tier photo) — see PHOTO_HERO_ROTATION below.
 
 // Per-category font pools — distinct pairings, ordered best-first. Mirror of the
 // `categories` arrays in fonts.ts (plus a rustic extra or two for variety).
@@ -134,7 +138,7 @@ function galleryDepth(config) {
 // categories, where the per-category loop never fires) still gets varied
 // silhouettes instead of every photo-rich site defaulting to split/cinematic.
 const PHOTO_HERO_ROTATION = ['cinematic', 'spotlight', 'split', 'editorial-asym', 'feature-stat', 'collage', 'editorial'];
-const TEXT_HERO_ROTATION = ['statement', 'typographic', 'editorial', 'feature-stat', 'panel', 'editorial-asym'];
+const TEXT_HERO_ROTATION = ['statement', 'typographic', 'editorial', 'panel', 'editorial-asym'];
 
 /**
  * Hero-photo TIER contract (set by generate-prospects from the source photo

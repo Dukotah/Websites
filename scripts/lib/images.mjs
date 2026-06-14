@@ -68,7 +68,7 @@ const EXT_BY_MIME = {
 
 // --- decode width/height from the file header (no dependencies) -------------
 
-function imageSize(buf) {
+export function imageSize(buf) {
   if (buf.length < 24) return null;
   // PNG: 8-byte sig, then IHDR with width/height as big-endian uint32.
   if (buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47) {
@@ -269,7 +269,10 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     await writeFile(join(outDir, fileName), res.buf);
     // FOCAL POINT (LOCKED CONTRACT): processSlot computed it on the cropped/graded
     // OUTPUT, so it matches the rendered pixels. Default to centre when unknown.
-    saved.push({ path: `/images/${slug}/${fileName}`, credit: '', source: img.url, alt: '', w: img.w, h: img.h, score: img.score ?? 0, focal: res.focal ?? { fx: 0.5, fy: 0.5 }, focalCss: res.focalCss ?? '50% 50%' });
+    // srcW = the true source width (pre-crop); slotUsable true by construction
+    // (below-floor candidates were dropped via `continue` above). The generator
+    // reads srcW to gate the story/gallery render slots against the same floors.
+    saved.push({ path: `/images/${slug}/${fileName}`, credit: '', source: img.url, alt: '', w: img.w, h: img.h, srcW: img.w, srcH: img.h, slotUsable: true, score: img.score ?? 0, focal: res.focal ?? { fx: 0.5, fy: 0.5 }, focalCss: res.focalCss ?? '50% 50%' });
   }
   // Surface the hero TIER without changing the array return shape (fetch-media /
   // media-sweep consume this as a plain array): a non-enumerable property survives
@@ -326,9 +329,13 @@ async function reprocessFileInPlace(jsonPath, { destDir, slot, category }) {
   } catch {
     return { usable: true, width: 0, height: 0, path: jsonPath, srcW: 0, ...defFocal }; // can't read → leave alone
   }
-  // True source width up front (header decode, no Sharp) so callers can decide
-  // the hero tier before/independently of the crop result.
-  const srcW = imageSize(buf)?.w ?? 0;
+  // True source width + height up front (header decode, no Sharp) so callers can
+  // decide the hero tier and the per-slot EFFECTIVE width (a landscape source
+  // cropped to a tall slot narrows below its source width) before/independently
+  // of the crop result.
+  const srcDim = imageSize(buf) ?? {};
+  const srcW = srcDim.w ?? 0;
+  const srcH = srcDim.h ?? 0;
   const res = await processSlot(buf, { slot, category, format: fmtForExt(extOf(file)) });
   // Only overwrite when we got real bytes back. A below-floor (unusable) photo
   // is left on disk untouched — the DESCRIPTOR-level gate decides whether the
@@ -350,7 +357,7 @@ async function reprocessFileInPlace(jsonPath, { destDir, slot, category }) {
       try { await writeFile(file, res.buf); } catch { /* leave original on write error */ }
     }
   }
-  return { ...res, path: outPath, srcW: srcW || res.width || 0 };
+  return { ...res, path: outPath, srcW: srcW || res.width || 0, srcH: srcH || res.height || 0 };
 }
 
 /**
@@ -420,6 +427,16 @@ export async function processDroppedPhotos(media, { category, destDir = PUBLIC_I
     // Codec may have changed (PNG → WebP): adopt the new path so the descriptor
     // points at the file that actually exists on disk.
     if (res.path) m.path = res.path;
+    // Stamp the TRUE source width (header decode, pre-crop) so the generator can
+    // gate each render slot against the LOCKED CONTRACT floor. m.w is about to be
+    // overwritten with the cropped OUTPUT width below, which loses the source
+    // width the story/gallery floors are defined against — keep it here.
+    if (typeof res.srcW === 'number' && res.srcW > 0) m.srcW = res.srcW;
+    if (typeof res.srcH === 'number' && res.srcH > 0) m.srcH = res.srcH;
+    // `false` only when processSlot judged the source too small for this slot (no
+    // rewrite happened). The generator drops a below-floor story/gallery photo so
+    // a blurry secondary frame never ships (image-qa enforces the same floors).
+    m.slotUsable = res.usable !== false;
     // Carry the post-process box dimensions back onto the descriptor when we got
     // a real crop (so downstream sizing sees the actual rendered dimensions).
     if (res.usable && res.width && res.height) {
