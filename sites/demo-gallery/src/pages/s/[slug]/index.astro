@@ -1,0 +1,28 @@
+---
+/**
+ * Premium demo — HOME page at /s/<slug>/. Renders the 'home' page's section
+ * stack from the v2 data file (src/data/premium/<slug>.json) through the
+ * premium components. One build emits every prospect's multi-page site.
+ */
+import PremiumBase from '../../../premium/layouts/PremiumBase.astro';
+import PremiumSection from '../../../premium/components/PremiumSection.astro';
+import type { PremiumConfig } from '../../../premium/lib/premium-types';
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob<PremiumConfig>('../../../data/premium/*.json', {
+    eager: true,
+    import: 'default',
+  });
+  return Object.entries(modules).map(([path, config]) => {
+    const slug = path.split('/').pop()!.replace(/\.json$/, '');
+    return { params: { slug }, props: { config } };
+  });
+}
+
+const { config } = Astro.props as { config: PremiumConfig };
+const home = config.pages.find((p) => p.slug === 'home') ?? config.pages[0];
+---
+
+<PremiumBase config={config} page="home">
+  {home.sections.map((section) => <PremiumSection section={section} config={config} />)}
+</PremiumBase>

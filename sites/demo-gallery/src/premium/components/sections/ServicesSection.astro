@@ -1,0 +1,157 @@
+---
+/**
+ * ServicesSection — eyebrow + heading + intro, then the offerings.
+ *   • layout 'grid' (default) — a responsive card grid; each item a .card with
+ *     an optional small image and a .pill badge.
+ *   • layout 'rows' — alternating full-width feature rows (image one side,
+ *     copy the other, flipping per index) for a richer, page-filling treatment
+ *     like AVISP's services page.
+ * Tokens only; re-themes per business.
+ */
+import type { SecServices, PremiumConfig } from '../../lib/premium-types';
+import SiteImage from '../../../components/SiteImage.astro';
+
+interface Props {
+  data: SecServices;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+
+const eyebrow = data.eyebrow;
+const heading = data.heading;
+const intro = data.intro;
+const items = data.items ?? [];
+const layout: NonNullable<SecServices['layout']> = data.layout ?? 'grid';
+const isRows = layout === 'rows';
+
+// Pick a sensible grid density so cards fill the row without stranding one.
+const cols = items.length % 3 === 0 || items.length > 4 ? 'grid-3' : 'grid-2';
+---
+
+<section class="section p-services">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h2>{heading}</h2>
+      {intro && <p>{intro}</p>}
+    </div>
+
+    {isRows ? (
+      <div class="p-services__rows">
+        {items.map((item, i) => (
+          <article
+            class:list={['p-services__row', { 'p-services__row--flip': i % 2 === 1 }]}
+            data-reveal
+          >
+            <div class="p-services__row-body">
+              <span class="kicker-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              {item.badge && <span class="pill pill--accent">{item.badge}</span>}
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+            <div class="p-services__row-figure">
+              {item.image ? (
+                <div class="media">
+                  <SiteImage
+                    src={item.image.src}
+                    alt={item.image.alt ?? ''}
+                    objectPosition={item.image.focal}
+                    sizes="(min-width: 820px) 48vw, 100vw"
+                  />
+                </div>
+              ) : (
+                <div class="p-services__row-glyph" aria-hidden="true">
+                  <span class="kicker-num">{String(i + 1).padStart(2, '0')}</span>
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div class:list={['grid', cols, 'p-services__cards']}>
+        {items.map((item, i) => (
+          <article class="card p-services__card" data-reveal data-reveal-delay={((i % 3) + 1)}>
+            {item.image && (
+              <div class="media p-services__card-media">
+                <SiteImage
+                  src={item.image.src}
+                  alt={item.image.alt ?? ''}
+                  objectPosition={item.image.focal}
+                  sizes="(min-width: 860px) 30vw, (min-width: 560px) 45vw, 100vw"
+                />
+              </div>
+            )}
+            {item.badge && <span class="pill pill--accent p-services__card-badge">{item.badge}</span>}
+            <h3 class="p-services__card-title">{item.title}</h3>
+            <p class="p-services__card-copy">{item.description}</p>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  /* ---- Card grid ---------------------------------------------------------*/
+  .p-services__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-space-3);
+  }
+  .p-services__card-media {
+    --ratio: 16 / 10;
+    margin: calc(-1 * var(--p-space-8)) calc(-1 * var(--p-space-8)) var(--p-space-2);
+    border-radius: var(--p-radius-lg) var(--p-radius-lg) 0 0;
+  }
+  .p-services__card-badge { align-self: flex-start; }
+  .p-services__card-title { font-size: var(--p-text-xl); }
+  .p-services__card-copy { color: var(--p-ink-soft); font-size: var(--p-text-base); }
+
+  /* ---- Alternating feature rows -----------------------------------------*/
+  .p-services__rows {
+    display: grid;
+    gap: clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+  .p-services__row {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(2rem, 1.2rem + 3.5vw, 4.5rem);
+    align-items: center;
+  }
+  .p-services__row--flip .p-services__row-body { order: 2; }
+  .p-services__row--flip .p-services__row-figure { order: 1; }
+
+  .p-services__row-body {
+    display: grid;
+    justify-items: start;
+    gap: var(--p-space-3);
+  }
+  .p-services__row-body .kicker-num { margin-bottom: calc(-1 * var(--p-space-4)); }
+  .p-services__row-body h3 { font-size: var(--p-text-2xl); }
+  .p-services__row-body p {
+    color: var(--p-ink-soft);
+    font-size: var(--p-text-lg);
+    max-width: 54ch;
+  }
+
+  .p-services__row-figure .media { --ratio: 4 / 3; box-shadow: var(--p-shadow-lg); }
+  .p-services__row-glyph {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--p-radius-lg);
+    background:
+      radial-gradient(28rem 18rem at 70% 110%, var(--p-primary-tint), transparent 60%),
+      var(--p-paper-deep);
+    box-shadow: var(--p-shadow-sm);
+  }
+  .p-services__row-glyph .kicker-num { opacity: 0.4; }
+
+  @media (max-width: 820px) {
+    .p-services__row { grid-template-columns: 1fr; gap: var(--p-space-6); }
+    .p-services__row--flip .p-services__row-body { order: 1; }
+    .p-services__row--flip .p-services__row-figure { order: 2; }
+    .p-services__row-figure .media { --ratio: 16 / 10; }
+  }
+</style>

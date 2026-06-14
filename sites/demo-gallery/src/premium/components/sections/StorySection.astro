@@ -1,0 +1,121 @@
+---
+/**
+ * StorySection — the about/story band. Two-column: prose (+ optional checklist
+ * of differentiators and a signature line) beside an image. With no image the
+ * prose centers into a comfortable reading measure. Tokens only.
+ */
+import type { SecStory, PremiumConfig } from '../../lib/premium-types';
+import SiteImage from '../../../components/SiteImage.astro';
+
+interface Props {
+  data: SecStory;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+
+const eyebrow = data.eyebrow;
+const heading = data.heading;
+const body = data.body?.filter(Boolean) ?? [];
+const highlights = data.highlights?.filter(Boolean) ?? [];
+const img = data.image;
+const signature = data.signature;
+
+const hasImage = !!img;
+---
+
+<section class:list={['section', 'p-story', { 'p-story--solo': !hasImage }]}>
+  <div class="container">
+    <div class="p-story__grid">
+      <div class="p-story__body" data-reveal>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h2 class="p-story__heading">{heading}</h2>
+
+        <div class="p-story__prose">
+          {body.map((para) => <p>{para}</p>)}
+        </div>
+
+        {highlights.length > 0 && (
+          <ul class="checklist p-story__highlights">
+            {highlights.map((h) => <li>{h}</li>)}
+          </ul>
+        )}
+
+        {signature && <p class="p-story__signature">{signature}</p>}
+      </div>
+
+      {hasImage && img && (
+        <div class="p-story__figure" data-reveal data-reveal-delay="2">
+          <div class="media">
+            <SiteImage
+              src={img.src}
+              alt={img.alt ?? ''}
+              objectPosition={img.focal}
+              sizes="(min-width: 820px) 44vw, 100vw"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .p-story__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(2.5rem, 1.5rem + 4vw, 5.5rem);
+    align-items: center;
+  }
+  .p-story__heading {
+    font-size: var(--p-text-3xl);
+    margin-top: var(--p-space-3);
+  }
+  .p-story__prose {
+    display: grid;
+    gap: var(--p-space-4);
+    margin-top: var(--p-space-6);
+    color: var(--p-ink-soft);
+    font-size: var(--p-text-lg);
+    max-width: 60ch;
+  }
+  .p-story__highlights { margin-top: var(--p-space-8); }
+  .p-story__highlights li { color: var(--p-ink); }
+
+  .p-story__signature {
+    margin-top: var(--p-space-8);
+    font-family: var(--p-font-display);
+    font-size: var(--p-text-xl);
+    color: var(--p-ink-strong);
+    letter-spacing: -0.01em;
+  }
+
+  .p-story__figure .media {
+    --ratio: 4 / 5;
+    box-shadow: var(--p-shadow-lg);
+  }
+
+  /* No image: center the prose into a readable column. */
+  .p-story--solo .p-story__grid { grid-template-columns: 1fr; }
+  .p-story--solo .p-story__body {
+    max-width: 46rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .p-story--solo .eyebrow { justify-content: center; }
+  .p-story--solo .eyebrow::before { display: none; }
+  .p-story--solo .p-story__prose {
+    margin-inline: auto;
+    text-align: left;
+  }
+  .p-story--solo .p-story__highlights {
+    max-width: 34rem;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  @media (max-width: 820px) {
+    .p-story__grid { grid-template-columns: 1fr; }
+    .p-story__figure { order: -1; }
+    .p-story__figure .media { --ratio: 16 / 11; }
+  }
+</style>

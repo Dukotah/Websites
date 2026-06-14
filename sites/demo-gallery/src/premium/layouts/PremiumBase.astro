@@ -1,0 +1,151 @@
+---
+/**
+ * PremiumBase — the AVISP-caliber layout shell for multi-page agent-authored
+ * demos. Forked from layouts/BaseLayout.astro: it KEEPS the factory brand engine
+ * (resolveArtDirection -> artDirectionToCss seeds the per-prospect --brand/--text/
+ * --font-* tokens that premium.css consumes) and all the SEO/OG/JSON-LD/font
+ * plumbing, but loads the PREMIUM design system instead of the legacy one, adds
+ * Astro View Transitions (ClientRouter) for SPA-smooth page swaps across the
+ * multi-page site, and a self-contained scroll-reveal that re-inits after every
+ * transition. Every page wraps its content in <PremiumBase> and the body lives in
+ * a `.premium` subtree so the premium tokens/components apply cleanly.
+ */
+import '../styles/premium.css';
+import '../../lib/font-faces';
+import { ClientRouter } from 'astro:transitions';
+import { getImage } from 'astro:assets';
+import { resolveArtDirection, inferCategory } from '../../lib/art-direction';
+import { artDirectionToCss } from '../../lib/tokens';
+import { resolveAsset } from '../../lib/assets';
+import { buildJsonLd } from '../../lib/structured-data';
+import { categoryLabelFor } from '../../lib/labels';
+import { getDisplayFontPreloadHref } from '../../lib/fonts';
+import PremiumHeader from '../components/PremiumHeader.astro';
+import PremiumFooter from '../components/PremiumFooter.astro';
+import type { PremiumConfig } from '../lib/premium-types';
+
+interface Props {
+  config: PremiumConfig;
+  /** Which page of the multi-page site this is — drives nav active state. */
+  page?: string;
+  /** Page <title>; defaults to the SEO title for the home page. */
+  title?: string;
+  description?: string;
+  /** Per-page social-share image override (else the home hero). */
+  ogImage?: string;
+}
+
+const { config, page = 'home' } = Astro.props;
+const description = Astro.props.description ?? config.seoDescription;
+
+const categoryLabel = config.categoryLabel ?? categoryLabelFor(inferCategory(config as any));
+const baseTitle =
+  categoryLabel && config.area
+    ? `${config.name} — ${categoryLabel} in ${config.area}`
+    : config.area
+      ? `${config.name} — ${config.area}`
+      : config.name;
+// Home uses the SEO title; interior pages prefix the page label.
+const pageLabel = Astro.props.title;
+const fullTitle = pageLabel ? `${pageLabel} | ${config.name}` : baseTitle;
+
+// Per-business visual identity (palette + type pairing) → token block.
+const ad = resolveArtDirection(config as any);
+const tokenCss = artDirectionToCss(ad);
+const displayFontPreloadHref = getDisplayFontPreloadHref(ad.fontId);
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
+
+// Social-share image: the home hero rendered to a 1200w JPEG for link previews.
+const heroAsset = resolveAsset(config.images?.hero);
+let ogImage = Astro.props.ogImage ?? '';
+let ogImageW = 0;
+let ogImageH = 0;
+if (!ogImage && heroAsset) {
+  const built = await getImage({ src: heroAsset, width: 1200, format: 'jpeg', quality: 80 });
+  ogImage = Astro.site ? new URL(built.src, Astro.site).href : built.src;
+  ogImageW = 1200;
+  ogImageH = Math.round((1200 * heroAsset.height) / heroAsset.width);
+} else if (!ogImage && config.images?.hero && !config.images.hero.endsWith('.svg') && Astro.site) {
+  ogImage = new URL(config.images.hero, Astro.site).href;
+}
+
+const jsonLd = buildJsonLd(config as any, { canonical, image: ogImage || undefined });
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {!config.outreach?.published && <meta name="robots" content="noindex, nofollow" />}
+    <ClientRouter />
+
+    <!-- Open Graph + Twitter (link previews) -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={config.name} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && (
+      <Fragment>
+        <meta property="og:image" content={ogImage} />
+        {ogImageW > 0 && <meta property="og:image:width" content={String(ogImageW)} />}
+        {ogImageH > 0 && <meta property="og:image:height" content={String(ogImageH)} />}
+        <meta property="og:image:alt" content={config.images?.heroAlt ?? config.name} />
+      </Fragment>
+    )}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <meta name="theme-color" content={ad.palette.brand} />
+    {displayFontPreloadHref && (
+      <link rel="preload" as="font" type="font/woff2" href={displayFontPreloadHref} crossorigin />
+    )}
+
+    <!-- Per-business design tokens (palette + type) consumed by premium.css -->
+    <style is:inline set:html={tokenCss}></style>
+    <noscript><style>.premium [data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <div class="premium">
+      <a class="skip-link" href="#main">Skip to main content</a>
+      <PremiumHeader config={config} page={page} />
+      <main id="main">
+        <slot />
+      </main>
+      <PremiumFooter config={config} />
+    </div>
+
+    <script>
+      // Scroll-reveal: add .is-visible as [data-reveal] enters the viewport.
+      // Re-inits on first load AND after every View-Transition navigation.
+      function initReveal() {
+        const els = document.querySelectorAll('.premium [data-reveal]:not(.is-visible)');
+        if (!els.length) return;
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+        );
+        els.forEach((el) => io.observe(el));
+      }
+      document.addEventListener('astro:page-load', initReveal);
+    </script>
+  </body>
+</html>

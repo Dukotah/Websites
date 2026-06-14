@@ -1,0 +1,168 @@
+---
+/**
+ * TestimonialsSection — eyebrow + heading with an optional aggregate rating
+ * (stars + count + source) in the header, then real-quote cards. One quote
+ * renders as a centered spotlight; two or three render as a grid.
+ */
+import type { SecTestimonials, PremiumConfig } from '../../lib/premium-types';
+
+interface Props {
+  data: SecTestimonials;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+const items = (data.items ?? []).slice(0, 3);
+const single = items.length === 1;
+const rating = data.rating;
+
+// Round to nearest half for the star display; clamp 0–5.
+const ratingValue = rating ? Math.max(0, Math.min(5, rating.value)) : 0;
+const fullStars = rating ? Math.round(ratingValue) : 0;
+---
+
+<section class="section section--deep p-tmn">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      {data.eyebrow && <p class="eyebrow">{data.eyebrow}</p>}
+      {data.heading && <h2>{data.heading}</h2>}
+
+      {rating && (
+        <div class="p-tmn__rating" aria-label={`Rated ${ratingValue} out of 5`}>
+          <span class="p-tmn__stars" aria-hidden="true">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span class={i < fullStars ? 'is-on' : ''}>★</span>
+            ))}
+          </span>
+          <span class="p-tmn__rating-meta">
+            <strong>{ratingValue.toFixed(1)}</strong>
+            {rating.count != null && <span>{` from ${rating.count} reviews`}</span>}
+            {rating.source && <span class="p-tmn__source">{` · ${rating.source}`}</span>}
+          </span>
+        </div>
+      )}
+    </div>
+
+    <div class={single ? 'p-tmn__spotlight' : 'p-tmn__grid'} style={`--p-tmn-cols:${items.length}`}>
+      {items.map((t, i) => (
+        <figure class="card p-tmn__card" data-reveal data-reveal-delay={(i + 1)}>
+          <span class="p-tmn__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="p-tmn__quote">{t.quote}</blockquote>
+          <figcaption class="p-tmn__by">
+            <span class="p-tmn__author">{t.author}</span>
+            {t.detail && <span class="p-tmn__detail">{t.detail}</span>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- Header rating ------------------------------------------------------ */
+  .p-tmn__rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--p-space-4);
+  }
+  .p-tmn__stars {
+    display: inline-flex;
+    gap: 0.1rem;
+    font-size: var(--p-text-lg);
+    color: var(--p-line);
+    line-height: 1;
+  }
+  .p-tmn__stars .is-on { color: var(--p-primary); }
+  .p-tmn__rating-meta {
+    font-size: var(--p-text-sm);
+    color: var(--p-ink-soft);
+  }
+  .p-tmn__rating-meta strong { color: var(--p-ink-strong); font-weight: 700; }
+  .p-tmn__source { color: var(--p-ink-soft); }
+
+  /* --- Layout ------------------------------------------------------------- */
+  .p-tmn__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--p-tmn-cols, 3), 1fr);
+    gap: var(--p-space-6);
+    align-items: start;
+  }
+  .p-tmn__spotlight {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  /* --- Card --------------------------------------------------------------- */
+  .p-tmn__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-space-6);
+    height: 100%;
+  }
+  .p-tmn__mark {
+    font-family: var(--p-font-display);
+    font-size: 4rem;
+    line-height: 0.6;
+    height: 2rem;
+    color: var(--p-primary);
+    opacity: 0.22;
+  }
+  .p-tmn__quote {
+    margin: 0;
+    font-family: var(--p-font-display);
+    font-weight: 600;
+    font-size: var(--p-text-xl);
+    line-height: 1.45;
+    letter-spacing: -0.015em;
+    color: var(--p-ink-strong);
+    text-wrap: pretty;
+  }
+  .p-tmn__by {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-top: auto;
+    padding-top: var(--p-space-2);
+    border-top: 1px solid var(--p-line);
+  }
+  .p-tmn__author {
+    font-weight: 700;
+    color: var(--p-ink-strong);
+  }
+  .p-tmn__detail {
+    font-size: var(--p-text-sm);
+    color: var(--p-ink-soft);
+  }
+
+  /* Spotlight: larger, centered, more air. */
+  .p-tmn__spotlight .p-tmn__card {
+    padding: clamp(2rem, 1.4rem + 2.5vw, 3.5rem);
+    text-align: center;
+    align-items: center;
+  }
+  .p-tmn__spotlight .p-tmn__quote {
+    font-size: var(--p-text-2xl);
+    line-height: 1.4;
+  }
+  .p-tmn__spotlight .p-tmn__by {
+    align-items: center;
+    border-top: 0;
+    padding-top: 0;
+  }
+  .p-tmn__spotlight .p-tmn__by::before {
+    content: '';
+    width: 2.5rem;
+    height: 2px;
+    margin-bottom: var(--p-space-3);
+    background: var(--p-primary);
+    border-radius: 1px;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 860px) {
+    .p-tmn__grid { grid-template-columns: 1fr; max-width: 36rem; margin-inline: auto; }
+  }
+</style>

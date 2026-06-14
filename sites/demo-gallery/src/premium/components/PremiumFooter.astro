@@ -1,0 +1,103 @@
+---
+/**
+ * PremiumFooter — dark brand footer. Ported from AVISP Footer.astro, driven by
+ * the v2 PremiumConfig: brand block + tagline, a nav column, a contact column
+ * (phone/email/address), social links, and a copyright + service-area line.
+ */
+import type { PremiumConfig } from '../lib/premium-types';
+import { navFor, homeHref } from '../lib/premium-types';
+
+interface Props {
+  config: PremiumConfig;
+}
+const { config } = Astro.props;
+const nav = navFor(config);
+const home = homeHref(config);
+const c = config.contact ?? {};
+const s = config.social ?? {};
+const area = config.area ?? [config.city, config.state].filter(Boolean).join(', ');
+const monogram = (config.name || '?').trim().charAt(0).toUpperCase();
+const telHref = c.phone ? `tel:${c.phone.replace(/[^0-9+]/g, '')}` : null;
+
+const socials = [
+  s.facebook && { label: 'Facebook', href: s.facebook },
+  s.instagram && { label: 'Instagram', href: s.instagram },
+  s.google && { label: 'Google', href: s.google },
+  s.yelp && { label: 'Yelp', href: s.yelp },
+  s.linkedin && { label: 'LinkedIn', href: s.linkedin },
+].filter(Boolean) as { label: string; href: string }[];
+---
+
+<footer class="p-ft">
+  <div class="container p-ft__grid">
+    <div class="p-ft__brand">
+      <a href={home} class="p-ft__id" aria-label={`${config.name} home`}>
+        <span class="p-ft__mono" aria-hidden="true">{monogram}</span>
+        <span class="p-ft__name">{config.name}</span>
+      </a>
+      {config.tagline && <p class="p-ft__tag">{config.tagline}</p>}
+      {area && <p class="p-ft__area">Serving {area}</p>}
+      {socials.length > 0 && (
+        <ul class="p-ft__social" aria-label="Social media">
+          {socials.map((soc) => (
+            <li><a href={soc.href} target="_blank" rel="noopener">{soc.label}</a></li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    {nav.length > 0 && (
+      <nav class="p-ft__col" aria-label="Footer">
+        <h3 class="p-ft__h">Explore</h3>
+        <a href={home}>Home</a>
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+    )}
+
+    <div class="p-ft__col">
+      <h3 class="p-ft__h">Contact</h3>
+      {c.phone && <a href={telHref!}>{c.phone}</a>}
+      {c.email && <a href={`mailto:${c.email}`}>{c.email}</a>}
+      {c.address && <p class="p-ft__addr">{c.address}{area ? `, ${area}` : ''}</p>}
+    </div>
+  </div>
+
+  <div class="p-ft__bottom">
+    <div class="container p-ft__bottom-inner">
+      <p>© {config.established ? `${config.established}–` : ''}{config.name}. All rights reserved.</p>
+      <p class="p-ft__credit">Site by Copper Bay Tech</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .p-ft { background: var(--p-structure); color: var(--p-on-dark); }
+  .p-ft__grid {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: var(--p-space-12);
+    padding-block: clamp(3rem, 2.4rem + 2.5vw, 5rem);
+  }
+  .p-ft__id { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; color: #fff; }
+  .p-ft__mono {
+    display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 8px;
+    background: var(--p-primary); color: var(--p-primary-contrast); font-weight: 800; font-family: var(--p-font-display);
+  }
+  .p-ft__name { font-family: var(--p-font-display); font-size: var(--p-text-lg); font-weight: 700; }
+  .p-ft__tag { margin-top: var(--p-space-4); color: var(--p-on-dark-soft); max-width: 32ch; }
+  .p-ft__area { margin-top: var(--p-space-2); color: var(--p-on-dark-soft); font-size: var(--p-text-sm); }
+  .p-ft__social { display: flex; flex-wrap: wrap; gap: var(--p-space-4); list-style: none; padding: 0; margin: var(--p-space-6) 0 0; }
+  .p-ft__social a { color: var(--p-on-dark-soft); text-decoration: none; font-size: var(--p-text-sm); font-weight: 600; }
+  .p-ft__social a:hover { color: #fff; }
+  .p-ft__col { display: flex; flex-direction: column; gap: 0.55rem; }
+  .p-ft__h { color: #fff; font-size: var(--p-text-sm); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+  .p-ft__col a { color: var(--p-on-dark-soft); text-decoration: none; font-size: var(--p-text-sm); }
+  .p-ft__col a:hover { color: #fff; }
+  .p-ft__addr { color: var(--p-on-dark-soft); font-size: var(--p-text-sm); }
+  .p-ft__bottom { border-top: 1px solid color-mix(in srgb, #fff 12%, transparent); }
+  .p-ft__bottom-inner { display: flex; justify-content: space-between; gap: var(--p-space-4); flex-wrap: wrap; padding-block: var(--p-space-6); }
+  .p-ft__bottom-inner p { color: var(--p-on-dark-soft); font-size: var(--p-text-xs); }
+  @media (max-width: 760px) {
+    .p-ft__grid { grid-template-columns: 1fr 1fr; }
+    .p-ft__brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 480px) { .p-ft__grid { grid-template-columns: 1fr; } }
+</style>

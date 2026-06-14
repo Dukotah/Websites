@@ -1,0 +1,111 @@
+---
+/**
+ * GallerySection — eyebrow + heading, then a tasteful responsive image grid.
+ * The first image runs large (featured) and the remainder fill smaller tiles,
+ * so a single photo still reads as a deliberate spotlight and 2–10 photos lay
+ * out gracefully. Every photo renders through SiteImage (cover, blur-up,
+ * responsive WebP); .media supplies the rounded frame + gentle hover zoom.
+ */
+import type { SecGallery, PremiumConfig } from '../../lib/premium-types';
+import SiteImage from '../../../components/SiteImage.astro';
+
+interface Props {
+  data: SecGallery;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+const images = (data.images ?? []).slice(0, 10);
+
+const [featured, ...rest] = images;
+const restCount = rest.length;
+// One photo → solo spotlight. Otherwise a featured tile spanning the grid plus
+// a flowing row of smaller tiles beneath it.
+const solo = images.length === 1;
+---
+
+{images.length > 0 && (
+  <section class="section p-gal">
+    <div class="container">
+      {(data.eyebrow || data.heading) && (
+        <div class="section-head" data-reveal>
+          {data.eyebrow && <p class="eyebrow">{data.eyebrow}</p>}
+          {data.heading && <h2>{data.heading}</h2>}
+        </div>
+      )}
+
+      {solo ? (
+        <figure class="p-gal__solo media" style="--ratio: 16 / 9" data-reveal>
+          <SiteImage
+            src={featured.src}
+            alt={featured.alt ?? ''}
+            objectPosition={featured.focal}
+            sizes="(min-width: 960px) 72rem, 100vw"
+          />
+        </figure>
+      ) : (
+        <div class="p-gal__stack">
+          <figure class="p-gal__feature media" style="--ratio: 16 / 9" data-reveal>
+            <SiteImage
+              src={featured.src}
+              alt={featured.alt ?? ''}
+              objectPosition={featured.focal}
+              sizes="(min-width: 960px) 72rem, 100vw"
+            />
+          </figure>
+
+          {restCount > 0 && (
+            <div class={`p-gal__tiles p-gal__tiles--${Math.min(restCount, 4)}`}>
+              {rest.map((img, i) => (
+                <figure class="p-gal__tile media" style="--ratio: 4 / 3" data-reveal data-reveal-delay={((i % 4) + 1)}>
+                  <SiteImage
+                    src={img.src}
+                    alt={img.alt ?? ''}
+                    objectPosition={img.focal}
+                    sizes="(min-width: 960px) 24rem, (min-width: 560px) 45vw, 100vw"
+                  />
+                </figure>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+)}
+
+<style>
+  .p-gal__stack {
+    display: grid;
+    gap: var(--p-space-6);
+  }
+
+  .p-gal__solo,
+  .p-gal__feature,
+  .p-gal__tile {
+    margin: 0;
+    box-shadow: var(--p-shadow-sm);
+  }
+
+  /* Tile row: auto-fits, so 2–9 follow-up photos all stay tidy. The column
+     count hint keeps small sets (2–3) from stretching too wide. */
+  .p-gal__tiles {
+    display: grid;
+    gap: var(--p-space-6);
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+  .p-gal__tiles--2 { grid-template-columns: repeat(2, 1fr); }
+  .p-gal__tiles--3 { grid-template-columns: repeat(3, 1fr); }
+  .p-gal__tiles--4 { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+
+  @media (max-width: 860px) {
+    .p-gal__tiles,
+    .p-gal__tiles--3,
+    .p-gal__tiles--4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .p-gal__tiles,
+    .p-gal__tiles--2,
+    .p-gal__tiles--3,
+    .p-gal__tiles--4 { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+/**
+ * FaqSection — accessible FAQ accordion built on native <details>/<summary>.
+ *
+ * No JavaScript: the open/close is the browser's own, so it survives Astro
+ * View Transitions and works with JS disabled. A chevron rotates on [open] and
+ * the answer reveals with a grid-rows transition. Comfortable reading measure.
+ * Ported from AVISP's FaqAccordion, simplified (no search/topic filter).
+ */
+import type { SecFaq, PremiumConfig } from '../../lib/premium-types';
+
+interface Props {
+  data: SecFaq;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+const items = data.items ?? [];
+---
+
+<section class="section section--deep">
+  <div class="container faq">
+    <div class="section-head" data-reveal>
+      {data.eyebrow && <p class="eyebrow">{data.eyebrow}</p>}
+      <h2>{data.heading ?? 'Frequently asked questions'}</h2>
+    </div>
+
+    <div class="faq-list">
+      {items.map((item, i) => (
+        <details
+          class="faq-item lift"
+          data-reveal
+          data-reveal-delay={String((i % 6) + 1)}
+        >
+          <summary class="faq-q">
+            <span>{item.q}</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" width="22" height="22"
+              fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="faq-a"><p>{item.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq { max-width: 52rem; }
+
+  .faq-list { display: grid; gap: var(--p-space-3); }
+
+  .faq-item {
+    background: var(--p-surface);
+    border: 1px solid var(--p-line);
+    border-radius: var(--p-radius-md);
+    box-shadow: var(--p-shadow-sm);
+    overflow: hidden;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+  .faq-item:hover {
+    border-color: color-mix(in srgb, var(--p-line) 55%, var(--p-ink-soft));
+  }
+  .faq-item[open] {
+    border-color: var(--p-primary);
+    box-shadow: var(--p-shadow-md);
+  }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--p-space-4);
+    padding: var(--p-space-6);
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--p-font-display);
+    font-weight: 650;
+    font-size: var(--p-text-lg);
+    color: var(--p-ink-strong);
+    line-height: 1.35;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q:hover { color: var(--p-primary); }
+
+  .faq-chevron {
+    flex: none;
+    color: var(--p-primary);
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+
+  /* Smooth open: animate a collapsing grid row (no JS, no fixed height). */
+  .faq-a {
+    display: grid;
+    grid-template-rows: 1fr;
+    padding: 0 var(--p-space-6) var(--p-space-6);
+    color: var(--p-ink-soft);
+    font-size: var(--p-text-base);
+  }
+  .faq-a p { max-width: 60ch; min-width: 0; }
+
+  @media (max-width: 560px) {
+    .faq-q { padding: var(--p-space-4); font-size: var(--p-text-base); }
+    .faq-a { padding: 0 var(--p-space-4) var(--p-space-4); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-chevron { transition: none; }
+  }
+</style>

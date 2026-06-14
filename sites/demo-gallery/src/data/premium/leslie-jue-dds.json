@@ -1,0 +1,223 @@
+{
+  "slug": "leslie-jue-dds",
+  "name": "SOCO Dental Studio",
+  "legalName": "SOCO Dental Studio",
+  "tagline": "A legacy of trust in Sonoma County dentistry.",
+  "seoDescription": "SOCO Dental Studio in Santa Rosa offers cosmetic, restorative, and preventive dentistry. Dr. Leslie Jue has cared for Sonoma County smiles since 1987.",
+  "category": "dental",
+  "categoryLabel": "Dental Studio",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1987",
+  "contact": {
+    "phone": "(707) 537-1904",
+    "email": "jueinfo@sonic.net",
+    "address": "55 Mission Circle"
+  },
+  "social": { "facebook": "https://www.facebook.com/LeslieJueDDS/" },
+  "hours": [
+    { "day": "Mon–Thu", "hours": "8:00am – 5:00pm" },
+    { "day": "Fri–Sun", "hours": "Closed" }
+  ],
+  "rating": { "value": 4.9, "count": 63, "source": "Birdeye" },
+  "brand": { "color": "#0f7a86" },
+  "images": {
+    "hero": "/images/leslie-jue-dds/hero.webp",
+    "heroAlt": "The SOCO Dental Studio team in Santa Rosa"
+  },
+  "outreach": { "published": false },
+  "status": "ready",
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Santa Rosa, CA · Est. 1987",
+          "heading": "Three generations of dentists, one Santa Rosa practice",
+          "subheading": "SOCO Dental Studio brings Dr. Leslie Jue's decades of cosmetic and family care together with Drs. Louie and Baird at 55 Mission Circle.",
+          "badges": ["Caring for smiles since 1987", "4.9★ from 63 patients", "Dugoni School of Dentistry"],
+          "primaryCta": { "label": "Book a visit", "href": "/s/leslie-jue-dds/contact" },
+          "secondaryCta": { "label": "Our services", "href": "/s/leslie-jue-dds/services" },
+          "image": { "src": "/images/leslie-jue-dds/hero.webp", "alt": "The SOCO Dental Studio team", "focal": "50% 30%" }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "1987", "label": "Caring for smiles since" },
+            { "value": "4.9★", "label": "63 patient reviews" },
+            { "value": "3", "label": "Generations of dentistry" },
+            { "value": "6", "label": "Areas of care" }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Built on a legacy of trust",
+          "body": [
+            "SOCO Dental Studio was formed when Dr. Michael Louie merged two long-established Santa Rosa practices into one home for multi-generational families across Sonoma County — three generations of dental experience under one roof.",
+            "Dr. Leslie Jue has delivered outstanding care since 1987. A UC Davis physiology graduate and University of the Pacific, Arthur A. Dugoni School of Dentistry alumna, she is a member of the American Academy of Cosmetic Dentistry and a longtime fixture of the local dental community."
+          ],
+          "highlights": [
+            "University of the Pacific, Dugoni School trained",
+            "American Academy of Cosmetic Dentistry member",
+            "Serving Santa Rosa, Windsor & Healdsburg"
+          ],
+          "image": { "src": "/images/leslie-jue-dds/story.webp", "alt": "Inside SOCO Dental Studio", "focal": "50% 50%" }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Comprehensive care for the whole family",
+          "intro": "From a routine cleaning to a full smile makeover, every visit is handled in one trusted place.",
+          "layout": "grid",
+          "items": [
+            { "title": "Cosmetic Dentistry", "description": "Veneers, bonding, whitening, and full smile makeovers tailored to each patient." },
+            { "title": "Invisalign", "description": "Clear, removable aligners that straighten teeth without traditional metal braces." },
+            { "title": "Restorative Care", "description": "Crowns, fillings, root canal therapy, and full-mouth rehabilitation to restore function." },
+            { "title": "Dental Implants", "description": "Permanent, natural-looking replacements for missing or failing teeth." },
+            { "title": "Preventive & Hygiene", "description": "Cleanings, exams, sealants, and periodontal care to keep smiles healthy long term." },
+            { "title": "Emergency Dentistry", "description": "Prompt care for dental pain, breaks, and other urgent situations." }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "Inside the studio",
+          "heading": "A calm, modern space",
+          "images": [
+            { "src": "/images/leslie-jue-dds/photo-2.webp", "alt": "Treatment room at SOCO Dental Studio" },
+            { "src": "/images/leslie-jue-dds/photo-3.webp", "alt": "SOCO Dental Studio interior" },
+            { "src": "/images/leslie-jue-dds/photo-4.webp", "alt": "Reception at SOCO Dental Studio" },
+            { "src": "/images/leslie-jue-dds/photo-5.webp", "alt": "SOCO Dental Studio detail" },
+            { "src": "/images/leslie-jue-dds/photo-6.webp", "alt": "SOCO Dental Studio care" }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready for a dentist your whole family can trust?",
+          "body": "New patients are always welcome at 55 Mission Circle. Call us or book online — we'll take it from there.",
+          "primaryCta": { "label": "Book a visit", "href": "/s/leslie-jue-dds/contact" },
+          "secondaryCta": { "label": "Call (707) 537-1904", "href": "tel:+17075371904" }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Our services",
+          "heading": "Dentistry done with care, in one place",
+          "subheading": "Cosmetic, restorative, and preventive care for every generation of your family."
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "rows",
+          "items": [
+            { "title": "Cosmetic Dentistry", "description": "Veneers, bonding, professional whitening, and full smile makeovers — designed around your face, not a template. Dr. Jue is a member of the American Academy of Cosmetic Dentistry." },
+            { "title": "Invisalign", "description": "Clear, removable aligners that straighten teeth discreetly. A modern alternative to metal braces for teens and adults alike." },
+            { "title": "Restorative Care", "description": "Crowns, fillings, root canal therapy, and full-mouth rehabilitation to bring comfort and function back to your smile." },
+            { "title": "Dental Implants", "description": "Permanent, natural-looking replacements for missing or failing teeth that look and feel like your own." },
+            { "title": "Preventive & Hygiene", "description": "Routine cleanings, exams, sealants, and periodontal care to keep your whole family healthy for the long term." },
+            { "title": "Emergency Dentistry", "description": "Same-day attention for dental pain, breaks, and urgent situations — because problems don't keep office hours." }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            { "q": "Are you accepting new patients?", "a": "Yes — new patients of every age are welcome at our 55 Mission Circle office. Call (707) 537-1904 to schedule." },
+            { "q": "Where are you located?", "a": "We're at 55 Mission Circle in Santa Rosa, serving Santa Rosa, Windsor, and Healdsburg." },
+            { "q": "What are your hours?", "a": "We're open Monday through Thursday, 8:00am–5:00pm. We're closed Friday through Sunday." },
+            { "q": "Do you offer cosmetic and Invisalign treatment?", "a": "We do. Dr. Jue is a member of the American Academy of Cosmetic Dentistry, and we offer Invisalign clear aligners alongside our full range of care." }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let's talk about your smile",
+          "body": "Whether it's a cleaning or a full makeover, we'll build a plan that fits your family.",
+          "primaryCta": { "label": "Get in touch", "href": "/s/leslie-jue-dds/contact" }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About SOCO Dental Studio",
+          "heading": "A Santa Rosa practice, three generations deep",
+          "subheading": "One home for the families of Sonoma County, built by merging two long-established practices."
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Dr. Leslie Jue & the SOCO team",
+          "body": [
+            "SOCO Dental Studio was formed when Dr. Michael Louie merged two long-established Santa Rosa practices into a single home for multi-generational families — bringing three generations of dental experience together under one roof.",
+            "Dr. Leslie Jue has delivered outstanding dental care since 1987. A UC Davis physiology graduate and University of the Pacific, Arthur A. Dugoni School of Dentistry alumna, she is a member of the American Academy of Cosmetic Dentistry and a longtime fixture of the local dental community. Alongside Drs. Louie and Baird, she continues to care for the families she's known for decades."
+          ],
+          "highlights": [
+            "Dr. Leslie Jue caring for smiles since 1987",
+            "University of the Pacific, Dugoni School of Dentistry",
+            "American Academy of Cosmetic Dentistry member"
+          ],
+          "image": { "src": "/images/leslie-jue-dds/photo-3.webp", "alt": "Inside SOCO Dental Studio", "focal": "50% 50%" }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "heading": "Trusted across Sonoma County",
+          "items": [
+            { "value": "1987", "label": "Serving patients since" },
+            { "value": "4.9★", "label": "63 reviews" },
+            { "value": "3", "label": "Generations of care" }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "Inside the studio",
+          "heading": "Where you'll be cared for",
+          "images": [
+            { "src": "/images/leslie-jue-dds/photo-2.webp", "alt": "Treatment room" },
+            { "src": "/images/leslie-jue-dds/photo-4.webp", "alt": "Reception" },
+            { "src": "/images/leslie-jue-dds/photo-5.webp", "alt": "Studio detail" },
+            { "src": "/images/leslie-jue-dds/photo-6.webp", "alt": "Patient care" }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come meet the team",
+          "primaryCta": { "label": "Book a visit", "href": "/s/leslie-jue-dds/contact" }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Book your visit",
+          "blurb": "New patients are always welcome. Call us, or send a note and we'll get right back to you.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ]
+}

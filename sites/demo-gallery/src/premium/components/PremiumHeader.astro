@@ -1,0 +1,126 @@
+---
+/**
+ * PremiumHeader — sticky, blurred nav. Ported from AVISP Header.astro, driven by
+ * the v2 PremiumConfig: logo monogram (or logo image), the multi-page nav from
+ * navFor(), a primary CTA (call or contact), and a mobile hamburger. Active page
+ * is highlighted via the `page` prop. The toggle script re-binds on
+ * astro:page-load so it survives View-Transition navigations.
+ */
+import type { PremiumConfig } from '../lib/premium-types';
+import { navFor, homeHref } from '../lib/premium-types';
+
+interface Props {
+  config: PremiumConfig;
+  page?: string;
+}
+const { config, page = 'home' } = Astro.props;
+const nav = navFor(config);
+const home = homeHref(config);
+const phone = config.contact?.phone;
+const monogram = (config.name || '?').trim().charAt(0).toUpperCase();
+// First non-home page is the default CTA target if there's no phone.
+const ctaHref = phone ? `tel:${phone.replace(/[^0-9+]/g, '')}` : nav[0]?.href ?? home;
+const ctaLabel = phone ? phone : 'Get in touch';
+---
+
+<header class="p-hdr" data-premium-header>
+  <div class="container p-hdr__inner">
+    <a class="p-hdr__brand" href={home} aria-label={`${config.name} home`}>
+      {config.brand?.logo
+        ? <img src={config.brand.logo} alt={config.name} class="p-hdr__logo" width="40" height="40" />
+        : <span class="p-hdr__mono" aria-hidden="true">{monogram}</span>}
+      <span class="p-hdr__name">{config.name}</span>
+    </a>
+
+    {nav.length > 0 && (
+      <nav class="p-hdr__nav" aria-label="Primary">
+        <a href={home} aria-current={page === 'home' ? 'page' : undefined}>Home</a>
+        {nav.map((n) => (
+          <a href={n.href} aria-current={page === n.slug ? 'page' : undefined}>{n.label}</a>
+        ))}
+      </nav>
+    )}
+
+    <div class="p-hdr__actions">
+      <a class="btn btn--primary p-hdr__cta" href={ctaHref}>{ctaLabel}</a>
+      {nav.length > 0 && (
+        <button class="p-hdr__burger" aria-label="Menu" aria-expanded="false" data-premium-burger>
+          <span></span><span></span><span></span>
+        </button>
+      )}
+    </div>
+  </div>
+
+  {nav.length > 0 && (
+    <div class="p-hdr__mobile" data-premium-mobile hidden>
+      <a href={home} aria-current={page === 'home' ? 'page' : undefined}>Home</a>
+      {nav.map((n) => (
+        <a href={n.href} aria-current={page === n.slug ? 'page' : undefined}>{n.label}</a>
+      ))}
+      <a class="btn btn--primary" href={ctaHref}>{ctaLabel}</a>
+    </div>
+  )}
+</header>
+
+<style>
+  .p-hdr {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--p-surface) 86%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--p-line);
+  }
+  .p-hdr__inner { display: flex; align-items: center; gap: var(--p-space-6); height: var(--p-header-h); }
+  .p-hdr__brand { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--p-ink-strong); font-weight: 700; }
+  .p-hdr__brand:hover { color: var(--p-ink-strong); }
+  .p-hdr__mono {
+    display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 9px;
+    background: var(--p-primary); color: var(--p-primary-contrast); font-weight: 800; font-size: 1.05rem;
+    font-family: var(--p-font-display);
+  }
+  .p-hdr__logo { width: 2.1rem; height: 2.1rem; border-radius: 8px; object-fit: contain; }
+  .p-hdr__name { font-family: var(--p-font-display); font-size: var(--p-text-lg); letter-spacing: -0.01em; }
+  .p-hdr__nav { display: flex; gap: 0.4rem; margin-inline-start: auto; }
+  .p-hdr__nav a {
+    padding: 0.5rem 0.85rem; border-radius: var(--p-radius-sm); text-decoration: none;
+    color: var(--p-ink-soft); font-weight: 600; font-size: var(--p-text-sm); transition: background-color 140ms ease, color 140ms ease;
+  }
+  .p-hdr__nav a:hover { background: var(--p-paper-deep); color: var(--p-ink-strong); }
+  .p-hdr__nav a[aria-current='page'] { color: var(--p-primary); }
+  .p-hdr__actions { display: flex; align-items: center; gap: 0.6rem; margin-inline-start: auto; }
+  .p-hdr__nav + .p-hdr__actions { margin-inline-start: 0; }
+  .p-hdr__cta { white-space: nowrap; }
+  .p-hdr__burger { display: none; flex-direction: column; gap: 4px; background: none; border: 0; padding: 0.5rem; cursor: pointer; }
+  .p-hdr__burger span { width: 22px; height: 2px; background: var(--p-ink-strong); border-radius: 2px; transition: transform 160ms ease, opacity 160ms ease; }
+  .p-hdr__burger[aria-expanded='true'] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .p-hdr__burger[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+  .p-hdr__burger[aria-expanded='true'] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .p-hdr__mobile { display: none; flex-direction: column; gap: 0.25rem; padding: 0.75rem 1.25rem 1.25rem; border-top: 1px solid var(--p-line); }
+  .p-hdr__mobile a { padding: 0.7rem 0.5rem; text-decoration: none; color: var(--p-ink-strong); font-weight: 600; border-radius: var(--p-radius-sm); }
+  .p-hdr__mobile a[aria-current='page'] { color: var(--p-primary); }
+  .p-hdr__mobile .btn { margin-top: 0.5rem; }
+
+  @media (max-width: 820px) {
+    .p-hdr__nav { display: none; }
+    .p-hdr__cta { display: none; }
+    .p-hdr__burger { display: flex; }
+    .p-hdr__mobile:not([hidden]) { display: flex; }
+  }
+</style>
+
+<script>
+  function initPremiumHeader() {
+    document.querySelectorAll('[data-premium-header]').forEach((hdr) => {
+      const burger = hdr.querySelector('[data-premium-burger]');
+      const mobile = hdr.querySelector('[data-premium-mobile]');
+      if (!burger || !mobile || (burger as HTMLElement).dataset.bound) return;
+      (burger as HTMLElement).dataset.bound = '1';
+      burger.addEventListener('click', () => {
+        const open = burger.getAttribute('aria-expanded') === 'true';
+        burger.setAttribute('aria-expanded', String(!open));
+        if (open) mobile.setAttribute('hidden', '');
+        else mobile.removeAttribute('hidden');
+      });
+    });
+  }
+  document.addEventListener('astro:page-load', initPremiumHeader);
+</script>

@@ -1,0 +1,83 @@
+---
+/**
+ * CtaSection — the closing conversion band. Renders on the dark brand band
+ * (.section--ink) with a subtle radial-gradient accent glow, a large heading,
+ * optional body, and one or two CTAs. Centered and generous. Ported from
+ * AVISP's CtaBand and re-pointed onto the per-prospect --p-* brand engine.
+ */
+import type { SecCta, PremiumConfig } from '../../lib/premium-types';
+
+interface Props {
+  data: SecCta;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+const primary = data.primaryCta;
+const secondary = data.secondaryCta;
+---
+
+<section class="section section--ink cta">
+  <div class="container cta-inner" data-reveal>
+    <h2 class="cta-heading">{data.heading}</h2>
+    {data.body && <p class="cta-body">{data.body}</p>}
+    {(primary || secondary) && (
+      <div class="cta-actions">
+        {primary && (
+          <a class="btn btn--primary btn--lg" href={primary.href}>{primary.label}</a>
+        )}
+        {secondary && (
+          <a class="btn btn--ghost-light btn--lg" href={secondary.href}>{secondary.label}</a>
+        )}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .cta {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    /* Brand glow: two soft radial pools tinted with the prospect's primary,
+       layered over the structure band. Decorative only. */
+    background-image:
+      radial-gradient(60rem 32rem at 82% 118%,
+        color-mix(in srgb, var(--p-primary) 38%, transparent), transparent 62%),
+      radial-gradient(48rem 28rem at 12% -20%,
+        color-mix(in srgb, var(--p-primary) 22%, transparent), transparent 60%);
+    padding-block: clamp(4.5rem, 3.6rem + 4vw, 8rem);
+  }
+
+  .cta-inner {
+    position: relative;
+    max-width: 46rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--p-space-6);
+  }
+
+  .cta-heading {
+    font-size: var(--p-text-3xl);
+    max-width: 22ch;
+  }
+  .cta-body {
+    color: var(--p-on-dark-soft);
+    font-size: var(--p-text-lg);
+    max-width: 48ch;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--p-space-4);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--p-space-2);
+  }
+
+  @media (max-width: 560px) {
+    .cta-actions { width: 100%; flex-direction: column; }
+    .cta-actions :global(.btn) { width: 100%; }
+  }
+</style>

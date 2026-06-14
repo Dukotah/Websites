@@ -1,0 +1,32 @@
+---
+/**
+ * PremiumSection — dispatches a v2 section to its premium component by `kind`.
+ * Every section component shares the prop shape `{ data, config }`.
+ */
+import type { PremiumSection, PremiumConfig } from '../lib/premium-types';
+import HeroSection from './sections/HeroSection.astro';
+import StorySection from './sections/StorySection.astro';
+import ServicesSection from './sections/ServicesSection.astro';
+import StatsSection from './sections/StatsSection.astro';
+import TestimonialsSection from './sections/TestimonialsSection.astro';
+import GallerySection from './sections/GallerySection.astro';
+import FaqSection from './sections/FaqSection.astro';
+import CtaSection from './sections/CtaSection.astro';
+import ContactSection from './sections/ContactSection.astro';
+
+interface Props {
+  section: PremiumSection;
+  config: PremiumConfig;
+}
+const { section, config } = Astro.props;
+---
+
+{section.kind === 'hero' && <HeroSection data={section} config={config} />}
+{section.kind === 'story' && <StorySection data={section} config={config} />}
+{section.kind === 'services' && <ServicesSection data={section} config={config} />}
+{section.kind === 'stats' && <StatsSection data={section} config={config} />}
+{section.kind === 'testimonials' && <TestimonialsSection data={section} config={config} />}
+{section.kind === 'gallery' && <GallerySection data={section} config={config} />}
+{section.kind === 'faq' && <FaqSection data={section} config={config} />}
+{section.kind === 'cta' && <CtaSection data={section} config={config} />}
+{section.kind === 'contact' && <ContactSection data={section} config={config} />}

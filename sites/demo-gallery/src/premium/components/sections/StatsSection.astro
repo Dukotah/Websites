@@ -1,0 +1,102 @@
+---
+/**
+ * StatsSection — a substantial trust band of big numbers, ported from AVISP's
+ * trust strip but enlarged into a full section. tone 'ink' (default) renders on
+ * a dark brand band with the values in a bright accent; tone 'light' renders on
+ * paper. Optional heading sits above the row. 2–4 items, responsive.
+ */
+import type { SecStats, PremiumConfig } from '../../lib/premium-types';
+
+interface Props {
+  data: SecStats;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+const tone = data.tone ?? 'ink';
+const items = data.items ?? [];
+// Cap the column count to the item count so 2 stats don't stretch to 4 columns.
+const cols = Math.min(Math.max(items.length, 1), 4);
+---
+
+<section class={`section p-stats p-stats--${tone}` + (tone === 'ink' ? ' section--ink' : '')}>
+  <div class="container">
+    {data.heading && (
+      <div class="section-head section-head--center" data-reveal>
+        <h2>{data.heading}</h2>
+      </div>
+    )}
+
+    <ul class="p-stats__row" style={`--p-stats-cols:${cols}`}>
+      {items.map((s, i) => (
+        <li class="p-stats__item" data-reveal data-reveal-delay={((i % 4) + 1)}>
+          <span class="p-stats__value">{s.value}</span>
+          <span class="p-stats__label">{s.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .p-stats__row {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(var(--p-stats-cols, 4), 1fr);
+    gap: 1px;
+    background: var(--p-line);
+    border: 1px solid var(--p-line);
+    border-radius: var(--p-radius-lg);
+    overflow: hidden;
+  }
+
+  .p-stats__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+    padding: clamp(2rem, 1.4rem + 2.2vw, 3.5rem) var(--p-space-6);
+    background: var(--p-surface);
+  }
+
+  .p-stats__value {
+    font-family: var(--p-font-display);
+    font-weight: 750;
+    font-size: clamp(2.5rem, 1.7rem + 3.4vw, 4rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--p-primary);
+  }
+
+  .p-stats__label {
+    font-size: var(--p-text-sm);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--p-ink-soft);
+  }
+
+  /* tone='ink' — dark brand band, light text, values in bright accent. */
+  .p-stats--ink .p-stats__row {
+    background: color-mix(in srgb, var(--p-on-dark) 16%, transparent);
+    border-color: color-mix(in srgb, var(--p-on-dark) 16%, transparent);
+  }
+  .p-stats--ink .p-stats__item {
+    background: var(--p-structure);
+  }
+  .p-stats--ink .p-stats__value {
+    color: color-mix(in srgb, var(--p-primary) 45%, #fff);
+  }
+  .p-stats--ink .p-stats__label {
+    color: var(--p-on-dark-soft);
+  }
+
+  @media (max-width: 860px) {
+    .p-stats__row { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .p-stats__row { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,198 @@
+---
+/**
+ * ContactSection — a real "get in touch" section. Two columns:
+ *   LEFT  — eyebrow + heading + blurb, then a demo contact form (non-functional;
+ *           action="#" but visually complete: Name, Email, Message + submit).
+ *   RIGHT — contact details from config.contact (tel:/mailto:/address), an
+ *           optional hours table (config.hours) when data.showHours, and an
+ *           optional embedded Google map when data.showMap.
+ * Ported from AVISP's contact page, driven by the v2 PremiumConfig.
+ */
+import type { SecContact, PremiumConfig } from '../../lib/premium-types';
+
+interface Props {
+  data: SecContact;
+  config: PremiumConfig;
+}
+const { data, config } = Astro.props;
+
+const c = config.contact ?? {};
+const hours = config.hours ?? [];
+const area = config.area ?? [config.city, config.state].filter(Boolean).join(', ');
+
+const telHref = c.phone ? `tel:${c.phone.replace(/[^0-9+]/g, '')}` : null;
+const mailHref = c.email ? `mailto:${c.email}` : null;
+
+const showHours = !!data.showHours && hours.length > 0;
+const showMap = !!data.showMap && !!c.address;
+
+// Build the Google Maps embed query from the address + service area.
+const mapQuery = [c.address, area].filter(Boolean).join(', ');
+const mapSrc = showMap
+  ? `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`
+  : null;
+---
+
+<section class="section contact">
+  <div class="container contact-grid">
+    <!-- LEFT: intro + demo form -->
+    <div class="contact-main" data-reveal>
+      <div class="section-head contact-head">
+        {data.eyebrow && <p class="eyebrow">{data.eyebrow}</p>}
+        <h2>{data.heading ?? 'Get in touch'}</h2>
+        {data.blurb && <p>{data.blurb}</p>}
+      </div>
+
+      <form class="card contact-form" action="#" method="post" novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Your name" />
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="5"
+            placeholder="Tell us a little about what you need…"></textarea>
+        </div>
+        <button class="btn btn--primary btn--lg" type="submit">Send message</button>
+      </form>
+    </div>
+
+    <!-- RIGHT: direct channels, hours, map -->
+    <aside class="contact-side" data-reveal data-reveal-delay="2">
+      <div class="card channel">
+        <h3>Reach us directly</h3>
+        <ul class="channel-list">
+          {c.phone && telHref && (
+            <li>
+              <span class="channel-label">Phone</span>
+              <a class="channel-big" href={telHref}>{c.phone}</a>
+            </li>
+          )}
+          {c.email && mailHref && (
+            <li>
+              <span class="channel-label">Email</span>
+              <a href={mailHref}>{c.email}</a>
+            </li>
+          )}
+          {c.address && (
+            <li>
+              <span class="channel-label">Visit</span>
+              <p class="channel-addr">{c.address}{area ? `, ${area}` : ''}</p>
+            </li>
+          )}
+        </ul>
+      </div>
+
+      {showHours && (
+        <div class="card channel">
+          <h3>Hours</h3>
+          <table class="hours">
+            <tbody>
+              {hours.map((h) => (
+                <tr>
+                  <th scope="row">{h.day}</th>
+                  <td>{h.hours}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {showMap && mapSrc && (
+        <div class="map-frame">
+          <iframe
+            src={mapSrc}
+            title={`Map of ${config.name}`}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      )}
+    </aside>
+  </div>
+</section>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: var(--p-space-12);
+    align-items: start;
+  }
+
+  .contact-head { margin-bottom: var(--p-space-8); }
+
+  .contact-form { display: grid; gap: var(--p-space-4); }
+  .contact-form .btn { margin-top: var(--p-space-2); justify-self: start; }
+
+  .contact-side { display: grid; gap: var(--p-space-6); }
+  .channel h3 {
+    font-size: var(--p-text-lg);
+    margin-bottom: var(--p-space-4);
+  }
+
+  .channel-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--p-space-4); }
+  .channel-list li { display: grid; gap: 0.15rem; }
+  .channel-label {
+    font-size: var(--p-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--p-ink-soft);
+  }
+  .channel-big {
+    font-family: var(--p-font-display);
+    font-size: var(--p-text-xl);
+    font-weight: 650;
+    color: var(--p-ink-strong);
+    text-decoration: none;
+  }
+  .channel-big:hover { color: var(--p-primary); }
+  .channel-list a { text-decoration: none; }
+  .channel-addr { color: var(--p-ink-soft); }
+
+  .hours {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--p-text-sm);
+  }
+  .hours tr + tr th, .hours tr + tr td {
+    border-top: 1px solid var(--p-line);
+  }
+  .hours th {
+    text-align: left;
+    font-weight: 650;
+    color: var(--p-ink-strong);
+    padding: 0.55rem 0;
+  }
+  .hours td {
+    text-align: right;
+    color: var(--p-ink-soft);
+    padding: 0.55rem 0;
+  }
+
+  .map-frame {
+    border: 1px solid var(--p-line);
+    border-radius: var(--p-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--p-shadow-sm);
+    aspect-ratio: 4 / 3;
+    background: var(--p-paper-deep);
+  }
+  .map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid { grid-template-columns: 1fr; gap: var(--p-space-8); }
+  }
+</style>

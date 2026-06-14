@@ -1,0 +1,34 @@
+---
+/**
+ * Premium demo — INTERIOR pages at /s/<slug>/<page> (services, about, contact…).
+ * getStaticPaths emits slug × each non-home page from the v2 data file.
+ */
+import PremiumBase from '../../../premium/layouts/PremiumBase.astro';
+import PremiumSection from '../../../premium/components/PremiumSection.astro';
+import type { PremiumConfig } from '../../../premium/lib/premium-types';
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob<PremiumConfig>('../../../data/premium/*.json', {
+    eager: true,
+    import: 'default',
+  });
+  return Object.entries(modules).flatMap(([path, config]) => {
+    const slug = path.split('/').pop()!.replace(/\.json$/, '');
+    return config.pages
+      .filter((p) => p.slug !== 'home')
+      .map((p) => ({
+        params: { slug, page: p.slug },
+        props: { config, page: p },
+      }));
+  });
+}
+
+const { config, page } = Astro.props as {
+  config: PremiumConfig;
+  page: PremiumConfig['pages'][number];
+};
+---
+
+<PremiumBase config={config} page={page.slug} title={page.label} description={page.description ?? config.seoDescription}>
+  {page.sections.map((section) => <PremiumSection section={section} config={config} />)}
+</PremiumBase>
