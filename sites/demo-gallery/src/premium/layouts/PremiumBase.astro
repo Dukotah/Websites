@@ -50,7 +50,17 @@ const pageLabel = Astro.props.title;
 const fullTitle = pageLabel ? `${pageLabel} | ${config.name}` : baseTitle;
 
 // Per-business visual identity (palette + type pairing) → token block.
-const ad = resolveArtDirection(config as any);
+// Map the v2 `brand` the agent pinned (color + fontId) onto the fields the
+// factory art-direction engine reads (theme.brand drives the palette via
+// palette.ts; artDirection.fontId picks the pairing — an unknown id safely
+// falls back to a category-seeded font). Omitting `brand` lets the engine
+// derive a palette/font from the business name + category.
+const adInput = {
+  ...config,
+  theme: config.brand?.color ? { brand: config.brand.color } : (config as any).theme,
+  artDirection: config.brand?.fontId ? { fontId: config.brand.fontId } : (config as any).artDirection,
+};
+const ad = resolveArtDirection(adInput as any);
 const tokenCss = artDirectionToCss(ad);
 const displayFontPreloadHref = getDisplayFontPreloadHref(ad.fontId);
 

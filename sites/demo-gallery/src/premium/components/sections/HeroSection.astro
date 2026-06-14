@@ -53,7 +53,9 @@ const isEditorial = !isFullbleed && !isSplit;
   )}
 
   <div class="container p-hero__inner">
-    <div class="p-hero__content" data-reveal>
+    {/* Hero content is NOT reveal-gated — it's the LCP/above-the-fold element and
+        must paint immediately, never flash faded while JS settles. */}
+    <div class="p-hero__content">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h1 class="p-hero__heading">{heading}</h1>
       {subheading && <p class="p-hero__sub">{subheading}</p>}
@@ -82,7 +84,7 @@ const isEditorial = !isFullbleed && !isSplit;
     </div>
 
     {isSplit && img && (
-      <div class="p-hero__figure" data-reveal data-reveal-delay="2">
+      <div class="p-hero__figure">
         <div class="media">
           <SiteImage
             src={img.src}
@@ -97,7 +99,7 @@ const isEditorial = !isFullbleed && !isSplit;
     )}
 
     {isEditorial && img && (
-      <div class="p-hero__aside" data-reveal data-reveal-delay="2">
+      <div class="p-hero__aside">
         <div class="media">
           <SiteImage
             src={img.src}
@@ -118,8 +120,8 @@ const isEditorial = !isFullbleed && !isSplit;
     overflow: hidden;
     display: flex;
     align-items: center;
-    min-height: clamp(70vh, 60vh + 8vw, 86vh);
-    padding-block: clamp(4.5rem, 3.5rem + 6vw, 8.5rem);
+    min-height: clamp(58vh, 50vh + 7vw, 78vh);
+    padding-block: clamp(3.5rem, 2.8rem + 4.5vw, 7rem);
     background: var(--p-paper);
   }
 
