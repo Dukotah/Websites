@@ -1,0 +1,183 @@
+{
+  "name": "Petaluma Pie Company",
+  "category": "cafe",
+  "tagline": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic",
+  "seoDescription": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients",
+  "area": "Petaluma, CA",
+  "established": "",
+  "contact": {
+    "phone": "17077666743",
+    "email": "pie@petalumapie.com",
+    "address": "Petaluma, CA"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/petalumapiecompany/",
+    "instagram": "https://www.instagram.com/petalumapie/",
+    "google": ""
+  },
+  "hero": {
+    "heading": "Your new favorite morning.",
+    "subheading": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients. You can order online to pick up in the shop",
+    "ctaText": "Get in touch",
+    "ctaHref": "#contact"
+  },
+  "highlights": [
+    "Locally roasted",
+    "Fresh daily",
+    "Cozy atmosphere"
+  ],
+  "images": {
+    "hero": "/images/library/cafe/hero.svg",
+    "heroAlt": "Petaluma Pie Company in Petaluma, CA",
+    "heroFocal": "50% 50%",
+    "heroCredit": "",
+    "story": "/images/library/cafe/story.svg",
+    "storyAlt": "About Petaluma Pie Company",
+    "storyFocal": "50% 50%",
+    "storyCaption": "",
+    "storyCredit": "",
+    "placeholder": "/images/library/cafe/hero.svg"
+  },
+  "galleryImages": [
+    {
+      "src": "/images/petaluma-pie-company/hero.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 1",
+      "focal": "34% 50%"
+    },
+    {
+      "src": "/images/petaluma-pie-company/story.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 2",
+      "focal": "43% 50%"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-2.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 3",
+      "focal": "27% 50%"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-3.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 4",
+      "focal": "50% 38%"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-4.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 5",
+      "focal": "44% 50%"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-5.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 6",
+      "focal": "74% 50%"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-6.jpg",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 7",
+      "focal": "59% 50%"
+    },
+    {
+      "src": "/images/petaluma-pie-company/photo-7.webp",
+      "alt": "Petaluma Pie Company in Petaluma, CA — photo 8",
+      "focal": "50% 44%"
+    }
+  ],
+  "about": {
+    "heading": "About Petaluma Pie Company",
+    "body": [
+      "Notify me when this product is available: Notify me when this product is available:",
+      "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
+    ],
+    "signature": ""
+  },
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Espresso & pour-over",
+      "description": "Professional espresso & pour-over for Petaluma and nearby."
+    },
+    {
+      "title": "Fresh-baked pastries",
+      "description": "Professional fresh-baked pastries for Petaluma and nearby."
+    },
+    {
+      "title": "Breakfast & lunch",
+      "description": "Professional breakfast & lunch for Petaluma and nearby."
+    },
+    {
+      "title": "Catering & to-go",
+      "description": "Professional catering & to-go for Petaluma and nearby."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon – Fri",
+      "hours": "8:00 AM – 6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "hours": "9:00 AM – 2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "hoursNote": "",
+  "sections": [
+    {
+      "type": "services-detailed",
+      "eyebrow": "Services",
+      "heading": "What we do",
+      "items": [
+        {
+          "title": "Espresso & pour-over",
+          "description": "Professional espresso & pour-over for Petaluma and nearby."
+        },
+        {
+          "title": "Fresh-baked pastries",
+          "description": "Professional fresh-baked pastries for Petaluma and nearby."
+        },
+        {
+          "title": "Breakfast & lunch",
+          "description": "Professional breakfast & lunch for Petaluma and nearby."
+        },
+        {
+          "title": "Catering & to-go",
+          "description": "Professional catering & to-go for Petaluma and nearby."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "eyebrow": "Good to know",
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "What are your hours?",
+          "a": "Hours can vary — give us a call at 17077666743 and we'll let you know when we're open."
+        },
+        {
+          "q": "What areas do you serve?",
+          "a": "We proudly serve Petaluma, CA and the surrounding community."
+        },
+        {
+          "q": "How do I get in touch?",
+          "a": "Call us at 17077666743 — we're glad to help."
+        }
+      ]
+    }
+  ],
+  "layout": "classic",
+  "status": "needs-review",
+  "flags": [
+    "Services are template defaults — replace with real ones",
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending"
+  ],
+  "theme": {
+    "brand": "#c2683a",
+    "brandDark": "#3b2f2a"
+  },
+  "artDirection": {
+    "heroPhotoTier": "fullbleed"
+  },
+  "heroVariant": "editorial"
+}
