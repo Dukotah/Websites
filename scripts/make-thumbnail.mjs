@@ -94,7 +94,7 @@ async function makeOne(slug) {
   const sub = fg === '#ffffff' ? 'rgba(255,255,255,0.82)' : 'rgba(17,17,17,0.78)';
 
   const name = escapeXml(config.name);
-  const url = escapeXml(`${BASE_URL}/p/${slug}`);
+  const url = escapeXml(`${BASE_URL}/s/${slug}`);
   // Long names wrap poorly in one SVG <text>; cap and rely on the play button.
   const headline = name.length > 34 ? name.slice(0, 33).trimEnd() + '…' : name;
 

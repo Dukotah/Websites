@@ -73,7 +73,7 @@ function packetFor(slug) {
     photos, // ← the judge checks each photo matches the business + isn't a logo/screenshot/dupe
     generatorFlags: cfg.flags ?? [],
     shots: { fold: `shots/${slug}-fold.png`, full: `shots/${slug}-full.png` },
-    url: `/p/${slug}`,
+    url: `/s/${slug}`,
   };
 }
 
@@ -191,7 +191,7 @@ async function runCapture() {
     const dbgPort = port + 1000 + i; // fresh port per page; avoids reuse races
     try {
       await withChrome(CHROME, dbgPort, async (conn) => {
-        const { foldPng, fullPng, fullHeight } = await capturePage(conn, `http://localhost:${port}/p/${slug}`);
+        const { foldPng, fullPng, fullHeight } = await capturePage(conn, `http://localhost:${port}/s/${slug}`);
         writeFileSync(join(SHOTS, `${slug}-fold.png`), foldPng);
         writeFileSync(join(SHOTS, `${slug}-full.png`), fullPng);
         writeFileSync(join(REVIEW, `${slug}.json`), JSON.stringify(packetFor(slug), null, 2));

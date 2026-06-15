@@ -9,7 +9,7 @@
  *
  * Usage:
  *   await withChrome(chromePath, port, async (conn) => {
- *     const { foldPng, fullPng } = await capturePage(conn, 'http://localhost:4321/p/x');
+ *     const { foldPng, fullPng } = await capturePage(conn, 'http://localhost:4321/s/x');
  *     writeFileSync('fold.png', foldPng); writeFileSync('full.png', fullPng);
  *   });
  */

@@ -74,7 +74,7 @@ try {
     await cdp(ws, 'Page.enable', {}, ++id);
     await cdp(ws, 'Emulation.setDeviceMetricsOverride',
       { width: 390, height: 844, deviceScaleFactor: 2, mobile: true }, ++id);
-    await cdp(ws, 'Page.navigate', { url: `${baseUrl}/p/${slug}` }, ++id);
+    await cdp(ws, 'Page.navigate', { url: `${baseUrl}/s/${slug}` }, ++id);
     await sleep(1800);
     const metrics = await cdp(ws, 'Runtime.evaluate', {
       expression: 'JSON.stringify({sw:document.documentElement.scrollWidth, vw:window.innerWidth})',
