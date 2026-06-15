@@ -26,7 +26,7 @@ const hasImage = !!img;
 <section class:list={['section', 'p-story', { 'p-story--solo': !hasImage }]}>
   <div class="container">
     <div class="p-story__grid">
-      <div class="p-story__body" data-reveal>
+      <div class="p-story__body" data-reveal={hasImage ? 'left' : ''}>
         {eyebrow && <p class="eyebrow">{eyebrow}</p>}
         <h2 class="p-story__heading">{heading}</h2>
 
@@ -44,7 +44,7 @@ const hasImage = !!img;
       </div>
 
       {hasImage && img && (
-        <div class="p-story__figure" data-reveal data-reveal-delay="2">
+        <div class="p-story__figure" data-reveal="right" data-reveal-delay="2">
           <div class="media">
             <SiteImage
               src={img.src}

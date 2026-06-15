@@ -79,7 +79,7 @@ const isEditorial = !isFullbleed && !isSplit;
         must paint immediately, never flash faded while JS settles. */}
     <div class="p-hero__content">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-      <h1 class="p-hero__heading">{heading}</h1>
+      <h1 class="p-hero__heading" transition:name="page-hero-heading">{heading}</h1>
       {subheading && <p class="p-hero__sub">{subheading}</p>}
 
       {(primaryCta || secondaryCta) && (

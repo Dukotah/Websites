@@ -130,7 +130,7 @@ const jsonLd = buildJsonLd(config as any, { canonical, image: ogImage || undefin
     <div class="premium">
       <a class="skip-link" href="#main">Skip to main content</a>
       <PremiumHeader config={config} page={page} />
-      <main id="main">
+      <main id="main" transition:name="page-main">
         <slot />
       </main>
       <PremiumFooter config={config} />

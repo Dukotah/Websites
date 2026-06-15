@@ -31,7 +31,7 @@ const ctaHref = phone ? `tel:${phone.replace(/[^0-9+]/g, '')}` : nav[0]?.href ??
 const ctaLabel = phone ? formatPhone(phone) : 'Get in touch';
 ---
 
-<header class="p-hdr" data-premium-header>
+<header class="p-hdr" data-premium-header transition:persist transition:name="page-header">
   <div class="container p-hdr__inner">
     <a class="p-hdr__brand" href={home} aria-label={`${config.name} home`}>
       {config.brand?.logo
@@ -89,11 +89,24 @@ const ctaLabel = phone ? formatPhone(phone) : 'Get in touch';
   .p-hdr__name { font-family: var(--p-font-display); font-size: var(--p-text-lg); letter-spacing: -0.01em; }
   .p-hdr__nav { display: flex; gap: 0.4rem; margin-inline-start: auto; }
   .p-hdr__nav a {
+    position: relative;
     padding: 0.5rem 0.85rem; border-radius: var(--p-radius-sm); text-decoration: none;
     color: var(--p-ink-soft); font-weight: 600; font-size: var(--p-text-sm); transition: background-color 140ms ease, color 140ms ease;
   }
   .p-hdr__nav a:hover { background: var(--p-paper-deep); color: var(--p-ink-strong); }
   .p-hdr__nav a[aria-current='page'] { color: var(--p-primary); }
+  /* Active-page underline that slides out from center — hover-pointer only so
+     touch/no-hover devices just see the color change. */
+  .p-hdr__nav a::after {
+    content: ''; position: absolute; left: 0.85rem; right: 0.85rem; bottom: 0.28rem; height: 2px;
+    background: var(--p-primary); border-radius: 1px;
+    transform: scaleX(0); transform-origin: center;
+  }
+  .p-hdr__nav a[aria-current='page']::after { transform: scaleX(1); }
+  @media (hover: hover) {
+    .p-hdr__nav a::after { transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .p-hdr__nav a:hover::after { transform: scaleX(1); }
+  }
   .p-hdr__actions { display: flex; align-items: center; gap: 0.6rem; margin-inline-start: auto; }
   .p-hdr__nav + .p-hdr__actions { margin-inline-start: 0; }
   .p-hdr__cta { white-space: nowrap; }

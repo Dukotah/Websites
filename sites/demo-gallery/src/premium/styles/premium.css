@@ -100,6 +100,15 @@
 .premium p { text-wrap: pretty; margin: 0; }
 .premium a { color: var(--p-primary); text-underline-offset: 3px; }
 .premium a:hover { color: var(--p-primary-strong); }
+/* Animated underline-offset on hover — only where hover is a true pointer, and
+   only for genuinely-underlined links (skip btn/pill/nav which manage their own
+   affordance) so the offset growth reads as intentional, never jittery. */
+@media (hover: hover) {
+  .premium a:not(.btn):not(.pill):not(.p-hdr__brand) {
+    transition: color 140ms ease, text-underline-offset 180ms ease;
+  }
+  .premium a:not(.btn):not(.pill):not(.p-hdr__brand):hover { text-underline-offset: 5px; }
+}
 .premium :focus-visible { outline: 3px solid var(--p-primary-strong); outline-offset: 2px; border-radius: 2px; }
 .premium ::selection { background: color-mix(in srgb, var(--p-primary) 18%, #fff); }
 
@@ -129,6 +138,23 @@
 .premium .section-head--center .eyebrow { justify-content: center; }
 .premium .section-head--center .eyebrow::before { display: none; }
 
+/* Tiny internal stagger when a section-head reveals: its eyebrow rule, heading,
+   and lede ease in just behind the head container for a touch of choreography.
+   Gated behind .reveal-armed (motion-capable + JS), so nothing is hidden at
+   first paint; reduced-motion neutralizes it via the [data-reveal] reset below. */
+.premium.reveal-armed .section-head[data-reveal] .eyebrow,
+.premium.reveal-armed .section-head[data-reveal] h2,
+.premium.reveal-armed .section-head[data-reveal] p {
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1), transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.premium.reveal-armed .section-head[data-reveal].is-visible .eyebrow { transition-delay: 60ms; }
+.premium.reveal-armed .section-head[data-reveal].is-visible h2 { transition-delay: 130ms; }
+.premium.reveal-armed .section-head[data-reveal].is-visible p { transition-delay: 200ms; }
+.premium.reveal-armed .section-head[data-reveal].is-visible .eyebrow,
+.premium.reveal-armed .section-head[data-reveal].is-visible h2,
+.premium.reveal-armed .section-head[data-reveal].is-visible p { opacity: 1; transform: none; }
+
 /* --- Buttons --------------------------------------------------------------- */
 .premium .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
@@ -140,6 +166,8 @@
 .premium .btn:active { transform: translateY(1px); }
 .premium .btn--primary { background: var(--p-primary); color: var(--p-primary-contrast); box-shadow: var(--p-shadow-sm); }
 .premium .btn--primary:hover { background: var(--p-primary-strong); color: var(--p-primary-contrast); box-shadow: var(--p-shadow-md); }
+/* Subtle lift + shadow grow on the primary CTA, hover-pointer only. */
+@media (hover: hover) { .premium .btn--primary:hover { transform: translateY(-1px); box-shadow: var(--p-shadow-lg); } }
 .premium .btn--outline { border-color: var(--p-line); background: var(--p-surface); color: var(--p-ink-strong); }
 .premium .btn--outline:hover { border-color: var(--p-structure); color: var(--p-structure); }
 .premium .btn--ghost-light { border-color: rgb(255 255 255 / 0.4); color: #fff; background: transparent; }
@@ -189,14 +217,29 @@
   transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .premium.reveal-armed [data-reveal].is-visible { opacity: 1; transform: none; }
+/* Directional variants for richer row/card choreography — slide in from the
+   side or scale up instead of the default rise. Only the ARMED starting offset
+   differs; all collapse to the shared `.is-visible { transform: none }` above. */
+.premium.reveal-armed [data-reveal='left'] { transform: translateX(-24px); }
+.premium.reveal-armed [data-reveal='right'] { transform: translateX(24px); }
+.premium.reveal-armed [data-reveal='scale'] { transform: scale(0.96); }
 .premium [data-reveal][data-reveal-delay='1'] { transition-delay: 70ms; }
 .premium [data-reveal][data-reveal-delay='2'] { transition-delay: 140ms; }
 .premium [data-reveal][data-reveal-delay='3'] { transition-delay: 210ms; }
 .premium [data-reveal][data-reveal-delay='4'] { transition-delay: 280ms; }
 .premium [data-reveal][data-reveal-delay='5'] { transition-delay: 350ms; }
 .premium [data-reveal][data-reveal-delay='6'] { transition-delay: 420ms; }
+.premium [data-reveal][data-reveal-delay='7'] { transition-delay: 490ms; }
+.premium [data-reveal][data-reveal-delay='8'] { transition-delay: 560ms; }
 @media (prefers-reduced-motion: reduce) {
+  /* Static, instant page swaps — no view-transition animation at all. */
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
   .premium [data-reveal] { opacity: 1 !important; transform: none !important; transition: none; }
+  .premium .section-head[data-reveal] .eyebrow,
+  .premium .section-head[data-reveal] h2,
+  .premium .section-head[data-reveal] p { opacity: 1 !important; transform: none !important; transition: none; }
   .premium * { scroll-behavior: auto; }
 }
 
@@ -239,3 +282,31 @@
   z-index: 1000; transition: transform 150ms ease;
 }
 .premium .skip-link:focus { transform: none; }
+
+/* --- View transitions (page swaps on /s/ pages) ---------------------------- */
+/* ClientRouter is mounted in PremiumBase; <main> carries transition:name="page-main"
+   and the hero heading transition:name="page-hero-heading". The whole block is
+   gated behind no-preference so reduced-motion users get instant, static swaps
+   (Astro's default cross-fade is itself suppressed under reduced-motion). */
+@media (prefers-reduced-motion: no-preference) {
+  /* Brand-tinted root cross-fade between documents. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  /* The main content gets a gentle rise-and-fade as it swaps in. */
+  ::view-transition-old(page-main) {
+    animation: p-vt-out 240ms cubic-bezier(0.4, 0, 1, 1) both;
+  }
+  ::view-transition-new(page-main) {
+    animation: p-vt-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes p-vt-out {
+    to { opacity: 0; transform: translateY(-8px); }
+  }
+  @keyframes p-vt-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+}
