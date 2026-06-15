@@ -150,7 +150,7 @@ function baseIdentity(url) {
  * (de-duped by size-agnostic URL identity and by exact bytes). Returns saved
  * media descriptors. Best-effort; network failures just yield fewer results.
  */
-export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxCandidates = 8, heroHint, category } = {}) {
+export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxCandidates = 24, heroHint, category } = {}) {
   if (!urls?.length) return [];
   const outDir = join(destDir, slug);
   await mkdir(outDir, { recursive: true });
@@ -659,7 +659,7 @@ export async function downloadOsmPhotos(photos, { destDir, slug, startIndex = 0,
 export async function acquirePhotos(
   row,
   enrichment,
-  { destDir, slug, ownMax = 9, min = 2, skipWikimedia = false, skipOsm = false, heroHint } = {},
+  { destDir, slug, ownMax = 16, min = 2, skipWikimedia = false, skipOsm = false, heroHint } = {},
 ) {
   const facts = {
     name: row.name,
@@ -694,7 +694,12 @@ export async function acquirePhotos(
     destDir,
     slug,
     max: ownMax,
-    maxCandidates: 60,
+    // Evaluate a GENEROUS candidate budget so a vision agent gets options to
+    // choose from: pixel-stat ranking picks an order, but the scraper often grabs
+    // the wrong/limited hero, so we keep every decent-resolution distinct frame
+    // the site offers (junk — logos/icons/sprites — is still filtered) rather than
+    // discarding good shots early. Cost is bounded by the URL-stage de-dupe.
+    maxCandidates: 120,
     heroHint,
     category: row.category, // drives the deterministic hero grade
   });

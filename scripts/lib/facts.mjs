@@ -332,6 +332,9 @@ function enrichmentFromResearch(r, row, { authoritative = true } = {}) {
     city: row.city || '',
     state: row.state || '',
     images: Array.isArray(r.realPhotoUrls) ? r.realPhotoUrls : [],
+    // OWN-SITE VALIDATION: carried from build-research so the aggregator-host
+    // flag fires on the research-file path too (not only a live scrape).
+    ...(r.aggregatorHost ? { aggregatorHost: r.aggregatorHost } : {}),
     _fromResearch: true,
   };
   // A confirmed:true file is human-verified prose → trusted by construction.
@@ -517,7 +520,10 @@ async function acquireMediaFor(slug, row, e, catKey, { authoritative = false, sk
     const got = await acquirePhotos(row, e, {
       destDir: PUBLIC_IMAGES,
       slug,
-      ownMax: 9,
+      // Keep MORE of the business's own photos so a vision agent has real options
+      // to pick the hero/gallery from (the scraper often grabs the wrong/limited
+      // shot first). Junk is still filtered; this only widens the GOOD-candidate set.
+      ownMax: 16,
       min: 2,
       skipWikimedia,
       heroHint: e?.images?.[0],
@@ -554,6 +560,15 @@ async function acquireMediaFor(slug, row, e, catKey, { authoritative = false, sk
   // theirs — never auto-send; flag for a human relevance check.
   if (media.length && /wikimedia|openverse|commons/i.test(photoSource)) {
     photoFlags.push('hero is generic stock (not the business’s own photo) — verify relevance or replace before sending');
+  }
+
+  // OWN-SITE VALIDATION FLAG: the lead `website` resolved to an aggregator /
+  // booking / listing / gov page (e.g. facebook.com, squareup.com, dca.ca.gov),
+  // not the business's own site — so the scrape (facts AND photos) is likely
+  // thin and may not be genuinely theirs. Surface it so the author/vision pass
+  // verifies everything and leans on research/fallbacks before sending.
+  if (e?.aggregatorHost) {
+    photoFlags.push(`Lead website is an aggregator/listing page (${e.aggregatorHost}) — scrape may be thin; verify facts & source the business’s own photos before sending`);
   }
 
   // Backfill missing CONTACT facts from the free OSM/Wikidata lookup. Gap-fill

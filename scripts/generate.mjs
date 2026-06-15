@@ -12,6 +12,14 @@
  *
  * Usage: node scripts/generate.mjs [path/to/file.csv] [--no-photos]
  *                                   [--no-crm-sync] [--no-claude]
+ *                                   [--only <slug>] [--no-manifest]
+ *
+ * SINGLE-LEAD authoring (agent vision-in-the-loop): pass `--only <slug>` to build
+ * exactly one lead from the CSV and `--no-manifest` to leave the SHARED state
+ * (data/outreach-links.json + the CRM sync) untouched. Together they let an agent
+ * (re)author ONE lead's src/data/premium/<slug>.json + photos WITHOUT clobbering
+ * the batch manifest or pushing — the disjoint per-lead contract. The manifest is
+ * rebuilt by a later full `npm run generate` (or batch phase).
  */
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -35,6 +43,11 @@ async function main() {
   const csvPath = resolve(ROOT, csvArg);
   const skipWikimedia = process.argv.includes('--no-photos');
   const useClaude = !process.argv.includes('--no-claude');
+  // SINGLE-LEAD mode: `--only <slug>` builds just that one lead; `--no-manifest`
+  // leaves data/outreach-links.json + the CRM sync untouched (disjoint per-lead).
+  const onlyIdx = process.argv.indexOf('--only');
+  const onlySlug = onlyIdx >= 0 ? (process.argv[onlyIdx + 1] || '').trim() : '';
+  const noManifest = process.argv.includes('--no-manifest');
 
   let csv;
   try { csv = await readFile(csvPath, 'utf8'); }
@@ -56,6 +69,7 @@ async function main() {
   for (const row of rows) {
     if (!row.name) continue;
     const slug = slugify(row.name);
+    if (onlySlug && slug !== onlySlug) continue; // single-lead mode: skip the rest
     const catKey = catKeyFor(row);
     row.website = row.website || row.existing_website || '';
 
@@ -139,6 +153,16 @@ async function main() {
       b.config.flags = b.flags;
       await writeFile(join(PREMIUM_DIR, `${b.slug}.json`), JSON.stringify(b.config, null, 2) + '\n');
     }
+  }
+
+  // SINGLE-LEAD GUARD: in --no-manifest mode we've already written the per-slug
+  // config (steps 3–4); the SHARED manifest + CRM sync are owned by the batch
+  // phase, so stop here without touching them. The per-lead files are disjoint.
+  if (noManifest) {
+    for (const b of built) console.log(`  ✓ ${b.config.name}  →  ${b.link}   [photos: ${b.photoSource} · ${b.status}]`);
+    process.stdout.write('\n' + validateOut + '\n');
+    console.log(`\nWrote ${built.length} premium config(s) to sites/demo-gallery/src/data/premium/ (manifest + CRM sync skipped — --no-manifest).`);
+    return;
   }
 
   // 5) Build the links manifest — /s/<slug>, slug ALWAYS present (Duke never hits

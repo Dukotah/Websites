@@ -84,6 +84,42 @@ function absolutize(url, base) {
   }
 }
 
+// --- own-domain / aggregator host detection --------------------------------
+// The single biggest "the scrape is thin" risk is a lead whose `website` is NOT
+// the business's own site but an AGGREGATOR / booking / listing / gov page
+// (dca.ca.gov license lookup, gocheckin booking, a g.co/Google profile, a
+// SquareUp ordering page, Booking.com, Facebook/Instagram/Yelp). Those pages
+// carry little of the business's OWN material and almost never its real photos,
+// so the author must know the scrape may be thin and lean on research/fallbacks
+// rather than trust what little came back. We only FLAG — never discard — so a
+// genuinely useful aggregator (some Square sites are the real storefront) still
+// contributes candidates; the flag just lowers the author's confidence.
+const AGGREGATOR_HOSTS = [
+  'dca.ca.gov', 'gocheckin', 'g.co', 'g.page', 'goo.gl',
+  'squareup.com', 'square.site', 'book.squareup',
+  'booking.com', 'opentable.com', 'resy.com', 'toasttab.com',
+  'facebook.com', 'fb.com', 'instagram.com', 'yelp.com',
+  'business.site', 'godaddysites.com', 'wixsite.com',
+  'linktr.ee', 'nextdoor.com', 'mapquest.com',
+];
+
+// Is `host` (or any parent) an aggregator/booking/listing/gov domain? Matches a
+// suffix so "www.facebook.com" and "biz.squareup.com" both hit. Returns the
+// matched token (truthy) or '' so the caller can name it in a flag.
+function aggregatorHost(host = '') {
+  const h = String(host).toLowerCase();
+  return AGGREGATOR_HOSTS.find((d) => h === d || h.endsWith('.' + d) || h.includes(d)) || '';
+}
+
+// The registrable-ish base of a host ("www.warpigs.com" → "warpigs.com",
+// "images.warpigs.com" → "warpigs.com") so we can tell a business's OWN-domain
+// photo from a third-party CDN/aggregator shot when ranking candidates.
+function baseHost(host = '') {
+  const parts = String(host).toLowerCase().split('.').filter(Boolean);
+  if (parts.length <= 2) return parts.join('.');
+  return parts.slice(-2).join('.');
+}
+
 // --- JSON-LD extraction -----------------------------------------------------
 
 function parseJsonLd(html) {
@@ -568,8 +604,20 @@ export async function scrapeSite(url, { timeoutMs = 12000 } = {}) {
     ...extractImages(html, base),
   ]);
 
+  // OWN-SITE VALIDATION: is the resolved host an aggregator/booking/listing/gov
+  // page rather than the business's own site? When so, the scrape is likely thin
+  // (little of the business's OWN material, rarely its real photos) — we surface
+  // `aggregatorHost` so the author can flag it and lean on research/fallbacks.
+  const finalHost = (() => { try { return new URL(finalUrl).host; } catch { return ''; } })();
+  const aggHost = aggregatorHost(finalHost);
+
   const enrichment = {
     sourceUrl: finalUrl,
+    // Empty for a normal own-site; the matched aggregator token (e.g.
+    // "facebook.com", "squareup.com", "dca.ca.gov") when the lead URL is a
+    // third-party listing/booking/gov page. Read by acquireMediaFor → the author
+    // to raise a "scrape may be thin — verify facts/photos" flag.
+    aggregatorHost: aggHost,
     name: ld.name || ogTitle || title.split(/[|\-–—]/)[0].trim() || '',
     description: ld.description || ogDesc || metaDesc || '',
     phone: ld.phone || findPhone(html),
@@ -735,10 +783,14 @@ function photoIdentity(url) {
  *   • DISTINCT photos only: collapse size-variants of one shot to its largest URL
  *     (photoIdentity) so the candidate budget buys variety, not duplicates.
  */
-export async function collectSiteImages(url, { maxPages = 4, timeoutMs = 12000 } = {}) {
+export async function collectSiteImages(url, { maxPages = 6, timeoutMs = 12000 } = {}) {
   const home = await fetchHtml(url, timeoutMs);
   if (!home) return [];
   const base = home.finalUrl;
+  // The lead site's OWN registrable host — used below to rank the business's own
+  // images ABOVE third-party CDN/aggregator shots so a vision agent gets the
+  // genuinely-theirs candidates first.
+  const ownBase = (() => { try { return baseHost(new URL(base).host); } catch { return ''; } })();
   // og:image / twitter:image is usually the business's intended hero — put it
   // first so the downloader can prefer it for the hero slot. JSON-LD image/photo
   // is the business's OWN structured data, so it leads too (right after og).
@@ -778,7 +830,24 @@ export async function collectSiteImages(url, { maxPages = 4, timeoutMs = 12000 }
     // Same photo seen again: keep whichever URL advertises the larger size.
     if (sizeHint(u) > sizeHint(prev)) bestByIdentity.set(id, u);
   }
-  return order.map((id) => bestByIdentity.get(id));
+  const ordered = order.map((id) => bestByIdentity.get(id));
+
+  // OWN-DOMAIN PREFERENCE: a vision agent should see the business's OWN photos
+  // first. The og/JSON-LD intended-hero already leads (index 0); below that, a
+  // STABLE partition floats same-domain images above third-party CDN/aggregator
+  // shots (a Facebook/Yelp/Square thumbnail, a stock CDN frame) without otherwise
+  // reordering — so variety and first-seen intent are preserved. We KEEP the
+  // off-domain candidates (more options for the agent), just rank them lower.
+  if (!ownBase) return ordered;
+  const isOwn = (u) => {
+    try { return baseHost(new URL(u).host) === ownBase; } catch { return false; }
+  };
+  // Keep index 0 (the intended hero) pinned; stable-partition the remainder.
+  const head = ordered.slice(0, 1);
+  const rest = ordered.slice(1);
+  const own = rest.filter(isOwn);
+  const off = rest.filter((u) => !isOwn(u));
+  return [...head, ...own, ...off];
 }
 
 function mergeSocial(sameAs = [], found) {
@@ -806,4 +875,4 @@ function scoreRichness(e) {
   return s;
 }
 
-export { stripTags, decodeEntities, parseJsonLd, scoreRichness };
+export { stripTags, decodeEntities, parseJsonLd, scoreRichness, aggregatorHost, baseHost };

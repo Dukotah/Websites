@@ -111,6 +111,7 @@ function buildNotes(e, lead, photoUrls, mismatchName) {
     notes.push(`⚠ WEBSITE MISMATCH: the URL identifies as "${mismatchName}", not "${lead.name}" — the website column is probably wrong. Facts/photos from it were DISCARDED. Verify the correct URL before building.`);
   }
   if (lead.owner) notes.push(`Owner (per scraper): ${lead.owner} — use in the about story / signature once confirmed.`);
+  if (e?.aggregatorHost) notes.push(`⚠ The website is an aggregator/listing/booking page (${e.aggregatorHost}), not the business's own site — facts & photos here are likely thin. Web-search for their real site, services, and photos.`);
   if (!e) {
     notes.push('Live site was unreachable during research — facts here are thin; web-search to confirm everything before sending.');
   } else {
@@ -155,6 +156,10 @@ function researchFromScrape(slug, e, lead, photoUrls, mismatchName = '') {
     testimonials: Array.isArray(e?.testimonials) ? e.testimonials : [],
     social,
     realPhotoUrls: photoUrls,
+    // OWN-SITE VALIDATION: when the lead URL resolved to an aggregator/booking/
+    // listing/gov page (not the business's own site) the scrape is likely thin —
+    // carried through so the generator/author can flag it (see facts.mjs).
+    ...(e?.aggregatorHost ? { aggregatorHost: e.aggregatorHost } : {}),
     notes: buildNotes(e, lead, photoUrls, mismatchName),
     _richness: e?.richness ?? 0,
     _source: 'auto-scrape',
