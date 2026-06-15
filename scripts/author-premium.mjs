@@ -16,13 +16,14 @@
  *
  * Exports authorPremium(...) for the pipeline; not a CLI on its own.
  */
-import { readdirSync, existsSync } from 'node:fs';
+import { readdirSync, existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   normCat, deriveStatus, clip, titleCase, humanizeCategory, hashStr, formatPhone, PUBLIC_IMAGES,
 } from './lib/facts.mjs';
 import { pickFontId, pickBrandColor } from './lib/brand-seed.mjs';
 import { sanitizeProse, sanitizeTestimonials } from './lib/copy-sanity.mjs';
+import { scorePhoto } from './lib/photo-score.mjs';
 
 // ── category → page family table ───────────────────────────────────────────
 // home is ALWAYS pages[0]. The family decides which pages follow and whether the
@@ -95,9 +96,9 @@ const telHref = (s) => {
 // The validator hard-fails on invented paths. We list the slug's asset dir and
 // only reference files that exist. Convention from the acquire pipeline:
 // hero.<ext>, story.<ext>, photo-N.<ext>.
-function discoverPhotos(slug) {
+async function discoverPhotos(slug) {
   const dir = join(PUBLIC_IMAGES, slug);
-  if (!existsSync(dir)) return { hero: null, story: null, gallery: [], all: [] };
+  if (!existsSync(dir)) return { hero: null, story: null, gallery: [], all: [], quality: {} };
   const files = readdirSync(dir).filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f));
   const baseOf = (f) => f.replace(/\.[a-z0-9]+$/i, '');
   // Map JSON paths in /images/<slug>/<base>.<ext> form (validator resolves any ext).
@@ -108,16 +109,27 @@ function discoverPhotos(slug) {
   const photos = files
     .filter((f) => /^photo-\d+/.test(baseOf(f)))
     .sort((a, b) => (parseInt(baseOf(a).split('-')[1]) || 0) - (parseInt(baseOf(b).split('-')[1]) || 0));
+  // AUTHOR-TIME RE-SCORE (key-free, once per site): the acquisition score lives
+  // in the media descriptors, but story/gallery files on disk have no quality data
+  // here. Re-score each from its bytes so the gallery floor + vivid-first ranking
+  // can read {faded, dynamicRange, score}. Cheap — Sharp is already a dep.
+  const quality = {};
+  for (const f of files) {
+    const p = pathFor(f);
+    try { quality[p] = await scorePhoto(readFileSync(join(dir, f))); }
+    catch { quality[p] = { faded: false, dynamicRange: 1, score: 0 }; }
+  }
   return {
     hero: hero ? pathFor(hero) : null,
     story: story ? pathFor(story) : null,
     gallery: photos.map(pathFor),
     all: files.map(pathFor),
+    quality, // { '/images/<slug>/<file>': { faded, dynamicRange, score, ... } }
   };
 }
 
 // ── deterministic skeleton ─────────────────────────────────────────────────
-function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {}) {
+async function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {}) {
   const cat = premiumCat(row.category);
   // Track when the scraped-copy guard stripped a field — forces needs-review so
   // a human rewrites from the real facts instead of shipping a hole.
@@ -201,25 +213,75 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
   // the resolution/quality floor (media empty, or source tagged ':below-floor'),
   // we DON'T headline a photo — we render a clean editorial text hero. Story/
   // gallery files on disk are still fine to use.
-  const photos = discoverPhotos(slug);
+  const photos = await discoverPhotos(slug);
   const heroDropped = !media.length;
-  // CONGRUENCE GATE: a generic regional stock shot (Wikimedia/Openverse/Commons)
-  // reads as "not theirs" on a place-based business (salon/cafe/restaurant/spa/
-  // barber/dental) — a landscape on a salon is the Joon bug. Suppress the hero
-  // photo and route to the editorial text hero. Stock heroes stay only for
-  // outdoorsy categories (landscaping/marina/winery) where a regional shot reads
-  // as congruent.
-  const isGenericStock = /wikimedia|openverse|commons/i.test(photoSource);
-  const PLACE_BASED = new Set(['salon', 'cafe', 'restaurant', 'spa', 'barber', 'dental']);
-  const stockIncongruent = isGenericStock && PLACE_BASED.has(cat);
+  const scoreOf = (p) => photos.quality?.[p] || { faded: false, dynamicRange: 1, score: 0 };
+
+  // ── CONGRUENCE GATE (key-free, deterministic) ──────────────────────────────
+  // Decides hero-vs-editorial. The strongest key-free signal is PROVENANCE: only
+  // the business's OWN scraped/dropped photo is trustworthy-by-default for an
+  // INDOOR place-based business; any off-domain stock (osm/wikimedia/openverse/
+  // commons/ai/library/empty) on a salon/cafe/etc. reads as "not theirs" — that's
+  // the Joon bug (an off-domain mountain on a salon slipped the old wikimedia-only
+  // gate). For OUTDOORSY cats a regional/outdoor stock shot reads congruent, so it
+  // may still headline. This is a FLOOR, not a guarantee: subject confirmation
+  // ("this really IS a salon interior") is deferred to the vision pass — key-free
+  // logic can raise suspicion and route to editorial, never confirm a subject.
+  //
+  // PROVENANCE: own = the business's own photo; everything else is off-domain.
+  const ownDomain = /business-site|agent-supplied/i.test(photoSource);
+  const offDomain = !ownDomain; // osm/wikimedia/openverse/commons/ai/library/empty
+  // CATEGORY EXPECTATION:
+  //   INDOOR_PLACE — expects an interior/people/product subject; a landscape/stock
+  //                  shot reads incongruent. (adds fitness + dental to the old 6.)
+  //   OUTDOORSY    — a regional/outdoor shot reads congruent; off-domain stock OK.
+  const INDOOR_PLACE = new Set(['salon', 'spa', 'dental', 'cafe', 'restaurant', 'barber', 'fitness']);
+  const OUTDOORSY = new Set(['landscaping', 'marina', 'winery', 'towing', 'auto-repair']);
+  // outdoorsyCongruent: an off-domain stock shot is allowed to hero ONLY for an
+  // outdoorsy cat (regional/outdoor reads congruent). Documented + asserted so the
+  // INDOOR_PLACE rule below is the only thing that suppresses an off-domain hero.
+  const outdoorsyCongruent = OUTDOORSY.has(cat) && offDomain;
   let stockHeroSuppressed = false;
+  let suppressReason = '';
   let heroImg = heroDropped ? null : photos.hero;
-  if (heroImg && stockIncongruent) { heroImg = null; stockHeroSuppressed = true; }
-  const storyImg = photos.story || photos.gallery[0] || null;
-  // Gallery = photos beyond hero/story, only when >=3 exist.
-  const galleryPool = photos.gallery.filter((p) => p !== storyImg);
+  const heroFaded = heroImg ? scoreOf(heroImg).faded : false;
+  if (heroImg) {
+    if (INDOOR_PLACE.has(cat) && !ownDomain) {
+      // CORE FIX: for an indoor place-based cat, only the business's OWN photo may
+      // hero. An off-domain shot (Joon's OSM/scraped-but-off-domain mountain) fails.
+      heroImg = null; stockHeroSuppressed = true;
+      suppressReason = 'Off-domain hero suppressed for place-based category — add the business’s own photo';
+    } else if (INDOOR_PLACE.has(cat) && ownDomain && heroFaded) {
+      // Own photo, but washed → prefer the composed editorial over a faded own-photo.
+      heroImg = null; stockHeroSuppressed = true;
+      suppressReason = 'Washed own-photo hero suppressed — prefer editorial or add a vivid photo';
+    } else if (heroFaded) {
+      // Any cat: a washed hero never headlines (outdoorsy included).
+      heroImg = null; stockHeroSuppressed = true;
+      suppressReason = 'Washed/low-contrast hero suppressed — add a vivid photo';
+    }
+    // else: own-domain non-faded, OR outdoorsy off-domain (regional) non-faded
+    // (outdoorsyCongruent) → hero as normal.
+    void outdoorsyCongruent;
+  }
+  // The same gate governs the editorial ASIDE and the GALLERY/STORY: an off-domain
+  // shot on an indoor cat must not sneak into the aside or gallery either.
+  const offDomainIndoor = INDOOR_PLACE.has(cat) && offDomain;
+
+  // GALLERY/STORY QUALITY FLOOR (author-time): drop FADED survivors from the
+  // gallery set rather than ship a washed grid; for an indoor cat also drop
+  // off-domain shots. storyImg falls through faded/off-domain candidates to none.
+  const galleryEligible = (p) => !scoreOf(p).faded && !offDomainIndoor;
+  const storyCandidates = [photos.story, ...photos.gallery].filter(Boolean).filter(galleryEligible);
+  const storyImg = storyCandidates[0] || null;
+  // Gallery pool: non-faded, congruent, best-first by the re-scored vivid ranking.
+  const galleryPool = photos.gallery
+    .filter((p) => p !== storyImg && galleryEligible(p))
+    .sort((a, b) => (scoreOf(b).score ?? 0) - (scoreOf(a).score ?? 0));
+  // Require >=3 GOOD photos or omit the gallery entirely — omission beats a faded
+  // grid. (homeGallery/aboutGallery key off galleryImgs.length below.)
   const galleryImgs = galleryPool.length >= 3 ? galleryPool : [];
-  const realPhotoCount = photos.gallery.length + (heroImg ? 1 : 0);
+  const realPhotoCount = galleryImgs.length + (heroImg ? 1 : 0);
 
   // Brand. dental has no font affinity of its own — seed it among the medical
   // pairings (editorial-serif / classic-trad / clean-sans) so a dentist reads
@@ -248,11 +310,11 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
   // the best secondary photo as the editorial `aside`; otherwise fall back to the
   // brand-tinted category motif backdrop behind the type. `storyImg` is the
   // best non-hero photo (story file, else first gallery shot).
-  // Suppress the secondary-photo aside under the same congruence gate that
-  // suppressed the hero (a generic regional stock shot on a place-based business).
-  const editorialAside = (!heroImg && storyImg && !(stockIncongruent && /\/images\/library\//.test(storyImg)))
-    ? storyImg
-    : null;
+  // Suppress the secondary-photo aside under the SAME congruence gate that
+  // suppressed the hero: an off-domain shot on an indoor cat, or a faded shot,
+  // must not fill the aside either. storyImg is already gallery-eligible
+  // (non-faded + congruent), so it is safe to use directly.
+  const editorialAside = (!heroImg && storyImg) ? storyImg : null;
   const heroMotif = (!heroImg && !editorialAside) ? categoryMotif(cat) : null;
 
   const eyebrowLoc = [area, established ? `Est. ${established}` : ''].filter(Boolean).join(' · ');
@@ -556,7 +618,7 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
     pages,
   };
 
-  return { config, meta: { aboutDropped, realPhotoCount, galleryCount: galleryImgs.length, heroImg, anyRealPhoto: realPhotoCount > 0 || galleryImgs.length > 0, cat, copyStripped, stockHeroSuppressed } };
+  return { config, meta: { aboutDropped, realPhotoCount, galleryCount: galleryImgs.length, heroImg, anyRealPhoto: realPhotoCount > 0 || galleryImgs.length > 0, cat, copyStripped, stockHeroSuppressed, suppressReason } };
 }
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -749,7 +811,7 @@ function applyClaudeCopy(config, j) {
 export async function authorPremium(slug, row, e, research, media, {
   photoSource = '', photoFlags = [], mismatchName = '', useClaude = true,
 } = {}) {
-  let { config, meta } = buildSkeleton(slug, row, e, research, media, { photoSource });
+  let { config, meta } = await buildSkeleton(slug, row, e, research, media, { photoSource });
 
   // Optional Claude copy upgrade (deterministic skeleton already shippable).
   if (useClaude) config = await upgradeCopyWithClaude(config, e, research);
@@ -767,11 +829,16 @@ export async function authorPremium(slug, row, e, research, media, {
   // P0 guards: scraped copy was junk (stripped) → must rewrite from real facts;
   // a generic regional stock hero on a place-based business was suppressed.
   if (meta.copyStripped) flags.push('Scraped copy was junk — rewrite from real facts');
-  if (meta.stockHeroSuppressed) flags.push('Generic stock hero suppressed — add a real photo');
+  // A distinct flag string per suppression case so the human knows WHY the hero
+  // was routed to editorial (off-domain provenance vs washed photo).
+  if (meta.stockHeroSuppressed) flags.push(meta.suppressReason || 'Generic stock hero suppressed — add a real photo');
 
   const status = flags.length ? 'needs-review' : 'ready';
   config.status = status;
   config.flags = flags;
+  // Persist provenance so the vision packet (vision-qa.mjs packetFor) can show the
+  // judge WHY a hero may have been routed to editorial. Not rendered; QA metadata.
+  if (photoSource) config.photoSource = photoSource;
 
   return { config, status, flags, photoSource };
 }

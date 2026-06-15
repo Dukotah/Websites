@@ -177,11 +177,11 @@
               "alt": "Leslie Jue DDS — photo 1"
             },
             {
-              "src": "/images/leslie-jue-dds/photo-3.webp",
+              "src": "/images/leslie-jue-dds/photo-4.webp",
               "alt": "Leslie Jue DDS — photo 2"
             },
             {
-              "src": "/images/leslie-jue-dds/photo-4.webp",
+              "src": "/images/leslie-jue-dds/photo-6.webp",
               "alt": "Leslie Jue DDS — photo 3"
             },
             {
@@ -189,7 +189,7 @@
               "alt": "Leslie Jue DDS — photo 4"
             },
             {
-              "src": "/images/leslie-jue-dds/photo-6.webp",
+              "src": "/images/leslie-jue-dds/photo-3.webp",
               "alt": "Leslie Jue DDS — photo 5"
             }
           ]
@@ -375,11 +375,11 @@
               "alt": "Leslie Jue DDS — photo 1"
             },
             {
-              "src": "/images/leslie-jue-dds/photo-3.webp",
+              "src": "/images/leslie-jue-dds/photo-4.webp",
               "alt": "Leslie Jue DDS — photo 2"
             },
             {
-              "src": "/images/leslie-jue-dds/photo-4.webp",
+              "src": "/images/leslie-jue-dds/photo-6.webp",
               "alt": "Leslie Jue DDS — photo 3"
             },
             {
@@ -414,8 +414,7 @@
       ]
     }
   ],
-  "status": "needs-review",
-  "flags": [
-    "No website provided — research & verify manually"
-  ]
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
 }

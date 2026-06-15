@@ -24,24 +24,35 @@ you can, because the packet says it's a winery and you can see the photo.
 ## Dimensions to score
 
 Judge every page on these. Each issue you find becomes one entry in `findings`.
+The two the key-free deterministic gates CANNOT confirm — and which this vision
+pass is therefore the AUTHORITY on — are **hero-congruence** and **photo-quality**.
 
 1. **hero-legibility** — Is the headline readable? Enough contrast of text vs the
    photo/scrim behind it? Light text on a light image = critical.
-2. **photo-congruence** — Does each `claimed-real` photo actually depict THIS
-   business / category? A marina hero must look like a marina, not a snack shelf.
-   A service card labelled "Kayaks" must not be a logo. Mismatched stock is the
-   #1 "fake site" tell → critical when it's the hero, warn for a buried card.
-3. **photo-quality** — Any logo-on-white, UI screenshot, blurry, distorted,
-   wrong-aspect, or duplicate-looking photo? Stretched/squashed images → warn.
-4. **layout-integrity** — Clipping, text overflow, blank gaps (a section stuck
+2. **hero-congruence** — Does the HERO depict THIS business / category? A landscape
+   or mountain on a SALON, a parking lot on a winery, a stock office on a cafe =
+   the #1 "fake site" tell → **critical hold**. The key-free gate routes off-domain
+   heroes on indoor place-based cats to an editorial (photo-less) text hero — an
+   editorial hero is CORRECT, not a defect (the packet flags `heroIsEditorial`).
+   You are the authority that a photo hero actually shows the business.
+3. **photo-congruence** — Does each NON-hero `claimed-real` photo depict THIS
+   business / category? A service card labelled "Kayaks" must not be a logo.
+   Mismatched stock → critical when it's the hero, warn for a buried card.
+4. **photo-quality** — Washed-out / faded / low-contrast / grey photos (the
+   Joon/Petaluma failure) → **warn**, or **critical** if it's the hero or fills the
+   gallery; also any logo-on-white, UI screenshot, blurry, distorted, wrong-aspect,
+   or duplicate-looking photo. The deterministic gate rejects most faded photos
+   from the hero + gallery, but you confirm what slipped through. Stretched/
+   squashed → warn. Intentional, high-contrast B&W is FINE (not "faded").
+5. **layout-integrity** — Clipping, text overflow, blank gaps (a section stuck
    invisible), overlapping elements, a hero that under/over-fills its box,
    broken grids. Visible breakage → critical.
-5. **richness-credibility** — Does it read like a real, specific business or like
+6. **richness-credibility** — Does it read like a real, specific business or like
    thin templated AI slop? Too few sections, generic filler copy, repeated
    boilerplate → warn.
-6. **conversion** — Is there a clear primary CTA above the fold and a real
+7. **conversion** — Is there a clear primary CTA above the fold and a real
    contact path? Dead-end CTAs → warn.
-7. **identity** — Type + palette + hero feel intentional and on-brand for the
+8. **identity** — Type + palette + hero feel intentional and on-brand for the
    category (not the default-looking template). Weak/generic identity → info.
 
 ## Grade + verdict
@@ -75,9 +86,20 @@ Write exactly this shape to `.shots/qa/findings/<slug>.json`:
 ```
 
 - `severity` ∈ `critical | warn | info`. Be honest — `critical` means do-not-send.
+- `dimension` is one of the eight above; `hero-congruence` and `photo-quality`
+  are the two you are the AUTHORITY on (the deterministic gate cannot confirm them).
 - One finding per distinct issue. `location` and `fix` are short and specific.
 - A clean page is `{ "slug": "...", "grade": "A", "verdict": "send",
   "summary": "...", "findings": [] }`.
+
+## Closing the loop — vision verdict → send gate
+
+After findings exist, run `npm run vision-qa -- --gate-manifest`. It rewrites
+`data/outreach-links.json`: any slug whose findings are `verdict:"hold"` or carry
+a `critical` is flipped `ready → needs-review` (the CRM send gate). It only
+TIGHTENS and honors both `needs-review`/`needs_review` spellings — it never loosens
+a flagged demo back to `ready`. Without this hook a site could ship `ready` while
+its hero is a mismatched landscape.
 
 ## Scaling the judge
 

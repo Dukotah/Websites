@@ -190,7 +190,10 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     const ph = await dhash(got.buf);
     if (ph != null && seenPhash.some((p) => hamming(p, ph) <= NEAR_DUP_DISTANCE)) continue;
     if (ph != null) seenPhash.push(ph);
-    kept.push({ buf: got.buf, ext, url, w: dims?.w ?? q.w, h: dims?.h ?? q.h, score: q.score });
+    // Carry `faded` so a washed photo can still fill a gallery slot (its low score
+    // already sinks it) but is BARRED from the hero — a washed image must never
+    // headline. We do NOT hard-`continue` on faded: that would empty thin galleries.
+    kept.push({ buf: got.buf, ext, url, w: dims?.w ?? q.w, h: dims?.h ?? q.h, score: q.score, faded: q.faded });
   }
 
   // Rank survivors by photographic quality (entropy + tonal richness + landscape
@@ -211,10 +214,18 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
   // buildConfig swaps in clean library art for the hero rather than upscaling it.
   const HERO_MIN_W = 1200;
   const bigEnough = (k) => (k.w ?? 0) >= HERO_MIN_W;
-  let heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint && bigEnough(k)) : -1;
-  if (heroIdx < 0) heroIdx = kept.findIndex((k) => bigEnough(k) && isLandscape(k));
+  // A faded/washed photo is barred from the HERO (it headlines the page) — but it
+  // stays in `kept` for the gallery, where its low score sinks it to the bottom.
+  const heroOk = (k) => bigEnough(k) && !k.faded;
+  let heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint && heroOk(k)) : -1;
+  if (heroIdx < 0) heroIdx = kept.findIndex((k) => heroOk(k) && isLandscape(k));
+  if (heroIdx < 0) heroIdx = kept.findIndex(heroOk);
+  if (heroIdx < 0) heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint && !k.faded) : -1;
+  if (heroIdx < 0) heroIdx = kept.findIndex((k) => isLandscape(k) && !k.faded);
+  // Last resort only: if literally every candidate is faded, fall through to the
+  // old prefs so a page still has a hero (the author-time gate + tier still apply).
+  if (heroIdx < 0) heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint && bigEnough(k)) : -1;
   if (heroIdx < 0) heroIdx = kept.findIndex(bigEnough);
-  if (heroIdx < 0) heroIdx = heroHint ? kept.findIndex((k) => k.url === heroHint) : -1;
   if (heroIdx < 0) heroIdx = kept.findIndex(isLandscape);
   if (heroIdx < 0) heroIdx = 0;
   if (heroIdx > 0) {

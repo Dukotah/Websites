@@ -163,7 +163,7 @@
           "heading": "Inside WarPigs Craft Kitchen",
           "images": [
             {
-              "src": "/images/warpigs-craft-kitchen/photo-2.webp",
+              "src": "/images/warpigs-craft-kitchen/photo-7.webp",
               "alt": "WarPigs Craft Kitchen — photo 1"
             },
             {
@@ -175,7 +175,7 @@
               "alt": "WarPigs Craft Kitchen — photo 3"
             },
             {
-              "src": "/images/warpigs-craft-kitchen/photo-5.webp",
+              "src": "/images/warpigs-craft-kitchen/photo-2.webp",
               "alt": "WarPigs Craft Kitchen — photo 4"
             },
             {
@@ -183,7 +183,7 @@
               "alt": "WarPigs Craft Kitchen — photo 5"
             },
             {
-              "src": "/images/warpigs-craft-kitchen/photo-7.webp",
+              "src": "/images/warpigs-craft-kitchen/photo-5.webp",
               "alt": "WarPigs Craft Kitchen — photo 6"
             }
           ]
@@ -342,7 +342,7 @@
           "heading": "Where you'll find us",
           "images": [
             {
-              "src": "/images/warpigs-craft-kitchen/photo-2.webp",
+              "src": "/images/warpigs-craft-kitchen/photo-7.webp",
               "alt": "WarPigs Craft Kitchen — photo 1"
             },
             {
@@ -354,7 +354,7 @@
               "alt": "WarPigs Craft Kitchen — photo 3"
             },
             {
-              "src": "/images/warpigs-craft-kitchen/photo-5.webp",
+              "src": "/images/warpigs-craft-kitchen/photo-2.webp",
               "alt": "WarPigs Craft Kitchen — photo 4"
             }
           ]
@@ -385,8 +385,7 @@
       ]
     }
   ],
-  "status": "needs-review",
-  "flags": [
-    "No website provided — research & verify manually"
-  ]
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
 }

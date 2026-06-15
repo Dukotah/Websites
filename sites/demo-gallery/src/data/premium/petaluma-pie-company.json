@@ -35,8 +35,7 @@
           "kind": "hero",
           "variant": "editorial",
           "eyebrow": "Petaluma, CA",
-          "heading": "Handcrafted pies, baked in Petaluma",
-          "subheading": "A neighborhood pie shop and café in Petaluma, California.",
+          "heading": "Petaluma Pie Company — Cafe you can count on",
           "badges": [],
           "primaryCta": {
             "label": "See the menu",
@@ -46,20 +45,6 @@
             "label": "Book catering",
             "href": "/s/petaluma-pie-company/menu"
           },
-          "image": {
-            "src": "/images/petaluma-pie-company/story.jpg",
-            "alt": "Inside Petaluma Pie Company",
-            "focal": "50% 50%"
-          }
-        },
-        {
-          "kind": "story",
-          "eyebrow": "Our story",
-          "heading": "About Petaluma Pie Company",
-          "body": [
-            "Petaluma Pie Company is a neighborhood pie shop and café in the heart of Petaluma, California, serving sweet and savory pies made by hand.",
-            "Stop in for a slice and a coffee, or order a whole pie for your next gathering."
-          ],
           "image": {
             "src": "/images/petaluma-pie-company/story.jpg",
             "alt": "Inside Petaluma Pie Company",
@@ -84,23 +69,23 @@
           "heading": "Inside Petaluma Pie Company",
           "images": [
             {
-              "src": "/images/petaluma-pie-company/photo-2.jpg",
+              "src": "/images/petaluma-pie-company/photo-4.jpg",
               "alt": "Petaluma Pie Company — photo 1"
             },
             {
-              "src": "/images/petaluma-pie-company/photo-3.jpg",
+              "src": "/images/petaluma-pie-company/photo-5.jpg",
               "alt": "Petaluma Pie Company — photo 2"
             },
             {
-              "src": "/images/petaluma-pie-company/photo-4.jpg",
+              "src": "/images/petaluma-pie-company/photo-2.jpg",
               "alt": "Petaluma Pie Company — photo 3"
             },
             {
-              "src": "/images/petaluma-pie-company/photo-5.jpg",
+              "src": "/images/petaluma-pie-company/photo-6.jpg",
               "alt": "Petaluma Pie Company — photo 4"
             },
             {
-              "src": "/images/petaluma-pie-company/photo-6.jpg",
+              "src": "/images/petaluma-pie-company/photo-8.jpg",
               "alt": "Petaluma Pie Company — photo 5"
             },
             {
@@ -133,8 +118,7 @@
           "kind": "hero",
           "variant": "editorial",
           "eyebrow": "On the menu",
-          "heading": "Handcrafted pies, baked in Petaluma",
-          "subheading": "A neighborhood pie shop and café in Petaluma, California.",
+          "heading": "What we’re serving",
           "motif": "/images/library/cafe/motif.svg"
         },
         {
@@ -179,66 +163,6 @@
       ]
     },
     {
-      "slug": "about",
-      "label": "About",
-      "title": "About",
-      "sections": [
-        {
-          "kind": "hero",
-          "variant": "editorial",
-          "eyebrow": "About Petaluma Pie Company",
-          "heading": "Handcrafted pies, baked in Petaluma",
-          "subheading": "A neighborhood pie shop and café in Petaluma, California.",
-          "motif": "/images/library/cafe/motif.svg"
-        },
-        {
-          "kind": "story",
-          "eyebrow": "Our story",
-          "heading": "About Petaluma Pie Company",
-          "body": [
-            "Petaluma Pie Company is a neighborhood pie shop and café in the heart of Petaluma, California, serving sweet and savory pies made by hand.",
-            "Stop in for a slice and a coffee, or order a whole pie for your next gathering."
-          ],
-          "image": {
-            "src": "/images/petaluma-pie-company/story.jpg",
-            "alt": "Inside Petaluma Pie Company",
-            "focal": "50% 50%"
-          }
-        },
-        {
-          "kind": "gallery",
-          "eyebrow": "A closer look",
-          "heading": "Where you'll find us",
-          "images": [
-            {
-              "src": "/images/petaluma-pie-company/photo-2.jpg",
-              "alt": "Petaluma Pie Company — photo 1"
-            },
-            {
-              "src": "/images/petaluma-pie-company/photo-3.jpg",
-              "alt": "Petaluma Pie Company — photo 2"
-            },
-            {
-              "src": "/images/petaluma-pie-company/photo-4.jpg",
-              "alt": "Petaluma Pie Company — photo 3"
-            },
-            {
-              "src": "/images/petaluma-pie-company/photo-5.jpg",
-              "alt": "Petaluma Pie Company — photo 4"
-            }
-          ]
-        },
-        {
-          "kind": "cta",
-          "heading": "Come see Petaluma Pie Company",
-          "primaryCta": {
-            "label": "Get in touch",
-            "href": "/s/petaluma-pie-company/contact"
-          }
-        }
-      ]
-    },
-    {
       "slug": "contact",
       "label": "Contact",
       "title": "Contact",
@@ -258,6 +182,8 @@
   "flags": [
     "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
     "hero photo below resolution floor — text hero used",
+    "No About content — about page folded",
     "Scraped copy was junk — rewrite from real facts"
-  ]
+  ],
+  "photoSource": "agent-supplied:below-floor"
 }

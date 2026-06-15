@@ -1,0 +1,22 @@
+{
+  "slug": "joon-hair",
+  "grade": "B",
+  "verdict": "send",
+  "summary": "Editorial text hero is correct for this salon (off-domain photo was suppressed); gallery is vivid and on-category. One buried tile is slightly soft.",
+  "findings": [
+    {
+      "dimension": "hero-congruence",
+      "severity": "info",
+      "issue": "Hero is the editorial (photo-less) variant because the only candidate hero was an off-domain landscape — the gate routed it to a composed text hero. This is the intended fallback, not a defect.",
+      "location": "home hero",
+      "fix": "To add a photo hero, drop a real salon-interior shot at src/assets/prospects/joon-hair/hero.<ext>."
+    },
+    {
+      "dimension": "photo-quality",
+      "severity": "warn",
+      "issue": "Gallery photo-5 reads slightly soft/low-contrast versus its neighbours.",
+      "location": "gallery, 4th tile",
+      "fix": "Drop it or swap for a sharper, higher-contrast salon shot."
+    }
+  ]
+}

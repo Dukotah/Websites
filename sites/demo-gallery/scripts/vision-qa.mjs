@@ -39,7 +39,12 @@ import { withChrome, capturePage } from './lib/cdp-capture.mjs';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..'); // sites/demo-gallery
 const REPO_ROOT = resolve(ROOT, '../..');
-const PROSPECTS = join(ROOT, 'src/data/prospects');
+// PREMIUM multi-page configs — each renders at /s/<slug>/. (Was the legacy
+// single-page src/data/prospects, which mismatched the /s/<slug> screenshots and
+// fed the judge stale 11-file packets — the single biggest blocker. Now matches
+// screenshot-audit.mjs.)
+const PROSPECTS = join(ROOT, 'src/data/premium');
+const OUTREACH_LINKS = join(REPO_ROOT, 'data/outreach-links.json');
 const QA = join(REPO_ROOT, '.shots/qa');
 const SHOTS = join(QA, 'shots');
 const REVIEW = join(QA, 'review');
@@ -47,30 +52,50 @@ const FINDINGS = join(QA, 'findings');
 
 const args = process.argv.slice(2);
 const reportMode = args.includes('--report');
+const gateManifestMode = args.includes('--gate-manifest');
 const noBuild = args.includes('--no-build');
 const filters = args.filter((a) => !a.startsWith('--'));
 
 // ── Ground-truth fact extraction (what a judge needs to spot incongruity) ─────
+// Reads the PREMIUM multi-page PremiumConfig shape: pages[].sections discriminated
+// by `kind`. The hero/about page is pages[0].
 const isLibrary = (p) => !p || p.includes('/images/library/') || p.endsWith('.svg');
+function classifyPhoto(src, credit) {
+  if (isLibrary(src)) return 'fallback-art';
+  return credit ? 'stock-credited' : 'claimed-real';
+}
 function packetFor(slug) {
   const cfg = JSON.parse(readFileSync(join(PROSPECTS, `${slug}.json`), 'utf8'));
-  const imgs = cfg.images ?? {};
+  const homeSections = cfg.pages?.[0]?.sections ?? [];
+  const allSections = (cfg.pages ?? []).flatMap((p) => p.sections ?? []);
+  const hero = homeSections.find((s) => s.kind === 'hero');
+  const gallery = allSections.find((s) => s.kind === 'gallery');
+  const story = allSections.find((s) => s.kind === 'story');
+  const services = allSections.find((s) => s.kind === 'services');
+
   // Every photo the judge should eyeball for congruence + quality.
   const photos = [];
-  if (imgs.hero) photos.push({ role: 'hero', src: imgs.hero, kind: isLibrary(imgs.hero) ? 'fallback-art' : 'claimed-real' });
-  if (imgs.story) photos.push({ role: 'story', src: imgs.story, kind: isLibrary(imgs.story) ? 'fallback-art' : 'claimed-real' });
-  for (const g of cfg.galleryImages ?? [])
-    photos.push({ role: 'gallery', src: g.src, kind: isLibrary(g.src) ? 'fallback-art' : g.credit ? 'stock-credited' : 'claimed-real' });
+  if (hero?.image?.src) photos.push({ role: 'hero', src: hero.image.src, kind: classifyPhoto(hero.image.src) });
+  if (story?.image?.src) photos.push({ role: 'story', src: story.image.src, kind: classifyPhoto(story.image.src) });
+  for (const g of gallery?.images ?? [])
+    photos.push({ role: 'gallery', src: g.src, kind: classifyPhoto(g.src, g.credit) });
+
   return {
     slug,
     name: cfg.name,
     category: cfg.category ?? '(inferred)',
     area: cfg.area ?? '',
-    whatTheyDo: (cfg.services ?? []).map((s) => s.title),
-    heroHeading: cfg.hero?.heading ?? '',
-    heroVariant: cfg.heroVariant ?? '(auto)',
-    sectionTypes: (cfg.sections ?? []).map((s) => s.type),
+    whatTheyDo: (services?.items ?? []).map((s) => s.title),
+    heroHeading: hero?.heading ?? '',
+    // An editorial hero is photo-less by design (motif/aside fill the column) —
+    // surface it so the judge does NOT flag "missing hero photo" as a defect.
+    heroVariant: hero?.variant ?? '(auto)',
+    heroIsEditorial: hero?.variant === 'editorial',
+    sectionKinds: allSections.map((s) => s.kind),
     photos, // ← the judge checks each photo matches the business + isn't a logo/screenshot/dupe
+    // Provenance + generator flags so the judge SEES why a hero may have been
+    // routed to editorial ('Off-domain hero suppressed', 'faded', etc.).
+    photoSource: cfg.photoSource ?? '(unknown)',
     generatorFlags: cfg.flags ?? [],
     shots: { fold: `shots/${slug}-fold.png`, full: `shots/${slug}-full.png` },
     url: `/s/${slug}`,
@@ -213,5 +238,48 @@ async function runCapture() {
   console.log('  Then: npm run vision-qa -- --report   (aggregates + gates).');
 }
 
-if (reportMode) runReport();
+// ─────────────────────────────────────────────────────────────────────────────
+// GATE-MANIFEST MODE — the missing hook: push vision verdicts into the send gate.
+// After findings exist, rewrite data/outreach-links.json so any slug whose vision
+// finding is verdict:'hold' or carries a critical flips to status:'needs-review'.
+// This is what stops a site shipping `ready` while its hero is the Joon mountain.
+// Preserves BOTH status spellings already present (generate.mjs:151 / CLAUDE.md
+// seam) — never invents a new value; only TIGHTENS ready → needs-review.
+// ─────────────────────────────────────────────────────────────────────────────
+function runGateManifest() {
+  if (!existsSync(OUTREACH_LINKS)) {
+    console.error(`✗ ${OUTREACH_LINKS} not found — run the factory (generate) first.`);
+    process.exit(1);
+  }
+  const links = JSON.parse(readFileSync(OUTREACH_LINKS, 'utf8'));
+  if (!Array.isArray(links)) { console.error('✗ outreach-links.json is not an array.'); process.exit(1); }
+
+  // Index findings by slug.
+  const held = new Set();
+  if (existsSync(FINDINGS)) {
+    for (const f of readdirSync(FINDINGS).filter((x) => x.endsWith('.json'))) {
+      let finding;
+      try { finding = JSON.parse(readFileSync(join(FINDINGS, f), 'utf8')); } catch { continue; }
+      const slug = finding.slug || f.replace(/\.json$/, '');
+      const hasCritical = (finding.findings ?? []).some((x) => x.severity === 'critical');
+      if (finding.verdict === 'hold' || hasCritical) held.add(slug);
+    }
+  }
+
+  let flipped = 0;
+  for (const entry of links) {
+    if (!held.has(entry.slug)) continue;
+    // Only TIGHTEN: a ready demo becomes needs-review. Never loosen an existing
+    // needs-review back to ready. Honor either spelling already in the file.
+    if (entry.status === 'ready') { entry.status = 'needs-review'; flipped++; console.log(`  ✗ ${entry.slug} → needs-review (vision hold/critical)`); }
+  }
+
+  writeFileSync(OUTREACH_LINKS, JSON.stringify(links, null, 2) + '\n');
+  console.log(`\n▶ gate-manifest: ${held.size} slug(s) held by vision, ${flipped} flipped ready → needs-review.`);
+  console.log(`▶ written → ${OUTREACH_LINKS}`);
+  process.exit(0);
+}
+
+if (gateManifestMode) runGateManifest();
+else if (reportMode) runReport();
 else runCapture();
