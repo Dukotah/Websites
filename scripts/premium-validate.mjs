@@ -20,6 +20,7 @@ const ASSET_ROOT = join(ROOT, 'sites', 'demo-gallery', 'src', 'assets', 'prospec
 
 const KNOWN_KINDS = new Set([
   'hero', 'story', 'services', 'stats', 'testimonials', 'gallery', 'faq', 'cta', 'callout', 'contact',
+  'steps', 'team', 'features', 'pricing',
 ]);
 
 const argv = process.argv.slice(2);

@@ -145,6 +145,29 @@
           ]
         },
         {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Leslie Jue DDS and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
           "kind": "gallery",
           "eyebrow": "A closer look",
           "heading": "Inside Leslie Jue DDS",
@@ -227,6 +250,29 @@
             {
               "title": "Emergency Dentistry",
               "description": "Prompt care for dental pain, breaks, and other urgent situations."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Leslie Jue DDS and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
             }
           ]
         },

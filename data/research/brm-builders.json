@@ -29,6 +29,13 @@
   ],
   "hours": [],
   "testimonials": [],
+  "team": [
+    {
+      "name": "Christian Andersen",
+      "role": "President",
+      "bio": "A North Bay building family's standards run deep — Christian learned the trade from his father, respected Sonoma County builder Marsh Andersen, and has built and renovated homes across the region ever since."
+    }
+  ],
   "social": {
     "facebook": "https://www.facebook.com/BuildingRepairManagementInc/",
     "instagram": "",

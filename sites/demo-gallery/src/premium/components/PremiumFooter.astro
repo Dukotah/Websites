@@ -15,6 +15,7 @@ const nav = navFor(config);
 const home = homeHref(config);
 const c = config.contact ?? {};
 const s = config.social ?? {};
+const hours = (config.hours ?? []).filter((h) => h && h.day && h.hours);
 const area = config.area ?? [config.city, config.state].filter(Boolean).join(', ');
 const monogram = (config.name || '?').trim().charAt(0).toUpperCase();
 const telHref = c.phone ? `tel:${c.phone.replace(/[^0-9+]/g, '')}` : null;
@@ -67,6 +68,22 @@ const socials = [
       {c.email && <a href={`mailto:${c.email}`}>{c.email}</a>}
       {c.address && <p class="p-ft__addr">{c.address}{area ? `, ${area}` : ''}</p>}
     </div>
+
+    {hours.length > 0 && (
+      <div class="p-ft__col">
+        <h3 class="p-ft__h">Hours</h3>
+        <table class="p-ft__hours">
+          <tbody>
+            {hours.map((h) => (
+              <tr>
+                <th scope="row">{h.day}</th>
+                <td>{h.hours}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )}
   </div>
 
   <div class="p-ft__bottom">
@@ -80,7 +97,11 @@ const socials = [
 <style>
   .p-ft { background: var(--p-structure); color: var(--p-on-dark); }
   .p-ft__grid {
-    display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: var(--p-space-12);
+    display: grid;
+    /* Brand column leads; the remaining nav/contact/hours columns flow as
+       auto-fit tracks so the footer reads balanced with 1, 2, or 3 of them. */
+    grid-template-columns: 1.6fr repeat(auto-fit, minmax(8rem, 1fr));
+    gap: var(--p-space-12);
     padding-block: clamp(3rem, 2.4rem + 2.5vw, 5rem);
   }
   .p-ft__id { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; color: #fff; }
@@ -99,6 +120,9 @@ const socials = [
   .p-ft__col a { color: var(--p-on-dark-soft); text-decoration: none; font-size: var(--p-text-sm); }
   .p-ft__col a:hover { color: #fff; }
   .p-ft__addr { color: var(--p-on-dark-soft); font-size: var(--p-text-sm); }
+  .p-ft__hours { border-collapse: collapse; font-size: var(--p-text-sm); width: 100%; max-width: 16rem; }
+  .p-ft__hours th { text-align: left; font-weight: 600; color: var(--p-on-dark); padding: 0.2rem 0.75rem 0.2rem 0; white-space: nowrap; }
+  .p-ft__hours td { text-align: right; color: var(--p-on-dark-soft); padding: 0.2rem 0; white-space: nowrap; }
   .p-ft__bottom { border-top: 1px solid color-mix(in srgb, #fff 12%, transparent); }
   .p-ft__bottom-inner { display: flex; justify-content: space-between; gap: var(--p-space-4); flex-wrap: wrap; padding-block: var(--p-space-6); }
   .p-ft__bottom-inner p { color: var(--p-on-dark-soft); font-size: var(--p-text-xs); }

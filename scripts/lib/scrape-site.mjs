@@ -428,6 +428,63 @@ function dedupeCI(arr) {
   return out;
 }
 
+// --- team / owner heuristics ------------------------------------------------
+// Best-effort: pull REAL named people the site mentions as owner/founder/lead so
+// the premium author can build a Team section ONLY when real people exist. Never
+// fabricates — returns [] when nothing clearly names a person. Conservative on
+// purpose: a false "team member" is worse than an absent section.
+
+// "owner/founder/pitmaster/Dr." + a Proper Name. The role word may precede the
+// name ("pitmaster Larry Hillix", "owner Jane Doe") or the name may precede it
+// ("Larry Hillix, owner"). We capture 1–3 capitalized tokens as the name.
+const ROLE_WORDS =
+  'owner|founder|co-?founder|proprietor|pitmaster|chef|head chef|stylist|barber|principal|president|ceo|director|lead|manager';
+const NAME = '([A-Z][a-z]+(?:\\s+[A-Z][a-z.\'’-]+){0,2})';
+
+function extractTeam(text) {
+  const found = new Map(); // lowercased name → { name, role }
+  const add = (name, role) => {
+    const n = clean(name).replace(/[.,;:]+$/, '');
+    if (!n || n.length < 3 || n.length > 40) return;
+    // Reject obvious non-people (single common words, place-y phrases).
+    if (!/\s/.test(n) && n.length < 5) return;
+    const key = n.toLowerCase();
+    if (!found.has(key)) found.set(key, { name: n, role: titleRole(role) });
+  };
+  const titleRole = (r) => {
+    const x = clean(r).toLowerCase().replace(/-/g, '');
+    if (!x) return '';
+    if (/pitmaster/.test(x)) return 'Pitmaster';
+    if (/cofounder/.test(x)) return 'Co-Founder';
+    if (/founder/.test(x)) return 'Founder';
+    if (/owner|proprietor/.test(x)) return 'Owner';
+    if (/head chef/.test(x)) return 'Head Chef';
+    if (/chef/.test(x)) return 'Chef';
+    if (/ceo/.test(x)) return 'CEO';
+    if (/president/.test(x)) return 'President';
+    if (/director/.test(x)) return 'Director';
+    if (/principal/.test(x)) return 'Principal';
+    if (/stylist/.test(x)) return 'Stylist';
+    if (/barber/.test(x)) return 'Barber';
+    if (/manager/.test(x)) return 'Manager';
+    return titleCaseWords(x);
+  };
+  // role-before-name: "pitmaster Larry Hillix"
+  const reA = new RegExp(`\\b(${ROLE_WORDS})\\s+${NAME}`, 'g');
+  for (const m of text.matchAll(reA)) add(m[2], m[1]);
+  // name-before-role: "Larry Hillix, owner" / "Larry Hillix is the founder"
+  const reB = new RegExp(`${NAME}\\s*(?:,|\\bis\\b|\\bthe\\b|\\s)+\\s*(${ROLE_WORDS})`, 'g');
+  for (const m of text.matchAll(reB)) add(m[1], m[2]);
+  // "Dr. Leslie Jue" style (medical/dental).
+  for (const m of text.matchAll(/\bDr\.?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z.'’-]+){0,2})/g)) {
+    add(`Dr. ${m[1]}`, 'Dr.');
+  }
+  return [...found.values()].slice(0, 4);
+}
+
+const titleCaseWords = (s) =>
+  s.replace(/\b\w/g, (c) => c.toUpperCase());
+
 // --- contact heuristics -----------------------------------------------------
 
 function findPhone(html) {
@@ -533,6 +590,9 @@ export async function scrapeSite(url, { timeoutMs = 12000 } = {}) {
     ).slice(0, 4),
     images: usefulImages([...(ld.images ?? []), ...heuristicImages]),
     social: mergeSocial(ld.social, findSocial(html)),
+    // Real named people (owner/founder/chef/Dr.) — default [] when none found.
+    // The premium author builds a Team section ONLY from this; never fabricated.
+    team: extractTeam(text),
   };
 
   // Email is the single most-missing field and costs score points. Most small

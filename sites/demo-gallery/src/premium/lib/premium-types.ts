@@ -190,6 +190,88 @@ export interface SecContact {
   showHours?: boolean;
 }
 
+/**
+ * SecSteps — a "how it works" / process flow. A numbered, sequential set of
+ * beats (Reach out → We assess → We do the work → You're set) for services-led
+ * businesses where the customer wants to know what working together looks like.
+ * Reuses the brand kicker-num. Render only when items.length >= 3 (a 1–2 step
+ * "process" reads as filler); the author emits it only for services-led families
+ * with real about/services so it's never an empty hole.
+ */
+export interface SecStepItem {
+  title: string;
+  body: string;
+}
+export interface SecSteps {
+  kind: 'steps';
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  items: SecStepItem[];
+}
+
+/**
+ * SecTeam — owner/founder/team bios. ONLY emitted when research carries real
+ * people (e.g. "pitmaster Larry Hillix"); never fabricated. A card grid reusing
+ * .card + .media. Render only when members.length >= 1.
+ */
+export interface SecTeamMember {
+  name: string;
+  role?: string;
+  bio?: string;
+  image?: PremiumImage;
+}
+export interface SecTeam {
+  kind: 'team';
+  eyebrow?: string;
+  heading?: string;
+  members: SecTeamMember[];
+}
+
+/**
+ * SecFeatures — benefit/feature cards with small inline-SVG icons. Gives the
+ * home page a structured benefit band (instead of a flat checklist) by turning
+ * a business's real highlights into iconned cards. `icon` is a keyword mapped to
+ * a token-tinted inline SVG defined IN the component (no external deps); an
+ * unknown/absent keyword falls back to a neutral mark. Render only when
+ * items.length >= 2.
+ */
+export type FeatureIcon =
+  | 'check' | 'clock' | 'shield' | 'leaf' | 'wrench' | 'sparkle' | 'map-pin' | 'phone';
+export interface SecFeatureItem {
+  title: string;
+  body: string;
+  icon?: FeatureIcon;
+}
+export interface SecFeatures {
+  kind: 'features';
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  items: SecFeatureItem[];
+}
+
+/**
+ * SecPricing — token-driven tier cards. Emitted ONLY when research carries real
+ * pricing/packages (rare); default off. Render only when tiers.length >= 1.
+ */
+export interface SecPricingTier {
+  name: string;
+  price: string;
+  blurb?: string;
+  features?: string[];
+  cta?: { label: string; href: string };
+  /** Visually emphasize this tier as the recommended one. */
+  featured?: boolean;
+}
+export interface SecPricing {
+  kind: 'pricing';
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  tiers: SecPricingTier[];
+}
+
 export type PremiumSection =
   | SecHero
   | SecStory
@@ -200,7 +282,11 @@ export type PremiumSection =
   | SecFaq
   | SecCta
   | SecCallout
-  | SecContact;
+  | SecContact
+  | SecSteps
+  | SecTeam
+  | SecFeatures
+  | SecPricing;
 
 // ── Page + top-level config ────────────────────────────────────────────────
 

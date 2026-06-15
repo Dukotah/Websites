@@ -1,0 +1,95 @@
+---
+/**
+ * TeamSection — owner/founder/team bios. A card grid reusing .card + .media.
+ * Members WITHOUT a photo render a brand-tinted monogram tile (never a blank
+ * grey box), so the section is presentable whether or not we have headshots.
+ * Author emits this ONLY when research carries real people — never fabricated.
+ * Renders nothing when there are no members. Tokens only.
+ */
+import type { SecTeam, PremiumConfig } from '../../lib/premium-types';
+import SiteImage from '../../../components/SiteImage.astro';
+
+interface Props {
+  data: SecTeam;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+
+const members = (data.members ?? []).filter((m) => m && m.name);
+if (members.length < 1) return null;
+
+const monogram = (name: string) =>
+  name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w.charAt(0).toUpperCase()).join('');
+
+// Match the services-grid density logic so cards fill the row.
+const cols = members.length % 3 === 0 || members.length > 4 ? 'grid-3' : 'grid-2';
+---
+
+<section class="section p-team">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      {data.eyebrow && <p class="eyebrow">{data.eyebrow}</p>}
+      <h2>{data.heading ?? 'Meet the team'}</h2>
+    </div>
+
+    <div class:list={['grid', cols, 'p-team__grid']}>
+      {members.map((m, i) => (
+        <article class="card p-team__card" data-reveal data-reveal-delay={((i % 3) + 1)}>
+          {m.image ? (
+            <div class="media p-team__media">
+              <SiteImage
+                src={m.image.src}
+                alt={m.image.alt ?? m.name}
+                objectPosition={m.image.focal}
+                sizes="(min-width: 860px) 30vw, (min-width: 560px) 45vw, 100vw"
+              />
+            </div>
+          ) : (
+            <div class="p-team__mono" aria-hidden="true">{monogram(m.name)}</div>
+          )}
+          <h3 class="p-team__name">{m.name}</h3>
+          {m.role && <p class="p-team__role">{m.role}</p>}
+          {m.bio && <p class="p-team__bio">{m.bio}</p>}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .p-team__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-space-2);
+  }
+  .p-team__media {
+    --ratio: 1 / 1;
+    margin: calc(-1 * var(--p-space-8)) calc(-1 * var(--p-space-8)) var(--p-space-4);
+    border-radius: var(--p-radius-lg) var(--p-radius-lg) 0 0;
+  }
+  /* Photo-less fallback: a brand-tinted monogram tile (not a blank box). */
+  .p-team__mono {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    margin: calc(-1 * var(--p-space-8)) calc(-1 * var(--p-space-8)) var(--p-space-4);
+    border-radius: var(--p-radius-lg) var(--p-radius-lg) 0 0;
+    background:
+      radial-gradient(20rem 16rem at 70% 110%, var(--p-primary-tint), transparent 60%),
+      var(--p-paper-deep);
+    font-family: var(--p-font-display);
+    font-weight: 800;
+    font-size: clamp(2.5rem, 1.8rem + 3vw, 4rem);
+    letter-spacing: -0.04em;
+    color: color-mix(in srgb, var(--p-primary) 70%, var(--p-ink-soft));
+  }
+  .p-team__name { font-size: var(--p-text-xl); }
+  .p-team__role {
+    font-size: var(--p-text-sm);
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--p-primary);
+  }
+  .p-team__bio { color: var(--p-ink-soft); font-size: var(--p-text-base); margin-top: var(--p-space-1); }
+</style>

@@ -171,6 +171,30 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
     .filter((h) => h && h.day && h.hours);
   const highlights = (research?.highlights ?? []).filter(Boolean);
   const social = research?.social ?? e?.social ?? {};
+  // Real named people for a Team section — ONLY from research/scrape, never faked.
+  // research.team wins; else the live-scrape's e.team. Each {name, role?, bio?}.
+  const team = (research?.team?.length ? research.team : (e?.team ?? []))
+    .filter((m) => m && m.name)
+    .map((m) => ({
+      name: titleCase(String(m.name)),
+      ...(m.role ? { role: String(m.role) } : {}),
+      ...(m.bio ? { bio: clip(sanitizeProse(String(m.bio)) || '', 240) } : {}),
+    }))
+    .filter((m) => m.name)
+    .slice(0, 4);
+  // Real pricing/packages — ONLY from research (rare); default off. Each tier
+  // {name, price, blurb?, features?, featured?}. Never invented.
+  const pricingTiers = (Array.isArray(research?.pricing) ? research.pricing : [])
+    .filter((t) => t && t.name && (t.price || t.price === 0))
+    .map((t) => ({
+      name: titleCase(String(t.name)),
+      price: String(t.price),
+      ...(t.blurb ? { blurb: clip(sanitizeProse(String(t.blurb)) || '', 140) } : {}),
+      ...(Array.isArray(t.features) ? { features: t.features.map((f) => clip(String(f), 70)).filter(Boolean).slice(0, 6) } : {}),
+      ...(t.featured ? { featured: true } : {}),
+    }))
+    .filter((t) => t.name && t.price)
+    .slice(0, 4);
 
   // Photos. discoverPhotos lists what's on disk (validator truth), but the HERO
   // must respect the acquire pipeline's decision: when it dropped the hero below
@@ -326,26 +350,72 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
       }
     : null;
 
+  // features — a structured benefit band built from REAL highlights on the home
+  // page (>=3 highlights). Gives the homepage iconned benefit cards instead of
+  // only a flat checklist. Rendered as a candidate; the component itself returns
+  // nothing if <2 survive. Distinct from the callout (which is the <3-stats
+  // fallback), so don't emit both: features wins when highlights are plentiful.
+  const featureItems = highlights.slice(0, 6).map((h) => featureFromHighlight(h, cat, area));
+  const homeFeatures = featureItems.length >= 3
+    ? {
+        kind: 'features',
+        eyebrow: 'Why choose us',
+        heading: `Why ${name}`,
+        items: featureItems,
+      }
+    : null;
+
+  // steps — a generic-but-honest "How it works" for services-led families ONLY,
+  // and ONLY when there's real about + services to justify a process narrative.
+  // Hospitality/beauty skip it (a "process" reads wrong for a cafe/salon).
+  const homeSteps = (SERVICES_LED.has(cat) && aboutBody.length && services.length)
+    ? {
+        kind: 'steps',
+        eyebrow: 'How it works',
+        heading: 'Working with us is simple',
+        items: buildSteps(cat, name),
+      }
+    : null;
+
+  // team — ONLY from real named people (research/scrape). Never fabricated.
+  const homeTeam = team.length
+    ? {
+        kind: 'team',
+        eyebrow: 'The people behind the work',
+        heading: team.length === 1 ? `Meet ${team[0].name}` : 'Meet the team',
+        members: team,
+      }
+    : null;
+
   const homeCta = buildCta(slug, name, cat, address, phone, false, phoneFmt);
 
   // ── COMPOSITION SEED (item 5) ──────────────────────────────────────────────
   // Deterministic per-slug section ORDERING so siblings diverge structurally
   // (beyond just color + font). hashStr(slug+'order') picks one of three home
   // arrangements; missing sections (null) drop out, so the order is just intent.
-  // The trust band (stats|callout) — only one will be non-null — slots wherever
-  // the variant places 'trust'. CTA always closes the page.
-  const trustBand = homeStats || homeCallout;
+  // The trust band (stats|callout|features) slots wherever the variant places
+  // 'trust'. Precedence: a real stat row is strongest; else the iconned features
+  // band (>=3 highlights) carries the "why us" beat; else the callout differentiator
+  // (>=2 points). Only one fills 'trust' so we never stack two "why choose us"
+  // bands. The OTHER of features/callout is suppressed to avoid redundancy.
+  // CTA always closes the page.
+  const trustBand = homeStats || homeFeatures || homeCallout;
   const byKey = {
     trust: trustBand,
     story: homeStory,
     services: homeServices,
+    steps: homeSteps,
+    team: homeTeam,
     testimonials: homeTestimonials,
     gallery: homeGallery,
   };
+  // Section ORDER per variant. New beats (steps/team) are woven in where they
+  // read best: steps right after services (the "what" then the "how"), team near
+  // the story (the people behind it). Missing sections drop out.
   const ORDER_VARIANTS = [
-    ['trust', 'story', 'services', 'testimonials', 'gallery'],
-    ['story', 'services', 'trust', 'gallery', 'testimonials'],
-    ['services', 'story', 'testimonials', 'trust', 'gallery'],
+    ['trust', 'story', 'team', 'services', 'steps', 'testimonials', 'gallery'],
+    ['story', 'team', 'services', 'steps', 'trust', 'gallery', 'testimonials'],
+    ['services', 'steps', 'story', 'team', 'testimonials', 'trust', 'gallery'],
   ];
   const orderVariant = hashStr(slug + 'order') % ORDER_VARIANTS.length;
   for (const key of ORDER_VARIANTS[orderVariant]) {
@@ -383,6 +453,25 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
         items: svcItems,
       },
     ];
+    // steps — the same generic-but-honest process, on the services page where it
+    // reads most naturally (services-led families with real about + services).
+    if (homeSteps) {
+      svcSections.push({
+        kind: 'steps',
+        eyebrow: 'Our process',
+        heading: 'How it works',
+        items: buildSteps(cat, name),
+      });
+    }
+    // pricing — ONLY when research carried real tiers (rare); never invented.
+    if (pricingTiers.length) {
+      svcSections.push({
+        kind: 'pricing',
+        eyebrow: 'Pricing',
+        heading: HOSPITALITY.has(cat) ? 'Packages' : 'Straightforward pricing',
+        tiers: pricingTiers,
+      });
+    }
     const faq = buildFaq(testimonials, hours, address, area, phoneFmt, cat);
     if (faq.length >= 2) svcSections.push({ kind: 'faq', eyebrow: 'Good to know', heading: 'Common questions', items: faq.slice(0, 4) });
     svcSections.push(buildCta(slug, name, cat, address, phone, true, phoneFmt));
@@ -519,6 +608,50 @@ function buildFaq(testimonials, hours, address, area, phone, cat) {
   if (area) faq.push({ q: 'What areas do you serve?', a: `We proudly serve ${area} and the surrounding community.` });
   if (phone) faq.push({ q: 'How do I get in touch?', a: `Call us at ${phone} — we're glad to help.` });
   return faq;
+}
+
+// Map a real highlight phrase to one of the FeaturesSection icon keywords by
+// keyword match (the component falls back to 'check' for anything unmapped, so a
+// miss is safe). Keep keywords in sync with FeatureIcon in premium-types.ts.
+function iconForHighlight(text) {
+  const t = (text || '').toLowerCase();
+  if (/\b(licensed|insured|bonded|certified|warrant|guarantee|trusted|safe|secure)\b/.test(t)) return 'shield';
+  if (/\b(24\/7|hour|fast|same[- ]day|response|on time|quick|emergency|appointment)\b/.test(t)) return 'clock';
+  if (/\b(organic|eco|green|natural|sustainable|farm|estate|fresh|seasonal|local(ly)?)\b/.test(t)) return 'leaf';
+  if (/\b(repair|install|service|fix|maintenance|work|crew|skilled|experienced|hand)\b/.test(t)) return 'wrench';
+  if (/\b(clean|spotless|premium|quality|craft|fine|luxury|award|best|top)\b/.test(t)) return 'sparkle';
+  if (/\b(area|serving|local|town|county|neighborhood|community|near|location)\b/.test(t)) return 'map-pin';
+  if (/\b(call|phone|reach|contact|dispatch|book)\b/.test(t)) return 'phone';
+  return 'check';
+}
+
+// Split one highlight into a short title + a body line for a feature card. Most
+// highlights are a single terse phrase ("Licensed & insured", "ASE-certified");
+// we keep the phrase AS the title and write a calm, factual body from category.
+function featureFromHighlight(text, cat, area) {
+  const title = clip(titleCase(String(text)), 48);
+  const lower = String(text).toLowerCase();
+  let body;
+  if (/\b(licensed|insured|bonded|certified)\b/.test(lower)) body = 'Properly credentialed, so the work is covered and done to standard.';
+  else if (/\b(24\/7|hour|emergency|response|fast|same[- ]day)\b/.test(lower)) body = 'When it matters, we move quickly — you won’t be left waiting.';
+  else if (/\b(free|estimate|upfront|pricing|fair|honest)\b/.test(lower)) body = 'Clear, honest pricing up front — no surprises on the final bill.';
+  else if (/\b(local|family|owned|community)\b/.test(lower)) body = `Rooted right here${area ? ` in ${area}` : ''}, with a real stake in doing it right.`;
+  else if (/\b(fresh|organic|seasonal|scratch|house|craft|estate)\b/.test(lower)) body = 'Made with care and real ingredients — quality you can taste.';
+  else body = 'A standard we hold on every job, not just the easy ones.';
+  return { title, body, icon: iconForHighlight(text) };
+}
+
+// Generic-but-HONEST process for services-led families. Every line is true of
+// any reputable trade/service business — no invented specifics. Emitted only
+// when real about + services exist (see caller guard).
+function buildSteps(cat, name) {
+  const reach = HOSPITALITY.has(cat) ? 'Get in touch' : 'Reach out';
+  return [
+    { title: reach, body: `Call or message ${name} and tell us what you need.` },
+    { title: 'We assess', body: 'We look at the details and talk through the right approach with you.' },
+    { title: 'We do the work', body: 'Our team handles it properly, keeping you in the loop along the way.' },
+    { title: 'You’re set', body: 'The job’s done right, and we stand behind it.' },
+  ];
 }
 
 function defaultHeroHeading(name, cat, area, established) {

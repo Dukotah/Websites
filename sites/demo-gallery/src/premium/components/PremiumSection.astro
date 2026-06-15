@@ -14,6 +14,10 @@ import FaqSection from './sections/FaqSection.astro';
 import CtaSection from './sections/CtaSection.astro';
 import CalloutSection from './sections/CalloutSection.astro';
 import ContactSection from './sections/ContactSection.astro';
+import StepsSection from './sections/StepsSection.astro';
+import TeamSection from './sections/TeamSection.astro';
+import FeaturesSection from './sections/FeaturesSection.astro';
+import PricingSection from './sections/PricingSection.astro';
 
 interface Props {
   section: PremiumSection;
@@ -32,3 +36,7 @@ const { section, config } = Astro.props;
 {section.kind === 'cta' && <CtaSection data={section} config={config} />}
 {section.kind === 'callout' && <CalloutSection data={section} config={config} />}
 {section.kind === 'contact' && <ContactSection data={section} config={config} />}
+{section.kind === 'steps' && <StepsSection data={section} config={config} />}
+{section.kind === 'team' && <TeamSection data={section} config={config} />}
+{section.kind === 'features' && <FeaturesSection data={section} config={config} />}
+{section.kind === 'pricing' && <PricingSection data={section} config={config} />}

@@ -1,0 +1,92 @@
+---
+/**
+ * StepsSection — a numbered "how it works" / process flow. Each step is a
+ * brand kicker-num (reusing .kicker-num) over a title + short body, laid out as
+ * a connected horizontal flow on wide screens and a vertical timeline on narrow.
+ * Photo-free by design (the number IS the visual), so it never demands imagery.
+ * Renders nothing when fewer than 3 real steps exist. Tokens only.
+ */
+import type { SecSteps, PremiumConfig } from '../../lib/premium-types';
+
+interface Props {
+  data: SecSteps;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+
+const items = (data.items ?? []).filter((s) => s && s.title);
+// Guard: a 1–2 step "process" reads as filler — render nothing.
+if (items.length < 3) return null;
+---
+
+<section class="section section--deep p-steps">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      {data.eyebrow && <p class="eyebrow">{data.eyebrow}</p>}
+      <h2>{data.heading ?? 'How it works'}</h2>
+      {data.intro && <p>{data.intro}</p>}
+    </div>
+
+    <ol class="p-steps__flow" style={`--p-steps-cols:${items.length}`}>
+      {items.map((step, i) => (
+        <li class="p-steps__step" data-reveal data-reveal-delay={((i % 4) + 1)}>
+          <span class="kicker-num p-steps__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="p-steps__title">{step.title}</h3>
+          <p class="p-steps__body">{step.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .p-steps__flow {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(var(--p-steps-cols, 4), minmax(0, 1fr));
+    gap: var(--p-space-8);
+  }
+  .p-steps__step {
+    position: relative;
+    display: grid;
+    justify-items: start;
+    gap: var(--p-space-2);
+  }
+  /* Connector line between steps (horizontal on wide screens). Drawn from the
+     number baseline of one step toward the next; suppressed on the last. */
+  .p-steps__step::after {
+    content: '';
+    position: absolute;
+    top: clamp(1.4rem, 1rem + 1.6vw, 2.2rem);
+    inset-inline-start: calc(50% + var(--p-space-8));
+    width: calc(100% - var(--p-space-8));
+    height: 2px;
+    background: linear-gradient(90deg, var(--p-primary), color-mix(in srgb, var(--p-primary) 12%, transparent));
+    opacity: 0.4;
+  }
+  .p-steps__step:last-child::after { display: none; }
+  .p-steps__num { opacity: 0.28; margin-bottom: calc(-1 * var(--p-space-2)); }
+  .p-steps__title { font-size: var(--p-text-xl); }
+  .p-steps__body { color: var(--p-ink-soft); font-size: var(--p-text-base); max-width: 34ch; }
+
+  @media (max-width: 860px) {
+    .p-steps__flow { grid-template-columns: 1fr; gap: var(--p-space-6); }
+    /* Vertical timeline: connector runs DOWN the leading edge. */
+    .p-steps__step { padding-inline-start: var(--p-space-12); }
+    .p-steps__step::after {
+      top: 2.6rem;
+      inset-inline-start: 1.1rem;
+      width: 2px;
+      height: calc(100% - 1rem);
+      background: linear-gradient(180deg, var(--p-primary), color-mix(in srgb, var(--p-primary) 12%, transparent));
+    }
+    .p-steps__num {
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+      font-size: clamp(1.6rem, 1.2rem + 3vw, 2.4rem);
+    }
+  }
+</style>

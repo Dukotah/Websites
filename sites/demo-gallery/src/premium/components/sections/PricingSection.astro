@@ -1,0 +1,88 @@
+---
+/**
+ * PricingSection — token-driven tier cards. Emitted ONLY when research carries
+ * real pricing/packages (default off), so it never shows invented numbers. A
+ * `featured` tier is visually emphasized with a brand border + ribbon. Renders
+ * nothing when there are no tiers. Tokens only; re-themes per brand.
+ */
+import type { SecPricing, PremiumConfig } from '../../lib/premium-types';
+
+interface Props {
+  data: SecPricing;
+  config: PremiumConfig;
+}
+const { data } = Astro.props;
+
+const tiers = (data.tiers ?? []).filter((t) => t && t.name && t.price);
+if (tiers.length < 1) return null;
+
+const cols = tiers.length % 3 === 0 || tiers.length > 4 ? 'grid-3' : tiers.length === 1 ? 'grid-1' : 'grid-2';
+---
+
+<section class="section section--deep p-pricing">
+  <div class="container">
+    {(data.eyebrow || data.heading || data.intro) && (
+      <div class="section-head section-head--center" data-reveal>
+        {data.eyebrow && <p class="eyebrow">{data.eyebrow}</p>}
+        {data.heading && <h2>{data.heading}</h2>}
+        {data.intro && <p>{data.intro}</p>}
+      </div>
+    )}
+
+    <div class:list={['grid', cols, 'p-pricing__grid']}>
+      {tiers.map((t, i) => (
+        <article
+          class:list={['card', 'p-pricing__tier', { 'p-pricing__tier--featured': t.featured }]}
+          data-reveal
+          data-reveal-delay={((i % 3) + 1)}
+        >
+          {t.featured && <span class="pill pill--accent p-pricing__ribbon">Most popular</span>}
+          <h3 class="p-pricing__name">{t.name}</h3>
+          <p class="p-pricing__price">{t.price}</p>
+          {t.blurb && <p class="p-pricing__blurb">{t.blurb}</p>}
+          {(t.features ?? []).length > 0 && (
+            <ul class="checklist p-pricing__features">
+              {t.features!.map((f) => <li>{f}</li>)}
+            </ul>
+          )}
+          {t.cta && (
+            <a
+              class:list={['btn', t.featured ? 'btn--primary' : 'btn--outline', 'p-pricing__cta']}
+              href={t.cta.href}
+            >{t.cta.label}</a>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .p-pricing__grid { align-items: stretch; max-width: 64rem; margin-inline: auto; }
+  .p-pricing__tier {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-space-3);
+  }
+  .p-pricing__tier--featured {
+    border-color: var(--p-primary);
+    box-shadow: var(--p-shadow-md);
+  }
+  .p-pricing__ribbon { align-self: flex-start; }
+  .p-pricing__name { font-size: var(--p-text-xl); }
+  .p-pricing__price {
+    font-family: var(--p-font-display);
+    font-weight: 750;
+    font-size: var(--p-text-3xl);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--p-ink-strong);
+  }
+  .p-pricing__blurb { color: var(--p-ink-soft); font-size: var(--p-text-base); }
+  .p-pricing__features { margin-top: var(--p-space-2); }
+  .p-pricing__features li { color: var(--p-ink); font-size: var(--p-text-sm); }
+  .p-pricing__cta { margin-top: auto; align-self: stretch; }
+
+  .premium .grid-1 { grid-template-columns: minmax(0, 26rem); justify-content: center; }
+</style>

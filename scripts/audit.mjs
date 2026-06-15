@@ -147,9 +147,20 @@ function copyStringsOf(sections) {
     for (const it of s.items ?? []) {
       add(it.title, `${s.kind} item.title`);
       add(it.description, `${s.kind} item.description`);
+      add(it.body, `${s.kind} item.body`);
       add(it.q, `${s.kind} item.q`);
       add(it.a, `${s.kind} item.a`);
       add(it.quote, `${s.kind} item.quote`);
+    }
+    // Team bios + pricing tiers carry copy on differently-named arrays.
+    for (const m of s.members ?? []) {
+      add(m.name, `${s.kind} member.name`);
+      add(m.role, `${s.kind} member.role`);
+      add(m.bio, `${s.kind} member.bio`);
+    }
+    for (const t of s.tiers ?? []) {
+      add(t.name, `${s.kind} tier.name`);
+      add(t.blurb, `${s.kind} tier.blurb`);
     }
   }
   return out;
@@ -193,9 +204,22 @@ function auditProspect(slug, c, confirmed = false) {
     issues.push(['warn', 'missing hero alt text']);
 
   // Empty sections — any section whose content array is present but empty.
+  // (team uses `members`, pricing uses `tiers` — include them so an empty one
+  // doesn't slip past as a rendered hole.)
   for (const s of sections) {
-    const arr = s.items ?? s.images ?? s.body;
+    const arr = s.items ?? s.images ?? s.members ?? s.tiers ?? s.body;
     if (Array.isArray(arr) && arr.length === 0) issues.push(['critical', `empty "${s.kind}" section`]);
+  }
+
+  // New AVISP-parity sections render NOTHING below their min-item threshold (so
+  // an absent section never leaves a hole), but the author shouldn't emit one
+  // that won't render — that's wasted intent. Warn if it slipped through.
+  const SECTION_MIN = { steps: 3, features: 2, team: 1, pricing: 1 };
+  for (const s of sections) {
+    const min = SECTION_MIN[s.kind];
+    if (min == null) continue;
+    const n = (s.items ?? s.members ?? s.tiers ?? []).length;
+    if (n > 0 && n < min) issues.push(['warn', `"${s.kind}" section has ${n} item(s) — renders nothing below ${min}; drop it or add real material`]);
   }
 
   // Templated service copy left in place (premium services live in 'services'

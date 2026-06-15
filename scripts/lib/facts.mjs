@@ -321,6 +321,9 @@ function enrichmentFromResearch(r, row, { authoritative = true } = {}) {
     hours: Array.isArray(r.hours) ? r.hours : [],
     testimonials: sanitizeTestimonials(Array.isArray(r.testimonials) ? r.testimonials : []),
     social: r.social ?? {},
+    // Real named people (owner/founder/chef) when the research file carries them.
+    // The premium author builds a Team section ONLY from real people, never faked.
+    team: Array.isArray(r.team) ? r.team.filter((m) => m && m.name) : [],
     // Contact facts come from the verified CSV row, not the research blob —
     // research `notes` flag any phone/email/address that couldn't be confirmed.
     phone: row.phone || '',
