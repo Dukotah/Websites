@@ -28,7 +28,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
 const SRC = join(APP, 'src');
-const PROSPECTS = join(SRC, 'data', 'prospects');
+// PREMIUM multi-page configs (the only render system).
+const PREMIUM = join(SRC, 'data', 'premium');
 // Managed prospect rasters live here; the gallery's src/lib/assets.ts maps a
 // stored "/images/<slug>/<file>" path to this dir at build time.
 const ASSETS = join(SRC, 'assets', 'prospects');
@@ -49,14 +50,13 @@ const CONTRACT = {
   gallery:          { aspect: 4 / 3,  minW: 640 },  // gallery / feature tiles
 };
 
-// Text-forward hero variants render huge type and NO photo by design, so their
-// `images.hero` (if any) is never shipped as a full-bleed raster — exempt.
-// (Mirrors audit.mjs's TEXT_HEROES so the two gates agree on what's a text hero.)
-const TEXT_HEROES = new Set(['statement', 'editorial', 'panel', 'typographic', 'editorial-asym']);
+// Premium hero `variant: 'editorial'` renders type-forward with NO full-bleed
+// photo — exempt from the hero floor. (Mirrors audit.mjs.)
+const TEXT_HERO_VARIANTS = new Set(['editorial']);
 
-// Split/editorial layouts put the hero photo in a 4/5 side column, not full-bleed,
-// so the hero image is judged against the gentler `hero-split` floor there.
-const SPLIT_LAYOUTS = new Set(['split', 'editorial']);
+// 'split' heroes put the photo in a 4/5 side column (not full-bleed), so the hero
+// image is judged against the gentler `hero-split` floor there.
+const SIDE_HERO_VARIANTS = new Set(['split']);
 
 /** A path is a real, gate-able raster only if it's a managed prospect photo:
  *  not empty, not an SVG, not the shared library art, not a remote URL, and in
@@ -97,34 +97,41 @@ async function intrinsic(file) {
   return null;
 }
 
-/** Collect every gate-able image reference for a prospect, each tagged with the
- *  slot whose floor it must clear. */
+/** Collect every gate-able image reference for a PREMIUM (multi-page) config,
+ *  each tagged with the slot whose floor it must clear. Premium images live on
+ *  sections (hero.image, story.image, gallery.images[], services item images)
+ *  plus the top-level config.images.hero (the OG/share image). */
 function collectRefs(c) {
   const refs = []; // { slot, src, label }
-  const textHero = TEXT_HEROES.has(c.heroVariant);
-  // Hero slot per the LOCKED CONTRACT. A 'side'-tier hero (set by the generator
-  // from the source width) is ALWAYS rendered in a 4/5 side column — never
-  // full-bleed — regardless of layout/variant, so it's judged against the
-  // gentler hero-split floor. Otherwise fall back to the layout heuristic
-  // (split/editorial layouts also use the side column).
-  const sideTier = c.artDirection?.heroPhotoTier === 'side';
-  const heroSlot =
-    sideTier || SPLIT_LAYOUTS.has(c.layout) ? 'hero-split' : 'hero-fullbleed';
+  const sections = (c.pages ?? []).flatMap((p) => p.sections ?? []);
+  const homeHero = (c.pages?.[0]?.sections ?? []).find((s) => s.kind === 'hero');
+  const heroSrc = homeHero?.image?.src ?? c.images?.hero;
+  const textHero = !heroSrc || TEXT_HERO_VARIANTS.has(homeHero?.variant);
 
-  // Hero — only when the layout actually renders a photo (text heroes show none).
-  if (!textHero && isManagedRaster(c.images?.hero))
-    refs.push({ slot: heroSlot, src: c.images.hero, label: 'hero' });
+  // Hero slot per the LOCKED CONTRACT. A 'split' hero variant renders the photo
+  // in a 4/5 side column → judged against the gentler hero-split floor. A
+  // fullbleed/default variant uses the cinematic floor.
+  const heroSlot = SIDE_HERO_VARIANTS.has(homeHero?.variant) ? 'hero-split' : 'hero-fullbleed';
 
-  // Story (the About side image) — always the 4/5 story slot.
-  if (isManagedRaster(c.images?.story))
-    refs.push({ slot: 'story', src: c.images.story, label: 'story' });
+  // Hero — only when the home hero actually renders a photo (text heroes show none).
+  if (!textHero && isManagedRaster(heroSrc))
+    refs.push({ slot: heroSlot, src: heroSrc, label: 'hero' });
 
-  // Gallery — top-level galleryImages + any `gallery` section images.
+  // The OG/share hero (config.images.hero), if distinct from the rendered hero.
+  if (isManagedRaster(c.images?.hero) && c.images.hero !== heroSrc)
+    refs.push({ slot: 'hero-fullbleed', src: c.images.hero, label: 'og-hero' });
+
+  // Story side images (4/5 story slot) — every 'story' section's image.
+  sections.filter((s) => s.kind === 'story').forEach((s, i) => {
+    if (isManagedRaster(s.image?.src))
+      refs.push({ slot: 'story', src: s.image.src, label: `story[${i}]` });
+  });
+
+  // Gallery — every 'gallery' section's images + any 'services' item images.
   const galleryRefs = [
-    ...(Array.isArray(c.galleryImages) ? c.galleryImages : []),
-    ...((c.sections ?? [])
-      .filter((s) => s?.type === 'gallery' && Array.isArray(s.images))
-      .flatMap((s) => s.images)),
+    ...sections.filter((s) => s.kind === 'gallery' && Array.isArray(s.images)).flatMap((s) => s.images),
+    ...sections.filter((s) => s.kind === 'services' && Array.isArray(s.items))
+      .flatMap((s) => s.items.map((it) => it?.image).filter(Boolean)),
   ];
   galleryRefs.forEach((g, i) => {
     if (isManagedRaster(g?.src))
@@ -139,9 +146,9 @@ async function main() {
 
   let prospectFiles;
   try {
-    prospectFiles = (await readdir(PROSPECTS)).filter((f) => f.endsWith('.json'));
+    prospectFiles = (await readdir(PREMIUM)).filter((f) => f.endsWith('.json'));
   } catch {
-    console.log(`✗ Could not read prospects dir: ${PROSPECTS}`);
+    console.log(`✗ Could not read premium dir: ${PREMIUM}`);
     process.exitCode = 1;
     return;
   }
@@ -154,7 +161,7 @@ async function main() {
     const slug = f.replace(/\.json$/, '');
     let c;
     try {
-      c = JSON.parse(await readFile(join(PROSPECTS, f), 'utf8'));
+      c = JSON.parse(await readFile(join(PREMIUM, f), 'utf8'));
     } catch {
       console.log(`  ? ${slug.padEnd(34)} unreadable JSON — skipped`);
       notes++;

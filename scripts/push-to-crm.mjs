@@ -2,7 +2,8 @@
 /*
  * push-to-crm.mjs — close the loop between the /websites factory and the Duke CRM.
  *
- * The factory builds demo sites and writes data/outreach-links.json. This script
+ * The factory builds premium demo sites (/s/<slug>) and writes
+ * data/outreach-links.json. This script
  * pushes each {name, link} to the CRM's token-gated endpoint
  *   POST {CRM_BASE_URL}/api/crm/admin/preview-url
  * which attaches the demo-site URL to the matching lead BY BUSINESS NAME. Once
@@ -28,7 +29,7 @@ import { dirname, join, resolve } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
-const PROSPECTS_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
+const PREMIUM_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'premium');
 
 function parseArgs(argv) {
   const opts = { dryRun: false, onlyReady: false, manifest: null };
@@ -57,26 +58,26 @@ async function loadEntries(manifestPath) {
     };
   }
 
-  // Fallback: scan prospect configs + GALLERY_BASE_URL.
+  // Fallback: scan PREMIUM configs + GALLERY_BASE_URL. Links are /s/<slug>.
   const base = (process.env.GALLERY_BASE_URL || '').replace(/\/+$/, '');
   if (!base) {
     throw new Error(
       `No manifest at ${manifestPath} and GALLERY_BASE_URL is unset.\n` +
-        `Either run "npm run generate-prospects -- data/<file>.csv" first, or set ` +
-        `GALLERY_BASE_URL so links can be reconstructed from the prospect files.`,
+        `Either run "npm run generate -- data/<file>.csv" first, or set ` +
+        `GALLERY_BASE_URL so links can be reconstructed from the premium files.`,
     );
   }
-  const files = (await readdir(PROSPECTS_DIR)).filter((f) => f.endsWith('.json'));
+  const files = (await readdir(PREMIUM_DIR)).filter((f) => f.endsWith('.json'));
   const entries = [];
   for (const file of files) {
     const slug = file.replace(/\.json$/, '');
-    const cfg = JSON.parse(await readFile(join(PROSPECTS_DIR, file), 'utf8'));
+    const cfg = JSON.parse(await readFile(join(PREMIUM_DIR, file), 'utf8'));
     if (!cfg?.name) continue;
     // Carry the real status so --only-ready can still skip flagged demos when
-    // reconstructing from prospect files (the manifest may be absent).
-    entries.push({ name: cfg.name, link: `${base}/p/${slug}`, status: cfg.status ?? 'ready' });
+    // reconstructing from premium files (the manifest may be absent).
+    entries.push({ name: cfg.name, link: `${base}/s/${slug}`, status: cfg.status ?? 'ready' });
   }
-  return { source: `${PROSPECTS_DIR} (+ GALLERY_BASE_URL)`, entries };
+  return { source: `${PREMIUM_DIR} (+ GALLERY_BASE_URL)`, entries };
 }
 
 async function main() {

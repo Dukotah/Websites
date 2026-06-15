@@ -7,24 +7,24 @@ find photos, and launch them so the user gets live demo links to email.
 
 ## Repo shape (what matters)
 
-- `sites/demo-gallery/` — ONE Astro app that renders every outreach prospect.
-  The CURRENT system authors **premium, multi-page** sites at `/s/<slug>` from
-  `src/data/premium/<slug>.json` (schema `src/premium/lib/premium-types.ts`,
-  validator `scripts/premium-validate.mjs`). The LEGACY single-page system at
-  `/p/<slug>` (from `src/data/prospects/<slug>.json`) still renders but is no
-  longer the build target. One deploy hosts all demos.
+- `sites/demo-gallery/` — ONE Astro app that renders every outreach prospect as
+  a **premium, multi-page** site at `/s/<slug>` from `src/data/premium/<slug>.json`
+  (schema `src/premium/lib/premium-types.ts`, validator
+  `scripts/premium-validate.mjs`). This is the ONLY render system — the legacy
+  single-page `/p/<slug>` builder has been removed. One deploy hosts all demos.
 - `sites/<business>/` — standalone one-off sites (paying clients), each its own
   Vercel project. Scaffolded with `npm run new-site`.
 - `sites/_template/` — the starter a standalone site is copied from.
 - `scripts/generate.mjs` — CSV → **premium multi-page** sites (the factory entry,
-  `npm run generate`). Reuses the facts + photo layers from
-  `generate-prospects.mjs` unchanged; the premium author is `scripts/author-premium.mjs`,
+  `npm run generate`). It draws the shared facts + photo layer from
+  `scripts/lib/facts.mjs` and authors each site with `scripts/author-premium.mjs`,
   which emits `src/data/premium/<slug>.json` rendering at `/s/<slug>`. Brand seed
   (color + fontId) is picked deterministically in `scripts/lib/brand-seed.mjs`.
-- `scripts/generate-prospects.mjs` — LEGACY single-page builder + the shared
-  facts/photo layer the premium author imports (`loadResearch`,
-  `enrichmentFromResearch`, `acquireMediaFor`, `deriveStatus`, `normCat`).
-  `npm run generate-prospects` now warns + forwards to `generate` (one release).
+- `scripts/lib/facts.mjs` — the shared facts/photo CORE the whole factory stands
+  on (`parseCsv`, `slugify`, `loadResearch`, `enrichmentFromResearch`,
+  `acquireMediaFor`, `deriveStatus`, `normCat`, `nameMatchesSite`,
+  `generateCopyWithClaude`). Imported by `generate.mjs`, `author-premium.mjs`,
+  `build-research.mjs`, `verify-research.mjs`, and `lib/scraper-csv.mjs`.
 - `scripts/lib/photos.mjs` — Wikimedia Commons photo fetch (free, no key).
 - `scripts/build-image-library.mjs` — regenerates the built-in fallback art.
 - `data/` — input CSVs and the generated `outreach-links.json` manifest.
@@ -72,7 +72,7 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
    > the site's OWN facts — still independently verify reviews/awards/founding
    > year for the top bar.) `--dry-run` reports without writing. Skips
    > `confirmed:true` files. Full chain: `build-research` → `verify-research`
-   > [→ `--promote`] → `generate-prospects` → review dashboard → `push-to-crm`.
+   > [→ `--promote`] → `generate` → review dashboard → `push-to-crm`.
 
 2. **RESEARCH each business first — this is the job, not an optional polish.**
    Every site must feel custom and be *accurate*. Generic template copy is a
@@ -83,8 +83,8 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
      makes them distinct (fleet size, specialties, awards, reviews).
    - **Their real photos**: storefront, team, work, products.
    Write the copy from this research — headline, about story, and each service
-   should reference real specifics. See `sites/demo-gallery/src/data/prospects/
-   smittys-towing.json` for the quality bar (researched, not templated).
+   should reference real specifics. See `sites/demo-gallery/src/data/premium/
+   warpigs-craft-kitchen.json` for the quality bar (researched, not templated).
    > Verify before asserting. If you can't confirm a detail (e.g. exact email),
    > leave it generic rather than inventing something that could be wrong.
 
@@ -131,7 +131,7 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
 6. **Launch = commit + push.** Vercel's Git integration rebuilds the gallery on
    push, so pushing IS deploying:
    ```bash
-   git add sites/demo-gallery/src/data/prospects sites/demo-gallery/src/assets/prospects data/<file>.csv
+   git add sites/demo-gallery/src/data/premium sites/demo-gallery/src/assets/prospects data/<file>.csv
    git commit -m "Add outreach prospects: <short note>"
    git push
    ```
@@ -156,7 +156,7 @@ When a prospect signs, graduate them to a standalone site + their own domain:
 ```bash
 npm run new-site -- <slug> "Business Name"
 ```
-Port values from `sites/demo-gallery/src/data/prospects/<slug>.json` into
+Port values from `sites/demo-gallery/src/data/premium/<slug>.json` into
 `sites/<slug>/src/config.ts`, add their real photos, deploy as its own Vercel
 project, and attach their domain.
 
@@ -177,24 +177,25 @@ project, and attach their domain.
 The factory is deterministic, so its weak spot is JUDGMENT — same-category sites
 looking alike, and photos/layout that "don't look right." These close that gap:
 
-- **Batch divergence** (`scripts/lib/divergence.mjs`, auto-run by
-  `generate-prospects.mjs`): after all configs are built, it groups the batch by
-  category and gives each same-category sibling a DISTINCT `artDirection.fontId`,
-  `heroVariant`, `neutralTemp` (warm/cool), and rotated section order — so five
-  wineries can't be mistaken for one template. Deterministic; respects explicit
-  pins; leaves single-member categories untouched. Pools must stay in sync with
-  `fonts.ts` FONT_REGISTRY and the HeroVariant union.
-- **Vision QA** (`npm run shots` → `scripts/screenshot-audit.mjs`): builds,
-  previews, and screenshots every prospect's fold + full page into `.shots/`.
-  Build-success and grep hide visual breakage — REVIEW `.shots/fold/<slug>.png`
-  (the cold-link first impression) before sending. The in-session agent is the
-  vision reviewer (no API key needed on Pro).
-- **Mechanical QA** (`node scripts/audit.mjs`, from repo root): dead-token +
-  measured WCAG contrast + empty-section + templated-copy + missing-email gate;
-  understands intentional text heroes (statement/editorial/panel). Non-zero exit
-  on criticals → can gate deploy.
-- Heroes are length-robust: `HeroEditorial` wraps long (full-sentence) headlines
-  instead of clipping them off the right edge.
+- **Brand divergence** (`scripts/lib/brand-seed.mjs`, used by
+  `author-premium.mjs`): each site is seeded a DISTINCT brand color + font pairing
+  deterministically from its slug + category, and `generate.mjs` re-seeds any two
+  siblings that collide on the same fontId+color — so five wineries can't be
+  mistaken for one template.
+- **Vision QA** (`npm run shots` → `sites/demo-gallery/scripts/screenshot-audit.mjs`):
+  builds, previews, and screenshots every premium site's `/s/<slug>` fold + full
+  page into `.shots/`. Build-success and grep hide visual breakage — REVIEW
+  `.shots/fold/<slug>.png` (the cold-link first impression) before sending. The
+  in-session agent is the vision reviewer (no API key needed on Pro).
+- **Mechanical QA** (`node scripts/audit.mjs`, from repo root): dead-token (now
+  fallback-aware — `var(--x, fb)` is safe) + measured WCAG contrast +
+  empty-section + templated-copy gate over the premium configs (`pages[].sections`
+  by `kind`); understands the intentional `editorial` text hero. Non-zero exit on
+  criticals → can gate deploy. Pair with `npm run premium-validate` (schema +
+  every photo exists on disk) — both run in `npm run qa`.
+- **Sameness + image floors** (`npm run sameness-check` / `image-qa`): perceptual
+  fold-hash sameness gate and the LOCKED source-resolution floor, both reading the
+  premium configs.
 
 ## Seam contract — `data/outreach-links.json` (DO NOT BREAK)
 

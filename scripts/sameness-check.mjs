@@ -36,7 +36,7 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 import { ROOT } from './lib/paths.mjs';
 
-const PROSPECTS_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
+const PROSPECTS_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'premium');
 const FOLD_DIR = join(ROOT, '.shots', 'fold');
 
 // Hash grid is HASH_H rows × HASH_W columns. 9×8 dHash → 8×8 = 64 comparison

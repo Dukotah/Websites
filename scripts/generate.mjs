@@ -23,7 +23,7 @@ import { scrapeSite } from './lib/scrape-site.mjs';
 import {
   parseCsv, slugify, loadResearch, enrichmentFromResearch, normCat, catKeyFor,
   nameMatchesSite, acquireMediaFor,
-} from './generate-prospects.mjs';
+} from './lib/facts.mjs';
 import { authorPremium } from './author-premium.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');

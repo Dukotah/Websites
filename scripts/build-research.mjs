@@ -37,7 +37,7 @@
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { slugify } from './generate-prospects.mjs';
+import { slugify } from './lib/facts.mjs';
 import { parseScraperCsv, toBuilderCsv } from './lib/scraper-csv.mjs';
 import { scrapeSite, collectSiteImages } from './lib/scrape-site.mjs';
 
@@ -256,7 +256,7 @@ async function main() {
   if (stats.thin) console.log(`  ${stats.thin} came back thin (site blocked or sparse) — those will flag needs-review; web-verify them.`);
   if (stats.unreachable) console.log(`  ${stats.unreachable} site(s) unreachable — research files written from scraper fields only.`);
   if (stats.nosite) console.log(`  ${stats.nosite} lead(s) had no website — no research file; the generator uses category fallbacks.`);
-  console.log(`\nNext: npm run generate-prospects -- ${outCsv.replace(ROOT + '\\', '').replace(ROOT + '/', '')}`);
+  console.log(`\nNext: npm run generate -- ${outCsv.replace(ROOT + '\\', '').replace(ROOT + '/', '')}`);
 }
 
 main();

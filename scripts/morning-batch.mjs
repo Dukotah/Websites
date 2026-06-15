@@ -15,11 +15,12 @@
  *   2. build-research  → normalizes + deep-scrapes ONCE, with the name↔website
  *      MISMATCH GUARD (the FOCUS pool has them, e.g. "Lysell" → a drilling site).
  *   3. verify-research --promote  → only if ANTHROPIC_API_KEY is set.
- *   4. generate-prospects --no-crm-sync  → builds the sites + writes the manifest,
+ *   4. generate --no-crm-sync  → authors the premium sites + writes the manifest,
  *      but does NOT touch the CRM yet (we gate first).
  *   5. QA GATE — `npm run build` (hard gate: a broken build aborts the whole run)
- *      + `audit.mjs` (per-slug criticals). A site is READY only if its manifest
- *      status is `ready` AND it has no audit criticals. The rest are QUARANTINED.
+ *      + `premium-validate.mjs` + `audit.mjs` (per-slug criticals). A site is
+ *      READY only if its manifest status is `ready` AND it has no validate/audit
+ *      criticals. The rest are QUARANTINED.
  *   6. Quarantine the failures: their prospect JSON moves to data/quarantine/,
  *      they're dropped from the manifest, and the lead is queued in
  *      data/research-queue.txt (NOT marked done) so it gets FINISHED later — never
@@ -49,7 +50,8 @@ import { fileURLToPath } from 'node:url';
 const run = promisify(execFile);
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
-const PROSPECTS = join(APP, 'src', 'data', 'prospects');
+// PREMIUM multi-page configs — the only render system (each renders at /s/<slug>).
+const PREMIUM = join(APP, 'src', 'data', 'premium');
 const QUARANTINE = join(ROOT, 'data', 'quarantine');
 const MANIFEST = join(ROOT, 'data', 'outreach-links.json');
 const DONE_LIST = join(ROOT, 'data', 'morning-done.txt');
@@ -88,9 +90,9 @@ async function main() {
   if (!existsSync(POOL)) { console.error(`Lead pool not found: ${POOL}`); process.exit(1); }
   const pool = parseCsv(await readFile(POOL, 'utf8'));
 
-  // Already-built (slug exists as a prospect), previously picked, or quarantined.
+  // Already-built (slug exists as a premium config), previously picked, or quarantined.
   const builtSlugs = new Set(
-    (await readdir(PROSPECTS)).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, '')),
+    (await readdir(PREMIUM)).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, '')),
   );
   const listSet = async (p) => existsSync(p)
     ? new Set((await readFile(p, 'utf8')).split('\n').map((s) => s.trim()).filter(Boolean)) : new Set();
@@ -148,7 +150,7 @@ async function main() {
   await sh('build-research', process.execPath, [join(ROOT, 'scripts', 'build-research.mjs'), csvPath, '--state', STATE]);
   if (process.env.ANTHROPIC_API_KEY) await sh('verify-research --promote', process.execPath, [join(ROOT, 'scripts', 'verify-research.mjs'), '--promote']);
   const leadsCsv = join(ROOT, 'data', `${csvName}-leads.csv`);
-  const gen = await sh('generate-prospects (build only)', process.execPath, [join(ROOT, 'scripts', 'generate-prospects.mjs'), leadsCsv, '--no-crm-sync']);
+  const gen = await sh('generate (premium, build only)', process.execPath, [join(ROOT, 'scripts', 'generate.mjs'), leadsCsv, '--no-crm-sync']);
   if (!gen.ok) { console.error('\n✗ Generate failed — nothing built, nothing marked done. Aborting.'); process.exit(1); }
 
   const pickSlugs = new Set(picks.map((p) => p._slug));
@@ -165,7 +167,14 @@ async function main() {
     process.exit(1);
   }
 
-  // Per-slug criticals from the mechanical audit. Two kinds of failure:
+  // Premium schema/photo gate: premium-validate prints "  ✗ <slug>" for any
+  // config with errors (invented photo path, missing section, etc.). A slug that
+  // fails validation is never publishable.
+  const validate = await sh('premium-validate (QA gate)', process.execPath, [join(ROOT, 'scripts', 'premium-validate.mjs')]);
+  const validateFailSlugs = new Set();
+  for (const m of validate.stdout.matchAll(/^\s*✗\s+([a-z0-9-]+)\b/gim)) validateFailSlugs.add(m[1]);
+
+  // Per-slug criticals from the (premium-aware) mechanical audit. Two kinds:
   //   · a global dead-token critical (affects every page) → quarantine the batch
   //   · a per-slug critical (✗ <slug>) → quarantine just that slug
   const audit = await sh('audit.mjs (QA gate)', process.execPath, [join(ROOT, 'scripts', 'audit.mjs')]);
@@ -173,7 +182,8 @@ async function main() {
   const auditCritSlugs = new Set();
   for (const m of audit.stdout.matchAll(/^\s*✗\s+([a-z0-9-]+)\b/gim)) auditCritSlugs.add(m[1]);
 
-  // Manifest status (deriveStatus already flags thin/photoless/templated sites).
+  // Manifest status (the premium author already flags thin/photoless/templated/
+  // validation-failed sites as needs-review).
   let manifest = [];
   try { manifest = JSON.parse(await readFile(MANIFEST, 'utf8')); } catch { manifest = []; }
   const batchEntries = manifest.filter((e) => pickSlugs.has(e.slug));
@@ -181,6 +191,7 @@ async function main() {
   const isReady = (e) =>
     !globalCritical &&
     (e.status ?? 'ready') !== 'needs-review' &&
+    !validateFailSlugs.has(e.slug) &&
     !auditCritSlugs.has(e.slug);
 
   const ready = batchEntries.filter(isReady);
@@ -195,9 +206,10 @@ async function main() {
   await mkdir(QUARANTINE, { recursive: true });
   for (const e of failed) {
     const reason = globalCritical ? 'dead-token critical'
+      : validateFailSlugs.has(e.slug) ? 'premium-validate error'
       : auditCritSlugs.has(e.slug) ? 'audit critical'
       : `status:${e.status}` + (e.flags?.length ? ` (${e.flags.join(', ')})` : '');
-    const src = join(PROSPECTS, `${e.slug}.json`);
+    const src = join(PREMIUM, `${e.slug}.json`);
     if (existsSync(src)) { await rename(src, join(QUARANTINE, `${e.slug}.json`)).catch(() => {}); }
     console.log(`  ⤷ quarantined ${e.slug} — ${reason}`);
   }
@@ -226,7 +238,7 @@ async function main() {
     // Commit + push the ready sites FIRST → Vercel deploys → links go live, THEN
     // we create CRM cards that point at them. Order matters: no dead links.
     const paths = [
-      'sites/demo-gallery/src/data/prospects',
+      'sites/demo-gallery/src/data/premium',
       'sites/demo-gallery/src/assets/prospects',
       'sites/demo-gallery/public/thumbnails',
       `data/${csvName}.csv`, `data/${csvName}-leads.csv`,

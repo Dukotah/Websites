@@ -1,34 +1,120 @@
 ---
 import '../styles/global.css';
-import type { ProspectConfig } from '../types';
+import type { PremiumConfig, PremiumSection } from '../premium/lib/premium-types';
 import { resolveArtDirection } from '../lib/art-direction';
-import { composePage } from '../lib/compose';
-import { scoreProspect } from '../lib/score';
-import { scoreUniqueness } from '../lib/uniqueness';
 
-// Internal dashboard of every demo — YOUR view, not prospect-facing. It scores
-// each demo (spec §10) so you can tell a genuinely strong, unique site from a
-// generic one at a glance.
-const modules = import.meta.glob<ProspectConfig>('../data/prospects/*.json', {
+// Internal dashboard of every PREMIUM demo — YOUR view, not prospect-facing. It
+// scores each demo from its real material (sections, photos, contact, trust) so
+// you can tell a genuinely strong, finished site from a thin one at a glance, and
+// surfaces the needs-review ones first. Sites render at /s/<slug>.
+const modules = import.meta.glob<PremiumConfig>('../data/premium/*.json', {
   eager: true,
   import: 'default',
 });
 
-const base = Object.entries(modules).map(([path, config]) => {
-  const slug = path.split('/').pop()!.replace(/\.json$/, '');
-  const ad = resolveArtDirection(config);
-  const plan = composePage(config, ad);
-  const s = scoreProspect(config, ad, plan);
-  return { slug, config, ad, plan, ...s };
-});
+const isStock = (src?: string) =>
+  !src || src.includes('/images/library/') || src.endsWith('.svg');
 
-// Distinctiveness vs every other site — flags near-duplicate designs.
-const uniq = scoreUniqueness(base.map(({ slug, ad, plan }) => ({ slug, ad, plan })));
+/**
+ * Premium-aware score (0..100) from the REAL material the multi-page config
+ * carries. No legacy compose/art plan needed — premium sites are section-stacks,
+ * so we count what actually shipped: real photos, content sections, contact
+ * completeness, and trust signals. `status: needs-review` (set by the author /
+ * premium-validate gate) caps the grade so an unfinished site can't read green.
+ */
+function scorePremium(config: PremiumConfig) {
+  const pages = config.pages ?? [];
+  const sections: PremiumSection[] = pages.flatMap((p) => p.sections ?? []);
+  const kinds = new Set(sections.map((s) => s.kind));
 
-const prospects = base
-  .map((p) => ({ ...p, uniq: uniq.get(p.slug) }))
-  // Worst score first — the ones needing work surface to the top.
-  .sort((a, b) => a.score - b.score);
+  // Collect every image src referenced anywhere (hero + section images).
+  const srcs: string[] = [];
+  if (config.images?.hero) srcs.push(config.images.hero);
+  const walk = (node: any) => {
+    if (!node || typeof node !== 'object') return;
+    if (Array.isArray(node)) return node.forEach(walk);
+    for (const [k, v] of Object.entries(node)) {
+      if (k === 'src' && typeof v === 'string') srcs.push(v);
+      else walk(v);
+    }
+  };
+  walk(pages);
+  const realPhotos = [...new Set(srcs)].filter((s) => !isStock(s));
+
+  // realPhotos 25 — hero photo + a bonus for gallery depth.
+  const heroReal = !isStock(config.images?.hero);
+  let photos = (heroReal ? 16 : 0) + Math.min(9, realPhotos.length * 3);
+  photos = Math.min(25, photos);
+
+  // sectionRichness 30 — content sections (beyond hero/contact) + page depth.
+  const RICH = new Set(['story', 'services', 'stats', 'testimonials', 'gallery', 'faq']);
+  const richCount = sections.filter((s) => RICH.has(s.kind)).length;
+  const richVariety = [...kinds].filter((k) => RICH.has(k)).length;
+  const multiPage = Math.max(0, pages.length - 1); // home is a given
+  let richness = Math.min(18, richCount * 3) + Math.min(6, richVariety * 2) + Math.min(6, multiPage * 2);
+  richness = Math.min(30, richness);
+
+  // contactComplete 15 — phone + real email + address + hours.
+  const c = config.contact ?? {};
+  const contact =
+    (c.phone ? 4 : 0) +
+    (c.email ? 5 : 0) +
+    (c.address ? 3 : 0) +
+    (config.hours?.length ? 3 : 0);
+
+  // trustSignals 15 — rating, real testimonials, established year.
+  const hasTestimonials = sections.some(
+    (s) => s.kind === 'testimonials' && (s as any).items?.length,
+  );
+  const trust =
+    (config.rating?.value ? 7 : 0) +
+    (hasTestimonials ? 5 : 0) +
+    (config.established ? 3 : 0);
+
+  // seoMeta 15 — description present + mentions the town + tagline.
+  const seoLen = (config.seoDescription ?? '').length;
+  const area = (config.area ?? '').toLowerCase();
+  const mentionsTown = area && config.seoDescription?.toLowerCase().includes(area.split(',')[0]);
+  const seo =
+    (seoLen >= 80 && seoLen <= 165 ? 7 : seoLen ? 4 : 0) +
+    (mentionsTown ? 5 : 0) +
+    (config.tagline ? 3 : 0);
+
+  let score = Math.round(photos + richness + contact + trust + seo);
+  // An author/validator needs-review verdict caps a site at "C" so a flagged,
+  // unfinished demo can never surface as green.
+  if (config.status === 'needs-review') score = Math.min(score, 72);
+  score = Math.max(0, Math.min(100, score));
+
+  const grade =
+    score >= 90 ? 'A' : score >= 78 ? 'B' : score >= 66 ? 'C' : score >= 50 ? 'D' : 'F';
+
+  return { score, grade, sectionCount: sections.length, pageCount: pages.length };
+}
+
+const prospects = Object.entries(modules)
+  .map(([path, config]) => {
+    const slug = path.split('/').pop()!.replace(/\.json$/, '');
+    // Bridge the v2 `brand` (color + fontId) onto the fields the brand engine
+    // reads, exactly as PremiumBase does — so the dashboard swatches match the
+    // live site's palette.
+    const adInput = {
+      ...config,
+      theme: config.brand?.color ? { brand: config.brand.color } : (config as any).theme,
+      artDirection: config.brand?.fontId ? { fontId: config.brand.fontId } : (config as any).artDirection,
+    };
+    const ad = resolveArtDirection(adInput as any);
+    const s = scorePremium(config);
+    const flags = config.flags ?? [];
+    return { slug, config, ad, flags, ...s };
+  })
+  // needs-review / weakest first — the ones needing work surface to the top.
+  .sort((a, b) => {
+    const ar = a.config.status === 'needs-review' ? 0 : 1;
+    const br = b.config.status === 'needs-review' ? 0 : 1;
+    if (ar !== br) return ar - br;
+    return a.score - b.score;
+  });
 
 const avg = prospects.length
   ? Math.round(prospects.reduce((n, p) => n + p.score, 0) / prospects.length)
@@ -38,6 +124,7 @@ const gradeCounts = prospects.reduce<Record<string, number>>((acc, p) => {
   return acc;
 }, {});
 const GRADES = ['A', 'B', 'C', 'D', 'F'];
+const reviewCount = prospects.filter((p) => p.config.status === 'needs-review').length;
 ---
 
 <!doctype html>
@@ -52,9 +139,12 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
   <body>
     <main class="container" style="padding-block: 3rem;">
       <p class="eyebrow">Outreach demos</p>
-      <h1>{prospects.length} demo {prospects.length === 1 ? 'site' : 'sites'}</h1>
+      <h1>{prospects.length} premium demo {prospects.length === 1 ? 'site' : 'sites'}</h1>
       <p class="summary">
         <span class="pill pill--avg">Avg score {avg}</span>
+        {reviewCount > 0 && (
+          <span class="pill pill--review">{reviewCount} needs-review</span>
+        )}
         {GRADES.map((g) =>
           gradeCounts[g] ? (
             <span class={`pill grade grade--${g}`}>{gradeCounts[g]} × {g}</span>
@@ -62,20 +152,26 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
         )}
       </p>
       <p class="lede">
-        Scored on real photos, copy authenticity, section richness, contact
-        completeness, identity strength, trust signals & SEO. Sorted worst-first.
+        Multi-page sites rendered at <code>/s/&lt;slug&gt;</code>. Scored on real
+        photos, section richness, contact completeness, trust signals & SEO.
+        Needs-review surfaces first.
       </p>
 
       <ul class="grid">
         {
-          prospects.map(({ slug, config, ad, score, grade, flags, uniq }) => (
+          prospects.map(({ slug, config, ad, score, grade, flags, sectionCount, pageCount }) => (
             <li class="card" style={`--spine:${ad.palette.brand}`}>
               <div class="card__body">
                 <div class="card__top">
                   <h2>{config.name}</h2>
                   <span class={`gradechip grade--${grade}`}>{grade}</span>
                 </div>
-                <p class="card__meta">{config.area}</p>
+                <p class="card__meta">
+                  {config.area}
+                  {config.status === 'needs-review' && (
+                    <span class="reviewchip">needs-review</span>
+                  )}
+                </p>
 
                 <div class="identity" title={`font: ${ad.fontId} · shape: ${ad.shape} · ${ad.category}`}>
                   <span class="swatches" aria-hidden="true">
@@ -86,8 +182,8 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
                   </span>
                   <span class="identity__tags">
                     <code>{ad.fontPairing.mood}</code>
-                    <code>{ad.shape}</code>
-                    <code>{ad.archetype}</code>
+                    <code>{pageCount} pages</code>
+                    <code>{sectionCount} sections</code>
                   </span>
                 </div>
 
@@ -95,14 +191,6 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
                   <span class={`scorebar__fill grade--${grade}`} style={`width:${score}%`} />
                   <span class="scorebar__num">{score}</span>
                 </div>
-
-                {uniq && (
-                  <p class={`uniqline${uniq.score < 55 ? ' uniqline--warn' : ''}`}>
-                    {uniq.score >= 55
-                      ? `Distinct ${uniq.score}/100`
-                      : `Distinct ${uniq.score}/100 — looks like ${uniq.nearest.slug} (shares ${uniq.nearest.sharedTraits.join(', ')})`}
-                  </p>
-                )}
 
                 {flags.length > 0 && (
                   <ul class="card__flags">
@@ -113,8 +201,8 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
                 )}
 
                 <div class="card__actions">
-                  <a href={`/p/${slug}`}>View demo →</a>
-                  <code class="card__link">/p/{slug}</code>
+                  <a href={`/s/${slug}`}>View demo →</a>
+                  <code class="card__link">/s/{slug}</code>
                 </div>
               </div>
             </li>
@@ -125,7 +213,7 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
       {
         prospects.length === 0 && (
           <p style="color: var(--text-muted);">
-            No prospects yet. Add a JSON to <code>src/data/prospects/</code>.
+            No demos yet. Add a JSON to <code>src/data/premium/</code> (npm run generate).
           </p>
         )
       }
@@ -153,6 +241,10 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
       .pill--avg {
         background: #e6edf7;
         color: #1f3a63;
+      }
+      .pill--review {
+        background: #fbe9d8;
+        color: #9a5b2e;
       }
       .grid {
         list-style: none;
@@ -186,6 +278,17 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
         margin: 0 0 0.75rem;
         color: var(--text-muted);
         font-size: 0.88rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .reviewchip {
+        font-size: 0.68rem;
+        font-weight: 700;
+        background: #fbe9d8;
+        color: #9a5b2e;
+        padding: 0.12rem 0.45rem;
+        border-radius: 4px;
       }
       .gradechip {
         flex: 0 0 auto;

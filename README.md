@@ -63,11 +63,12 @@ To build many demo sites at once from a CRM export — one shareable link per
 prospect, for cold outreach — use the **demo gallery** pipeline:
 
 ```bash
-npm run generate-prospects -- data/prospects.csv
+npm run generate -- data/prospects.csv
 ```
 
-This renders every business as its own page at `demos.yourdomain.com/p/<slug>`
-inside one app (`sites/demo-gallery/`), so a single deploy hosts all of them.
+This renders every business as its own premium multi-page site at
+`demos.yourdomain.com/s/<slug>` inside one app (`sites/demo-gallery/`), so a
+single deploy hosts all of them.
 **No API keys required** — the agent writes the copy, and photos come free from
 the business's own online images → Wikimedia Commons → a built-in category
 library. When a prospect converts, graduate them to a standalone site with

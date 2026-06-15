@@ -10,13 +10,12 @@
     "verify-research": "node scripts/verify-research.mjs",
     "generate": "node scripts/generate.mjs",
     "premium-validate": "node scripts/premium-validate.mjs",
-    "generate-prospects": "node scripts/generate-prospects-alias.mjs",
     "push-to-crm": "node scripts/push-to-crm.mjs",
     "make-thumbnail": "node scripts/make-thumbnail.mjs",
     "sameness-check": "node scripts/sameness-check.mjs",
     "image-qa": "node scripts/image-qa.mjs",
     "lighthouse": "node scripts/lighthouse.mjs",
-    "qa": "npm --prefix sites/demo-gallery run build && node scripts/audit.mjs && npm --prefix sites/demo-gallery run shots -- --no-build && node scripts/sameness-check.mjs && node scripts/image-qa.mjs"
+    "qa": "npm --prefix sites/demo-gallery run build && node scripts/premium-validate.mjs && node scripts/audit.mjs && npm --prefix sites/demo-gallery run shots -- --no-build && node scripts/sameness-check.mjs && node scripts/image-qa.mjs"
   },
   "devDependencies": {
     "chrome-launcher": "^1.2.1",

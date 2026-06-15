@@ -12,7 +12,7 @@
  * exactly those. This gate makes a minimum SEO + accessibility bar permanent.
  *
  * It runs against the ALREADY-BUILT pages under
- *   sites/demo-gallery/dist/p/<slug>/index.html
+ *   sites/demo-gallery/dist/s/<slug>/index.html
  * (the Integrate phase builds once — this script never runs `astro build`). It
  * serves `dist/` with a tiny built-in static server so Lighthouse loads the real
  * compiled HTML/CSS/JS over http (Lighthouse needs an http(s) origin), launches
@@ -42,7 +42,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
 const DIST = join(APP, 'dist');
-const PAGES = join(DIST, 'p'); // built prospect pages: dist/p/<slug>/index.html
+const PAGES = join(DIST, 's'); // built premium home pages: dist/s/<slug>/index.html
 
 // ── Gate thresholds (0–100). A sampled page failing EITHER fails the gate. ─────
 const SEO_FLOOR = 95;
@@ -289,7 +289,7 @@ async function main() {
   let errored = 0;
 
   for (const slug of targets) {
-    const url = `${base}/p/${slug}/`;
+    const url = `${base}/s/${slug}/`;
     try {
       const runnerResult = await lighthouse(
         url,

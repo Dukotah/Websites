@@ -28,7 +28,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..'); // sites/demo-gallery
 const REPO_ROOT = resolve(ROOT, '../..');
 const SHOTS = join(REPO_ROOT, '.shots');
-const PROSPECTS = join(ROOT, 'src/data/prospects');
+// PREMIUM multi-page configs — each renders at /s/<slug>/.
+const PROSPECTS = join(ROOT, 'src/data/premium');
 
 const args = process.argv.slice(2);
 const noBuild = args.includes('--no-build');
@@ -123,7 +124,7 @@ function shot(slug, kind, size) {
       '--hide-scrollbars',
       `--window-size=${size}`,
       `--screenshot=${out}`,
-      `http://localhost:${port}/p/${slug}`,
+      `http://localhost:${port}/s/${slug}`,
     ],
     { stdio: 'ignore' },
   );

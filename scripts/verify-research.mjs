@@ -43,7 +43,7 @@
 import { readFile, writeFile, readdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { CATEGORIES, normCat, enrichmentFromResearch, generateCopyWithClaude } from './generate-prospects.mjs';
+import { CATEGORIES, normCat, enrichmentFromResearch, generateCopyWithClaude } from './lib/facts.mjs';
 import { scoreRichness } from './lib/scrape-site.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');

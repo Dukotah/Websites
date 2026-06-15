@@ -20,7 +20,7 @@ import { readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   normCat, deriveStatus, clip, titleCase, humanizeCategory, hashStr, PUBLIC_IMAGES,
-} from './generate-prospects.mjs';
+} from './lib/facts.mjs';
 import { pickFontId, pickBrandColor } from './lib/brand-seed.mjs';
 
 // ── category → page family table ───────────────────────────────────────────

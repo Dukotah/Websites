@@ -25,7 +25,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
 const SRC = join(APP, 'src');
-const PROSPECTS = join(SRC, 'data', 'prospects');
+// PREMIUM multi-page configs (the only render system). Each renders at /s/<slug>.
+const PREMIUM = join(SRC, 'data', 'premium');
 // Human/agent-verified research lives here, one file per slug. A `confirmed:true`
 // file means the copy (incl. the headline) was AUTHORED on purpose, so cliché-ish
 // phrasing there is a real business motto — not the "AI batch" tell.
@@ -78,13 +79,21 @@ async function auditTokens() {
   }
   for (const f of files) {
     const css = await readFile(f, 'utf8');
-    for (const m of css.matchAll(/var\(\s*--([a-z0-9-]+)/gi)) used.push({ token: m[1], file: f });
+    // Capture the char after the token so a `var(--x, fallback)` (a defaulted
+    // reference) can be treated as safe — a fallback can never render invisible,
+    // so a token used ONLY with a fallback isn't a "dead token" bug.
+    for (const m of css.matchAll(/var\(\s*--([a-z0-9-]+)\s*(,?)/gi)) {
+      used.push({ token: m[1], file: f, hasFallback: m[2] === ',' });
+    }
   }
 
-  // Open Props families are defined in node_modules (imported in BaseLayout), not
-  // in our scanned files — treat them as known.
+  // Open Props families are defined in node_modules (imported in PremiumBase),
+  // not in our scanned files — treat them as known.
   const OPEN_PROPS = /^(shadow-[1-6]|ease-[a-z0-9-]+|gradient-\d+|layer-\d+|size-\d+|radius-\d+)$/;
-  const dead = used.filter((u) => !defined.has(u.token) && !OPEN_PROPS.test(u.token));
+  // A token is "dead" only when it's referenced WITHOUT a fallback, isn't defined
+  // anywhere, and isn't an Open Props primitive. Group by token: if it ever
+  // appears with a fallback, those usages are safe (only fallback-less ones flag).
+  const dead = used.filter((u) => !u.hasFallback && !defined.has(u.token) && !OPEN_PROPS.test(u.token));
   // group by token
   const byToken = new Map();
   for (const d of dead) {
@@ -96,58 +105,80 @@ async function auditTokens() {
 
 const isStock = (src) => !src || src.includes('/images/library/') || src.endsWith('.svg');
 const TEMPLATED = /professional \w+ for \w+ and nearby|service (one|two|three|four)/i;
-// Text-forward hero variants are photo-free BY DESIGN (huge type, no image) —
-// not a defect. pickHero()/divergence fall back to these when no real photo
-// exists; editorial-asym collapses to a full-width type column without one.
-const TEXT_HEROES = new Set(['statement', 'editorial', 'panel', 'typographic', 'editorial-asym']);
+// Premium hero `variant: 'editorial'` is photo-free BY DESIGN (type-forward, no
+// image) — not a defect. The author falls back to it when no real photo clears
+// the resolution floor.
+const TEXT_HERO_VARIANTS = new Set(['editorial']);
 // Local-business headline clichés — the "AI batch" tell. A headline should make
 // a specific, earned promise, not reach for one of these filler phrases.
 const HEADLINE_CLICHES =
   /\b(done right|you can trust|second to none|no job too (big|small)|one[- ]stop shop|a cut above|exceed(s|ing)? (your )?expectations|where quality meets|satisfaction (is )?(our |)guarantee|we'?ve got you covered|rain or shine|quality you can|your trusted partner)\b/i;
 
+// Flatten every section across every page of a PremiumConfig.
+const allSections = (c) => (c.pages ?? []).flatMap((p) => p.sections ?? []);
+
+/**
+ * Audit ONE premium (multi-page) config. The shape differs from the legacy
+ * single-page ProspectConfig: sections live in pages[].sections keyed by `kind`,
+ * the home hero is the first 'hero' section (heading at section.heading, photo at
+ * section.image.src), and the OG/share image is config.images.hero.
+ */
 function auditProspect(slug, c, confirmed = false) {
   const issues = [];
-  const textHero = TEXT_HEROES.has(c.heroVariant);
-  if (isStock(c.images?.hero)) {
-    if (textHero) {
-      // Intentional text hero (e.g. honest placeholder, or a business with no
-      // congruent real photo). Looks deliberate, not slop — just note it.
-      issues.push(['info', `text hero (no photo) — deliberate "${c.heroVariant}" layout`]);
-    } else {
-      issues.push(['critical', 'hero is stock/SVG art (no real photo)']);
-    }
+  const sections = allSections(c);
+  const homeHero = (c.pages?.[0]?.sections ?? []).find((s) => s.kind === 'hero');
+  const heroImg = homeHero?.image?.src ?? c.images?.hero;
+  const textHero = !heroImg || TEXT_HERO_VARIANTS.has(homeHero?.variant);
+
+  // A site with NO real photo anywhere reads as low-effort. The home hero being a
+  // text hero is fine (deliberate), but if no section carries a real photo either,
+  // call it out.
+  const anyRealPhoto =
+    !isStock(heroImg) ||
+    sections.some((s) => {
+      const srcs = [s.image?.src, ...((s.images ?? []).map((i) => i?.src))].filter(Boolean);
+      return srcs.some((src) => !isStock(src));
+    });
+  if (!anyRealPhoto) {
+    issues.push(['critical', 'no real photos — text hero + stock/SVG art only']);
+  } else if (textHero) {
+    issues.push(['info', `text hero (no photo) — deliberate "${homeHero?.variant ?? 'editorial'}" layout`]);
   }
   // Only warn about missing alt when a hero photo is actually rendered.
-  if (!textHero && c.images?.hero && !c.images?.heroAlt?.trim())
+  if (!textHero && heroImg && !(homeHero?.image?.alt?.trim() || c.images?.heroAlt?.trim()))
     issues.push(['warn', 'missing hero alt text']);
-  for (const s of c.sections ?? []) {
-    const arr = s.items ?? s.rows ?? s.groups ?? s.steps ?? s.members ?? s.areas ?? s.images;
-    if (Array.isArray(arr) && arr.length === 0) issues.push(['critical', `empty "${s.type}" section`]);
+
+  // Empty sections — any section whose content array is present but empty.
+  for (const s of sections) {
+    const arr = s.items ?? s.images ?? s.body;
+    if (Array.isArray(arr) && arr.length === 0) issues.push(['critical', `empty "${s.kind}" section`]);
   }
-  if ((c.services ?? []).some((s) => TEMPLATED.test(s.description ?? '') || TEMPLATED.test(s.title ?? '')))
+
+  // Templated service copy left in place (premium services live in 'services'
+  // sections' items).
+  const services = sections.filter((s) => s.kind === 'services').flatMap((s) => s.items ?? []);
+  if (services.some((s) => TEMPLATED.test(s.description ?? '') || TEMPLATED.test(s.title ?? '')))
     issues.push(['warn', 'templated service copy left in place']);
+
   // Cliché headline — the most important line on the page reaching for filler.
-  // EXCEPTION: a confirmed (human/agent-verified) site had its headline AUTHORED
-  // on purpose — "Electrical work done right the first time" is a real motto, not
-  // batch slop — so downgrade the warning to info instead of flagging it. Only
-  // template/auto (unconfirmed) sites still warn.
-  const heading = c.hero?.heading ?? '';
+  const heading = homeHero?.heading ?? '';
   if (HEADLINE_CLICHES.test(heading)) {
     if (confirmed)
       issues.push(['info', `headline "${heading}" matches a cliché pattern but is verified-authored copy`]);
     else
       issues.push(['warn', `cliché headline "${heading}" — rewrite with a specific, earned promise`]);
   }
-  // Social proof: a rating OR real testimonials. Missing BOTH is a real gap
-  // (93% of buyers weigh reviews); missing only quotes (but has a rating) is minor.
-  const hasTestimonials = (c.sections ?? []).some(
-    (s) => s.type === 'testimonials' && (s.items?.length ?? 0) > 0,
+
+  // Social proof: a rating OR real testimonials. Missing BOTH is a real gap;
+  // missing only quotes (but has a rating) is minor.
+  const hasTestimonials = sections.some(
+    (s) => s.kind === 'testimonials' && (s.items?.length ?? 0) > 0,
   );
   const hasRating =
-    (c.rating?.count ?? 0) > 0 ||
-    (c.sections ?? []).some(
+    (c.rating?.value ?? 0) > 0 ||
+    sections.some(
       (s) =>
-        s.type === 'stats' &&
+        s.kind === 'stats' &&
         (s.items ?? []).some((it) => /★|star|review|rating/i.test(`${it.label} ${it.value}`)),
     );
   // Verified third-party credentials (certs/licenses/warranties) are legitimate
@@ -158,7 +189,13 @@ function auditProspect(slug, c, confirmed = false) {
   // estate with no scrapeable reviews still earns trust from a real "Double Gold",
   // a "Wine of the Year" pedigree, or "Farm Family of the Year".
   const CREDENTIAL = /certified|licensed|insured|bonded|accredited|warrant|guarantee|\bASE\b|\bBBB\b|NAPA|CAMTC|AMTA|board[- ]certified|member|#\s?\d|medal|award[- ]winning|wine of the year|best of class|double gold|family of the year|\d{2,3}\s*points/i;
-  const hasCredentials = (c.highlights ?? []).some((h) => CREDENTIAL.test(h));
+  // Premium highlights live in hero `badges` + story `highlights` (no top-level
+  // c.highlights). Pool them all and test for a credential.
+  const credentialText = [
+    ...((homeHero?.badges) ?? []),
+    ...sections.filter((s) => s.kind === 'story').flatMap((s) => s.highlights ?? []),
+  ];
+  const hasCredentials = credentialText.some((h) => CREDENTIAL.test(h));
   if (hasTestimonials || hasRating) {
     if (!hasTestimonials) issues.push(['info', 'no testimonials (has rating; quotes would help)']);
   } else if (hasCredentials) {
@@ -217,64 +254,6 @@ const CONTRAST_PAIRS = [
   ['accent-contrast', 'accent', 'text on accent'],
 ];
 
-// ── Duplicate sections (the bug audit.mjs was blind to) ──────────────────────
-// The config-level checks above can't see the COMPOSED page, so a duplicate
-// section produced at compose-time (e.g. a mid-page CTA on top of the closing
-// CTA → two identical banners) shipped undetected. This parses the built page's
-// section wrappers (`class="section <token>"`) and maps each variant token back
-// to its logical family, so a repeated family is caught regardless of variant.
-const SECTION_FAMILY = {
-  svc: 'services-detailed', svcrows: 'services-detailed', bento: 'services-detailed',
-  fg: 'feature-grid', fgb: 'feature-grid',
-  'stats-section': 'stats', 'stats-band': 'stats', 'stats-inline': 'stats',
-  faq: 'faq', faqa: 'faq',
-  fs: 'feature-split', fsf: 'feature-split',
-  gallery: 'gallery', gu: 'gallery', gf: 'gallery',
-  tms: 'testimonials', tmsl: 'testimonials',
-  'cta-band': 'cta', ctapanel: 'cta', ctabanner: 'cta',
-  // cta-inline is a DISTINCT family — one slim mid-page nudge + one closing
-  // banner is intentional, not a duplicate. Two of either still flags.
-  ctainline: 'cta-inline',
-};
-
-// Content bands that look wrong stranded BELOW the FAQ (the FAQ reads as a
-// near-the-end "wrap up", so a gallery/feature band after it looks misplaced).
-const BURY_AFTER_FAQ = new Set(['gallery', 'feature-grid', 'feature-split', 'services-detailed']);
-
-function auditComposedStructure(html) {
-  // Section families in document order (matchAll preserves order).
-  const seq = [];
-  for (const m of html.matchAll(/class="section ([a-z0-9-]+)/g)) {
-    const fam = SECTION_FAMILY[m[1]];
-    if (fam) seq.push(fam);
-  }
-  const issues = [];
-
-  // 1) Duplicate sections (the bug audit was blind to).
-  const counts = {};
-  for (const f of seq) counts[f] = (counts[f] ?? 0) + 1;
-  for (const [fam, n] of Object.entries(counts)) {
-    if (n > 1) issues.push(['critical', `duplicate "${fam}" section ×${n} on the page (composed twice)`]);
-  }
-
-  // 2) Ordering sanity: a content band stranded after the FAQ reads as misplaced.
-  const faqIdx = seq.indexOf('faq');
-  if (faqIdx !== -1) {
-    const buried = seq.slice(faqIdx + 1).filter((f) => BURY_AFTER_FAQ.has(f));
-    for (const f of new Set(buried)) {
-      issues.push(['warn', `"${f}" section sits after the FAQ — content band looks stranded near the footer`]);
-    }
-  }
-
-  // 3) The closing CTA should be the last composed band (FAQ before it, not after).
-  const lastContentful = seq[seq.length - 1];
-  if (seq.includes('cta') && lastContentful !== 'cta') {
-    issues.push(['warn', `page doesn't end on the closing CTA (ends on "${lastContentful}")`]);
-  }
-
-  return { issues, seq };
-}
-
 function auditContrast(tokens) {
   const issues = [];
   for (const [fg, bg, desc] of CONTRAST_PAIRS) {
@@ -304,38 +283,37 @@ async function main() {
     }
   }
 
-  // 2. Per-prospect content
+  // 2. Per-prospect content (premium multi-page configs, rendered at /s/<slug>)
   console.log('\n## Prospects');
-  const files = (await readdir(PROSPECTS)).filter((f) => f.endsWith('.json'));
+  const files = (await readdir(PREMIUM)).filter((f) => f.endsWith('.json'));
   let missingDist = false;
   for (const f of files) {
     const slug = f.replace(/\.json$/, '');
-    const c = JSON.parse(await readFile(join(PROSPECTS, f), 'utf8'));
+    const c = JSON.parse(await readFile(join(PREMIUM, f), 'utf8'));
     const confirmed = await isConfirmed(slug);
     const issues = auditProspect(slug, c, confirmed);
-    // Measured WCAG contrast from the built page (needs a prior `npm run build`).
-    const distHtml = await readFile(join(DIST, 'p', slug, 'index.html'), 'utf8').catch(() => null);
-    let seq = null;
+    // The composed section order is known from the JSON itself (premium pages
+    // ARE the section list), so we report it directly — no HTML scrape needed.
+    const seq = (c.pages?.[0]?.sections ?? []).map((s) => s.kind);
+    // Measured WCAG contrast from the built HOME page (needs a prior `npm run
+    // build`). Premium home renders at dist/s/<slug>/index.html.
+    const distHtml = await readFile(join(DIST, 's', slug, 'index.html'), 'utf8').catch(() => null);
     if (distHtml) {
-      const structure = auditComposedStructure(distHtml);
-      seq = structure.seq;
-      issues.push(...structure.issues);
       issues.push(...auditContrast(parseTokens(distHtml)));
     } else missingDist = true;
     const crit = issues.filter((i) => i[0] === 'critical');
     critical += crit.length;
     if (issues.length === 0) {
-      console.log(`  ✓ ${f.replace(/\.json$/, '').padEnd(26)} clean`);
+      console.log(`  ✓ ${slug.padEnd(26)} clean`);
     } else {
-      console.log(`  ${crit.length ? '✗' : '•'} ${f.replace(/\.json$/, '').padEnd(26)}`);
+      console.log(`  ${crit.length ? '✗' : '•'} ${slug.padEnd(26)}`);
       for (const [level, msg] of issues) {
         const mark = level === 'critical' ? 'CRITICAL' : level === 'warn' ? 'warn' : 'info';
         console.log(`      [${mark}] ${msg}`);
       }
     }
-    // Composed section order — so a human/loop can SEE the structure, not just
-    // the pass/fail. (Hero + About precede these; Contact follows.)
-    if (seq) console.log(`      ↳ ${seq.join(' › ')}`);
+    // Home-page section order — so a human/loop can SEE the structure.
+    if (seq.length) console.log(`      ↳ ${seq.join(' › ')}`);
   }
 
   if (missingDist) {

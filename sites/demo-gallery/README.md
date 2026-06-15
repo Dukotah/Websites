@@ -1,20 +1,21 @@
 # Demo gallery
 
-One Astro app that renders **many** prospect demo sites — one per JSON file in
-`src/data/prospects/`, served at `/p/<slug>`. Built for cold outreach: generate
-a batch, deploy once, and every prospect gets their own link.
+One Astro app that renders **many** premium, multi-page prospect demo sites —
+one per JSON file in `src/data/premium/`, served at `/s/<slug>`. Built for cold
+outreach: generate a batch, deploy once, and every prospect gets their own link.
 
-- `src/data/prospects/*.json` — one prospect per file (shape = `src/types.ts`,
-  the same schema as a single site's `src/config.ts`).
-- `src/pages/p/[slug].astro` — renders a prospect by slug.
+- `src/data/premium/*.json` — one prospect per file (shape =
+  `src/premium/lib/premium-types.ts`; validate with `npm run premium-validate`).
+- `src/pages/s/[slug]/index.astro` + `[page].astro` — render a prospect's
+  multi-page site by slug.
 - `src/pages/index.astro` — your private dashboard listing every demo (`noindex`).
-- `src/components/`, `src/layouts/` — the template's components, made
-  prop-driven so they render any prospect's config.
+- `src/premium/components/`, `src/premium/layouts/` — the premium section
+  components + layout shell, prop-driven so they render any prospect's config.
 
 Don't hand-edit the JSON files — generate them from the repo root:
 
 ```bash
-npm run generate-prospects -- data/prospects.csv
+npm run generate -- data/prospects.csv
 ```
 
 Full workflow: [`docs/outreach-pipeline.md`](../../docs/outreach-pipeline.md).

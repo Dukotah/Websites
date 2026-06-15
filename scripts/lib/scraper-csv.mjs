@@ -11,7 +11,7 @@
  * fuse it in instead of re-deriving it. `parseCsv` lowercases headers, so all
  * lookups here are lowercase.
  */
-import { parseCsv, normCat } from '../generate-prospects.mjs';
+import { parseCsv, normCat } from './facts.mjs';
 
 // Return the first non-empty value among the given (lowercased) header aliases.
 const pick = (row, ...keys) => {
