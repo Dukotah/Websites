@@ -84,7 +84,9 @@ if (asset && lqip) {
   styleParts.push(
     `background-image:url('${lqip}')`,
     'background-size:cover',
-    'background-position:center',
+    // Keep the blur-up placeholder's framing in lock-step with the image's own
+    // focal crop, so there's no visible shift when the real bytes decode in.
+    `background-position:${objectPosition ?? 'center'}`,
     'background-repeat:no-repeat',
   );
 }

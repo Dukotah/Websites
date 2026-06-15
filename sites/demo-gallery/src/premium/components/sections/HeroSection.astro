@@ -41,10 +41,15 @@ const secondaryCta = data.secondaryCta;
 const isFullbleed = variant === 'fullbleed' && !!img;
 const isSplit = variant === 'split' && !!img;
 const isEditorial = !isFullbleed && !isSplit;
+// Photo-less editorial hero: when there's no aside photo, give the right zone
+// real architecture — a brand-tinted "credential card" built from the badges +
+// the lede — so the hero reads as a composed two-column layout (AVISP-caliber),
+// not big type floating over emptiness. Only when we actually have badges.
+const soloAside = isEditorial && !img && badges.length > 0;
 ---
 
 <section
-  class:list={['p-hero', `p-hero--${variant}`, { 'section--ink': isFullbleed, 'p-hero--editorial-solo': isEditorial && !img }]}
+  class:list={['p-hero', `p-hero--${variant}`, { 'section--ink': isFullbleed, 'p-hero--editorial-solo': isEditorial && !img, 'p-hero--editorial-paired': soloAside }]}
 >
   {isEditorial && !img && motif && (
     <div
@@ -96,7 +101,7 @@ const isEditorial = !isFullbleed && !isSplit;
         </div>
       )}
 
-      {badges.length > 0 && (
+      {badges.length > 0 && !soloAside && (
         <ul class="p-hero__badges tag-row" aria-label="At a glance">
           {badges.map((b) => (
             <li><span class="pill">{b}</span></li>
@@ -104,6 +109,18 @@ const isEditorial = !isFullbleed && !isSplit;
         </ul>
       )}
     </div>
+
+    {soloAside && (
+      <aside class="p-hero__cred" aria-label="At a glance">
+        <span class="p-hero__cred-rule" aria-hidden="true"></span>
+        <p class="p-hero__cred-label">At a glance</p>
+        <ul class="p-hero__cred-list">
+          {badges.map((b) => (
+            <li class="p-hero__cred-item">{b}</li>
+          ))}
+        </ul>
+      </aside>
+    )}
 
     {isSplit && img && (
       <div class="p-hero__figure">
@@ -269,6 +286,73 @@ const isEditorial = !isFullbleed && !isSplit;
     user-select: none;
   }
   .p-hero--editorial-solo .p-hero__inner { position: relative; z-index: 1; }
+
+  /* Paired editorial hero: type on the left, a designed brand "credential card"
+     on the right built from the badges — gives a photo-less hero a true two-zone
+     composition (AVISP-caliber) instead of type over emptiness. */
+  .p-hero--editorial-paired .p-hero__inner {
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: clamp(2rem, 1.2rem + 3.5vw, 4.5rem);
+    align-items: center;
+  }
+  .p-hero--editorial-paired .p-hero__content { max-width: 100%; }
+  .p-hero__cred {
+    position: relative;
+    align-self: center;
+    padding: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+    border: 1px solid var(--p-line);
+    border-radius: var(--p-radius-lg);
+    background:
+      radial-gradient(30rem 22rem at 120% -30%, var(--p-primary-tint), transparent 60%),
+      var(--p-surface);
+    box-shadow: var(--p-shadow-md);
+  }
+  .p-hero__cred-rule {
+    position: absolute;
+    inset-block: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+    inset-inline-start: 0;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--p-primary), color-mix(in srgb, var(--p-primary) 35%, transparent));
+  }
+  .p-hero__cred-label {
+    font-size: var(--p-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--p-primary);
+  }
+  .p-hero__cred-list {
+    list-style: none;
+    margin: var(--p-space-4) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--p-space-3);
+  }
+  .p-hero__cred-item {
+    position: relative;
+    padding-inline-start: 1.6rem;
+    font-weight: 600;
+    color: var(--p-ink-strong);
+    line-height: 1.4;
+  }
+  .p-hero__cred-item + .p-hero__cred-item {
+    padding-top: var(--p-space-3);
+    border-top: 1px solid var(--p-line);
+  }
+  .p-hero__cred-item::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.5em;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--p-primary);
+  }
+  .p-hero__cred-item + .p-hero__cred-item::before { top: calc(var(--p-space-3) + 0.5em); }
+
   .p-hero--editorial .p-hero__inner:has(.p-hero__aside) {
     display: grid;
     grid-template-columns: 1.3fr 0.7fr;
@@ -280,9 +364,11 @@ const isEditorial = !isFullbleed && !isSplit;
   @media (max-width: 820px) {
     .p-hero { min-height: auto; }
     .p-hero--split .p-hero__inner,
+    .p-hero--editorial-paired .p-hero__inner,
     .p-hero--editorial .p-hero__inner:has(.p-hero__aside) {
       grid-template-columns: 1fr;
     }
+    .p-hero--editorial-paired .p-hero__cred { margin-top: var(--p-space-8); }
     .p-hero--split .p-hero__figure,
     .p-hero--editorial .p-hero__aside { margin-top: var(--p-space-8); }
     .p-hero--split .p-hero__figure .media { --ratio: 16 / 11; }

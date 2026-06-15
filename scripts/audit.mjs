@@ -202,9 +202,17 @@ function auditProspect(slug, c, confirmed = false) {
       const srcs = [s.image?.src, ...((s.images ?? []).map((i) => i?.src))].filter(Boolean);
       return srcs.some((src) => !isStock(src));
     });
-  if (!anyRealPhoto) {
-    issues.push(['critical', 'no real photos — text hero + stock/SVG art only']);
-  } else if (textHero) {
+  // PHOTO-LIGHT IS A FIRST-CLASS OUTCOME (owner vision: the SITE carries quality,
+  // not photos — copperbaytech.com / AVISP are the bar, both premium with little
+  // imagery). So "no real photos" is NOT inherently a failure. It's only a real
+  // problem when the page is ALSO thin — i.e. it leans on absent photos instead of
+  // carrying itself with composed, type/brand-driven structure. We DEFER the
+  // verdict (photoLightVerdict) until the composition + trust signals are known
+  // below, then decide: a well-composed photo-light home is acceptable; a sparse
+  // one that wanted photos and has nothing else is the low-effort case we still
+  // flag. A site WITH a real photo but a deliberate text hero is just info.
+  let photoLightVerdict = null; // set below once richness is known
+  if (anyRealPhoto && textHero) {
     issues.push(['info', `text hero (no photo) — deliberate "${homeHero?.variant ?? 'editorial'}" layout`]);
   }
   // Only warn about missing alt when a hero photo is actually rendered.
@@ -272,6 +280,35 @@ function auditProspect(slug, c, confirmed = false) {
     ...sections.filter((s) => s.kind === 'story').flatMap((s) => s.highlights ?? []),
   ];
   const hasCredentials = credentialText.some((h) => CREDENTIAL.test(h));
+
+  // ── Photo-light verdict (deferred from the photo check above) ──────────────
+  // A zero-photo home reaches the bar when the SITE carries it: a substantial,
+  // composed section set (so the page isn't a thin hero + CTA), at least one
+  // structured non-photo "visual" band (callout/features/stats/steps/story carry
+  // real layout interest without imagery), AND a real trust signal (a verified
+  // credential, a rating, or a real testimonial — never fabricated). That's the
+  // AVISP/Copper Bay pattern. When all hold, photo-light is a first-class, ready
+  // outcome (info). When it doesn't, the page is leaning on absent photos with
+  // nothing composed behind them — the genuine low-effort case — so it stays
+  // critical and is held back from the CRM.
+  if (!anyRealPhoto) {
+    const homeSections = c.pages?.[0]?.sections ?? [];
+    const homeKinds = homeSections.map((s) => s.kind);
+    const STRUCTURED_NONPHOTO = new Set(['callout', 'features', 'stats', 'steps', 'story', 'faq', 'pricing']);
+    const structuredBands = homeKinds.filter((k) => STRUCTURED_NONPHOTO.has(k)).length;
+    const composed = homeSections.length >= 5 && structuredBands >= 2;
+    const hasTrust = hasCredentials || hasRating || hasTestimonials;
+    if (composed && hasTrust) {
+      photoLightVerdict = ['info', 'photo-light home — composed type/brand-driven layout carries it (no photos by design)'];
+    } else {
+      const why = !composed
+        ? 'thin layout — not enough composed structure to carry a zero-photo page'
+        : 'no trust signal — add a verified credential, rating, or real testimonial';
+      photoLightVerdict = ['critical', `no real photos and ${why}`];
+    }
+    issues.push(photoLightVerdict);
+  }
+
   // 1. SCRAPED-JUNK COPY (critical) — scan every human-facing string for e-comm/
   // nav junk and duplicated-clause artifacts. Also include the broader JUNK_RE
   // shared with the author so the gate matches what the author strips.

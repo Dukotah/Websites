@@ -247,8 +247,19 @@
 .premium .lift { transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease; }
 @media (hover: hover) { .premium .lift:hover { transform: translateY(-2px); box-shadow: var(--p-shadow-md); } }
 
-.premium .media { position: relative; overflow: hidden; border-radius: var(--p-radius-lg); aspect-ratio: var(--ratio, 16 / 10); background: var(--p-paper-deep); }
-.premium .media img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1); }
+.premium .media {
+  position: relative; overflow: hidden; border-radius: var(--p-radius-lg);
+  aspect-ratio: var(--ratio, 16 / 10);
+  /* Designed brand-tinted base — so a frame whose image is still decoding (or a
+     transparent/letterboxed source) shows a tasteful tinted panel, never a flat
+     grey hole. The real image covers it once decoded. */
+  background:
+    radial-gradient(24rem 18rem at 80% 110%, var(--p-primary-tint), transparent 62%),
+    var(--p-paper-deep);
+}
+/* Default object-position centers the cover crop; a per-image focal (from
+   SiteImage's inline style) overrides this so nothing renders off-frame. */
+.premium .media img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1); }
 @media (hover: hover) { .premium .media:hover img, .premium a:hover > .media img, .premium .lift:hover .media img { transform: scale(1.03); } }
 
 .premium .kicker-num {
