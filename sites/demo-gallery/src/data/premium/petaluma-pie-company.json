@@ -2,8 +2,8 @@
   "slug": "petaluma-pie-company",
   "name": "Petaluma Pie Company",
   "legalName": "Petaluma Pie Company",
-  "tagline": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic",
-  "seoDescription": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients",
+  "tagline": "",
+  "seoDescription": "Petaluma Pie Company — Cafe serving Petaluma, CA.",
   "category": "cafe",
   "categoryLabel": "Cafe",
   "area": "Petaluma, CA",
@@ -11,7 +11,7 @@
   "state": "CA",
   "established": "",
   "contact": {
-    "phone": "17077666743",
+    "phone": "(707) 766-6743",
     "email": "pie@petalumapie.com",
     "address": ""
   },
@@ -36,7 +36,7 @@
           "variant": "editorial",
           "eyebrow": "Petaluma, CA",
           "heading": "Petaluma Pie Company — Cafe you can count on",
-          "subheading": "Notify me when this product is available: Notify me when this product is available:",
+          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat...",
           "badges": [],
           "primaryCta": {
             "label": "See the menu",
@@ -52,7 +52,6 @@
           "eyebrow": "Our story",
           "heading": "About Petaluma Pie Company",
           "body": [
-            "Notify me when this product is available: Notify me when this product is available:",
             "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
           ],
           "image": {
@@ -107,13 +106,13 @@
         {
           "kind": "cta",
           "heading": "Hungry yet?",
-          "body": "Call 17077666743 — we’re glad to help.",
+          "body": "Call (707) 766-6743 — we’re glad to help.",
           "primaryCta": {
             "label": "Get in touch",
             "href": "/s/petaluma-pie-company/contact"
           },
           "secondaryCta": {
-            "label": "Call 17077666743",
+            "label": "Call (707) 766-6743",
             "href": "tel:+17077666743"
           }
         }
@@ -129,12 +128,13 @@
           "variant": "editorial",
           "eyebrow": "On the menu",
           "heading": "What we’re serving",
-          "subheading": "Notify me when this product is available: Notify me when this product is available:"
+          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
         },
         {
           "kind": "services",
           "heading": "What we’re serving",
           "layout": "rows",
+          "fallbackOk": true,
           "items": [
             {
               "title": "Weddings And Catering",
@@ -153,20 +153,20 @@
             },
             {
               "q": "How do I get in touch?",
-              "a": "Call us at 17077666743 — we're glad to help."
+              "a": "Call us at (707) 766-6743 — we're glad to help."
             }
           ]
         },
         {
           "kind": "cta",
           "heading": "Hungry yet?",
-          "body": "Call 17077666743 — we’re glad to help.",
+          "body": "Call (707) 766-6743 — we’re glad to help.",
           "primaryCta": {
             "label": "Get in touch",
             "href": "/s/petaluma-pie-company/contact"
           },
           "secondaryCta": {
-            "label": "Call 17077666743",
+            "label": "Call (707) 766-6743",
             "href": "tel:+17077666743"
           }
         }
@@ -182,14 +182,13 @@
           "variant": "editorial",
           "eyebrow": "About Petaluma Pie Company",
           "heading": "About Petaluma Pie Company",
-          "subheading": "Notify me when this product is available: Notify me when this product is available:"
+          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
         },
         {
           "kind": "story",
           "eyebrow": "Our story",
           "heading": "About Petaluma Pie Company",
           "body": [
-            "Notify me when this product is available: Notify me when this product is available:",
             "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
           ],
           "image": {
@@ -240,7 +239,7 @@
           "kind": "contact",
           "eyebrow": "Get in touch",
           "heading": "Get in touch",
-          "blurb": "Reach Petaluma Pie Company or call 17077666743.",
+          "blurb": "Reach Petaluma Pie Company or call (707) 766-6743.",
           "showMap": false,
           "showHours": false
         }
@@ -250,6 +249,7 @@
   "status": "needs-review",
   "flags": [
     "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
-    "hero photo below resolution floor — text hero used"
+    "hero photo below resolution floor — text hero used",
+    "Scraped copy was junk — rewrite from real facts"
   ]
 }

@@ -22,6 +22,13 @@ const area = config.area ?? [config.city, config.state].filter(Boolean).join(', 
 
 const telHref = c.phone ? `tel:${c.phone.replace(/[^0-9+]/g, '')}` : null;
 const mailHref = c.email ? `mailto:${c.email}` : null;
+// Defense-in-depth phone display formatting (tel: href keeps raw digits).
+const formatPhone = (s?: string) => {
+  if (!s) return '';
+  const d = s.replace(/[^\d]/g, '');
+  const ten = d.length === 11 && d[0] === '1' ? d.slice(1) : d.length === 10 ? d : '';
+  return ten ? `(${ten.slice(0, 3)}) ${ten.slice(3, 6)}-${ten.slice(6)}` : s;
+};
 
 const showHours = !!data.showHours && hours.length > 0;
 const showMap = !!data.showMap && !!c.address;
@@ -69,7 +76,7 @@ const mapSrc = showMap
           {c.phone && telHref && (
             <li>
               <span class="channel-label">Phone</span>
-              <a class="channel-big" href={telHref}>{c.phone}</a>
+              <a class="channel-big" href={telHref}>{formatPhone(c.phone)}</a>
             </li>
           )}
           {c.email && mailHref && (

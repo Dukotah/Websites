@@ -25,6 +25,7 @@ import { fileURLToPath } from 'node:url';
 import { scrapeSite, stripTags, scoreRichness } from './scrape-site.mjs';
 import { acquirePhotos, processDroppedPhotos } from './images.mjs';
 import { scorePhoto } from './photo-score.mjs';
+import { sanitizeProse, sanitizeTestimonials } from './copy-sanity.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 // Photos land in src/assets/prospects/<slug>/ so astro:assets optimizes them.
@@ -140,6 +141,17 @@ function humanizeCategory(cat) {
   const s = (cat || '').replace(/[-_]+/g, ' ').trim();
   if (!s) return 'local business';
   return s.split(/\s+/).map((w) => CAT_ACRONYMS[w.toLowerCase()] || w).join(' ');
+}
+
+// Format a phone number for HUMAN display: "(NNN) NNN-NNNN" for a US 10-digit
+// (or 11-digit leading-1) number; otherwise return the original untouched. Never
+// used for a tel: href — that keeps the raw digits (telHref in author-premium).
+function formatPhone(s) {
+  if (!s) return '';
+  const d = String(s).replace(/[^\d]/g, '');
+  const ten = d.length === 11 && d[0] === '1' ? d.slice(1) : d.length === 10 ? d : '';
+  if (!ten) return String(s);
+  return `(${ten.slice(0, 3)}) ${ten.slice(3, 6)}-${ten.slice(6)}`;
 }
 
 // Stable string hash (FNV-ish, 32-bit) — drives deterministic per-slug picks so
@@ -297,14 +309,17 @@ async function loadResearch(slug) {
 function enrichmentFromResearch(r, row, { authoritative = true } = {}) {
   const year = (r.established || '').toString().replace(/^est\.?\s*/i, '').match(/\d{4}/)?.[0] || '';
   const e = {
-    description: r.tagline || r.seoDescription || '',
-    about: Array.isArray(r.aboutBody) ? r.aboutBody : [],
+    // Scraped prose can carry e-comm/nav junk ("Notify me…", "Add to cart") and
+    // duplicated-phrase artifacts; sanitizeProse drops those so junk never seeds
+    // a tagline/about line from either the research or the inline-scrape path.
+    description: sanitizeProse(r.tagline || r.seoDescription || ''),
+    about: (Array.isArray(r.aboutBody) ? r.aboutBody : []).map(sanitizeProse).filter(Boolean),
     services: (r.services ?? []).map((s) => s.title).filter(Boolean),
     established: year,
     rating: r.rating?.value,
     reviewCount: r.rating?.count,
     hours: Array.isArray(r.hours) ? r.hours : [],
-    testimonials: Array.isArray(r.testimonials) ? r.testimonials : [],
+    testimonials: sanitizeTestimonials(Array.isArray(r.testimonials) ? r.testimonials : []),
     social: r.social ?? {},
     // Contact facts come from the verified CSV row, not the research blob —
     // research `notes` flag any phone/email/address that couldn't be confirmed.
@@ -580,7 +595,7 @@ export {
   // presets
   CATEGORIES, CATEGORY_ALIASES, ART_CATEGORIES,
   // string helpers
-  slugify, titleCase, humanizeCategory, hashStr, clip, parseCsv,
+  slugify, titleCase, humanizeCategory, hashStr, clip, parseCsv, formatPhone,
   // facts
   loadResearch, enrichmentFromResearch, backfillFromOsm,
   normCat, catKeyFor, artKeyFor, nameMatchesSite,

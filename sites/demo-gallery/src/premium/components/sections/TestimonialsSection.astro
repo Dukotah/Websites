@@ -47,10 +47,12 @@ const fullStars = rating ? Math.round(ratingValue) : 0;
         <figure class="card p-tmn__card" data-reveal data-reveal-delay={(i + 1)}>
           <span class="p-tmn__mark" aria-hidden="true">&ldquo;</span>
           <blockquote class="p-tmn__quote">{t.quote}</blockquote>
-          <figcaption class="p-tmn__by">
-            <span class="p-tmn__author">{t.author}</span>
-            {t.detail && <span class="p-tmn__detail">{t.detail}</span>}
-          </figcaption>
+          {(t.author?.trim() || t.detail) && (
+            <figcaption class="p-tmn__by">
+              {t.author?.trim() && <span class="p-tmn__author">{t.author}</span>}
+              {t.detail && <span class="p-tmn__detail">{t.detail}</span>}
+            </figcaption>
+          )}
         </figure>
       ))}
     </div>

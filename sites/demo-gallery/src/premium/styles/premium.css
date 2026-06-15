@@ -178,11 +178,17 @@
 .premium .field .hint { font-size: var(--p-text-xs); color: var(--p-ink-soft); }
 
 /* --- Scroll reveal (respects reduced motion) ------------------------------- */
-.premium [data-reveal] {
+/* VISIBLE BY DEFAULT, JS OPTS INTO ANIMATING. The opacity:0 starting state is
+   gated behind `.premium.reveal-armed`, which the inline reveal script adds ONLY
+   on motion-capable clients just before observing. Without .reveal-armed,
+   [data-reveal] has no opacity rule → content paints immediately on first paint,
+   with JS disabled, and in social/link-preview snapshots (kills the blank-section
+   FOUC on Petaluma et al). */
+.premium.reveal-armed [data-reveal] {
   opacity: 0; transform: translateY(18px);
   transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.premium [data-reveal].is-visible { opacity: 1; transform: none; }
+.premium.reveal-armed [data-reveal].is-visible { opacity: 1; transform: none; }
 .premium [data-reveal][data-reveal-delay='1'] { transition-delay: 70ms; }
 .premium [data-reveal][data-reveal-delay='2'] { transition-delay: 140ms; }
 .premium [data-reveal][data-reveal-delay='3'] { transition-delay: 210ms; }

@@ -21,6 +21,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, dirname, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { JUNK_RE } from './lib/copy-sanity.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
@@ -114,6 +115,49 @@ const TEXT_HERO_VARIANTS = new Set(['editorial']);
 const HEADLINE_CLICHES =
   /\b(done right|you can trust|second to none|no job too (big|small)|one[- ]stop shop|a cut above|exceed(s|ing)? (your )?expectations|where quality meets|satisfaction (is )?(our |)guarantee|we'?ve got you covered|rain or shine|quality you can|your trusted partner)\b/i;
 
+// Scraped e-comm/nav junk that must never reach a rendered field. A narrower set
+// than copy-sanity's JUNK_RE — these are the unambiguous "this is broken" tells
+// (the full JUNK_RE is also tested for shared coverage). Critical on any match.
+const SCRAPED_JUNK =
+  /notify me when this product is available|add to cart|out of stock|sold out|this is the online store|view cart|checkout|continue shopping/i;
+// Generic-only testimonial author (low signal when the quote is short too).
+const PLACEHOLDER_AUTHOR =
+  /^(yelp reviewer|verified customer|customer review|customer|local customer|happy customer|returning customer|satisfied customer)$/i;
+
+// A clause repeated verbatim ("Notify me…: Notify me…:") — the duplicated-phrase
+// scrape artifact. Returns true when 2+ identical trimmed clauses appear.
+function hasDuplicatedClause(s) {
+  if (!s) return false;
+  const clauses = String(s).split(/[:.]/).map((c) => c.trim().toLowerCase()).filter((c) => c.length >= 6);
+  const seen = new Set();
+  for (const c of clauses) { if (seen.has(c)) return true; seen.add(c); }
+  return false;
+}
+
+// Every human-facing copy string on a section, tagged with where it came from.
+function copyStringsOf(sections) {
+  const out = []; // { text, where }
+  const add = (text, where) => { if (text && typeof text === 'string') out.push({ text, where }); };
+  for (const s of sections) {
+    add(s.heading, `${s.kind}.heading`);
+    add(s.subheading, `${s.kind}.subheading`);
+    add(s.intro, `${s.kind}.intro`);
+    add(s.blurb, `${s.kind}.blurb`);
+    add(s.body && Array.isArray(s.body) ? s.body.join(' ') : s.body, `${s.kind}.body`);
+    for (const it of s.items ?? []) {
+      add(it.title, `${s.kind} item.title`);
+      add(it.description, `${s.kind} item.description`);
+      add(it.q, `${s.kind} item.q`);
+      add(it.a, `${s.kind} item.a`);
+      add(it.quote, `${s.kind} item.quote`);
+    }
+  }
+  return out;
+}
+
+// A bare digit run that isn't inside a tel: href.
+const BARE_PHONE = /\b\d{10,11}\b/;
+
 // Flatten every section across every page of a PremiumConfig.
 const allSections = (c) => (c.pages ?? []).flatMap((p) => p.sections ?? []);
 
@@ -196,10 +240,85 @@ function auditProspect(slug, c, confirmed = false) {
     ...sections.filter((s) => s.kind === 'story').flatMap((s) => s.highlights ?? []),
   ];
   const hasCredentials = credentialText.some((h) => CREDENTIAL.test(h));
+  // 1. SCRAPED-JUNK COPY (critical) — scan every human-facing string for e-comm/
+  // nav junk and duplicated-clause artifacts. Also include the broader JUNK_RE
+  // shared with the author so the gate matches what the author strips.
+  const tagline = c.tagline ?? '';
+  const seoDescription = c.seoDescription ?? '';
+  const copyStrings = [
+    ...copyStringsOf(sections),
+    ...(tagline ? [{ text: tagline, where: 'tagline' }] : []),
+    ...(seoDescription ? [{ text: seoDescription, where: 'seoDescription' }] : []),
+  ];
+  for (const { text, where } of copyStrings) {
+    if (SCRAPED_JUNK.test(text) || JUNK_RE.test(text)) {
+      issues.push(['critical', `scraped junk copy in ${where}: "${text.slice(0, 60)}"`]);
+    } else if (hasDuplicatedClause(text)) {
+      issues.push(['critical', `duplicated-clause artifact in ${where}: "${text.slice(0, 60)}"`]);
+    }
+  }
+
+  // 2. UNFORMATTED PHONE (critical) — a bare 10/11-digit run in any human-facing
+  // phone display (NOT a tel: href, which legitimately holds raw digits).
+  const phoneTexts = [
+    [c.contact?.phone, 'config.contact.phone'],
+    ...sections.filter((s) => s.kind === 'cta').flatMap((s) => [
+      [s.body, 'cta.body'],
+      [s.secondaryCta?.label, 'cta.secondaryCta.label'],
+    ]),
+    ...sections.filter((s) => s.kind === 'faq').flatMap((s) => (s.items ?? []).map((it) => [it.a, 'faq.answer'])),
+    ...sections.filter((s) => s.kind === 'contact').map((s) => [s.blurb, 'contact.blurb']),
+  ];
+  for (const [text, where] of phoneTexts) {
+    if (text && typeof text === 'string' && BARE_PHONE.test(text)) {
+      const n = text.match(BARE_PHONE)[0];
+      issues.push(['critical', `unformatted phone "${n}" in ${where} — format as (NNN) NNN-NNNN`]);
+    }
+  }
+
+  // 3. GENERIC-ONLY TESTIMONIAL (warn; escalates the social-proof gate to
+  // critical when EVERY testimonial is placeholder+short and there's no rating).
+  const tmnItems = sections.filter((s) => s.kind === 'testimonials').flatMap((s) => s.items ?? []);
+  const isLowSignal = (t) => PLACEHOLDER_AUTHOR.test((t.author ?? '').trim()) && (t.quote ?? '').length < 60;
+  const lowSignal = tmnItems.filter(isLowSignal);
+  for (const _ of lowSignal) issues.push(['warn', 'low-signal testimonial with placeholder author']);
+  const allTmnPlaceholder = tmnItems.length > 0 && lowSignal.length === tmnItems.length;
+
+  // 4. EMPTY HERO (critical) — a split/fullbleed hero with no image renders a
+  // blank panel. Editorial-with-no-image is deliberate (info, handled above).
+  if (homeHero && (homeHero.variant === 'split' || homeHero.variant === 'fullbleed') && !homeHero.image?.src) {
+    issues.push(['critical', 'hero is split/fullbleed but has no image — will render a blank panel']);
+  }
+
+  // 5. EMPTY IMAGE PANEL ON INNER PAGES (critical) — a rows-layout services
+  // section with NO item images renders empty 01/02 grey panels. The designed
+  // glyph fallback is acceptable only when the author opts in via fallbackOk.
+  for (const s of sections.filter((x) => x.kind === 'services' && x.layout === 'rows')) {
+    const anyImg = (s.items ?? []).some((it) => it.image?.src);
+    if (!anyImg && !s.fallbackOk) {
+      issues.push(['critical', 'rows-layout services with no images renders empty 01/02 grey panels — use grid or add photos']);
+    }
+  }
+
+  // 6. SINGLE-STAT-IN-MULTI-CARD BAND (critical for <2, warn for exactly 2).
+  for (const s of sections.filter((x) => x.kind === 'stats')) {
+    const n = (s.items ?? []).length;
+    if (n < 2) issues.push(['critical', 'stats band has <2 items — a lone stat reads as a broken empty card']);
+    else if (n === 2) issues.push(['warn', 'only 2 stats — consider folding into hero badges or a callout']);
+  }
+
+  // Social proof: a rating OR real testimonials. Missing BOTH is a real gap;
+  // missing only quotes (but has a rating) is minor.
   if (hasTestimonials || hasRating) {
     if (!hasTestimonials) issues.push(['info', 'no testimonials (has rating; quotes would help)']);
+    // All-placeholder short testimonials with no rating → escalate to critical.
+    else if (allTmnPlaceholder && !hasRating) {
+      issues.push(['critical', 'no social proof — all testimonials are placeholder-author + short, and there is no rating']);
+    }
   } else if (hasCredentials) {
     issues.push(['info', 'no reviews yet — trust carried by verified credentials; add a review when available']);
+  } else if (allTmnPlaceholder) {
+    issues.push(['critical', 'no social proof — all testimonials are placeholder-author + short, and there is no rating']);
   } else {
     issues.push(['warn', 'no social proof — add a rating, a real testimonial, or a credential']);
   }
@@ -287,6 +406,7 @@ async function main() {
   console.log('\n## Prospects');
   const files = (await readdir(PREMIUM)).filter((f) => f.endsWith('.json'));
   let missingDist = false;
+  const seqCounts = new Map(); // section-kind sequence string → [slugs]
   for (const f of files) {
     const slug = f.replace(/\.json$/, '');
     const c = JSON.parse(await readFile(join(PREMIUM, f), 'utf8'));
@@ -295,6 +415,9 @@ async function main() {
     // The composed section order is known from the JSON itself (premium pages
     // ARE the section list), so we report it directly — no HTML scrape needed.
     const seq = (c.pages?.[0]?.sections ?? []).map((s) => s.kind);
+    const seqKey = seq.join('>');
+    if (!seqCounts.has(seqKey)) seqCounts.set(seqKey, []);
+    seqCounts.get(seqKey).push(slug);
     // Measured WCAG contrast from the built HOME page (needs a prior `npm run
     // build`). Premium home renders at dist/s/<slug>/index.html.
     const distHtml = await readFile(join(DIST, 's', slug, 'index.html'), 'utf8').catch(() => null);
@@ -318,6 +441,17 @@ async function main() {
 
   if (missingDist) {
     console.log('\n  ℹ contrast checks skipped for some pages — run `npm run build` first.');
+  }
+
+  // 7. SAMENESS NUDGE (info, non-blocking) — when >4 sites share the identical
+  // home section-kind order, surface the sibling-template problem the
+  // composition seed is meant to fix.
+  const SAMENESS_N = 4;
+  for (const [seqKey, slugs] of seqCounts) {
+    if (slugs.length > SAMENESS_N) {
+      console.log(`\n  [info] ${slugs.length} sites share identical section order — add structural divergence`);
+      console.log(`      ↳ ${seqKey.split('>').join(' › ')}`);
+    }
   }
 
   console.log('\n' + '─'.repeat(48));

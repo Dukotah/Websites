@@ -19,9 +19,10 @@
 import { readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import {
-  normCat, deriveStatus, clip, titleCase, humanizeCategory, hashStr, PUBLIC_IMAGES,
+  normCat, deriveStatus, clip, titleCase, humanizeCategory, hashStr, formatPhone, PUBLIC_IMAGES,
 } from './lib/facts.mjs';
 import { pickFontId, pickBrandColor } from './lib/brand-seed.mjs';
+import { sanitizeProse, sanitizeTestimonials } from './lib/copy-sanity.mjs';
 
 // ── category → page family table ───────────────────────────────────────────
 // home is ALWAYS pages[0]. The family decides which pages follow and whether the
@@ -101,8 +102,11 @@ function discoverPhotos(slug) {
 }
 
 // ── deterministic skeleton ─────────────────────────────────────────────────
-function buildSkeleton(slug, row, e, research, media) {
+function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {}) {
   const cat = premiumCat(row.category);
+  // Track when the scraped-copy guard stripped a field — forces needs-review so
+  // a human rewrites from the real facts instead of shipping a hole.
+  let copyStripped = false;
   // A research file may carry a better PUBLIC display name (e.g. a rebrand) than
   // the lead's CSV name — prefer it when present (the hand-authored bar does this).
   const name = research?.name || row.name;
@@ -112,6 +116,8 @@ function buildSkeleton(slug, row, e, research, media) {
   const established = (e?.established || research?.established || row.established || '')
     .toString().replace(/^est\.?\s*/i, '').match(/\d{4}/)?.[0] || '';
   const phone = e?.phone || row.phone || '';
+  // Human-display phone, "(NNN) NNN-NNNN". telHref() still uses the raw `phone`.
+  const phoneFmt = formatPhone(phone);
   const email = e?.email || row.email || '';
   const address = e?.address || row.address || '';
   const rating = research?.rating?.value
@@ -119,17 +125,33 @@ function buildSkeleton(slug, row, e, research, media) {
     : (e?.rating ? { value: e.rating, ...(e.reviewCount ? { count: e.reviewCount } : {}) } : null);
   const priceRange = research?.priceRange || e?.priceRange || '';
 
-  // Real facts from research/enrichment (never invented).
-  const aboutBody = (research?.aboutBody?.length ? research.aboutBody : (e?.about ?? []))
-    .map((p) => clip(String(p), 600)).filter((p) => p.length > 40);
+  // Real facts from research/enrichment (never invented). Run every scraped
+  // prose line through sanitizeProse BEFORE the length filter so e-comm/nav junk
+  // ("Notify me when this product is available") and duplicated-phrase artifacts
+  // are dropped, not just clipped. A stripped line flips copyStripped.
+  const rawAbout = (research?.aboutBody?.length ? research.aboutBody : (e?.about ?? []))
+    .map((p) => clip(String(p), 600));
+  const aboutBody = [];
+  for (const p of rawAbout) {
+    const clean = sanitizeProse(p);
+    if (!clean) { if (p && p.trim().length > 40) copyStripped = true; continue; }
+    if (clean.length > 40) aboutBody.push(clean);
+  }
   const services = (research?.services?.length
     ? research.services
     : (e?.services ?? []).map((t) => ({ title: titleCase(t), description: '' })))
     .filter((s) => s.title)
     .map((s) => ({ title: titleCase(s.title), description: s.description || '' }));
-  const testimonials = (research?.testimonials ?? e?.testimonials ?? [])
-    .filter((t) => t.quote && t.quote.length > 20)
-    .map((t) => ({ quote: clip(t.quote, 280), author: t.author || 'Customer review' }));
+  // Sanitize testimonials (drop low-signal placeholder-author quotes), then clip.
+  const rawTestimonials = (research?.testimonials ?? e?.testimonials ?? [])
+    .filter((t) => t.quote && t.quote.length > 20);
+  const testimonials = sanitizeTestimonials(rawTestimonials)
+    .map((t) => ({ quote: clip(t.quote, 280), ...(t.author ? { author: t.author } : {}) }));
+  if (rawTestimonials.length && !testimonials.length) copyStripped = true;
+  // Sanitized hero/story subheading source: prefer a clean research subheading,
+  // else the (already-sanitized) first about paragraph. Never a junk clause.
+  const heroSubSrc = sanitizeProse(research?.heroSubheading || '') || aboutBody[0] || '';
+  if (research?.heroSubheading && !sanitizeProse(research.heroSubheading)) copyStripped = true;
   const hours = (research?.hours?.length ? research.hours : (e?.hours ?? []))
     .filter((h) => h && h.day && h.hours);
   const highlights = (research?.highlights ?? []).filter(Boolean);
@@ -142,7 +164,18 @@ function buildSkeleton(slug, row, e, research, media) {
   // gallery files on disk are still fine to use.
   const photos = discoverPhotos(slug);
   const heroDropped = !media.length;
-  const heroImg = heroDropped ? null : photos.hero;
+  // CONGRUENCE GATE: a generic regional stock shot (Wikimedia/Openverse/Commons)
+  // reads as "not theirs" on a place-based business (salon/cafe/restaurant/spa/
+  // barber/dental) — a landscape on a salon is the Joon bug. Suppress the hero
+  // photo and route to the editorial text hero. Stock heroes stay only for
+  // outdoorsy categories (landscaping/marina/winery) where a regional shot reads
+  // as congruent.
+  const isGenericStock = /wikimedia|openverse|commons/i.test(photoSource);
+  const PLACE_BASED = new Set(['salon', 'cafe', 'restaurant', 'spa', 'barber', 'dental']);
+  const stockIncongruent = isGenericStock && PLACE_BASED.has(cat);
+  let stockHeroSuppressed = false;
+  let heroImg = heroDropped ? null : photos.hero;
+  if (heroImg && stockIncongruent) { heroImg = null; stockHeroSuppressed = true; }
   const storyImg = photos.story || photos.gallery[0] || null;
   // Gallery = photos beyond hero/story, only when >=3 exist.
   const galleryPool = photos.gallery.filter((p) => p !== storyImg);
@@ -173,9 +206,7 @@ function buildSkeleton(slug, row, e, research, media) {
     variant: heroVariant,
     ...(eyebrowLoc ? { eyebrow: eyebrowLoc } : {}),
     heading: research?.heroHeading || defaultHeroHeading(name, cat, area, established),
-    ...(research?.heroSubheading || aboutBody[0]
-      ? { subheading: clip(research?.heroSubheading || aboutBody[0], 200) }
-      : {}),
+    ...(heroSubSrc ? { subheading: clip(heroSubSrc, 200) } : {}),
     badges: buildBadges(established, rating, highlights),
     primaryCta: { label: HOSPITALITY.has(cat) ? 'See the menu' : 'Get in touch', href: `/s/${slug}/${HOSPITALITY.has(cat) ? 'menu' : 'contact'}` },
     secondaryCta: { label: HOSPITALITY.has(cat) ? 'Book catering' : (services.length ? 'Our services' : 'Contact us'), href: `/s/${slug}/${services.length ? sp.slug : 'contact'}` },
@@ -232,7 +263,7 @@ function buildSkeleton(slug, row, e, research, media) {
   }
 
   // cta
-  homeSections.push(buildCta(slug, name, cat, address, phone));
+  homeSections.push(buildCta(slug, name, cat, address, phone, false, phoneFmt));
 
   // ── pages assembly ──
   const pages = [{ slug: 'home', label: 'Home', sections: homeSections }];
@@ -245,18 +276,22 @@ function buildSkeleton(slug, row, e, research, media) {
         variant: 'editorial',
         eyebrow: servicesEyebrow(cat),
         heading: HOSPITALITY.has(cat) ? 'What we’re serving' : 'How we can help',
-        ...(aboutBody[0] || research?.heroSubheading ? { subheading: clip(research?.heroSubheading || aboutBody[0], 180) } : {}),
+        ...(heroSubSrc ? { subheading: clip(heroSubSrc, 180) } : {}),
       },
       {
         kind: 'services',
         heading: research?.servicesHeading || (HOSPITALITY.has(cat) ? 'What we’re serving' : 'What we do'),
         layout: 'rows',
+        // The rows layout renders a DESIGNED brand-tinted glyph panel (not a blank
+        // grey box) for image-less items — flag it so the audit's empty-panel
+        // check knows the fallback is intentional.
+        fallbackOk: true,
         items: services.map((s) => ({ title: s.title, description: s.description || deriveServiceDesc(s.title, cat, area) })),
       },
     ];
-    const faq = buildFaq(testimonials, hours, address, area, phone, cat);
+    const faq = buildFaq(testimonials, hours, address, area, phoneFmt, cat);
     if (faq.length >= 2) svcSections.push({ kind: 'faq', eyebrow: 'Good to know', heading: 'Common questions', items: faq.slice(0, 4) });
-    svcSections.push(buildCta(slug, name, cat, address, phone, true));
+    svcSections.push(buildCta(slug, name, cat, address, phone, true, phoneFmt));
     pages.push({ slug: sp.slug, label: sp.label, title: sp.label, sections: svcSections });
   }
 
@@ -307,7 +342,7 @@ function buildSkeleton(slug, row, e, research, media) {
       kind: 'contact',
       eyebrow: 'Get in touch',
       heading: 'Get in touch',
-      ...(address || phone ? { blurb: `Reach ${name}${address ? ` at ${address}` : ''}${phone ? ` or call ${phone}` : ''}.` } : {}),
+      ...(address || phone ? { blurb: `Reach ${name}${address ? ` at ${address}` : ''}${phone ? ` or call ${phoneFmt}` : ''}.` } : {}),
       showMap: Boolean(address),
       showHours: Boolean(hours.length),
     }],
@@ -318,15 +353,15 @@ function buildSkeleton(slug, row, e, research, media) {
     slug,
     name,
     legalName: research?.legalName || name,
-    tagline: clip(research?.tagline || e?.description || '', 110),
-    seoDescription: clip(research?.seoDescription || e?.description || `${name} — ${categoryLabel(cat)} serving ${area || 'the local area'}.`, 160),
+    tagline: clip(sanitizeProse(research?.tagline || e?.description || ''), 110),
+    seoDescription: clip(sanitizeProse(research?.seoDescription || e?.description || '') || `${name} — ${categoryLabel(cat)} serving ${area || 'the local area'}.`, 160),
     category: cat,
     categoryLabel: categoryLabel(cat),
     area,
     city,
     state,
     established,
-    contact: { phone, email, address },
+    contact: { phone: phoneFmt, email, address },
     social: cleanSocial(social),
     ...(hours.length ? { hours } : {}),
     ...(rating ? { rating } : {}),
@@ -337,7 +372,7 @@ function buildSkeleton(slug, row, e, research, media) {
     pages,
   };
 
-  return { config, meta: { aboutDropped, realPhotoCount, galleryCount: galleryImgs.length, heroImg, anyRealPhoto: realPhotoCount > 0 || galleryImgs.length > 0, cat } };
+  return { config, meta: { aboutDropped, realPhotoCount, galleryCount: galleryImgs.length, heroImg, anyRealPhoto: realPhotoCount > 0 || galleryImgs.length > 0, cat, copyStripped, stockHeroSuppressed } };
 }
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -370,15 +405,15 @@ function buildStats(established, rating, serviceCount, priceRange) {
   return stats.slice(0, 4);
 }
 
-function buildCta(slug, name, cat, address, phone, isServicePage = false) {
+function buildCta(slug, name, cat, address, phone, isServicePage = false, phoneDisplay = phone) {
   const cta = {
     kind: 'cta',
     heading: HOSPITALITY.has(cat) ? 'Hungry yet?' : (isServicePage ? 'Let’s talk' : `Work with ${name}`),
-    ...(address || phone ? { body: `${address ? `Find us at ${address}. ` : ''}${phone ? `Call ${phone} — we’re glad to help.` : ''}`.trim() } : {}),
+    ...(address || phone ? { body: `${address ? `Find us at ${address}. ` : ''}${phone ? `Call ${phoneDisplay} — we’re glad to help.` : ''}`.trim() } : {}),
     primaryCta: { label: 'Get in touch', href: `/s/${slug}/contact` },
   };
   const t = telHref(phone);
-  if (t) cta.secondaryCta = { label: `Call ${phone}`, href: t };
+  if (t) cta.secondaryCta = { label: `Call ${phoneDisplay}`, href: t };
   return cta;
 }
 
@@ -486,7 +521,7 @@ function applyClaudeCopy(config, j) {
 export async function authorPremium(slug, row, e, research, media, {
   photoSource = '', photoFlags = [], mismatchName = '', useClaude = true,
 } = {}) {
-  let { config, meta } = buildSkeleton(slug, row, e, research, media);
+  let { config, meta } = buildSkeleton(slug, row, e, research, media, { photoSource });
 
   // Optional Claude copy upgrade (deterministic skeleton already shippable).
   if (useClaude) config = await upgradeCopyWithClaude(config, e, research);
@@ -501,6 +536,10 @@ export async function authorPremium(slug, row, e, research, media, {
   if (totalSections < 6) flags.push('Single-page content — needs more real material for multi-page');
   if (meta.aboutDropped) flags.push('No About content — about page folded');
   if (!meta.anyRealPhoto) flags.push('No real photos — using a text/library hero');
+  // P0 guards: scraped copy was junk (stripped) → must rewrite from real facts;
+  // a generic regional stock hero on a place-based business was suppressed.
+  if (meta.copyStripped) flags.push('Scraped copy was junk — rewrite from real facts');
+  if (meta.stockHeroSuppressed) flags.push('Generic stock hero suppressed — add a real photo');
 
   const status = flags.length ? 'needs-review' : 'ready';
   config.status = status;

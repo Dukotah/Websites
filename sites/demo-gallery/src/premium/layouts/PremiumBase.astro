@@ -139,7 +139,13 @@ const jsonLd = buildJsonLd(config as any, { canonical, image: ogImage || undefin
     <script>
       // Scroll-reveal: add .is-visible as [data-reveal] enters the viewport.
       // Re-inits on first load AND after every View-Transition navigation.
+      // Content is VISIBLE by default; we ARM the opacity:0 starting state
+      // (.reveal-armed) just-in-time, and ONLY on motion-capable clients — so a
+      // reduced-motion or no-JS visitor never sees a faded/blank section.
       function initReveal() {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) return;
+        document.querySelector('.premium')?.classList.add('reveal-armed');
         const els = document.querySelectorAll('.premium [data-reveal]:not(.is-visible)');
         if (!els.length) return;
         const io = new IntersectionObserver(

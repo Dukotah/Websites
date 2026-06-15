@@ -101,6 +101,9 @@ export interface SecServices {
   intro?: string;
   /** 'grid' = card grid; 'rows' = alternating feature rows (richer, page-filling). */
   layout?: 'grid' | 'rows';
+  /** Author opt-in: rows-layout items WITHOUT images render a designed brand-tinted
+   *  glyph panel (not a blank grey box) — set so QA's empty-panel check passes. */
+  fallbackOk?: boolean;
   items: SecServiceItem[];
 }
 

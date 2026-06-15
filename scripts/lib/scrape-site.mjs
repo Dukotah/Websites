@@ -267,12 +267,13 @@ function extractTestimonials(html) {
   )) {
     consider(m[1]);
   }
-  // Rotate generic attributions — four identical "Verified customer" lines read
-  // as fabricated. Still honest (no invented names); just less template-looking.
-  const ATTRIB = ['Local customer', 'Happy customer', 'Returning customer', 'Satisfied customer'];
+  // Scraped reviews rarely carry a clean name. Rather than stamp a fabricated-
+  // looking "Yelp reviewer" / "Happy customer" attribution, leave the author
+  // EMPTY — the component renders an unattributed quote (no fake byline), and the
+  // copy-sanity guard keeps only substantive (>=60 char) unattributed quotes.
   return dedupeCI(quotes)
     .slice(0, 4)
-    .map((quote, i) => ({ quote, author: ATTRIB[i % ATTRIB.length] }));
+    .map((quote) => ({ quote, author: '' }));
 }
 
 // Many builder CDNs (GoDaddy/wsimg, Wix, Squarespace, Cloudinary, Shopify)

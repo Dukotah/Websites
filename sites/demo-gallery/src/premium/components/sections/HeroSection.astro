@@ -15,9 +15,13 @@ interface Props {
   data: SecHero;
   config: PremiumConfig;
 }
-const { data } = Astro.props;
+const { data, config } = Astro.props;
 
 const img = data.image;
+// Oversized monogram watermark for the photo-less editorial hero — gives a
+// deliberate, composed visual weight (brand-tinted, decorative) instead of a
+// bare type block. First letter of the business name.
+const monogram = (config?.name || '').trim().charAt(0).toUpperCase();
 // No image ⇒ editorial regardless of what was requested.
 const variant: NonNullable<SecHero['variant']> = !img
   ? 'editorial'
@@ -36,8 +40,14 @@ const isEditorial = !isFullbleed && !isSplit;
 ---
 
 <section
-  class:list={['p-hero', `p-hero--${variant}`, { 'section--ink': isFullbleed }]}
+  class:list={['p-hero', `p-hero--${variant}`, { 'section--ink': isFullbleed, 'p-hero--editorial-solo': isEditorial && !img }]}
 >
+  {isEditorial && !img && monogram && (
+    <div class="p-hero__wm" aria-hidden="true">
+      <span class="p-hero__wm-mono">{monogram}</span>
+    </div>
+  )}
+
   {isFullbleed && img && (
     <div class="p-hero__bg" aria-hidden="true">
       <SiteImage
@@ -195,6 +205,38 @@ const isEditorial = !isFullbleed && !isSplit;
 
   /* ---- Editorial: type-forward, optional smaller aside photo ------------ */
   .p-hero--editorial .p-hero__heading { max-width: 18ch; }
+
+  /* Photo-less editorial hero: a deliberate, composed treatment — a subtle
+     brand-tinted gradient panel + an oversized monogram watermark behind the
+     type — so a hero with no real photo still has visual weight (not a bare
+     block). Token-driven + decorative (aria-hidden). */
+  .p-hero--editorial-solo {
+    background:
+      radial-gradient(60rem 38rem at 88% -10%, color-mix(in srgb, var(--p-primary) 12%, transparent), transparent 60%),
+      linear-gradient(180deg, var(--p-paper) 0%, var(--p-paper-deep) 100%);
+  }
+  .p-hero__wm {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .p-hero__wm-mono {
+    font-family: var(--p-font-display);
+    font-weight: 800;
+    font-size: clamp(20rem, 14rem + 28vw, 44rem);
+    line-height: 0.7;
+    letter-spacing: -0.06em;
+    color: var(--p-primary);
+    opacity: 0.06;
+    transform: translateX(12%);
+    user-select: none;
+  }
+  .p-hero--editorial-solo .p-hero__inner { position: relative; z-index: 1; }
   .p-hero--editorial .p-hero__inner:has(.p-hero__aside) {
     display: grid;
     grid-template-columns: 1.3fr 0.7fr;

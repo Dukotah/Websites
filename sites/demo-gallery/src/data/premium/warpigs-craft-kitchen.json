@@ -153,12 +153,7 @@
           },
           "items": [
             {
-              "quote": "Awesome brisket! Great pulled pork!",
-              "author": "Yelp reviewer"
-            },
-            {
-              "quote": "The bbq pork sandwich was perfect. The sides are great as well.",
-              "author": "Yelp reviewer"
+              "quote": "The bbq pork sandwich was perfect. The sides are great as well."
             }
           ]
         },
@@ -224,6 +219,7 @@
           "kind": "services",
           "heading": "On the menu",
           "layout": "rows",
+          "fallbackOk": true,
           "items": [
             {
               "title": "12-Hour Smoked Pulled Pork Sandwich",
