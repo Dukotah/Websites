@@ -36,7 +36,7 @@
       "sections": [
         {
           "kind": "hero",
-          "variant": "fullbleed",
+          "variant": "split",
           "eyebrow": "Santa Rosa, CA",
           "heading": "Joon Hair — Salon you can count on",
           "subheading": "Welcome to Joon Hair, a beautiful salon in the heart of historic downtown Santa Rosa. Our name “Joon”, is a Persian term of endearment meaning “soul” and “beloved” — a reflection of the warmth",
@@ -51,8 +51,8 @@
           },
           "image": {
             "src": "/images/joon-hair/hero.webp",
-            "alt": "Joon Hair in Santa Rosa, CA",
-            "focal": "50% 40%"
+            "alt": "Stylist at Joon Hair in Santa Rosa, CA",
+            "focal": "50% 30%"
           }
         },
         {
@@ -75,10 +75,6 @@
           "heading": "Inside Joon Hair",
           "images": [
             {
-              "src": "/images/joon-hair/photo-3.webp",
-              "alt": "Joon Hair — photo 1"
-            },
-            {
               "src": "/images/joon-hair/photo-6.webp",
               "alt": "Joon Hair — photo 2"
             },
@@ -89,10 +85,6 @@
             {
               "src": "/images/joon-hair/photo-7.webp",
               "alt": "Joon Hair — photo 4"
-            },
-            {
-              "src": "/images/joon-hair/photo-5.webp",
-              "alt": "Joon Hair — photo 5"
             },
             {
               "src": "/images/joon-hair/photo-8.webp",
@@ -122,11 +114,16 @@
       "sections": [
         {
           "kind": "hero",
-          "variant": "editorial",
+          "variant": "split",
           "eyebrow": "About Joon Hair",
           "heading": "About Joon Hair",
           "subheading": "Welcome to Joon Hair, a beautiful salon in the heart of historic downtown Santa Rosa. Our name “Joon”, is a Persian term of endearment meaning “soul” and “beloved” — a reflection",
-          "motif": "/images/library/salon/motif.svg"
+          "motif": "/images/library/salon/motif.svg",
+          "image": {
+            "src": "/images/joon-hair/hero.webp",
+            "alt": "Stylist at Joon Hair in Santa Rosa, CA",
+            "focal": "50% 30%"
+          }
         },
         {
           "kind": "story",
@@ -147,10 +144,6 @@
           "eyebrow": "A closer look",
           "heading": "Where you'll find us",
           "images": [
-            {
-              "src": "/images/joon-hair/photo-3.webp",
-              "alt": "Joon Hair — photo 1"
-            },
             {
               "src": "/images/joon-hair/photo-6.webp",
               "alt": "Joon Hair — photo 2"
