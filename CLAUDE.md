@@ -7,12 +7,24 @@ find photos, and launch them so the user gets live demo links to email.
 
 ## Repo shape (what matters)
 
-- `sites/demo-gallery/` — ONE Astro app that renders every outreach prospect at
-  `/p/<slug>`. One deploy hosts all demos. This is where batch outreach sites go.
+- `sites/demo-gallery/` — ONE Astro app that renders every outreach prospect.
+  The CURRENT system authors **premium, multi-page** sites at `/s/<slug>` from
+  `src/data/premium/<slug>.json` (schema `src/premium/lib/premium-types.ts`,
+  validator `scripts/premium-validate.mjs`). The LEGACY single-page system at
+  `/p/<slug>` (from `src/data/prospects/<slug>.json`) still renders but is no
+  longer the build target. One deploy hosts all demos.
 - `sites/<business>/` — standalone one-off sites (paying clients), each its own
   Vercel project. Scaffolded with `npm run new-site`.
 - `sites/_template/` — the starter a standalone site is copied from.
-- `scripts/generate-prospects.mjs` — CSV → prospect sites (the factory, key-free).
+- `scripts/generate.mjs` — CSV → **premium multi-page** sites (the factory entry,
+  `npm run generate`). Reuses the facts + photo layers from
+  `generate-prospects.mjs` unchanged; the premium author is `scripts/author-premium.mjs`,
+  which emits `src/data/premium/<slug>.json` rendering at `/s/<slug>`. Brand seed
+  (color + fontId) is picked deterministically in `scripts/lib/brand-seed.mjs`.
+- `scripts/generate-prospects.mjs` — LEGACY single-page builder + the shared
+  facts/photo layer the premium author imports (`loadResearch`,
+  `enrichmentFromResearch`, `acquireMediaFor`, `deriveStatus`, `normCat`).
+  `npm run generate-prospects` now warns + forwards to `generate` (one release).
 - `scripts/lib/photos.mjs` — Wikimedia Commons photo fetch (free, no key).
 - `scripts/build-image-library.mjs` — regenerates the built-in fallback art.
 - `data/` — input CSVs and the generated `outreach-links.json` manifest.
@@ -91,12 +103,15 @@ No keys, no external setup beyond the one-time Vercel connection. Do this:
    > tiers 2–3. Never invent that a photo is theirs when it isn't.
 
 4. **Build each site — bespoke, not a filled-in template.** Two paths, same bar:
-   - **Bulk scaffold (research-driven):** `npm run generate-prospects -- data/<file>.csv`.
-     With a `website` column it scrapes each business's real facts + photos,
-     writes copy from them, varies the `layout`, emits depth `sections`, and
-     flags weak sites `needs-review`.
-   - **Custom:** write `sites/demo-gallery/src/data/prospects/<slug>.json`
-     directly (schema = `src/types.ts`).
+   - **Bulk (research-driven, PREMIUM):** `npm run generate -- data/<file>.csv`.
+     With a `website` column (or a `data/research/<slug>.json` file) it gathers
+     each business's real facts + photos, then `scripts/author-premium.mjs` writes
+     a multi-page `PremiumConfig` to `sites/demo-gallery/src/data/premium/<slug>.json`
+     (rendered at `/s/<slug>`), picks a deterministic brand seed (color + fontId),
+     runs `premium-validate` as a gate, and flags weak sites `needs-review`.
+   - **Custom:** write `sites/demo-gallery/src/data/premium/<slug>.json`
+     directly (schema = `src/premium/lib/premium-types.ts`); validate with
+     `npm run premium-validate`.
    Either way, every site must:
    - **Pick a `design` kit** (font): `bold` (Oswald — towing/auto/trades),
      `elegant` (Fraunces — winery/cafe/salon), or `clean` (Inter).
@@ -196,7 +211,7 @@ repurpose these:**
 |---|---|---|
 | `name` | business name | the join key (`previewKey(name)` match) |
 | `slug` | stable demo id | preview link + thumbnail path |
-| `link` | `https://demos.copperbaytech.com/p/<slug>` | the URL emailed to the prospect |
+| `link` | `https://demos.copperbaytech.com/s/<slug>` | the URL emailed to the prospect (premium multi-page) |
 | `status` | `ready` \| `needs_review` \| `needs-review` | **the send gate** — both spellings are honored; keep them |
 | `email`, `category`, `area`, `thumbnailUrl` | lead enrichment | the CRM lead card |
 

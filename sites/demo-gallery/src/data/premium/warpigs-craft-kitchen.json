@@ -2,10 +2,10 @@
   "slug": "warpigs-craft-kitchen",
   "name": "WarPigs Craft Kitchen",
   "legalName": "WarPigs Craft Kitchen",
-  "tagline": "Slow-smoked craft BBQ from Sonoma County.",
-  "seoDescription": "WarPigs Craft Kitchen in Cotati, CA serves 12-hour smoked meats, scratch-made sides, and full-service catering rooted in Modern Americana comfort food. Pitmaster Larry Hillix has smoked craft barbecue since 2011.",
+  "tagline": "Slow-smoked craft BBQ from Sonoma County",
+  "seoDescription": "WarPigs Craft Kitchen in Cotati, CA serves 12-hour smoked meats, scratch-made sides, and full-service catering rooted in Modern Americana comfort food.",
   "category": "restaurant",
-  "categoryLabel": "Craft BBQ Kitchen",
+  "categoryLabel": "Restaurant",
   "area": "Cotati, CA",
   "city": "Cotati",
   "state": "CA",
@@ -20,17 +20,28 @@
     "instagram": "https://www.instagram.com/warpigs_craft_kitchen/"
   },
   "hours": [
-    { "day": "Mon–Sun", "hours": "11:30am – 8:00pm" }
+    {
+      "day": "Mon–Sun",
+      "hours": "11:30am–8pm"
+    }
   ],
-  "rating": { "value": 4.5, "count": 22, "source": "Yelp" },
+  "rating": {
+    "value": 4.5,
+    "count": 22,
+    "source": "Yelp"
+  },
   "priceRange": "$$",
-  "brand": { "color": "#B0341D", "fontId": "rugged-slab" },
+  "brand": {
+    "color": "#9c3b2e",
+    "fontId": "handcrafted"
+  },
   "images": {
     "hero": "/images/warpigs-craft-kitchen/hero.webp",
-    "heroAlt": "Slow-smoked craft BBQ from WarPigs Craft Kitchen in Cotati"
+    "heroAlt": "WarPigs Craft Kitchen in Cotati, CA"
   },
-  "outreach": { "published": false },
-  "status": "ready",
+  "outreach": {
+    "published": false
+  },
   "pages": [
     {
       "slug": "home",
@@ -39,82 +50,161 @@
         {
           "kind": "hero",
           "variant": "split",
-          "eyebrow": "Cotati, CA · Smoking since 2011",
-          "heading": "12-hour smoked meats, made the hard way",
-          "subheading": "Pitmaster Larry Hillix has been slow-smoking craft barbecue for Sonoma County since 2011 — real bark, scratch-made sides, and sauces built from his own blend of spices and rubs.",
-          "badges": ["Smoked low & slow since 2011", "4.5★ on Yelp", "Full-service catering"],
-          "primaryCta": { "label": "See the menu", "href": "/s/warpigs-craft-kitchen/menu" },
-          "secondaryCta": { "label": "Book catering", "href": "/s/warpigs-craft-kitchen/contact" },
-          "image": { "src": "/images/warpigs-craft-kitchen/hero.webp", "alt": "Slow-smoked craft BBQ from WarPigs Craft Kitchen", "focal": "50% 45%" }
+          "eyebrow": "Cotati, CA · Est. 2011",
+          "heading": "12-Hour Smoked Meats, Made the Hard Way",
+          "subheading": "Pitmaster Larry Hillix has been slow-smoking craft barbecue for Sonoma County since 2011.",
+          "badges": [
+            "Serving since 2011",
+            "4.5★ from 22 reviews",
+            "Smoked low and slow up to 12 hours"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/warpigs-craft-kitchen/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/warpigs-craft-kitchen/menu"
+          },
+          "image": {
+            "src": "/images/warpigs-craft-kitchen/hero.webp",
+            "alt": "WarPigs Craft Kitchen in Cotati, CA",
+            "focal": "50% 40%"
+          }
         },
         {
           "kind": "stats",
           "tone": "ink",
           "items": [
-            { "value": "2011", "label": "Smoking Sonoma County since" },
-            { "value": "12 hrs", "label": "Low and slow on the smoker" },
-            { "value": "4.5★", "label": "22 Yelp reviews" },
-            { "value": "$$", "label": "Craft BBQ, fairly priced" }
+            {
+              "value": "15+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.5★",
+              "label": "22 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
           ]
         },
         {
           "kind": "story",
           "eyebrow": "Our story",
-          "heading": "Precision and quality, around the grill",
+          "heading": "About WarPigs Craft Kitchen",
           "body": [
-            "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for WarPigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park of G's Slow Smoked BBQ. The idea was simple: pair real precision and quality with the familiar flavors of hanging out with family around the grill.",
-            "Today WarPigs is a Northern California craft kitchen drawing on classic American comfort food, Southern smokehouse tradition, and seasonal California ingredients — meats smoked low and slow up to twelve hours, sides made from scratch, and sauces poured by hand."
+            "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for War Pigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park of G's Slow Smoked BBQ. The idea was simple: pair real precision and quality with the familiar flavors of hanging out with family around the grill.",
+            "Today WarPigs is a Northern California craft kitchen drawing on classic American comfort food, Southern smokehouse tradition, and seasonal California ingredients. Beyond the kitchen they cater corporate events, weddings, and private gatherings, and regularly host pop-ups with local breweries, wineries, and community venues."
           ],
           "highlights": [
             "Smoked low and slow up to 12 hours",
             "Scratch-made sides and house sauces",
-            "Special blend of spices and rubs",
+            "Full-service catering for weddings & events",
             "Sonoma County pop-ups & brewery collabs"
           ],
-          "image": { "src": "/images/warpigs-craft-kitchen/story.webp", "alt": "Inside the WarPigs craft kitchen", "focal": "50% 50%" }
+          "image": {
+            "src": "/images/warpigs-craft-kitchen/story.webp",
+            "alt": "Inside WarPigs Craft Kitchen",
+            "focal": "50% 50%"
+          }
         },
         {
           "kind": "services",
           "eyebrow": "On the menu",
-          "heading": "Built around the smoker",
-          "intro": "Everything starts with the pit — pulled pork, brisket, ribs, and wings, then piled high or plated with sides made from scratch.",
+          "heading": "On the menu",
           "layout": "grid",
           "items": [
-            { "title": "12-Hour Smoked Pulled Pork Sandwich", "description": "Crispy pork bark and velvety shreds on toasted brioche, finished with tangy red sauce." },
-            { "title": "Dirty Fries", "description": "Fries piled with cheese, BBQ sauce, pulled pork, and coleslaw." },
-            { "title": "Smoked Meats", "description": "Brisket, ribs, smoked chicken wings, and house-made sausage." },
-            { "title": "Scratch-Made Sides", "description": "Fried Brussels sprouts, onion rings, and house coleslaw." },
-            { "title": "Full-Service Catering", "description": "Custom menus for weddings, corporate events, and private gatherings across Sonoma County." }
+            {
+              "title": "12-Hour Smoked Pulled Pork Sandwich",
+              "description": "Crispy pork bark and velvety shreds on toasted brioche, finished with tangy red sauce."
+            },
+            {
+              "title": "Dirty Fries",
+              "description": "Fries piled with cheese, BBQ sauce, pulled pork, and coleslaw."
+            },
+            {
+              "title": "Smoked Meats",
+              "description": "Brisket, ribs, smoked chicken wings, and house-made sausage."
+            },
+            {
+              "title": "Scratch-Made Sides",
+              "description": "Fried Brussels sprouts, onion rings, and house coleslaw."
+            },
+            {
+              "title": "Full-Service Catering",
+              "description": "Custom menus for weddings, corporate events, and private gatherings across Sonoma County."
+            }
           ]
         },
         {
           "kind": "testimonials",
-          "eyebrow": "From the regulars",
-          "heading": "What folks are saying",
-          "rating": { "value": 4.5, "count": 22, "source": "Yelp" },
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "rating": {
+            "value": 4.5,
+            "count": 22,
+            "source": "Yelp"
+          },
           "items": [
-            { "quote": "Awesome brisket! Great pulled pork!", "author": "Yelp reviewer" },
-            { "quote": "The bbq pork sandwich was perfect. The sides are great as well.", "author": "Yelp reviewer" }
+            {
+              "quote": "Awesome brisket! Great pulled pork!",
+              "author": "Yelp reviewer"
+            },
+            {
+              "quote": "The bbq pork sandwich was perfect. The sides are great as well.",
+              "author": "Yelp reviewer"
+            }
           ]
         },
         {
           "kind": "gallery",
-          "eyebrow": "Off the pit",
-          "heading": "A little smoke, a lot of flavor",
+          "eyebrow": "A closer look",
+          "heading": "Inside WarPigs Craft Kitchen",
           "images": [
-            { "src": "/images/warpigs-craft-kitchen/photo-2.webp", "alt": "Smoked meats from WarPigs Craft Kitchen" },
-            { "src": "/images/warpigs-craft-kitchen/photo-3.webp", "alt": "WarPigs craft BBQ plate" },
-            { "src": "/images/warpigs-craft-kitchen/photo-4.webp", "alt": "Scratch-made BBQ sides" },
-            { "src": "/images/warpigs-craft-kitchen/photo-5.webp", "alt": "WarPigs smoked BBQ" },
-            { "src": "/images/warpigs-craft-kitchen/photo-6.webp", "alt": "WarPigs craft kitchen fare" }
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-2.webp",
+              "alt": "WarPigs Craft Kitchen — photo 1"
+            },
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-3.webp",
+              "alt": "WarPigs Craft Kitchen — photo 2"
+            },
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-4.webp",
+              "alt": "WarPigs Craft Kitchen — photo 3"
+            },
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-5.webp",
+              "alt": "WarPigs Craft Kitchen — photo 4"
+            },
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-6.webp",
+              "alt": "WarPigs Craft Kitchen — photo 5"
+            },
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-7.webp",
+              "alt": "WarPigs Craft Kitchen — photo 6"
+            }
           ]
         },
         {
           "kind": "cta",
           "heading": "Hungry yet?",
-          "body": "Come by 8492 Gravenstein Hwy in Cotati, or call us to cater your next event. We'll bring the smoke.",
-          "primaryCta": { "label": "See the menu", "href": "/s/warpigs-craft-kitchen/menu" },
-          "secondaryCta": { "label": "Call (707) 508-5551", "href": "tel:+17075085551" }
+          "body": "Find us at 8492 Gravenstein Hwy, Cotati, CA. Call (707) 508-5551 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/warpigs-craft-kitchen/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 508-5551",
+            "href": "tel:+17075085551"
+          }
         }
       ]
     },
@@ -127,38 +217,71 @@
           "kind": "hero",
           "variant": "editorial",
           "eyebrow": "On the menu",
-          "heading": "Smoked low, served high",
-          "subheading": "Twelve hours on the pit, scratch-made sides, and house sauces — plus full-service catering for whatever you're throwing."
+          "heading": "What we’re serving",
+          "subheading": "Pitmaster Larry Hillix has been slow-smoking craft barbecue for Sonoma County since 2011."
         },
         {
           "kind": "services",
-          "heading": "What we're serving",
+          "heading": "On the menu",
           "layout": "rows",
           "items": [
-            { "title": "12-Hour Smoked Pulled Pork Sandwich", "description": "Our signature. Pork smoked low and slow for twelve hours, hand-pulled into crispy bark and velvety shreds, stacked on toasted brioche and finished with a tangy red sauce. The sandwich the regulars come back for." },
-            { "title": "Dirty Fries", "description": "A pile of fries loaded with cheese, BBQ sauce, pulled pork, and coleslaw — half side, half meal, all the smokehouse in one basket." },
-            { "title": "Smoked Meats", "description": "Brisket, ribs, smoked chicken wings, and house-made sausage off the pit. Tender, bark-edged, and built on our own blend of spices and rubs." },
-            { "title": "Scratch-Made Sides", "description": "Fried Brussels sprouts, onion rings, and house coleslaw — made from scratch to stand up to the smoke, not hide behind it." },
-            { "title": "Full-Service Catering", "description": "Custom menus for weddings, corporate events, and private gatherings across Sonoma County. We bring the smoker, the spread, and the crew — you bring the guests." }
+            {
+              "title": "12-Hour Smoked Pulled Pork Sandwich",
+              "description": "Crispy pork bark and velvety shreds on toasted brioche, finished with tangy red sauce."
+            },
+            {
+              "title": "Dirty Fries",
+              "description": "Fries piled with cheese, BBQ sauce, pulled pork, and coleslaw."
+            },
+            {
+              "title": "Smoked Meats",
+              "description": "Brisket, ribs, smoked chicken wings, and house-made sausage."
+            },
+            {
+              "title": "Scratch-Made Sides",
+              "description": "Fried Brussels sprouts, onion rings, and house coleslaw."
+            },
+            {
+              "title": "Full-Service Catering",
+              "description": "Custom menus for weddings, corporate events, and private gatherings across Sonoma County."
+            }
           ]
         },
         {
           "kind": "faq",
           "eyebrow": "Good to know",
-          "heading": "Before you come by",
+          "heading": "Common questions",
           "items": [
-            { "q": "Where are you located?", "a": "We're at 8492 Gravenstein Hwy in Cotati, CA, serving Sonoma County craft BBQ." },
-            { "q": "What are your hours?", "a": "We're open seven days a week, 11:30am to 8:00pm." },
-            { "q": "Do you cater events?", "a": "We do — full-service catering with custom menus for weddings, corporate events, and private gatherings across Sonoma County. Call (707) 508-5551 to plan yours." },
-            { "q": "Do you do pop-ups?", "a": "Yes. WarPigs regularly hosts pop-ups and collaborations with local breweries, wineries, and community venues — follow us on Instagram and Facebook for where we'll be next." }
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 8492 Gravenstein Hwy, Cotati, CA."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Sun: 11:30am–8pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Cotati, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 508-5551 — we're glad to help."
+            }
           ]
         },
         {
           "kind": "cta",
-          "heading": "Plan a catering spread",
-          "body": "Weddings, company parties, backyard blowouts — tell us the crowd and we'll build the menu.",
-          "primaryCta": { "label": "Book catering", "href": "/s/warpigs-craft-kitchen/contact" },
-          "secondaryCta": { "label": "Call (707) 508-5551", "href": "tel:+17075085551" }
+          "heading": "Hungry yet?",
+          "body": "Find us at 8492 Gravenstein Hwy, Cotati, CA. Call (707) 508-5551 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/warpigs-craft-kitchen/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 508-5551",
+            "href": "tel:+17075085551"
+          }
         }
       ]
     },
@@ -171,50 +294,81 @@
           "kind": "hero",
           "variant": "editorial",
           "eyebrow": "About WarPigs Craft Kitchen",
-          "heading": "A Sonoma County craft kitchen, built on smoke",
-          "subheading": "Real precision and quality, paired with the familiar flavors of hanging out with family around the grill."
+          "heading": "About WarPigs Craft Kitchen",
+          "subheading": "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for War Pigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park"
         },
         {
           "kind": "story",
           "eyebrow": "Our story",
-          "heading": "Larry Hillix & the WarPigs pit",
+          "heading": "About WarPigs Craft Kitchen",
           "body": [
-            "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for WarPigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park of G's Slow Smoked BBQ. The idea was simple: pair real precision and quality with the familiar flavors of hanging out with family around the grill.",
+            "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for War Pigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park of G's Slow Smoked BBQ. The idea was simple: pair real precision and quality with the familiar flavors of hanging out with family around the grill.",
             "Today WarPigs is a Northern California craft kitchen drawing on classic American comfort food, Southern smokehouse tradition, and seasonal California ingredients. Beyond the kitchen they cater corporate events, weddings, and private gatherings, and regularly host pop-ups with local breweries, wineries, and community venues."
           ],
           "highlights": [
-            "Pitmaster Larry Hillix smoking since 2011",
             "Smoked low and slow up to 12 hours",
+            "Scratch-made sides and house sauces",
             "Full-service catering for weddings & events",
             "Sonoma County pop-ups & brewery collabs"
           ],
-          "image": { "src": "/images/warpigs-craft-kitchen/photo-7.webp", "alt": "WarPigs Craft Kitchen barbecue", "focal": "50% 50%" }
+          "image": {
+            "src": "/images/warpigs-craft-kitchen/story.webp",
+            "alt": "Inside WarPigs Craft Kitchen",
+            "focal": "50% 50%"
+          }
         },
         {
           "kind": "stats",
           "tone": "ink",
-          "heading": "Smoking Sonoma County since 2011",
           "items": [
-            { "value": "2011", "label": "Serving Sonoma County since" },
-            { "value": "12 hrs", "label": "Low and slow on the pit" },
-            { "value": "4.5★", "label": "22 Yelp reviews" }
+            {
+              "value": "15+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.5★",
+              "label": "22 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
           ]
         },
         {
           "kind": "gallery",
-          "eyebrow": "Off the pit",
-          "heading": "What comes out of the smoke",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
           "images": [
-            { "src": "/images/warpigs-craft-kitchen/photo-2.webp", "alt": "Smoked meats from WarPigs" },
-            { "src": "/images/warpigs-craft-kitchen/photo-5.webp", "alt": "WarPigs craft BBQ" },
-            { "src": "/images/warpigs-craft-kitchen/photo-6.webp", "alt": "WarPigs smokehouse fare" },
-            { "src": "/images/warpigs-craft-kitchen/photo-8.webp", "alt": "WarPigs Craft Kitchen plate" }
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-2.webp",
+              "alt": "WarPigs Craft Kitchen — photo 1"
+            },
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-3.webp",
+              "alt": "WarPigs Craft Kitchen — photo 2"
+            },
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-4.webp",
+              "alt": "WarPigs Craft Kitchen — photo 3"
+            },
+            {
+              "src": "/images/warpigs-craft-kitchen/photo-5.webp",
+              "alt": "WarPigs Craft Kitchen — photo 4"
+            }
           ]
         },
         {
           "kind": "cta",
-          "heading": "Come hang around the grill",
-          "primaryCta": { "label": "Get in touch", "href": "/s/warpigs-craft-kitchen/contact" }
+          "heading": "Come see WarPigs Craft Kitchen",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/warpigs-craft-kitchen/contact"
+          }
         }
       ]
     },
@@ -226,12 +380,16 @@
         {
           "kind": "contact",
           "eyebrow": "Get in touch",
-          "heading": "Come by, or book us to cater",
-          "blurb": "Find us at 8492 Gravenstein Hwy in Cotati, open seven days a week. Planning an event? Call or send a note and we'll build you a menu.",
+          "heading": "Get in touch",
+          "blurb": "Reach WarPigs Craft Kitchen at 8492 Gravenstein Hwy, Cotati, CA or call (707) 508-5551.",
           "showMap": true,
           "showHours": true
         }
       ]
     }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually"
   ]
 }

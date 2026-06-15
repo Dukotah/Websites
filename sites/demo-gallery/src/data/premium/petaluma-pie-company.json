@@ -1,0 +1,255 @@
+{
+  "slug": "petaluma-pie-company",
+  "name": "Petaluma Pie Company",
+  "legalName": "Petaluma Pie Company",
+  "tagline": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic",
+  "seoDescription": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients",
+  "category": "cafe",
+  "categoryLabel": "Cafe",
+  "area": "Petaluma, CA",
+  "city": "Petaluma",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "17077666743",
+    "email": "pie@petalumapie.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/petalumapiecompany/",
+    "instagram": "https://www.instagram.com/petalumapie/"
+  },
+  "brand": {
+    "color": "#b5572f",
+    "fontId": "handcrafted"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Petaluma, CA",
+          "heading": "Petaluma Pie Company — Cafe you can count on",
+          "subheading": "Notify me when this product is available: Notify me when this product is available:",
+          "badges": [],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/petaluma-pie-company/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/petaluma-pie-company/menu"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Petaluma Pie Company",
+          "body": [
+            "Notify me when this product is available: Notify me when this product is available:",
+            "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
+          ],
+          "image": {
+            "src": "/images/petaluma-pie-company/story.jpg",
+            "alt": "Inside Petaluma Pie Company",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Weddings And Catering",
+              "description": "Weddings And Catering handled with care, right here in Petaluma, CA."
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Petaluma Pie Company",
+          "images": [
+            {
+              "src": "/images/petaluma-pie-company/photo-2.jpg",
+              "alt": "Petaluma Pie Company — photo 1"
+            },
+            {
+              "src": "/images/petaluma-pie-company/photo-3.jpg",
+              "alt": "Petaluma Pie Company — photo 2"
+            },
+            {
+              "src": "/images/petaluma-pie-company/photo-4.jpg",
+              "alt": "Petaluma Pie Company — photo 3"
+            },
+            {
+              "src": "/images/petaluma-pie-company/photo-5.jpg",
+              "alt": "Petaluma Pie Company — photo 4"
+            },
+            {
+              "src": "/images/petaluma-pie-company/photo-6.jpg",
+              "alt": "Petaluma Pie Company — photo 5"
+            },
+            {
+              "src": "/images/petaluma-pie-company/photo-7.webp",
+              "alt": "Petaluma Pie Company — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call 17077666743 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/petaluma-pie-company/contact"
+          },
+          "secondaryCta": {
+            "label": "Call 17077666743",
+            "href": "tel:+17077666743"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Notify me when this product is available: Notify me when this product is available:"
+        },
+        {
+          "kind": "services",
+          "heading": "What we’re serving",
+          "layout": "rows",
+          "items": [
+            {
+              "title": "Weddings And Catering",
+              "description": "Weddings And Catering handled with care, right here in Petaluma, CA."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Petaluma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at 17077666743 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call 17077666743 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/petaluma-pie-company/contact"
+          },
+          "secondaryCta": {
+            "label": "Call 17077666743",
+            "href": "tel:+17077666743"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Petaluma Pie Company",
+          "heading": "About Petaluma Pie Company",
+          "subheading": "Notify me when this product is available: Notify me when this product is available:"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Petaluma Pie Company",
+          "body": [
+            "Notify me when this product is available: Notify me when this product is available:",
+            "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
+          ],
+          "image": {
+            "src": "/images/petaluma-pie-company/story.jpg",
+            "alt": "Inside Petaluma Pie Company",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/petaluma-pie-company/photo-2.jpg",
+              "alt": "Petaluma Pie Company — photo 1"
+            },
+            {
+              "src": "/images/petaluma-pie-company/photo-3.jpg",
+              "alt": "Petaluma Pie Company — photo 2"
+            },
+            {
+              "src": "/images/petaluma-pie-company/photo-4.jpg",
+              "alt": "Petaluma Pie Company — photo 3"
+            },
+            {
+              "src": "/images/petaluma-pie-company/photo-5.jpg",
+              "alt": "Petaluma Pie Company — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Petaluma Pie Company",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/petaluma-pie-company/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Petaluma Pie Company or call 17077666743.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "hero photo below resolution floor — text hero used"
+  ]
+}
