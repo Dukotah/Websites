@@ -35,8 +35,8 @@
           "kind": "hero",
           "variant": "editorial",
           "eyebrow": "Petaluma, CA",
-          "heading": "Petaluma Pie Company — Cafe you can count on",
-          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat...",
+          "heading": "Handcrafted pies, baked in Petaluma",
+          "subheading": "A neighborhood pie shop and café in Petaluma, California.",
           "badges": [],
           "primaryCta": {
             "label": "See the menu",
@@ -57,7 +57,8 @@
           "eyebrow": "Our story",
           "heading": "About Petaluma Pie Company",
           "body": [
-            "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
+            "Petaluma Pie Company is a neighborhood pie shop and café in the heart of Petaluma, California, serving sweet and savory pies made by hand.",
+            "Stop in for a slice and a coffee, or order a whole pie for your next gathering."
           ],
           "image": {
             "src": "/images/petaluma-pie-company/story.jpg",
@@ -132,8 +133,8 @@
           "kind": "hero",
           "variant": "editorial",
           "eyebrow": "On the menu",
-          "heading": "What we’re serving",
-          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat...",
+          "heading": "Handcrafted pies, baked in Petaluma",
+          "subheading": "A neighborhood pie shop and café in Petaluma, California.",
           "motif": "/images/library/cafe/motif.svg"
         },
         {
@@ -186,8 +187,8 @@
           "kind": "hero",
           "variant": "editorial",
           "eyebrow": "About Petaluma Pie Company",
-          "heading": "About Petaluma Pie Company",
-          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat...",
+          "heading": "Handcrafted pies, baked in Petaluma",
+          "subheading": "A neighborhood pie shop and café in Petaluma, California.",
           "motif": "/images/library/cafe/motif.svg"
         },
         {
@@ -195,7 +196,8 @@
           "eyebrow": "Our story",
           "heading": "About Petaluma Pie Company",
           "body": [
-            "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
+            "Petaluma Pie Company is a neighborhood pie shop and café in the heart of Petaluma, California, serving sweet and savory pies made by hand.",
+            "Stop in for a slice and a coffee, or order a whole pie for your next gathering."
           ],
           "image": {
             "src": "/images/petaluma-pie-company/story.jpg",

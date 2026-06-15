@@ -30,6 +30,14 @@ export function sanitizeProse(str) {
   const t = String(str).replace(/\s+/g, ' ').trim();
   if (!t) return '';
   if (JUNK_RE.test(t)) return '';
+  // Scrape-truncation artifact: a string the scraper clipped mid-sentence ends
+  // in an ellipsis ("…" or "..."). That's a product/listing fragment, not real
+  // prose — the Petaluma hero-subheading bug ("…topped with a brown sugar and
+  // oat..."). Reject so the author falls back to clean constructed copy.
+  if (/(\.\.\.|…)\s*$/.test(t)) return '';
+  // Garbled scrape join ("local and or organic") — "and or" / "and/or" mid-prose
+  // is an artifact of stitching list fragments, never hand-written marketing copy.
+  if (/\band\s*\/?\s*or\b/i.test(t)) return '';
   // Duplicated-clause artifact: same clause repeated (e.g. "X: X:" or "X. X.").
   const clauses = t
     .split(/[:.]/)

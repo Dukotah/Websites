@@ -172,16 +172,19 @@ const isEditorial = !isFullbleed && !isSplit;
   .p-hero__inner { position: relative; z-index: 1; width: 100%; }
 
   /* ---- Content -----------------------------------------------------------*/
-  .p-hero__content { max-width: 46rem; }
+  .p-hero__content { max-width: min(46rem, 100%); min-width: 0; }
   .p-hero__heading {
     font-size: var(--p-text-hero);
     margin-top: var(--p-space-4);
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   .p-hero__sub {
     margin-top: var(--p-space-6);
     font-size: var(--p-text-lg);
     color: var(--p-ink-soft);
-    max-width: 52ch;
+    max-width: min(52ch, 100%);
+    overflow-wrap: break-word;
   }
   .p-hero__actions {
     display: flex;
