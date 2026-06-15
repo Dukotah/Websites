@@ -1,0 +1,58 @@
+{
+  "slug": "emj-builders",
+  "confirmed": true,
+  "established": "2005",
+  "tagline": "Santa Rosa custom homes, additions & remodels since 2005",
+  "seoDescription": "EMJ Builders is a Santa Rosa general contractor for custom homes, additions, kitchen and bath remodels, and renovations across Sonoma, Marin, and Napa counties. Owner-operated by Ethan Johnson. CA Lic. #862218.",
+  "heroHeading": "Custom homes, additions, and remodels built right in Sonoma County",
+  "heroSubheading": "Owner-operated Santa Rosa general contractor with 25+ years of building experience, serving Sonoma, Marin, and Napa counties.",
+  "highlights": [
+    "Licensed CA general contractor (Lic. #862218)",
+    "BBB A+ rated",
+    "Owner-operated, 25+ years of building experience",
+    "Serving Sonoma, Marin & Napa counties"
+  ],
+  "aboutHeading": "About EMJ Builders",
+  "aboutBody": [
+    "EMJ Builders is an owner-operated general contractor based in Santa Rosa, founded by Ethan Johnson in 2005. Ethan has spent more than 25 years in construction and has run EMJ Builders for nearly two decades, building a reputation across the North Bay for honest work and close attention to detail.",
+    "The team handles all phases of construction — from the foundation up to the finishing touches — including new custom homes, additions, kitchen and bath remodels, decks, and renovations large and small. They also take on insurance claim work, rebuilding homes after fire and flood damage. The goal on every project is simple: make sure the customer is completely satisfied when the job is done."
+  ],
+  "servicesHeading": "What we build",
+  "services": [
+    { "title": "Additions", "description": "Room additions and expansions that add the space your home needs, tied seamlessly into the existing structure." },
+    { "title": "Kitchen & Bath Remodels", "description": "Full kitchen and bathroom remodels with careful attention to detail and finish." },
+    { "title": "New Custom Homes", "description": "Ground-up custom home construction, from the foundation up to the final finishes." },
+    { "title": "Renovations", "description": "Renovations large and small that update and improve your existing home." },
+    { "title": "Decks & Outdoor", "description": "Decks and outdoor living projects built to last in the North Bay climate." },
+    { "title": "Damage Restoration", "description": "Fire and flood damage rebuilds and insurance claim work to put your home back together." }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "7:00 AM – 4:00 PM" },
+    { "day": "Sat–Sun", "hours": "Closed" }
+  ],
+  "testimonials": [],
+  "team": [
+    {
+      "name": "Ethan Johnson",
+      "role": "Owner & General Contractor",
+      "bio": "Ethan founded EMJ Builders in 2005 and has more than 25 years in the construction field. He prides himself on honesty and attention to detail, and personally stands behind the work on every job."
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/emjbuilders05/",
+    "instagram": "https://www.instagram.com/emjbuilders/"
+  },
+  "realPhotoUrls": [],
+  "notes": "Live site (emjbuilders.com) is a parked/lander placeholder — no real content or photos available there. Facts verified via BBB (A+, started 2005, Lic #862218, 9 employees, serves Sonoma/Marin/Napa), Yelp, BuildZoom, Angi, and Facebook (June 2026). Owner Ethan M Johnson. Phone (707) 890-5155; 2201 Bluebell Dr Ste H, Santa Rosa CA 95403. No verified review count or testimonial quotes found — testimonials intentionally left empty (do not fabricate). No business-owned photos available online — hero uses the editorial text variant rather than a wrong-subject stock photo.",
+  "_richness": 80,
+  "_source": "web-verified",
+  "_lead": {
+    "name": "EMJ Builders",
+    "category": "contractor",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 890-5155",
+    "address": "2201 Bluebell Dr, Ste H, Santa Rosa, CA 95403",
+    "owner": "Ethan Johnson"
+  }
+}

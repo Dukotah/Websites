@@ -1,0 +1,328 @@
+{
+  "slug": "soco-aerial-collective",
+  "name": "SoCo Aerial Collective",
+  "legalName": "SoCo Aerial Collective",
+  "tagline": "Passion. Power. Precision. Sonoma County aerial dance & fitness.",
+  "seoDescription": "SoCo Aerial Collective is a Sonoma County aerial arts studio offering aerial silks and lyra classes for all levels at Vertex Climbing Center in Santa Rosa",
+  "category": "fitness",
+  "categoryLabel": "Fitness",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "2017",
+  "contact": {
+    "phone": "(985) 285-3733",
+    "email": "",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/socoaerialcollective/",
+    "instagram": "https://www.instagram.com/socoaerial/",
+    "google": "https://g.page/socoaerialcollective?gm"
+  },
+  "brand": {
+    "color": "#d64f22",
+    "fontId": "bold-display"
+  },
+  "images": {
+    "hero": "/images/soco-aerial-collective/hero.webp",
+    "heroAlt": "A SoCo Aerial Collective student performing on aerial silks against an open sky"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Sebastopol, CA · Est. 2017",
+          "heading": "Find your strength in the air",
+          "subheading": "Aerial silks and lyra for every level, taught in small classes where students cheer each other on. Founded by Kristen Krup in 2017.",
+          "badges": [
+            "Founded 2017 by Kristen Krup",
+            "Small classes — capped at 6",
+            "All levels welcome"
+          ],
+          "primaryCta": {
+            "label": "See classes & pricing",
+            "href": "/s/soco-aerial-collective/services"
+          },
+          "secondaryCta": {
+            "label": "Get in touch",
+            "href": "/s/soco-aerial-collective/contact"
+          },
+          "image": {
+            "src": "/images/soco-aerial-collective/hero.webp",
+            "alt": "A SoCo Aerial Collective student performing on aerial silks against an open sky",
+            "focal": "50% 35%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Built for aerialists of every level",
+          "body": [
+            "Kristen Krup founded SoCo Aerial Collective in 2017 to share a craft she had already been studying for more than a decade. Her goal from day one was simple: build a space where anyone — first-timers and seasoned aerialists alike — could learn the art safely and feel genuinely encouraged.",
+            "That spirit is what students talk about most. Classes are kept small, capped at six, so every person gets real attention on the silks and lyra. The room fills with people of all levels cheering each other on, which is exactly the welcoming, supportive environment Kristen set out to create."
+          ],
+          "highlights": [
+            "Founded in 2017 by aerialist Kristen Krup",
+            "Small group classes — capped at 6 students",
+            "Welcoming all levels, from first-timers to advanced",
+            "Classes at Vertex Climbing Center in Santa Rosa"
+          ]
+        },
+        {
+          "kind": "team",
+          "eyebrow": "The people behind the work",
+          "heading": "Meet Kristen Krup",
+          "members": [
+            {
+              "name": "Kristen Krup",
+              "role": "Founder & Lead Instructor",
+              "bio": "Founded SoCo Aerial Collective in 2017 after more than a decade studying aerial arts. Known by her students as a patient, encouraging teacher and a skilled performer."
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Classes & lessons",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Group Aerial Silks Classes",
+              "description": "60-minute classes at Vertex Climbing Center in Santa Rosa, with focused warm-ups, conditioning, and cool-downs. Capped at six students. Drop-in $35, four-week series $120."
+            },
+            {
+              "title": "Aerial Lyra (Hoop)",
+              "description": "Work on the lyra alongside silks, building the fundamental body positions and control that aerial practice is built on."
+            },
+            {
+              "title": "Adult Classes — All Levels",
+              "description": "From Intro/Beginner through Level II and beyond (ages 12+). Come as a complete beginner or keep progressing your skills with experienced coaching."
+            },
+            {
+              "title": "Kids Classes (Ages 8–12)",
+              "description": "Level I/II and Intro/Level I classes built for young aerialists, with the same safe fundamentals and encouraging coaching."
+            },
+            {
+              "title": "Private Lessons",
+              "description": "Solo or small-group private lessons outdoors in Forestville, Sunday through Thursday. $75 for 60 minutes (up to two people), or $60 for a 45-minute beginner session. Virtual and video consults available too."
+            },
+            {
+              "title": "Performances & Consultation",
+              "description": "Aerial performances for events plus consultation services — get in touch to talk through what you have in mind."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why SoCo Aerial Collective",
+          "items": [
+            {
+              "title": "Founded by a working aerialist",
+              "body": "Kristen Krup started SoCo in 2017 after more than a decade on the silks, and still teaches the room herself.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Small classes, capped at six",
+              "body": "Every student gets real eyes-on coaching and hands-on spotting — never lost in a crowd.",
+              "icon": "shield"
+            },
+            {
+              "title": "Truly all levels welcome",
+              "body": "Walk in having never touched a silk, or keep progressing through Level II and beyond. Both belong here.",
+              "icon": "check"
+            },
+            {
+              "title": "Silks and lyra, kids and adults",
+              "body": "Programs for ages 8 and up on two apparatuses, taught at Vertex Climbing Center in Santa Rosa.",
+              "icon": "leaf"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "SoCo Aerial Collective is without a doubt my favorite aerial studio. Kristen is an amazing aerial silk teacher and has truly fostered a wonderful environment to come and learn aerial skills.",
+              "author": "SoCo Aerial student"
+            },
+            {
+              "quote": "The students are positive girls and women who all cheer each other on. Kristen is an amazing instructor and performer — I recommend SoCo to any and all.",
+              "author": "SoCo Aerial student"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come try your first class",
+          "body": "New to aerial or coming back to it, there’s a spot for you. Call (985) 285-3733 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/soco-aerial-collective/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (985) 285-3733",
+            "href": "tel:+19852853733"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Classes & lessons",
+          "heading": "Find the class that fits you",
+          "subheading": "Aerial silks and lyra for every level, taught in small classes where students cheer each other on. Founded by Kristen Krup in 2017.",
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Classes & lessons",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Group Aerial Silks Classes",
+              "description": "60-minute classes at Vertex Climbing Center in Santa Rosa, with focused warm-ups, conditioning, and cool-downs. Capped at six students. Drop-in $35, four-week series $120."
+            },
+            {
+              "title": "Aerial Lyra (Hoop)",
+              "description": "Work on the lyra alongside silks, building the fundamental body positions and control that aerial practice is built on."
+            },
+            {
+              "title": "Adult Classes — All Levels",
+              "description": "From Intro/Beginner through Level II and beyond (ages 12+). Come as a complete beginner or keep progressing your skills with experienced coaching."
+            },
+            {
+              "title": "Kids Classes (Ages 8–12)",
+              "description": "Level I/II and Intro/Level I classes built for young aerialists, with the same safe fundamentals and encouraging coaching."
+            },
+            {
+              "title": "Private Lessons",
+              "description": "Solo or small-group private lessons outdoors in Forestville, Sunday through Thursday. $75 for 60 minutes (up to two people), or $60 for a 45-minute beginner session. Virtual and video consults available too."
+            },
+            {
+              "title": "Performances & Consultation",
+              "description": "Aerial performances for events plus consultation services — get in touch to talk through what you have in mind."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (985) 285-3733 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready to get off the ground?",
+          "body": "Book a class or ask about private lessons. Call (985) 285-3733 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/soco-aerial-collective/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (985) 285-3733",
+            "href": "tel:+19852853733"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About SoCo Aerial Collective",
+          "heading": "Built for aerialists of every level",
+          "subheading": "Founded in 2017 by Kristen Krup — an aerialist with more than a decade on the silks — to teach the art safely, in a room that cheers you on.",
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Built for aerialists of every level",
+          "body": [
+            "Kristen Krup founded SoCo Aerial Collective in 2017 to share a craft she had already been studying for more than a decade. Her goal from day one was simple: build a space where anyone — first-timers and seasoned aerialists alike — could learn the art safely and feel genuinely encouraged.",
+            "That spirit is what students talk about most. Classes are kept small, capped at six, so every person gets real attention on the silks and lyra. The room fills with people of all levels cheering each other on, which is exactly the welcoming, supportive environment Kristen set out to create."
+          ],
+          "highlights": [
+            "Founded in 2017 by aerialist Kristen Krup",
+            "Small group classes — capped at 6 students",
+            "Welcoming all levels, from first-timers to advanced",
+            "Classes at Vertex Climbing Center in Santa Rosa"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "9+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see SoCo Aerial Collective",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/soco-aerial-collective/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach SoCo Aerial Collective or call (985) 285-3733.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "No email found — add a real email or contact form before sending",
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending"
+  ],
+  "photoSource": "agent-supplied"
+}

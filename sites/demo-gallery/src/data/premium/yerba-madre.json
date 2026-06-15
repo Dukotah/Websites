@@ -1,0 +1,354 @@
+{
+  "slug": "yerba-madre",
+  "name": "Yerba Madre",
+  "legalName": "Yerba Madre",
+  "tagline": "Organic yerba mate, brewed to regenerate the land",
+  "seoDescription": "Yerba Madre (formerly Guayakí) is a Sebastopol-based, certified B Corp brewing organic, fair-trade yerba mate from the Atlantic Forest. Get lifted. Stay lifted.",
+  "category": "cafe",
+  "categoryLabel": "Yerba Mate",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "1996",
+  "contact": {
+    "phone": "",
+    "email": "",
+    "address": ""
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/yerbamadre/"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#c2683a",
+    "fontId": "editorial-serif"
+  },
+  "images": {
+    "hero": "/images/yerba-madre/hero.jpg",
+    "heroAlt": "Sharing a gourd of yerba mate at sunset"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "fullbleed",
+          "eyebrow": "Sebastopol, CA · Est. 1996",
+          "heading": "Get lifted. Stay lifted.",
+          "subheading": "Organic, fair-trade yerba mate brewed from the naturally caffeinated leaves of the South American mate tree — the clean lift behind a thriving movement.",
+          "badges": [
+            "Certified B Corp",
+            "Organic & fair-trade",
+            "Sharing mate culture since 1996"
+          ],
+          "primaryCta": {
+            "label": "See the lineup",
+            "href": "/s/yerba-madre/menu"
+          },
+          "secondaryCta": {
+            "label": "Our story",
+            "href": "/s/yerba-madre/about"
+          },
+          "image": {
+            "src": "/images/yerba-madre/hero.jpg",
+            "alt": "Sharing a gourd of yerba mate at sunset",
+            "focal": "60% 40%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A mate movement, rooted in regeneration",
+          "body": [
+            "We began our journey in the mid-90s by sharing yerba mate culture across the USA. Brewed from the naturally caffeinated leaves of the mate tree native to South America, it's the clean, sustained lift that has fueled our community ever since.",
+            "For us, regeneration begins with the land. As a certified B Corp and registered Social Purpose Corporation, we source certified regenerative, organic, and fair-trade ingredients — and we've committed to planting 300,000 native trees across the Americas, starting in the Atlantic Forest where our yerba mate grows."
+          ],
+          "highlights": [
+            "Certified B Corp & Social Purpose Corporation",
+            "Certified regenerative, organic & fair-trade",
+            "300,000 native trees pledged across the Americas",
+            "Yerba mate sourced from the Atlantic Forest"
+          ],
+          "image": {
+            "src": "/images/yerba-madre/photo-5.jpg",
+            "alt": "The founders in the early days, among bales of yerba mate",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "Brewed and canned, ready to go",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Sparkling Yerba Mate",
+              "description": "Lightly carbonated cans in bright flavors like Grapefruit Ginger and Tropical Uprising — an easy, refreshing way to get lifted."
+            },
+            {
+              "title": "Non-Carbonated Cans",
+              "description": "Smooth, brewed yerba mate in flavors like Mango Fuego and Orange Exotic, for a clean lift without the fizz."
+            },
+            {
+              "title": "Loose-Leaf & Bagged Mate",
+              "description": "Organic dried yerba mate for the traditional gourd-and-bombilla ritual or your own French press."
+            },
+            {
+              "title": "The Mate Ritual",
+              "description": "More than a drink — a shared gourd, passed between friends. Naturally caffeinated, the way it's been enjoyed for generations."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why Yerba Madre",
+          "heading": "Better for people and the planet",
+          "items": [
+            {
+              "title": "Certified B Corp",
+              "body": "Held to verified standards of social and environmental performance — not just a label on the can.",
+              "icon": "shield"
+            },
+            {
+              "title": "Regenerative & organic",
+              "body": "Certified regenerative, organic, and fair-trade ingredients, sourced to leave the land better than we found it.",
+              "icon": "leaf"
+            },
+            {
+              "title": "300,000 trees pledged",
+              "body": "A commitment to plant native trees across the Americas, starting in the Atlantic Forest where our mate grows.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "The clean lift",
+              "body": "Naturally caffeinated yerba mate for a smooth, sustained energy — get lifted, stay lifted.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Out in the world with Yerba Madre",
+          "images": [
+            {
+              "src": "/images/yerba-madre/photo-6.jpg",
+              "alt": "Two friends laughing and toasting cans of yerba mate under a clear blue sky"
+            },
+            {
+              "src": "/images/yerba-madre/photo-8.jpg",
+              "alt": "A couple hugging with cans of yerba mate, redwoods behind them"
+            },
+            {
+              "src": "/images/yerba-madre/photo-10.jpg",
+              "alt": "Drinking a can of Yerba Madre in the sun by the water"
+            },
+            {
+              "src": "/images/yerba-madre/photo-9.jpg",
+              "alt": "Friends out together with cans of yerba mate on a sunny afternoon"
+            },
+            {
+              "src": "/images/yerba-madre/photo-12.jpg",
+              "alt": "Harvesters tending yerba mate plants in the forest"
+            },
+            {
+              "src": "/images/yerba-madre/photo-11.jpg",
+              "alt": "Holding up a can of Tropical Uprising yerba mate"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Get lifted. Stay lifted.",
+          "body": "Find Yerba Madre in cans, bags, and loose leaf — and join a movement built on regeneration.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/yerba-madre/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "The Lineup",
+      "title": "The Lineup",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we're brewing",
+          "subheading": "Organic yerba mate in every form — sparkling and non-carbonated cans, bagged, and loose leaf for the traditional gourd.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Brewed and canned, ready to go",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Sparkling Yerba Mate",
+              "description": "Lightly carbonated cans in bright flavors like Grapefruit Ginger and Tropical Uprising — an easy, refreshing way to get lifted."
+            },
+            {
+              "title": "Non-Carbonated Cans",
+              "description": "Smooth, brewed yerba mate in flavors like Mango Fuego and Orange Exotic, for a clean lift without the fizz."
+            },
+            {
+              "title": "Loose-Leaf & Bagged Mate",
+              "description": "Organic dried yerba mate for the traditional gourd-and-bombilla ritual or your own French press."
+            },
+            {
+              "title": "The Mate Ritual",
+              "description": "More than a drink — a shared gourd, passed between friends. Naturally caffeinated, the way it's been enjoyed for generations."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What is yerba mate?",
+              "a": "A traditional South American drink brewed from the naturally caffeinated leaves of the mate tree — a smooth, sustained lift enjoyed for generations."
+            },
+            {
+              "q": "Is it organic and fair-trade?",
+              "a": "Yes. As a certified B Corp, we source certified regenerative, organic, and fair-trade ingredients that are better for people and the planet."
+            },
+            {
+              "q": "Where can I find Yerba Madre?",
+              "a": "We're available online and in stores. Reach out through the contact page and we'll point you to the nearest spot."
+            },
+            {
+              "q": "What's the tree-planting commitment?",
+              "a": "We've committed to planting 300,000 native trees across the Americas, beginning in the Atlantic Forest where our yerba mate is grown."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Get lifted. Stay lifted.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/yerba-madre/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Yerba Madre",
+          "heading": "Celebrating Mother Earth, one gourd at a time",
+          "subheading": "What started in the mid-90s as a way to share yerba mate culture across the USA has grown into a regeneration-first movement.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A mate movement, rooted in regeneration",
+          "body": [
+            "We began our journey in the mid-90s by sharing yerba mate culture across the USA. As a certified B Corp and registered Social Purpose Corporation, we continue to promote values of community, friendship, service, and environmental stewardship. And we're only getting started.",
+            "For us, regeneration begins with the land. That's why we've committed to planting 300,000 native trees across South and North America, starting in the Atlantic Forest, where our yerba mate grows, and extending to the regions where we operate in the U.S. With Yerba Madre we celebrate Mother Earth, the life-giving power of the mate plant, and our role as madre to a thriving yerba mate movement."
+          ],
+          "highlights": [
+            "Certified B Corp & Social Purpose Corporation",
+            "Certified regenerative, organic & fair-trade",
+            "300,000 native trees pledged across the Americas",
+            "Yerba mate sourced from the Atlantic Forest"
+          ],
+          "image": {
+            "src": "/images/yerba-madre/photo-7.jpg",
+            "alt": "The Yerba Madre team gathered together in the redwoods"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "1996",
+              "label": "Sharing mate culture since"
+            },
+            {
+              "value": "300K",
+              "label": "Native trees pledged"
+            },
+            {
+              "value": "B Corp",
+              "label": "Certified"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Out in the world with Yerba Madre",
+          "images": [
+            {
+              "src": "/images/yerba-madre/photo-15.jpg",
+              "alt": "Friends gathered on a ridgeline above the fog with cans in hand"
+            },
+            {
+              "src": "/images/yerba-madre/photo-12.jpg",
+              "alt": "Harvesters tending yerba mate plants in the forest"
+            },
+            {
+              "src": "/images/yerba-madre/photo-7.jpg",
+              "alt": "The Yerba Madre team gathered together in the redwoods"
+            },
+            {
+              "src": "/images/yerba-madre/photo-5.jpg",
+              "alt": "The founders in the early days, among bales of yerba mate"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Join the movement",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/yerba-madre/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Yerba Madre online or follow along on Instagram @yerbamadre. We'd love to help you get lifted.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Category from lead is \"cafe\" but Yerba Madre is a packaged yerba-mate BEVERAGE BRAND (formerly Guayakí), a B Corp HQ'd in Sebastopol — not a sit-down cafe. Site authored as a beverage brand; confirm framing before sending.",
+    "Established 1996 read from the product can (\"EST. 1996\") + the site's \"mid-90s\" copy — verify exact founding year before asserting.",
+    "No phone, email, or street address scraped — add a real contact method or form before sending.",
+    "No hours (national CPG brand, not a storefront) — contact page hides the hours/map block intentionally; confirm.",
+    "No genuine customer reviews scraped — testimonials section omitted rather than fabricated.",
+    "Several gallery/lifestyle photos show the older GUAYAKÍ can branding (same company, pre-rebrand) — fine, but confirm the brand is comfortable showing both."
+  ],
+  "photoSource": "business-site"
+}

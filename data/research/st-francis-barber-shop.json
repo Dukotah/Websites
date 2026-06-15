@@ -1,0 +1,53 @@
+{
+  "slug": "st-francis-barber-shop",
+  "confirmed": false,
+  "established": "Est. 1963",
+  "tagline": "Your friendly neighborhood barber",
+  "seoDescription": "St. Francis Barber Shop is an old-fashioned, walk-in barber shop in Rincon Valley, Santa Rosa, established in 1963 — men's cuts from flat tops to zero fades, plus shaves and beard trims by licensed barbers.",
+  "heroHeading": "",
+  "heroSubheading": "",
+  "highlights": [
+    "Established 1963",
+    "Walk-ins welcome — no appointment needed",
+    "Licensed barbers",
+    "Old-fashioned cuts at a reasonable price"
+  ],
+  "aboutHeading": "",
+  "aboutBody": [
+    "St. Francis Barber Shop has been your friendly neighborhood barber since 1963 — a classic, old-fashioned shop in the St. Francis/Safeway center in Rincon Valley, at the corner of Highway 12 and Calistoga Road.",
+    "It's a walk-in shop with a handful of chairs, where licensed barbers handle everything from flat tops to zero fades, plus straight shaves and beard trims, all at a reasonable price."
+  ],
+  "servicesHeading": "",
+  "services": [
+    { "title": "Men's Haircuts", "description": "All forms of men's cuts, from classic flat tops to modern zero fades, by licensed barbers." },
+    { "title": "Fades & Tapers", "description": "Clean, sharp fades and tapers tailored to how you like to wear it." },
+    { "title": "Shaves", "description": "Traditional barbershop shaves done the old-fashioned way." },
+    { "title": "Beard Trims", "description": "Beard shaping and trims to keep your look tidy between cuts." }
+  ],
+  "hours": [
+    { "day": "Mon", "hours": "Closed" },
+    { "day": "Tue–Sat", "hours": "9:00am–5:30pm" },
+    { "day": "Sun", "hours": "Closed" }
+  ],
+  "testimonials": [
+    { "quote": "The barbers at the shop are very good at what they do. The price is reasonable." }
+  ],
+  "social": {
+    "facebook": "",
+    "instagram": "https://www.instagram.com/st.francisbarber/",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED by web search (chamberofcommerce, businessyab, yellowpages, their live Weebly site). REAL FACTS: 120 Calistoga Rd, Santa Rosa, CA 95409 (St. Francis/Safeway center, Rincon Valley, corner of Hwy 12 & Calistoga Rd, breezeway near Subway/UPS). Phone (707) 539-3475 (an alt (707) 470-6781 also appears). Est. 1963. Walk-in only. Tagline 'Your friendly neighborhood barber'. Services: men's cuts (flat tops to zero fades), shaves, beard trims, licensed barbers; cash-only noted on some listings. Hours Tue–Sat 9–5:30, closed Sun/Mon. Instagram @st.francisbarber. AMBIGUITY/needs-review: conflicting ownership signals — older reviews name owner 'Jayne'; a 2023 search result claims the location was sold to 'Jason' and rebranded 'Mr. Barber Shop'. The St. Francis site/identity is still live, so built under the St. Francis name, but DO NOT name an owner and verify current ownership/name before sending. No usable photos on the JS-rendered site and none verifiable as theirs — built photo-free editorial (barber motif) per the no-wrong-hero rule. Phone, cash-only policy, and exact rating/review count unconfirmed — left conservative.",
+  "_richness": 55,
+  "_source": "web-verified",
+  "_lead": {
+    "name": "St Francis Barber Shop",
+    "category": "barber",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 539-3475",
+    "address": "120 Calistoga Rd, Santa Rosa, CA 95409",
+    "owner": ""
+  }
+}

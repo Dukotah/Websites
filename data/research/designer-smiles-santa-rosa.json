@@ -1,0 +1,60 @@
+{
+  "slug": "designer-smiles-santa-rosa",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Personalized dentistry for a smile that feels like you",
+  "seoDescription": "Designer Smiles Santa Rosa is the dental practice of Dr. Ankita Kakar at 6543 Montecito Blvd — cosmetic, restorative, and preventive care with modern digital technology, rated 5.0 stars.",
+  "heroHeading": "A smile designed around you, in Santa Rosa",
+  "heroSubheading": "Led by Dr. Ankita Kakar, Designer Smiles blends advanced digital dentistry with kind, unhurried care at 6543 Montecito Blvd.",
+  "highlights": [
+    "Led by Dr. Ankita Kakar, DDS · MDS — University of the Pacific trained",
+    "Advanced implant training at the UCLA School of Dentistry",
+    "Modern digital workflow: intraoral scanning, digital X-rays & iTero",
+    "Rated 5.0 stars by Santa Rosa patients"
+  ],
+  "aboutHeading": "Dentistry that respects both the health and the beauty of your smile",
+  "aboutBody": [
+    "At Designer Smiles, we believe your smile is a reflection of who you are — not just clean teeth or straight lines, but the confidence to speak clearly and share your expression freely. Every visit is designed to be welcoming, supportive, and centered on your long-term wellness.",
+    "The practice is led by Dr. Ankita Kakar, who earned her DDS at the University of the Pacific in San Francisco and completed advanced training in oral implantology at the UCLA School of Dentistry. Originally from New Delhi, she brings more than a decade of experience and a philosophy of treating every patient with kindness, empathy, and integrity.",
+    "Alongside her, dental assistant Sandra brings over two decades of clinical experience and is, in Dr. Kakar's words, the backbone of the practice — there to understand what each patient needs and make every appointment comfortable."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {"title": "Personalized Smile Design", "description": "A tailored plan that considers the health and the look of your whole smile — not a one-size-fits-all template."},
+    {"title": "Cosmetic Dentistry", "description": "Veneers, cosmetic bonding, and teeth whitening to address stains, chips, and uneven color."},
+    {"title": "Invisalign Clear Aligners", "description": "Discreet, removable aligners that straighten crowded or misaligned teeth without metal braces."},
+    {"title": "Digital Imaging & Scanning", "description": "Intraoral camera, digital X-rays, and iTero scans for precise, low-radiation diagnostics."},
+    {"title": "Preventive Care", "description": "Regular exams and cleanings to keep your teeth and gums healthy for the long term."},
+    {"title": "Restorative & Implant Care", "description": "Periodontal treatment, implant restoration, and same-day CEREC crowns to rebuild and protect your smile."},
+    {"title": "Emergency Dental Care", "description": "Prompt attention for dental pain, breaks, and other urgent situations."}
+  ],
+  "hours": [
+    {"day": "Mon, Tue, Thu", "hours": "9am–5pm"},
+    {"day": "Wed, Fri", "hours": "9am–2pm"},
+    {"day": "Sat–Sun", "hours": "Closed"}
+  ],
+  "testimonials": [],
+  "rating": {"value": 5.0, "count": 86, "source": "Birdeye"},
+  "social": {
+    "facebook": "",
+    "instagram": "https://www.instagram.com/designersmiles_santarosa/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://designersmilessantarosa.com/storage/2025/09/Dental-Office.webp",
+    "https://designersmilessantarosa.com/storage/2025/09/Personalized-Smile-Design-in-Santa-Rosa-CA.webp"
+  ],
+  "notes": "CONFIRMED via web search + their own site (designersmilessantarosa.com, about-us, reviews). Dr. Ankita Kakar (DDS/MDS, BDS) is the dentist — UOP San Francisco DDS, advanced oral-implantology training at UCLA, ~12 yrs experience, periodontics background, from New Delhi. Sandra is the lead dental assistant (20+ yrs), NOT a dentist (the scraped 'Dr-Sandra.webp' filename is misleading). Address 6543 Montecito Blvd, Santa Rosa CA 95409; phone (707) 539-2176; hours Mon/Tue/Thu 9-5, Wed/Fri 9-2, weekends closed. Birdeye shows 5.0 stars (~86-91 reviews; count drifts, used conservative 86). Named review authors on the site (Rachael Mckee, Juliana Walser, Danny Strawn) but no full attributed quote text was captured, so testimonials left EMPTY rather than fabricated. Founding year NOT found — left blank, no fake stat. No email surfaced — contact page omits the email form requirement note. Photos are the practice's own service/office images plus high-quality congruent dental stock from their media library.",
+  "_richness": 80,
+  "_source": "agent-verified",
+  "_lead": {
+    "name": "Designer Smiles Santa Rosa",
+    "category": "general_dentistry",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17075392176",
+    "email": "",
+    "address": "6543 Montecito Blvd, Santa Rosa, CA 95409",
+    "owner": "Dr. Ankita Kakar"
+  }
+}

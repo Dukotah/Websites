@@ -1,0 +1,296 @@
+{
+  "slug": "designer-smiles-santa-rosa",
+  "name": "Designer Smiles Santa Rosa",
+  "legalName": "Designer Smiles Santa Rosa",
+  "tagline": "Personalized dentistry for a smile that feels like you",
+  "seoDescription": "Designer Smiles Santa Rosa is the dental practice of Dr. Ankita Kakar at 6543 Montecito Blvd — cosmetic, restorative, and preventive care with modern digital technology, rated 5.0 stars.",
+  "category": "dental",
+  "categoryLabel": "Dental",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 539-2176",
+    "address": "6543 Montecito Blvd, Santa Rosa, CA 95409"
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/designersmiles_santarosa/"
+  },
+  "hours": [
+    { "day": "Mon, Tue, Thu", "hours": "9am–5pm" },
+    { "day": "Wed, Fri", "hours": "9am–2pm" },
+    { "day": "Sat–Sun", "hours": "Closed" }
+  ],
+  "rating": {
+    "value": 5.0,
+    "count": 86,
+    "source": "Birdeye"
+  },
+  "brand": {
+    "color": "#2f6f8f",
+    "fontId": "clean-sans"
+  },
+  "images": {
+    "hero": "/images/designer-smiles-santa-rosa/hero.webp",
+    "heroAlt": "A patient's bright, healthy smile at Designer Smiles Santa Rosa"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "fullbleed",
+          "eyebrow": "Santa Rosa, CA · Cosmetic & Family Dentistry",
+          "heading": "A smile designed around you",
+          "subheading": "Led by Dr. Ankita Kakar, Designer Smiles blends advanced digital dentistry with kind, unhurried care at 6543 Montecito Blvd.",
+          "badges": [
+            "5.0★ from Santa Rosa patients",
+            "University of the Pacific–trained dentist",
+            "Modern digital imaging & same-day crowns"
+          ],
+          "primaryCta": {
+            "label": "Book a visit",
+            "href": "/s/designer-smiles-santa-rosa/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/designer-smiles-santa-rosa/services"
+          },
+          "image": {
+            "src": "/images/designer-smiles-santa-rosa/hero.webp",
+            "alt": "A patient's bright, healthy smile at Designer Smiles Santa Rosa",
+            "focal": "50% 35%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "5.0★", "label": "Birdeye patient rating" },
+            { "value": "10+ yrs", "label": "Dr. Kakar's experience" },
+            { "value": "Digital", "label": "Imaging, iTero & CEREC crowns" }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our practice",
+          "heading": "Dentistry that respects the health and the beauty of your smile",
+          "body": [
+            "At Designer Smiles, we believe your smile is a reflection of who you are — not just clean teeth or straight lines, but the confidence to speak clearly and share your expression freely. Every visit is designed to be welcoming, supportive, and centered on your long-term wellness.",
+            "The practice is led by Dr. Ankita Kakar, who earned her DDS at the University of the Pacific in San Francisco and completed advanced training in oral implantology at the UCLA School of Dentistry. She brings more than a decade of experience and a philosophy of treating every patient with kindness, empathy, and integrity."
+          ],
+          "highlights": [
+            "Led by Dr. Ankita Kakar, DDS · MDS",
+            "Advanced implant training at UCLA School of Dentistry",
+            "Intraoral scanning, digital X-rays & iTero",
+            "Rated 5.0 stars by Santa Rosa patients"
+          ],
+          "image": {
+            "src": "/images/designer-smiles-santa-rosa/photo-4.webp",
+            "alt": "Dr. Kakar's team caring for a smiling patient at Designer Smiles",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Care for every part of your smile",
+          "intro": "From a routine cleaning to a full smile redesign, here's how we can help.",
+          "layout": "grid",
+          "items": [
+            { "title": "Personalized Smile Design", "description": "A tailored plan that considers the health and the look of your whole smile — not a one-size-fits-all template." },
+            { "title": "Cosmetic Dentistry", "description": "Veneers, cosmetic bonding, and teeth whitening to address stains, chips, and uneven color." },
+            { "title": "Invisalign Clear Aligners", "description": "Discreet, removable aligners that straighten crowded or misaligned teeth without metal braces." },
+            { "title": "Digital Imaging & Scanning", "description": "Intraoral camera, digital X-rays, and iTero scans for precise, low-radiation diagnostics." },
+            { "title": "Preventive Care", "description": "Regular exams and cleanings to keep your teeth and gums healthy for the long term." },
+            { "title": "Restorative & Implant Care", "description": "Periodontal treatment, implant restoration, and same-day CEREC crowns to rebuild and protect your smile." }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Designer Smiles",
+          "images": [
+            { "src": "/images/designer-smiles-santa-rosa/photo-10.webp", "alt": "Modern treatment room with digital scanning equipment" },
+            { "src": "/images/designer-smiles-santa-rosa/photo-7.webp", "alt": "A patient's bite displayed from a digital intraoral scan" },
+            { "src": "/images/designer-smiles-santa-rosa/photo-11.webp", "alt": "Dr. Kakar explaining a dental implant with a model" },
+            { "src": "/images/designer-smiles-santa-rosa/photo-8.webp", "alt": "A bright, even smile after cosmetic treatment" },
+            { "src": "/images/designer-smiles-santa-rosa/photo-2.webp", "alt": "Shade matching for veneers and whitening" },
+            { "src": "/images/designer-smiles-santa-rosa/photo-5.webp", "alt": "A clinician examining a comfortable, smiling patient" }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready for a smile that feels like you?",
+          "body": "Visit us at 6543 Montecito Blvd in Santa Rosa, or call (707) 539-2176 to book a visit.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/designer-smiles-santa-rosa/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 539-2176",
+            "href": "tel:+17075392176"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "Comprehensive, modern dental care",
+          "subheading": "Cosmetic, restorative, and preventive dentistry under one roof — built around a digital workflow for precision and comfort.",
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Care for every part of your smile",
+          "layout": "grid",
+          "items": [
+            { "title": "Personalized Smile Design", "description": "A tailored plan that considers the health and the look of your whole smile — not a one-size-fits-all template." },
+            { "title": "Cosmetic Dentistry", "description": "Veneers, cosmetic bonding, and teeth whitening to address stains, chips, and uneven color." },
+            { "title": "Invisalign Clear Aligners", "description": "Discreet, removable aligners that straighten crowded or misaligned teeth without metal braces." },
+            { "title": "Digital Imaging & Scanning", "description": "Intraoral camera, digital X-rays, and iTero scans for precise, low-radiation diagnostics." },
+            { "title": "Preventive Care", "description": "Regular exams and cleanings to keep your teeth and gums healthy for the long term." },
+            { "title": "Restorative & Implant Care", "description": "Periodontal treatment, implant restoration, and same-day CEREC crowns to rebuild and protect your smile." },
+            { "title": "Emergency Dental Care", "description": "Prompt attention for dental pain, breaks, and other urgent situations." }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "What a visit looks like",
+          "items": [
+            { "title": "Reach out", "body": "Call (707) 539-2176 or send a message and tell us what's on your mind." },
+            { "title": "We assess", "body": "We use digital imaging and a careful exam to understand exactly what your smile needs." },
+            { "title": "A plan built for you", "body": "Dr. Kakar walks you through realistic options — no one-size-fits-all, no pressure." },
+            { "title": "Care, your way", "body": "We do the work gently and keep you comfortable and informed the whole way through." }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            { "q": "Where are you located?", "a": "We're at 6543 Montecito Blvd, Santa Rosa, CA 95409." },
+            { "q": "What are your hours?", "a": "Monday, Tuesday and Thursday 9am–5pm; Wednesday and Friday 9am–2pm; closed weekends." },
+            { "q": "Do you offer cosmetic treatments like veneers and whitening?", "a": "Yes. Designer Smiles offers personalized smile design, veneers, cosmetic bonding, teeth whitening, and Invisalign clear aligners." },
+            { "q": "How do I book a visit?", "a": "Call (707) 539-2176 and our team will be glad to get you scheduled." }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let's design your smile",
+          "body": "Call (707) 539-2176 or stop by 6543 Montecito Blvd in Santa Rosa.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/designer-smiles-santa-rosa/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 539-2176",
+            "href": "tel:+17075392176"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Designer Smiles",
+          "heading": "Kind, modern dentistry in Santa Rosa",
+          "subheading": "Led by Dr. Ankita Kakar — a University of the Pacific–trained dentist with advanced implant training from UCLA.",
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our practice",
+          "heading": "Dentistry built on kindness, empathy, and integrity",
+          "body": [
+            "At Designer Smiles, we believe your smile is a reflection of who you are — not just clean teeth or straight lines, but the confidence to speak clearly and share your expression freely. Every visit is designed to be welcoming, supportive, and centered on your long-term wellness.",
+            "The practice is led by Dr. Ankita Kakar, who earned her DDS at the University of the Pacific in San Francisco and completed advanced training in oral implantology at the UCLA School of Dentistry. Originally from New Delhi, she brings more than a decade of experience and a philosophy of treating every patient with kindness, empathy, and integrity.",
+            "Alongside her, dental assistant Sandra brings over two decades of clinical experience and is, in Dr. Kakar's words, the backbone of the practice — there to understand what each patient needs and make every appointment comfortable."
+          ],
+          "highlights": [
+            "Dr. Ankita Kakar, DDS · MDS — University of the Pacific",
+            "Advanced oral implantology training at UCLA",
+            "Sandra, lead dental assistant — 20+ years of experience",
+            "5.0-star rated by Santa Rosa patients"
+          ],
+          "image": {
+            "src": "/images/designer-smiles-santa-rosa/photo-10.webp",
+            "alt": "The modern, well-equipped treatment room at Designer Smiles",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "5.0★", "label": "Birdeye patient rating" },
+            { "value": "10+ yrs", "label": "Dr. Kakar's experience" },
+            { "value": "UOP & UCLA", "label": "DDS & advanced implant training" }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Our care, up close",
+          "images": [
+            { "src": "/images/designer-smiles-santa-rosa/photo-7.webp", "alt": "A digital intraoral scan of a patient's bite" },
+            { "src": "/images/designer-smiles-santa-rosa/photo-11.webp", "alt": "Dr. Kakar explaining a dental implant with a model" },
+            { "src": "/images/designer-smiles-santa-rosa/photo-8.webp", "alt": "A bright, even smile after cosmetic treatment" },
+            { "src": "/images/designer-smiles-santa-rosa/photo-5.webp", "alt": "A clinician examining a comfortable, smiling patient" }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Designer Smiles",
+          "body": "We'd love to meet you. Find us at 6543 Montecito Blvd, Santa Rosa.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/designer-smiles-santa-rosa/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Visit Designer Smiles",
+          "blurb": "Reach us at 6543 Montecito Blvd, Santa Rosa, CA 95409, or call (707) 539-2176. We're glad to help.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "No public email found — practice takes contact by phone; add an email/contact form before sending",
+    "Founding year not found — no 'years in business' stat shown (verify if available)",
+    "5.0★/86 reviews per Birdeye (live count drifts ~86–91); re-confirm rating + count at send time",
+    "Real review authors exist (Rachael Mckee, Juliana Walser, Danny Strawn) but no attributed quote text captured — testimonials section intentionally omitted rather than fabricated"
+  ],
+  "photoSource": "business-site"
+}

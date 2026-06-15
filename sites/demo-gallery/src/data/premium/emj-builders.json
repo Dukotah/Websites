@@ -1,0 +1,374 @@
+{
+  "slug": "emj-builders",
+  "name": "EMJ Builders",
+  "legalName": "EMJ Builders",
+  "tagline": "Santa Rosa custom homes, additions & remodels since 2005",
+  "seoDescription": "EMJ Builders is a Santa Rosa general contractor for custom homes, additions, kitchen and bath remodels, and renovations across Sonoma, Marin, and Napa",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2005",
+  "contact": {
+    "phone": "(707) 890-5155",
+    "email": "",
+    "address": "2201 Bluebell Dr, Ste H, Santa Rosa, CA 95403"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/emjbuilders05/",
+    "instagram": "https://www.instagram.com/emjbuilders/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7:00 AM – 4:00 PM"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#b56f28",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2005",
+          "heading": "Custom homes, additions, and remodels built right in Sonoma County",
+          "subheading": "Owner-operated Santa Rosa general contractor with 25+ years of building experience, serving Sonoma, Marin, and Napa counties.",
+          "badges": [
+            "Serving since 2005",
+            "Licensed CA general contractor (Lic. #862218)",
+            "BBB A+ rated"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/emj-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/emj-builders/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Additions",
+              "description": "Room additions and expansions that add the space your home needs, tied seamlessly into the existing structure."
+            },
+            {
+              "title": "Kitchen & Bath Remodels",
+              "description": "Full kitchen and bathroom remodels with careful attention to detail and finish."
+            },
+            {
+              "title": "New Custom Homes",
+              "description": "Ground-up custom home construction, from the foundation up to the final finishes."
+            },
+            {
+              "title": "Renovations",
+              "description": "Renovations large and small that update and improve your existing home."
+            },
+            {
+              "title": "Decks & Outdoor",
+              "description": "Decks and outdoor living projects built to last in the North Bay climate."
+            },
+            {
+              "title": "Damage Restoration",
+              "description": "Fire and flood damage rebuilds and insurance claim work to put your home back together."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message EMJ Builders and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About EMJ Builders",
+          "body": [
+            "EMJ Builders is an owner-operated general contractor based in Santa Rosa, founded by Ethan Johnson in 2005. Ethan has spent more than 25 years in construction and has run EMJ Builders for nearly two decades, building a reputation across the North Bay for honest work and close attention to detail.",
+            "The team handles all phases of construction — from the foundation up to the finishing touches — including new custom homes, additions, kitchen and bath remodels, decks, and renovations large and small. They also take on insurance claim work, rebuilding homes after fire and flood damage. The goal on every project is simple: make sure the customer is completely satisfied when the job is done."
+          ],
+          "highlights": [
+            "Licensed CA general contractor (Lic. #862218)",
+            "BBB A+ rated",
+            "Owner-operated, 25+ years of building experience",
+            "Serving Sonoma, Marin & Napa counties"
+          ]
+        },
+        {
+          "kind": "team",
+          "eyebrow": "The people behind the work",
+          "heading": "Meet Ethan Johnson",
+          "members": [
+            {
+              "name": "Ethan Johnson",
+              "role": "Owner & General Contractor",
+              "bio": "Ethan founded EMJ Builders in 2005 and has more than 25 years in the construction field. He prides himself on honesty and attention to detail, and personally stands behind the work on every job."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why EMJ Builders",
+          "items": [
+            {
+              "title": "Licensed CA General Contractor (Lic. #862218)",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "BBB A+ Rated",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Owner-Operated, 25+ Years Of Building Experience",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Sonoma, Marin & Napa Counties",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with EMJ Builders",
+          "body": "Find us at 2201 Bluebell Dr, Ste H, Santa Rosa, CA 95403. Call (707) 890-5155 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/emj-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 890-5155",
+            "href": "tel:+17078905155"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Owner-operated Santa Rosa general contractor with 25+ years of building experience, serving Sonoma, Marin, and Napa counties.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Additions",
+              "description": "Room additions and expansions that add the space your home needs, tied seamlessly into the existing structure."
+            },
+            {
+              "title": "Kitchen & Bath Remodels",
+              "description": "Full kitchen and bathroom remodels with careful attention to detail and finish."
+            },
+            {
+              "title": "New Custom Homes",
+              "description": "Ground-up custom home construction, from the foundation up to the final finishes."
+            },
+            {
+              "title": "Renovations",
+              "description": "Renovations large and small that update and improve your existing home."
+            },
+            {
+              "title": "Decks & Outdoor",
+              "description": "Decks and outdoor living projects built to last in the North Bay climate."
+            },
+            {
+              "title": "Damage Restoration",
+              "description": "Fire and flood damage rebuilds and insurance claim work to put your home back together."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message EMJ Builders and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 2201 Bluebell Dr, Ste H, Santa Rosa, CA 95403."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7:00 AM – 4:00 PM; Sat–Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 890-5155 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 2201 Bluebell Dr, Ste H, Santa Rosa, CA 95403. Call (707) 890-5155 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/emj-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 890-5155",
+            "href": "tel:+17078905155"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About EMJ Builders",
+          "heading": "About EMJ Builders",
+          "subheading": "EMJ Builders is an owner-operated general contractor based in Santa Rosa, founded by Ethan Johnson in 2005",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About EMJ Builders",
+          "body": [
+            "EMJ Builders is an owner-operated general contractor based in Santa Rosa, founded by Ethan Johnson in 2005. Ethan has spent more than 25 years in construction and has run EMJ Builders for nearly two decades, building a reputation across the North Bay for honest work and close attention to detail.",
+            "The team handles all phases of construction — from the foundation up to the finishing touches — including new custom homes, additions, kitchen and bath remodels, decks, and renovations large and small. They also take on insurance claim work, rebuilding homes after fire and flood damage. The goal on every project is simple: make sure the customer is completely satisfied when the job is done."
+          ],
+          "highlights": [
+            "Licensed CA general contractor (Lic. #862218)",
+            "BBB A+ rated",
+            "Owner-operated, 25+ years of building experience",
+            "Serving Sonoma, Marin & Napa counties"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "2005",
+              "label": "Established"
+            },
+            {
+              "value": "25+",
+              "label": "Years of experience"
+            },
+            {
+              "value": "3",
+              "label": "Counties served"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see EMJ Builders",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/emj-builders/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach EMJ Builders at 2201 Bluebell Dr, Ste H, Santa Rosa, CA 95403 or call (707) 890-5155.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Live site emjbuilders.com is a parked/lander placeholder — no business-owned content or photos available",
+    "No congruent business photos found — home hero uses the editorial text variant by design (a wrong-subject stock barn was rejected)",
+    "No email confirmed — add a real email or contact form before sending",
+    "Facts verified June 2026 via BBB / Yelp / BuildZoom / Angi / Facebook; no review count or testimonial quotes confirmed (testimonials omitted, not fabricated)"
+  ],
+  "photoSource": "editorial"
+}
