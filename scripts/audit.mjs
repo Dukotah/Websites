@@ -120,6 +120,14 @@ const HEADLINE_CLICHES =
 // (the full JUNK_RE is also tested for shared coverage). Critical on any match.
 const SCRAPED_JUNK =
   /notify me when this product is available|add to cart|out of stock|sold out|this is the online store|view cart|checkout|continue shopping/i;
+// Unevaluated code that leaked into copy: a JS template literal (${...}), a
+// raw method call, or an HTML tag in a text field. The golden-gear bug shipped
+// "${this.getReviewAuthor(review, ...)}" as a testimonial quote.
+const CODE_LEAK = /\$\{[^}]*\}|\b\w+\.\w+\([^)]*\)|<\/?[a-z][a-z0-9]*[\s>]/i;
+// Coupon / promo fine-print scraped in as marketing copy — never a real
+// hero/section subheading. ("$30 Value. Limit one per customer. ...")
+const COUPON_LEGALESE =
+  /limit one per customer|cannot be combined with|coupon must be presented|some restrictions may apply|not valid with|while supplies last|see store for details/i;
 // Generic-only testimonial author (low signal when the quote is short too).
 const PLACEHOLDER_AUTHOR =
   /^(yelp reviewer|verified customer|customer review|customer|local customer|happy customer|returning customer|satisfied customer)$/i;
@@ -277,6 +285,10 @@ function auditProspect(slug, c, confirmed = false) {
   for (const { text, where } of copyStrings) {
     if (SCRAPED_JUNK.test(text) || JUNK_RE.test(text)) {
       issues.push(['critical', `scraped junk copy in ${where}: "${text.slice(0, 60)}"`]);
+    } else if (CODE_LEAK.test(text)) {
+      issues.push(['critical', `unevaluated code/markup leaked into ${where}: "${text.slice(0, 60)}"`]);
+    } else if (COUPON_LEGALESE.test(text)) {
+      issues.push(['critical', `coupon/promo fine-print used as copy in ${where}: "${text.slice(0, 60)}"`]);
     } else if (hasDuplicatedClause(text)) {
       issues.push(['critical', `duplicated-clause artifact in ${where}: "${text.slice(0, 60)}"`]);
     }
