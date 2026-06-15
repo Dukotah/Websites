@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="wash" cx="0.72" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="currentColor" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1000" height="650" fill="url(#wash)"/>
+  <g stroke="currentColor" fill="none" stroke-width="3" opacity="0.12">
+    <circle cx="740" cy="221" r="325"/>
+    <circle cx="740" cy="221" r="221"/>
+    <circle cx="740" cy="221" r="117"/>
+  </g>
+  <g color="currentColor">
+      <path d="M 620 182 q 60 -78 120 0 q 50 91 0 221 q -30 65 -60 0 q -30 -65 -60 0 q -50 65 -60 -221 q -50 -91 120 0 Z" stroke="currentColor" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+      <path d="M 200 507 h 180 l 50 -91 l 70 182 l 50 -91 h 180" stroke="currentColor" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/></g>
+</svg>

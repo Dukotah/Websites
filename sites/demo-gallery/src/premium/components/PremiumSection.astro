@@ -12,6 +12,7 @@ import TestimonialsSection from './sections/TestimonialsSection.astro';
 import GallerySection from './sections/GallerySection.astro';
 import FaqSection from './sections/FaqSection.astro';
 import CtaSection from './sections/CtaSection.astro';
+import CalloutSection from './sections/CalloutSection.astro';
 import ContactSection from './sections/ContactSection.astro';
 
 interface Props {
@@ -29,4 +30,5 @@ const { section, config } = Astro.props;
 {section.kind === 'gallery' && <GallerySection data={section} config={config} />}
 {section.kind === 'faq' && <FaqSection data={section} config={config} />}
 {section.kind === 'cta' && <CtaSection data={section} config={config} />}
+{section.kind === 'callout' && <CalloutSection data={section} config={config} />}
 {section.kind === 'contact' && <ContactSection data={section} config={config} />}

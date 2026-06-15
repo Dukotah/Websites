@@ -36,7 +36,7 @@
       "sections": [
         {
           "kind": "hero",
-          "variant": "split",
+          "variant": "fullbleed",
           "eyebrow": "Santa Rosa, CA",
           "heading": "Joon Hair — Salon you can count on",
           "subheading": "Welcome to Joon Hair, a beautiful salon in the heart of historic downtown Santa Rosa. Our name “Joon”, is a Persian term of endearment meaning “soul” and “beloved” — a reflection of the warmth",
@@ -125,7 +125,8 @@
           "variant": "editorial",
           "eyebrow": "About Joon Hair",
           "heading": "About Joon Hair",
-          "subheading": "Welcome to Joon Hair, a beautiful salon in the heart of historic downtown Santa Rosa. Our name “Joon”, is a Persian term of endearment meaning “soul” and “beloved” — a reflection"
+          "subheading": "Welcome to Joon Hair, a beautiful salon in the heart of historic downtown Santa Rosa. Our name “Joon”, is a Persian term of endearment meaning “soul” and “beloved” — a reflection",
+          "motif": "/images/library/salon/motif.svg"
         },
         {
           "kind": "story",

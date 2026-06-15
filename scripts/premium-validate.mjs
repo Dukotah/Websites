@@ -19,7 +19,7 @@ const DATA_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'premium');
 const ASSET_ROOT = join(ROOT, 'sites', 'demo-gallery', 'src', 'assets', 'prospects');
 
 const KNOWN_KINDS = new Set([
-  'hero', 'story', 'services', 'stats', 'testimonials', 'gallery', 'faq', 'cta', 'contact',
+  'hero', 'story', 'services', 'stats', 'testimonials', 'gallery', 'faq', 'cta', 'callout', 'contact',
 ]);
 
 const argv = process.argv.slice(2);

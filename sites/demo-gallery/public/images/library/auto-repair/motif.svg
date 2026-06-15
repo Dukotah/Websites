@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="wash" cx="0.72" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="currentColor" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1000" height="650" fill="url(#wash)"/>
+  <g stroke="currentColor" fill="none" stroke-width="3" opacity="0.12">
+    <circle cx="740" cy="221" r="325"/>
+    <circle cx="740" cy="221" r="221"/>
+    <circle cx="740" cy="221" r="117"/>
+  </g>
+  <g color="currentColor"><g stroke="currentColor" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.8">
+        <circle cx="640" cy="325" r="117"/>
+        <circle cx="640" cy="325" r="46"/>
+        <line x1="757" y1="325" x2="803" y2="325"/><line x1="699" y1="426" x2="722" y2="466"/><line x1="582" y1="426" x2="559" y2="466"/><line x1="523" y1="325" x2="477" y2="325"/><line x1="581" y1="224" x2="558" y2="184"/><line x1="699" y1="224" x2="722" y2="184"/>
+      </g></g>
+</svg>

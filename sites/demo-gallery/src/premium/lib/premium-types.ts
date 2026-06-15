@@ -74,6 +74,10 @@ export interface SecHero {
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   image?: PremiumImage;
+  /** Decorative, clearly-illustrative category motif (a library SVG, drawn in
+   *  currentColor) used as a brand-tinted backdrop behind the type on a
+   *  photo-less editorial hero. NOT a photo — never counts as real imagery. */
+  motif?: string;
 }
 
 export interface SecStory {
@@ -158,6 +162,23 @@ export interface SecCta {
   secondaryCta?: { label: string; href: string };
 }
 
+/**
+ * SecCallout — a "differentiator" band for sites too thin for a full stat row.
+ * A brand-tinted editorial panel: eyebrow + heading + a short lead + a small set
+ * of real highlight points (1–4). Used in place of a sparse 1–2 stat band so a
+ * photo/stat-light home page still has a deliberate, composed mid-page beat
+ * instead of a hole. Photo-free by design (type + brand motif only).
+ */
+export interface SecCallout {
+  kind: 'callout';
+  eyebrow?: string;
+  heading: string;
+  body?: string;
+  /** Real differentiator points (credentials, specialties, area). 1–4. */
+  points?: string[];
+  primaryCta?: { label: string; href: string };
+}
+
 export interface SecContact {
   kind: 'contact';
   eyebrow?: string;
@@ -178,6 +199,7 @@ export type PremiumSection =
   | SecGallery
   | SecFaq
   | SecCta
+  | SecCallout
   | SecContact;
 
 // ── Page + top-level config ────────────────────────────────────────────────

@@ -51,7 +51,7 @@
       "sections": [
         {
           "kind": "hero",
-          "variant": "split",
+          "variant": "fullbleed",
           "eyebrow": "Santa Rosa, CA · Est. 1987",
           "heading": "Three generations of dentists, one Santa Rosa practice",
           "subheading": "SOCO Dental Studio brings Dr. Leslie Jue's decades of cosmetic and family care together with Drs. Louie and Baird at 55 Mission Circle.",
@@ -196,13 +196,13 @@
           "variant": "editorial",
           "eyebrow": "What we do",
           "heading": "How we can help",
-          "subheading": "SOCO Dental Studio brings Dr. Leslie Jue's decades of cosmetic and family care together with Drs. Louie and Baird at 55 Mission Circle."
+          "subheading": "SOCO Dental Studio brings Dr. Leslie Jue's decades of cosmetic and family care together with Drs. Louie and Baird at 55 Mission Circle.",
+          "motif": "/images/library/dental/motif.svg"
         },
         {
           "kind": "services",
           "heading": "What we do",
-          "layout": "rows",
-          "fallbackOk": true,
+          "layout": "grid",
           "items": [
             {
               "title": "Cosmetic Dentistry",
@@ -278,7 +278,8 @@
           "variant": "editorial",
           "eyebrow": "About Leslie Jue DDS",
           "heading": "About SOCO Dental Studio",
-          "subheading": "SOCO Dental Studio was formed when Dr. Michael Louie merged two long-established Santa Rosa practices into one home for multi-generational families across Sonoma County"
+          "subheading": "SOCO Dental Studio was formed when Dr. Michael Louie merged two long-established Santa Rosa practices into one home for multi-generational families across Sonoma County",
+          "motif": "/images/library/dental/motif.svg"
         },
         {
           "kind": "story",

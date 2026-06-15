@@ -69,6 +69,21 @@ function servicesEyebrow(cat) {
   return HOSPITALITY.has(cat) ? 'On the menu' : 'What we do';
 }
 
+// Categories that ship a built-in library motif (scripts/build-image-library.mjs
+// emits {hero,story,motif}.svg for each). Keep in sync with that file's PALETTES.
+const LIBRARY_CATS = new Set([
+  'towing', 'cafe', 'restaurant', 'plumbing', 'hvac', 'electrician', 'roofing',
+  'contractor', 'cleaning', 'salon', 'spa', 'barber', 'fitness', 'landscaping',
+  'marina', 'auto-repair', 'tattoo', 'dental', 'medical', 'winery', 'default',
+]);
+// The decorative category motif path for a photo-less editorial hero. Served
+// as-is from public/ (NOT through the asset registry); the validator treats a
+// .svg as library art, never a "real photo". Falls back to 'default'.
+function categoryMotif(cat) {
+  const c = LIBRARY_CATS.has(cat) ? cat : 'default';
+  return `/images/library/${c}/motif.svg`;
+}
+
 const telDigits = (s) => (s || '').replace(/[^\d]/g, '');
 const telHref = (s) => {
   const d = telDigits(s);
@@ -191,8 +206,30 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
   const fontId = pickFontId(fontCat, seed, fontIdOverride);
   const color = pickBrandColor(cat, slug, research?.brand?.color || e?.brandColor || '');
 
-  // Hero variant from photo tier signal (same as the old compose).
-  const heroVariant = heroImg ? 'split' : 'editorial';
+  // ── HERO VARIANT GUARD (P0) ────────────────────────────────────────────────
+  // NEVER emit a split/fullbleed hero without an image — the premium.css grid
+  // for those expects a figure and renders a blank column otherwise. So:
+  //   • no hero photo            → 'editorial' (type-forward; motif/aside fill the
+  //                                right column, never blank)
+  //   • hero photo present       → 'split' or 'fullbleed' chosen DETERMINISTICALLY
+  //                                by hash(slug) so two photo-having siblings don't
+  //                                open identically.
+  const heroTreatSeed = hashStr(slug + 'hero');
+  const heroVariant = heroImg
+    ? (heroTreatSeed % 2 === 0 ? 'split' : 'fullbleed')
+    : 'editorial';
+
+  // For an editorial (photo-less) hero, fill the right column with REAL material
+  // instead of leaving it blank: if a congruent story/gallery photo exists, use
+  // the best secondary photo as the editorial `aside`; otherwise fall back to the
+  // brand-tinted category motif backdrop behind the type. `storyImg` is the
+  // best non-hero photo (story file, else first gallery shot).
+  // Suppress the secondary-photo aside under the same congruence gate that
+  // suppressed the hero (a generic regional stock shot on a place-based business).
+  const editorialAside = (!heroImg && storyImg && !(stockIncongruent && /\/images\/library\//.test(storyImg)))
+    ? storyImg
+    : null;
+  const heroMotif = (!heroImg && !editorialAside) ? categoryMotif(cat) : null;
 
   const eyebrowLoc = [area, established ? `Est. ${established}` : ''].filter(Boolean).join(' · ');
   const sp = servicesPage(cat);
@@ -210,66 +247,125 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
     badges: buildBadges(established, rating, highlights),
     primaryCta: { label: HOSPITALITY.has(cat) ? 'See the menu' : 'Get in touch', href: `/s/${slug}/${HOSPITALITY.has(cat) ? 'menu' : 'contact'}` },
     secondaryCta: { label: HOSPITALITY.has(cat) ? 'Book catering' : (services.length ? 'Our services' : 'Contact us'), href: `/s/${slug}/${services.length ? sp.slug : 'contact'}` },
-    ...(heroImg ? { image: { src: heroImg, alt: `${name}${area ? ` in ${area}` : ''}`, focal: '50% 40%' } } : {}),
+    ...(heroImg
+      ? { image: { src: heroImg, alt: `${name}${area ? ` in ${area}` : ''}`, focal: '50% 40%' } }
+      : editorialAside
+        ? { image: { src: editorialAside, alt: `Inside ${name}`, focal: '50% 50%' } }
+        : { motif: heroMotif }),
   };
   homeSections.push(hero);
 
-  // stats — only real values; need >=2.
+  // Build each candidate home section as a value first, then ORDER + assemble
+  // per the per-slug composition seed (item 5). null = section not warranted.
+
+  // stats — built from real values; the HOME band needs >=3 to read as a
+  // substantial trust strip (a lone/paired stat looks thin on a full dark band).
+  // When exactly 2, they're already surfaced as hero badges; when <3 but real
+  // highlights exist, a brand-tinted 'callout' differentiator band carries that
+  // weight instead of a sparse stat row.
   const stats = buildStats(established, rating, services.length, priceRange);
-  if (stats.length >= 2) homeSections.push({ kind: 'stats', tone: 'ink', items: stats });
+  const homeStats = stats.length >= 3 ? { kind: 'stats', tone: 'ink', items: stats } : null;
+
+  // callout — the differentiator band that stands in for a sparse stat row.
+  // Emitted only when there's NO full stat band AND we have real highlights (or
+  // a credential-bearing badge set) to carry it. Photo-free by design.
+  const calloutPoints = (highlights.length ? highlights : [])
+    .map((h) => clip(String(h), 60)).filter(Boolean).slice(0, 4);
+  const homeCallout = (!homeStats && calloutPoints.length >= 2)
+    ? {
+        kind: 'callout',
+        eyebrow: 'Why choose us',
+        heading: research?.calloutHeading || `What sets ${name} apart`,
+        ...(aboutBody[0] ? { body: clip(aboutBody[0], 200) } : (heroSubSrc ? { body: clip(heroSubSrc, 200) } : {})),
+        points: calloutPoints,
+        primaryCta: { label: HOSPITALITY.has(cat) ? 'See the menu' : 'Get in touch', href: `/s/${slug}/${HOSPITALITY.has(cat) ? 'menu' : 'contact'}` },
+      }
+    : null;
 
   // story — only when aboutBody present.
-  if (aboutBody.length) {
-    homeSections.push({
-      kind: 'story',
-      eyebrow: 'Our story',
-      heading: research?.aboutHeading ? clip(research.aboutHeading, 60) : `About ${name}`,
-      body: aboutBody.slice(0, 2),
-      ...(highlights.length ? { highlights: highlights.slice(0, 4) } : {}),
-      ...(storyImg ? { image: { src: storyImg, alt: `Inside ${name}`, focal: '50% 50%' } } : {}),
-    });
-  }
+  const homeStory = aboutBody.length
+    ? {
+        kind: 'story',
+        eyebrow: 'Our story',
+        heading: research?.aboutHeading ? clip(research.aboutHeading, 60) : `About ${name}`,
+        body: aboutBody.slice(0, 2),
+        ...(highlights.length ? { highlights: highlights.slice(0, 4) } : {}),
+        ...(storyImg ? { image: { src: storyImg, alt: `Inside ${name}`, focal: '50% 50%' } } : {}),
+      }
+    : null;
 
   // services
-  if (services.length) {
-    homeSections.push({
-      kind: 'services',
-      eyebrow: servicesEyebrow(cat),
-      heading: research?.servicesHeading || (HOSPITALITY.has(cat) ? 'On the menu' : 'What we do'),
-      layout: 'grid',
-      items: services.slice(0, 6).map((s) => ({ title: s.title, description: s.description || deriveServiceDesc(s.title, cat, area) })),
-    });
-  }
+  const homeServices = services.length
+    ? {
+        kind: 'services',
+        eyebrow: servicesEyebrow(cat),
+        heading: research?.servicesHeading || (HOSPITALITY.has(cat) ? 'On the menu' : 'What we do'),
+        layout: 'grid',
+        items: services.slice(0, 6).map((s) => ({ title: s.title, description: s.description || deriveServiceDesc(s.title, cat, area) })),
+      }
+    : null;
 
   // testimonials
-  if (testimonials.length) {
-    homeSections.push({
-      kind: 'testimonials',
-      eyebrow: 'In their words',
-      heading: 'What customers say',
-      ...(rating ? { rating } : {}),
-      items: testimonials.slice(0, 3),
-    });
-  }
+  const homeTestimonials = testimonials.length
+    ? {
+        kind: 'testimonials',
+        eyebrow: 'In their words',
+        heading: 'What customers say',
+        ...(rating ? { rating } : {}),
+        items: testimonials.slice(0, 3),
+      }
+    : null;
 
   // gallery — only when >=3 real photos.
-  if (galleryImgs.length >= 3) {
-    homeSections.push({
-      kind: 'gallery',
-      eyebrow: 'A closer look',
-      heading: `Inside ${name}`,
-      images: galleryImgs.slice(0, 6).map((src, i) => ({ src, alt: `${name} — photo ${i + 1}` })),
-    });
-  }
+  const homeGallery = galleryImgs.length >= 3
+    ? {
+        kind: 'gallery',
+        eyebrow: 'A closer look',
+        heading: `Inside ${name}`,
+        images: galleryImgs.slice(0, 6).map((src, i) => ({ src, alt: `${name} — photo ${i + 1}` })),
+      }
+    : null;
 
-  // cta
-  homeSections.push(buildCta(slug, name, cat, address, phone, false, phoneFmt));
+  const homeCta = buildCta(slug, name, cat, address, phone, false, phoneFmt);
+
+  // ── COMPOSITION SEED (item 5) ──────────────────────────────────────────────
+  // Deterministic per-slug section ORDERING so siblings diverge structurally
+  // (beyond just color + font). hashStr(slug+'order') picks one of three home
+  // arrangements; missing sections (null) drop out, so the order is just intent.
+  // The trust band (stats|callout) — only one will be non-null — slots wherever
+  // the variant places 'trust'. CTA always closes the page.
+  const trustBand = homeStats || homeCallout;
+  const byKey = {
+    trust: trustBand,
+    story: homeStory,
+    services: homeServices,
+    testimonials: homeTestimonials,
+    gallery: homeGallery,
+  };
+  const ORDER_VARIANTS = [
+    ['trust', 'story', 'services', 'testimonials', 'gallery'],
+    ['story', 'services', 'trust', 'gallery', 'testimonials'],
+    ['services', 'story', 'testimonials', 'trust', 'gallery'],
+  ];
+  const orderVariant = hashStr(slug + 'order') % ORDER_VARIANTS.length;
+  for (const key of ORDER_VARIANTS[orderVariant]) {
+    if (byKey[key]) homeSections.push(byKey[key]);
+  }
+  homeSections.push(homeCta);
 
   // ── pages assembly ──
   const pages = [{ slug: 'home', label: 'Home', sections: homeSections }];
 
   // services / menu page
   if (services.length) {
+    const svcItems = services.map((s) => ({ title: s.title, description: s.description || deriveServiceDesc(s.title, cat, area) }));
+    // PREFER grid when NO service item carries a real photo (the common case) —
+    // grid cards don't demand imagery, so there are no empty 01/02 panels.
+    // Reserve 'rows' for sites that actually have per-service photos; the rows
+    // component still renders a DESIGNED brand-tinted glyph (not a blank box) for
+    // any image-less row, flagged via fallbackOk so the audit knows it's intended.
+    const anySvcImage = svcItems.some((it) => it.image?.src);
+    const svcLayout = anySvcImage ? 'rows' : 'grid';
     const svcSections = [
       {
         kind: 'hero',
@@ -277,16 +373,14 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
         eyebrow: servicesEyebrow(cat),
         heading: HOSPITALITY.has(cat) ? 'What we’re serving' : 'How we can help',
         ...(heroSubSrc ? { subheading: clip(heroSubSrc, 180) } : {}),
+        motif: categoryMotif(cat),
       },
       {
         kind: 'services',
         heading: research?.servicesHeading || (HOSPITALITY.has(cat) ? 'What we’re serving' : 'What we do'),
-        layout: 'rows',
-        // The rows layout renders a DESIGNED brand-tinted glyph panel (not a blank
-        // grey box) for image-less items — flag it so the audit's empty-panel
-        // check knows the fallback is intentional.
-        fallbackOk: true,
-        items: services.map((s) => ({ title: s.title, description: s.description || deriveServiceDesc(s.title, cat, area) })),
+        layout: svcLayout,
+        ...(svcLayout === 'rows' ? { fallbackOk: true } : {}),
+        items: svcItems,
       },
     ];
     const faq = buildFaq(testimonials, hours, address, area, phoneFmt, cat);
@@ -305,6 +399,7 @@ function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {})
         eyebrow: `About ${name}`,
         heading: research?.aboutHeading ? clip(research.aboutHeading, 70) : `About ${name}`,
         ...(aboutBody[0] ? { subheading: clip(aboutBody[0], 180) } : {}),
+        motif: categoryMotif(cat),
       },
     ];
     if (aboutBody.length) {

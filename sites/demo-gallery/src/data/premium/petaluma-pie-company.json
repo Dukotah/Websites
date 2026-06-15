@@ -45,6 +45,11 @@
           "secondaryCta": {
             "label": "Book catering",
             "href": "/s/petaluma-pie-company/menu"
+          },
+          "image": {
+            "src": "/images/petaluma-pie-company/story.jpg",
+            "alt": "Inside Petaluma Pie Company",
+            "focal": "50% 50%"
           }
         },
         {
@@ -128,13 +133,13 @@
           "variant": "editorial",
           "eyebrow": "On the menu",
           "heading": "What we’re serving",
-          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
+          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat...",
+          "motif": "/images/library/cafe/motif.svg"
         },
         {
           "kind": "services",
           "heading": "What we’re serving",
-          "layout": "rows",
-          "fallbackOk": true,
+          "layout": "grid",
           "items": [
             {
               "title": "Weddings And Catering",
@@ -182,7 +187,8 @@
           "variant": "editorial",
           "eyebrow": "About Petaluma Pie Company",
           "heading": "About Petaluma Pie Company",
-          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat..."
+          "subheading": "Fresh juicy local and or organic blackberries and organic blueberries topped with a brown sugar and oat...",
+          "motif": "/images/library/cafe/motif.svg"
         },
         {
           "kind": "story",

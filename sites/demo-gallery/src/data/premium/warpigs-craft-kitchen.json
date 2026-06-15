@@ -49,7 +49,7 @@
       "sections": [
         {
           "kind": "hero",
-          "variant": "split",
+          "variant": "fullbleed",
           "eyebrow": "Cotati, CA · Est. 2011",
           "heading": "12-Hour Smoked Meats, Made the Hard Way",
           "subheading": "Pitmaster Larry Hillix has been slow-smoking craft barbecue for Sonoma County since 2011.",
@@ -70,48 +70,6 @@
             "src": "/images/warpigs-craft-kitchen/hero.webp",
             "alt": "WarPigs Craft Kitchen in Cotati, CA",
             "focal": "50% 40%"
-          }
-        },
-        {
-          "kind": "stats",
-          "tone": "ink",
-          "items": [
-            {
-              "value": "15+",
-              "label": "Years in business"
-            },
-            {
-              "value": "4.5★",
-              "label": "22 reviews"
-            },
-            {
-              "value": "5",
-              "label": "Services offered"
-            },
-            {
-              "value": "$$",
-              "label": "Fairly priced"
-            }
-          ]
-        },
-        {
-          "kind": "story",
-          "eyebrow": "Our story",
-          "heading": "About WarPigs Craft Kitchen",
-          "body": [
-            "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for War Pigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park of G's Slow Smoked BBQ. The idea was simple: pair real precision and quality with the familiar flavors of hanging out with family around the grill.",
-            "Today WarPigs is a Northern California craft kitchen drawing on classic American comfort food, Southern smokehouse tradition, and seasonal California ingredients. Beyond the kitchen they cater corporate events, weddings, and private gatherings, and regularly host pop-ups with local breweries, wineries, and community venues."
-          ],
-          "highlights": [
-            "Smoked low and slow up to 12 hours",
-            "Scratch-made sides and house sauces",
-            "Full-service catering for weddings & events",
-            "Sonoma County pop-ups & brewery collabs"
-          ],
-          "image": {
-            "src": "/images/warpigs-craft-kitchen/story.webp",
-            "alt": "Inside WarPigs Craft Kitchen",
-            "focal": "50% 50%"
           }
         },
         {
@@ -143,6 +101,26 @@
           ]
         },
         {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About WarPigs Craft Kitchen",
+          "body": [
+            "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for War Pigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park of G's Slow Smoked BBQ. The idea was simple: pair real precision and quality with the familiar flavors of hanging out with family around the grill.",
+            "Today WarPigs is a Northern California craft kitchen drawing on classic American comfort food, Southern smokehouse tradition, and seasonal California ingredients. Beyond the kitchen they cater corporate events, weddings, and private gatherings, and regularly host pop-ups with local breweries, wineries, and community venues."
+          ],
+          "highlights": [
+            "Smoked low and slow up to 12 hours",
+            "Scratch-made sides and house sauces",
+            "Full-service catering for weddings & events",
+            "Sonoma County pop-ups & brewery collabs"
+          ],
+          "image": {
+            "src": "/images/warpigs-craft-kitchen/story.webp",
+            "alt": "Inside WarPigs Craft Kitchen",
+            "focal": "50% 50%"
+          }
+        },
+        {
           "kind": "testimonials",
           "eyebrow": "In their words",
           "heading": "What customers say",
@@ -154,6 +132,28 @@
           "items": [
             {
               "quote": "The bbq pork sandwich was perfect. The sides are great as well."
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "15+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.5★",
+              "label": "22 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
             }
           ]
         },
@@ -213,13 +213,13 @@
           "variant": "editorial",
           "eyebrow": "On the menu",
           "heading": "What we’re serving",
-          "subheading": "Pitmaster Larry Hillix has been slow-smoking craft barbecue for Sonoma County since 2011."
+          "subheading": "Pitmaster Larry Hillix has been slow-smoking craft barbecue for Sonoma County since 2011.",
+          "motif": "/images/library/restaurant/motif.svg"
         },
         {
           "kind": "services",
           "heading": "On the menu",
-          "layout": "rows",
-          "fallbackOk": true,
+          "layout": "grid",
           "items": [
             {
               "title": "12-Hour Smoked Pulled Pork Sandwich",
@@ -291,7 +291,8 @@
           "variant": "editorial",
           "eyebrow": "About WarPigs Craft Kitchen",
           "heading": "About WarPigs Craft Kitchen",
-          "subheading": "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for War Pigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park"
+          "subheading": "In 2011, owner and pitmaster Larry Hillix decided Sonoma County was ready for War Pigs BBQ, building a craft kitchen on a special blend of spices and rubs inspired by Gary Park",
+          "motif": "/images/library/restaurant/motif.svg"
         },
         {
           "kind": "story",

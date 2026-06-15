@@ -18,6 +18,10 @@ interface Props {
 const { data, config } = Astro.props;
 
 const img = data.image;
+// Decorative category motif (a library SVG drawn in currentColor) for the
+// photo-less editorial hero — a brand-tinted illustrative backdrop behind the
+// type. Clearly NOT a photo. When absent we still show the monogram watermark.
+const motif = data.motif;
 // Oversized monogram watermark for the photo-less editorial hero — gives a
 // deliberate, composed visual weight (brand-tinted, decorative) instead of a
 // bare type block. First letter of the business name.
@@ -42,7 +46,15 @@ const isEditorial = !isFullbleed && !isSplit;
 <section
   class:list={['p-hero', `p-hero--${variant}`, { 'section--ink': isFullbleed, 'p-hero--editorial-solo': isEditorial && !img }]}
 >
-  {isEditorial && !img && monogram && (
+  {isEditorial && !img && motif && (
+    <div
+      class="p-hero__motif"
+      aria-hidden="true"
+      style={`-webkit-mask-image:url("${motif}");mask-image:url("${motif}")`}
+    ></div>
+  )}
+
+  {isEditorial && !img && !motif && monogram && (
     <div class="p-hero__wm" aria-hidden="true">
       <span class="p-hero__wm-mono">{monogram}</span>
     </div>
@@ -214,6 +226,23 @@ const isEditorial = !isFullbleed && !isSplit;
     background:
       radial-gradient(60rem 38rem at 88% -10%, color-mix(in srgb, var(--p-primary) 12%, transparent), transparent 60%),
       linear-gradient(180deg, var(--p-paper) 0%, var(--p-paper-deep) 100%);
+  }
+  /* Category motif backdrop — a brand-tinted illustrative panel (library SVG
+     used as a mask, painted in --p-primary) anchored to the right, low opacity,
+     behind the type. Clearly decorative, never reads as a photo. */
+  .p-hero__motif {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: var(--p-primary);
+    opacity: 0.14;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: right -6% center;
+    mask-position: right -6% center;
+    -webkit-mask-size: clamp(28rem, 22rem + 30vw, 58rem) auto;
+    mask-size: clamp(28rem, 22rem + 30vw, 58rem) auto;
   }
   .p-hero__wm {
     position: absolute;
