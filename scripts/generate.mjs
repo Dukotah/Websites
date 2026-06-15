@@ -194,9 +194,12 @@ async function main() {
   const dukeDir = process.env.DUKE_DIR || 'C:/Users/dukot/projects/Duke';
   const syncScript = join(dukeDir, 'scripts', 'sync-demos-to-crm.mjs');
   if (!noSync && existsSync(syncScript)) {
-    console.log('\nSyncing the batch into the CRM New tab…');
+    console.log('\nSyncing the batch into the CRM New tab (ready-only)…');
     try {
-      const { stdout, stderr } = await promisify(execFile)(process.execPath, [syncScript, '--commit', '--websites', ROOT]);
+      // --only-ready is now the sync's DEFAULT, but we pass it explicitly so the
+      // intent is on the command line: needs-review demos are held back from the
+      // CRM and never emailed. (The factory's 95% self-gate set those statuses.)
+      const { stdout, stderr } = await promisify(execFile)(process.execPath, [syncScript, '--commit', '--only-ready', '--websites', ROOT]);
       if (stdout) process.stdout.write(stdout);
       if (stderr) process.stderr.write(stderr);
     } catch (e) {

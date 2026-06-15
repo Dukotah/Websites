@@ -24,6 +24,7 @@ import {
 import { pickFontId, pickBrandColor } from './lib/brand-seed.mjs';
 import { sanitizeProse, sanitizeTestimonials } from './lib/copy-sanity.mjs';
 import { scorePhoto } from './lib/photo-score.mjs';
+import { auditConfigCriticals } from './audit.mjs';
 
 // ── category → page family table ───────────────────────────────────────────
 // home is ALWAYS pages[0]. The family decides which pages follow and whether the
@@ -215,7 +216,16 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   // gallery files on disk are still fine to use.
   const photos = await discoverPhotos(slug);
   const heroDropped = !media.length;
-  const scoreOf = (p) => photos.quality?.[p] || { faded: false, dynamicRange: 1, score: 0 };
+  const scoreOf = (p) => photos.quality?.[p] || { faded: false, dynamicRange: 1, score: 0, fuzzy: false, lowRes: false };
+  // STRICT PHOTO GATE (author-time): a FUZZY/out-of-focus frame must NEVER ship —
+  // not as a hero, story, aside, or gallery tile. The acquisition pipeline already
+  // drops fuzzy+below-floor SOURCES, but a file could have been dropped straight
+  // into the assets dir, so we re-enforce fuzziness here from the on-disk re-score.
+  // A bad photo ruins the page worse than its absence (owner vision). NB: we test
+  // fuzziness, NOT lowRes — these are already-CROPPED OUTPUT files (a portrait
+  // gallery/hero-split tile is legitimately ~600-1000px and cleared its SOURCE
+  // floor at acquisition); re-rejecting on output width would drop valid tiles.
+  const isFuzzyPhoto = (p) => Boolean(scoreOf(p).fuzzy);
 
   // ── CONGRUENCE GATE (key-free, deterministic) ──────────────────────────────
   // Decides hero-vs-editorial. The strongest key-free signal is PROVENANCE: only
@@ -246,7 +256,13 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   let heroImg = heroDropped ? null : photos.hero;
   const heroFaded = heroImg ? scoreOf(heroImg).faded : false;
   if (heroImg) {
-    if (INDOOR_PLACE.has(cat) && !ownDomain) {
+    if (isFuzzyPhoto(heroImg)) {
+      // STRICT PHOTO GATE: a fuzzy/out-of-focus hero is the worst thing to ship —
+      // route to the composed editorial hero instead. Takes precedence over every
+      // other case (a fuzzy own-photo is still a bad photo).
+      heroImg = null; stockHeroSuppressed = true;
+      suppressReason = 'Fuzzy/out-of-focus hero suppressed — add a sharp photo or ship the text hero';
+    } else if (INDOOR_PLACE.has(cat) && !ownDomain) {
       // CORE FIX: for an indoor place-based cat, only the business's OWN photo may
       // hero. An off-domain shot (Joon's OSM/scraped-but-off-domain mountain) fails.
       heroImg = null; stockHeroSuppressed = true;
@@ -268,10 +284,11 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   // shot on an indoor cat must not sneak into the aside or gallery either.
   const offDomainIndoor = INDOOR_PLACE.has(cat) && offDomain;
 
-  // GALLERY/STORY QUALITY FLOOR (author-time): drop FADED survivors from the
-  // gallery set rather than ship a washed grid; for an indoor cat also drop
-  // off-domain shots. storyImg falls through faded/off-domain candidates to none.
-  const galleryEligible = (p) => !scoreOf(p).faded && !offDomainIndoor;
+  // GALLERY/STORY QUALITY FLOOR (author-time): drop FADED and FUZZY survivors from
+  // the gallery set rather than ship a washed or soft grid; for an indoor cat also
+  // drop off-domain shots. storyImg falls through faded/fuzzy/off-domain candidates
+  // to none.
+  const galleryEligible = (p) => !scoreOf(p).faded && !isFuzzyPhoto(p) && !offDomainIndoor;
   const storyCandidates = [photos.story, ...photos.gallery].filter(Boolean).filter(galleryEligible);
   const storyImg = storyCandidates[0] || null;
   // Gallery pool: non-faded, congruent, best-first by the re-scored vivid ranking.
@@ -832,6 +849,27 @@ export async function authorPremium(slug, row, e, research, media, {
   // A distinct flag string per suppression case so the human knows WHY the hero
   // was routed to editorial (off-domain provenance vs washed photo).
   if (meta.stockHeroSuppressed) flags.push(meta.suppressReason || 'Generic stock hero suppressed — add a real photo');
+
+  // ── 95% SELF-GATE (the AVISP bar) ──────────────────────────────────────────
+  // status:'ready' is reserved for sites that clear the AVISP/Copper Bay bar on
+  // their own. Concretely, ALL must hold (any miss → needs-review, held from the
+  // CRM by the only-ready sync):
+  //   1. REAL VERIFIED FACTS — deriveStatus already flags no-website / unreachable
+  //      / thin research (richness<35) / missing email / generic hours, so any of
+  //      those sits in `flags`.
+  //   2. CLEAN COPY — copyStripped (scraped junk removed) and any premium-validate
+  //      failure already flag; the audit hook below ALSO catches scraped-junk /
+  //      code-leak / coupon-legalese / templated copy that reaches a field.
+  //   3. CONGRUENT OR NO PHOTOS, NEVER BAD ONES — the congruence + strict photo
+  //      gate above route a fuzzy/low-res/off-domain/washed hero to a composed
+  //      editorial hero AND flag it (stockHeroSuppressed). The site is still
+  //      shippable photo-light, but the flag forces a human glance.
+  //   4. ZERO AUDIT CRITICALS — run the mechanical content audit (auditProspect)
+  //      over the finished config. A photo-light page with no trust signal, an
+  //      empty/blank-panel section, a bare phone, a lone stat, etc. are criticals
+  //      that DROP a site below 95%, so they force needs-review here too.
+  const auditCriticals = await auditConfigCriticals(slug, config);
+  for (const msg of auditCriticals) flags.push(`Audit critical — ${msg}`);
 
   const status = flags.length ? 'needs-review' : 'ready';
   config.status = status;

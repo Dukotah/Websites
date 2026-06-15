@@ -20,14 +20,19 @@
 
 import { readFile, readdir } from 'node:fs/promises';
 import { join, dirname, extname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JUNK_RE } from './lib/copy-sanity.mjs';
+import { scorePhoto } from './lib/photo-score.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
 const SRC = join(APP, 'src');
 // PREMIUM multi-page configs (the only render system). Each renders at /s/<slug>.
 const PREMIUM = join(SRC, 'data', 'premium');
+// Per-prospect REAL photos on disk (so the photo gate can re-score the bytes a
+// config references). Mirrors facts.mjs PUBLIC_IMAGES — the `/images/<slug>/<f>`
+// JSON path maps here as <slug>/<f>.
+const PUBLIC_IMAGES = join(SRC, 'assets', 'prospects');
 // Human/agent-verified research lives here, one file per slug. A `confirmed:true`
 // file means the copy (incl. the headline) was AUTHORED on purpose, so cliché-ish
 // phrasing there is a real business motto — not the "AI batch" tell.
@@ -252,6 +257,24 @@ function auditProspect(slug, c, confirmed = false) {
     else
       issues.push(['warn', `cliché headline "${heading}" — rewrite with a specific, earned promise`]);
   }
+  // TEMPLATED-HEADLINE-ONLY (critical, unless verified-authored) — a site whose
+  // home hero uses the deterministic FALLBACK headline ("<Name> — <Category> you
+  // can count on") AND carries NO real body material (no story, no services, no
+  // testimonials) is a bare templated stub, not a researched site. That's exactly
+  // the sub-AVISP case the 95% bar holds back: the headline is the only "copy" and
+  // it's a template. A site that earned a real story/services/quotes is NOT caught
+  // here even if it kept the fallback headline (the body carries it).
+  const templatedHeadline = new RegExp(
+    `\\byou can count on$|\\b(serving|since)\\b.*\\bsince \\d{4}$`, 'i',
+  ).test(heading) || /—\s*[\w\s]+\s+you can count on/i.test(heading);
+  const hasBody = sections.some(
+    (s) => (s.kind === 'story' && (s.body?.length ?? 0) > 0) ||
+      (s.kind === 'services' && (s.items?.length ?? 0) > 0) ||
+      (s.kind === 'testimonials' && (s.items?.length ?? 0) > 0),
+  );
+  if (templatedHeadline && !hasBody && !confirmed) {
+    issues.push(['critical', `templated-headline-only — hero "${heading}" is the deterministic fallback and the page has no real story/services/testimonials; research and write real copy`]);
+  }
 
   // Social proof: a rating OR real testimonials. Missing BOTH is a real gap;
   // missing only quotes (but has a rating) is minor.
@@ -398,6 +421,66 @@ function auditProspect(slug, c, confirmed = false) {
   return issues;
 }
 
+// ── Photo sharpness / resolution gate (the "fuzzy hero" bug, measured) ───────
+// auditProspect catches MISSING/empty photos and blank panels from the JSON
+// alone, but it can't see whether a referenced photo is FUZZY or OFF-FRAME — that
+// needs the bytes. This re-scores every REAL (non-stock) photo a config points at
+// via the SAME photo-score the acquisition + author gates use, and surfaces:
+//   • FUZZY photo (hero or tile) → CRITICAL — a soft/out-of-focus frame is the
+//     owner-vision red line; it must be omitted, never shipped.
+//   • LOW-RES photo → WARN only — these are already-CROPPED OUTPUT files, so a
+//     small portrait gallery/hero-split tile is legitimately ~600-1000px wide and
+//     cleared its SOURCE resolution floor (SLOT_CONTRACT.minW) at acquisition.
+//     Re-flagging output width as critical would wrongly block valid small tiles;
+//     we surface it as a non-blocking heads-up to source a larger original.
+// A library SVG / missing file is skipped (not a real photo). Best-effort: an
+// unreadable file is reported, never crashes the run.
+const realImgPaths = (c) => {
+  const out = new Set();
+  for (const s of allSections(c)) {
+    if (s.image?.src && !isStock(s.image.src)) out.add(s.image.src);
+    for (const im of s.images ?? []) if (im?.src && !isStock(im.src)) out.add(im.src);
+  }
+  if (c.images?.hero && !isStock(c.images.hero)) out.add(c.images.hero);
+  return [...out];
+};
+
+// Map a `/images/<slug>/<file>` JSON path to the real on-disk file. The path may
+// carry any extension; the asset registry resolves it, so we glob the base name.
+async function diskFileFor(jsonPath) {
+  const m = /^\/images\/([^/]+)\/(.+)$/.exec(jsonPath || '');
+  if (!m) return null;
+  const dir = join(PUBLIC_IMAGES, m[1]);
+  const want = m[2].replace(/\.[a-z0-9]+$/i, '');
+  let files = [];
+  try { files = await readdir(dir); } catch { return null; }
+  const hit = files.find((f) => f.replace(/\.[a-z0-9]+$/i, '') === want);
+  return hit ? join(dir, hit) : null;
+}
+
+async function auditPhotos(slug, c) {
+  const issues = [];
+  const homeHero = (c.pages?.[0]?.sections ?? []).find((s) => s.kind === 'hero');
+  const heroSrc = homeHero?.image?.src ?? c.images?.hero;
+  for (const src of realImgPaths(c)) {
+    const file = await diskFileFor(src);
+    if (!file) continue; // unresolved/library → not a real on-disk photo
+    let q;
+    try { q = await scorePhoto(await readFile(file)); }
+    catch { continue; }
+    const isHero = src === heroSrc;
+    const file_ = src.split('/').pop();
+    if (q.fuzzy) {
+      // FUZZY = critical (blocks the gate): omit it or replace with a sharp shot.
+      issues.push(['critical', `${isHero ? 'HERO ' : ''}photo ${file_} is fuzzy/out-of-focus — omit it (text/library hero) or replace with a sharp shot`]);
+    } else if (q.lowRes) {
+      // LOW-RES on a cropped output = non-blocking warn (source a larger original).
+      issues.push(['warn', `${isHero ? 'HERO ' : ''}photo ${file_} renders small (${q.w}×${q.h}) — source a higher-resolution original if a larger crop is wanted`]);
+    }
+  }
+  return issues;
+}
+
 // ── WCAG contrast (the "invisible / illegible text" bug, measured) ───────────
 // Dead-token checking catches var(--x)→undefined; this catches the OTHER half:
 // tokens that ARE defined but render text too faint to read (e.g. a pale brand
@@ -485,6 +568,9 @@ async function main() {
     const c = JSON.parse(await readFile(join(PREMIUM, f), 'utf8'));
     const confirmed = await isConfirmed(slug);
     const issues = auditProspect(slug, c, confirmed);
+    // Re-score the real photos this config references (fuzzy / low-res surfaced
+    // from the bytes — the strict photo gate, measured at audit time too).
+    issues.push(...await auditPhotos(slug, c));
     // The composed section order is known from the JSON itself (premium pages
     // ARE the section list), so we report it directly — no HTML scrape needed.
     const seq = (c.pages?.[0]?.sections ?? []).map((s) => s.kind);
@@ -532,4 +618,35 @@ async function main() {
   process.exitCode = critical ? 1 : 0;
 }
 
-main();
+/**
+ * auditConfigCriticals — run the SAME mechanical content audit a built site gets
+ * (auditProspect) over an in-memory PremiumConfig and return ONLY the CRITICAL
+ * issue messages. The 95% self-gate (author-premium.mjs) calls this so a config
+ * that would surface an audit critical (no-trust photo-light, scraped junk, an
+ * empty/blank-panel section, a bare phone, etc.) can NEVER reach status:'ready'.
+ *
+ * Contrast is the one critical class that needs the built HTML (dist), so it is
+ * intentionally NOT evaluated here — the inline gate runs pre-build. The full
+ * `npm run audit` still measures contrast post-build as the belt-and-suspenders
+ * check; this hook catches the content criticals at author time.
+ *
+ * @param {string} slug
+ * @param {object} config  a PremiumConfig (pre-build, in memory)
+ * @returns {Promise<string[]>} critical issue messages (empty = clears the gate)
+ */
+export async function auditConfigCriticals(slug, config) {
+  try {
+    const confirmed = await isConfirmed(slug);
+    const issues = auditProspect(slug, config, confirmed);
+    return issues.filter((i) => i[0] === 'critical').map((i) => i[1]);
+  } catch {
+    return []; // fail soft — never let an audit hiccup block authoring
+  }
+}
+
+export { auditProspect, isConfirmed };
+
+// Only run the CLI audit when invoked directly (not when imported as the gate).
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}

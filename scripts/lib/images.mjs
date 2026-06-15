@@ -184,8 +184,12 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     seenHash.add(hash);
     // Content judgment: drop logos / screenshots / flat illustrations that pass
     // the size filter — only real photographs earn a slot (key-free, pixel stats).
+    // STRICT PHOTO GATE: scorePhoto now folds FUZZY (low Laplacian variance) and
+    // LOW-RES (below MIN_PHOTO_W/H) into isGraphic, so this single guard also
+    // rejects soft/out-of-focus/upscaled frames — a fuzzy storefront never earns
+    // a slot, it's omitted in favour of a clean text/library hero.
     const q = await scorePhoto(got.buf);
-    if (q.isGraphic) continue;
+    if (q.isGraphic || q.fuzzy || q.lowRes) continue;
     // Perceptual near-dup: the same shot at a different size/crop already kept.
     const ph = await dhash(got.buf);
     if (ph != null && seenPhash.some((p) => hamming(p, ph) <= NEAR_DUP_DISTANCE)) continue;
@@ -193,6 +197,8 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     // Carry `faded` so a washed photo can still fill a gallery slot (its low score
     // already sinks it) but is BARRED from the hero — a washed image must never
     // headline. We do NOT hard-`continue` on faded: that would empty thin galleries.
+    // (fuzzy/low-res were already hard-dropped above, so every survivor here is
+    // sharp + adequate-resolution by construction.)
     kept.push({ buf: got.buf, ext, url, w: dims?.w ?? q.w, h: dims?.h ?? q.h, score: q.score, faded: q.faded });
   }
 
@@ -578,7 +584,10 @@ export async function downloadOsmPhotos(photos, { destDir, slug, startIndex = 0,
     if (seenHash.has(hash)) continue; // exact duplicate bytes
     seenHash.add(hash);
     const q = await scorePhoto(got.buf);
-    if (q.isGraphic) continue; // logos/screenshots/flat art → skip
+    // STRICT PHOTO GATE (same bar as own-site): logos/screenshots/flat art AND
+    // fuzzy/low-res frames are all rejected (scorePhoto folds fuzzy+lowRes into
+    // isGraphic; the explicit checks document the intent).
+    if (q.isGraphic || q.fuzzy || q.lowRes) continue;
     const ph = await dhash(got.buf);
     if (ph != null && seenPhash.some((x) => hamming(x, ph) <= NEAR_DUP_DISTANCE)) continue;
     if (ph != null) seenPhash.push(ph);
