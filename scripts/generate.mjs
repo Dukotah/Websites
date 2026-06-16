@@ -110,7 +110,10 @@ async function main() {
       photoSource, photoFlags, mismatchName, useClaude,
     });
 
-    built.push({ slug, config, status, flags, photoSource, link: `${base}/s/${slug}` });
+    // Carry the lead's EXISTING/source site (the bad/dead/placeholder one the
+    // demo was built from, if any) so the CRM can show "current site". Empty for
+    // true no-site prospects, which is accurate.
+    built.push({ slug, config, status, flags, photoSource, link: `${base}/s/${slug}`, existingWebsite: row.website || row.existing_website || '' });
   }
 
   // Re-seed colliding siblings: two slugs sharing an identical fontId+color.
@@ -171,6 +174,8 @@ async function main() {
     name: b.config.name,
     slug: b.slug,
     email: b.config.contact?.email ?? '',
+    phone: b.config.contact?.phone ?? '',
+    website: b.existingWebsite ?? '',
     link: `${base}/s/${b.slug}`,
     status: b.status,
     photoSource: b.photoSource,
