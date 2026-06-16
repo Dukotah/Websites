@@ -33,7 +33,7 @@
   },
   "images": {
     "hero": "/images/kaia-fit/hero.jpg",
-    "heroAlt": "Women of Kaia FIT Santa Rosa in a team huddle after a workout"
+    "heroAlt": "Kaia FIT members in a team huddle, hands stacked in the center after a workout"
   },
   "outreach": {
     "published": false
@@ -64,7 +64,7 @@
           },
           "image": {
             "src": "/images/kaia-fit/hero.jpg",
-            "alt": "Women of Kaia FIT Santa Rosa in a team huddle after a workout",
+            "alt": "Kaia FIT members in a team huddle, hands stacked in the center after a workout",
             "focal": "50% 40%"
           }
         },
@@ -75,13 +75,13 @@
           "intro": "Kaia is built on three pillars — train smart, eat well, and show up for each other. One membership covers all of it.",
           "items": [
             {
-              "title": "Functional training",
-              "body": "Strength, cardio, and mobility built on functional movement — with modifications and progressions so every level trains safely.",
+              "title": "Muscle confusion that works",
+              "body": "Coaches never repeat the same workout — because routine is the enemy of results. Functional cardio, strength, and mobility keep your body guessing and improving.",
               "icon": "sparkle"
             },
             {
-              "title": "Nutrition support",
-              "body": "The Kaia Plate meal plan turns nutrition into habits you can actually keep — coaching that fits real schedules, not a crash diet.",
+              "title": "Nutrition coaching",
+              "body": "Certified coaches help you build a healthy relationship with food and learn to eat lean and green — habits that fit real life, not a crash diet.",
               "icon": "leaf"
             },
             {
@@ -94,7 +94,7 @@
         {
           "kind": "services",
           "eyebrow": "What we offer",
-          "heading": "Eight ways to move, one membership",
+          "heading": "Many ways to move, one membership",
           "intro": "Cross-training is our signature, but Kaia members can mix and match the whole schedule — no second gym required.",
           "layout": "grid",
           "items": [
@@ -129,18 +129,18 @@
           "eyebrow": "Our story",
           "heading": "Functional fitness for women, by women",
           "body": [
-            "Kaia FIT Santa Rosa is a women's fitness studio on Airway Drive built around a simple promise: build a strong body and a powerful mind. We blend cross-training, lift, barre, yoga, cycle, and dance into one membership so members can train their whole body without juggling separate gyms.",
-            "Head coach and owner Lacey is a NASM-certified personal trainer and group fitness coach, leading a team of certified coaches who give individual attention in every class. Coach Angela Wooton — ACE-certified in TRX and cross-training — has been with the studio for years. Together they coach women of every level, with modifications and progressions that keep training safe, sustainable, and motivating."
+            "Kaia FIT Santa Rosa is a women's fitness studio on Airway Drive built around a simple promise: build a strong body and a powerful mind. We blend cross-training, lift, barre, yoga, and cycle into one membership so members can train their whole body without juggling separate gyms.",
+            "Head coach and owner Lacey is a NASM-certified personal trainer and group fitness coach who leads a team that gives individual attention in every class. Together they coach women of every level, with modifications and progressions that keep training safe, sustainable, and motivating — backed by the Kaia method that's helped women rediscover fitness since 2009."
           ],
           "highlights": [
             "Owner & head coach Lacey, NASM-certified",
             "Certified coaches, individual attention",
             "Modifications and progressions for every level",
-            "Nutrition coaching with the Kaia Plate plan"
+            "Nutrition coaching included"
           ],
           "image": {
             "src": "/images/kaia-fit/story.jpg",
-            "alt": "The Kaia FIT Santa Rosa coaching team and community",
+            "alt": "The Kaia FIT coaching team and community in matching Kaia FIT apparel",
             "focal": "50% 35%"
           }
         },
@@ -149,8 +149,8 @@
           "tone": "ink",
           "items": [
             { "value": "5.0★", "label": "19 reviews" },
-            { "value": "8+", "label": "Class types" },
-            { "value": "3×", "label": "BRIK bootcamps a year" },
+            { "value": "6+", "label": "Class types" },
+            { "value": "2009", "label": "The Kaia method" },
             { "value": "All", "label": "Levels welcome" }
           ]
         },
@@ -165,11 +165,15 @@
           },
           "items": [
             {
-              "quote": "Love Kaia! Awesome workouts for every level, amazing coaches that provide individual attention, and an incredibly supportive community.",
+              "quote": "Love Kaia!! Awesome workouts for every level, amazing coaches that provide individual attention, nutrition coaching, and incredibly supportive Kaia sisters that support your journey.",
               "author": "Heather D."
             },
             {
-              "quote": "I've dropped into a few classes here and I love the energy. The coaching makes you want to come back.",
+              "quote": "I've dropped into a few classes here and I love the energy here.",
+              "author": "Yesenia C."
+            },
+            {
+              "quote": "Lacey does an amazing job and is so encouraging.",
               "author": "Yesenia C."
             }
           ]
@@ -200,15 +204,14 @@
           "variant": "editorial",
           "eyebrow": "Programs",
           "heading": "One membership. The whole studio.",
-          "subheading": "Mix and match cross-training, strength, barre, yoga, cycle, and suspension — plus our three signature 6-week bootcamps a year.",
-          "motif": "/images/library/fitness/motif.svg"
+          "subheading": "Mix and match cross-training, strength, barre, yoga, cycle, and suspension — plus our three signature 6-week bootcamps a year."
         },
         {
           "kind": "services",
           "eyebrow": "Weekly classes",
           "heading": "Find your class",
-          "layout": "rows",
-          "fallbackOk": true,
+          "intro": "One membership covers every class on the schedule — mix and match to match your week.",
+          "layout": "grid",
           "items": [
             {
               "title": "Cross-Training",
@@ -241,12 +244,12 @@
           "kind": "callout",
           "eyebrow": "Signature program",
           "heading": "BRIK — the 6-Week Bootcamp",
-          "body": "Three times a year, Kaia runs its signature BRIK bootcamp: six focused weeks of training and nutrition built to help you reach your potential — strong body, powerful mind.",
+          "body": "Kaia's signature BRIK bootcamp is six focused weeks of training and nutrition built to help you reach your potential — strong body, powerful mind. Ask the studio about the next round.",
           "points": [
-            "Offered three times a year",
             "Six weeks of structured training",
-            "Nutrition guidance with the Kaia Plate plan",
-            "Coached every step, for every level"
+            "Nutrition guidance built in",
+            "Coached every step, for every level",
+            "A community that finishes together"
           ],
           "primaryCta": {
             "label": "Ask about the next BRIK",
@@ -264,7 +267,7 @@
             },
             {
               "q": "Does one membership cover every class?",
-              "a": "Yes. Cross-training, lift, barre, yoga, cycle, TRX, dance, and run are all included — no second gym required."
+              "a": "Yes. Cross-training, lift, barre, yoga, cycle, and more are all included — no second gym required."
             },
             {
               "q": "What are your hours?",
@@ -305,7 +308,7 @@
           "subheading": "A 5-star women's fitness community on Airway Drive, built on training, nutrition, and showing up for each other.",
           "image": {
             "src": "/images/kaia-fit/story.jpg",
-            "alt": "The Kaia FIT Santa Rosa coaching team and community",
+            "alt": "The Kaia FIT coaching team and community in matching Kaia FIT apparel",
             "focal": "50% 35%"
           }
         },
@@ -314,18 +317,18 @@
           "eyebrow": "Our story",
           "heading": "Build a strong body and a powerful mind",
           "body": [
-            "Kaia FIT is functional fitness for women, by women. At our Santa Rosa studio on Airway Drive, we bring cross-training, lift, barre, yoga, cycle, and dance under one membership — so members can train the whole body in a place that feels like a community, not a chore.",
-            "Head coach and owner Lacey is a NASM-certified personal trainer and group fitness coach. Alongside coaches like Angela Wooton — ACE-certified in TRX and cross-training — the team gives individual attention in every class, with modifications and progressions that keep women of every level safe, challenged, and coming back. Pair that with the Kaia Plate nutrition plan and a community that genuinely supports each other, and you get results designed for real life."
+            "Kaia FIT is functional fitness for women, by women. At our Santa Rosa studio on Airway Drive, we bring cross-training, lift, barre, yoga, and cycle under one membership — so members can train the whole body in a place that feels like a community, not a chore.",
+            "Head coach and owner Lacey is a NASM-certified personal trainer and group fitness coach who leads a team built on individual attention in every class. With modifications and progressions for every level, plus nutrition coaching and a community that genuinely supports each other, Kaia delivers results designed for real life — the same approach the Kaia method has used to help women rediscover fitness since 2009."
           ],
           "highlights": [
             "Functional fitness for women, by women",
             "Owner & head coach Lacey, NASM-certified",
-            "Coach Angela Wooton, ACE-certified (TRX & cross-training)",
-            "Kaia Plate nutrition coaching"
+            "Individual attention for every level",
+            "Nutrition coaching included"
           ],
           "image": {
             "src": "/images/kaia-fit/hero.jpg",
-            "alt": "Kaia FIT Santa Rosa members in a post-workout huddle",
+            "alt": "Kaia FIT members in a post-workout huddle, hands stacked in the center",
             "focal": "50% 40%"
           }
         },
@@ -334,8 +337,8 @@
           "tone": "ink",
           "items": [
             { "value": "5.0★", "label": "19 reviews" },
-            { "value": "8+", "label": "Class types" },
-            { "value": "2", "label": "Certified coaches" },
+            { "value": "6+", "label": "Class types" },
+            { "value": "NASM", "label": "Certified head coach" },
             { "value": "All", "label": "Levels welcome" }
           ]
         },

@@ -1,0 +1,321 @@
+{
+  "slug": "one-stop-auto-repair",
+  "name": "One Stop Auto Repair",
+  "legalName": "One Stop Auto Repair",
+  "tagline": "Honest, full-service auto repair on Piner Road in Santa Rosa",
+  "seoDescription": "One Stop Auto Repair is a Santa Rosa, CA shop offering honest, fairly priced repair and maintenance for cars, trucks, and SUVs — brakes, oil changes, diagnostics, AC, tune-ups, and engine and transmission work. No appointment needed. Open Mon–Sat, se habla español.",
+  "category": "auto-repair",
+  "categoryLabel": "Auto Repair & Service",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 536-9053",
+    "email": "onestopautorepair00@gmail.com",
+    "address": "1688 Piner Rd, Santa Rosa, CA 95403"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/people/One-Stop-Auto-Repair/100089956401677/",
+    "yelp": "https://www.yelp.com/biz/one-stop-auto-repair-santa-rosa"
+  },
+  "hours": [
+    { "day": "Mon–Sat", "hours": "8:30am–6:00pm" },
+    { "day": "Sun", "hours": "Closed" }
+  ],
+  "rating": { "value": 4.4, "count": 14 },
+  "priceRange": "$$",
+  "geo": { "lat": 38.4636, "lng": -122.7438 },
+  "brand": {
+    "color": "#1f4e6b",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Piner Road · Santa Rosa · Cars · Trucks · SUVs",
+          "heading": "The honest shop your car keeps coming back to",
+          "subheading": "One Stop Auto Repair handles it all — brakes, oil, diagnostics, AC, tune-ups, and major engine and transmission work — at prices you can actually beat. No appointment needed. Just pull in.",
+          "badges": [
+            "Rated 4.4 stars by local drivers",
+            "No appointment necessary",
+            "Se habla español"
+          ],
+          "primaryCta": { "label": "See what we fix", "href": "/s/one-stop-auto-repair/services" },
+          "secondaryCta": { "label": "Call (707) 536-9053", "href": "tel:+17075369053" },
+          "motif": "wrench"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why drivers trust us",
+          "heading": "Straight answers, fair prices, real work",
+          "intro": "We earned our reputation the only way a neighborhood shop can — by treating every car, and every customer, the way we'd want our own family treated.",
+          "items": [
+            {
+              "title": "Honest, every time",
+              "body": "We tell you what your vehicle actually needs — and what it doesn't. No upsells, no scare tactics, no surprise line items.",
+              "icon": "shield"
+            },
+            {
+              "title": "Fair prices, quoted up front",
+              "body": "Customers tell us our pricing is the best around. You get a fair quote before the work starts — so you always know the number first.",
+              "icon": "check"
+            },
+            {
+              "title": "One stop for everything",
+              "body": "From a quick oil change to a full engine or transmission rebuild, it all gets done under one roof — so you're not bounced between shops.",
+              "icon": "wrench"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Full-service repair and maintenance",
+          "intro": "Cars, trucks, and SUVs — foreign and domestic. If it drives, we can fix it.",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Brakes & Rotors",
+              "description": "Pads, rotors, calipers, and brake-line service to keep your stops safe and quiet."
+            },
+            {
+              "title": "Oil Changes & Maintenance",
+              "description": "Fast, no-appointment oil changes plus the scheduled maintenance that keeps small problems from becoming big ones."
+            },
+            {
+              "title": "Diagnostics & Check-Engine",
+              "description": "Computer diagnostics to find the real cause behind that warning light — before you spend money guessing."
+            },
+            {
+              "title": "Engine & Transmission",
+              "description": "Major repair and full rebuilds, plus timing belts, water pumps, and the heavy work most quick-lube shops won't touch."
+            },
+            {
+              "title": "Heating & A/C",
+              "description": "A/C service and recharge, radiators, and cooling-system work to keep you comfortable through Sonoma County summers."
+            },
+            {
+              "title": "Tune-Ups & Electrical",
+              "description": "Tune-ups, alternators, suspension, catalytic converters, and the electrical gremlins that are hard to chase down."
+            }
+          ]
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "No appointment, no hassle",
+          "heading": "Just pull in — we'll take it from there",
+          "body": "Most repairs don't happen on a schedule, so neither do we. Drive up during business hours and we'll get eyes on your vehicle and a straight quote before any work begins.",
+          "points": [
+            "Walk-ins welcome — no appointment necessary",
+            "Honest quotes before the work starts",
+            "Cars, trucks, SUVs, and commercial vehicles",
+            "Se habla español — llámanos o visítanos"
+          ],
+          "primaryCta": { "label": "Get directions & hours", "href": "/s/one-stop-auto-repair/contact" }
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What Santa Rosa drivers say",
+          "items": [
+            {
+              "quote": "Hands down he is the most honest mechanic around. Best prices you can beat.",
+              "author": "Ed P.",
+              "detail": "Santa Rosa"
+            },
+            {
+              "quote": "The owners are very honest and fair.",
+              "author": "Cruz M.",
+              "detail": "Santa Rosa"
+            }
+          ],
+          "rating": { "value": 4.4, "count": 14 }
+        },
+        {
+          "kind": "cta",
+          "heading": "Car making a noise? Bring it by.",
+          "body": "Find us at 1688 Piner Rd in Santa Rosa. Open Monday–Saturday, 8:30am–6:00pm. Call ahead or just pull in.",
+          "primaryCta": { "label": "Get in touch", "href": "/s/one-stop-auto-repair/contact" },
+          "secondaryCta": { "label": "Call (707) 536-9053", "href": "tel:+17075369053" }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we fix",
+          "heading": "One shop, every repair",
+          "subheading": "From routine maintenance to major mechanical work, One Stop Auto Repair keeps cars, trucks, and SUVs on the road — without sending you across town for the next job."
+        },
+        {
+          "kind": "services",
+          "heading": "Maintenance & quick service",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Oil & Filter Changes",
+              "description": "Conventional and synthetic oil changes, no appointment required.",
+              "badge": "Walk-in"
+            },
+            {
+              "title": "Scheduled Maintenance",
+              "description": "Factory-interval services to protect your warranty and your wallet."
+            },
+            {
+              "title": "Brakes & Rotors",
+              "description": "Pad and rotor replacement, caliper service, and brake-fluid work."
+            },
+            {
+              "title": "Tune-Ups",
+              "description": "Plugs, filters, and adjustments to restore smooth, efficient running."
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "heading": "Diagnostics & major repair",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Computer Diagnostics",
+              "description": "We read the codes and chase the root cause behind the check-engine light."
+            },
+            {
+              "title": "Engine Repair & Rebuilds",
+              "description": "From timing belts and water pumps to complete engine rebuilds."
+            },
+            {
+              "title": "Transmission Service & Rebuilds",
+              "description": "Fluid service, repair, and full transmission rebuilds."
+            },
+            {
+              "title": "Alternators & Electrical",
+              "description": "Charging systems, alternators, and hard-to-find electrical faults."
+            },
+            {
+              "title": "Heating, A/C & Cooling",
+              "description": "A/C recharge and repair, radiators, and cooling-system service."
+            },
+            {
+              "title": "Suspension & Catalytic Converters",
+              "description": "Suspension work and exhaust and catalytic-converter repair."
+            }
+          ]
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "Beyond the daily driver",
+          "heading": "Trucks and commercial vehicles, too",
+          "body": "We don't just handle the family sedan. One Stop services light trucks, SUVs, and commercial vehicles — so small businesses around Santa Rosa can keep their fleet moving.",
+          "points": [
+            "Foreign and domestic vehicles",
+            "Light trucks and SUVs",
+            "Commercial and work vehicles",
+            "Honest quotes before the work starts"
+          ],
+          "primaryCta": { "label": "Call (707) 536-9053", "href": "tel:+17075369053" }
+        },
+        {
+          "kind": "cta",
+          "heading": "Not sure what's wrong? Let's find out.",
+          "body": "Bring it in and we'll diagnose it straight — no guessing, no padding the bill.",
+          "primaryCta": { "label": "Get directions", "href": "/s/one-stop-auto-repair/contact" },
+          "secondaryCta": { "label": "Call (707) 536-9053", "href": "tel:+17075369053" }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About One Stop Auto Repair",
+          "heading": "A neighborhood shop built on a fair deal",
+          "subheading": "On Piner Road in Santa Rosa, doing right by drivers — one honest quote at a time."
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "The shop drivers actually trust",
+          "body": [
+            "One Stop Auto Repair sits on Piner Road in Santa Rosa, where it has built its name the hard way — by being straight with people. The idea behind the shop is right there in the reviews: honest work, fair prices, and a mechanic who tells you what your car really needs.",
+            "It's a full-service shop by design. Instead of sending you to one place for brakes, another for A/C, and a third for a transmission, One Stop does it all under one roof — from a five-minute oil change to a complete engine rebuild. Walk-ins are welcome, no appointment needed, and the team works with English- and Spanish-speaking customers alike."
+          ],
+          "highlights": [
+            "Honest quotes, no upsells",
+            "Cars, trucks, SUVs, and commercial vehicles",
+            "No appointment necessary",
+            "Se habla español"
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Simple, start to finish",
+          "intro": "Getting your car fixed here is refreshingly free of runaround.",
+          "items": [
+            {
+              "title": "Pull in",
+              "body": "Drive up during business hours — no appointment required. Tell us what's going on, or what light came on."
+            },
+            {
+              "title": "Get a straight quote",
+              "body": "We look it over, find the real problem, and give you an honest price before any work begins."
+            },
+            {
+              "title": "Drive away fixed",
+              "body": "We do the work right the first time and hand the keys back ready for the road."
+            }
+          ]
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "Why it matters",
+          "heading": "Honest is a competitive advantage",
+          "body": "Plenty of shops can turn a wrench. What keeps Santa Rosa drivers coming back to One Stop is the trust — knowing the diagnosis is real and the price is fair.",
+          "points": [
+            "Most honest mechanic around, per the reviews",
+            "Prices customers say you can't beat",
+            "4.4-star rating from local drivers",
+            "Repeat customers and word-of-mouth"
+          ],
+          "primaryCta": { "label": "Get in touch", "href": "/s/one-stop-auto-repair/contact" }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Visit One Stop Auto Repair",
+          "blurb": "Find us at 1688 Piner Rd, Santa Rosa, CA 95403, or call (707) 536-9053. Open Monday–Saturday, 8:30am–6:00pm. No appointment necessary — se habla español.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "none-photo-light"
+}

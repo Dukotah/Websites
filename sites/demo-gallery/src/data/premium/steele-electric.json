@@ -1,0 +1,264 @@
+{
+  "slug": "steele-electric",
+  "name": "Steele Electric",
+  "legalName": "Steele Electric",
+  "tagline": "Licensed C-10 electrical contractors serving Santa Rosa and Sonoma County",
+  "seoDescription": "Steele Electric is a licensed C-10 electrical contractor in Santa Rosa, CA (CSLB #983365), serving Sonoma County since 2013 with residential, commercial, and service electrical work — panel upgrades, rewires, generators, and more. Licensed, bonded, and insured.",
+  "category": "electrician",
+  "categoryLabel": "Electrical Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2013",
+  "contact": {
+    "phone": "(707) 318-4917",
+    "address": "5036 Gregory Ct, Santa Rosa, CA 95409"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#1f4e8c",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Licensed since 2013",
+          "heading": "Electrical work done to code, the first time",
+          "subheading": "Steele Electric is a licensed C-10 electrical contractor handling residential, commercial, and service work across Sonoma County — from panel upgrades and rewires to generators and new circuits. Licensed, bonded, and insured.",
+          "badges": [
+            "Licensed C-10 contractor · CSLB #983365",
+            "Bonded & insured",
+            "Serving Sonoma County since 2013"
+          ],
+          "primaryCta": { "label": "Request an estimate", "href": "/s/steele-electric/contact" },
+          "secondaryCta": { "label": "Call (707) 318-4917", "href": "tel:+17073184917" },
+          "motif": "/images/library/electrician/hero.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why homeowners and builders call Steele",
+          "heading": "A licensed electrician you can actually count on",
+          "intro": "A C-10 license, a clean safety record, and more than a decade of work across Sonoma County — the basics done right, every job.",
+          "items": [
+            {
+              "title": "Licensed & accountable",
+              "body": "California C-10 electrical contractor (CSLB #983365), active since 2013 — bonded and insured, with the workers' comp coverage to back the crew on your site.",
+              "icon": "shield"
+            },
+            {
+              "title": "Permitted and to code",
+              "body": "Work pulled, inspected, and signed off the right way. Dozens of permitted projects on record across the county, from service changes to commercial buildouts.",
+              "icon": "check"
+            },
+            {
+              "title": "Residential & commercial",
+              "body": "One crew for the panel upgrade at your house and the tenant improvement at your shop — service work, remodels, and new construction alike.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Local to Sonoma County",
+              "body": "Based in Santa Rosa and working the surrounding North Bay — close enough to show up when you need an electrician, not a call center.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Residential, commercial, and service electrical",
+          "intro": "From a single dead outlet to a full commercial wiring package, Steele Electric handles the whole range of C-10 work.",
+          "layout": "grid",
+          "fallbackOk": true,
+          "items": [
+            {
+              "title": "Residential electrical",
+              "description": "Panel and service upgrades, whole-home rewires, new circuits and outlets, lighting, EV charger installs, ceiling fans, and troubleshooting for older Sonoma County homes."
+            },
+            {
+              "title": "Commercial & service work",
+              "description": "Tenant improvements, commercial buildouts, lighting and power for shops and offices, and ongoing service calls for businesses that need a reliable electrician on file."
+            },
+            {
+              "title": "Power, panels & backup",
+              "description": "Main panel replacements, sub-panels, generator and backup-power installs, and code-correction work to bring older systems up to current standards."
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "heading": "A decade-plus of licensed work",
+          "items": [
+            { "value": "2013", "label": "Licensed since" },
+            { "value": "C-10", "label": "Electrical classification" },
+            { "value": "#983365", "label": "CSLB license" },
+            { "value": "Sonoma", "label": "County served" }
+          ]
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "Licensed, bonded & insured",
+          "heading": "The credentials behind the work",
+          "body": "Steele Electric is a fully licensed California C-10 electrical contractor — the credential the state requires for electrical work — and has held it in good standing since 2013.",
+          "points": [
+            "CSLB license #983365 — C-10 (Electrical), active",
+            "Contractor bond on file",
+            "Workers' compensation coverage current",
+            "Clean state safety record"
+          ],
+          "primaryCta": { "label": "Request an estimate", "href": "/s/steele-electric/contact" }
+        },
+        {
+          "kind": "cta",
+          "heading": "Need an electrician in Sonoma County?",
+          "body": "Whether it's a panel upgrade, a remodel, or a problem you can't figure out, call Steele Electric at (707) 318-4917 or send the details and we'll get you a straight answer.",
+          "primaryCta": { "label": "Get in touch", "href": "/s/steele-electric/contact" },
+          "secondaryCta": { "label": "Call (707) 318-4917", "href": "tel:+17073184917" }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "Electrical work for homes and businesses",
+          "subheading": "A licensed C-10 contractor handling the full range of residential, commercial, and service electrical work across Sonoma County.",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "Residential",
+          "heading": "Home electrical",
+          "intro": "Most Sonoma County homes were wired decades ago. We bring them up to current loads and code — safely.",
+          "layout": "grid",
+          "items": [
+            { "title": "Panel & service upgrades", "description": "Replace an old or overloaded main panel and upgrade the service to handle modern loads — EV chargers, AC, and added circuits." },
+            { "title": "Rewires & new circuits", "description": "Whole-home and partial rewires, plus dedicated circuits for appliances, workshops, and outdoor power." },
+            { "title": "Lighting & outlets", "description": "Recessed and fixture lighting, switches, outlets, GFCI protection, and ceiling fans installed clean." },
+            { "title": "EV charging & backup", "description": "Level 2 EV charger installs and generator or backup-power wiring for outage-prone areas." }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "Commercial",
+          "heading": "Commercial & service work",
+          "intro": "A C-10 contractor for tenant improvements, buildouts, and the ongoing service calls a working business depends on.",
+          "layout": "grid",
+          "items": [
+            { "title": "Tenant improvements", "description": "Power, lighting, and data rough-in for retail, office, and restaurant spaces — coordinated with your build schedule." },
+            { "title": "Commercial buildouts", "description": "New-construction and remodel electrical for commercial spaces, permitted and inspected." },
+            { "title": "Lighting & power", "description": "Commercial lighting design and replacement, added circuits, and equipment power for shops and offices." },
+            { "title": "Service & repairs", "description": "Troubleshooting, code corrections, and on-call service for businesses that need a reliable electrician on file." }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "What working with us looks like",
+          "intro": "No surprises — a straightforward process from the first call to a finished, inspected job.",
+          "items": [
+            { "title": "Call or send the details", "body": "Tell us what's going on — a problem, an upgrade, or a project. We'll talk through scope and what it'll take." },
+            { "title": "Estimate & permit", "body": "You get a clear estimate, and where the work requires it, we pull the proper permit so it's done by the book." },
+            { "title": "We do the work", "body": "Licensed, insured, and tidy on site — the job done to code with the right materials." },
+            { "title": "Inspected & signed off", "body": "Permitted work is inspected and signed off, so you've got a paper trail and a system you can trust." }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Have a project to scope?",
+          "body": "Send the location and what you need — we'll tell you what it takes to do it right.",
+          "primaryCta": { "label": "Get in touch", "href": "/s/steele-electric/contact" },
+          "secondaryCta": { "label": "Call (707) 318-4917", "href": "tel:+17073184917" }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Licensed since 2013",
+          "heading": "A Santa Rosa electrical contractor built on doing it right",
+          "subheading": "Steele Electric has held an active California C-10 electrical license since 2013, working homes and businesses across Sonoma County.",
+          "motif": "/images/library/electrician/story.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Local, licensed, and accountable",
+          "body": [
+            "Steele Electric is a Santa Rosa-based electrical contractor that's held an active California C-10 license — the state credential required to do electrical work — since 2013. Over more than a decade, that's meant dozens of permitted projects across Sonoma County, from residential service changes to commercial buildouts.",
+            "The approach is simple: be licensed and insured, pull the right permits, do the work to code, and stand behind it. For homeowners and builders in the North Bay, that's the difference between an electrician you call once and one you keep on file."
+          ],
+          "highlights": [
+            "California C-10 electrical contractor (CSLB #983365)",
+            "Active and in good standing since 2013",
+            "Bonded and insured, workers' comp current",
+            "Residential, commercial, and service work"
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Credentials",
+          "heading": "Licensed, bonded, and insured",
+          "items": [
+            { "title": "C-10 licensed", "body": "California Contractors State License Board #983365 — the C-10 Electrical classification, active and in good standing since 2013.", "icon": "shield" },
+            { "title": "Bonded & insured", "body": "Contractor bond on file and liability coverage in place, with current workers' compensation for the crew.", "icon": "check" },
+            { "title": "Clean safety record", "body": "A clean state safety record across more than a decade of permitted electrical work in Sonoma County.", "icon": "sparkle" },
+            { "title": "Permitted work", "body": "Dozens of documented, permitted projects on record — work pulled, inspected, and signed off properly.", "icon": "wrench" }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "2013", "label": "Licensed since" },
+            { "value": "10+", "label": "Years in business" },
+            { "value": "C-10", "label": "Classification" },
+            { "value": "#983365", "label": "CSLB license" }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with a licensed local electrician",
+          "primaryCta": { "label": "Get in touch", "href": "/s/steele-electric/contact" },
+          "secondaryCta": { "label": "Call (707) 318-4917", "href": "tel:+17073184917" }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Request an estimate",
+          "blurb": "Reach Steele Electric at (707) 318-4917 to talk through your project. Based in Santa Rosa and serving Sonoma County — licensed C-10 contractor, CSLB #983365, bonded and insured. Call for current hours and to schedule.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "none"
+}

@@ -1,0 +1,332 @@
+{
+  "slug": "sunshine-children-s-dentistry",
+  "name": "Sunshine Children's Dentistry",
+  "legalName": "Sunshine Children's Dentistry and Orthodontics",
+  "tagline": "Bringing sunshine to every smile in Santa Rosa",
+  "seoDescription": "Sunshine Children's Dentistry is a brand-new pediatric dental office on Guerneville Road in Santa Rosa, led by Dr. Navid Mehdipour, DMD, MPH. Gentle, kid-first care from the very first tooth — preventative, restorative, special-needs, and safe sedation dentistry.",
+  "category": "dentist",
+  "categoryLabel": "Pediatric Dentistry",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 800-8002",
+    "email": "Info@sunshinechildrensdentistry.com",
+    "address": "1401 Guerneville Rd, Suite 300, Santa Rosa, CA 95403"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/sunshinechildrensdentistry",
+    "instagram": "https://www.instagram.com/sunshinechildrensdentistry"
+  },
+  "hours": [
+    { "day": "Mon–Fri", "hours": "7:00am–4:00pm" },
+    { "day": "Saturday", "hours": "8:00am–1:00pm" },
+    { "day": "Sunday", "hours": "Closed" }
+  ],
+  "geo": { "lat": 38.4521, "lng": -122.7456 },
+  "brand": {
+    "color": "#f5a623",
+    "fontId": "warm-humanist"
+  },
+  "images": {
+    "hero": "/images/sunshine-children-s-dentistry/hero.jpeg",
+    "heroAlt": "The bright, sunlit reception area at Sunshine Children's Dentistry in Santa Rosa, with the sunburst logo on the wall and a kid-friendly waiting nook"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Pediatric Dentistry · Santa Rosa, CA",
+          "heading": "Gentle dental care, built entirely around kids",
+          "subheading": "From a baby's very first tooth through the teen years, Sunshine Children's Dentistry makes every visit calm, comfortable, and confidence-building — in a brand-new, kid-first office on Guerneville Road.",
+          "badges": [
+            "Welcoming little ones from the first tooth",
+            "Safe sedation with a board-certified pediatric anesthesiologist",
+            "Brand-new, child-focused office"
+          ],
+          "primaryCta": { "label": "Book an appointment", "href": "/s/sunshine-children-s-dentistry/contact" },
+          "secondaryCta": { "label": "Call (707) 800-8002", "href": "tel:+17078008002" },
+          "image": {
+            "src": "/images/sunshine-children-s-dentistry/hero.jpeg",
+            "alt": "The bright, sunlit reception area at Sunshine Children's Dentistry in Santa Rosa, with the sunburst logo on the wall and a kid-friendly waiting nook",
+            "focal": "50% 45%"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why families choose Sunshine",
+          "heading": "Dentistry that meets kids where they are",
+          "intro": "Every detail of the practice — from the play nook to the pace of each visit — is designed so children feel safe, respected, and at ease.",
+          "items": [
+            {
+              "title": "Kids are the whole focus",
+              "body": "This is a dedicated pediatric practice. The team takes extra time to understand each child's unique needs, so a checkup feels reassuring instead of scary.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Care from the first tooth",
+              "body": "Little ones are welcome from their very first tooth, building healthy habits and a positive relationship with the dentist from day one.",
+              "icon": "check"
+            },
+            {
+              "title": "Safe sedation when it's needed",
+              "body": "For anxious children or more involved treatment, sedation is offered using the safest, most advanced methods, overseen by a board-certified pediatric anesthesiologist.",
+              "icon": "shield"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Complete pediatric dental care",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Preventative Dentistry",
+              "description": "Cleanings, exams, fluoride, and guidance that keep small teeth healthy and head off problems before they start."
+            },
+            {
+              "title": "Dental Sealants",
+              "description": "A thin protective coating on the chewing surfaces of back teeth to guard against cavities where kids need it most."
+            },
+            {
+              "title": "Restorative Dentistry",
+              "description": "Gentle fillings and restorations to treat cavities and keep growing smiles strong and comfortable."
+            },
+            {
+              "title": "Infant Dentistry",
+              "description": "Early visits for babies and toddlers — establishing healthy habits and easing parents into the first steps of dental care."
+            },
+            {
+              "title": "Special Needs Dentistry",
+              "description": "Patient, accommodating care for children with special healthcare needs, in a calm and supportive environment."
+            },
+            {
+              "title": "Emergency & Sedation Dentistry",
+              "description": "Prompt help when a tooth can't wait, plus safe sedation options overseen by a board-certified pediatric anesthesiologist."
+            }
+          ]
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "A calmer kind of visit",
+          "heading": "Designed so the dentist isn't scary",
+          "body": "Sunshine was built from the ground up as a children's office — bright, playful, and paced for kids. The goal is simple: positive early experiences that turn into a lifetime of healthy habits.",
+          "points": [
+            "A welcoming play area and kid-sized waiting nook",
+            "Open, sunlit treatment bays with a friendly feel",
+            "Time and patience for nervous first-timers",
+            "An in-house Sunshine Membership plan for families without insurance"
+          ],
+          "primaryCta": { "label": "See our services", "href": "/s/sunshine-children-s-dentistry/services" }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Meet Dr. Mehdipour",
+          "heading": "A dentist who came to Santa Rosa to put down roots",
+          "body": [
+            "Sunshine Children's Dentistry is led by Dr. Navid Mehdipour, DMD, MPH, who brings more than two decades of dental experience and a lifelong passion for caring for children. He earned his dental degree before completing advanced training and a Master of Public Health at A.T. Still University School of Dentistry in Arizona.",
+            "He moved to Santa Rosa drawn to the community where his wife was born and raised — and built Sunshine as the kind of children's practice he'd want for his own family: calm, modern, and centered entirely on making kids comfortable."
+          ],
+          "highlights": [
+            "Dr. Navid Mehdipour, DMD, MPH",
+            "20+ years of dental experience",
+            "Trained at A.T. Still University, Arizona",
+            "A dedicated, kids-only practice"
+          ],
+          "image": {
+            "src": "/images/sunshine-children-s-dentistry/story.jpeg",
+            "alt": "The play area at Sunshine Children's Dentistry with a child-sized table, toys, and bright modern furnishings",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready for a visit that's actually fun?",
+          "body": "Find us at 1401 Guerneville Rd, Suite 300 in Santa Rosa. Call (707) 800-8002 or book online — new patients and first teeth always welcome.",
+          "primaryCta": { "label": "Book an appointment", "href": "/s/sunshine-children-s-dentistry/contact" },
+          "secondaryCta": { "label": "Call (707) 800-8002", "href": "tel:+17078008002" }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Our services",
+          "heading": "Everything your child's smile needs, in one place",
+          "subheading": "Preventative, restorative, infant, special-needs, emergency, and sedation dentistry — all under one roof, all built around kids."
+        },
+        {
+          "kind": "services",
+          "heading": "Keeping smiles healthy",
+          "layout": "rows",
+          "fallbackOk": true,
+          "items": [
+            {
+              "title": "Preventative Dentistry",
+              "description": "Regular cleanings, exams, fluoride treatments, and personalized guidance to keep cavities away. We focus on building good habits early so checkups stay easy year after year."
+            },
+            {
+              "title": "Dental Sealants",
+              "description": "A quick, painless protective coating sealed onto the grooves of back teeth — one of the most effective ways to prevent decay in children's molars."
+            },
+            {
+              "title": "Infant Dentistry",
+              "description": "We welcome little ones from their very first tooth. Early visits help babies and toddlers get comfortable, and give parents simple, practical care advice."
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "heading": "When teeth need more help",
+          "layout": "rows",
+          "fallbackOk": true,
+          "items": [
+            {
+              "title": "Restorative Dentistry",
+              "description": "Gentle, kid-friendly fillings and restorations to treat cavities and repair teeth — keeping growing smiles strong, healthy, and comfortable."
+            },
+            {
+              "title": "Special Needs Dentistry",
+              "description": "Compassionate, accommodating dental care for children with special healthcare needs, delivered patiently in a calm and supportive setting."
+            },
+            {
+              "title": "Emergency Dentistry",
+              "description": "Toothaches and dental injuries don't keep a schedule. When something can't wait, we're here to help your child get comfortable fast."
+            },
+            {
+              "title": "Sedation Dentistry",
+              "description": "For anxious children or more extensive treatment, we offer sedation using the safest and most advanced methods — provided by a board-certified pediatric anesthesiologist."
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "Inside the office",
+          "heading": "A space made for kids",
+          "images": [
+            {
+              "src": "/images/sunshine-children-s-dentistry/operatory-open.jpeg",
+              "alt": "An open, sunlit treatment bay at Sunshine Children's Dentistry with bright orange pediatric dental chairs and floor-to-ceiling windows"
+            },
+            {
+              "src": "/images/sunshine-children-s-dentistry/hygiene-mural.jpeg",
+              "alt": "A hygiene station beside a colorful wall mural of a smiling tooth, toothbrush, and floss characters"
+            },
+            {
+              "src": "/images/sunshine-children-s-dentistry/story.jpeg",
+              "alt": "The play area at Sunshine Children's Dentistry with a child-sized table, toys, and bright modern furnishings"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Have a question about your child's care?",
+          "body": "Call (707) 800-8002 or send a note — we're happy to help you figure out the right next step.",
+          "primaryCta": { "label": "Get in touch", "href": "/s/sunshine-children-s-dentistry/contact" },
+          "secondaryCta": { "label": "Call (707) 800-8002", "href": "tel:+17078008002" }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Sunshine",
+          "heading": "A children's practice, built from scratch for children",
+          "subheading": "Brand-new, bright, and centered on one thing: making kids feel safe at the dentist."
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Meet Dr. Mehdipour",
+          "heading": "Experience, with a soft touch",
+          "body": [
+            "Sunshine Children's Dentistry is led by Dr. Navid Mehdipour, DMD, MPH. He brings more than twenty years of dental experience and a lifelong passion for caring for children, paired with advanced training and a Master of Public Health from A.T. Still University School of Dentistry in Arizona.",
+            "Dr. Mehdipour moved to Santa Rosa drawn to the community where his wife was born and raised, and opened Sunshine as the kind of practice he believes every child deserves — modern, gentle, and built so a trip to the dentist feels reassuring instead of frightening."
+          ],
+          "highlights": [
+            "Dr. Navid Mehdipour, DMD, MPH",
+            "20+ years of dental experience",
+            "Master of Public Health, A.T. Still University",
+            "A dedicated pediatric practice"
+          ],
+          "image": {
+            "src": "/images/sunshine-children-s-dentistry/operatory-open.jpeg",
+            "alt": "Open, sunlit treatment bay at Sunshine Children's Dentistry with bright pediatric dental chairs",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "The office",
+          "heading": "Brand-new and built around kids",
+          "body": "Sunshine occupies a fresh, purpose-built space on Guerneville Road — bright, open, and outfitted with up-to-date technology to handle every kind of children's dental need under one roof.",
+          "points": [
+            "A spacious, modern pediatric facility",
+            "Multiple treatment chairs, including private rooms",
+            "Up-to-date dental technology throughout",
+            "A play area and kid-sized waiting nook"
+          ],
+          "primaryCta": { "label": "Visit us", "href": "/s/sunshine-children-s-dentistry/contact" }
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "When should my child first see the dentist?",
+              "a": "We welcome little ones from their very first tooth. Early visits help children get comfortable and let us guide healthy habits from the start."
+            },
+            {
+              "q": "Do you offer sedation for anxious kids?",
+              "a": "Yes. For children who feel anxious or need more extensive treatment, we offer sedation using safe, advanced methods overseen by a board-certified pediatric anesthesiologist."
+            },
+            {
+              "q": "Do you see children with special needs?",
+              "a": "We do. We provide patient, accommodating care for children with special healthcare needs in a calm, supportive environment."
+            },
+            {
+              "q": "What if we don't have dental insurance?",
+              "a": "Ask us about the in-house Sunshine Membership plan, designed to make routine pediatric care affordable for families without insurance. Call (707) 800-8002 and we'll walk you through the options."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Visit Sunshine Children's Dentistry",
+          "blurb": "Find us at 1401 Guerneville Rd, Suite 300, Santa Rosa, CA 95403, or call (707) 800-8002. Open Monday–Friday 7am–4pm and Saturday 8am–1pm. New patients and first teeth always welcome.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

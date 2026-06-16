@@ -1,0 +1,327 @@
+{
+  "slug": "total-care-chiropractic",
+  "name": "Total Care Chiropractic",
+  "legalName": "Total Care Chiropractic",
+  "tagline": "Gentle, experienced chiropractic care in downtown Santa Rosa",
+  "seoDescription": "Total Care Chiropractic in Santa Rosa, CA is the practice of Dr. Todd M. Wright, DC — a chiropractor with 35+ years of experience treating back pain, neck pain, headaches, and auto-injury recovery. 5.0-star rated.",
+  "category": "chiropractor",
+  "categoryLabel": "Chiropractic Care",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 545-2105",
+    "address": "1203 4th St, Santa Rosa, CA 95404"
+  },
+  "social": {
+    "yelp": "https://www.yelp.com/biz/total-care-chiropractic-santa-rosa",
+    "facebook": "https://www.facebook.com/p/TotalCare-Chiropractic-Center-100066793717974/"
+  },
+  "rating": {
+    "value": 5.0,
+    "count": 13,
+    "source": "Chamber of Commerce"
+  },
+  "brand": {
+    "color": "#1f6f8b",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Downtown Santa Rosa · Chiropractic Care",
+          "heading": "Relief that lasts, from a chiropractor who has seen it all",
+          "subheading": "Total Care Chiropractic is the Santa Rosa practice of Dr. Todd M. Wright, DC — more than 35 years of hands-on experience helping patients move past back pain, neck pain, and the lingering effects of injury.",
+          "badges": [
+            "5.0★ patient rating",
+            "Dr. Todd M. Wright, DC — practicing since 1990",
+            "By appointment · 1203 4th St"
+          ],
+          "primaryCta": { "label": "Request an appointment", "href": "/s/total-care-chiropractic/contact" },
+          "secondaryCta": { "label": "Call (707) 545-2105", "href": "tel:+17075452105" },
+          "motif": "/images/library/medical/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why patients choose Total Care",
+          "heading": "Experience you can feel in the first visit",
+          "intro": "Patients come to Dr. Wright because the care is unhurried, precise, and built around what is actually causing their pain.",
+          "items": [
+            {
+              "title": "35+ years of experience",
+              "body": "Dr. Wright has practiced chiropractic since graduating from National College of Chiropractic in 1990 — decades of hands-on experience with the spine and nervous system.",
+              "icon": "shield"
+            },
+            {
+              "title": "Care tailored to your pain",
+              "body": "From everyday back and neck pain to headaches and post-accident recovery, treatment is focused on the specific area that needs adjustment, not a one-size-fits-all routine.",
+              "icon": "check"
+            },
+            {
+              "title": "By appointment, no waiting room rush",
+              "body": "An appointment-based practice means a calm visit and a doctor who has time for you — which is exactly what patients mention in their reviews.",
+              "icon": "clock"
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "35+", "label": "Years in practice" },
+            { "value": "5.0★", "label": "Patient rating" },
+            { "value": "1990", "label": "Practicing since" }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we treat",
+          "heading": "Chiropractic care for the pain that slows you down",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Back Pain",
+              "description": "Targeted spinal adjustments to relieve lower and upper back pain and restore comfortable movement."
+            },
+            {
+              "title": "Neck Pain",
+              "description": "Gentle, precise care for neck stiffness and pain — including the kind that follows poor posture or injury."
+            },
+            {
+              "title": "Headaches",
+              "description": "Many patients see Dr. Wright for chronic headaches, including long-standing pain traced back to old injuries."
+            },
+            {
+              "title": "Auto & Injury Recovery",
+              "description": "Support through the healing process after a car accident or other injury, with care focused on the source of the pain."
+            },
+            {
+              "title": "Spinal Adjustments",
+              "description": "Hands-on chiropractic adjustments to keep the spine aligned and the nervous system working as it should."
+            },
+            {
+              "title": "Spinal Decompression",
+              "description": "Decompression therapy to ease pressure on the spine and the nerves around it."
+            }
+          ]
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "A steady hand",
+          "heading": "The same trusted doctor, visit after visit",
+          "body": "At Total Care Chiropractic you see Dr. Wright himself — not a rotating roster. That continuity is why patients describe care that gets to the root of the problem and a doctor who knows exactly where they need adjustment.",
+          "points": [
+            "Doctor of Chiropractic, National College of Chiropractic (1990)",
+            "Licensed in California for over three decades",
+            "Friendly, professional front-office staff",
+            "Convenient downtown Santa Rosa location"
+          ],
+          "primaryCta": { "label": "Request an appointment", "href": "/s/total-care-chiropractic/contact" }
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What patients say about Dr. Wright",
+          "items": [
+            {
+              "quote": "Dr. Wright is working wonders helping me with my concussion and neck pain. He is second to none."
+            },
+            {
+              "quote": "The doctor knows exactly where I need adjustment and how to make the headaches go away."
+            },
+            {
+              "quote": "Best care possible — a caring, professional doctor and staff. Dr. Todd has cured my back aches for years."
+            }
+          ],
+          "rating": { "value": 5.0, "count": 13, "source": "Chamber of Commerce" }
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready to feel better?",
+          "body": "Total Care Chiropractic is at 1203 4th St in downtown Santa Rosa. Call (707) 545-2105 to request an appointment.",
+          "primaryCta": { "label": "Get in touch", "href": "/s/total-care-chiropractic/contact" },
+          "secondaryCta": { "label": "Call (707) 545-2105", "href": "tel:+17075452105" }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we treat",
+          "heading": "How Dr. Wright can help",
+          "subheading": "Chiropractic care focused on the real source of your pain — from everyday aches to recovery after an injury.",
+          "motif": "/images/library/medical/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Conditions we care for",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Back Pain",
+              "description": "Targeted spinal adjustments to relieve lower and upper back pain and restore comfortable movement.",
+              "badge": "Most common"
+            },
+            {
+              "title": "Neck Pain",
+              "description": "Gentle, precise care for neck stiffness and pain — including the kind that follows poor posture or injury."
+            },
+            {
+              "title": "Headaches",
+              "description": "Care for chronic and recurring headaches, including long-standing pain traced back to old injuries."
+            },
+            {
+              "title": "Auto & Injury Recovery",
+              "description": "Support through the healing process after a car accident or other injury, focused on the source of the pain."
+            },
+            {
+              "title": "Spinal Adjustments",
+              "description": "Hands-on chiropractic adjustments to keep the spine aligned and the nervous system functioning well."
+            },
+            {
+              "title": "Spinal Decompression",
+              "description": "Decompression therapy to ease pressure on the spine and surrounding nerves."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "What to expect",
+          "heading": "Your visit, step by step",
+          "intro": "Working with Total Care Chiropractic is straightforward from the first call.",
+          "items": [
+            {
+              "title": "Call to schedule",
+              "body": "Reach the office at (707) 545-2105. Total Care is an appointment-based practice, so you'll get a time that works for you."
+            },
+            {
+              "title": "Dr. Wright assesses",
+              "body": "He listens to your history and pinpoints what is actually causing the pain — not just where you feel it."
+            },
+            {
+              "title": "Targeted treatment",
+              "body": "You receive hands-on adjustments and care tailored to your condition, explained clearly along the way."
+            },
+            {
+              "title": "Ongoing relief",
+              "body": "Many patients return for periodic care that keeps them moving comfortably for years."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Do I need an appointment?",
+              "a": "Yes — Total Care Chiropractic is an appointment-based practice. Call (707) 545-2105 to schedule a time."
+            },
+            {
+              "q": "What does Dr. Wright treat?",
+              "a": "Common reasons patients visit include back pain, neck pain, headaches, and recovery after an auto accident or other injury."
+            },
+            {
+              "q": "How experienced is Dr. Wright?",
+              "a": "Dr. Todd M. Wright has been a practicing Doctor of Chiropractic since 1990 — more than 35 years of experience."
+            },
+            {
+              "q": "Where are you located?",
+              "a": "We're at 1203 4th St in downtown Santa Rosa, CA 95404."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let's get you out of pain",
+          "body": "Call (707) 545-2105 or request an appointment at 1203 4th St, Santa Rosa.",
+          "primaryCta": { "label": "Get in touch", "href": "/s/total-care-chiropractic/contact" },
+          "secondaryCta": { "label": "Call (707) 545-2105", "href": "tel:+17075452105" }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Total Care Chiropractic",
+          "heading": "Three decades of caring for Santa Rosa",
+          "subheading": "A downtown chiropractic practice built on experience, continuity, and care that gets to the root of the problem.",
+          "motif": "/images/library/medical/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "The practice of Dr. Todd M. Wright, DC",
+          "body": [
+            "Total Care Chiropractic is the downtown Santa Rosa practice of Dr. Todd M. Wright, DC. A graduate of National College of Chiropractic in 1990, Dr. Wright has spent more than 35 years caring for the spine, joints, and nervous system — and the people attached to them.",
+            "Over those decades, patients have come to him for back pain, neck pain, stubborn headaches, and recovery after car accidents and other injuries. What keeps them coming back is the same thing they write in their reviews: a doctor who finds the real source of the pain, explains it plainly, and a friendly, professional office that makes scheduling easy."
+          ],
+          "highlights": [
+            "Dr. Todd M. Wright, DC — practicing since 1990",
+            "Doctor of Chiropractic, National College of Chiropractic",
+            "Licensed in California for over 30 years",
+            "5.0-star rated by Santa Rosa patients"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "35+", "label": "Years in practice" },
+            { "value": "5.0★", "label": "Patient rating" },
+            { "value": "1990", "label": "Practicing since" }
+          ]
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "Why it matters",
+          "heading": "You see the doctor, every time",
+          "body": "At many clinics you never know who you'll get. At Total Care, you see Dr. Wright himself — the same experienced hands, visit after visit. That continuity is the difference patients notice most.",
+          "points": [
+            "One trusted doctor, not a rotating roster",
+            "Unhurried, appointment-based visits",
+            "Care focused on the cause, not just the symptom",
+            "Convenient downtown Santa Rosa location"
+          ],
+          "primaryCta": { "label": "Get in touch", "href": "/s/total-care-chiropractic/contact" }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Visit Total Care Chiropractic",
+          "blurb": "Find us at 1203 4th St, Santa Rosa, CA 95404, or call (707) 545-2105 to request an appointment. Total Care is an appointment-based practice.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "none"
+}
