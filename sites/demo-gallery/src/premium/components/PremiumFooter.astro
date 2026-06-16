@@ -97,13 +97,17 @@ const socials = [
 <style>
   .p-ft { background: var(--p-structure); color: var(--p-on-dark); }
   .p-ft__grid {
-    display: grid;
-    /* Brand column leads; the remaining nav/contact/hours columns flow as
-       auto-fit tracks so the footer reads balanced with 1, 2, or 3 of them. */
-    grid-template-columns: 1.6fr repeat(auto-fit, minmax(8rem, 1fr));
-    gap: var(--p-space-12);
+    /* Flex (not auto-fit grid): the brand column leads and the nav/contact/hours
+       columns spread horizontally and fill the width, then wrap cleanly when the
+       row runs out of room — predictable orientation with 1, 2, or 3 of them. */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: clamp(2rem, 1.2rem + 3.5vw, 4.5rem);
     padding-block: clamp(3rem, 2.4rem + 2.5vw, 5rem);
   }
+  .p-ft__brand { flex: 2 1 16rem; max-width: 32rem; }
+  .p-ft__col { flex: 1 1 9rem; min-width: 8rem; }
   .p-ft__id { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; color: #fff; }
   .p-ft__mono {
     display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 8px;
@@ -127,8 +131,9 @@ const socials = [
   .p-ft__bottom-inner { display: flex; justify-content: space-between; gap: var(--p-space-4); flex-wrap: wrap; padding-block: var(--p-space-6); }
   .p-ft__bottom-inner p { color: var(--p-on-dark-soft); font-size: var(--p-text-xs); }
   @media (max-width: 760px) {
-    .p-ft__grid { grid-template-columns: 1fr 1fr; }
-    .p-ft__brand { grid-column: 1 / -1; }
+    .p-ft__brand { flex-basis: 100%; }
   }
-  @media (max-width: 480px) { .p-ft__grid { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) {
+    .p-ft__col { flex-basis: 100%; }
+  }
 </style>
