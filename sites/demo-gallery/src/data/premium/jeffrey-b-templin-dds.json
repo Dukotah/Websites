@@ -1,0 +1,325 @@
+{
+  "slug": "jeffrey-b-templin-dds",
+  "name": "Jeffrey B Templin DDS",
+  "legalName": "Jeffrey B Templin, DDS — Family Dentistry",
+  "tagline": "Second-generation family dentistry in Larkfield",
+  "seoDescription": "Jeffrey B Templin DDS is a second-generation family dentistry practice at 65 St James Dr in the Larkfield area of Santa Rosa, CA — preventive, restorative, and cosmetic care for the whole family.",
+  "category": "dental",
+  "categoryLabel": "Family Dentistry",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 545-8191",
+    "address": "65 St James Dr, Santa Rosa, CA 95403"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/people/Jeffrey-B-Templin-DDS/100070522209239/",
+    "yelp": "https://www.yelp.com/biz/jeffrey-b-templin-dds-santa-rosa"
+  },
+  "hours": [
+    { "day": "Mon–Fri", "hours": "9am–5pm" },
+    { "day": "Sat–Sun", "hours": "Closed" }
+  ],
+  "rating": {
+    "value": 5.0,
+    "count": 3,
+    "source": "Healthgrades"
+  },
+  "brand": {
+    "color": "#0e6f86",
+    "fontId": "classic-trad"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Larkfield · Santa Rosa, CA",
+          "heading": "The family dentist Santa Rosa families have trusted for generations",
+          "subheading": "Dr. Jeffrey Templin is a second-generation dentist carrying on the practice his father built in Larkfield — gentle, unhurried care for kids, parents, and grandparents alike.",
+          "badges": [
+            "Second-generation family dentist",
+            "Patients of 25+ years",
+            "Welcoming new patients",
+            "Massage chairs in every room"
+          ],
+          "primaryCta": {
+            "label": "Call (707) 545-8191",
+            "href": "tel:+17075458191"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/jeffrey-b-templin-dds/services"
+          },
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "Why families stay",
+          "heading": "Care that treats you like family — because most of our patients are",
+          "body": "Dr. Templin trained at UCLA and grew up in this practice. Patients describe a team that is competent, conscientious, and personable — the kind of office where the hygienists know your name and the kids actually look forward to their visit.",
+          "points": [
+            "Second-generation practice rooted in Larkfield",
+            "Families who have trusted the Templins for 25+ years",
+            "Massage chairs to make every visit more comfortable",
+            "Friendly, efficient team that makes you feel at home"
+          ],
+          "primaryCta": {
+            "label": "Meet Dr. Templin",
+            "href": "/s/jeffrey-b-templin-dds/about"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "What we do",
+          "heading": "Complete dentistry, all in one Larkfield office",
+          "intro": "From routine cleanings to crowns, implants, and cosmetic work — most of what your family needs is handled right here.",
+          "items": [
+            {
+              "title": "Preventive & Hygiene",
+              "body": "Cleanings, exams, sealants, and home-care guidance to keep healthy smiles healthy.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Restorative Care",
+              "body": "Crowns, bridges, fillings, root canal therapy, and dentures to restore comfort and function.",
+              "icon": "shield"
+            },
+            {
+              "title": "Cosmetic Dentistry",
+              "body": "Thoughtful cosmetic work to brighten and refine your smile, at your own pace.",
+              "icon": "check"
+            },
+            {
+              "title": "Family Friendly",
+              "body": "Kids love coming here. We care for every generation under one roof.",
+              "icon": "leaf"
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "2", "label": "Generations of Templin dentists" },
+            { "value": "25+", "label": "Years with longtime patients" },
+            { "value": "14+", "label": "Services offered" },
+            { "value": "5.0★", "label": "Healthgrades rating" }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What patients say",
+          "rating": {
+            "value": 5.0,
+            "count": 3,
+            "source": "Healthgrades"
+          },
+          "items": [
+            {
+              "quote": "Friendly, efficient, highly skilled and very experienced professionals. AND… amazingly, also very reasonably priced!",
+              "author": "W.S.T.",
+              "detail": "Healthgrades review"
+            },
+            {
+              "quote": "We've gone to Dr. Templin and his father for over 25 years and wouldn't trust anyone else with our teeth.",
+              "author": "Longtime patient family",
+              "detail": "Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Looking for a dentist who feels like family?",
+          "body": "Dr. Templin is welcoming new patients in Larkfield. Find us at 65 St James Dr, Santa Rosa — call (707) 545-8191 and we'll be glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/jeffrey-b-templin-dds/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 545-8191",
+            "href": "tel:+17075458191"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "Comprehensive care for every smile in the family",
+          "subheading": "From the first checkup to crowns, implants, and cosmetic work — Dr. Templin offers a full range of general and family dentistry at 65 St James Dr.",
+          "badges": [
+            "Preventive & family dentistry",
+            "Crowns, bridges & implants",
+            "Cosmetic & restorative care"
+          ],
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Services we offer",
+          "layout": "rows",
+          "fallbackOk": true,
+          "items": [
+            {
+              "title": "Cleanings & Preventive Care",
+              "description": "Routine cleanings, exams, sealants, mouth guards, and home-care instruction to keep your family's teeth healthy and catch problems early."
+            },
+            {
+              "title": "Crowns, Bridges & Fillings",
+              "description": "Durable, natural-looking crowns, bridges, and restorative fillings to repair damaged or decayed teeth and protect your bite."
+            },
+            {
+              "title": "Dental Implants",
+              "description": "Permanent, natural-feeling replacements for missing or failing teeth, restoring both function and confidence."
+            },
+            {
+              "title": "Root Canal Therapy",
+              "description": "Comfortable, gentle root canal treatment to relieve pain and save teeth that would otherwise be lost."
+            },
+            {
+              "title": "Dentures & Partials",
+              "description": "Full and partial dentures fitted for comfort and a natural look, with care taken to get the details right."
+            },
+            {
+              "title": "Cosmetic Dentistry",
+              "description": "Cosmetic procedures to brighten and refine your smile, shaped around what you actually want."
+            },
+            {
+              "title": "Gum Disease & TMJ Care",
+              "description": "Treatment for gum disease and TMD/TMJ therapy, plus nutrition counseling to support long-term oral health."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "What to expect",
+          "heading": "Your first visit, made easy",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call (707) 545-8191 and our team will find a time that works and answer any questions."
+            },
+            {
+              "title": "We get to know you",
+              "body": "Dr. Templin reviews your history, listens to your concerns, and walks you through what he sees."
+            },
+            {
+              "title": "We make a plan",
+              "body": "Together we map out the care you need — no pressure, no surprises, at a pace that suits you."
+            },
+            {
+              "title": "We take care of it",
+              "body": "From cleanings to crowns, the work is done gently and done right, with the comfort of a massage chair."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Have a question about your care?",
+          "body": "We're glad to talk it through. Call (707) 545-8191 or stop by 65 St James Dr, Santa Rosa.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/jeffrey-b-templin-dds/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 545-8191",
+            "href": "tel:+17075458191"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About the practice",
+          "heading": "A Larkfield practice built by one generation and carried on by the next",
+          "subheading": "Dr. Jeffrey Templin grew up in this office. Today he cares for many of the same families his father did — some for more than 25 years.",
+          "badges": [
+            "UCLA-trained",
+            "Second-generation dentist",
+            "Rooted in Larkfield, Santa Rosa"
+          ],
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Two generations, one chair",
+          "body": [
+            "Jeffrey B Templin DDS is a second-generation family dentistry practice in the Larkfield area of Santa Rosa. Dr. Templin trained at UCLA and stepped into the practice his father built, carrying on the same approach: treat people the way you'd want your own family treated.",
+            "That continuity is the whole point. Many of the families who sit in Dr. Templin's chair today were patients of his father — some for more than 25 years. As one longtime family put it, they 'wouldn't trust anyone else with our teeth.' Patients describe a team that is competent, conscientious, efficient, and personable, with hygienists they swear by and a doctor the kids actually like.",
+            "Little touches make the difference here — like the massage chairs in every room — but the real difference is the feeling of being known. This is the kind of neighborhood practice where you're a name, not a chart number."
+          ],
+          "highlights": [
+            "Second-generation Larkfield family dentist",
+            "Dr. Templin trained at UCLA",
+            "Patients who've stayed 25+ years",
+            "Massage chairs in every treatment room"
+          ],
+          "signature": "Dr. Jeffrey Templin"
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "2", "label": "Generations of Templin dentists" },
+            { "value": "25+", "label": "Years with longtime patients" },
+            { "value": "5.0★", "label": "Healthgrades rating" }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see why families stay",
+          "body": "Dr. Templin is welcoming new patients. Find us at 65 St James Dr, Santa Rosa, or call (707) 545-8191.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/jeffrey-b-templin-dds/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 545-8191",
+            "href": "tel:+17075458191"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Visit Dr. Templin in Larkfield",
+          "blurb": "Jeffrey B Templin DDS is at 65 St James Dr, Santa Rosa, CA 95403. Call (707) 545-8191 to schedule — we're welcoming new patients and glad to help.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "none-photo-light"
+}

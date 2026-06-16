@@ -46,3 +46,4 @@ data/morning-batch.log
 data/morning-*.csv
 data/cache/
 .gstack/
+.vercel

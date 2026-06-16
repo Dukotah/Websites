@@ -1,0 +1,373 @@
+{
+  "slug": "kaia-fit",
+  "name": "Kaia FIT",
+  "legalName": "Kaia FIT Santa Rosa",
+  "tagline": "Functional fitness for women, by women",
+  "seoDescription": "Kaia FIT Santa Rosa is a women's fitness studio on Airway Drive — cross-training, lift, barre, yoga, cycle, and 6-week BRIK bootcamps led by certified coaches, with nutrition support and a 5-star community.",
+  "category": "fitness",
+  "categoryLabel": "Women's Fitness Studio",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 526-8944",
+    "address": "3451 Airway Dr, Santa Rosa, CA 95403"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/KaiaFITSantaRosa/"
+  },
+  "hours": [
+    { "day": "Mon–Fri", "hours": "5:00am–9:00am, 4:45pm–7:00pm" },
+    { "day": "Saturday", "hours": "8:00am–9:00am" },
+    { "day": "Sunday", "hours": "Closed" }
+  ],
+  "rating": {
+    "value": 5.0,
+    "count": 19,
+    "source": "Birdeye"
+  },
+  "brand": {
+    "color": "#c8267c",
+    "fontId": "bold-display"
+  },
+  "images": {
+    "hero": "/images/kaia-fit/hero.jpg",
+    "heroAlt": "Women of Kaia FIT Santa Rosa in a team huddle after a workout"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "fullbleed",
+          "eyebrow": "Santa Rosa, CA · Women's Fitness Studio",
+          "heading": "Build a strong body and a powerful mind",
+          "subheading": "Kaia FIT is functional fitness for women, by women — cross-training, lift, barre, yoga, and 6-week bootcamps led by certified coaches on Airway Drive. All levels, all welcome.",
+          "badges": [
+            "5.0★ from 19 reviews",
+            "Coaching for every level",
+            "One membership, every class"
+          ],
+          "primaryCta": {
+            "label": "See the programs",
+            "href": "/s/kaia-fit/programs"
+          },
+          "secondaryCta": {
+            "label": "Try a class",
+            "href": "/s/kaia-fit/contact"
+          },
+          "image": {
+            "src": "/images/kaia-fit/hero.jpg",
+            "alt": "Women of Kaia FIT Santa Rosa in a team huddle after a workout",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why Kaia",
+          "heading": "Fitness designed for real life",
+          "intro": "Kaia is built on three pillars — train smart, eat well, and show up for each other. One membership covers all of it.",
+          "items": [
+            {
+              "title": "Functional training",
+              "body": "Strength, cardio, and mobility built on functional movement — with modifications and progressions so every level trains safely.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Nutrition support",
+              "body": "The Kaia Plate meal plan turns nutrition into habits you can actually keep — coaching that fits real schedules, not a crash diet.",
+              "icon": "leaf"
+            },
+            {
+              "title": "A community that shows up",
+              "body": "Results-driven fitness with a powerful community. Kaia is truly for everyone, and all are welcome here.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we offer",
+          "heading": "Eight ways to move, one membership",
+          "intro": "Cross-training is our signature, but Kaia members can mix and match the whole schedule — no second gym required.",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Cross-Training",
+              "description": "Our signature class — a unique mix of high-intensity cardio, functional movement, and both weighted and non-weighted exercises."
+            },
+            {
+              "title": "Lift",
+              "description": "A strength class designed to build lean muscle, improve bone density, boost metabolism, and grow your confidence."
+            },
+            {
+              "title": "Barre",
+              "description": "A low-impact blend of postures inspired by ballet, yoga, Pilates, and Kaia — sculpting strength with control."
+            },
+            {
+              "title": "Yoga",
+              "description": "Power yoga and core work with Pilates-style technique — mind and body in one weekly reset."
+            },
+            {
+              "title": "Cycle",
+              "description": "A cardio-based, calorie-torching ride with certified spin instructors. It's a party on a bike."
+            },
+            {
+              "title": "TRX® Suspension",
+              "description": "Bodyweight suspension training that builds strength, power, endurance, mobility, balance, and core stability all at once."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Functional fitness for women, by women",
+          "body": [
+            "Kaia FIT Santa Rosa is a women's fitness studio on Airway Drive built around a simple promise: build a strong body and a powerful mind. We blend cross-training, lift, barre, yoga, cycle, and dance into one membership so members can train their whole body without juggling separate gyms.",
+            "Head coach and owner Lacey is a NASM-certified personal trainer and group fitness coach, leading a team of certified coaches who give individual attention in every class. Coach Angela Wooton — ACE-certified in TRX and cross-training — has been with the studio for years. Together they coach women of every level, with modifications and progressions that keep training safe, sustainable, and motivating."
+          ],
+          "highlights": [
+            "Owner & head coach Lacey, NASM-certified",
+            "Certified coaches, individual attention",
+            "Modifications and progressions for every level",
+            "Nutrition coaching with the Kaia Plate plan"
+          ],
+          "image": {
+            "src": "/images/kaia-fit/story.jpg",
+            "alt": "The Kaia FIT Santa Rosa coaching team and community",
+            "focal": "50% 35%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "5.0★", "label": "19 reviews" },
+            { "value": "8+", "label": "Class types" },
+            { "value": "3×", "label": "BRIK bootcamps a year" },
+            { "value": "All", "label": "Levels welcome" }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What members say",
+          "rating": {
+            "value": 5.0,
+            "count": 19,
+            "source": "Birdeye"
+          },
+          "items": [
+            {
+              "quote": "Love Kaia! Awesome workouts for every level, amazing coaches that provide individual attention, and an incredibly supportive community.",
+              "author": "Heather D."
+            },
+            {
+              "quote": "I've dropped into a few classes here and I love the energy. The coaching makes you want to come back.",
+              "author": "Yesenia C."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Your first class is the hardest. We've got the rest.",
+          "body": "Find us at 3451 Airway Dr, Santa Rosa. Call (707) 526-8944 to try a class — all levels, all welcome.",
+          "primaryCta": {
+            "label": "Try a class",
+            "href": "/s/kaia-fit/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 526-8944",
+            "href": "tel:+17075268944"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "programs",
+      "label": "Programs",
+      "title": "Programs",
+      "description": "Cross-training, lift, barre, yoga, cycle, TRX, and 6-week BRIK bootcamps at Kaia FIT Santa Rosa — one membership covers every class.",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Programs",
+          "heading": "One membership. The whole studio.",
+          "subheading": "Mix and match cross-training, strength, barre, yoga, cycle, and suspension — plus our three signature 6-week bootcamps a year.",
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "Weekly classes",
+          "heading": "Find your class",
+          "layout": "rows",
+          "fallbackOk": true,
+          "items": [
+            {
+              "title": "Cross-Training",
+              "description": "Our signature session — high-intensity cardio, functional movement, and weighted and non-weighted exercises that build a strong, capable body.",
+              "badge": "Signature"
+            },
+            {
+              "title": "Lift",
+              "description": "A dedicated strength class to build lean muscle, improve bone density, boost metabolism, and grow your confidence under the bar."
+            },
+            {
+              "title": "Barre",
+              "description": "Low-impact and precise — postures inspired by ballet, yoga, Pilates, and Kaia that sculpt strength with control."
+            },
+            {
+              "title": "Yoga",
+              "description": "Power yoga and core-strengthening work with Pilates-style technique, connecting mind and body each week."
+            },
+            {
+              "title": "Cycle",
+              "description": "A cardio-based, calorie-torching ride led by certified spin instructors. It's a party on a bike."
+            },
+            {
+              "title": "TRX® Suspension & Run",
+              "description": "Suspension training for full-body strength and balance, plus run sessions that build speed, endurance, and stamina."
+            }
+          ]
+        },
+        {
+          "kind": "callout",
+          "eyebrow": "Signature program",
+          "heading": "BRIK — the 6-Week Bootcamp",
+          "body": "Three times a year, Kaia runs its signature BRIK bootcamp: six focused weeks of training and nutrition built to help you reach your potential — strong body, powerful mind.",
+          "points": [
+            "Offered three times a year",
+            "Six weeks of structured training",
+            "Nutrition guidance with the Kaia Plate plan",
+            "Coached every step, for every level"
+          ],
+          "primaryCta": {
+            "label": "Ask about the next BRIK",
+            "href": "/s/kaia-fit/contact"
+          }
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Do I need to be in shape to start?",
+              "a": "No. Every class has modifications and progressions, and Kaia is truly for everyone — all levels are welcome here."
+            },
+            {
+              "q": "Does one membership cover every class?",
+              "a": "Yes. Cross-training, lift, barre, yoga, cycle, TRX, dance, and run are all included — no second gym required."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri 5:00–9:00am and 4:45–7:00pm, Saturday 8:00–9:00am. Closed Sunday."
+            },
+            {
+              "q": "How do I try a class?",
+              "a": "Call (707) 526-8944 or stop by 3451 Airway Dr, Santa Rosa — we'll get you set up."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come move with us",
+          "body": "Find us at 3451 Airway Dr, Santa Rosa. Call (707) 526-8944 to try a class.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/kaia-fit/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 526-8944",
+            "href": "tel:+17075268944"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "description": "Kaia FIT Santa Rosa — a women's fitness studio led by NASM-certified head coach Lacey and a team of certified coaches.",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "About Kaia FIT",
+          "heading": "Coached by women who get it",
+          "subheading": "A 5-star women's fitness community on Airway Drive, built on training, nutrition, and showing up for each other.",
+          "image": {
+            "src": "/images/kaia-fit/story.jpg",
+            "alt": "The Kaia FIT Santa Rosa coaching team and community",
+            "focal": "50% 35%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Build a strong body and a powerful mind",
+          "body": [
+            "Kaia FIT is functional fitness for women, by women. At our Santa Rosa studio on Airway Drive, we bring cross-training, lift, barre, yoga, cycle, and dance under one membership — so members can train the whole body in a place that feels like a community, not a chore.",
+            "Head coach and owner Lacey is a NASM-certified personal trainer and group fitness coach. Alongside coaches like Angela Wooton — ACE-certified in TRX and cross-training — the team gives individual attention in every class, with modifications and progressions that keep women of every level safe, challenged, and coming back. Pair that with the Kaia Plate nutrition plan and a community that genuinely supports each other, and you get results designed for real life."
+          ],
+          "highlights": [
+            "Functional fitness for women, by women",
+            "Owner & head coach Lacey, NASM-certified",
+            "Coach Angela Wooton, ACE-certified (TRX & cross-training)",
+            "Kaia Plate nutrition coaching"
+          ],
+          "image": {
+            "src": "/images/kaia-fit/hero.jpg",
+            "alt": "Kaia FIT Santa Rosa members in a post-workout huddle",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "5.0★", "label": "19 reviews" },
+            { "value": "8+", "label": "Class types" },
+            { "value": "2", "label": "Certified coaches" },
+            { "value": "All", "label": "Levels welcome" }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see why members stay",
+          "body": "Find us at 3451 Airway Dr, Santa Rosa. Call (707) 526-8944 to try a class.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/kaia-fit/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "description": "Visit Kaia FIT at 3451 Airway Dr, Santa Rosa, CA. Call (707) 526-8944 to try a class.",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Try a class",
+          "blurb": "Reach Kaia FIT at 3451 Airway Dr, Santa Rosa, CA 95403, or call (707) 526-8944. Mon–Fri 5:00–9:00am & 4:45–7:00pm, Saturday 8:00–9:00am.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

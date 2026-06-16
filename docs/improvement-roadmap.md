@@ -1,3 +1,10 @@
+> **➤ 2026-06-15 — see [`quality-roadmap-95.md`](./quality-roadmap-95.md)** for the
+> full-pipeline audit + the phased plan to reach *95%+, zero needs-review, automated*.
+> Root cause: the render layer discards the identity the brand engine computes
+> (sameness), the unattended author is deterministic filler (no LLM in the loop),
+> and the vision/taste judge that could catch slop is built but never wired into
+> the batch. Phases 0→3 there supersede the loose items below for the quality goal.
+
 # Improvement Roadmap — research sweep + polish audit (2026-06-07)
 
 Synthesized from a 9-agent sweep: 5 web-research agents (design trends, CRO, the
