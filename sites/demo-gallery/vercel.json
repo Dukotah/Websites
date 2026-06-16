@@ -2,5 +2,9 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
   "buildCommand": "astro build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/greysquirrelmanor", "destination": "https://greysquirrel-site.vercel.app/greysquirrelmanor" },
+    { "source": "/greysquirrelmanor/:path*", "destination": "https://greysquirrel-site.vercel.app/greysquirrelmanor/:path*" }
+  ]
 }
