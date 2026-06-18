@@ -589,12 +589,17 @@ async function acquireMediaFor(slug, row, e, catKey, { authoritative = false, sk
 // ---------------------------------------------------------------------------
 function deriveStatus(row, e, media, photoSource, templated, mismatchName = '') {
   const flags = [];
-  const realPhotos = /business-site|ai-generated|agent-supplied/.test(photoSource);
   if (!row.website) flags.push('No website provided — research & verify manually');
   else if (mismatchName) flags.push(`Website mismatch — ${row.website} identifies as "${mismatchName}", not ${row.name}; scraped facts/photos discarded. Verify the correct URL.`);
   else if (!e) flags.push('Website unreachable — copy not built from real data');
   else if ((e.richness ?? 0) < 35) flags.push('Thin research — verify facts & rewrite copy');
-  if (!realPhotos) flags.push(`No real/AI photos — using ${photoSource || 'stock'} art`);
+  // NOTE: the photo decision is NOT made here. Photo-light is a first-class
+  // outcome (owner vision: the SITE carries quality, not photos — copperbaytech /
+  // AVISP are the bar). The audit's photoLightVerdict (scripts/audit.mjs) is the
+  // single source of truth: it passes a well-composed, trust-bearing zero-photo
+  // home (info) and flags a thin/trust-less one (critical). authorPremium folds
+  // that critical into `flags`, so a weak photo-light page still gates correctly
+  // while a strong one auto-promotes to ready — without faking imagery.
   if (templated.includes('services')) flags.push('Services are template defaults — replace with real ones');
   if (templated.includes('service-descriptions')) flags.push('Service descriptions need a polish pass');
   if (templated.includes('about')) flags.push('About copy is templated — rewrite from research');

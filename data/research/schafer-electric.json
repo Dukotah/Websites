@@ -1,0 +1,101 @@
+{
+  "slug": "schafer-electric",
+  "confirmed": true,
+  "established": "2006",
+  "tagline": "North Bay electrical done right the first time — since 2006",
+  "seoDescription": "Schafer Electric Services is a family-owned, licensed C-10 electrical contractor serving Santa Rosa and Sonoma, Napa & Marin since 2006. 24/7 emergency service.",
+  "heroHeading": "Santa Rosa's trusted electrical contractor",
+  "heroSubheading": "Family-owned and operated since 2006, with state-certified electricians serving homes and businesses across Sonoma, Napa, and Marin County.",
+  "highlights": [
+    "Family-owned and operated since 2006",
+    "Licensed C-10 electrical contractor, CSLB Lic. #874111",
+    "State-certified electricians, residential & commercial",
+    "Four crews plus a dedicated 24/7 emergency service crew",
+    "Fully stocked trucks — ~95% of jobs finished without a parts run",
+    "Rated 5 out of 5 stars across Google, Yelp & Facebook"
+  ],
+  "aboutHeading": "About Schafer Electric",
+  "aboutBody": [
+    "Founded in 2006 by Ben Schafer, Schafer Electric Services, Inc. is a family-owned and operated electrical contractor built on good, old-fashioned values: do the job right the first time and treat every customer the way you'd want to be treated. From a minor repair to a full system upgrade, the team brings the same care to every project.",
+    "A licensed C-10 contractor (CSLB Lic. #874111) staffed by state-certified electricians, Schafer Electric serves residential and commercial clients throughout Santa Rosa and the greater North Bay — Sonoma, Napa, and Marin County. With four service crews and a dedicated emergency crew, they're equipped to respond 24/7, and their fully stocked trucks let them complete roughly 95% of jobs without leaving for materials."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Residential Electrical",
+      "description": "Complete home electrical service, from minor repairs and troubleshooting to full rewiring and system upgrades."
+    },
+    {
+      "title": "Commercial Electrical",
+      "description": "Electrical work for offices, retail, and commercial buildings — installation, service, and tenant improvements across the North Bay."
+    },
+    {
+      "title": "Electrical Panel Upgrades",
+      "description": "Inspection, upgrade, and relocation of electrical panels to keep your home or business safe and up to code."
+    },
+    {
+      "title": "Lighting Design & Installation",
+      "description": "Interior lighting and design, recessed can lights, plus outdoor, landscape, and security lighting."
+    },
+    {
+      "title": "EV Home Charging Stations",
+      "description": "Installation of electric vehicle home charging stations sized to your vehicle and panel."
+    },
+    {
+      "title": "24/7 Emergency Service",
+      "description": "A dedicated emergency crew on call around the clock for urgent electrical problems."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    },
+    {
+      "day": "Emergency service",
+      "hours": "24/7"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Fantastic service! Very efficient, professional, and was always willing to explain work and address anything that was needed. Highly recommend Schafer Electric!",
+      "author": "Satisfied customer"
+    },
+    {
+      "quote": "This is the second time that I have worked with Schafer Electric Services, Inc and I can say that they are wonderful. They showed up on time and did a fabulous job. Tim and Adam were very knowledgeable and thorough.",
+      "author": "Repeat customer"
+    },
+    {
+      "quote": "I couldn't have had a better experience – no hard sell, no unnecessary work, just professional and cordial customer service from the office staff to the top. I've used this company several times and have passed them on to friends.",
+      "author": "Longtime customer"
+    },
+    {
+      "quote": "I am very happy with Schafer Electric Services, Inc. Their prompt service and quality installation of chandeliers and ceiling can lights went above and beyond.",
+      "author": "Satisfied customer"
+    }
+  ],
+  "rating": {
+    "value": 5,
+    "count": 35,
+    "source": "Company site (aggregating Google, Yelp & Facebook)"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/schaferelectric/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED as Schafer Electric Services, Inc. of Sonoma County / Santa Rosa — CSLB Lic. #874111 (C-10 electrical), valid to 1/31/2028 (sources: NationalContractorIndex, BBB, CSLB). Established 2006; family-owned; owner Ben Schafer (named on company site and recurring in Yelp reviews). Confirmed location 631 Rinaldo St, Santa Rosa CA 95409; company also lists a Sonoma address (181 Andrieux St) on Yelp — same entity, multiple service locations. Phone (707) 545-3300 confirmed across site/BBB/Yelp. DISAMBIGUATION: distinct from 'Shaffer Electric, Inc.' (different spelling, TN) and from a separate 'Schafer Electric Inc' in Auburn CA (BuildZoom, different license) — those are NOT this business. RATING cross-check: company site claims 5/5 from 35 reviews aggregating Google/Yelp/Facebook; Yelp shows 40 reviews ('Updated April 2026'); BBB shows '17 years in business' consistent with 2006 founding. Reported but NOT independently number-verified: BBB lists license #874111 (matches CSLB). SERVICES verified from their own site pages: residential & commercial electrical, panel upgrades, interior/landscape/security lighting, EV home charging stations, data/network & phone/intercom wiring, hot tub/pool wiring, 24/7 emergency (four crews + emergency crew); solar PV referenced via enfsolar listing and C-10 scope but their primary marketing emphasizes the above, so solar left off the headline service list to avoid overstating. PHOTOS: their site (schaferelectric.com) returned HTTP 403 to automated fetch, so direct image URLs could not be extracted; Yelp shows 31 photos but those are not stable direct links. realPhotoUrls left empty — pull hero/story images manually from their Facebook or Yelp before publishing, or fall back to Wikimedia/category art. Testimonials are real quotes surfaced from their testimonials page via search; author names were not exposed in the snippets, so generic attributions used rather than inventing names.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Schafer Electric",
+    "category": "electrician",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17075453300",
+    "email": "schaferelectric@gmail.com",
+    "address": "631 Rinaldo St",
+    "owner": "Ben Schafer"
+  }
+}

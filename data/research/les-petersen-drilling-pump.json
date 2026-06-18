@@ -1,0 +1,53 @@
+{
+  "slug": "les-petersen-drilling-pump",
+  "confirmed": true,
+  "established": "1946",
+  "tagline": "Three generations of North Bay water-well expertise since 1946",
+  "seoDescription": "Les Petersen Drilling & Pump is a family-run Santa Rosa water-well contractor serving Sonoma, Napa, Marin & Mendocino since 1946 — well drilling, pumps, and complete water systems.",
+  "heroHeading": "North Bay's water-well experts since 1946",
+  "heroSubheading": "Now in its third generation under Matt Petersen, Les Petersen Drilling & Pump designs, drills, and services complete water systems for homes, ranches, and municipalities across Sonoma, Napa, Marin, and Mendocino counties.",
+  "highlights": [
+    "Family-owned and operating since 1946 — three generations",
+    "Air-rotary rigs drill domestic, agricultural & municipal wells over 1,000 ft deep",
+    "Complete water systems: design, drilling, pumps, electrical & treatment",
+    "Serving Sonoma, Napa, Marin & Mendocino counties",
+    "Weekend emergency service available"
+  ],
+  "aboutHeading": "About Les Petersen Drilling & Pump",
+  "aboutBody": [
+    "Les Petersen Drilling & Pump has served the water needs of Northern California homeowners, farms, businesses, and municipalities since 1946, when Les Petersen founded the company. Les passed it to his son Ray, who advanced the business, and today Matt Petersen carries on the family legacy as the third generation — having spent his whole life around well drilling and pumps.",
+    "From the yard on Old Redwood Highway in Santa Rosa, the team handles the entire water system: locating and drilling the well, installing and servicing pumps and engines, wiring the electrical and controls, and treating the water for clean, reliable supply. Their focus is building life-long relationships by tailoring the solution to each property's specific geology and water situation."
+  ],
+  "servicesHeading": "Complete water-system services",
+  "services": [
+    { "title": "Water Well Drilling", "description": "Air-rotary drilling rigs bore domestic, agricultural, and municipal wells through any local formation — capable of depths over 1,000 feet." },
+    { "title": "Pump Sales, Installation & Repair", "description": "Supply, install, and service pumps and engines for water systems and wind machines, from 20 Hp to 500 Hp in diesel, propane, and gas." },
+    { "title": "Electrical & Controls", "description": "Single- and three-phase electrical connections for water systems, including power poles, meter panels, and pump control panels." },
+    { "title": "Water Treatment Systems", "description": "Install and maintain softeners, iron and manganese filters, reverse osmosis, ozone, chlorination, and ultraviolet purification." },
+    { "title": "Well & Pump Maintenance", "description": "Ongoing service, troubleshooting, and repair to keep your well and water system running reliably year-round." }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "8am–5pm" },
+    { "day": "Sat–Sun", "hours": "Emergency service" }
+  ],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/lespetersendrillingandpump/",
+    "instagram": "https://instagram.com/lespetersendrilling/",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "CORRECTED LEAD: source CRM row labeled 'Lysell Plumbing & Heating' carried this company's contact data (email lespetersendrilling@comcast.net, FB/IG). Research confirms the contact info belongs to Les Petersen Drilling & Pump Inc., a separate water-well company — so the demo is built for Les Petersen so the email reaches the right business. Verified via lespetersen.com, Yelp (29 photos, 10 reviews), Facebook, drillerdb, wellowner.org: founded 1946 by Les Petersen, now 3rd-generation under Matt Petersen (father Ray was 2nd gen); 5434 Old Redwood Hwy, Santa Rosa; (707) 545-0246; real website is lespetersen.com (lead's lespetersendrilling.com is dead); serves Sonoma/Napa/Marin/Mendocino; hours Mon–Fri 8–5 + weekend emergencies. Services drawn from their published site. No verified testimonial quotes captured (left empty rather than fabricated). No first-party photos obtainable — environment blocks image hosts (403); area/category art used per user direction.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Les Petersen Drilling & Pump",
+    "category": "plumbing",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 545-0246",
+    "email": "lespetersendrilling@comcast.net",
+    "address": "5434 Old Redwood Hwy",
+    "owner": "Matt Petersen"
+  }
+}

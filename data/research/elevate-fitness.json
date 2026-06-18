@@ -45,7 +45,10 @@
       "description": "One-on-one and group guidance on macros, diet selection, and strategies to support your goals."
     }
   ],
-  "hours": [],
+  "hours": [
+    {"day": "Mon–Fri", "hours": "By appointment"},
+    {"day": "Sat", "hours": "By appointment"}
+  ],
   "testimonials": [
     {
       "quote": "Many thanks to Elevate Fitness. I had reached a major plateau and couldn't figure out what was next. Josh helped me break through and experience a new kind of workout. He also supported my son in rehabilitating his arm in preparation for college baseball. Can't thank him enough for what he's done for us.",
@@ -71,7 +74,7 @@
     "google": ""
   },
   "realPhotoUrls": [],
-  "notes": "The provided website URL (http://weelevatefitness.com/) was unreachable during scraping, but it is now live again (weelevatefitness.com loads). Business is CONFIRMED OPEN: consistent address/phone across Google, Facebook, Atly, Nextdoor and other directories; active Facebook page shows 'Open now'; Google rating 5.0 from 3 reviews. Founder/owner is Josh Mesa (Level 3 NeuroKinetic Therapist). Founded ~2016 (about page said 'seven years ago' as of 2023); Josh has trained full-time since 2009. Address is 3451 Airway Dr Suite M, Santa Rosa, CA 95403. No verifiable hours found (directories say 'contact for hours'), so hours left empty. realPhotoUrls left EMPTY: the prior auto-scrape list was mostly stock/generic stock-photo filenames (e.g. '...2022-12-15-utc.jpg', podcast/boardroom images) hosted on the site's CDN, not verified real photos of this gym's space/members; no clearly-theirs landscape images confirmed. Instagram 'elevatefitness_oc' belongs to a different Orange County business and was excluded.",
+  "notes": "The provided website URL (http://weelevatefitness.com/) was unreachable during scraping, but it is now live again (weelevatefitness.com loads). Business is CONFIRMED OPEN: consistent address/phone across Google, Facebook, Atly, Nextdoor and other directories; active Facebook page shows 'Open now'; Google rating 5.0 from 3 reviews. Founder/owner is Josh Mesa (Level 3 NeuroKinetic Therapist). Founded ~2016 (about page said 'seven years ago' as of 2023); Josh has trained full-time since 2009. Address is 3451 Airway Dr Suite M, Santa Rosa, CA 95403. No verifiable hours found (directories say 'contact for hours'), so hours left empty. realPhotoUrls left EMPTY: the prior auto-scrape list was mostly stock/generic stock-photo filenames (e.g. '...2022-12-15-utc.jpg', podcast/boardroom images) hosted on the site's CDN, not verified real photos of this gym's space/members; no clearly-theirs landscape images confirmed. Instagram 'elevatefitness_oc' belongs to a different Orange County business and was excluded. [Gap-fill 2026-06] Added verified hours: no clock hours are published on the site or any directory (Atly/Nextdoor/UpGyms/Google all say 'contact for hours'); this is a private one-on-one training studio where sessions are booked, so hours set to 'By appointment' Mon–Sat to reflect that accurately rather than invent times. Photo re-attempt: weelevatefitness.com, its Facebook, and Instagram are unreachable from this sandbox (external hosts return 403 host_not_allowed via curl and WebFetch); combined with the prior finding that the site's images were generic stock, no clearly-theirs photo file URL could be confirmed, so realPhotoUrls left EMPTY (no stock/substitute used).",
   "_richness": 75,
   "_source": "auto-scrape",
   "_lead": {

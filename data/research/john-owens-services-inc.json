@@ -1,0 +1,86 @@
+{
+  "slug": "john-owens-services-inc",
+  "confirmed": true,
+  "established": "1986",
+  "tagline": "Family-run plumbing, heating & cooling for Sonoma and Marin since 1986",
+  "seoDescription": "John Owens Services: family-run, Diamond Certified plumbing, HVAC & water heater experts serving Santa Rosa and the North Bay since 1986. CSLB #501853.",
+  "heroHeading": "North Bay Plumbing, Heating & Cooling Done Right Since 1986",
+  "heroSubheading": "John Owens Services is a local, family-run, Diamond Certified contractor serving Santa Rosa and the greater Sonoma and Marin County area. From water heaters to HVAC to plumbing repairs, no job is too complex.",
+  "highlights": [
+    "Serving Santa Rosa & the North Bay since 1986",
+    "Diamond Certified company",
+    "Licensed in plumbing, HVAC, boilers & electrical (CSLB #501853)",
+    "4.9-star rating across hundreds of Google reviews",
+    "Same-day service available",
+    "Mitsubishi Diamond Elite & Rinnai ACE contractor"
+  ],
+  "aboutHeading": "About John Owens Services",
+  "aboutBody": [
+    "John Owens Services, Inc. is a local, family-run home comfort and plumbing company that has proudly served Santa Rosa and the greater Sonoma and Marin County area since 1986. Founded and owned by John Owens, the company holds licenses across plumbing, HVAC, radiant heating and boilers, and electrical work (CSLB #501853), so no plumbing, heating, or cooling job is too complex or too large for the team.",
+    "A Diamond Certified company, John Owens Services has earned a 4.9-star rating across hundreds of North Bay reviews by completing jobs quickly, efficiently, and professionally. As a Mitsubishi Diamond Elite and Rinnai Advanced Comfort Expert contractor, the team installs and services everything from tankless and heat pump water heaters to ductless mini-splits, furnaces, and hydronic boilers, often with same-day service."
+  ],
+  "servicesHeading": "Plumbing, Heating & Cooling Services",
+  "services": [
+    {
+      "title": "Plumbing Repair & Installation",
+      "description": "Full-service residential and commercial plumbing, from repairs and fixtures to repipes and new construction."
+    },
+    {
+      "title": "Water Heaters",
+      "description": "Installation and service of tank, tankless, and heat pump water heaters, including same-day replacement when yours fails."
+    },
+    {
+      "title": "Heating & Furnaces",
+      "description": "Installation, maintenance, and repair of direct vent furnaces, hydronic furnaces, and radiant boiler systems."
+    },
+    {
+      "title": "Air Conditioning & Heat Pumps",
+      "description": "AC and heat pump systems plus Mitsubishi Diamond Elite ductless mini-split installation and service."
+    },
+    {
+      "title": "Leak Detection & Drains",
+      "description": "Professional leak detection and drain services to find and fix problems fast before they cause damage."
+    },
+    {
+      "title": "Ductwork & Indoor Air",
+      "description": "Duct installation and service to keep your home comfortable and your air clean year-round."
+    }
+  ],
+  "hours": [
+    {"day": "Mon–Fri", "hours": "8am–8pm"},
+    {"day": "Sat–Sun", "hours": "Closed"}
+  ],
+  "testimonials": [
+    {
+      "quote": "Two technicians named Will came out the same day our old water heater died and replaced it in no time. Fast, efficient, and professional job.",
+      "author": "Petaluma homeowner"
+    },
+    {
+      "quote": "The whole experience from start to finish was wonderful. They were responsive and Keith was very helpful.",
+      "author": "Tankless water heater customer"
+    },
+    {
+      "quote": "Max was knowledgeable and neat, explained every step of the way, and tried the cost-effective solutions first.",
+      "author": "Verified customer"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/johnowensservicesinc/",
+    "instagram": "https://www.instagram.com/johnowensservices/",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "Confirmed this is the Santa Rosa / Sonoma County John Owens Services (NOTE: a sister/branch location also operates at 710 C St, San Rafael, CA in Marin County — same company, same brand, same phone family). Verified via company site search results, BuildZoom, iaq.works, Birdeye, HomeAdvisor, Yelp. VERIFIED: founded 1986; family-run/local; owner John Owens (listed as Founder & Owner on ZoomInfo/LinkedIn); CSLB License #501853 active, classifications B (General Building), C36 (Plumbing), C4 (Radiant Heating & Boilers), C20 (HVAC), C10 (Electrical), with a $15,000 bond (American Contractors Indemnity); Diamond Certified; Mitsubishi Diamond Elite contractor; Rinnai Advanced Comfort Expert (ACE). RATING CROSS-CHECK: 4.9 stars consistently reported — Birdeye lists 4.9/337–373 reviews; iaq.works 4.9/315; company cites 4.9 across hundreds of Google reviews (~335–365+ Google); HomeAdvisor 5.0; Santa Rosa Yelp page lower volume (14 reviews) while San Rafael Yelp has 183. ADDRESS NOTE: the lead address (3471 Regional Pkwy Ste C) differs from the publicly listed Santa Rosa office (131A Stony Circle, Ste 523, Santa Rosa CA 95401) — kept the lead's address in _lead per instructions but flagging the discrepancy. PHONE: 707-203-2517 matches public listings. HOURS verified Mon-Fri 8am-8pm, closed weekends (note: differs from the lead's assumed 8-5). Testimonial quotes are paraphrased/condensed from review summaries (technicians Will, Keith, Max, Jarrod, Chris named in reviews) — author names not fully available, so used descriptive attributions rather than inventing names. PHOTOS: could not obtain direct image-file URLs of their own photos — their site (johnowensservices.com), Yelp, and BuildZoom all returned HTTP 403 to automated fetch; Yelp pages reportedly have 65 (Santa Rosa) and 102 (San Rafael) photos. realPhotoUrls left empty rather than guess.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "John Owens Services, Inc.",
+    "category": "plumbing",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17072032517",
+    "email": "leads.johnowensservices@gmail.com",
+    "address": "3471 Regional Pkwy Ste C",
+    "owner": "John Owens"
+  }
+}
