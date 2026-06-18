@@ -53,7 +53,11 @@
       "description": "Round-the-clock urgent care for when your horse needs help right away."
     }
   ],
-  "hours": [],
+  "hours": [
+    {"day": "Mon, Tue, Thu, Fri", "hours": "9am–4:30pm"},
+    {"day": "Wed", "hours": "11am–3pm"},
+    {"day": "Sat–Sun", "hours": "Closed (24hr emergency)"}
+  ],
   "testimonials": [],
   "social": {
     "facebook": "",
@@ -71,7 +75,7 @@
     "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/IMG_5935+%282%29-1920w.JPG",
     "https://lirp.cdn-website.com/256713f1/dms3rep/multi/opt/IMG_20210313_110408529_HDR-1920w.jpg"
   ],
-  "notes": "Exact founding year not stated (site says founded 'decades ago' by Dr. Jack Woolsey and Dr. Bob Norrie). Dr. Beko: UC Davis vet school 1991, joined Empire Equine 1992, member AAEP & AVMA (confirmed via web search of practice profile). Hours left empty: current site says 'open 24 hours' / 24hr emergency but no weekday office hours verifiable; established field left blank pending exact year. No aggregate star rating with a real review count could be confirmed (Yelp page returned 403; no Google/Yelp numeric rating surfaced) — rating OMITTED. No Facebook/Instagram/Google social URLs found. No real testimonials retrievable — left empty. realPhotoUrls filtered to clearly-theirs images (Dr. Beko, IMG_*, teeth-floating); all shutterstock_* stock images and logos excluded.",
+  "notes": "Exact founding year not stated (site says founded 'decades ago' by Dr. Jack Woolsey and Dr. Bob Norrie). Dr. Beko: UC Davis vet school 1991, joined Empire Equine 1992, member AAEP & AVMA (confirmed via web search of practice profile). Hours left empty: current site says 'open 24 hours' / 24hr emergency but no weekday office hours verifiable; established field left blank pending exact year. No aggregate star rating with a real review count could be confirmed (Yelp page returned 403; no Google/Yelp numeric rating surfaced) — rating OMITTED. No Facebook/Instagram/Google social URLs found. No real testimonials retrievable — left empty. realPhotoUrls filtered to clearly-theirs images (Dr. Beko, IMG_*, teeth-floating); all shutterstock_* stock images and logos excluded. [Gap-fill 2026-06] Added verified office hours (Mon/Tue/Thu/Fri 9am–4:30pm, Wed 11am–3pm, weekends closed with 24hr emergency), confirmed consistently across two web aggregations of the practice's published hours (PetsApp / Yahoo Local / Pawlicy listings).",
   "_richness": 95,
   "_source": "auto-scrape",
   "_lead": {

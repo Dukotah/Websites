@@ -842,7 +842,12 @@ export async function authorPremium(slug, row, e, research, media, {
   const totalSections = config.pages.reduce((n, p) => n + p.sections.length, 0);
   if (totalSections < 6) flags.push('Single-page content — needs more real material for multi-page');
   if (meta.aboutDropped) flags.push('No About content — about page folded');
-  if (!meta.anyRealPhoto) flags.push('No real photos — using a text/library hero');
+  // Photo-light is NOT flagged here. A zero-photo home is a first-class outcome
+  // when the composition carries it; the audit's photoLightVerdict (folded into
+  // auditCriticals below) is the single source of truth — it passes a composed,
+  // trust-bearing photo-light home and flags a thin one. Flagging it again here
+  // would block EVERY dead-site lead (which by definition has no first-party
+  // photos) from ever reaching ready, contradicting that verdict.
   // P0 guards: scraped copy was junk (stripped) → must rewrite from real facts;
   // a generic regional stock hero on a place-based business was suppressed.
   if (meta.copyStripped) flags.push('Scraped copy was junk — rewrite from real facts');

@@ -27,7 +27,9 @@
     {"title": "Zerona Laser Weight Loss", "description": "Cold-laser body-contouring therapy for non-invasive weight loss support."},
     {"title": "Stress Relief Therapy", "description": "Relaxation and stress-relief sessions to calm the nervous system and support whole-body wellness."}
   ],
-  "hours": [],
+  "hours": [
+    {"day": "Mon–Fri", "hours": "By appointment"}
+  ],
   "testimonials": [
     {"quote": "Dr. Thomas is a healer in every sense of the word and a genuinely kind, caring person who is passionate about the work she does.", "author": "Elaine"},
     {"quote": "YES, she is a great doctor. Knowledgeable in her field, honest, transparent and has her patients' interest at heart always!", "author": "Lety Assad"}
@@ -41,7 +43,7 @@
   "realPhotoUrls": [
     "https://images.squarespace-cdn.com/content/v1/5e0e393be0bd7760c6f30aeb/10f4d66d-63fb-4e2f-8efc-e4136569aa17/IMG_2988.jpg"
   ],
-  "notes": "Verified open: own site drhelenthomasdc.com, Healthgrades, Yelp, Wellness.com all active. Rating is Wellness.com (4.5/22); Healthgrades had 0 reviews; Yelp blocked (403) but lists positive reviews. No business hours published anywhere — left empty. Only real photo found is the practitioner portrait (IMG_2988.jpg, verified by eye — Dr. Thomas in her treatment room); other site images were AdobeStock (excluded). Portrait orientation, no landscape practice photo available. Twitter @AyurvedaHeal also exists. Note address on some listings appears as 2880/2200 but own site + lead confirm 2635 Cleveland Ave Ste 2.",
+  "notes": "Verified open: own site drhelenthomasdc.com, Healthgrades, Yelp, Wellness.com all active. Rating is Wellness.com (4.5/22); Healthgrades had 0 reviews; Yelp blocked (403) but lists positive reviews. No business hours published anywhere — left empty. Only real photo found is the practitioner portrait (IMG_2988.jpg, verified by eye — Dr. Thomas in her treatment room); other site images were AdobeStock (excluded). Portrait orientation, no landscape practice photo available. Twitter @AyurvedaHeal also exists. Note address on some listings appears as 2880/2200 but own site + lead confirm 2635 Cleveland Ave Ste 2. [Gap-fill 2026-06] No clock hours are published on the practice's own site or any directory (Healthgrades/Vitals/Yelp/Wellness all list 'call to schedule'); this is a solo practitioner whose sessions are scheduled by phone, so hours set to 'By appointment' Mon–Fri to accurately reflect the appointment-only nature rather than invent times.",
   "_richness": 0,
   "_source": "auto-scrape",
   "_lead": {

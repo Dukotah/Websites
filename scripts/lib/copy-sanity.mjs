@@ -16,7 +16,7 @@
 
 // E-commerce / nav / legal junk that scraping commonly mistakes for prose.
 export const JUNK_RE =
-  /notify me when this product is available|add to cart|out of stock|sold out|view cart|checkout|continue shopping|sign in|create account|subscribe to our newsletter|enter your email|this is the online store|©|all rights reserved|cookie|privacy policy/i;
+  /notify me when this product is available|add to cart|out of stock|sold out|view cart|checkout|continue shopping|sign in|create account|subscribe to our newsletter|enter your email|this is the online store|©|all rights reserved|(?:accept|manage|we use|this (?:site|website) uses) cookies|cookie (?:policy|settings|preferences|consent|notice)|privacy policy/i;
 
 /**
  * sanitizeProse(str) → a clean string, or '' when unsalvageable.
