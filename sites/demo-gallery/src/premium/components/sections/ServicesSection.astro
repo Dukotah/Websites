@@ -26,14 +26,22 @@ const isRows = layout === 'rows';
 
 // Pick a sensible grid density so cards fill the row without stranding one.
 const cols = items.length % 3 === 0 || items.length > 4 ? 'grid-3' : 'grid-2';
+
+// In the grid layout, move the intro into a split section-head (heading left,
+// lede right) so this section doesn't read as another centered eyebrow→grid
+// stamp. Rows keep the simple stacked head (the rows themselves carry rhythm).
+const splitHead = !isRows && !!intro;
 ---
 
 <section class="section p-services">
   <div class="container">
-    <div class="section-head" data-reveal>
-      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-      <h2>{heading}</h2>
-      {intro && <p>{intro}</p>}
+    <div class:list={['section-head', { 'section-head--split': splitHead }]} data-reveal>
+      <div class="p-services__head-main">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h2>{heading}</h2>
+        {intro && !splitHead && <p>{intro}</p>}
+      </div>
+      {splitHead && <p class="section-head__lede">{intro}</p>}
     </div>
 
     {isRows ? (
@@ -71,7 +79,7 @@ const cols = items.length % 3 === 0 || items.length > 4 ? 'grid-3' : 'grid-2';
     ) : (
       <div class:list={['grid', cols, 'p-services__cards']}>
         {items.map((item, i) => (
-          <article class="card p-services__card" data-reveal data-reveal-delay={((i % 3) + 1)}>
+          <article class="card card--accent p-services__card" data-reveal data-reveal-delay={((i % 3) + 1)}>
             {item.image && (
               <div class="media p-services__card-media">
                 <SiteImage
@@ -82,7 +90,10 @@ const cols = items.length % 3 === 0 || items.length > 4 ? 'grid-3' : 'grid-2';
                 />
               </div>
             )}
-            {item.badge && <span class="pill pill--accent p-services__card-badge">{item.badge}</span>}
+            <div class="p-services__card-top">
+              <span class="card-marker p-services__card-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              {item.badge && <span class="pill pill--accent p-services__card-badge">{item.badge}</span>}
+            </div>
             <h3 class="p-services__card-title">{item.title}</h3>
             <p class="p-services__card-copy">{item.description}</p>
           </article>
@@ -104,8 +115,28 @@ const cols = items.length % 3 === 0 || items.length > 4 ? 'grid-3' : 'grid-2';
     margin: calc(-1 * var(--p-space-8)) calc(-1 * var(--p-space-8)) var(--p-space-2);
     border-radius: var(--p-radius-lg) var(--p-radius-lg) 0 0;
   }
-  .p-services__card-badge { align-self: flex-start; }
-  .p-services__card-title { font-size: var(--p-text-xl); }
+  /* Top row: the brand-tinted index marker (always congruent — no clip-art) and
+     an optional badge, separated from the title so the card has real internal
+     hierarchy instead of bold-title-over-gray-text. */
+  .p-services__card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--p-space-3);
+    margin-bottom: var(--p-space-1);
+  }
+  /* When a card has its own photo, the number is redundant with the imagery —
+     drop it and let the badge sit alone. */
+  .p-services__card-media ~ .p-services__card-top .p-services__card-num { display: none; }
+  .p-services__card-badge { align-self: center; }
+  .p-services__card-title { font-size: var(--p-text-xl); letter-spacing: -0.015em; }
+  /* A short brand hairline under the title divides it from the copy — the small
+     craft that separates "considered" from "filled-in box". */
+  .p-services__card-title::after {
+    content: ''; display: block;
+    width: 1.75rem; height: 2px; margin-top: var(--p-space-3);
+    background: var(--p-primary); border-radius: 2px; opacity: 0.55;
+  }
   .p-services__card-copy { color: var(--p-ink-soft); font-size: var(--p-text-base); }
 
   /* ---- Alternating feature rows -----------------------------------------*/

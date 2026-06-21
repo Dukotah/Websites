@@ -23,6 +23,7 @@
   (function initStickyHeader() {
     const hdr = document.querySelector<HTMLElement>('.hdr, header');
     if (!hdr) return;
+    const el: HTMLElement = hdr;
 
     // Threshold: just past one header height so the transition is perceptible
     // but doesn't lag on fast scrolls.
@@ -33,7 +34,7 @@
       const shouldStick = window.scrollY > THRESHOLD;
       if (shouldStick === stuck) return;
       stuck = shouldStick;
-      hdr.classList.toggle('is-stuck', stuck);
+      el.classList.toggle('is-stuck', stuck);
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });

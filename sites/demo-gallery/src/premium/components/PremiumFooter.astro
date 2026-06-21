@@ -95,7 +95,17 @@ const socials = [
 </footer>
 
 <style>
-  .p-ft { background: var(--p-structure); color: var(--p-on-dark); }
+  /* The footer is dark (--p-structure). When the section directly above it is
+     ALSO a dark band (e.g. an `section--ink` CTA), the two merge into one
+     undifferentiated dark block and the footer reads as "lost / cut off". A
+     faint top hairline always gives the footer a clear upper boundary — it
+     separates footer-from-dark-section, and is harmless where a light section
+     already provides the contrast. */
+  .p-ft {
+    background: var(--p-structure);
+    color: var(--p-on-dark);
+    border-top: 1px solid color-mix(in srgb, #fff 12%, transparent);
+  }
   .p-ft__grid {
     /* Flex (not auto-fit grid): the brand column leads and the nav/contact/hours
        columns spread horizontally and fill the width, then wrap cleanly when the

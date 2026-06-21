@@ -101,8 +101,10 @@ const fullStars = rating ? Math.round(ratingValue) : 0;
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: var(--p-space-6);
-    height: 100%;
+    gap: var(--p-space-4);
+    /* No height:100% — cards size to their OWN content and top-align (the grid
+       sets align-items:start). Forcing every card to the tallest one's height
+       was what stranded a short review's author far below it in dead space. */
   }
   .p-tmn__mark {
     font-family: var(--p-font-display);
@@ -114,20 +116,33 @@ const fullStars = rating ? Math.round(ratingValue) : 0;
   }
   .p-tmn__quote {
     margin: 0;
-    font-family: var(--p-font-display);
-    font-weight: 600;
-    font-size: var(--p-text-xl);
-    line-height: 1.45;
-    letter-spacing: -0.015em;
+    /* Body font at a readable review size — NOT an oversized display pull-quote.
+       A real scraped review is 1-4 sentences; rendering it in big bold display
+       type turned a normal review into a 14-line tower. */
+    font-family: var(--p-font-body);
+    font-weight: 500;
+    font-size: var(--p-text-lg);
+    line-height: 1.6;
     color: var(--p-ink-strong);
     text-wrap: pretty;
+    /* HARD CAP on length so one long scraped review can never blow the card up.
+       Keeps the full text in the DOM (a11y/SEO) but clamps the visible height to
+       7 lines with an ellipsis. This is the "can't happen again" guarantee:
+       no matter how long the source review is, the card stays bounded. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
+    overflow: hidden;
   }
   .p-tmn__by {
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
-    margin-top: auto;
-    padding-top: var(--p-space-2);
+    /* Sits directly under the quote (no margin-top:auto pinning it to the card
+       bottom), so a short review reads as a tight little card, not a name
+       floating at the end of a tall empty box. */
+    padding-top: var(--p-space-4);
     border-top: 1px solid var(--p-line);
   }
   .p-tmn__author {

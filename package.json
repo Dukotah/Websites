@@ -15,6 +15,7 @@
     "sameness-check": "node scripts/sameness-check.mjs",
     "image-qa": "node scripts/image-qa.mjs",
     "lighthouse": "node scripts/lighthouse.mjs",
+    "perf-budget": "node scripts/lighthouse.mjs --budget",
     "qa": "npm --prefix sites/demo-gallery run build && node scripts/premium-validate.mjs && node scripts/audit.mjs && npm --prefix sites/demo-gallery run shots -- --no-build && node scripts/sameness-check.mjs && node scripts/image-qa.mjs"
   },
   "devDependencies": {

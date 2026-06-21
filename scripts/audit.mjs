@@ -118,7 +118,7 @@ const TEXT_HERO_VARIANTS = new Set(['editorial']);
 // Local-business headline clichés — the "AI batch" tell. A headline should make
 // a specific, earned promise, not reach for one of these filler phrases.
 const HEADLINE_CLICHES =
-  /\b(done right|you can trust|second to none|no job too (big|small)|one[- ]stop shop|a cut above|exceed(s|ing)? (your )?expectations|where quality meets|satisfaction (is )?(our |)guarantee|we'?ve got you covered|rain or shine|quality you can|your trusted partner)\b/i;
+  /\b(done right|you can trust|you can count on|second to none|no job too (big|small)|one[- ]stop shop|a cut above|exceed(s|ing)? (your )?expectations|where quality meets|satisfaction (is )?(our |)guarantee|we'?ve got you covered|rain or shine|quality you can|your trusted partner)\b/i;
 
 // Scraped e-comm/nav junk that must never reach a rendered field. A narrower set
 // than copy-sanity's JUNK_RE — these are the unambiguous "this is broken" tells

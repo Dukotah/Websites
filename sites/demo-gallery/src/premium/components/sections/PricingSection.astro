@@ -32,7 +32,7 @@ const cols = tiers.length % 3 === 0 || tiers.length > 4 ? 'grid-3' : tiers.lengt
     <div class:list={['grid', cols, 'p-pricing__grid']}>
       {tiers.map((t, i) => (
         <article
-          class:list={['card', 'p-pricing__tier', { 'p-pricing__tier--featured': t.featured }]}
+          class:list={['card', 'card--accent', 'p-pricing__tier', { 'p-pricing__tier--featured': t.featured }]}
           data-reveal
           data-reveal-delay={((i % 3) + 1)}
         >
@@ -68,6 +68,12 @@ const cols = tiers.length % 3 === 0 || tiers.length > 4 ? 'grid-3' : tiers.lengt
   .p-pricing__tier--featured {
     border-color: var(--p-primary);
     box-shadow: var(--p-shadow-md);
+  }
+  /* The featured tier always wears its accent rule at full strength (it's the
+     recommended one) rather than waiting for hover. */
+  .p-pricing__tier--featured::before {
+    transform: scaleX(1) !important;
+    opacity: 1 !important;
   }
   .p-pricing__ribbon { align-self: flex-start; }
   .p-pricing__name { font-size: var(--p-text-xl); }

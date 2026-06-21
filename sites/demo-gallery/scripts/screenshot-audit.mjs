@@ -122,6 +122,13 @@ function shot(slug, kind, size) {
       '--headless=new',
       '--disable-gpu',
       '--hide-scrollbars',
+      // Emulate reduced-motion so the static capture shows the page at its FINAL
+      // rested state: the premium CSS reveals every [data-reveal] section
+      // immediately under reduced-motion (opacity:1), and the hero renders
+      // fully-arrived instead of mid-entrance. Without this a single screenshot
+      // (no scroll, no IntersectionObserver firing) leaves the whole page below
+      // the hero blank — the vision-QA pass was effectively blind below the fold.
+      '--force-prefers-reduced-motion',
       `--window-size=${size}`,
       `--screenshot=${out}`,
       `http://localhost:${port}/s/${slug}`,

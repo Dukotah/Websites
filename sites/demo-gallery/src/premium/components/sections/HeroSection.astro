@@ -10,12 +10,20 @@
  */
 import type { SecHero, PremiumConfig } from '../../lib/premium-types';
 import SiteImage from '../../../components/SiteImage.astro';
+import { hash, rangeInt, chance } from '../../../lib/seed';
 
 interface Props {
   data: SecHero;
   config: PremiumConfig;
 }
 const { data, config } = Astro.props;
+
+// Deterministic per-site signature so two photo heroes don't look stamped from
+// one mold. Drives the scrim direction + a corner glow placement; stable per
+// slug, so a re-run is identical but neighbours differ. Token-driven only.
+const sig = hash((config?.slug ?? config?.name ?? 'flow') + ':hero');
+const scrimDir = rangeInt(sig, 0, 2); // 0 bottom-up, 1 corner BL, 2 corner BR
+const glowSide = chance(sig >> 3, 0.5) ? 'r' : 'l';
 
 const img = data.image;
 // Decorative category motif (a library SVG drawn in currentColor) for the
@@ -41,17 +49,42 @@ const secondaryCta = data.secondaryCta;
 const isFullbleed = variant === 'fullbleed' && !!img;
 const isSplit = variant === 'split' && !!img;
 const isEditorial = !isFullbleed && !isSplit;
+// Photo-less editorial hero is a deliberate DARK "title-card": a brand-structured
+// band with light text + layered glow, motif/monogram at real presence, and a
+// hairline texture. This is what turns "where's the image?" into "designed this
+// way on purpose" — it borrows the same dark-band confidence as the photo heroes
+// and AVISP's hero, but built entirely from type + brand color, no photo.
+const isDarkEditorial = isEditorial && !img;
 // Photo-less editorial hero: when there's no aside photo, give the right zone
 // real architecture — a brand-tinted "credential card" built from the badges +
 // the lede — so the hero reads as a composed two-column layout (AVISP-caliber),
 // not big type floating over emptiness. Only when we actually have badges.
 const soloAside = isEditorial && !img && badges.length > 0;
+// Full-bleed hero with real credentials: float a frosted "credential card" over
+// the photo (badges become a glass overlay) for layered depth — so a photo hero
+// reads as composed, not just a scrim + two buttons. Only when we have badges.
+const glassCred = isFullbleed && badges.length > 0;
 ---
 
 <section
-  class:list={['p-hero', `p-hero--${variant}`, { 'section--ink': isFullbleed, 'p-hero--editorial-solo': isEditorial && !img, 'p-hero--editorial-paired': soloAside }]}
+  class:list={['p-hero', `p-hero--${variant}`, { 'section--ink': isFullbleed || isDarkEditorial, 'p-hero--editorial-solo': isDarkEditorial, 'p-hero--editorial-paired': soloAside, 'p-hero--has-glass': glassCred }]}
+  data-scrim={scrimDir}
+  data-glow={glowSide}
 >
-  {isEditorial && !img && motif && (
+  {isDarkEditorial && (
+    <>
+      {/* Living aurora field — a slowly drifting brand-light canvas painted behind
+          the title-card so the dark hero shimmers with depth instead of sitting
+          static. JS-only enhancement: the canvas paints OVER the existing static
+          gradient band (which is the reduced-motion / no-JS / no-WebGL fallback),
+          so nothing is hidden waiting on it. Decorative. */}
+      <canvas class="p-hero__aurora" data-hero-aurora aria-hidden="true"></canvas>
+      <div class="p-hero__sweep" aria-hidden="true"></div>
+      <div class="p-hero__texture" aria-hidden="true"></div>
+    </>
+  )}
+
+  {isDarkEditorial && motif && (
     <div
       class="p-hero__motif"
       aria-hidden="true"
@@ -59,7 +92,7 @@ const soloAside = isEditorial && !img && badges.length > 0;
     ></div>
   )}
 
-  {isEditorial && !img && !motif && monogram && (
+  {isDarkEditorial && monogram && (
     <div class="p-hero__wm" aria-hidden="true">
       <span class="p-hero__wm-mono">{monogram}</span>
     </div>
@@ -67,15 +100,22 @@ const soloAside = isEditorial && !img && badges.length > 0;
 
   {isFullbleed && img && (
     <div class="p-hero__bg" aria-hidden="true">
-      <SiteImage
-        src={img.src}
-        alt={img.alt ?? ''}
-        objectPosition={img.focal}
-        loading="eager"
-        fetchpriority="high"
-        sizes="100vw"
-      />
+      {/* Photo wrapper carries the cinematic entrance: a clip-path wipe reveals
+          the image and a slow Ken-Burns drift gives it depth. Both are pure
+          compositor transforms armed AFTER first paint (.hero-armed), so the
+          photo is fully painted for LCP and only enhances on motion clients. */}
+      <div class="p-hero__photo" data-hero-photo data-hero-parallax="bg">
+        <SiteImage
+          src={img.src}
+          alt={img.alt ?? ''}
+          objectPosition={img.focal}
+          loading="eager"
+          fetchpriority="high"
+          sizes="100vw"
+        />
+      </div>
       <div class="p-hero__scrim"></div>
+      <div class="p-hero__glow" aria-hidden="true"></div>
     </div>
   )}
 
@@ -83,30 +123,49 @@ const soloAside = isEditorial && !img && badges.length > 0;
     {/* Hero content is NOT reveal-gated — it's the LCP/above-the-fold element and
         must paint immediately, never flash faded while JS settles. */}
     <div class="p-hero__content">
-      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-      <h1 class="p-hero__heading" transition:name="page-hero-heading">{heading}</h1>
-      {subheading && <p class="p-hero__sub">{subheading}</p>}
+      {eyebrow && <p class="eyebrow" data-hero-stage="0">{eyebrow}</p>}
+      {/* Clip-reveal headline: the text paints immediately (LCP-safe, never
+          opacity-gated). On motion-capable clients an overflow-clip mask lets
+          each word rise into place once .reveal-armed is set — pure transform,
+          zero layout shift. Reduced motion shows the words instantly. */}
+      <h1 class="p-hero__heading" transition:name="page-hero-heading">
+        <span class="p-hero__heading-clip">{heading.split(/\s+/).map((w, i, arr) => (
+          <><span class="p-hero__word" style={`--w:${i}`}>{w}</span>{i < arr.length - 1 ? ' ' : ''}</>
+        ))}</span>
+      </h1>
+      {subheading && <p class="p-hero__sub" data-hero-stage="2">{subheading}</p>}
 
       {(primaryCta || secondaryCta) && (
-        <div class="p-hero__actions">
+        <div class="p-hero__actions" data-hero-stage="3">
           {primaryCta && (
-            <a class="btn btn--primary btn--lg" href={primaryCta.href}>{primaryCta.label}</a>
+            <a class="btn btn--primary btn--lg" href={primaryCta.href} data-magnetic>{primaryCta.label}</a>
           )}
           {secondaryCta && (
             <a
-              class:list={['btn', 'btn--lg', isFullbleed ? 'btn--ghost-light' : 'btn--outline']}
+              class:list={['btn', 'btn--lg', (isFullbleed || isDarkEditorial) ? 'btn--ghost-light' : 'btn--outline']}
               href={secondaryCta.href}
             >{secondaryCta.label}</a>
           )}
         </div>
       )}
 
-      {badges.length > 0 && !soloAside && (
-        <ul class="p-hero__badges tag-row" aria-label="At a glance">
+      {badges.length > 0 && !soloAside && !glassCred && (
+        <ul class="p-hero__badges tag-row" data-hero-stage="4" aria-label="At a glance">
           {badges.map((b) => (
             <li><span class="pill">{b}</span></li>
           ))}
         </ul>
+      )}
+
+      {glassCred && (
+        <aside class="p-hero__glass" data-reveal aria-label="At a glance">
+          <p class="p-hero__glass-label">Why us</p>
+          <ul class="p-hero__glass-list">
+            {badges.map((b) => (
+              <li class="p-hero__glass-item">{b}</li>
+            ))}
+          </ul>
+        </aside>
       )}
     </div>
 
@@ -123,8 +182,9 @@ const soloAside = isEditorial && !img && badges.length > 0;
     )}
 
     {isSplit && img && (
-      <div class="p-hero__figure">
-        <div class="media">
+      <div class="p-hero__figure" data-reveal="right" data-hero-parallax="figure">
+        <span class="p-hero__figure-frame" aria-hidden="true"></span>
+        <div class="media p-hero__photo" data-hero-photo>
           <SiteImage
             src={img.src}
             alt={img.alt ?? ''}
@@ -138,8 +198,8 @@ const soloAside = isEditorial && !img && badges.length > 0;
     )}
 
     {isEditorial && img && (
-      <div class="p-hero__aside">
-        <div class="media">
+      <div class="p-hero__aside" data-hero-parallax="figure">
+        <div class="media p-hero__photo" data-hero-photo>
           <SiteImage
             src={img.src}
             alt={img.alt ?? ''}
@@ -170,20 +230,82 @@ const soloAside = isEditorial && !img && badges.length > 0;
     position: absolute; inset: 0;
     width: 100%; height: 100%; object-fit: cover;
   }
+  /* PHOTOGRAPHIC scrim — preserves the photo instead of a muddy single-color
+     wash. A nearly-transparent top, a bottom-anchored darkening that protects
+     the text zone, and a side gradient under the copy column only. The photo's
+     midtones survive; legibility comes from where text actually sits. The
+     darkening uses a near-black tint (not the full brand color) so the image
+     reads as a photo, with just a whisper of brand tint layered on top.
+     Direction varies per site via [data-scrim] for variety. */
   .p-hero__scrim {
     position: absolute; inset: 0;
     background:
-      linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--p-structure) 52%, transparent) 0%,
-        color-mix(in srgb, var(--p-structure) 68%, transparent) 55%,
-        color-mix(in srgb, var(--p-structure) 88%, transparent) 100%
-      ),
-      linear-gradient(
-        90deg,
-        color-mix(in srgb, var(--p-structure) 62%, transparent) 0%,
-        color-mix(in srgb, var(--p-structure) 12%, transparent) 100%
-      );
+      /* protect the copy column (left) */
+      linear-gradient(90deg,
+        rgb(8 12 20 / 0.62) 0%,
+        rgb(8 12 20 / 0.30) 38%,
+        rgb(8 12 20 / 0) 70%),
+      /* bottom anchor for the actions + glass */
+      linear-gradient(0deg,
+        rgb(8 12 20 / 0.66) 0%,
+        rgb(8 12 20 / 0.14) 34%,
+        rgb(8 12 20 / 0) 60%),
+      /* faint top vignette so the header never floats on a bright patch */
+      linear-gradient(180deg,
+        rgb(8 12 20 / 0.34) 0%,
+        rgb(8 12 20 / 0) 24%),
+      /* a breath of brand tint across the whole frame, very light */
+      linear-gradient(135deg,
+        color-mix(in srgb, var(--p-structure) 26%, transparent) 0%,
+        color-mix(in srgb, var(--p-structure) 6%, transparent) 60%,
+        transparent 100%);
+  }
+  /* Variant B: bottom-up, gentler on the sides (good for centered/wide photos). */
+  .p-hero[data-scrim='1'] .p-hero__scrim {
+    background:
+      linear-gradient(0deg,
+        rgb(8 12 20 / 0.70) 0%,
+        rgb(8 12 20 / 0.30) 30%,
+        rgb(8 12 20 / 0) 58%),
+      linear-gradient(105deg,
+        rgb(8 12 20 / 0.46) 0%,
+        rgb(8 12 20 / 0) 52%),
+      linear-gradient(180deg,
+        rgb(8 12 20 / 0.30) 0%,
+        rgb(8 12 20 / 0) 22%),
+      radial-gradient(120% 90% at 18% 100%,
+        color-mix(in srgb, var(--p-structure) 30%, transparent), transparent 60%);
+  }
+  /* Variant C: diagonal corner, brand-led — most editorial. */
+  .p-hero[data-scrim='2'] .p-hero__scrim {
+    background:
+      linear-gradient(115deg,
+        color-mix(in srgb, var(--p-structure) 60%, transparent) 0%,
+        rgb(8 12 20 / 0.34) 30%,
+        rgb(8 12 20 / 0) 66%),
+      linear-gradient(0deg,
+        rgb(8 12 20 / 0.58) 0%,
+        rgb(8 12 20 / 0) 46%),
+      linear-gradient(180deg,
+        rgb(8 12 20 / 0.30) 0%,
+        rgb(8 12 20 / 0) 22%);
+  }
+  /* Signature corner glow — a soft brand-tinted pool that gives the frame a
+     focal warmth (Stripe/AVISP feel). Decorative; side flips per [data-glow]. */
+  .p-hero__glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(42rem 30rem at 88% 8%,
+        color-mix(in srgb, var(--p-primary) 30%, transparent), transparent 60%);
+    mix-blend-mode: screen;
+    opacity: 0.5;
+  }
+  .p-hero[data-glow='l'] .p-hero__glow {
+    background:
+      radial-gradient(42rem 30rem at 8% 6%,
+        color-mix(in srgb, var(--p-primary) 30%, transparent), transparent 60%);
   }
 
   .p-hero__inner { position: relative; z-index: 1; width: 100%; }
@@ -195,6 +317,31 @@ const soloAside = isEditorial && !img && badges.length > 0;
     margin-top: var(--p-space-4);
     overflow-wrap: break-word;
     hyphens: auto;
+  }
+  /* Clip-reveal: each word sits in an overflow-clipped line and rises into view.
+     Text is fully painted by default (no opacity gate on the LCP element). The
+     hidden-then-rise only engages once JS adds .reveal-armed on motion-capable
+     clients, and uses transform + clip only → zero layout shift. */
+  /* Words stay in normal inline flow (inline-block preserves the spaces between
+     them) so the headline reads correctly with no JS / reduced motion. When
+     armed, each word starts shifted down + transparent and eases up in stagger
+     — transform/opacity only, so the line box never reflows (zero CLS). */
+  .p-hero__heading-clip { display: inline; }
+  .p-hero__word { display: inline-block; }
+  /* Hidden start-state is gated behind .hero-armed (added by JS only AFTER the
+     opaque first paint), never .reveal-armed — so the LCP heading is painted
+     visible before any reveal arms. */
+  .premium .p-hero.hero-armed .p-hero__word {
+    transform: translateY(0.7em);
+    opacity: 0;
+    transition:
+      transform 720ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 520ms ease;
+    transition-delay: calc(var(--w) * 55ms + 80ms);
+  }
+  .premium .p-hero.hero-armed.is-hero-in .p-hero__word {
+    transform: none;
+    opacity: 1;
   }
   .p-hero__sub {
     margin-top: var(--p-space-6);
@@ -219,11 +366,59 @@ const soloAside = isEditorial && !img && badges.length > 0;
     color: var(--p-on-dark-soft);
     text-shadow: 0 1px 14px rgb(0 0 0 / 0.4);
   }
-  .p-hero--fullbleed .pill {
+  .p-hero--fullbleed .pill,
+  .p-hero--editorial-solo .pill {
     background: rgb(255 255 255 / 0.1);
     border-color: rgb(255 255 255 / 0.32);
     color: #fff;
     backdrop-filter: blur(6px);
+  }
+
+  /* ---- Frosted credential card over the photo (layered depth) ------------ */
+  .p-hero__glass {
+    margin-top: var(--p-space-8);
+    max-width: 30rem;
+    padding: clamp(1.1rem, 0.9rem + 0.8vw, 1.5rem) clamp(1.25rem, 1rem + 1vw, 1.75rem);
+    border-radius: var(--p-radius-lg);
+    border: 1px solid rgb(255 255 255 / 0.22);
+    background:
+      linear-gradient(135deg, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0.06));
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.25) inset,
+      0 18px 44px rgb(8 12 20 / 0.34);
+    backdrop-filter: blur(14px) saturate(1.1);
+    -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  }
+  .p-hero__glass-label {
+    font-size: var(--p-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--p-primary) 40%, #fff);
+    margin-bottom: var(--p-space-3);
+  }
+  .p-hero__glass-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--p-space-3); }
+  .p-hero__glass-item {
+    position: relative;
+    padding-inline-start: 1.5rem;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.35;
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.35);
+  }
+  .p-hero__glass-item::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.5em;
+    width: 0.7rem; height: 0.7rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--p-primary) 55%, #fff);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--p-primary) 30%, transparent);
+  }
+  /* No backdrop-filter support → solid translucent fallback (still readable). */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .p-hero__glass { background: rgb(12 18 28 / 0.66); }
   }
 
   /* ---- Split: content + tall figure -------------------------------------*/
@@ -233,37 +428,85 @@ const soloAside = isEditorial && !img && badges.length > 0;
     gap: clamp(2.5rem, 1.5rem + 4vw, 5rem);
     align-items: center;
   }
-  .p-hero--split .p-hero__figure .media { --ratio: 4 / 5; box-shadow: var(--p-shadow-lg); }
+  /* Split figure gets layered framing — an offset brand-tinted panel sits
+     behind the photo, so the image reads as composed, not a bare rectangle. */
+  .p-hero--split .p-hero__figure { position: relative; }
+  .p-hero--split .p-hero__figure-frame {
+    position: absolute;
+    inset: 0;
+    transform: translate(clamp(0.9rem, 0.6rem + 0.8vw, 1.4rem), clamp(0.9rem, 0.6rem + 0.8vw, 1.4rem));
+    border-radius: var(--p-radius-lg);
+    background:
+      radial-gradient(28rem 22rem at 110% 110%, color-mix(in srgb, var(--p-primary) 22%, transparent), transparent 64%),
+      var(--p-primary-tint);
+    border: 1px solid color-mix(in srgb, var(--p-primary) 16%, var(--p-line));
+    z-index: 0;
+  }
+  .p-hero--split .p-hero__figure .media {
+    --ratio: 4 / 5;
+    position: relative;
+    z-index: 1;
+    box-shadow: var(--p-shadow-lg);
+  }
 
   /* ---- Editorial: type-forward, optional smaller aside photo ------------ */
   .p-hero--editorial .p-hero__heading { max-width: 18ch; }
 
-  /* Photo-less editorial hero: a deliberate, composed treatment — a subtle
-     brand-tinted gradient panel + an oversized monogram watermark behind the
-     type — so a hero with no real photo still has visual weight (not a bare
-     block). Token-driven + decorative (aria-hidden). */
+  /* ---- Photo-less editorial hero = a DELIBERATE DARK TITLE-CARD ----------- */
+  /* The fix for "reads as a missing image": instead of light type floating on a
+     near-white gradient, the photo-less hero becomes a confident brand-structured
+     dark band (same family as the photo heroes + AVISP's hero) with light text,
+     layered brand glow, a hairline texture, an oversized brand monogram, and the
+     category motif at real presence. Fully composed → reads as designed, not
+     unfinished. Built only from type + brand color — no photo. Token-driven;
+     if color-mix is unsupported the --p-structure base still gives a solid dark
+     band (never a broken light block). */
   .p-hero--editorial-solo {
     background:
-      radial-gradient(60rem 38rem at 88% -10%, color-mix(in srgb, var(--p-primary) 12%, transparent), transparent 60%),
-      linear-gradient(180deg, var(--p-paper) 0%, var(--p-paper-deep) 100%);
+      radial-gradient(54rem 40rem at 82% -16%, color-mix(in srgb, var(--p-primary) 32%, transparent), transparent 56%),
+      radial-gradient(46rem 34rem at 2% 112%, color-mix(in srgb, var(--p-accent) 20%, transparent), transparent 54%),
+      radial-gradient(70rem 50rem at 50% 130%, color-mix(in srgb, var(--p-primary) 12%, transparent), transparent 60%),
+      linear-gradient(165deg,
+        color-mix(in srgb, var(--p-structure) 92%, #fff 8%) 0%,
+        var(--p-structure) 52%,
+        color-mix(in srgb, var(--p-structure) 88%, #000 12%) 100%);
   }
-  /* Category motif backdrop — a brand-tinted illustrative panel (library SVG
-     used as a mask, painted in --p-primary) anchored to the right, low opacity,
-     behind the type. Clearly decorative, never reads as a photo. */
+  /* Hairline diagonal-grid texture — gives the dark band branded richness (the
+     "considered surface" look) without a photo. Very low contrast, decorative. */
+  .p-hero__texture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image:
+      repeating-linear-gradient(
+        115deg,
+        color-mix(in srgb, var(--p-on-dark) 6%, transparent) 0 1px,
+        transparent 1px 26px);
+    -webkit-mask-image: linear-gradient(105deg, #000 0%, transparent 72%);
+    mask-image: linear-gradient(105deg, #000 0%, transparent 72%);
+  }
+  /* Category motif — brand-tinted illustrative panel (library SVG used as a mask,
+     painted brand-primary) anchored low-right, behind the type. Now at MEANINGFUL
+     presence on the dark band (not a 6% ghost). Decorative, never a photo. */
   .p-hero__motif {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-color: var(--p-primary);
-    opacity: 0.14;
+    background-color: color-mix(in srgb, var(--p-primary) 62%, #fff);
+    opacity: 0.22;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
-    -webkit-mask-position: right -6% center;
-    mask-position: right -6% center;
-    -webkit-mask-size: clamp(28rem, 22rem + 30vw, 58rem) auto;
-    mask-size: clamp(28rem, 22rem + 30vw, 58rem) auto;
+    -webkit-mask-position: right -4% bottom -8%;
+    mask-position: right -4% bottom -8%;
+    -webkit-mask-size: clamp(26rem, 20rem + 28vw, 52rem) auto;
+    mask-size: clamp(26rem, 20rem + 28vw, 52rem) auto;
   }
+  /* Oversized brand monogram — a confident brand-weight letter pinned to the
+     right that fills the frame and anchors the composition. Real presence on the
+     dark band (a soft outline-fill, brand-tinted) rather than a faint ghost. */
   .p-hero__wm {
     position: absolute;
     inset: 0;
@@ -277,15 +520,35 @@ const soloAside = isEditorial && !img && badges.length > 0;
   .p-hero__wm-mono {
     font-family: var(--p-font-display);
     font-weight: 800;
-    font-size: clamp(20rem, 14rem + 28vw, 44rem);
+    font-size: clamp(20rem, 14rem + 30vw, 46rem);
     line-height: 0.7;
     letter-spacing: -0.06em;
-    color: var(--p-primary);
-    opacity: 0.06;
-    transform: translateX(12%);
+    color: transparent;
+    -webkit-text-stroke: 2px color-mix(in srgb, var(--p-primary) 60%, #fff);
+    background:
+      linear-gradient(180deg,
+        color-mix(in srgb, var(--p-primary) 30%, transparent),
+        color-mix(in srgb, var(--p-primary) 6%, transparent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    opacity: 0.5;
+    transform: translateX(14%);
     user-select: none;
   }
+  /* No background-clip:text support → fall back to a soft solid brand fill. */
+  @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    .p-hero__wm-mono {
+      color: color-mix(in srgb, var(--p-primary) 26%, transparent);
+      -webkit-text-stroke: 0;
+      opacity: 1;
+    }
+  }
   .p-hero--editorial-solo .p-hero__inner { position: relative; z-index: 1; }
+
+  /* Light-text treatment on the dark editorial band (mirrors the full-bleed
+     hero). Headline white, lede softened, eyebrow brand-tinted-on-dark. */
+  .p-hero--editorial-solo .p-hero__heading { color: #fff; text-shadow: 0 2px 30px rgb(0 0 0 / 0.28); }
+  .p-hero--editorial-solo .p-hero__sub { color: var(--p-on-dark-soft); }
 
   /* Paired editorial hero: type on the left, a designed brand "credential card"
      on the right built from the badges — gives a photo-less hero a true two-zone
@@ -297,16 +560,21 @@ const soloAside = isEditorial && !img && badges.length > 0;
     align-items: center;
   }
   .p-hero--editorial-paired .p-hero__content { max-width: 100%; }
+  /* Credential card sits on the dark title-card band → a crisp light surface
+     with a brand-tinted corner wash and a lifted shadow, so it reads as a
+     deliberate floated panel (depth against the dark), not a stray box. */
   .p-hero__cred {
     position: relative;
     align-self: center;
     padding: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
-    border: 1px solid var(--p-line);
+    border: 1px solid color-mix(in srgb, var(--p-primary) 14%, var(--p-line));
     border-radius: var(--p-radius-lg);
     background:
       radial-gradient(30rem 22rem at 120% -30%, var(--p-primary-tint), transparent 60%),
       var(--p-surface);
-    box-shadow: var(--p-shadow-md);
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.5) inset,
+      0 24px 56px rgb(0 0 0 / 0.32);
   }
   .p-hero__cred-rule {
     position: absolute;
@@ -373,5 +641,156 @@ const soloAside = isEditorial && !img && badges.length > 0;
     .p-hero--editorial .p-hero__aside { margin-top: var(--p-space-8); }
     .p-hero--split .p-hero__figure .media { --ratio: 16 / 11; }
     .p-hero--editorial .p-hero__aside .media { --ratio: 16 / 10; }
+    /* Pull the offset frame in on small screens so it doesn't overflow. */
+    .p-hero--split .p-hero__figure-frame {
+      transform: translate(0.6rem, 0.6rem);
+    }
+  }
+
+  /* ======================================================================
+     CINEMATIC LAYER — entrance + alive backgrounds. Everything here is a
+     progressive enhancement armed ONLY after the hero has painted opaque
+     (.hero-armed, set by JS one frame after first paint) and never under
+     reduced motion. The static layout above is the LCP-safe base state.
+     ====================================================================== */
+
+  /* ---- Photo entrance: clip-path wipe + slow Ken-Burns drift ------------- */
+  /* The photo wrapper. Default state = fully visible (LCP-safe). When armed,
+     it starts clipped + slightly scaled/offset and eases open. Compositor-only
+     (clip-path + transform), zero layout shift. */
+  .p-hero__photo { position: absolute; inset: 0; }
+  .p-hero--split .p-hero__photo,
+  .p-hero--editorial .p-hero__photo { position: relative; }
+  .p-hero__photo :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Armed start-state for the full-bleed background photo: a diagonal clip wipe
+     + a touch of scale, so the image "opens" into frame on load. */
+  .premium .p-hero.hero-armed .p-hero__bg .p-hero__photo {
+    clip-path: inset(0 0 0 100%);
+    transform: scale(1.12);
+    transition:
+      clip-path 1100ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* Settle CRISP at native 1:1 — no resting upscale, no perpetual Ken-Burns.
+     A continuously-scaled large photo gets GPU-rasterized once and then upsampled,
+     which reads as blurry/pixelated on real hardware (and worse mid-animation) —
+     headless GPU-off rendering hides it. The one-time clip wipe above is enough
+     cinema; the photo rests at scale(1) so it's pixel-sharp. */
+  .premium .p-hero.hero-armed.is-hero-in .p-hero__bg .p-hero__photo {
+    clip-path: inset(0 0 0 0%);
+    transform: scale(1);
+  }
+
+  /* Split / editorial figures: a softer reveal (clip from bottom + rise),
+     paired with the existing data-reveal="right" slide. */
+  .premium .p-hero.hero-armed .p-hero__figure .p-hero__photo,
+  .premium .p-hero.hero-armed .p-hero__aside .p-hero__photo {
+    clip-path: inset(14% 0 0 0);
+    transform: scale(1.06);
+    transition:
+      clip-path 1000ms cubic-bezier(0.16, 1, 0.3, 1) 120ms,
+      transform 1400ms cubic-bezier(0.16, 1, 0.3, 1) 120ms;
+  }
+  .premium .p-hero.hero-armed.is-hero-in .p-hero__figure .p-hero__photo,
+  .premium .p-hero.hero-armed.is-hero-in .p-hero__aside .p-hero__photo {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+
+  /* ---- Living aurora field (photo-less dark editorial) ------------------- */
+  /* A canvas painted OVER the static gradient band. It is invisible until JS
+     fades it in, so no-JS/no-WebGL/reduced-motion keep the static title-card. */
+  .p-hero__aurora {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    opacity: 0;
+    transition: opacity 900ms ease;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+  .p-hero__aurora.is-live { opacity: 0.9; }
+
+  /* A single slow brand-light sweep across the dark band — adds a sense of a
+     light source moving over the surface. Pure CSS, GPU transform. */
+  .p-hero__sweep {
+    position: absolute; inset: -20% -40%; z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      105deg,
+      transparent 38%,
+      color-mix(in srgb, var(--p-primary) 22%, transparent) 50%,
+      transparent 62%);
+    opacity: 0;
+    transform: translateX(-30%);
+  }
+  .premium .p-hero.hero-armed .p-hero__sweep {
+    opacity: 0.6;
+    animation: p-hero-sweep 14s ease-in-out 1200ms infinite;
+  }
+  @keyframes p-hero-sweep {
+    0%   { transform: translateX(-34%); }
+    50%  { transform: translateX(34%); }
+    100% { transform: translateX(-34%); }
+  }
+
+  /* ---- Choreographed entrance for the content rail ----------------------- */
+  /* Eyebrow, sub, actions, badges, cred card cascade up just behind the
+     headline word-reveal. Painted visible by default; the hidden start-state
+     is gated behind .hero-armed (NOT .reveal-armed), like the headline words,
+     so the above-the-fold content is never invisible at first paint. */
+  .premium .p-hero.hero-armed [data-hero-stage] {
+    opacity: 0;
+    transform: translateY(1.1rem);
+    transition:
+      opacity 620ms ease,
+      transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--hero-stage, 0) * 90ms + 220ms);
+  }
+  .premium .p-hero.hero-armed.is-hero-in [data-hero-stage] {
+    opacity: 1;
+    transform: none;
+  }
+  .p-hero [data-hero-stage='0'] { --hero-stage: 0; }
+  .p-hero [data-hero-stage='2'] { --hero-stage: 3; }
+  .p-hero [data-hero-stage='3'] { --hero-stage: 4; }
+  .p-hero [data-hero-stage='4'] { --hero-stage: 5; }
+
+  /* The cred/glass aside lifts in last, with a touch of depth. */
+  .premium .p-hero.hero-armed .p-hero__cred,
+  .premium .p-hero.hero-armed .p-hero__glass {
+    opacity: 0;
+    transform: translateY(1.4rem) scale(0.985);
+    transition:
+      opacity 720ms ease 380ms,
+      transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 380ms;
+  }
+  .premium .p-hero.hero-armed.is-hero-in .p-hero__cred,
+  .premium .p-hero.hero-armed.is-hero-in .p-hero__glass {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Reduced motion: word-reveal collapses to plain visible text instantly, and
+     every cinematic enhancement is neutralized (static title-card / static
+     photo). This is also the no-JS state, since none of it arms without JS. */
+  @media (prefers-reduced-motion: reduce) {
+    .premium .p-hero.hero-armed .p-hero__word {
+      transform: none; opacity: 1; transition: none; transition-delay: 0ms;
+    }
+    .premium .p-hero.hero-armed .p-hero__photo,
+    .premium .p-hero.hero-armed.is-hero-in .p-hero__photo {
+      clip-path: none !important; transform: none !important;
+      transition: none !important; animation: none !important;
+    }
+    .premium .p-hero.hero-armed [data-hero-stage],
+    .premium .p-hero.hero-armed.is-hero-in [data-hero-stage],
+    .premium .p-hero.hero-armed .p-hero__cred,
+    .premium .p-hero.hero-armed .p-hero__glass {
+      opacity: 1 !important; transform: none !important;
+      transition: none !important;
+    }
+    .p-hero__sweep { animation: none !important; opacity: 0 !important; }
+    .p-hero__aurora { display: none !important; }
   }
 </style>

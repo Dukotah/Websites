@@ -116,8 +116,28 @@
 .premium .container { width: min(var(--p-container), 100% - 2.5rem); margin-inline: auto; }
 
 .premium .section { padding-block: clamp(4rem, 3.2rem + 3.5vw, 7rem); }
-.premium .section--deep { background: var(--p-paper-deep); }
-.premium .section--ink { background: var(--p-structure); color: var(--p-on-dark); }
+/* Deep band gets a whisper of brand-tinted depth + a hairline top edge so the
+   transition between alternating sections reads as considered, not a hard seam. */
+.premium .section--deep {
+  position: relative;
+  background:
+    radial-gradient(70rem 40rem at 88% -10%, color-mix(in srgb, var(--p-primary) 5%, transparent), transparent 60%),
+    var(--p-paper-deep);
+}
+.premium .section--deep::before {
+  content: ''; position: absolute; inset-inline: 0; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--p-primary) 22%, var(--p-line)), transparent);
+}
+/* Ink band gets layered radial depth (two soft brand pools) so dark sections
+   feel lit, not a flat slab. Decorative; token-driven. */
+.premium .section--ink {
+  position: relative;
+  background:
+    radial-gradient(56rem 36rem at 84% -8%, color-mix(in srgb, var(--p-primary) 20%, transparent), transparent 58%),
+    radial-gradient(48rem 32rem at 6% 110%, color-mix(in srgb, var(--p-primary) 12%, transparent), transparent 56%),
+    var(--p-structure);
+  color: var(--p-on-dark);
+}
 .premium .section--ink h1, .premium .section--ink h2, .premium .section--ink h3 { color: #fff; }
 
 .premium .eyebrow {
@@ -137,6 +157,35 @@
 .premium .section-head--center { margin-inline: auto; text-align: center; }
 .premium .section-head--center .eyebrow { justify-content: center; }
 .premium .section-head--center .eyebrow::before { display: none; }
+
+/* Split section-head: heading left, a short lede/meta aside right — breaks the
+   "centered eyebrow → heading → grid" cadence so a section reads as authored.
+   The components opt in (.section-head--split) where it suits the content; below
+   the breakpoint it stacks back to a single column. Token-driven, no JS. */
+.premium .section-head--split {
+  max-width: none;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: end;
+  gap: clamp(1.5rem, 0.8rem + 3vw, 4rem);
+}
+.premium .section-head--split .section-head__lede {
+  margin: 0;
+  padding-bottom: 0.35rem;
+  color: var(--p-ink-soft);
+  font-size: var(--p-text-lg);
+  border-inline-start: 2px solid color-mix(in srgb, var(--p-primary) 32%, var(--p-line));
+  padding-inline-start: var(--p-space-6);
+}
+.premium .section--ink .section-head--split .section-head__lede { color: var(--p-on-dark-soft); }
+@media (max-width: 760px) {
+  .premium .section-head--split { grid-template-columns: 1fr; align-items: start; }
+  .premium .section-head--split .section-head__lede {
+    border-inline-start: 0; padding-inline-start: 0;
+    border-block-start: 2px solid color-mix(in srgb, var(--p-primary) 32%, var(--p-line));
+    padding-block-start: var(--p-space-4);
+  }
+}
 
 /* Tiny internal stagger when a section-head reveals: its eyebrow rule, heading,
    and lede ease in just behind the head container for a touch of choreography.
@@ -174,13 +223,90 @@
 .premium .btn--ghost-light:hover { border-color: #fff; color: #fff; background: rgb(255 255 255 / 0.1); }
 .premium .btn--lg { padding: 1rem 2rem; font-size: var(--p-text-base); }
 
-/* --- Cards ----------------------------------------------------------------- */
-.premium .card {
-  background: var(--p-surface); border: 1px solid var(--p-line); border-radius: var(--p-radius-lg);
-  padding: var(--p-space-8); box-shadow: var(--p-shadow-sm);
-  transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
+/* Magnetic CTA: JS nudges transform toward the cursor; this eases the spring
+   back when the pointer leaves. Compositor-only; hover/fine-pointer + motion
+   gated in JS. Reduced motion never applies a transform (JS bails). */
+@media (hover: hover) and (pointer: fine) {
+  .premium .btn[data-magnetic] { transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease, box-shadow 160ms ease; will-change: transform; }
 }
-.premium .card:hover { box-shadow: var(--p-shadow-md); transform: translateY(-2px); border-color: color-mix(in srgb, var(--p-line) 60%, var(--p-ink-soft)); }
+@media (prefers-reduced-motion: reduce) {
+  .premium .btn[data-magnetic] { transition: none; }
+}
+
+/* --- Cards ----------------------------------------------------------------- */
+/* Refined elevation: a hairline top highlight (1px inset white) over a layered
+   shadow gives surfaces a crafted, lit-from-above quality instead of a flat box.
+   Token-driven; the highlight is subtle enough to read on any brand surface. */
+.premium .card {
+  position: relative;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--p-surface) 100%, #fff 0%), var(--p-surface));
+  border: 1px solid var(--p-line); border-radius: var(--p-radius-lg);
+  padding: var(--p-space-8);
+  box-shadow: 0 1px 0 color-mix(in srgb, #fff 60%, transparent) inset, var(--p-shadow-sm);
+  transition: box-shadow 240ms cubic-bezier(0.22, 1, 0.36, 1), transform 240ms cubic-bezier(0.22, 1, 0.36, 1), border-color 240ms ease;
+}
+@media (hover: hover) {
+  .premium .card:hover {
+    box-shadow: 0 1px 0 color-mix(in srgb, #fff 70%, transparent) inset, var(--p-shadow-lg);
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--p-primary) 28%, var(--p-line));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .premium .card { transition: none; }
+  .premium .card:hover { transform: none; }
+}
+
+/* --- Card craft: brand-tinted index marker + accent rule -------------------
+   A shared, congruent way to give list/feature/menu cards real internal
+   hierarchy and depth WITHOUT clip-art icons. `.card--accent` lays a hairline
+   brand rule along the top edge that grows to full strength on hover; the
+   `.card-marker` is a brand-tinted typographic index (number or short label)
+   that anchors the card. Pure CSS, compositor-only hover, reduced-motion safe.
+   Token-driven so it reads correctly on every prospect palette. */
+.premium .card--accent { overflow: hidden; }
+.premium .card--accent::before {
+  content: ''; position: absolute; inset-inline: 0; top: 0; height: 3px;
+  background: linear-gradient(90deg, var(--p-primary), color-mix(in srgb, var(--p-primary) 30%, transparent));
+  transform: scaleX(0.34); transform-origin: left;
+  border-radius: 3px 3px 0 0;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 320ms ease;
+  opacity: 0.7;
+}
+@media (hover: hover) {
+  .premium .card--accent:hover::before { transform: scaleX(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .premium .card--accent::before { transition: none; }
+}
+
+/* Brand-tinted index/marker: a small typographic tile that gives a card a
+   congruent anchor (an icon's job, but never mismatched). Reads as a number,
+   monogram, or short kicker. */
+.premium .card-marker {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none;
+  min-width: 2.6rem; height: 2.6rem; padding-inline: 0.5rem;
+  border-radius: var(--p-radius-md);
+  background: var(--p-primary-tint);
+  color: var(--p-primary);
+  border: 1px solid color-mix(in srgb, var(--p-primary) 18%, transparent);
+  font-family: var(--p-font-display); font-weight: 750;
+  font-size: var(--p-text-lg); letter-spacing: -0.02em; line-height: 1;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 50%, transparent);
+  transition: background-color 240ms ease, color 240ms ease, transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .premium .card--accent:hover .card-marker {
+    background: var(--p-primary); color: var(--p-primary-contrast);
+    transform: translateY(-1px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .premium .card-marker { transition: none; }
+  .premium .card--accent:hover .card-marker { transform: none; }
+}
 
 /* --- Checklist (brand-tinted check bullets) -------------------------------- */
 .premium .checklist { list-style: none; padding: 0; display: grid; gap: 0.65rem; }
@@ -213,16 +339,19 @@
    with JS disabled, and in social/link-preview snapshots (kills the blank-section
    FOUC on Petaluma et al). */
 .premium.reveal-armed [data-reveal] {
-  opacity: 0; transform: translateY(18px);
-  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0; transform: translateY(34px);
+  /* longer, more cinematic settle — a weighted ease-out that feels designed,
+     not a flat fade. Still compositor-only (opacity + transform). */
+  transition: opacity 820ms cubic-bezier(0.16, 1, 0.3, 1), transform 940ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
-.premium.reveal-armed [data-reveal].is-visible { opacity: 1; transform: none; }
+.premium.reveal-armed [data-reveal].is-visible { opacity: 1; transform: none; will-change: auto; }
 /* Directional variants for richer row/card choreography — slide in from the
    side or scale up instead of the default rise. Only the ARMED starting offset
    differs; all collapse to the shared `.is-visible { transform: none }` above. */
-.premium.reveal-armed [data-reveal='left'] { transform: translateX(-24px); }
-.premium.reveal-armed [data-reveal='right'] { transform: translateX(24px); }
-.premium.reveal-armed [data-reveal='scale'] { transform: scale(0.96); }
+.premium.reveal-armed [data-reveal='left'] { transform: translateX(-38px); }
+.premium.reveal-armed [data-reveal='right'] { transform: translateX(38px); }
+.premium.reveal-armed [data-reveal='scale'] { transform: translateY(28px) scale(0.94); }
 .premium [data-reveal][data-reveal-delay='1'] { transition-delay: 70ms; }
 .premium [data-reveal][data-reveal-delay='2'] { transition-delay: 140ms; }
 .premium [data-reveal][data-reveal-delay='3'] { transition-delay: 210ms; }

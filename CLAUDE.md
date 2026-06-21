@@ -185,8 +185,14 @@ looking alike, and photos/layout that "don't look right." These close that gap:
 - **Vision QA** (`npm run shots` → `sites/demo-gallery/scripts/screenshot-audit.mjs`):
   builds, previews, and screenshots every premium site's `/s/<slug>` fold + full
   page into `.shots/`. Build-success and grep hide visual breakage — REVIEW
-  `.shots/fold/<slug>.png` (the cold-link first impression) before sending. The
-  in-session agent is the vision reviewer (no API key needed on Pro).
+  `.shots/fold/<slug>.png` (the cold-link first impression) AND `.shots/full/<slug>.png`
+  (the whole scroll) before sending. The in-session agent is the vision reviewer
+  (no API key needed on Pro).
+  > The capture emulates `prefers-reduced-motion` (`--force-prefers-reduced-motion`)
+  > so the static `full/` shot shows EVERY section at its final visible state. A
+  > plain headless screenshot never scrolls, so the scroll-reveal (`[data-reveal]`)
+  > sections stay `opacity:0` and the page below the hero renders BLANK — which
+  > silently blinded below-the-fold review. Keep this flag, or `full/` lies.
 - **Mechanical QA** (`node scripts/audit.mjs`, from repo root): dead-token (now
   fallback-aware — `var(--x, fb)` is safe) + measured WCAG contrast +
   empty-section + templated-copy gate over the premium configs (`pages[].sections`
@@ -196,6 +202,16 @@ looking alike, and photos/layout that "don't look right." These close that gap:
 - **Sameness + image floors** (`npm run sameness-check` / `image-qa`): perceptual
   fold-hash sameness gate and the LOCKED source-resolution floor, both reading the
   premium configs.
+- **Perf / Core Web Vitals gate** (`npm run lighthouse` = SEO + a11y floor;
+  `npm run perf-budget` = `scripts/lighthouse.mjs --budget` = CWV budget): runs the
+  BUILT pages in headless Chrome. `perf-budget` FAILS if any sampled page crosses
+  perf 90 / LCP 2500ms / CLS 0.1 / TBT 200ms / ~684KB (env-overridable via
+  `LH_PERF_FLOOR`/`LH_LCP_MS`/`LH_CLS`/`LH_TBT_MS`/`LH_BYTES`). Fail-soft when Chrome
+  can't launch. RUN THIS after any change to the shared `src/premium/**` layer —
+  motion/JS added there can quietly add TBT (a design pass once pushed TBT 0→218ms;
+  the fix was deferring non-critical JS to `requestIdleCallback`, see the `idle(...)`
+  helper in `premium/layouts/PremiumBase.astro`). Measured under Lighthouse's default
+  Slow-4G mobile throttling; current sites sit at perf 96–99 / LCP ~2.0–2.4s / CLS 0.
 
 ## Seam contract — `data/outreach-links.json` (DO NOT BREAK)
 

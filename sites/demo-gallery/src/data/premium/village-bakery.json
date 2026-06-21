@@ -1,0 +1,298 @@
+{
+  "slug": "village-bakery",
+  "name": "Village Bakery",
+  "legalName": "Village Bakery",
+  "tagline": "Award-winning hearth breads & fine pastry in Montgomery Village",
+  "seoDescription": "Village Bakery is a family-owned Santa Rosa bakery and café in Montgomery Village — world-famous English muffins, rustic hearth breads, fine pastry, and custom Princess and wedding cakes, a Sonoma County landmark for 25+ years.",
+  "category": "cafe",
+  "categoryLabel": "Bakery",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 829-8101",
+    "email": "vbakery2@gmail.com",
+    "address": "3851 Sebastopol Rd, Ste 109, Santa Rosa, CA 95407"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/Village-Bakery-145052348858622/",
+    "instagram": "https://www.instagram.com/villagebakerywinecountry/"
+  },
+  "hours": [
+    { "day": "Mon–Sat", "hours": "7:30am–2pm" },
+    { "day": "Sun", "hours": "8am–2pm" }
+  ],
+  "brand": {
+    "color": "#b5572f",
+    "fontId": "handcrafted"
+  },
+  "images": {
+    "hero": "/images/village-bakery/hero.webp",
+    "heroAlt": "Fresh-baked hearth bread loaves on the racks at Village Bakery"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "fullbleed",
+          "eyebrow": "Montgomery Village · Santa Rosa, CA",
+          "heading": "World-Famous English Muffins & Hand-Shaped Hearth Breads",
+          "subheading": "A family-owned Santa Rosa bakery and café — artisan breads, fine pastry, and custom cakes, baked fresh every morning and voted Sonoma County's Best Bakery year after year.",
+          "badges": [
+            "A Sonoma County landmark for 25+ years",
+            "Press Democrat “Best Bakery”",
+            "Hearth-baked fresh every morning"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/village-bakery/menu"
+          },
+          "secondaryCta": {
+            "label": "Custom & wedding cakes",
+            "href": "/s/village-bakery/contact"
+          },
+          "image": {
+            "src": "/images/village-bakery/hero.webp",
+            "alt": "Fresh-baked hearth bread loaves on the racks at Village Bakery",
+            "focal": "50% 45%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "From the case",
+          "heading": "What we bake",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "World-Famous English Muffins",
+              "description": "Hand-split and griddle-toasted — the ones Sonoma County drives across town for."
+            },
+            {
+              "title": "Rustic Hearth Breads",
+              "description": "Crusty artisan loaves baked daily: sourdough, country boules, baguettes, and more."
+            },
+            {
+              "title": "Marzipan Princess Cakes",
+              "description": "The classic Scandinavian cake under a smooth dome of marzipan — a Village Bakery signature."
+            },
+            {
+              "title": "Custom & Wedding Cakes",
+              "description": "Made-to-order cakes for weddings and celebrations, baked moist and from scratch."
+            },
+            {
+              "title": "Fine Pastry & Desserts",
+              "description": "Buttery morning pastries, cookies, and a daily case full of fresh sweets."
+            },
+            {
+              "title": "Café Breakfast & Lunch",
+              "description": "Sit-down café fare alongside the bakery counter, made with what comes out of the oven."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A Sonoma County bakery landmark",
+          "body": [
+            "For more than 25 years, Village Bakery has been a fixture of Santa Rosa's Montgomery Village — a family-owned bakery and café turning out rustic, hearth-baked breads and a case full of fine pastry every single morning.",
+            "Regulars come for the world-famous English muffins and stay for the marzipan-domed Princess cakes, buttery desserts, and made-from-scratch wedding cakes. It's the kind of neighborhood bakery that's earned “Best Bakery” honors from the Press Democrat year after year."
+          ],
+          "highlights": [
+            "Hand-shaped hearth breads baked fresh daily",
+            "World-famous English muffins",
+            "Marzipan Princess cakes & custom wedding cakes",
+            "A Sonoma County landmark for 25+ years"
+          ],
+          "image": {
+            "src": "/images/village-bakery/story.jpg",
+            "alt": "Inside Village Bakery",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "25+", "label": "Years in Sonoma County" },
+            { "value": "Best", "label": "Bakery — Press Democrat" },
+            { "value": "Daily", "label": "Fresh hearth breads & pastry" },
+            { "value": "Family", "label": "Owned & operated" }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Stop by the bakery",
+          "body": "Find us at 3851 Sebastopol Rd, Ste 109, Santa Rosa, CA. Call (707) 829-8101 — we're glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/village-bakery/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 829-8101",
+            "href": "tel:+17078298101"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "From the case",
+          "heading": "What we bake",
+          "subheading": "Hearth breads, English muffins, fine pastry, and custom cakes — baked fresh in Montgomery Village every morning.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we bake",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "World-Famous English Muffins",
+              "description": "Hand-split and griddle-toasted — the ones Sonoma County drives across town for."
+            },
+            {
+              "title": "Rustic Hearth Breads",
+              "description": "Crusty artisan loaves baked daily: sourdough, country boules, baguettes, and more."
+            },
+            {
+              "title": "Marzipan Princess Cakes",
+              "description": "The classic Scandinavian cake under a smooth dome of marzipan — a Village Bakery signature."
+            },
+            {
+              "title": "Custom & Wedding Cakes",
+              "description": "Made-to-order cakes for weddings and celebrations, baked moist and from scratch."
+            },
+            {
+              "title": "Fine Pastry & Desserts",
+              "description": "Buttery morning pastries, cookies, and a daily case full of fresh sweets."
+            },
+            {
+              "title": "Café Breakfast & Lunch",
+              "description": "Sit-down café fare alongside the bakery counter, made with what comes out of the oven."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "We're in Montgomery Village at 3851 Sebastopol Rd, Ste 109, Santa Rosa, CA."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Sat: 7:30am–2pm, and Sun: 8am–2pm."
+            },
+            {
+              "q": "Do you make custom and wedding cakes?",
+              "a": "Yes — from marzipan Princess cakes to made-from-scratch wedding cakes. Call ahead to order."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 829-8101 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Stop by the bakery",
+          "body": "Find us at 3851 Sebastopol Rd, Ste 109, Santa Rosa, CA. Call (707) 829-8101 — we're glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/village-bakery/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 829-8101",
+            "href": "tel:+17078298101"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Village Bakery",
+          "heading": "A Sonoma County bakery landmark",
+          "subheading": "A family-owned bakery and café in Montgomery Village for more than 25 years.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Baked fresh in Montgomery Village",
+          "body": [
+            "For more than 25 years, Village Bakery has been a fixture of Santa Rosa's Montgomery Village — a family-owned bakery and café turning out rustic, hearth-baked breads and a case full of fine pastry every single morning.",
+            "Regulars come for the world-famous English muffins and stay for the marzipan-domed Princess cakes, buttery desserts, and made-from-scratch wedding cakes. It's the kind of neighborhood bakery that's earned “Best Bakery” honors from the Press Democrat year after year."
+          ],
+          "highlights": [
+            "Hand-shaped hearth breads baked fresh daily",
+            "World-famous English muffins",
+            "Marzipan Princess cakes & custom wedding cakes",
+            "A Sonoma County landmark for 25+ years"
+          ],
+          "image": {
+            "src": "/images/village-bakery/story.jpg",
+            "alt": "Inside Village Bakery",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            { "value": "25+", "label": "Years in Sonoma County" },
+            { "value": "Best", "label": "Bakery — Press Democrat" },
+            { "value": "Daily", "label": "Fresh hearth breads & pastry" },
+            { "value": "Family", "label": "Owned & operated" }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Village Bakery",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/village-bakery/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Village Bakery at 3851 Sebastopol Rd, Ste 109, Santa Rosa, CA or call (707) 829-8101.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

@@ -147,23 +147,125 @@ const jsonLd = buildJsonLd(config as any, { canonical, image: ogImage || undefin
       function initReveal() {
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce) return;
-        document.querySelector('.premium')?.classList.add('reveal-armed');
+        const root = document.querySelector('.premium');
+        root?.classList.add('reveal-armed');
+
+        // Hero word-reveal: the heading is painted FULLY OPAQUE first (the
+        // hidden start-state is gated behind .hero-armed, NOT .reveal-armed),
+        // so the LCP element is never invisible. We then set the hidden state,
+        // force a reflow to commit that paint, and add .is-hero-in on the next
+        // frame so the words ease up. Pure transform/opacity → zero CLS, and
+        // LCP is captured on the opaque first paint.
+        const hero = document.querySelector<HTMLElement>('.premium .p-hero');
+        if (hero) {
+          requestAnimationFrame(() => {
+            hero.classList.add('hero-armed');
+            void hero.offsetWidth; // flush the hidden start-state to a paint
+            requestAnimationFrame(() => hero.classList.add('is-hero-in'));
+          });
+        }
+
         const els = document.querySelectorAll('.premium [data-reveal]:not(.is-visible)');
-        if (!els.length) return;
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const e of entries) {
-              if (e.isIntersecting) {
-                e.target.classList.add('is-visible');
-                io.unobserve(e.target);
+        if (els.length) {
+          const io = new IntersectionObserver(
+            (entries) => {
+              for (const e of entries) {
+                if (e.isIntersecting) {
+                  e.target.classList.add('is-visible');
+                  io.unobserve(e.target);
+                }
               }
-            }
-          },
-          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
-        );
+            },
+            { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+          );
+          els.forEach((el) => io.observe(el));
+        }
+
+        // Defer the non-critical interaction JS (count-up rAF loop + magnetic
+        // CTA wiring) to main-thread idle so it lands OUTSIDE the load/TBT
+        // window. The count-up animation on above-the-fold stats was adding
+        // ~200ms TBT on heavier pages (designer-smiles: 0 → 218ms); pushing it
+        // past TTI restores TBT≈0 with no visible change (the count still fires
+        // the moment its stat is in view, just armed a beat later).
+        const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout?: number }) => number };
+        const idle = (cb: () => void) =>
+          w.requestIdleCallback ? w.requestIdleCallback(cb, { timeout: 600 }) : window.setTimeout(cb, 1);
+        idle(() => { initCountUp(root); initMagnetic(reduce); });
+      }
+
+      // Count-up: animate [data-countup] numbers from 0 → value on first view.
+      // Splits a leading number off any prefix/suffix ("4.9★", "$2k+", "1,200")
+      // so units/symbols are preserved. Tiny, dependency-free, IO-gated.
+      function initCountUp(root: Element | null) {
+        if (typeof IntersectionObserver === 'undefined') return;
+        const els = (root ?? document).querySelectorAll<HTMLElement>('[data-countup]:not(.is-counted)');
+        if (!els.length) return;
+        const run = (el: HTMLElement) => {
+          el.classList.add('is-counted');
+          const raw = el.textContent || '';
+          const m = raw.match(/^(\D*)(\d[\d,]*\.?\d*)(.*)$/s);
+          if (!m) return;
+          const pre = m[1], numStr = m[2].replace(/,/g, ''), suf = m[3];
+          const target = parseFloat(numStr);
+          if (!isFinite(target)) return;
+          const dec = numStr.includes('.') ? (numStr.split('.')[1]?.length ?? 0) : 0;
+          const commas = m[2].includes(',');
+          const fmt = (v: number) => dec ? v.toFixed(dec) : (commas ? Math.round(v).toLocaleString() : String(Math.round(v)));
+          const dur = 1300, start = performance.now();
+          const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+          const frame = (now: number) => {
+            const p = Math.min((now - start) / dur, 1);
+            el.textContent = pre + fmt(target * ease(p)) + suf;
+            if (p < 1) requestAnimationFrame(frame);
+            else el.textContent = raw;
+          };
+          requestAnimationFrame(frame);
+        };
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) if (e.isIntersecting) { run(e.target as HTMLElement); io.unobserve(e.target); }
+        }, { threshold: 0.3, rootMargin: '0px 0px -40px 0px' });
         els.forEach((el) => io.observe(el));
       }
+
+      // Magnetic CTA: the primary hero button drifts a few px toward the cursor
+      // and springs back. Hover-capable + fine-pointer only; cleaned up between
+      // page swaps. Compositor-only transform; never runs under reduced motion.
+      let magneticCleanup: (() => void) | null = null;
+      function initMagnetic(reduce: boolean) {
+        if (magneticCleanup) { magneticCleanup(); magneticCleanup = null; }
+        if (reduce) return;
+        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+        const btns = Array.from(document.querySelectorAll<HTMLElement>('.premium [data-magnetic]'));
+        if (!btns.length) return;
+        const handlers: Array<[HTMLElement, (ev: PointerEvent) => void, () => void]> = [];
+        for (const btn of btns) {
+          const move = (ev: PointerEvent) => {
+            const r = btn.getBoundingClientRect();
+            const dx = (ev.clientX - (r.left + r.width / 2)) / r.width;
+            const dy = (ev.clientY - (r.top + r.height / 2)) / r.height;
+            btn.style.transform = `translate(${(dx * 7).toFixed(2)}px, ${(dy * 7).toFixed(2)}px)`;
+          };
+          const leave = () => { btn.style.transform = ''; };
+          btn.addEventListener('pointermove', move);
+          btn.addEventListener('pointerleave', leave);
+          handlers.push([btn, move, leave]);
+        }
+        magneticCleanup = () => {
+          for (const [btn, move, leave] of handlers) {
+            btn.removeEventListener('pointermove', move);
+            btn.removeEventListener('pointerleave', leave);
+            btn.style.transform = '';
+          }
+        };
+      }
+      document.addEventListener('astro:before-swap', () => { if (magneticCleanup) { magneticCleanup(); magneticCleanup = null; } });
       document.addEventListener('astro:page-load', initReveal);
+    </script>
+
+    <!-- Cinematic hero + smooth-scroll choreography. Self-contained, reduced-motion
+         + no-WebGL + View-Transition safe (own teardown). Bundled by Astro. -->
+    <script>
+      import '../scripts/hero-cinematic';
     </script>
   </body>
 </html>

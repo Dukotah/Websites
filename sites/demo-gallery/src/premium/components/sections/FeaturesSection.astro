@@ -47,7 +47,7 @@ const cols = items.length % 3 === 0 || items.length > 4 ? 'grid-3' : 'grid-2';
 
     <div class:list={['grid', cols, 'p-features__grid']}>
       {items.map((it, i) => (
-        <article class="card p-features__card" data-reveal data-reveal-delay={((i % 3) + 1)}>
+        <article class="card card--accent p-features__card" data-reveal data-reveal-delay={((i % 3) + 1)}>
           <span class="p-features__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -75,10 +75,25 @@ const cols = items.length % 3 === 0 || items.length > 4 ? 'grid-3' : 'grid-2';
     place-items: center;
     width: 3rem;
     height: 3rem;
+    margin-bottom: var(--p-space-1);
     border-radius: var(--p-radius-md);
     background: var(--p-primary-tint);
     color: var(--p-primary);
+    border: 1px solid color-mix(in srgb, var(--p-primary) 16%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 50%, transparent);
+    transition: background-color 240ms ease, color 240ms ease, transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .p-features__title { font-size: var(--p-text-xl); }
+  /* The icon tile fills with brand on hover (mirrors .card-marker), so the whole
+     family of cards shares one congruent hover language. */
+  .p-features__title { font-size: var(--p-text-xl); letter-spacing: -0.015em; }
   .p-features__body { color: var(--p-ink-soft); font-size: var(--p-text-base); }
+  @media (hover: hover) {
+    .p-features__card:hover .p-features__icon {
+      background: var(--p-primary); color: var(--p-primary-contrast); transform: translateY(-1px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .p-features__icon { transition: none; }
+    .p-features__card:hover .p-features__icon { transform: none; }
+  }
 </style>

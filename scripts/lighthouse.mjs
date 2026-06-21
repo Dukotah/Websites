@@ -30,7 +30,14 @@
  *   node scripts/lighthouse.mjs vasquez smitty  # only matching slugs
  *   node scripts/lighthouse.mjs --all           # audit every built page (slow)
  *   node scripts/lighthouse.mjs --perf          # also report performance score
+ *   node scripts/lighthouse.mjs --budget        # ENFORCE the perf/CWV budget gate
  *   LH_SAMPLE=8 node scripts/lighthouse.mjs     # change the sample size
+ *   npm run perf-budget                         # the --budget gate via npm
+ *
+ * --budget adds a performance gate on top of the SEO/a11y floors: each sampled
+ * page must score perf ≥ 90 and stay within LCP ≤ 2500ms / CLS ≤ 0.1 /
+ * TBT ≤ 200ms / total weight ≤ 700KB (all env-overridable via LH_PERF_FLOOR,
+ * LH_LCP_MS, LH_CLS, LH_TBT_MS, LH_BYTES). Still fail-soft on no-Chrome.
  */
 
 import { createServer } from 'node:http';
@@ -48,6 +55,24 @@ const PAGES = join(DIST, 's'); // built premium home pages: dist/s/<slug>/index.
 const SEO_FLOOR = 95;
 const A11Y_FLOOR = 90;
 
+// ── Performance / Core Web Vitals budget (opt-in via --budget). ────────────────
+// The SEO + a11y floors above are always on; the perf budget is a SEPARATE,
+// opt-in gate so the default run stays fast (it doesn't need the performance
+// category, which is the slow part of a Lighthouse pass). When --budget is given
+// we also run the `performance` category and assert each sampled page stays
+// inside these ceilings — so a future change (a heavy hero, a blocking script,
+// an un-optimized photo) that would quietly push a demo past the line FAILS the
+// gate instead of shipping. Measured under Lighthouse's default simulated
+// Slow-4G mobile throttling, which is the same config the AUDIT baseline used
+// (perf 99, LCP ~2.0s, CLS ~0, TBT 0, ~210–360KB/page) — so these floors sit
+// comfortably above today's numbers and only trip on a real regression. Each is
+// env-overridable for a deliberate, documented budget change.
+const PERF_FLOOR = Number(process.env.LH_PERF_FLOOR) || 90; // performance score
+const LCP_BUDGET = Number(process.env.LH_LCP_MS) || 2500; // ms — "good" CWV bar
+const CLS_BUDGET = Number(process.env.LH_CLS) || 0.1; // unitless — "good" CWV bar
+const TBT_BUDGET = Number(process.env.LH_TBT_MS) || 200; // ms — interactivity proxy
+const BYTES_BUDGET = Number(process.env.LH_BYTES) || 700_000; // total transfer ceiling
+
 // How many pages to sample when no slug filter / --all is given. Auditing every
 // page is slow (one full Chrome run each), and same-template pages score alike,
 // so a deterministic sample is enough to catch a regression. Override via env.
@@ -55,7 +80,10 @@ const DEFAULT_SAMPLE = Number(process.env.LH_SAMPLE) || 6;
 
 const args = process.argv.slice(2);
 const wantAll = args.includes('--all');
-const wantPerf = args.includes('--perf');
+const wantBudget = args.includes('--budget');
+// --budget implies collecting the performance category (the CWV audits live
+// inside it); --perf alone just reports perf without enforcing the budget.
+const wantPerf = args.includes('--perf') || wantBudget;
 const filters = args.filter((a) => !a.startsWith('--'));
 
 // ── Minimal static file server for dist/ ───────────────────────────────────────
@@ -253,7 +281,11 @@ async function main() {
   } else {
     targets = sample(all, DEFAULT_SAMPLE);
   }
-  console.log(`Auditing ${targets.length} of ${all.length} built page(s); thresholds: SEO ≥ ${SEO_FLOOR}, a11y ≥ ${A11Y_FLOOR}.\n`);
+  console.log(`Auditing ${targets.length} of ${all.length} built page(s); thresholds: SEO ≥ ${SEO_FLOOR}, a11y ≥ ${A11Y_FLOOR}.`);
+  if (wantBudget) {
+    console.log(`Perf budget ON: perf ≥ ${PERF_FLOOR}, LCP ≤ ${LCP_BUDGET}ms, CLS ≤ ${CLS_BUDGET}, TBT ≤ ${TBT_BUDGET}ms, weight ≤ ${Math.round(BYTES_BUDGET / 1024)}KB.`);
+  }
+  console.log('');
 
   // 3. Try to bring up Chrome. If we can't, SKIP cleanly (exit 0) — a missing
   //    headless browser must never hard-fail the gate.
@@ -301,7 +333,8 @@ async function main() {
           skipAudits,
         },
       );
-      const cats = runnerResult?.lhr?.categories || {};
+      const lhr = runnerResult?.lhr || {};
+      const cats = lhr.categories || {};
       // Lighthouse scores are 0–1 (null if a category couldn't be computed).
       const pct = (c) => (cats[c] && cats[c].score != null ? Math.round(cats[c].score * 100) : null);
       const seo = pct('seo');
@@ -312,9 +345,33 @@ async function main() {
       // A null score can't be judged against the floor — flag it, don't pass it.
       const seoBad = seo == null || seo < SEO_FLOOR;
       const a11yBad = a11y == null || a11y < A11Y_FLOOR;
-      if (seoBad || a11yBad) failures++;
+      let fail = seoBad || a11yBad;
 
-      rows.push({ slug, seo, a11y, bp, perf, fail: seoBad || a11yBad });
+      // Core Web Vitals + page weight, pulled from the raw audits (only meaningful
+      // when the performance category ran). numericValue is ms for LCP/TBT, a
+      // unitless score for CLS, bytes for total weight.
+      let lcp = null, cls = null, tbt = null, bytes = null, budgetBad = false;
+      if (wantBudget) {
+        const num = (id) => {
+          const v = lhr.audits?.[id]?.numericValue;
+          return typeof v === 'number' ? v : null;
+        };
+        lcp = num('largest-contentful-paint');
+        cls = num('cumulative-layout-shift');
+        tbt = num('total-blocking-time');
+        bytes = num('total-byte-weight');
+        // A null metric can't be proven within budget → treat as a budget miss.
+        budgetBad =
+          perf == null || perf < PERF_FLOOR ||
+          lcp == null || lcp > LCP_BUDGET ||
+          cls == null || cls > CLS_BUDGET ||
+          tbt == null || tbt > TBT_BUDGET ||
+          bytes == null || bytes > BYTES_BUDGET;
+        fail = fail || budgetBad;
+      }
+      if (fail) failures++;
+
+      rows.push({ slug, seo, a11y, bp, perf, lcp, cls, tbt, bytes, budgetBad, fail });
     } catch (err) {
       // A single page erroring shouldn't crash the whole gate, but it IS a
       // failure for that page (we couldn't prove it meets the bar).
@@ -338,7 +395,15 @@ async function main() {
     const s = String(v).padStart(3, ' ');
     return floor != null && v < floor ? `${s}✗` : `${s} `;
   };
-  const head = `  ${'slug'.padEnd(34)} ${'SEO'.padStart(4)} ${'a11y'.padStart(5)} ${'best'.padStart(5)}${wantPerf ? ` ${'perf'.padStart(5)}` : ''}`;
+  // Budget cell: show the metric, marked ✗ when it exceeds (or undershoots) its
+  // ceiling. `over` is true when "bigger is worse" (LCP/CLS/TBT/bytes); false for
+  // the perf score where smaller is worse.
+  const bcell = (v, limit, over, fmt, width) => {
+    if (v == null) return '—'.padStart(width);
+    const bad = over ? v > limit : v < limit;
+    return `${fmt(v)}${bad ? '✗' : ' '}`.padStart(width);
+  };
+  const head = `  ${'slug'.padEnd(34)} ${'SEO'.padStart(4)} ${'a11y'.padStart(5)} ${'best'.padStart(5)}${wantPerf ? ` ${'perf'.padStart(5)}` : ''}${wantBudget ? ` ${'LCP'.padStart(7)} ${'CLS'.padStart(6)} ${'TBT'.padStart(6)} ${'KB'.padStart(6)}` : ''}`;
   console.log(head);
   console.log('  ' + '─'.repeat(head.length - 2));
   for (const r of rows) {
@@ -348,18 +413,27 @@ async function main() {
     }
     const mark = r.fail ? '✗' : '✓';
     let line = `  ${mark} ${r.slug.padEnd(32)} ${cell(r.seo, SEO_FLOOR)} ${cell(r.a11y, A11Y_FLOOR)}  ${cell(r.bp, null)}`;
-    if (wantPerf) line += `  ${cell(r.perf, null)}`;
+    if (wantPerf) line += `  ${cell(r.perf, wantBudget ? PERF_FLOOR : null)}`;
+    if (wantBudget) {
+      line += ` ${bcell(r.lcp, LCP_BUDGET, true, (v) => Math.round(v) + 'ms', 7)}`;
+      line += ` ${bcell(r.cls, CLS_BUDGET, true, (v) => v.toFixed(3), 6)}`;
+      line += ` ${bcell(r.tbt, TBT_BUDGET, true, (v) => Math.round(v) + 'ms', 6)}`;
+      line += ` ${bcell(r.bytes, BYTES_BUDGET, true, (v) => Math.round(v / 1024), 6)}`;
+    }
     console.log(line);
   }
 
   // 7. Verdict.
   console.log('\n' + '─'.repeat(56));
   if (errored) console.log(`${errored} page(s) errored during audit (counted as failures).`);
+  const floorMsg = wantBudget
+    ? `SEO ≥ ${SEO_FLOOR}, a11y ≥ ${A11Y_FLOOR}, perf ≥ ${PERF_FLOOR}, LCP ≤ ${LCP_BUDGET}ms, CLS ≤ ${CLS_BUDGET}, TBT ≤ ${TBT_BUDGET}ms, weight ≤ ${Math.round(BYTES_BUDGET / 1024)}KB`
+    : `SEO ≥ ${SEO_FLOOR} and a11y ≥ ${A11Y_FLOOR}`;
   if (failures) {
-    console.log(`✗ ${failures} of ${rows.length} sampled page(s) below the floor (SEO < ${SEO_FLOOR} or a11y < ${A11Y_FLOOR}).`);
+    console.log(`✗ ${failures} of ${rows.length} sampled page(s) failed the gate (${floorMsg}).`);
     process.exitCode = 1;
   } else {
-    console.log(`✓ All ${rows.length} sampled page(s) meet SEO ≥ ${SEO_FLOOR} and a11y ≥ ${A11Y_FLOOR}.`);
+    console.log(`✓ All ${rows.length} sampled page(s) meet ${floorMsg}.`);
     process.exitCode = 0;
   }
 }
