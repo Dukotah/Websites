@@ -1,0 +1,129 @@
+---
+/**
+ * StickyContactBar — a mobile-only bottom bar that keeps the business one
+ * thumb-tap away at every scroll depth. This is the literal PURPOSE of these
+ * demos: a phone visitor on weak rural LTE calls/texts the business in seconds.
+ *
+ * Why it lives here (shared layer): rendered once in PremiumBase, so EVERY
+ * generated site gets it from one place. It adds ZERO client JS (pure CSS +
+ * anchors) so it can't regress the perf/TBT/CLS baseline, and it only appears
+ * at <=560px — exactly the width where the header's inline CTA hides.
+ *
+ * Buttons: a primary CALL (tel:) when a phone exists, plus the author's own
+ * home-hero primary CTA (which always points at the Contact page) as the
+ * secondary. We deliberately do NOT add an sms: button: most scraped numbers
+ * are landlines, where texting silently fails — a broken promise is worse than
+ * no button. A11y: 56px targets (>= WCAG 2.5.8 / 44px), the visible label is in
+ * the accessible name (2.5.3 / 2.4.4), and PremiumBase adds scroll-padding so a
+ * focused control is never hidden behind the bar (2.4.11).
+ */
+import { navFor, homeHref } from '../lib/premium-types';
+import type { PremiumConfig } from '../lib/premium-types';
+
+const { config } = Astro.props as { config: PremiumConfig };
+
+const phone = config.contact?.phone?.trim();
+const tel = phone ? `tel:${phone.replace(/[^0-9+]/g, '')}` : null;
+
+// Secondary action: reuse the author's home-hero primary CTA (always an internal
+// Contact link in practice); fall back to the Contact page, then first nav, then home.
+const home = config.pages.find((p) => p.slug === 'home') ?? config.pages[0];
+const heroCta = home?.sections.find((s) => s.kind === 'hero')?.primaryCta;
+const nav = navFor(config);
+const contactPage = nav.find((n) => n.slug === 'contact');
+const secondary =
+  heroCta ??
+  (contactPage
+    ? { label: contactPage.label, href: contactPage.href }
+    : nav[0]
+      ? { label: nav[0].label, href: nav[0].href }
+      : { label: 'Contact', href: homeHref(config) });
+
+const show = Boolean(tel || secondary?.href);
+
+// Clear the fixed bar so it never covers the footer, and keep a focused control
+// above it (WCAG 2.4.11). Static CSS → no layout shift (CLS-safe). Emitted only
+// when the bar renders. Set via set:html to keep braces out of the JSX parser.
+const clearanceCss = `@media (max-width: 560px){.premium{padding-bottom:calc(56px + env(safe-area-inset-bottom, 0px))}html{scroll-padding-bottom:76px}}`;
+---
+
+{
+  show && (
+    <nav class="p-callbar" aria-label="Quick contact">
+      {tel && (
+        <a class="p-callbar__btn p-callbar__btn--call" href={tel} aria-label={`Call ${phone}`}>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"
+            />
+          </svg>
+          <span>Call</span>
+        </a>
+      )}
+      {secondary?.href && (
+        <a class="p-callbar__btn p-callbar__btn--alt" href={secondary.href}>
+          {secondary.label}
+        </a>
+      )}
+    </nav>
+  )
+}
+{show && <style is:global set:html={clearanceCss} />}
+
+<style>
+  /* Hidden on desktop; the header carries the CTA there. */
+  .p-callbar {
+    display: none;
+  }
+
+  @media (max-width: 560px) {
+    .p-callbar {
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: 50;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      gap: 1px;
+      background: var(--p-line, rgba(0, 0, 0, 0.12));
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      box-shadow: 0 -2px 14px rgba(0, 0, 0, 0.16);
+    }
+
+    .p-callbar__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 56px;
+      padding: 0 0.75rem;
+      font-family: var(--p-font-display, inherit);
+      font-weight: 600;
+      font-size: 1.0625rem;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+
+    .p-callbar__btn--call {
+      background: var(--p-primary);
+      color: var(--p-primary-contrast, #fff);
+    }
+
+    .p-callbar__btn--alt {
+      background: var(--p-surface, #fff);
+      color: var(--p-ink-strong, #111);
+    }
+
+    .p-callbar__btn svg {
+      width: 1.15rem;
+      height: 1.15rem;
+      flex: none;
+    }
+
+    .p-callbar__btn:active {
+      filter: brightness(0.94);
+    }
+  }
+</style>

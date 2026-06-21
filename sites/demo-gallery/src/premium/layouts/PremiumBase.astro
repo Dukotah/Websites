@@ -22,6 +22,7 @@ import { categoryLabelFor } from '../../lib/labels';
 import { getDisplayFontPreloadHref } from '../../lib/fonts';
 import PremiumHeader from '../components/PremiumHeader.astro';
 import PremiumFooter from '../components/PremiumFooter.astro';
+import StickyContactBar from '../components/StickyContactBar.astro';
 import type { PremiumConfig } from '../lib/premium-types';
 
 interface Props {
@@ -134,6 +135,7 @@ const jsonLd = buildJsonLd(config as any, { canonical, image: ogImage || undefin
         <slot />
       </main>
       <PremiumFooter config={config} />
+      <StickyContactBar config={config} />
     </div>
 
     <script>
