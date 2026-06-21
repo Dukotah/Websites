@@ -9,6 +9,7 @@
 
 import type { ArtDirection } from './art-direction';
 import { TYPE_SCALES, computeVerticalScale } from './fonts';
+import { toHsl } from './color';
 
 /** Step count above and below 0 in the modular scale. */
 const STEPS_ABOVE = 6; // --step-1 … --step-6
@@ -244,6 +245,31 @@ export function artDirectionToCss(ad: ArtDirection): string {
   };
   const archT = ARCHETYPE_TOKENS[ad.archetype] ?? ARCHETYPE_TOKENS.classic;
 
+  // ── photo-less hero motif — adaptive to brand lightness ───────────────────
+  // The editorial (photo-less) hero paints the category motif + brand monogram
+  // as the focal decoration. A motif tinted with the brand color reads very
+  // differently on a light brand (e.g. a yellow towing accent) vs. a dark one
+  // (navy/maroon): a light brand wants LOWER opacity + `multiply` so it deepens
+  // into the dark band instead of glaring; a dark brand wants HIGHER opacity +
+  // `screen` so it lifts off the band instead of disappearing. We read the brand
+  // HSL lightness here (the only place with the resolved hex) and emit concrete
+  // --p-motif-* tokens so the hero CSS stays branch-free and every palette gets a
+  // motif that actually reads. Falls back gracefully: if parsing ever degrades
+  // the values still land in the mid range. CSS keeps a literal fallback too.
+  let brandL = 36; // sensible mid-dark default
+  try {
+    brandL = toHsl(palette.brand).l;
+  } catch {
+    /* keep default */
+  }
+  const isLightBrand = brandL > 50;
+  // Motif: lower opacity + multiply on light brands, higher + screen on dark.
+  const motifOpacity = isLightBrand ? '0.26' : '0.4';
+  const motifBlend = isLightBrand ? 'multiply' : 'screen';
+  // Monogram watermark: confident presence (~0.6), trimmed a touch on very light
+  // brands so the clipped gradient fill doesn't blow out against the dark band.
+  const monogramOpacity = isLightBrand ? '0.5' : '0.62';
+
   // ── pattern opacity — seeded subtle decoration ────────────────────────────
   // Framed/editorial shapes get a bit more pattern; others minimal.
   const patternOpacity =
@@ -317,6 +343,11 @@ export function artDirectionToCss(ad: ArtDirection): string {
 
     // decoration
     '--pattern-opacity': patternOpacity,
+
+    // photo-less hero motif (adaptive to brand lightness; see above)
+    '--p-motif-opacity': motifOpacity,
+    '--p-motif-blend': motifBlend,
+    '--p-wm-opacity': monogramOpacity,
 
     // grain/noise texture
     '--noise-opacity': '0.04',

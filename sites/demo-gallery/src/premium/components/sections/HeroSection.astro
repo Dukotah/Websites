@@ -24,6 +24,11 @@ const { data, config } = Astro.props;
 const sig = hash((config?.slug ?? config?.name ?? 'flow') + ':hero');
 const scrimDir = rangeInt(sig, 0, 2); // 0 bottom-up, 1 corner BL, 2 corner BR
 const glowSide = chance(sig >> 3, 0.5) ? 'r' : 'l';
+// Deterministic motif tilt (±12deg) so five same-category photo-less heroes stop
+// looking stamped from one mold — each slug gets its own settled angle, stable on
+// re-run. Reduced motion neutralizes it to 0 in CSS (the rest of the composition
+// is unchanged), so the static title-card never tilts for motion-averse visitors.
+const motifTilt = rangeInt(sig >> 7, -12, 12);
 
 const img = data.image;
 // Decorative category motif (a library SVG drawn in currentColor) for the
@@ -88,7 +93,7 @@ const glassCred = isFullbleed && badges.length > 0;
     <div
       class="p-hero__motif"
       aria-hidden="true"
-      style={`-webkit-mask-image:url("${motif}");mask-image:url("${motif}")`}
+      style={`-webkit-mask-image:url("${motif}");mask-image:url("${motif}");--p-motif-tilt:${motifTilt}deg`}
     ></div>
   )}
 
@@ -495,8 +500,15 @@ const glassCred = isFullbleed && badges.length > 0;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-color: color-mix(in srgb, var(--p-primary) 62%, #fff);
-    opacity: 0.22;
+    /* Stronger brand-forward fill so the motif reads as a confident graphic, not
+       a washed ghost. Adaptive opacity + blend (emitted from brand lightness in
+       tokens.ts) keep it legible on both light and dark brands. */
+    background-color: color-mix(in srgb, var(--p-primary) 78%, #fff);
+    opacity: var(--p-motif-opacity, 0.34);
+    mix-blend-mode: var(--p-motif-blend, screen);
+    /* Deterministic per-slug tilt about the low-right anchor so siblings differ. */
+    transform: rotate(var(--p-motif-tilt, 0deg));
+    transform-origin: 88% 92%;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     -webkit-mask-position: right -4% bottom -8%;
@@ -524,14 +536,16 @@ const glassCred = isFullbleed && badges.length > 0;
     line-height: 0.7;
     letter-spacing: -0.06em;
     color: transparent;
-    -webkit-text-stroke: 2px color-mix(in srgb, var(--p-primary) 60%, #fff);
+    -webkit-text-stroke: 2px color-mix(in srgb, var(--p-primary) 72%, #fff);
+    /* Stronger brand gradient fill — the monogram now anchors the composition with
+       real weight (a confident brand letter), not a faint ghost. */
     background:
       linear-gradient(180deg,
-        color-mix(in srgb, var(--p-primary) 30%, transparent),
-        color-mix(in srgb, var(--p-primary) 6%, transparent));
+        color-mix(in srgb, var(--p-primary) 52%, transparent),
+        color-mix(in srgb, var(--p-primary) 14%, transparent));
     -webkit-background-clip: text;
     background-clip: text;
-    opacity: 0.5;
+    opacity: var(--p-wm-opacity, 0.6);
     transform: translateX(14%);
     user-select: none;
   }
@@ -811,5 +825,7 @@ const glassCred = isFullbleed && badges.length > 0;
     }
     .p-hero__sweep { animation: none !important; opacity: 0 !important; }
     .p-hero__aurora { display: none !important; }
+    /* No per-slug motif tilt under reduced motion — the title-card sits square. */
+    .p-hero__motif { transform: none !important; }
   }
 </style>
