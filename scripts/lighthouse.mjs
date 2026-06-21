@@ -209,6 +209,18 @@ function sample(slugs, n) {
   return picked;
 }
 
+// Median of a numeric array (nulls dropped). Lighthouse CWV metrics (CLS/TBT in
+// particular) swing run-to-run under simulated throttling — a single bad run can
+// read CLS 0.27 when the page is really ~0.00. Judging the MEDIAN of N runs
+// discards that outlier so the gate stops failing on measurement noise instead of
+// real regressions. Returns null when there's no data to judge.
+function median(arr) {
+  const a = arr.filter((x) => x != null).sort((x, y) => x - y);
+  if (!a.length) return null;
+  const mid = Math.floor(a.length / 2);
+  return a.length % 2 ? a[mid] : (a[mid - 1] + a[mid]) / 2;
+}
+
 // ── Detect whether Chrome can be launched (fail-soft otherwise) ─────────────────
 /** Try to launch Chrome via chrome-launcher. Returns the chrome instance on
  *  success, or null if no browser is available / it won't start — in which case
@@ -320,65 +332,75 @@ async function main() {
   let failures = 0;
   let errored = 0;
 
+  // Run each page N times and judge the median (default 3 in budget mode, where
+  // CWV noise bites; 1 otherwise since SEO/a11y are stable). Override via LH_RUNS.
+  const RUNS = Number(process.env.LH_RUNS) || (wantBudget ? 3 : 1);
+  if (RUNS > 1) console.log(`Stabilizing measurement: median of ${RUNS} runs per page.\n`);
+
   for (const slug of targets) {
     const url = `${base}/s/${slug}/`;
-    try {
-      const runnerResult = await lighthouse(
-        url,
-        {
-          port: chrome.port,
-          output: 'json',
-          logLevel: 'error',
-          onlyCategories,
-          skipAudits,
-        },
-      );
-      const lhr = runnerResult?.lhr || {};
-      const cats = lhr.categories || {};
-      // Lighthouse scores are 0–1 (null if a category couldn't be computed).
-      const pct = (c) => (cats[c] && cats[c].score != null ? Math.round(cats[c].score * 100) : null);
-      const seo = pct('seo');
-      const a11y = pct('accessibility');
-      const bp = pct('best-practices');
-      const perf = wantPerf ? pct('performance') : null;
-
-      // A null score can't be judged against the floor — flag it, don't pass it.
-      const seoBad = seo == null || seo < SEO_FLOOR;
-      const a11yBad = a11y == null || a11y < A11Y_FLOOR;
-      let fail = seoBad || a11yBad;
-
-      // Core Web Vitals + page weight, pulled from the raw audits (only meaningful
-      // when the performance category ran). numericValue is ms for LCP/TBT, a
-      // unitless score for CLS, bytes for total weight.
-      let lcp = null, cls = null, tbt = null, bytes = null, budgetBad = false;
-      if (wantBudget) {
+    const samples = []; // one entry per successful run
+    let runErr = null;
+    for (let r = 0; r < RUNS; r++) {
+      try {
+        const runnerResult = await lighthouse(
+          url,
+          { port: chrome.port, output: 'json', logLevel: 'error', onlyCategories, skipAudits },
+        );
+        const lhr = runnerResult?.lhr || {};
+        const cats = lhr.categories || {};
+        // Lighthouse scores are 0–1 (null if a category couldn't be computed).
+        const pct = (c) => (cats[c] && cats[c].score != null ? Math.round(cats[c].score * 100) : null);
         const num = (id) => {
           const v = lhr.audits?.[id]?.numericValue;
           return typeof v === 'number' ? v : null;
         };
-        lcp = num('largest-contentful-paint');
-        cls = num('cumulative-layout-shift');
-        tbt = num('total-blocking-time');
-        bytes = num('total-byte-weight');
-        // A null metric can't be proven within budget → treat as a budget miss.
-        budgetBad =
-          perf == null || perf < PERF_FLOOR ||
-          lcp == null || lcp > LCP_BUDGET ||
-          cls == null || cls > CLS_BUDGET ||
-          tbt == null || tbt > TBT_BUDGET ||
-          bytes == null || bytes > BYTES_BUDGET;
-        fail = fail || budgetBad;
+        samples.push({
+          seo: pct('seo'),
+          a11y: pct('accessibility'),
+          bp: pct('best-practices'),
+          perf: wantPerf ? pct('performance') : null,
+          lcp: wantBudget ? num('largest-contentful-paint') : null,
+          cls: wantBudget ? num('cumulative-layout-shift') : null,
+          tbt: wantBudget ? num('total-blocking-time') : null,
+          bytes: wantBudget ? num('total-byte-weight') : null,
+        });
+      } catch (err) {
+        runErr = (err && err.message) || String(err);
       }
-      if (fail) failures++;
+    }
 
-      rows.push({ slug, seo, a11y, bp, perf, lcp, cls, tbt, bytes, budgetBad, fail });
-    } catch (err) {
-      // A single page erroring shouldn't crash the whole gate, but it IS a
-      // failure for that page (we couldn't prove it meets the bar).
+    // No run produced a result → can't prove the page meets the bar.
+    if (!samples.length) {
       errored++;
       failures++;
-      rows.push({ slug, error: (err && err.message) || String(err), fail: true });
+      rows.push({ slug, error: runErr || 'all runs failed', fail: true });
+      continue;
     }
+
+    // Median of each metric across the runs — robust to a single noisy run.
+    const med = (k) => median(samples.map((s) => s[k]));
+    const seo = med('seo'), a11y = med('a11y'), bp = med('bp'), perf = med('perf');
+
+    const seoBad = seo == null || seo < SEO_FLOOR;
+    const a11yBad = a11y == null || a11y < A11Y_FLOOR;
+    let fail = seoBad || a11yBad;
+
+    let lcp = null, cls = null, tbt = null, bytes = null, budgetBad = false;
+    if (wantBudget) {
+      lcp = med('lcp'); cls = med('cls'); tbt = med('tbt'); bytes = med('bytes');
+      // A null metric can't be proven within budget → treat as a budget miss.
+      budgetBad =
+        perf == null || perf < PERF_FLOOR ||
+        lcp == null || lcp > LCP_BUDGET ||
+        cls == null || cls > CLS_BUDGET ||
+        tbt == null || tbt > TBT_BUDGET ||
+        bytes == null || bytes > BYTES_BUDGET;
+      fail = fail || budgetBad;
+    }
+    if (fail) failures++;
+
+    rows.push({ slug, seo, a11y, bp, perf, lcp, cls, tbt, bytes, budgetBad, fail, runs: samples.length });
   }
 
   // 5. Tear everything down (always) before printing the verdict.
