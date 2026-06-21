@@ -617,9 +617,70 @@ function ensureMinimum(sections: Section[], config: ProspectConfig, seed: number
 // Public API
 // ─────────────────────────────────────────────────────────────────────────────
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Connective blocks — merge About + Contact INTO the section list (seam fix)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Which capability domains each block covers. Lets the engine know a
+ * `contact-block` already provides map + hours + contact, so standalone `map` /
+ * `hours-contact` sections must not also render (the duplicate-section seam).
+ */
+const BLOCK_PROVIDES: Record<string, string[]> = {
+  'contact-block': ['contact', 'map', 'hours', 'address', 'phone'],
+  'hours-contact': ['hours', 'phone'],
+  map: ['map', 'address'],
+  cta: ['cta'],
+};
+
+/**
+ * Merge the connective About + Contact panels into the section list so the page
+ * template (`[slug].astro`) is a dumb renderer and nothing double-renders.
+ *   - About goes first (right after the hero), matching the prior hardcoded order.
+ *   - Contact-block closes the page and renders the full address/phone/hours/map/
+ *     CTA panel — so any standalone `map` or `hours-contact` section is dropped
+ *     when contact-block is present.
+ */
+function withConnectiveBlocks(sections: Section[], config: ProspectConfig): Section[] {
+  const hasAbout =
+    !!config.about &&
+    Array.isArray(config.about.body) &&
+    config.about.body.some((p) => typeof p === 'string' && p.trim().length > 0);
+  const hasContact = !!(
+    config.contact?.phone?.trim() || config.contact?.address?.trim()
+  );
+
+  let result = [...sections];
+
+  // Contact-block subsumes map + hours-contact — drop the duplicates.
+  if (hasContact) {
+    result = result.filter((s) => s.type !== 'map' && s.type !== 'hours-contact');
+  }
+  // About first (matches the prior fixed position right after the hero).
+  if (hasAbout && !result.some((s) => s.type === 'about')) {
+    result = [{ type: 'about' } as Section, ...result];
+  }
+  // Contact panel closes the page.
+  if (hasContact && !result.some((s) => s.type === 'contact-block')) {
+    result = [...result, { type: 'contact-block' } as Section];
+  }
+  return result;
+}
+
+/** Build the set of capability domains the final block list covers. */
+function computeProvided(sections: Section[]): Set<string> {
+  const provided = new Set<string>();
+  for (const s of sections) {
+    for (const cap of BLOCK_PROVIDES[s.type] ?? []) provided.add(cap);
+  }
+  return provided;
+}
+
 export interface PagePlan {
   hero: HeroVariant;
   sections: Section[];
+  /** Capability domains covered by the final blocks (e.g. 'contact','map'). */
+  provided: Set<string>;
 }
 
 /**
@@ -669,14 +730,13 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
       : ([...authored, instantiateSection('cta', config)].filter(Boolean) as Section[]);
     // CRO: insert a mid-page CTA immediately after testimonials (credibility peak).
     const plan = insertCtaAfterTestimonials(withTrailingCta, config);
-    return {
-      hero,
-      sections: assignVariants(
-        assignTones(withRatingStat(ensureMinimum(plan, config, seed), config), seed),
-        seed,
-        ad.category,
-      ),
-    };
+    const assembled = assignVariants(
+      assignTones(withRatingStat(ensureMinimum(plan, config, seed), config), seed),
+      seed,
+      ad.category,
+    );
+    const finalSections = withConnectiveBlocks(assembled, config);
+    return { hero, sections: finalSections, provided: computeProvided(finalSections) };
   }
 
   // Recipe-driven assembly
@@ -708,14 +768,13 @@ export function composePage(config: ProspectConfig, ad: ArtDirection): PagePlan 
   // CRO: insert a mid-page CTA immediately after testimonials (credibility peak).
   const sectionsWithMidCta = insertCtaAfterTestimonials(sections, config);
 
-  return {
-    hero,
-    sections: assignVariants(
-      assignTones(withRatingStat(ensureMinimum(sectionsWithMidCta, config, seed), config), seed),
-      seed,
-      ad.category,
-    ),
-  };
+  const assembled = assignVariants(
+    assignTones(withRatingStat(ensureMinimum(sectionsWithMidCta, config, seed), config), seed),
+    seed,
+    ad.category,
+  );
+  const finalSections = withConnectiveBlocks(assembled, config);
+  return { hero, sections: finalSections, provided: computeProvided(finalSections) };
 }
 
 /** Check if the inventory has real data to support a section type. */

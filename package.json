@@ -7,6 +7,9 @@
     "new-site": "node scripts/new-site.mjs",
     "fetch-photos": "node scripts/fetch-photos.mjs",
     "generate-prospects": "node scripts/generate-prospects.mjs",
+    "build-batch": "node scripts/build-batch.mjs",
+    "gate": "node scripts/audit.mjs",
+    "preflight": "node scripts/preflight.mjs",
     "push-to-crm": "node scripts/push-to-crm.mjs",
     "make-thumbnail": "node scripts/make-thumbnail.mjs"
   },

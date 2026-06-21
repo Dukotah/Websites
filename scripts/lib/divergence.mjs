@@ -23,11 +23,18 @@
  */
 
 // Hero variants that need a real photo vs. those that stand on type alone.
-const PHOTO_HEROES = ['cinematic', 'split', 'collage'];
+const PHOTO_HEROES = ['cinematic', 'split', 'collage', 'editorial-overlap'];
 const TEXT_HEROES = ['statement', 'editorial', 'panel', 'typographic', 'editorial-asym'];
+
+// Heroes whose HEADLINE sits directly on a photo (vs a light page bg or a solid
+// brand panel). On these, the hand-drawn 'circle' AccentMark is low-contrast over
+// a busy image — prefer 'underline'. Note: classification here is by where the
+// heading renders, which differs from PHOTO_HEROES (which is about photo need).
+const PHOTO_OVERLAY_HEROES = ['cinematic', 'split', 'collage', 'editorial'];
 // `editorial`, `typographic`, and `editorial-asym` read well with OR without a
 // photo (editorial-asym collapses to a full-width type column when none), so
 // they bridge both pools and are safe to assign regardless of photo inventory.
+// `editorial-overlap` requires a real photo (it bleeds the image behind the type block).
 
 // Per-category font pools — distinct pairings, ordered best-first. Mirror of the
 // `categories` arrays in fonts.ts (plus a rustic extra or two for variety).
@@ -48,23 +55,23 @@ const FONT_POOLS = {
   // marina = part utility (boats/repair/fuel), part lifestyle (lake/recreation).
   marina: ['modern-grotesk', 'rugged-slab', 'editorial-serif', 'clean-sans'],
   restaurant: ['warm-humanist', 'editorial-serif', 'handcrafted', 'classic-trad'],
-  default: ['editorial-serif', 'modern-grotesk', 'classic-trad', 'clean-sans', 'warm-humanist'],
+  default: ['editorial-serif', 'classic-trad', 'clean-sans', 'warm-humanist', 'organic-serif'],
 };
 
 // Per-category hero rotation — an ordered mix of photo + text heroes so adjacent
 // siblings alternate "big photo" vs "big type". Filtered per-site by photo
 // availability at assignment time.
 const HERO_POOLS = {
-  winery: ['cinematic', 'split', 'editorial-asym', 'editorial', 'statement', 'panel'],
-  cafe: ['cinematic', 'editorial-asym', 'editorial', 'collage', 'statement'],
-  salon: ['editorial-asym', 'editorial', 'split', 'typographic', 'statement', 'cinematic'],
+  winery: ['cinematic', 'editorial-overlap', 'split', 'editorial-asym', 'editorial', 'statement', 'panel'],
+  cafe: ['cinematic', 'editorial-overlap', 'editorial-asym', 'editorial', 'collage', 'statement'],
+  salon: ['editorial-overlap', 'editorial-asym', 'editorial', 'split', 'typographic', 'statement', 'cinematic'],
   tattoo: ['cinematic', 'statement', 'typographic', 'split', 'editorial'],
   landscaping: ['cinematic', 'split', 'editorial-asym', 'editorial', 'panel'],
   plumbing: ['statement', 'split', 'typographic', 'cinematic', 'panel'],
   'auto-repair': ['cinematic', 'statement', 'typographic', 'split', 'panel'],
   towing: ['collage', 'cinematic', 'statement', 'typographic', 'split'],
-  marina: ['split', 'cinematic', 'editorial-asym', 'editorial', 'statement'],
-  restaurant: ['cinematic', 'editorial-asym', 'editorial', 'collage', 'statement'],
+  marina: ['editorial-overlap', 'split', 'cinematic', 'editorial-asym', 'editorial', 'statement'],
+  restaurant: ['editorial-overlap', 'cinematic', 'editorial-asym', 'editorial', 'collage', 'statement'],
   default: ['cinematic', 'split', 'editorial-asym', 'editorial', 'typographic', 'statement', 'panel', 'collage'],
 };
 
@@ -80,6 +87,31 @@ const DEPTH_POOLS = {
   default: ['feature-split', 'bigquote', 'timeline'],
 };
 
+// Per-category art-direction token presets. Deterministic — never randomised.
+// Values feed ArtDirectionConfig.photoTreatment, .photoGrain, .accentMark.
+// These are CATEGORY-level defaults; divergence sets them once per batch-member.
+// Authors can pin individual fields in their config.artDirection to override.
+const ART_DIRECTION_TOKENS = {
+  // Atmospheric / lifestyle: brand duotone + grain pairs beautifully with moody
+  // cellar / salon / boutique photography. Circle accent reads editorial.
+  winery:    { photoTreatment: 'duotone',  photoGrain: true,  accentMark: 'circle' },
+  salon:     { photoTreatment: 'duotone',  photoGrain: true,  accentMark: 'circle' },
+  boutique:  { photoTreatment: 'duotone',  photoGrain: true,  accentMark: 'circle' },
+  // Food / cafe: full-colour photos make the food look appetising. Grain adds
+  // warmth without losing clarity. No circle (too design-y for honest food shots).
+  restaurant: { photoTreatment: 'natural', photoGrain: true,  accentMark: 'underline' },
+  cafe:       { photoTreatment: 'natural', photoGrain: true,  accentMark: 'underline' },
+  bakery:     { photoTreatment: 'natural', photoGrain: true,  accentMark: 'underline' },
+  // Trades / utility: no grain (reads gritty-wrong on metal/truck shots), muted
+  // treatment keeps photos professional. Underline accent = direct, blue-collar.
+  towing:       { photoTreatment: 'muted', photoGrain: false, accentMark: 'underline' },
+  'auto-repair':{ photoTreatment: 'muted', photoGrain: false, accentMark: 'underline' },
+  plumbing:     { photoTreatment: 'muted', photoGrain: false, accentMark: 'underline' },
+  construction: { photoTreatment: 'muted', photoGrain: false, accentMark: 'underline' },
+  // Default: natural + no accent mark keeps unknown categories safe.
+  default: { photoTreatment: 'natural', photoGrain: false, accentMark: 'none' },
+};
+
 /**
  * Can the generator actually build this depth section for the config? Checked
  * from the config alone (divergence has no scrape handle), mirroring the
@@ -90,9 +122,10 @@ function depthBuildable(config, type) {
     case 'timeline':
       return Boolean(String(config.established ?? '').match(/\d{4}/));
     case 'bigquote': {
+      // Buildable ONLY with a real testimonial — mirrors buildDepthSection, which
+      // no longer falls back to dressing the composed tagline as a customer quote.
       const t = (config.sections ?? []).find((s) => s.type === 'testimonials');
-      const strongQuote = t && (t.items ?? []).some((it) => it.quote && it.quote.length > 60);
-      return Boolean(strongQuote) || String(config.tagline ?? '').length > 40;
+      return Boolean(t && (t.items ?? []).some((it) => it.quote && it.quote.length > 60));
     }
     case 'feature-split':
       return (config.services ?? []).some((s) => s.description && s.description.length > 30);
@@ -207,6 +240,26 @@ export function diversifyBatch(prospects) {
         changes.push('sections-rotated');
       }
 
+      // ── Art-direction photo tokens: category-driven, deterministic ───────────
+      // Each category cluster gets a coherent photo aesthetic. Only set if not
+      // already pinned by the author. These feed treatment.css (.img-duotone,
+      // [data-grain]) and AccentMark.astro via artDirection.* props at render.
+      if (!cfg.artDirection.photoTreatment) {
+        const pt = ART_DIRECTION_TOKENS[cat] ?? ART_DIRECTION_TOKENS.default;
+        cfg.artDirection.photoTreatment = pt.photoTreatment;
+        cfg.artDirection.photoGrain = pt.photoGrain;
+        cfg.artDirection.accentMark = pt.accentMark;
+        changes.push(`treatment=${pt.photoTreatment},grain=${pt.photoGrain},accent=${pt.accentMark}`);
+
+        // Photo-overlay heroes: 'circle' reads poorly over a busy image → use
+        // 'underline'. Reserve 'circle' for light/solid-panel heroes. Only
+        // adjusts the token we just auto-assigned (never an author pin).
+        if (PHOTO_OVERLAY_HEROES.includes(cfg.heroVariant) && cfg.artDirection.accentMark === 'circle') {
+          cfg.artDirection.accentMark = 'underline';
+          changes.push('accent->underline(photo-hero)');
+        }
+      }
+
       // ── Depth section: a DISTINCT extra section per sibling, so the batch
       //    can't share one identical section set. Advisory — the generator only
       //    builds it if the real data exists; we pick a buildable type not
@@ -236,4 +289,4 @@ export function diversifyBatch(prospects) {
   return report;
 }
 
-export const _internal = { FONT_POOLS, HERO_POOLS, rotateSections, hasRealPhoto };
+export const _internal = { FONT_POOLS, HERO_POOLS, ART_DIRECTION_TOKENS, rotateSections, hasRealPhoto };

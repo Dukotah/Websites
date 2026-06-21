@@ -51,7 +51,12 @@ function isStockImage(src: string): boolean {
 const RICH_TYPES = new Set<string>([
   'gallery', 'feature-split', 'timeline', 'menu', 'team', 'map', 'press',
   'bigquote', 'services-detailed', 'service-area', 'hours-contact', 'process',
-  'logos', 'before-after', 'feature-grid', 'stats', 'testimonials',
+  'logos', 'before-after', 'feature-grid', 'stats', 'testimonials', 'faq',
+  'awards',
+  // connective blocks now flow through plan.sections (the dumb-renderer migration):
+  // 'about' is the story spread; 'contact-block' is the full address/hours/map/CTA
+  // panel that supersedes (and is more than) the standalone map + hours-contact.
+  'about', 'contact-block',
 ]);
 
 // Default art-direction values to detect distinctiveness

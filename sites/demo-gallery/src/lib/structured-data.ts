@@ -129,6 +129,7 @@ export function buildJsonLd(
     const address: Record<string, string> = {
       '@type': 'PostalAddress',
       streetAddress: config.contact.address,
+      addressCountry: 'US',
     };
     // Enrich with locality/region parsed from the "Town, ST" area string when
     // available — these power Google's address rich result.
@@ -149,8 +150,22 @@ export function buildJsonLd(
       longitude: config.geo.lng,
     };
   }
-  if (opts.image) ld.image = opts.image;
+  if (opts.image) {
+    ld.image = {
+      '@type': 'ImageObject',
+      url: opts.image,
+      width: 1200,
+    };
+  }
   if (socials.length) ld.sameAs = socials;
+  if (config.social?.google) ld.hasMap = config.social.google;
+  if (config.contact.phone) {
+    ld.contactPoint = {
+      '@type': 'ContactPoint',
+      telephone: config.contact.phone,
+      contactType: 'customer service',
+    };
+  }
   if (hoursSpec.length) ld.openingHoursSpecification = hoursSpec;
   if (config.priceRange) ld.priceRange = config.priceRange;
   if (FOOD_CATEGORIES.has(category) && config.servesCuisine?.length) {

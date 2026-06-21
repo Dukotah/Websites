@@ -112,6 +112,36 @@ export function hamming(a, b) {
 /** Two images are "the same shot" when their dHashes are within this distance. */
 export const NEAR_DUP_DISTANCE = 8;
 
+/**
+ * The shared "is this buffer actually a usable photo?" gate. The scrape tier in
+ * images.mjs runs this judgment inline; exporting it lets the fallback tiers
+ * (Wikimedia / Openverse / Mapillary) apply the SAME bar so they can't ship a
+ * logo, diagram, map, or sub-hero-size image as a real photo. Uses Sharp's
+ * decoded dimensions, so it also covers AVIF/WebP that the header-only
+ * imageSize() in images.mjs can't measure.
+ */
+export async function isUsablePhoto(buf, { minW = 600, minH = 360, minBytes = 12000 } = {}) {
+  if (!buf || buf.length < minBytes) return false;
+  const q = await scorePhoto(buf);
+  if (!q.ok || q.isGraphic) return false;
+  if (q.w && q.h && (q.w < minW || q.h < minH)) return false;
+  return true;
+}
+
+/**
+ * Reject non-commercial / no-derivative licenses. The free photo sources
+ * (Wikimedia Commons especially) host many CC-BY-NC and CC-BY-ND files that are
+ * NOT safe on a commercial client demo. Accept only clearly-permissive licenses
+ * (CC-BY, CC-BY-SA, CC0, public domain); treat unknown/blank as not-OK so we
+ * never gamble on an unlabeled file.
+ */
+export function isCommercialLicense(license) {
+  const s = String(license || '').toLowerCase();
+  if (!s) return false; // unknown → don't risk it
+  if (/\bnc\b|noncommercial|non-commercial|\bnd\b|no[- ]?deriv|all rights reserved/.test(s)) return false;
+  return /cc0|public domain|\bpdm\b|cc[ -]?by|attribution|\bsa\b|share[- ]?alike/.test(s);
+}
+
 function clamp01(n) {
   return n < 0 ? 0 : n > 1 ? 1 : n;
 }

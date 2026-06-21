@@ -16,14 +16,32 @@
  */
 import type { ProspectConfig } from '../../types';
 import SiteImage from '../SiteImage.astro';
+import TrustBadge from '../TrustBadge.astro';
+import AccentMark from '../AccentMark.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights = [], established, area } = config;
+const { hero, images, contact, highlights = [], established, area, artDirection, rating } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
 const hasPhoto = Boolean(images?.hero);
+
+// Art-direction photo treatment
+const treatment = artDirection?.photoTreatment ?? 'natural';
+const useGrain  = artDirection?.photoGrain ?? false;
+const photoClass = [
+  'stmt-hero__photo',
+  treatment === 'duotone' ? 'img-duotone' : '',
+].filter(Boolean).join(' ');
+const photoTreat = treatment === 'muted' ? 'grade' : undefined;
+
+// Hand-drawn accent on a key heading word (premium "agency vs template" tell).
+// Gated by artDirection.accentMark; wraps the 2nd word (or last when < 2 words).
+const accentMark = artDirection?.accentMark ?? 'none';
+const headWords = hero.heading.trim().split(/\s+/);
+const accentIdx = headWords.length >= 2 ? 1 : 0;
+const useAccent = accentMark !== 'none' && headWords.length > 0;
 ---
 
 <section class="stmt-hero" id="top" aria-label="Hero">
@@ -37,10 +55,12 @@ const hasPhoto = Boolean(images?.hero);
       <!-- Offset accent rectangle behind the photo -->
       <div class="stmt-hero__photo-accent" aria-hidden="true"></div>
       <div
-        class="stmt-hero__photo"
+        class={photoClass}
         data-parallax
         data-parallax-speed="0.2"
         data-parallax-axis="y"
+        data-treat={photoTreat}
+        data-grain={useGrain ? '' : undefined}
       >
         <SiteImage
           src={images.hero}
@@ -50,15 +70,20 @@ const hasPhoto = Boolean(images?.hero);
           loading="eager"
           fetchpriority="high"
         />
+        {treatment === 'duotone' && useGrain && (
+          <span class="grain-layer" aria-hidden="true"></span>
+        )}
       </div>
-      <!-- Trust badge on photo inset -->
-      {(badgeYear || trustLine) && (
-        <div class="stmt-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
-          {badgeYear && <strong class="stmt-hero__badge-year">{badgeYear}</strong>}
-          <span class="stmt-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
-          {badgeYear && trustLine && <span class="stmt-hero__badge-trust">{trustLine}</span>}
-        </div>
-      )}
+      <!-- Trust badge on photo inset (glassmorphism) -->
+      <div class="stmt-hero__badge-wrap" data-reveal data-reveal-order="0">
+        <TrustBadge
+          year={badgeYear || undefined}
+          rating={rating?.value}
+          reviewCount={rating?.count}
+          highlight={trustLine || undefined}
+          position="bottom-right"
+        />
+      </div>
     </div>
   )}
 
@@ -78,7 +103,18 @@ const hasPhoto = Boolean(images?.hero);
 
     <!-- Oversized display headline — the defining gesture; max-width forces cascade -->
     <h1 class="stmt-hero__title" data-reveal data-reveal-order="3">
-      {hero.heading}
+      {useAccent ? (
+        <>
+          {accentIdx > 0 && headWords.slice(0, accentIdx).join(' ')}{accentIdx > 0 ? ' ' : ''}
+          <span class="stmt-hero__accent-wrap">
+            {headWords[accentIdx]}
+            <AccentMark type={accentMark as 'underline' | 'circle' | 'arrow'} delay="0.4s" />
+          </span>
+          {accentIdx < headWords.length - 1 ? ' ' + headWords.slice(accentIdx + 1).join(' ') : ''}
+        </>
+      ) : (
+        hero.heading
+      )}
     </h1>
 
     <!-- Secondary thin full-width rule: palette cleanser before CTAs -->
@@ -104,11 +140,15 @@ const hasPhoto = Boolean(images?.hero);
     </div>
 
     <!-- Inline trust badge fallback when no photo present -->
-    {!hasPhoto && (badgeYear || trustLine) && (
-      <div class="stmt-hero__badge stmt-hero__badge--inline" data-reveal data-reveal-order="6" aria-label="Trust signal">
-        {badgeYear && <strong class="stmt-hero__badge-year">{badgeYear}</strong>}
-        <span class="stmt-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
-        {badgeYear && trustLine && <span class="stmt-hero__badge-trust">{trustLine}</span>}
+    {!hasPhoto && (
+      <div class="stmt-hero__badge-inline" data-reveal data-reveal-order="6">
+        <TrustBadge
+          year={badgeYear || undefined}
+          rating={rating?.value}
+          reviewCount={rating?.count}
+          highlight={trustLine || undefined}
+          position="bottom-right"
+        />
       </div>
     )}
 
@@ -194,54 +234,18 @@ const hasPhoto = Boolean(images?.hero);
     .stmt-hero__photo { will-change: auto; }
   }
 
-  /* Trust badge — bottom-left of photo, bleeds beyond frame edge */
-  .stmt-hero__badge {
+  /* Trust badge wrapper — bottom-left of photo, bleeds beyond frame edge */
+  .stmt-hero__badge-wrap {
     position: absolute;
     bottom: -1.25rem;
     left: -1.75rem;
     z-index: 2;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.1rem;
-    background: var(--brand);
-    color: var(--brand-contrast);
-    border-radius: var(--radius);
-    padding: 0.85rem 1.15rem;
-    min-width: 72px;
-    box-shadow: var(--shadow-lg);
-    text-align: center;
   }
-  /* Inline variant (no photo) */
-  .stmt-hero__badge--inline {
-    position: static;
-    display: inline-flex;
+
+  /* Inline trust badge — no-photo fallback, sits below the CTA row */
+  .stmt-hero__badge-inline {
     margin-top: 2.25rem;
-    align-self: flex-start;
-  }
-  .stmt-hero__badge-year {
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: var(--fw-display);
-    line-height: 1;
-  }
-  .stmt-hero__badge-label {
-    font-size: var(--step--1);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.85;
-  }
-  .stmt-hero__badge-trust {
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.75;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 110px;
+    display: inline-block;
   }
 
   /* ── ③ Content layer ────────────────────────────────────────────────────── */
@@ -303,6 +307,13 @@ const hasPhoto = Boolean(images?.hero);
     /* Max-width forces 2–3 word cascade (award anti-generic pattern) */
     max-width: 14ch;
     text-wrap: balance;
+  }
+
+  /* Accent-word container — relative + inline-block so the absolute AccentMark
+     positions against the word (per AccentMark's contract). */
+  .stmt-hero__accent-wrap {
+    position: relative;
+    display: inline-block;
   }
 
   /* Secondary thin full-width rule — minimal, the "single keyline" award move */

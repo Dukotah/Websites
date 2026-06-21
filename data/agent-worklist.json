@@ -1,0 +1,189 @@
+[
+  {
+    "slug": "brewsters-beer-garden",
+    "name": "Brewsters Beer Garden",
+    "status": "ready",
+    "facts": {
+      "category": "restaurant",
+      "area": "Petaluma, CA",
+      "about": [
+        "Enjoy seasonal cuisine, craft beers, and live music at Brewsters in downtown Petaluma. Family-friendly outdoor dining with local ingredients and vibrant vibes."
+      ],
+      "services": [
+        "Dine-in",
+        "Takeout & to-go",
+        "Catering",
+        "Private dining"
+      ],
+      "hours": [
+        {
+          "day": "Mon – Fri",
+          "hours": "8:00 AM – 6:00 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "9:00 AM – 2:00 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "Closed"
+        }
+      ]
+    },
+    "fix": [
+      {
+        "field": "tagline",
+        "why": "truncated mid-sentence (reads as a clipped meta tag, not written copy)",
+        "current": "Enjoy seasonal cuisine, craft beers, and live music at Brewsters in downtown Petaluma"
+      },
+      {
+        "field": "seoDescription",
+        "why": "truncated mid-sentence (reads as a clipped meta tag, not written copy)",
+        "current": "Enjoy seasonal cuisine, craft beers, and live music at Brewsters in downtown Petaluma"
+      }
+    ]
+  },
+  {
+    "slug": "golden-gear-automotive",
+    "name": "Golden Gear Automotive",
+    "status": "ready",
+    "facts": {
+      "category": "auto-repair",
+      "area": "Sebastopol, CA",
+      "about": [
+        "At Golden Gear Automotive, our family-owned and operated auto repair shop, we pride ourselves on servicing a diverse range of vehicles, ensuring every customer’s car receives the expert attention it deserves. From everyday drivers to luxury imports and high-performance vehicles, our ASE Blue Seal Certified technicians have the skills and tools to work on all makes and models. Whether you drive a Toyota, Honda, or Ford, our team delivers reliable repairs and maintenance tailored specifically to your vehicle."
+      ],
+      "services": [
+        "Diagnostics",
+        "Brakes & suspension",
+        "Oil & maintenance",
+        "Engine repair"
+      ],
+      "hours": [
+        {
+          "day": "Mon – Fri",
+          "hours": "8:00 AM – 6:00 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "9:00 AM – 2:00 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "Closed"
+        }
+      ]
+    },
+    "fix": [
+      {
+        "field": "tagline",
+        "why": "truncated mid-sentence (reads as a clipped meta tag, not written copy)",
+        "current": "At Golden Gear Automotive, our family-owned and operated Sebastopol auto repair shop, we pride ourselves"
+      }
+    ]
+  },
+  {
+    "slug": "joon-hair",
+    "name": "Joon Hair",
+    "status": "ready",
+    "facts": {
+      "category": "salon",
+      "area": "Santa Rosa, CA",
+      "about": [
+        "Welcome to Joon Hair, a beautiful salon in the heart of historic downtown Santa Rosa. Our name “Joon”, is a Persian term of endearment meaning “soul” and “beloved” — a reflection of the warmth and care we bring to each of our guests.",
+        "Owned by a wife-wife duo with Persian Ancestry, Joon was created to be a luxury salon with an open and welcoming spirit. Our team includes some of Sonoma county’s most talented stylists, all highly skilled ad dedicated to their craft. From Precision cuts to custom color and transformative treatments, we’re here to celebrate your unique beauty."
+      ],
+      "services": [
+        "Cuts & styling",
+        "Color & highlights",
+        "Treatments",
+        "Special occasions"
+      ],
+      "hours": [
+        {
+          "day": "Mon – Fri",
+          "hours": "8:00 AM – 6:00 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "9:00 AM – 2:00 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "Closed"
+        }
+      ]
+    },
+    "fix": [
+      {
+        "field": "tagline",
+        "why": "truncated mid-sentence (reads as a clipped meta tag, not written copy)",
+        "current": "Joon Hair specializes in hair color, haircutting, and special event styling (bridal, business, birthday"
+      }
+    ]
+  },
+  {
+    "slug": "petaluma-pie-company",
+    "name": "Petaluma Pie Company",
+    "status": "ready",
+    "facts": {
+      "category": "cafe",
+      "area": "Petaluma, CA",
+      "about": [
+        "Petaluma Pie Company makes sweet and savory pies from scratch using local and organic ingredients — the kind of pie you'd make at home if you had all day. Order online and pick up fresh at our shop in downtown Petaluma."
+      ],
+      "services": [
+        "Sweet pies",
+        "Savory pies",
+        "Whole pies to order",
+        "Online ordering & pickup"
+      ],
+      "hours": [
+        {
+          "day": "Mon – Fri",
+          "hours": "8:00 AM – 6:00 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "9:00 AM – 2:00 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "Closed"
+        }
+      ]
+    },
+    "fix": [
+      {
+        "field": "tagline",
+        "why": "e-commerce platform boilerplate (\"This is the online store for…\")",
+        "current": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic"
+      },
+      {
+        "field": "tagline",
+        "why": "truncated mid-sentence (reads as a clipped meta tag, not written copy)",
+        "current": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic"
+      },
+      {
+        "field": "seoDescription",
+        "why": "e-commerce platform boilerplate (\"This is the online store for…\")",
+        "current": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients"
+      },
+      {
+        "field": "seoDescription",
+        "why": "truncated mid-sentence (reads as a clipped meta tag, not written copy)",
+        "current": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients"
+      },
+      {
+        "field": "hero.subheading",
+        "why": "e-commerce platform boilerplate (\"This is the online store for…\")",
+        "current": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients. You can order online to pick up in the shop"
+      },
+      {
+        "field": "hero.subheading",
+        "why": "truncated mid-sentence (reads as a clipped meta tag, not written copy)",
+        "current": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients. You can order online to pick up in the shop"
+      }
+    ]
+  }
+]

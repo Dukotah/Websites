@@ -9,6 +9,7 @@ import '../styles/treatment.css';
 import '../styles/arch-editorial.css';
 import '../styles/arch-utility.css';
 import '../lib/font-faces';
+import { ClientRouter } from 'astro:transitions';
 import { getImage } from 'astro:assets';
 import { resolveArtDirection, inferCategory } from '../lib/art-direction';
 import { artDirectionToCss } from '../lib/tokens';
@@ -16,6 +17,7 @@ import { resolveAsset } from '../lib/assets';
 import { buildJsonLd } from '../lib/structured-data';
 import { categoryLabelFor } from '../lib/labels';
 import { getDisplayFontPreloadHref } from '../lib/fonts';
+import StickyMobileBar from '../components/StickyMobileBar.astro';
 import type { ProspectConfig } from '../types';
 
 interface Props {
@@ -146,10 +148,16 @@ const jsonLd = buildJsonLd(config, { canonical, image: ogImage || undefined });
     </script>
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Astro View Transitions: smooth page-to-page navigation (SPA-style) within
+         the demo gallery. reveal.ts listens for astro:page-load to re-run
+         intersection observers after each navigation. -->
+    <ClientRouter />
   </head>
   <body data-archetype={ad.archetype}>
     <a href="#main" class="skip-nav">Skip to content</a>
     <slot />
+    {!config.outreach?.published && <StickyMobileBar config={config} />}
     <script>
       import '../scripts/reveal.ts';
     </script>

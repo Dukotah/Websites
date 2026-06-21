@@ -21,6 +21,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, dirname, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { scanProspect, specificityScore } from './lib/copy-quality.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
@@ -79,32 +80,207 @@ async function auditTokens() {
 }
 
 const isStock = (src) => !src || src.includes('/images/library/') || src.endsWith('.svg');
+
+/**
+ * Classify where a photo came from based on its stored path and optional
+ * credit/source metadata baked into the prospect JSON.
+ *
+ * Categories:
+ *   'business-scraped' — pulled directly off the business's own website
+ *   'wikimedia'        — from Wikimedia Commons (scripts/lib/photos.mjs)
+ *   'openverse'        — from WordPress Openverse
+ *   'library'          — built-in SVG fallback (public/images/library/…)
+ *   'unknown'          — a real image whose provenance isn't recorded
+ */
+function classifyPhotoSource(imagePath, images) {
+  if (!imagePath || imagePath.includes('/images/library/') || imagePath.endsWith('.svg')) {
+    return 'library';
+  }
+  // Explicit credit metadata written by the generator takes priority.
+  const credit = images?.heroCredit ?? images?.heroSource ?? '';
+  if (/wikimedia|commons\.wikimedia/i.test(credit)) return 'wikimedia';
+  if (/openverse|wordpress/i.test(credit)) return 'openverse';
+  // Path conventions written by scripts/lib/images.mjs and scrape-site.mjs:
+  //   /images/<slug>/hero.* — downloaded from the business's own site
+  //   /images/<slug>/wiki-* — Wikimedia fetch
+  //   /images/<slug>/ov-*   — Openverse fetch
+  if (/\/wiki-/.test(imagePath)) return 'wikimedia';
+  if (/\/ov-/.test(imagePath)) return 'openverse';
+  // Any real file under the prospects asset tree that isn't library or tagged
+  // above is most likely a business-scraped photo.
+  if (/\/images\/[^/]+\/(hero|story|photo)/.test(imagePath)) return 'business-scraped';
+  return 'unknown';
+}
+
 const TEMPLATED = /professional \w+ for \w+ and nearby|service (one|two|three|four)/i;
 // Text-forward hero variants are photo-free BY DESIGN (huge type, no image) —
 // not a defect. pickHero() falls back to these when no real photo exists.
 const TEXT_HEROES = new Set(['statement', 'editorial', 'panel']);
 
+/**
+ * Returns n-grams of length `n` from a whitespace-tokenised string.
+ * Used for duplicate 5-gram detection across service descriptions.
+ */
+function ngrams(text, n) {
+  const words = String(text ?? '').toLowerCase().split(/\s+/).filter(Boolean);
+  const out = [];
+  for (let i = 0; i <= words.length - n; i++) out.push(words.slice(i, i + n).join(' '));
+  return out;
+}
+
+/**
+ * Count words in text (simple whitespace split, ignoring empty tokens).
+ */
+function wordCount(text) {
+  return String(text ?? '').trim().split(/\s+/).filter(Boolean).length;
+}
+
+/**
+ * TRUE if `str` is a string field that appears to contain a raw undefined/null
+ * or leaked object rendering — things that indicate the generator failed to
+ * fill a field and the default serialisation leaked through.
+ */
+const GARBAGE_VALUE = /\bundefined\b|\bnull\b|\[object\s+\w+\]|\{[a-zA-Z_$][a-zA-Z0-9_$]*\s*\}/;
+
 function auditProspect(slug, c) {
   const issues = [];
+  const ready = c.status === 'ready';
+
+  // ── SLOP GATE ────────────────────────────────────────────────────────────
+  // Scan every customer-facing copy field for raw-meta boilerplate, truncated
+  // sentences, leaked code, store/coupon UI text, and unresolved {TOKENS}. This
+  // is the safety net that makes "did the agent get it right" automatic: a site
+  // marked `status:"ready"` is a PROMISE it's send-able — so any slop on a ready
+  // site is CRITICAL (it must never reach cold outreach). On a needs-review site
+  // the same slop is a worklist item (warn) telling the agent exactly what to fix.
+  const slop = scanProspect(c);
+  // These categories are NEVER acceptable copy at any stage — block them even on
+  // a needs-review site, so blatantly broken text can't slip out unflagged.
+  const ALWAYS_CRITICAL = new Set(['lorem', 'code-leak', 'placeholder-token', 'ecommerce-boilerplate', 'placeholder-contact']);
+  for (const f of slop) {
+    const level = ready || ALWAYS_CRITICAL.has(f.id) ? 'critical' : 'warn';
+    const snippet = f.text.length > 60 ? f.text.slice(0, 57) + '…' : f.text;
+    issues.push([level, `slop in ${f.where}: ${f.msg} — "${snippet}"`]);
+  }
+
+  // ── COPY-QUALITY: HARD STRING CHECKS ─────────────────────────────────────
+  // Walk every customer-facing string field looking for:
+  //   1. Trailing "..." indicating a mid-sentence truncation the slop gate
+  //      might not catch (e.g. a manually-entered field cut short).
+  //   2. Values that serialise as "undefined", "null", "[object Object]", or
+  //      a raw {variableName} — meaning the generator never filled the field.
+  // These are always ERRORs because they look broken to any recipient.
+  const stringFields = [
+    ['tagline', c.tagline],
+    ['seoDescription', c.seoDescription],
+    ['hero.heading', c.hero?.heading],
+    ['hero.subheading', c.hero?.subheading],
+    ['about.headline', c.about?.headline],
+    ...(c.about?.body ?? []).map((v, i) => [`about.body[${i}]`, v]),
+    ...(c.services ?? []).flatMap((s, i) => [
+      [`services[${i}].title`, s.title],
+      [`services[${i}].description`, s.description],
+    ]),
+  ];
+  for (const [where, val] of stringFields) {
+    if (val == null) continue;
+    const s = String(val);
+    if (/\.{3}\s*$/.test(s)) {
+      issues.push(['critical', `truncated field ${where}: ends with "…" — looks like a clipped meta value`]);
+    }
+    if (GARBAGE_VALUE.test(s)) {
+      issues.push(['critical', `garbage value in ${where}: contains "undefined", "null", [object…], or {token} — field was never populated`]);
+    }
+  }
+
+  // ── COPY-QUALITY: STRUCTURAL WARNINGS ────────────────────────────────────
+  // hero.subheading > 220 chars — too long for a cold-outreach hero panel.
+  const subheading = String(c.hero?.subheading ?? '');
+  if (subheading.length > 220) {
+    issues.push(['warn', `hero.subheading is ${subheading.length} chars (>220) — trim to a punchy one-liner for the fold`]);
+  }
+
+  // hero.heading < 4 words — probably an untouched placeholder.
+  const headingWords = wordCount(c.hero?.heading);
+  if (headingWords > 0 && headingWords < 4) {
+    issues.push(['warn', `hero.heading is only ${headingWords} word(s) — too short; expand into a value proposition`]);
+  }
+
+  // service.description < 12 words — not enough context.
+  for (const [i, s] of (c.services ?? []).entries()) {
+    const wc = wordCount(s.description);
+    if (s.description != null && wc < 12) {
+      issues.push(['warn', `services[${i}].description is ${wc} words (<12) — expand so it reads like an agency wrote it`]);
+    }
+  }
+
+  // 3+ service descriptions sharing a 5-gram → copy-paste / template filler.
+  const serviceDescs = (c.services ?? []).map((s) => s.description ?? '');
+  if (serviceDescs.length >= 3) {
+    const gramCount = new Map();
+    for (const [i, desc] of serviceDescs.entries()) {
+      for (const gram of ngrams(desc, 5)) {
+        if (!gramCount.has(gram)) gramCount.set(gram, new Set());
+        gramCount.get(gram).add(i);
+      }
+    }
+    const shared = [...gramCount.entries()].filter(([, idxs]) => idxs.size >= 3);
+    if (shared.length > 0) {
+      const example = shared[0][0];
+      issues.push(['warn', `3+ service descriptions share a 5-gram ("${example}") — copy-paste detected; rewrite each service distinctly`]);
+    }
+  }
+
+  // Specificity score on about body + service descriptions — low means generic.
+  const knownFacts = [c.name, c.city, c.state, c.category].filter(Boolean);
+  const aboutText = (c.about?.body ?? []).join(' ');
+  if (aboutText.trim()) {
+    const score = specificityScore(aboutText, knownFacts);
+    if (score < 0.05) {
+      issues.push(['warn', `about body has very low specificity (score ${score.toFixed(2)}) — add proper nouns, numbers, or named facts to ground the copy`]);
+    }
+  }
+  const serviceText = (c.services ?? []).map((s) => `${s.title ?? ''} ${s.description ?? ''}`).join(' ');
+  if (serviceText.trim()) {
+    const score = specificityScore(serviceText, knownFacts);
+    if (score < 0.05) {
+      issues.push(['warn', `services copy has very low specificity (score ${score.toFixed(2)}) — name specific services, prices, or distinguishing details`]);
+    }
+  }
+
+  // ── PHOTO SOURCE GATE ────────────────────────────────────────────────────
+  // Classify the hero photo provenance and surface it in audit output. If the
+  // image is a built-in library fallback, escalate needs-review to CRITICAL:
+  // a site with library art is NOT ready to send as cold outreach — the whole
+  // point of this pipeline is real photos.
+  const heroPath = c.images?.hero ?? '';
+  const photoSource = classifyPhotoSource(heroPath, c.images);
+  issues.push(['info', `photo_source: ${photoSource}${photoSource === 'business-scraped' ? ' ✓' : ''}`]);
+
   const textHero = TEXT_HEROES.has(c.heroVariant);
-  if (isStock(c.images?.hero)) {
+  if (isStock(heroPath)) {
     if (textHero) {
       // Intentional text hero (e.g. honest placeholder, or a business with no
       // congruent real photo). Looks deliberate, not slop — just note it.
       issues.push(['info', `text hero (no photo) — deliberate "${c.heroVariant}" layout`]);
+    } else if (ready) {
+      issues.push(['critical', 'hero is stock/SVG library art — a site cannot be "ready" with no real photo; source a real image first']);
     } else {
-      issues.push(['critical', 'hero is stock/SVG art (no real photo)']);
+      // needs-review: escalate to critical (blocks "ready" gate — library art
+      // must be replaced before this site can ever be promoted to ready).
+      issues.push(['critical', 'hero uses /images/library/ fallback art — replace with a real photo before marking ready (see CLAUDE.md photo-sourcing tiers)']);
     }
   }
+
   // Only warn about missing alt when a hero photo is actually rendered.
-  if (!textHero && c.images?.hero && !c.images?.heroAlt?.trim())
+  if (!textHero && heroPath && !c.images?.heroAlt?.trim())
     issues.push(['warn', 'missing hero alt text']);
   for (const s of c.sections ?? []) {
     const arr = s.items ?? s.rows ?? s.groups ?? s.steps ?? s.members ?? s.areas ?? s.images;
     if (Array.isArray(arr) && arr.length === 0) issues.push(['critical', `empty "${s.type}" section`]);
   }
   if ((c.services ?? []).some((s) => TEMPLATED.test(s.description ?? '') || TEMPLATED.test(s.title ?? '')))
-    issues.push(['warn', 'templated service copy left in place']);
+    issues.push([ready ? 'critical' : 'warn', 'templated service copy left in place']);
   if (!(c.sections ?? []).some((s) => s.type === 'testimonials')) issues.push(['info', 'no testimonials (trust signal)']);
   return issues;
 }
@@ -137,11 +313,36 @@ function contrast(a, b) {
   return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
 }
 
-/** First-wins parse of the injected color tokens from a built page's inline CSS. */
+/**
+ * Read the canonical quality score per slug straight off the built dashboard
+ * (index.astro emits data-slug/data-score/data-grade on each card). Reusing the
+ * real scorer — score.ts — means the gate and the dashboard can never disagree.
+ */
+function parseDashboardScores(html) {
+  const byslug = new Map();
+  for (const m of html.matchAll(/data-slug="([^"]+)"[^>]*data-score="(\d+)"[^>]*data-grade="([A-F])"/g)) {
+    byslug.set(m[1], { score: Number(m[2]), grade: m[3] });
+  }
+  return byslug;
+}
+
+// The bar for shipping: "ready" must mean A-grade. Below this, a site marked
+// ready is lying about being send-able.
+const READY_MIN_SCORE = 85;
+
+/**
+ * First-wins parse of the injected color tokens from a built page's inline CSS.
+ * Hex values are stored as a string (measurable); a non-hex value (oklch/rgb/hsl,
+ * e.g. from a tokens override) is stored as { nonHex } so the contrast check can
+ * WARN that it couldn't measure the pair rather than skip it silently.
+ */
 function parseTokens(html) {
   const t = {};
-  for (const m of html.matchAll(/--([a-z0-9-]+)\s*:\s*(#[0-9a-fA-F]{3,6})\b/g)) {
-    if (!(m[1] in t)) t[m[1]] = m[2];
+  for (const m of html.matchAll(/--([a-z0-9-]+)\s*:\s*([^;]+);/g)) {
+    const name = m[1];
+    if (name in t) continue;
+    const hex = m[2].trim().match(/^#[0-9a-fA-F]{3,8}\b/);
+    t[name] = hex ? hex[0] : { nonHex: m[2].trim() };
   }
   return t;
 }
@@ -159,9 +360,17 @@ const CONTRAST_PAIRS = [
 function auditContrast(tokens) {
   const issues = [];
   for (const [fg, bg, desc] of CONTRAST_PAIRS) {
-    if (!tokens[fg] || !tokens[bg]) continue;
-    const r = contrast(tokens[fg], tokens[bg]);
-    const at = `(${tokens[fg]} on ${tokens[bg]})`;
+    const f = tokens[fg];
+    const b = tokens[bg];
+    if (!f || !b) continue;
+    // A non-hex token (oklch/rgb/hsl override) can't be measured here — warn
+    // rather than skip silently, so the gate's blind spot is visible.
+    if (typeof f !== 'string' || typeof b !== 'string') {
+      issues.push(['warn', `contrast not measured for ${desc} — non-hex color token; verify legibility manually`]);
+      continue;
+    }
+    const r = contrast(f, b);
+    const at = `(${f} on ${b})`;
     if (r < 3.0) issues.push(['critical', `contrast ${r.toFixed(2)}:1 — ${desc} ${at}, AA needs 4.5`]);
     else if (r < 4.5) issues.push(['warn', `contrast ${r.toFixed(2)}:1 — ${desc} ${at}, below AA 4.5`]);
   }
@@ -188,15 +397,38 @@ async function main() {
   // 2. Per-prospect content
   console.log('\n## Prospects');
   const files = (await readdir(PROSPECTS)).filter((f) => f.endsWith('.json'));
+  // Canonical scores from the built dashboard (score.ts) — used to enforce the
+  // A-grade bar on anything marked ready.
+  const dashHtml = await readFile(join(DIST, 'index.html'), 'utf8').catch(() => null);
+  const scores = dashHtml ? parseDashboardScores(dashHtml) : new Map();
   let missingDist = false;
   for (const f of files) {
     const slug = f.replace(/\.json$/, '');
     const c = JSON.parse(await readFile(join(PROSPECTS, f), 'utf8'));
     const issues = auditProspect(slug, c);
+    // A-grade gate: a "ready" site that scores below the bar is not send-able.
+    // Fail CLOSED — a ready site with no build output can't have its score (or
+    // contrast) verified, so it must not pass silently.
+    const sc = scores.get(slug);
+    if (c.status === 'ready' && !sc) {
+      issues.push(['critical', `marked ready but no build output to verify its score — run \`npm run build\` before auditing, or set status:"needs-review"`]);
+    } else if (c.status === 'ready' && sc.score < READY_MIN_SCORE) {
+      issues.push(['critical', `marked ready but scores ${sc.score} (${sc.grade}) — below the A bar (${READY_MIN_SCORE}); fix the gaps or set status:"needs-review"`]);
+    } else if (sc) {
+      issues.push(['info', `score ${sc.score} (${sc.grade})`]);
+    }
     // Measured WCAG contrast from the built page (needs a prior `npm run build`).
     const distHtml = await readFile(join(DIST, 'p', slug, 'index.html'), 'utf8').catch(() => null);
     if (distHtml) issues.push(...auditContrast(parseTokens(distHtml)));
-    else missingDist = true;
+    else {
+      missingDist = true;
+      // If the dashboard built but THIS page didn't, a ready site's contrast is
+      // unverifiable — flag it. (When nothing built, the score gate above already
+      // fired the critical, so don't double-report.)
+      if (c.status === 'ready' && dashHtml) {
+        issues.push(['critical', `marked ready but no built page to measure WCAG contrast — rebuild before auditing`]);
+      }
+    }
     const crit = issues.filter((i) => i[0] === 'critical');
     critical += crit.length;
     if (issues.length === 0) {

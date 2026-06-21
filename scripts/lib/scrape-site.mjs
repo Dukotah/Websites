@@ -118,9 +118,17 @@ function typeOf(node) {
   return Array.isArray(t) ? t.join(' ') : String(t ?? '');
 }
 
+// A bare "Organization"/"Store"/"LocalBusiness" node is often the site
+// PLATFORM's (Squarespace/WordPress/GoDaddy), injected ahead of the business's
+// own LocalBusiness/Winery/Restaurant node — so its name/phone/address would be
+// lifted instead of the business's. Prefer the most specific business type.
+const GENERIC_TYPES = /^(Organization|Store|LocalBusiness)$/i;
+
 function fromJsonLd(nodes, base) {
   const out = {};
-  const biz = nodes.find((n) => BUSINESS_TYPES.test(typeOf(n)));
+  const bizNodes = nodes.filter((n) => BUSINESS_TYPES.test(typeOf(n)));
+  const biz =
+    bizNodes.find((n) => !GENERIC_TYPES.test(typeOf(n).trim())) ?? bizNodes[0];
   const review = nodes.filter((n) => /Review/i.test(typeOf(n)));
 
   if (biz) {
@@ -143,7 +151,7 @@ function fromJsonLd(nodes, base) {
     } else if (typeof a === 'string') {
       out.address = clean(a);
     }
-    // Hours
+    // Hours — prefer the primary biz node; fall back to any biz node that has them.
     const oh = biz.openingHoursSpecification;
     if (oh) out.hours = normalizeHours(oh);
     // Rating
@@ -153,17 +161,45 @@ function fromJsonLd(nodes, base) {
       if (r.reviewCount || r.ratingCount)
         out.reviewCount = Number(r.reviewCount ?? r.ratingCount);
     }
-    // Images
+    if (biz.priceRange) out.priceRange = clean(String(biz.priceRange));
+    // Images — the business's real photos only. Deliberately EXCLUDE biz.logo:
+    // a logo seeded here would land first in out.images and become the hero hint.
+    // Run the name-based logo/icon filter before storing, too.
     const imgs = []
-      .concat(biz.image ?? [], biz.photo ?? [], biz.logo ?? [])
+      .concat(biz.image ?? [], biz.photo ?? [])
       .flatMap((i) => (typeof i === 'string' ? [i] : i?.url ? [i.url] : []))
       .map((u) => absolutize(u, base))
       .filter(Boolean);
-    if (imgs.length) out.images = imgs;
+    const usefulImgs = usefulImages(imgs);
+    if (usefulImgs.length) out.images = usefulImgs;
     // Social
     const same = [].concat(biz.sameAs ?? []).filter(Boolean);
     if (same.length) out.social = same;
     if (biz.description) out.description = clean(String(biz.description));
+  }
+
+  // Sweep ALL business-type nodes for trust signals missed by the primary node:
+  // aggregateRating, openingHoursSpecification, foundingDate, priceRange.
+  // This catches the common CMS pattern where these live in a separate LD block.
+  for (const n of bizNodes) {
+    if (!out.rating && n.aggregateRating && typeof n.aggregateRating === 'object') {
+      if (n.aggregateRating.ratingValue) {
+        out.rating = Number(n.aggregateRating.ratingValue);
+        if (n.aggregateRating.reviewCount || n.aggregateRating.ratingCount)
+          out.reviewCount = Number(n.aggregateRating.reviewCount ?? n.aggregateRating.ratingCount);
+      }
+    }
+    if (!out.hours?.length && n.openingHoursSpecification) {
+      const h = normalizeHours(n.openingHoursSpecification);
+      if (h.length) out.hours = h;
+    }
+    if (!out.established && n.foundingDate) {
+      const yr = String(n.foundingDate).match(/\d{4}/);
+      if (yr) out.established = yr[0];
+    }
+    if (!out.priceRange && n.priceRange) {
+      out.priceRange = clean(String(n.priceRange));
+    }
   }
 
   // Reviews → testimonials
@@ -184,6 +220,17 @@ const DAY_ABBR = {
   Monday: 'Mon', Tuesday: 'Tue', Wednesday: 'Wed', Thursday: 'Thu',
   Friday: 'Fri', Saturday: 'Sat', Sunday: 'Sun',
 };
+const DAY_ORDER = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+// Label a set of days: a contiguous run becomes "Mon – Fri", but a gappy set
+// (e.g. Mon, Wed, Fri) must NOT collapse to a range that falsely implies the
+// in-between days are open — list them instead.
+function daysLabel(days) {
+  if (days.length <= 1) return days[0] ?? '';
+  const idx = days.map((d) => DAY_ORDER.indexOf(d));
+  const contiguous = idx.every((v, i) => i === 0 || (v >= 0 && v === idx[i - 1] + 1));
+  return contiguous ? `${days[0]} – ${days[days.length - 1]}` : days.join(', ');
+}
 
 function normalizeHours(oh) {
   const specs = [].concat(oh);
@@ -196,7 +243,7 @@ function normalizeHours(oh) {
     });
     const open = s.opens;
     const close = s.closes;
-    const label = days.length > 1 ? `${days[0]} – ${days[days.length - 1]}` : days[0] ?? '';
+    const label = daysLabel(days);
     const time =
       open && close ? `${fmtTime(open)} – ${fmtTime(close)}` : open ? `From ${fmtTime(open)}` : 'Closed';
     if (label) out.push({ day: label, hours: time });
@@ -212,6 +259,97 @@ function fmtTime(t) {
   const ap = h >= 12 ? 'PM' : 'AM';
   h = h % 12 || 12;
   return `${h}:${min} ${ap}`;
+}
+
+// --- visible-text hours extraction (fallback when JSON-LD hours are empty) ---
+
+// Maps common day abbreviations / full names → canonical 3-letter abbreviation.
+const DAY_ALIASES = {
+  monday: 'Mon', mon: 'Mon',
+  tuesday: 'Tue', tue: 'Tue', tues: 'Tue',
+  wednesday: 'Wed', wed: 'Wed',
+  thursday: 'Thu', thu: 'Thu', thur: 'Thu', thurs: 'Thu',
+  friday: 'Fri', fri: 'Fri',
+  saturday: 'Sat', sat: 'Sat',
+  sunday: 'Sun', sun: 'Sun',
+};
+
+// Matches "Mon 9am – 5pm", "Monday: 9:00 AM - 6:00 PM", "Mon-Fri 8am-8pm", etc.
+// Group 1: day (or day range like "Mon-Fri")
+// Group 2+: the time range
+const HOURS_LINE_RE =
+  /\b((?:mon(?:day)?|tue(?:s(?:day)?)?|wed(?:nesday)?|thu(?:rs?(?:day)?)?|fri(?:day)?|sat(?:urday)?|sun(?:day)?)(?:\s*[-–—to]+\s*(?:mon(?:day)?|tue(?:s(?:day)?)?|wed(?:nesday)?|thu(?:rs?(?:day)?)?|fri(?:day)?|sat(?:urday)?|sun(?:day)?))?)\s*:?\s+(\d{1,2}(?::\d{2})?\s*(?:am|pm|AM|PM)?\s*[-–—to]+\s*\d{1,2}(?::\d{2})?\s*(?:am|pm|AM|PM)|closed|by\s+appointment)/gi;
+
+function normalizeAmPm(t) {
+  // "9am" → "9:00 AM", "17:00" → "5:00 PM", "9:30 PM" → "9:30 PM"
+  t = t.trim();
+  // Already has AM/PM label
+  const labeled = t.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/i);
+  if (labeled) {
+    let h = Number(labeled[1]);
+    const min = labeled[2] ?? '00';
+    const ap = labeled[3].toUpperCase();
+    return `${h}:${min} ${ap}`;
+  }
+  // 24-hour / bare number
+  const bare = t.match(/^(\d{1,2})(?::(\d{2}))?$/);
+  if (bare) {
+    let h = Number(bare[1]);
+    const min = bare[2] ?? '00';
+    const ap = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    return `${h}:${min} ${ap}`;
+  }
+  return t;
+}
+
+function canonDay(raw) {
+  return DAY_ALIASES[raw.toLowerCase().replace(/\.$/, '')] ?? raw;
+}
+
+/**
+ * Scan the stripped visible text for day→time patterns and return
+ * [{day, hours}] entries (same shape as normalizeHours). Best-effort.
+ */
+function extractVisibleHours(text) {
+  const out = [];
+  const seen = new Set();
+  let m;
+  HOURS_LINE_RE.lastIndex = 0;
+  while ((m = HOURS_LINE_RE.exec(text)) !== null) {
+    const dayRaw = m[1].trim();
+    const timeRaw = m[2].trim();
+
+    // Normalise the day portion — may be a range like "Mon-Fri"
+    const dayNorm = dayRaw.replace(
+      /^(\S+)\s*[-–—to]+\s*(\S+)$/i,
+      (_, a, b) => `${canonDay(a)} – ${canonDay(b)}`,
+    );
+    const day = /\s*[-–]\s*/.test(dayNorm) ? dayNorm : canonDay(dayRaw);
+
+    // Normalise the time range
+    let hours;
+    if (/closed/i.test(timeRaw)) {
+      hours = 'Closed';
+    } else if (/appointment/i.test(timeRaw)) {
+      hours = 'By appointment';
+    } else {
+      const parts = timeRaw.split(/\s*[-–—to]+\s*/i);
+      if (parts.length >= 2) {
+        hours = `${normalizeAmPm(parts[0])} – ${normalizeAmPm(parts[parts.length - 1])}`;
+      } else {
+        hours = timeRaw; // fallback as-is
+      }
+    }
+
+    const key = `${day}|${hours}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      out.push({ day, hours });
+    }
+    if (out.length >= 7) break; // one entry per day of the week is enough
+  }
+  return out;
 }
 
 // --- visible-HTML heuristics (fallbacks when no JSON-LD) --------------------
@@ -359,11 +497,18 @@ function dedupeCI(arr) {
 
 // --- contact heuristics -----------------------------------------------------
 
+const PHONE_RE = /(\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4})/;
 function findPhone(html) {
   const tel = html.match(/href\s*=\s*["']tel:([^"']+)["']/i);
   if (tel) return clean(tel[1]);
-  const text = stripTags(html);
-  const m = text.match(/(\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4})/);
+  let text = stripTags(html);
+  // Strip fax numbers first — many sites list "Fax: (707) 555-5678" right next
+  // to the phone, and a bare first-match would grab the fax.
+  text = text.replace(/\bfax\b[:\s.#-]*\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}/gi, ' ');
+  // Prefer a number explicitly labelled phone/call/tel over the first one found.
+  const labeled = text.match(/\b(?:phone|call|tel(?:ephone)?|ph)\b[:\s.#-]*(\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4})/i);
+  if (labeled) return clean(labeled[1]);
+  const m = text.match(PHONE_RE);
   return m ? m[1] : '';
 }
 
@@ -377,6 +522,24 @@ function findEmail(html) {
 function findEstablished(text) {
   const m = text.match(/\b(?:since|est(?:ablished)?\.?|founded(?:\s+in)?|serving\s+\w+\s+since)\s*(\d{4})/i);
   return m ? m[1] : '';
+}
+
+// Plain-text street-address fallback for the ~30% of small-business sites that
+// don't ship a JSON-LD PostalAddress. Matches "123 Main St[, City, ST 12345]".
+const STREET = /\b\d{1,5}\s+[A-Za-z0-9.'&-]+(?:\s+[A-Za-z0-9.'&-]+){0,4}\s+(?:Street|St|Avenue|Ave|Road|Rd|Boulevard|Blvd|Drive|Dr|Lane|Ln|Way|Parkway|Pkwy|Court|Ct|Place|Pl|Highway|Hwy|Square|Sq|Terrace|Ter|Circle|Cir)\b\.?(?:,?\s+(?:Suite|Ste|Unit|#)\s*\w+)?(?:,\s*[A-Z][A-Za-z .'-]+,\s*[A-Z]{2}(?:\s+\d{5})?)?/;
+const ADDRESS_LABEL =
+  /\b(address|location|located|visit us|find us|our (?:office|shop|store|studio|location)|come see us|stop by)\b/i;
+function findAddress(text) {
+  const matches = [...text.matchAll(new RegExp(STREET, 'g'))];
+  if (!matches.length) return '';
+  // Prefer an address that sits just after a contact-y label over the first
+  // street-pattern anywhere on the page (which can be a neighbor's address or a
+  // "directions from …" mention).
+  for (const m of matches) {
+    const ctx = text.slice(Math.max(0, m.index - 60), m.index);
+    if (ADDRESS_LABEL.test(ctx)) return clean(m[0]);
+  }
+  return clean(matches[0][0]);
 }
 
 function findSocial(html) {
@@ -415,6 +578,10 @@ export async function scrapeSite(url, { timeoutMs = 12000 } = {}) {
       signal: ctrl.signal,
     });
     if (!res.ok) return null;
+    // Only parse HTML. A 200 PDF/JSON/JS/binary (common on parked or app domains)
+    // would otherwise be regex-scanned as markup and yield garbage facts.
+    const ct = (res.headers.get('content-type') || '').toLowerCase();
+    if (ct && !/text\/html|application\/xhtml|text\/plain/.test(ct)) return null;
     finalUrl = res.url || target;
     html = await res.text();
   } catch {
@@ -446,13 +613,14 @@ export async function scrapeSite(url, { timeoutMs = 12000 } = {}) {
     description: ld.description || ogDesc || metaDesc || '',
     phone: ld.phone || findPhone(html),
     email: ld.email || findEmail(html),
-    address: ld.address || '',
+    address: ld.address || findAddress(text),
     city: ld.city || '',
     state: ld.state || '',
     established: ld.established || findEstablished(text),
-    hours: ld.hours?.length ? ld.hours : [],
+    hours: ld.hours?.length ? ld.hours : extractVisibleHours(text),
     rating: ld.rating,
     reviewCount: ld.reviewCount,
+    priceRange: ld.priceRange,
     services: extractServices(html),
     about: extractParagraphs(html).slice(0, 4),
     // Prefer authoritative JSON-LD reviews; top up from visible HTML when thin.
@@ -509,6 +677,8 @@ async function fetchHtml(url, timeoutMs = 12000) {
       signal: ctrl.signal,
     });
     if (!res.ok) return null;
+    const ct = (res.headers.get('content-type') || '').toLowerCase();
+    if (ct && !/text\/html|application\/xhtml|text\/plain/.test(ct)) return null;
     return { html: await res.text(), finalUrl: res.url || target };
   } catch {
     return null;

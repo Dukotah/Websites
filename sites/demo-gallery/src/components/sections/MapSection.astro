@@ -85,7 +85,6 @@ const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encode
           title={`Map showing the location of ${address}`}
           loading="lazy"
           referrerpolicy="no-referrer"
-          aria-label={`Map: ${address}`}
         ></iframe>
       </div>
 
@@ -119,7 +118,7 @@ const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encode
         {hasHours && (
           <div class="map-sec__hours-block">
             <p class="map-sec__info-label">Hours</p>
-            <dl class="map-sec__hours-table" aria-label="Business hours">
+            <dl class="map-sec__hours-table">
               {hours!.map(({ day, hours: h }) => (
                 <div class="map-sec__hours-row">
                   <dt class="map-sec__hours-day">{day}</dt>

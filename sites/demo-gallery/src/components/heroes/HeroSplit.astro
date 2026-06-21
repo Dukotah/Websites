@@ -12,13 +12,23 @@
  */
 import type { ProspectConfig } from '../../types';
 import SiteImage from '../SiteImage.astro';
+import TrustBadge from '../TrustBadge.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights = [], established, area } = config;
+const { hero, images, contact, highlights = [], established, area, artDirection, rating } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
+
+// Art-direction photo treatment
+const treatment = artDirection?.photoTreatment ?? 'natural';
+const useGrain  = artDirection?.photoGrain ?? false;
+const mediaClass = [
+  'spl-hero__media',
+  treatment === 'duotone' ? 'img-duotone' : '',
+].filter(Boolean).join(' ');
+const mediaTreat = treatment === 'muted' ? 'grade' : undefined;
 ---
 
 <section class="spl-hero" id="top" aria-label="Hero">
@@ -70,8 +80,15 @@ const trustLine = highlights[0] ?? '';
     <!-- Offset frame accent: brand-tinted rectangle behind photo, bleeds slightly left -->
     <div class="spl-hero__frame-accent" aria-hidden="true"></div>
 
-    <!-- Parallax photo — inset bleed so parallax never exposes edges -->
-    <div class="spl-hero__media" data-parallax data-parallax-speed="0.3" aria-hidden="true">
+    <!-- Parallax photo — treatment wired from artDirection -->
+    <div
+      class={mediaClass}
+      data-parallax
+      data-parallax-speed="0.3"
+      aria-hidden="true"
+      data-treat={mediaTreat}
+      data-grain={useGrain ? '' : undefined}
+    >
       <SiteImage
         src={images.hero}
         alt={images.heroAlt}
@@ -80,16 +97,21 @@ const trustLine = highlights[0] ?? '';
         loading="eager"
         sizes="(min-width: 880px) 45vw, 100vw"
       />
+      {treatment === 'duotone' && useGrain && (
+        <span class="grain-layer" aria-hidden="true"></span>
+      )}
     </div>
 
-    <!-- Trust badge — bleeds across the seam (negative left value) -->
-    {(badgeYear || trustLine) && (
-      <div class="spl-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
-        {badgeYear && <strong class="spl-hero__badge-year">{badgeYear}</strong>}
-        <span class="spl-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
-        {badgeYear && trustLine && <span class="spl-hero__badge-trust">{trustLine}</span>}
-      </div>
-    )}
+    <!-- Trust badge (glassmorphism) — bleeds across the seam -->
+    <div class="spl-hero__badge-wrap" data-reveal data-reveal-order="0">
+      <TrustBadge
+        year={badgeYear || undefined}
+        rating={rating?.value}
+        reviewCount={rating?.count}
+        highlight={trustLine || undefined}
+        position="bottom-left"
+      />
+    </div>
   </div>
 
 </section>
@@ -317,47 +339,12 @@ const trustLine = highlights[0] ?? '';
     .spl-hero__media { inset: 0; will-change: auto; }
   }
 
-  /* Trust badge — bottom-left, bleeds across the panel seam (negative left) */
-  .spl-hero__badge {
+  /* Trust badge wrapper — bottom-left, bleeds across the panel seam */
+  .spl-hero__badge-wrap {
     position: absolute;
     bottom: 2.5rem;
-    left: -1.5rem;        /* bleeds over the seam → overlap move */
+    left: -1.5rem;  /* bleeds over the seam → overlap move */
     z-index: 2;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.1rem;
-    background: var(--brand);
-    color: var(--brand-contrast);
-    border-radius: var(--radius);
-    padding: 0.85rem 1.15rem;
-    min-width: 72px;
-    box-shadow: var(--shadow-lg);
-    text-align: center;
-  }
-  .spl-hero__badge-year {
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: var(--fw-display);
-    line-height: 1;
-  }
-  .spl-hero__badge-label {
-    font-size: var(--step--1);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.85;
-  }
-  .spl-hero__badge-trust {
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.75;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 110px;
   }
 
   /* ── Mobile ──────────────────────────────────────────────────────────── */
@@ -372,7 +359,7 @@ const trustLine = highlights[0] ?? '';
     }
     .spl-hero__media { inset: 0; }
     .spl-hero__frame-accent { display: none; }
-    .spl-hero__badge {
+    .spl-hero__badge-wrap {
       left: auto;
       right: 1rem;
       bottom: 1rem;

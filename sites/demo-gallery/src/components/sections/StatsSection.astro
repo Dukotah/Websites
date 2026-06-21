@@ -31,7 +31,7 @@ const {
       <div class="stats-rail" role="list">
         {items.map((item, i) => (
           <div class="stat-cell" role="listitem" data-reveal data-reveal-order={i}>
-            <div class="stat-cell__value" aria-label={`${item.value} — ${item.label}`}>
+            <div class="stat-cell__value" role="img" aria-label={`${item.value} — ${item.label}`}>
               {item.value}
             </div>
             <div class="stat-cell__label" aria-hidden="true">{item.label}</div>

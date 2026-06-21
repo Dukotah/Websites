@@ -11,6 +11,7 @@
 
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { isUsablePhoto } from './photo-score.mjs';
 
 const API = 'https://api.openverse.org/v1/images/';
 const UA = 'websites-outreach/1.0 (+https://github.com/dukotah/websites)';
@@ -78,7 +79,9 @@ export async function getOpenversePhotos(queries, { destDir, slug, max = 2, star
       if (!got && r.thumbnail) got = await download(r.thumbnail);
       if (!got) continue;
       const ext = EXT_BY_MIME[got.mime] || (r.filetype === 'png' ? 'png' : 'jpg');
-      if (got.buf.length < 12000) continue; // too small to be a real photo
+      // Pixel-level quality gate — a 50 KB logo or flat illustration tagged
+      // "large" must not ship as a hero. (Replaces the old 12 KB byte-floor.)
+      if (!(await isUsablePhoto(got.buf))) continue;
       const idx = startIndex + saved.length;
       const fileName = nameFor(idx, ext);
       await writeFile(join(outDir, fileName), got.buf);

@@ -22,6 +22,7 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { getRealPhotos } from './photos.mjs';
 import { scorePhoto, dhash, hamming, NEAR_DUP_DISTANCE } from './photo-score.mjs';
+import { getOpenversePhotos } from './openverse.mjs';
 
 const UA =
   'Mozilla/5.0 (compatible; websites-outreach/1.0; +https://github.com/dukotah/websites)';
@@ -118,7 +119,7 @@ function baseIdentity(url) {
  * (de-duped by size-agnostic URL identity and by exact bytes). Returns saved
  * media descriptors. Best-effort; network failures just yield fewer results.
  */
-export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxCandidates = 8, heroHint } = {}) {
+export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxCandidates = 8, heroHint, startIndex = 0 } = {}) {
   if (!urls?.length) return [];
   const outDir = join(destDir, slug);
   await mkdir(outDir, { recursive: true });
@@ -154,6 +155,10 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
     // the size filter — only real photographs earn a slot (key-free, pixel stats).
     const q = await scorePhoto(got.buf);
     if (q.isGraphic) continue;
+    // Formats imageSize() can't measure from the header (e.g. AVIF) skip the
+    // dimension gate above and fall through on the byte-floor alone — use Sharp's
+    // decoded dimensions from scorePhoto so a small logo can't sneak in that way.
+    if (!dims && q.w && q.h && (q.w < MIN_W || q.h < MIN_H)) continue;
     // Perceptual near-dup: the same shot at a different size/crop already kept.
     const ph = await dhash(got.buf);
     if (ph != null && seenPhash.some((p) => hamming(p, ph) <= NEAR_DUP_DISTANCE)) continue;
@@ -182,7 +187,7 @@ export async function downloadScrapedPhotos(urls, { destDir, slug, max = 2, maxC
 
   const saved = [];
   for (const img of kept.slice(0, max)) {
-    const fileName = nameFor(saved.length, img.ext);
+    const fileName = nameFor(startIndex + saved.length, img.ext);
     await writeFile(join(outDir, fileName), img.buf);
     saved.push({ path: `/images/${slug}/${fileName}`, credit: '', source: img.url, alt: '', w: img.w, h: img.h });
   }
@@ -274,6 +279,34 @@ export async function generateImages(facts, { destDir, slug, startIndex = 0, nee
  * @param {object} row        CSV row (name, category, city, state, ...)
  * @param {object|null} enrichment  scrape-site.mjs output (may be null)
  */
+// --- tier: Mapillary street-level imagery (free token, last resort) ----------
+// Geocodes the most specific location we have (full address > city) via keyless
+// Nominatim, then pulls street-level photos near it from Mapillary. Used ONLY to
+// give a photoless business a real-place hero instead of a blank SVG — credited
+// and flagged "swap before sending", never gallery padding. No-op without token.
+async function mapillaryUrls(location, { limit = 4 } = {}) {
+  const token = process.env.MAPILLARY_TOKEN;
+  if (!token || !location) return [];
+  try {
+    const geo = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json&limit=1`,
+      { headers: { 'User-Agent': 'website-factory/1.0 (demo generator)' } },
+    ).then((r) => (r.ok ? r.json() : []));
+    const pt = geo?.[0];
+    if (!pt) return [];
+    const lat = Number(pt.lat);
+    const lon = Number(pt.lon);
+    const d = 0.0012; // ~130m box around the point
+    const bbox = `${lon - d},${lat - d},${lon + d},${lat + d}`;
+    const data = await fetch(
+      `https://graph.mapillary.com/images?access_token=${token}&fields=thumb_2048_url&bbox=${bbox}&limit=${limit}`,
+    ).then((r) => (r.ok ? r.json() : null));
+    return (data?.data ?? []).map((i) => i.thumb_2048_url).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
 export async function acquirePhotos(
   row,
   enrichment,
@@ -321,6 +354,57 @@ export async function acquirePhotos(
       }
     } catch {
       /* fall through to library */
+    }
+  }
+
+  // Tier 3b: Openverse — freely-licensed photos (CC/PD, no key) covering a much
+  // broader visual index than Wikimedia alone. Tried ONLY when we're still below
+  // the minimum — never used to pad a gallery that already has real own-photos.
+  // Capped to ~5 requests per site to respect the ~100/hr anonymous rate limit.
+  if (media.length < min) {
+    try {
+      const category = (facts.category || '').replace(/-/g, ' ');
+      const area = facts.area || facts.city || '';
+      // Two queries: brand+category first (more specific), then area+category.
+      const queries = [
+        category ? `${facts.name} ${category}` : facts.name,
+        area && category ? `${area} ${category}` : '',
+      ].filter(Boolean).slice(0, 2); // at most 2 search calls → ≤2 API round-trips + downloads
+
+      const ov = await getOpenversePhotos(queries, {
+        destDir,
+        slug,
+        max: min - media.length,
+        startIndex: media.length,
+        aspect: 'wide',
+      });
+      if (ov.length) {
+        media = media.concat(ov);
+        source = source ? `${source}+openverse` : 'openverse';
+      }
+    } catch {
+      /* fall through to mapillary */
+    }
+  }
+
+  // Tier 4: Mapillary street-level imagery near the real address (free token;
+  // last resort before the SVG library) — a real place beats a blank placeholder.
+  if (media.length < min) {
+    const urls = await mapillaryUrls(enrichment?.address || facts.area);
+    if (urls.length) {
+      const shots = await downloadScrapedPhotos(urls, {
+        destDir,
+        slug,
+        max: min - media.length,
+        maxCandidates: 8,
+        startIndex: media.length,
+      });
+      if (shots.length) {
+        media = media.concat(
+          shots.map((m) => ({ ...m, credit: 'Street view via Mapillary — swap before sending' })),
+        );
+        source = source ? `${source}+mapillary` : 'mapillary';
+      }
     }
   }
 

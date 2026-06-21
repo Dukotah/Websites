@@ -6,19 +6,36 @@
  */
 import type { ProspectConfig } from '../../types';
 import SiteImage from '../SiteImage.astro';
+import TrustBadge from '../TrustBadge.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights = [], established, area, name } = config;
+const { hero, images, contact, highlights = [], established, area, name, artDirection, rating } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
+
+// Art-direction photo treatment
+const treatment = artDirection?.photoTreatment ?? 'natural';
+const useGrain  = artDirection?.photoGrain ?? false;
+const mediaClass = [
+  'cin-hero__media',
+  treatment === 'duotone' ? 'img-duotone' : '',
+].filter(Boolean).join(' ');
+const mediaTreat = treatment === 'muted' ? 'grade' : undefined;
 ---
 
 <section class="cin-hero" id="top" aria-label="Hero">
 
-  <!-- ① Full-bleed photo — parallax target -->
-  <div class="cin-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.4">
+  <!-- ① Full-bleed photo — parallax target; treatment wired from artDirection -->
+  <div
+    class={mediaClass}
+    aria-hidden="true"
+    data-parallax
+    data-parallax-speed="0.4"
+    data-treat={mediaTreat}
+    data-grain={useGrain ? '' : undefined}
+  >
     <SiteImage
       src={images.hero}
       alt={images.heroAlt}
@@ -27,6 +44,9 @@ const trustLine = highlights[0] ?? '';
       loading="eager"
       sizes="100vw"
     />
+    {treatment === 'duotone' && useGrain && (
+      <span class="grain-layer" aria-hidden="true"></span>
+    )}
   </div>
 
   <!-- ② Brand gradient-mesh overlay (behind scrim, above photo) -->
@@ -41,14 +61,16 @@ const trustLine = highlights[0] ?? '';
   <!-- ⑤ Content -->
   <div class="container cin-hero__inner">
 
-    <!-- Floating trust badge -->
-    {(badgeYear || trustLine) && (
-      <div class="cin-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
-        {badgeYear && <strong class="cin-hero__badge-year">{badgeYear}</strong>}
-        <span class="cin-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
-        {badgeYear && trustLine && <span class="cin-hero__badge-trust">{trustLine}</span>}
-      </div>
-    )}
+    <!-- Floating trust badge (glassmorphism TrustBadge) -->
+    <div class="cin-hero__badge-wrap" data-reveal data-reveal-order="0">
+      <TrustBadge
+        year={badgeYear || undefined}
+        rating={rating?.value}
+        reviewCount={rating?.count}
+        highlight={trustLine || undefined}
+        position="bottom-right"
+      />
+    </div>
 
     <div class="cin-hero__copy" data-reveal data-reveal-order="1">
       {eyebrow && <p class="cin-hero__eyebrow">{eyebrow}</p>}
@@ -183,47 +205,15 @@ const trustLine = highlights[0] ?? '';
     max-width: var(--maxw);
   }
 
-  /* ── Trust badge (floating, top-left of copy block) ─────────────────────── */
-  .cin-hero__badge {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.1rem;
-    background: var(--brand);
-    color: var(--brand-contrast);
-    border-radius: var(--radius);
-    padding: 0.75rem 1rem;
-    min-width: 68px;
-    box-shadow: var(--shadow-lg);
-    margin-bottom: 1.5rem;
-    text-align: center;
+  /* ── Trust badge wrapper (top-left, before copy) ─────────────────────────── */
+  .cin-hero__badge-wrap {
     position: relative;
-    /* Slight left-offset to break out of the copy column */
     left: -0.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
   }
-  .cin-hero__badge-year {
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: var(--fw-display);
-    line-height: 1;
-  }
-  .cin-hero__badge-label {
-    font-size: var(--step--1);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.85;
-  }
-  .cin-hero__badge-trust {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    opacity: 0.75;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 120px;
+  @media (max-width: 640px) {
+    .cin-hero__badge-wrap { left: 0; }
   }
 
   /* ── Eyebrow ─────────────────────────────────────────────────────────────── */
@@ -338,7 +328,6 @@ const trustLine = highlights[0] ?? '';
   @media (max-width: 640px) {
     .cin-hero { min-height: 78vh; }
     .cin-hero__title { font-size: clamp(2.2rem, 9vw, 3.2rem); max-width: none; }
-    .cin-hero__badge { left: 0; }
     .cin-hero__geo {
       width: 55vw;
       right: -18%;

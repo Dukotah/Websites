@@ -6,13 +6,18 @@
  */
 import type { ProspectConfig } from '../../types';
 import SiteImage from '../SiteImage.astro';
+import TrustBadge from '../TrustBadge.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights = [], established, area } = config;
+const { hero, images, contact, highlights = [], established, area, artDirection, rating } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
+
+// Art-direction photo treatment (applied to primary frame only)
+const treatment = artDirection?.photoTreatment ?? 'natural';
+const useGrain  = artDirection?.photoGrain ?? false;
 
 // Collect real images: primary hero first, then gallery extras.
 type ImgSlot = { src: string; alt: string };
@@ -37,10 +42,15 @@ const count = imgs.length; // 1 | 2 | 3
   <div class="col-hero__media" aria-hidden="true">
     {imgs.map((img, i) => (
       <div
-        class="col-hero__frame"
+        class={[
+          'col-hero__frame',
+          i === 0 && treatment === 'duotone' ? 'img-duotone' : '',
+        ].filter(Boolean).join(' ')}
         data-index={i}
         data-parallax={i === 0 ? '' : undefined}
         data-parallax-speed={i === 0 ? '0.3' : undefined}
+        data-treat={i === 0 && treatment === 'muted' ? 'grade' : undefined}
+        data-grain={i === 0 && useGrain ? '' : undefined}
       >
         <SiteImage
           src={img.src}
@@ -50,6 +60,9 @@ const count = imgs.length; // 1 | 2 | 3
           loading={i === 0 ? 'eager' : 'lazy'}
           sizes="(min-width: 640px) 50vw, 100vw"
         />
+        {i === 0 && treatment === 'duotone' && useGrain && (
+          <span class="grain-layer" aria-hidden="true"></span>
+        )}
       </div>
     ))}
 
@@ -60,14 +73,16 @@ const count = imgs.length; // 1 | 2 | 3
     <span class="col-hero__scrim" aria-hidden="true"></span>
   </div>
 
-  <!-- ② Floating trust badge (anchored bottom-right of primary photo) -->
-  {(badgeYear || trustLine) && (
-    <div class="col-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
-      {badgeYear && <strong class="col-hero__badge-year">{badgeYear}</strong>}
-      <span class="col-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
-      {badgeYear && trustLine && <span class="col-hero__badge-trust">{trustLine}</span>}
-    </div>
-  )}
+  <!-- ② Floating trust badge (anchored at seam of primary/secondary photo) -->
+  <div class="col-hero__badge-wrap" data-reveal data-reveal-order="0">
+    <TrustBadge
+      year={badgeYear || undefined}
+      rating={rating?.value}
+      reviewCount={rating?.count}
+      highlight={trustLine || undefined}
+      position="bottom-right"
+    />
+  </div>
 
   <!-- ③ Content -->
   <div class="container col-hero__inner">
@@ -201,72 +216,24 @@ const count = imgs.length; // 1 | 2 | 3
     pointer-events: none;
   }
 
-  /* ── ② Trust badge ───────────────────────────────────────────────────────── */
-  .col-hero__badge {
+  /* ── ② Trust badge wrapper — positioned at seam of primary/secondary column */
+  .col-hero__badge-wrap {
     position: absolute;
-    /*
-     * Default (3-image): primary column = 55fr → badge centred on that boundary.
-     * Overridden per data-count below.
-     */
+    /* Default (3-image): seam is ~55% across the width */
     left: clamp(42%, 54vw, 56%);
-    bottom: 8rem;          /* above highlights bar */
+    bottom: 8rem;
     transform: translateX(-50%);
     z-index: 5;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.1rem;
-    background: var(--brand);
-    color: var(--brand-contrast);
-    border-radius: var(--radius);
-    padding: 0.85rem 1.1rem;
-    min-width: 72px;
-    box-shadow: var(--shadow-lg);
-    text-align: center;
-  }
-  .col-hero__badge-year {
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: var(--fw-display);
-    line-height: 1;
-  }
-  .col-hero__badge-label {
-    font-size: var(--step--1);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.85;
-  }
-  .col-hero__badge-trust {
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.75;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 110px;
   }
 
-  /*
-   * Count-specific badge positioning (desktop only — mobile overrides below).
-   *
-   * 3-image layout: primary column is 55fr of 100% → right edge ≈ 55%.
-   *   Badge centre sits on that seam: left ≈ 55%.
-   *
-   * 2-image layout: primary column is 62fr of 100% → right edge ≈ 62%.
-   *   Badge centre sits on that seam: left ≈ 62%.
-   *
-   * 1-image layout: full bleed — pin badge to right side instead.
-   */
-  .col-hero[data-count="3"] .col-hero__badge {
-    left: clamp(42%, 54vw, 56%);  /* 55% seam, matches default */
+  /* Count-specific badge seam positioning */
+  .col-hero[data-count="3"] .col-hero__badge-wrap {
+    left: clamp(42%, 54vw, 56%);
   }
-  .col-hero[data-count="2"] .col-hero__badge {
-    left: clamp(48%, 61vw, 64%);  /* 62% seam */
+  .col-hero[data-count="2"] .col-hero__badge-wrap {
+    left: clamp(48%, 61vw, 64%);
   }
-  .col-hero[data-count="1"] .col-hero__badge {
+  .col-hero[data-count="1"] .col-hero__badge-wrap {
     left: auto;
     right: clamp(1rem, 4vw, 3rem);
     transform: none;
@@ -385,7 +352,7 @@ const count = imgs.length; // 1 | 2 | 3
     .col-hero__frame:not(:first-child) { display: none; }
     .col-hero[data-count="3"] .col-hero__frame:first-child { grid-row: auto; }
     .col-hero__title { font-size: clamp(2rem, 8vw, 3rem); max-width: none; }
-    .col-hero__badge {
+    .col-hero__badge-wrap {
       left: auto;
       right: 1rem;
       bottom: 7rem;

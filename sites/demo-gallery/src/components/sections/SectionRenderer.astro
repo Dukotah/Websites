@@ -1,5 +1,9 @@
 ---
-import type { Section } from '../../types';
+import type { Section, ProspectConfig } from '../../types';
+
+// Connective blocks (migrated out of the page template so nothing double-renders)
+import About from '../About.astro';
+import Contact from '../Contact.astro';
 
 // Ported sections
 import StatsSection from './StatsSection.astro';
@@ -27,6 +31,7 @@ import BeforeAfter from './BeforeAfter.astro';
 import FeatureGrid from './FeatureGrid.astro';
 import EditorialFeature from './EditorialFeature.astro';
 import SpecStrip from './SpecStrip.astro';
+import AwardsSection from './AwardsSection.astro';
 
 // Section-variant alternates (chosen per slug by lib/variants.ts).
 import GalleryUniform from './GalleryUniform.astro';
@@ -43,9 +48,10 @@ import FaqAccordion from './FaqAccordion.astro';
 
 interface Props {
   sections: Section[];
+  config?: ProspectConfig;
 }
 
-const { sections = [] } = Astro.props as Props;
+const { sections = [], config } = Astro.props as Props;
 
 // Numbered "chapter" content sections (award pattern). Accent/utility bands
 // (stats, cta, map, hours, press, logos, spec-strip…) are intentionally NOT
@@ -138,6 +144,12 @@ function variantOf<T>(pool: T[], variant?: number): T {
         return <EditorialFeature {...section} index={index} />;
       case 'spec-strip':
         return <SpecStrip {...section} index={index} />;
+      case 'awards':
+        return <AwardsSection {...section} index={index} />;
+      case 'about':
+        return config ? <About config={config} /> : null;
+      case 'contact-block':
+        return config ? <Contact config={config} /> : null;
       default:
         return null;
     }

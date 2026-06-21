@@ -3,7 +3,8 @@ import type { ProspectConfig } from '../types';
 const { config } = Astro.props as { config: ProspectConfig };
 
 const year = new Date().getFullYear();
-const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const phone = config.contact.phone?.trim();
+const telHref = phone ? `tel:${phone.replace(/[^+\d]/g, '')}` : '';
 const email = config.contact.email || '';
 const services = (config.services ?? []).slice(0, 5);
 // Short about blurb from their real about copy, trimmed to a sentence-ish length.
@@ -75,7 +76,7 @@ const socials = [
       <h2 class="footer__head">Get in touch</h2>
       <ul class="footer__contact">
         {config.contact.address && <li>{config.contact.address}</li>}
-        <li><a href={telHref}>{config.contact.phone}</a></li>
+        {phone && <li><a href={telHref}>{phone}</a></li>}
         {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
         {config.area && <li class="footer__area">Serving {config.area}</li>}
       </ul>

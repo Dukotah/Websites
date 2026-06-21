@@ -6,9 +6,10 @@
  * Spec §7: "panel" variant.
  */
 import type { ProspectConfig } from '../../types';
+import TrustBadge from '../TrustBadge.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights = [], established, area } = config;
+const { hero, images, contact, highlights = [], established, area, rating } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
@@ -32,14 +33,16 @@ const trustLine = highlights[0] ?? '';
   <!-- ⑤ Content -->
   <div class="container panel-hero__inner">
 
-    <!-- Trust badge -->
-    {(badgeYear || trustLine) && (
-      <div class="panel-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
-        {badgeYear && <strong class="panel-hero__badge-year">{badgeYear}</strong>}
-        <span class="panel-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
-        {badgeYear && trustLine && <span class="panel-hero__badge-trust">{trustLine}</span>}
-      </div>
-    )}
+    <!-- Trust badge (glassmorphism) -->
+    <div class="panel-hero__badge-wrap" data-reveal data-reveal-order="0">
+      <TrustBadge
+        year={badgeYear || undefined}
+        rating={rating?.value}
+        reviewCount={rating?.count}
+        highlight={trustLine || undefined}
+        position="bottom-right"
+      />
+    </div>
 
     {eyebrow && (
       <p class="panel-hero__eyebrow" data-reveal data-reveal-order="1">{eyebrow}</p>
@@ -169,47 +172,12 @@ const trustLine = highlights[0] ?? '';
     max-width: 820px;
   }
 
-  /* Trust badge */
-  .panel-hero__badge {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.1rem;
-    background: var(--brand);
-    color: var(--brand-contrast);
-    border-radius: var(--radius);
-    padding: 0.75rem 1rem;
-    min-width: 68px;
-    box-shadow: var(--shadow-lg);
-    text-align: center;
-    margin-bottom: 1.75rem;
-    /* slight left-bleed so it reads as a distinct element */
+  /* Trust badge wrapper */
+  .panel-hero__badge-wrap {
     position: relative;
     left: -0.25rem;
-  }
-  .panel-hero__badge-year {
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: var(--fw-display);
-    line-height: 1;
-  }
-  .panel-hero__badge-label {
-    font-size: var(--step--1);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.85;
-  }
-  .panel-hero__badge-trust {
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.75;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 110px;
+    margin-bottom: 1.75rem;
+    display: inline-block;
   }
 
   /* Eyebrow */
@@ -323,7 +291,7 @@ const trustLine = highlights[0] ?? '';
       bottom: -12%;
       left: -15%;
     }
-    .panel-hero__badge { left: 0; }
+    .panel-hero__badge-wrap { left: 0; }
   }
 
   /* ── Archetype tweaks ────────────────────────────────────────────────────── */

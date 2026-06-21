@@ -10,9 +10,11 @@
     "preview": "astro preview",
     "shots": "node scripts/screenshot-audit.mjs",
     "vision-qa": "node scripts/vision-qa.mjs",
+    "validate-html": "html-validate \"dist/**/*.html\"",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/albert-sans": "^5.0.0",
     "@fontsource-variable/archivo": "^5.0.0",
     "@fontsource-variable/bitter": "^5.0.0",
@@ -31,6 +33,10 @@
     "@fontsource/spectral": "^5.0.0",
     "@fontsource/zilla-slab": "^5.0.0",
     "astro": "^5.4.0",
+    "astro-robots": "^2.3.1",
     "open-props": "^1.7.23"
+  },
+  "devDependencies": {
+    "html-validate": "^11.5.3"
   }
 }

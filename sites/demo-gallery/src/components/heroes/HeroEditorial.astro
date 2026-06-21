@@ -15,18 +15,36 @@
  */
 import type { ProspectConfig } from '../../types';
 import SiteImage from '../SiteImage.astro';
+import TrustBadge from '../TrustBadge.astro';
+import AccentMark from '../AccentMark.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights = [], established, area } = config;
+const { hero, images, contact, highlights = [], established, area, artDirection, rating } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join('  ·  ');
 const hasPhoto = Boolean(images?.hero);
 const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
 const trustLine = highlights[0] ?? '';
+
+// Art-direction photo treatment
+const treatment = artDirection?.photoTreatment ?? 'natural';
+const useGrain  = artDirection?.photoGrain ?? false;
+const mediaClass = [
+  'ed-hero__media',
+  treatment === 'duotone' ? 'img-duotone' : '',
+].filter(Boolean).join(' ');
+const mediaTreat = treatment === 'muted' ? 'grade' : undefined;
 // The edge-overflow move (white-space:nowrap) only reads as intentional for a
 // SHORT evocative phrase. A full-sentence headline would clip mid-word, so wrap
 // it to 2–3 lines at a smaller scale instead of running off the right edge.
 const longTitle = (hero.heading ?? '').length > 24;
+
+// Hand-drawn accent on a key heading word (premium "agency vs template" tell).
+// Gated by artDirection.accentMark; wraps the 2nd word (or last when < 2 words).
+const accentMark = artDirection?.accentMark ?? 'none';
+const headWords = (hero.heading ?? '').trim().split(/\s+/).filter(Boolean);
+const accentIdx = headWords.length >= 2 ? 1 : 0;
+const useAccent = accentMark !== 'none' && headWords.length > 0;
 ---
 
 <section
@@ -39,7 +57,14 @@ const longTitle = (hero.heading ?? '').length > 24;
 
   <!-- ① Photo — parallax target, reveals "beneath" the oversized type on scroll -->
   {hasPhoto && (
-    <div class="ed-hero__media" aria-hidden="true" data-parallax data-parallax-speed="0.35">
+    <div
+      class={mediaClass}
+      aria-hidden="true"
+      data-parallax
+      data-parallax-speed="0.35"
+      data-treat={mediaTreat}
+      data-grain={useGrain ? '' : undefined}
+    >
       <SiteImage
         src={images.hero}
         alt={images.heroAlt}
@@ -48,6 +73,9 @@ const longTitle = (hero.heading ?? '').length > 24;
         loading="eager"
         sizes="100vw"
       />
+      {treatment === 'duotone' && useGrain && (
+        <span class="grain-layer" aria-hidden="true"></span>
+      )}
     </div>
   )}
 
@@ -57,15 +85,16 @@ const longTitle = (hero.heading ?? '').length > 24;
   <!-- ③ Legibility scrim: heavier at base, lighter center so type breathes -->
   <div class="ed-hero__scrim" aria-hidden="true"></div>
 
-  <!-- ④ Trust badge — anchored top-right so it doesn't compete with the
-       overflowing type (bottom-left is where the type bleeds) -->
-  {(badgeYear || trustLine) && (
-    <div class="ed-hero__badge" data-reveal data-reveal-order="0" aria-label="Trust signal">
-      {badgeYear && <strong class="ed-hero__badge-year">{badgeYear}</strong>}
-      <span class="ed-hero__badge-label">{badgeYear ? 'Est.' : trustLine}</span>
-      {badgeYear && trustLine && <span class="ed-hero__badge-trust">{trustLine}</span>}
-    </div>
-  )}
+  <!-- ④ Trust badge — anchored top-right so it doesn't compete with overflowing type -->
+  <div class="ed-hero__badge-wrap" data-reveal data-reveal-order="0">
+    <TrustBadge
+      year={badgeYear || undefined}
+      rating={rating?.value}
+      reviewCount={rating?.count}
+      highlight={trustLine || undefined}
+      position="top-right"
+    />
+  </div>
 
   <!-- ⑤ Content — left-aligned, type overflows right edge at large sizes -->
   <div class="ed-hero__inner">
@@ -77,7 +106,20 @@ const longTitle = (hero.heading ?? '').length > 24;
       )}
 
       <!-- The oversized headline — intentionally wide, overflows viewport edge -->
-      <h1 class="ed-hero__title">{hero.heading}</h1>
+      <h1 class="ed-hero__title">
+        {useAccent ? (
+          <>
+            {accentIdx > 0 && headWords.slice(0, accentIdx).join(' ')}{accentIdx > 0 ? ' ' : ''}
+            <span class="ed-hero__accent-wrap">
+              {headWords[accentIdx]}
+              <AccentMark type={accentMark as 'underline' | 'circle' | 'arrow'} delay="0.4s" />
+            </span>
+            {accentIdx < headWords.length - 1 ? ' ' + headWords.slice(accentIdx + 1).join(' ') : ''}
+          </>
+        ) : (
+          hero.heading
+        )}
+      </h1>
 
       <!-- Accent mid-rule below headline: short brand bar, left-anchored -->
       <div class="ed-hero__rule" aria-hidden="true"></div>
@@ -186,47 +228,12 @@ const longTitle = (hero.heading ?? '').length > 24;
     background: color-mix(in srgb, var(--bg-deep) 82%, transparent);
   }
 
-  /* ── ④ Trust badge (top-right, out of the type flow) ───────────────────── */
-  .ed-hero__badge {
+  /* ── ④ Trust badge wrapper (top-right, out of the type flow) ───────────── */
+  .ed-hero__badge-wrap {
     position: absolute;
     top: clamp(1.5rem, 4vw, 3rem);
     right: clamp(1.5rem, 4vw, 3.5rem);
     z-index: 5;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.1rem;
-    background: var(--brand);
-    color: var(--brand-contrast);
-    border-radius: var(--radius);
-    padding: 0.85rem 1.1rem;
-    min-width: 72px;
-    box-shadow: var(--shadow-lg);
-    text-align: center;
-  }
-  .ed-hero__badge-year {
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: var(--fw-display);
-    line-height: 1;
-  }
-  .ed-hero__badge-label {
-    font-size: var(--step--1);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.85;
-  }
-  .ed-hero__badge-trust {
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.75;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 110px;
   }
 
   /* ── ⑤ Content layer ────────────────────────────────────────────────────── */
@@ -292,6 +299,13 @@ const longTitle = (hero.heading ?? '').length > 24;
     text-wrap: balance;
     font-size: clamp(2.6rem, 6.2vw, 5.6rem);
     max-width: 16ch;
+  }
+
+  /* Accent-word container — relative + inline-block so the absolute AccentMark
+     positions against the word (per AccentMark's contract). */
+  .ed-hero__accent-wrap {
+    position: relative;
+    display: inline-block;
   }
 
   /* Accent mid-rule below headline: left-anchored, short brand bar */
@@ -417,7 +431,7 @@ const longTitle = (hero.heading ?? '').length > 24;
       font-size: clamp(2.4rem, 10vw, 3.8rem);
       white-space: normal;
     }
-    .ed-hero__badge {
+    .ed-hero__badge-wrap {
       top: 1rem;
       right: 1rem;
     }

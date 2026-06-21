@@ -63,13 +63,13 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
       </p>
       <p class="lede">
         Scored on real photos, copy authenticity, section richness, contact
-        completeness, identity strength, trust signals & SEO. Sorted worst-first.
+        completeness, identity strength, trust signals and SEO. Sorted worst-first.
       </p>
 
       <ul class="grid">
         {
           prospects.map(({ slug, config, ad, score, grade, flags, uniq }) => (
-            <li class="card" style={`--spine:${ad.palette.brand}`}>
+            <li class="card" style={`--spine:${ad.palette.brand}`} data-slug={slug} data-score={score} data-grade={grade}>
               <div class="card__body">
                 <div class="card__top">
                   <h2>{config.name}</h2>
@@ -91,7 +91,7 @@ const GRADES = ['A', 'B', 'C', 'D', 'F'];
                   </span>
                 </div>
 
-                <div class="scorebar" aria-label={`Score ${score} of 100`}>
+                <div class="scorebar" role="img" aria-label={`Score ${score} of 100`}>
                   <span class={`scorebar__fill grade--${grade}`} style={`width:${score}%`} />
                   <span class="scorebar__num">{score}</span>
                 </div>

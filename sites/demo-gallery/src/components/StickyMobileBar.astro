@@ -1,0 +1,111 @@
+---
+/**
+ * StickyMobileBar — fixed bottom bar for mobile claim/demo pages.
+ *
+ * Renders only for unclaimed demos (caller gates on !outreach.published).
+ * Left: tap-to-call phone link. Right: "Claim This Site →" CTA.
+ * Min 48px touch targets, hidden on ≥768px, reduced-motion safe.
+ */
+import type { ProspectConfig } from '../types';
+
+const { config } = Astro.props as { config: ProspectConfig };
+const o = config.outreach ?? {};
+
+const phone = config.contact?.phone?.trim();
+const telHref = phone ? `tel:${phone.replace(/[^+\d]/g, '')}` : '';
+const claimHref = o.claimUrl || telHref || '#contact';
+---
+
+<div class="smb" role="complementary" aria-label="Quick actions">
+  {telHref && (
+    <a href={telHref} class="smb__phone" aria-label={`Call ${config.name}: ${phone}`}>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="20" height="20">
+        <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1L6.6 10.8Z"/>
+      </svg>
+      <span>{phone}</span>
+    </a>
+  )}
+  <a href={claimHref} class="smb__claim">
+    Claim This Site <span aria-hidden="true">→</span>
+  </a>
+</div>
+
+<style>
+  .smb {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    display: flex;
+    align-items: stretch;
+    background: var(--surface);
+    border-top: var(--border-weight) solid var(--border);
+    box-shadow: 0 -2px 12px rgba(0 0 0 / 0.12);
+  }
+
+  /* Hide on tablet and up */
+  @media (min-width: 768px) {
+    .smb { display: none; }
+  }
+
+  .smb__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex: 1;
+    min-height: 48px;
+    padding: 0.75rem var(--gutter, 1rem);
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: 0.88rem;
+    color: var(--text);
+    text-decoration: none;
+    border-right: var(--border-weight) solid var(--border);
+  }
+
+  .smb__phone:hover,
+  .smb__phone:focus-visible {
+    color: var(--brand);
+    text-decoration: none;
+  }
+
+  .smb__phone:focus-visible {
+    outline: 2px solid var(--ring, var(--brand));
+    outline-offset: -2px;
+  }
+
+  .smb__claim {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 48px;
+    padding: 0.75rem var(--gutter, 1rem);
+    background: var(--brand);
+    color: var(--brand-contrast);
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .smb__claim:hover,
+  .smb__claim:focus-visible {
+    background: var(--brand-dark);
+    text-decoration: none;
+    color: var(--brand-contrast);
+  }
+
+  .smb__claim:focus-visible {
+    outline: 2px solid var(--brand-contrast);
+    outline-offset: -2px;
+  }
+
+  /* When there's no phone, claim takes full width */
+  .smb__claim:only-child {
+    flex: 1;
+    border-right: none;
+  }
+</style>

@@ -160,7 +160,23 @@ export type Section =
        */
       type: 'spec-strip';
       items: { value: string; label: string; icon?: string }[];
-    } & SectionEnvelope);
+    } & SectionEnvelope)
+  | ({
+      /**
+       * awards — credentials / certifications strip (text chips with a shield
+       * mark). Distinct from spec-strip (numeric KPIs) and logos (image logos).
+       * Component: sections/AwardsSection.astro
+       */
+      type: 'awards';
+      items: { name: string; detail?: string; icon?: string }[];
+    } & SectionEnvelope)
+  // ── connective blocks (migrated from hardcoded template components) ────────
+  // 'about' renders About.astro; 'contact-block' renders the full Contact panel
+  // (address + phone + hours + map + CTA). Routing them through the Section list
+  // makes [slug].astro a dumb renderer so connective content can never double-
+  // render against generator-emitted map / hours-contact / cta sections.
+  | ({ type: 'about' } & SectionEnvelope)
+  | ({ type: 'contact-block' } & SectionEnvelope);
 
 /** The discriminant string of any Section (handy for the composition engine). */
 export type SectionType = Section['type'];
@@ -182,6 +198,26 @@ export interface ArtDirectionConfig {
   density?: 'compact' | 'standard' | 'spacious';
   neutralTemp?: 'warm' | 'cool';
   /**
+   * Photo treatment applied to hero/gallery images.
+   * duotone — brand-colored two-tone overlay (class .img-duotone, see treatment.css).
+   * natural — no overlay, full-color photo.
+   * muted   — desaturated / low-contrast treatment.
+   * Assigned deterministically by divergence.mjs per category; never fabricated.
+   */
+  photoTreatment?: 'duotone' | 'natural' | 'muted';
+  /**
+   * When true, apply film-grain texture ([data-grain] attribute, see treatment.css).
+   * Grain pairs well with duotone (winery/salon/boutique) and natural (cafe/restaurant).
+   */
+  photoGrain?: boolean;
+  /**
+   * Accent mark style applied to key headings via AccentMark.astro.
+   * underline — classic underline brush stroke.
+   * circle    — circle/oval drawn around a word.
+   * none      — no decorative mark.
+   */
+  accentMark?: 'underline' | 'circle' | 'none';
+  /**
    * Generator-internal hint from the batch-divergence pass: which distinctive
    * "depth" section this sibling should get so same-category sites don't share an
    * identical section set. Consumed by generate-prospects.mjs; unused at render.
@@ -201,7 +237,8 @@ export type HeroVariant =
   | 'collage'
   | 'statement'
   | 'typographic'
-  | 'editorial-asym';
+  | 'editorial-asym'
+  | 'editorial-overlap';
 
 /**
  * Cold-outreach funnel config. The demo gallery is an OUTREACH asset: until a
@@ -223,6 +260,18 @@ export interface OutreachConfig {
   claimByDate?: string;
   /** Short scarcity/personalization line, e.g. "1 build slot left in Sonoma County this month". */
   note?: string;
+  /**
+   * Date this demo slot is reserved until (YYYY-MM-DD). Auto-populated by the
+   * generator (generation date + 30 days). Shown in the claim banner as a soft
+   * urgency signal. Omit to show no reservation date.
+   */
+  reservedUntil?: string;
+  /**
+   * Short reassurance line shown beneath the claim CTA. E.g.
+   * "No contract. No setup fee. Live in 48 hours."
+   * Auto-populated by the generator; override per-prospect as needed.
+   */
+  claimSubtext?: string;
 }
 
 export interface ProspectConfig {
@@ -252,6 +301,8 @@ export interface ProspectConfig {
   hero: {
     heading: string;
     subheading: string;
+    /** Optional badge above the headline — e.g. "Healdsburg, CA · Est. 1987". */
+    eyebrow?: string;
     ctaText: string;
     ctaHref: string;
   };
@@ -309,7 +360,7 @@ export interface ProspectConfig {
   outreach?: OutreachConfig;
 
   /** Extra real photos the generator collected (feeds gallery/collage). */
-  galleryImages?: { src: string; alt: string }[];
+  galleryImages?: { src: string; alt: string; credit?: string }[];
 
   /**
    * Optional explicit business category. When absent the art-direction engine

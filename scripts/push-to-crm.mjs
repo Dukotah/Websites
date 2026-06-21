@@ -41,6 +41,18 @@ function parseArgs(argv) {
   return opts;
 }
 
+const GALLERY_BASE = (process.env.GALLERY_BASE_URL || '').replace(/\/+$/, '');
+
+// Absolutize a manifest link/thumbnail against GALLERY_BASE_URL when it's a
+// site-relative path (the generator writes relative links when GALLERY_BASE_URL
+// wasn't set at generation time). Leaves already-absolute URLs untouched.
+function absolutize(url) {
+  if (!url) return url;
+  if (/^https?:\/\//i.test(url)) return url;
+  if (!GALLERY_BASE) return url; // can't absolutize without a base; surfaced as a warning later
+  return `${GALLERY_BASE}/${url.replace(/^\/+/, '')}`;
+}
+
 // Read the generated manifest if present; otherwise reconstruct entries from the
 // committed prospect JSON files so a demo works even when the (gitignored)
 // manifest hasn't been regenerated this session.
@@ -51,15 +63,20 @@ async function loadEntries(manifestPath) {
       source: manifestPath,
       entries: raw.map((r) => ({
         name: r.name,
-        link: r.link,
+        link: absolutize(r.link),
+        slug: r.slug,
         status: r.status ?? 'ready',
+        flags: r.flags,
+        category: r.category,
+        area: r.area,
+        claimByDate: r.claimByDate,
+        thumbnailUrl: absolutize(r.thumbnailUrl),
       })),
     };
   }
 
   // Fallback: scan prospect configs + GALLERY_BASE_URL.
-  const base = (process.env.GALLERY_BASE_URL || '').replace(/\/+$/, '');
-  if (!base) {
+  if (!GALLERY_BASE) {
     throw new Error(
       `No manifest at ${manifestPath} and GALLERY_BASE_URL is unset.\n` +
         `Either run "npm run generate-prospects -- data/<file>.csv" first, or set ` +
@@ -72,7 +89,13 @@ async function loadEntries(manifestPath) {
     const slug = file.replace(/\.json$/, '');
     const cfg = JSON.parse(await readFile(join(PROSPECTS_DIR, file), 'utf8'));
     if (!cfg?.name) continue;
-    entries.push({ name: cfg.name, link: `${base}/p/${slug}`, status: 'ready' });
+    entries.push({
+      name: cfg.name,
+      link: `${GALLERY_BASE}/p/${slug}`,
+      slug,
+      status: cfg.status ?? 'ready',
+      thumbnailUrl: `${GALLERY_BASE}/thumbnails/${slug}.png`,
+    });
   }
   return { source: `${PROSPECTS_DIR} (+ GALLERY_BASE_URL)`, entries };
 }
@@ -112,6 +135,14 @@ async function main() {
     process.exit(1);
   }
 
+  const relative = entries.filter((e) => /^\//.test(e.link));
+  if (relative.length) {
+    console.warn(
+      `\n⚠ ${relative.length} link(s) are still site-relative (e.g. ${relative[0].link}).\n` +
+        `  Set GALLERY_BASE_URL=https://demos.copperbaytech.com so the CRM stores click-ready URLs.\n`,
+    );
+  }
+
   console.log(`Source: ${source}`);
   console.log(`Pushing ${entries.length} demo link(s) to the CRM${dropped ? ` (${dropped} skipped: missing name/link)` : ''}:`);
   for (const e of entries) {
@@ -124,7 +155,21 @@ async function main() {
     return;
   }
 
-  const payload = { entries: entries.map((e) => ({ name: e.name, link: e.link })) };
+  // Send the full demo package; the CRM route (preview-url) accepts these
+  // additive fields and falls back gracefully on legacy {name, link} posts.
+  const payload = {
+    entries: entries.map((e) => ({
+      name: e.name,
+      link: e.link,
+      slug: e.slug,
+      status: e.status,
+      flags: e.flags,
+      category: e.category,
+      area: e.area,
+      claimByDate: e.claimByDate,
+      thumbnailUrl: e.thumbnailUrl,
+    })),
+  };
   const res = await fetch(`${crmUrl}/api/crm/admin/preview-url`, {
     method: 'POST',
     headers: {

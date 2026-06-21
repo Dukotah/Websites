@@ -3,7 +3,8 @@ import type { ProspectConfig } from '../types';
 import ContactForm from './ContactForm.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const phone = config.contact.phone?.trim();
+const telHref = phone ? `tel:${phone.replace(/[^+\d]/g, '')}` : '';
 const mapQuery = encodeURIComponent(`${config.name}, ${config.contact.address}`);
 const mapHref = `https://maps.google.com/?q=${mapQuery}`;
 const mapEmbed = `https://maps.google.com/maps?q=${mapQuery}&output=embed`;
@@ -23,10 +24,12 @@ const mapEmbed = `https://maps.google.com/maps?q=${mapQuery}&output=embed`;
           <span class="visit__label">Address</span>
           <a href={mapHref} target="_blank" rel="noopener">{config.contact.address}</a>
         </li>
-        <li>
-          <span class="visit__label">Phone</span>
-          <a href={telHref}>{config.contact.phone}</a>
-        </li>
+        {phone && (
+          <li>
+            <span class="visit__label">Phone</span>
+            <a href={telHref}>{phone}</a>
+          </li>
+        )}
         {config.contact.email && (
           <li>
             <span class="visit__label">Email</span>

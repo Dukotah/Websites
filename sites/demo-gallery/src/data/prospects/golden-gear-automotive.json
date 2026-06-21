@@ -1,10 +1,10 @@
 {
   "name": "Golden Gear Automotive",
   "category": "auto-repair",
-  "tagline": "At Golden Gear Automotive, our family-owned and operated Sebastopol auto repair shop, we pride ourselves",
-  "seoDescription": "At Golden Gear Automotive, our family-owned and operated Sebastopol auto repair shop, we pride ourselves on servicing a diverse range of vehicles.",
+  "tagline": "Family-owned, ASE-certified auto repair in Sebastopol.",
+  "seoDescription": "Golden Gear Automotive — family-owned, ASE Blue Seal Certified auto repair in Sebastopol, CA for all makes and models.",
   "area": "Sebastopol, CA",
-  "established": "",
+  "established": "2017",
   "contact": {
     "phone": "(707) 329-6105",
     "email": "",
@@ -17,14 +17,14 @@
   },
   "hero": {
     "heading": "Repairs done right, guaranteed.",
-    "subheading": "At Golden Gear Automotive, our family-owned and operated Sebastopol auto repair shop, we pride ourselves on servicing a diverse range of vehicles.",
+    "subheading": "Family-owned and ASE Blue Seal Certified — honest diagnostics, repairs, and maintenance for everything from daily drivers to luxury imports.",
     "ctaText": "Get in touch",
     "ctaHref": "#contact"
   },
   "highlights": [
-    "ASE-certified",
-    "Honest quotes",
-    "Warranty on work"
+    "ASE Blue Seal Certified",
+    "36-mo / 36k warranty",
+    "60+ Yelp reviews"
   ],
   "images": {
     "hero": "/images/golden-gear-automotive/hero.png",
@@ -95,6 +95,15 @@
   ],
   "hoursNote": "",
   "sections": [
+    {
+      "type": "stats",
+      "items": [
+        { "value": "2017", "label": "Serving since" },
+        { "value": "20+", "label": "Years' experience" },
+        { "value": "60+", "label": "Yelp reviews" },
+        { "value": "36-mo", "label": "Warranty on repairs" }
+      ]
+    },
     {
       "type": "services-detailed",
       "eyebrow": "Services",

@@ -48,7 +48,7 @@ const {
         {rows.map((row) => {
           const hasImg = Boolean(row.image);
           return (
-            <article class={`fsf__card${!hasImg ? ' fsf__card--no-img' : ''}`} data-reveal aria-label={row.heading}>
+            <article class={`fsf__card${!hasImg ? ' fsf__card--no-img' : ''}`} data-reveal>
 
               {/* ── Image band ─────────────────────────────────────── */}
               <div class="fsf__media">

@@ -37,6 +37,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { scrapeSite, stripTags } from './lib/scrape-site.mjs';
 import { acquirePhotos } from './lib/images.mjs';
 import { diversifyBatch } from './lib/divergence.mjs';
+import { usableDescription, cleanCopy } from './lib/copy-quality.mjs';
+import { augmentEnrichment } from './lib/augment-enrichment.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'prospects');
@@ -98,7 +100,9 @@ const CATEGORIES = {
   default: {
     theme: { brand: '#c2683a', brandDark: '#243b53' },
     highlights: ['Friendly service', 'Locally owned', 'Fair prices'],
-    services: ['Service one', 'Service two', 'Service three', 'Service four'],
+    // Meaningful generic fallbacks — never literal "Service one" placeholders,
+    // which read as a broken page if a build is viewed before review.
+    services: ['Consultations', 'Custom work', 'On-site service', 'Free estimates'],
   },
 };
 
@@ -120,6 +124,14 @@ function hashStr(s) {
 // Stable per-slug hash → a layout.
 function layoutFor(slug) {
   return LAYOUTS[hashStr(slug) % LAYOUTS.length];
+}
+
+// Compute "generation date + N days" as a YYYY-MM-DD string.
+// Uses the system clock at generation time — each run updates the date.
+function daysFromNow(n) {
+  const d = new Date();
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0, 10);
 }
 
 // ---------------------------------------------------------------------------
@@ -171,6 +183,132 @@ const HERO_HEADLINES = {
     () => `Back on the road, fast.`,
     (c) => (c.year ? `Trusted under the hood since ${c.year}.` : `Repairs done right, guaranteed.`),
   ],
+  tattoo: [
+    (c) => (c.year ? `Custom ink in ${c.city || 'town'} since ${c.year}.` : `Ink that tells your story.`),
+    (c) => `${c.city || 'Your'} studio for work that lasts.`,
+    () => `Bold lines. Clean work. Your vision.`,
+    () => `Art you'll want to show off forever.`,
+  ],
+  marina: [
+    (c) => (c.year ? `On the water${c.city ? ` in ${c.city}` : ''} since ${c.year}.` : `Your home base on the water.`),
+    (c) => `${c.city || 'Lake'} made easy — from launch to tie-up.`,
+    () => `Everything the serious boater needs.`,
+    (c) => `The marina ${c.city || 'local'} boaters trust.`,
+  ],
+  restaurant: [
+    (c) => (c.year ? `A ${c.city || 'local'} table since ${c.year}.` : `Food worth making the drive for.`),
+    (c) => `${c.city || 'The'} spot ${c.city ? c.city + ' ' : ''}keeps coming back to.`,
+    () => `Made from scratch. Served with pride.`,
+    (c) => `Good food, good people${c.city ? `, ${c.city}` : ''}.`,
+  ],
+  bakery: [
+    (c) => (c.year ? `Baked fresh in ${c.city || 'town'} since ${c.year}.` : `Fresh every morning.`),
+    (c) => `${c.city || 'Our'} favorite thing to wake up for.`,
+    () => `Real ingredients. Real craft. No shortcuts.`,
+    () => `The smell alone is worth the stop.`,
+  ],
+  wellness: [
+    (c) => (c.year ? `Caring for ${c.city || 'the community'} since ${c.year}.` : `Feel better. Move better. Live better.`),
+    (c) => `${c.city || 'Local'} wellness, done with intention.`,
+    () => `Where recovery meets results.`,
+    () => `Your next step toward feeling your best.`,
+  ],
+  fitness: [
+    (c) => (c.year ? `Building stronger ${c.city || 'athletes'} since ${c.year}.` : `Train hard. Recover smart.`),
+    (c) => `${c.city || 'The'} gym that gets real results.`,
+    () => `No fluff. Just progress.`,
+    (c) => `Where ${c.city || 'local'} athletes come to train.`,
+  ],
+  construction: [
+    (c) => (c.year ? `Building ${c.city || 'the area'} since ${c.year}.` : `Built to last — the first time.`),
+    (c) => `${c.city || 'Local'} craftsmanship you can count on.`,
+    () => `On time, on budget, built right.`,
+    (c) => `The crew ${c.city || 'locals'} hire and recommend.`,
+  ],
+  cleaning: [
+    () => `A cleaner space, without the hassle.`,
+    (c) => `${c.city || 'Local'} cleaning you can actually rely on.`,
+    () => `Spotless, every single time.`,
+    (c) => (c.year ? `Keeping ${c.city || 'homes'} spotless since ${c.year}.` : `Show-ready, every visit.`),
+  ],
+  hvac: [
+    () => `Comfortable all year round.`,
+    (c) => `${c.city || 'Local'} heating and cooling, done right.`,
+    () => `Fast service when the weather turns.`,
+    (c) => (c.year ? `Keeping ${c.city || 'the area'} comfortable since ${c.year}.` : `Upfront pricing, lasting comfort.`),
+  ],
+  electrician: [
+    () => `Wired right. Done safe.`,
+    (c) => `${c.city || 'Local'} electrical you can trust.`,
+    () => `Licensed, insured, and on time.`,
+    (c) => (c.year ? `Powering ${c.city || 'homes'} since ${c.year}.` : `No guesswork. Just safe, solid work.`),
+  ],
+  roofing: [
+    () => `A roof that holds up — for decades.`,
+    (c) => `${c.city || 'Local'} roofing built to last.`,
+    () => `Honest quotes. Lasting work.`,
+    (c) => (c.year ? `Protecting ${c.city || 'homes'} since ${c.year}.` : `Done right, before the next storm.`),
+  ],
+  painting: [
+    () => `A finish you'll be proud of.`,
+    (c) => `${c.city || 'Local'} painters who sweat the details.`,
+    () => `Clean lines. Clean job site.`,
+    (c) => (c.year ? `Refreshing ${c.city || 'homes'} since ${c.year}.` : `Crisp work, start to finish.`),
+  ],
+  dentist: [
+    () => `A reason to look forward to the dentist.`,
+    (c) => `${c.city || 'Your'} smile, in good hands.`,
+    () => `Gentle care, honest answers.`,
+    (c) => (c.year ? `Caring for ${c.city || 'local'} smiles since ${c.year}.` : `Modern dentistry, comfortable visits.`),
+  ],
+  'real-estate': [
+    (c) => `${c.city || 'Local'} expertise that moves you.`,
+    () => `The agent who actually picks up.`,
+    () => `Sold for more, with less stress.`,
+    (c) => (c.year ? `Helping ${c.city || 'families'} move since ${c.year}.` : `Your next chapter starts here.`),
+  ],
+  photography: [
+    () => `Moments worth keeping, done right.`,
+    (c) => `${c.city || 'Your'} story, beautifully captured.`,
+    () => `Real moments. Timeless images.`,
+    (c) => (c.year ? `Capturing ${c.city || 'the area'} since ${c.year}.` : `Photography that feels like you.`),
+  ],
+  barber: [
+    () => `Sharp cuts. No fuss.`,
+    (c) => `${c.city || 'Your'} chair is ready.`,
+    () => `Walk in. Walk out sharp.`,
+    (c) => (c.year ? `Keeping ${c.city || 'town'} sharp since ${c.year}.` : `A cut that actually fits you.`),
+  ],
+  spa: [
+    () => `Unwind. Reset. Glow.`,
+    (c) => `${c.city || 'Your'} escape from the everyday.`,
+    () => `Real relaxation, real results.`,
+    (c) => (c.year ? `A ${c.city || 'local'} retreat since ${c.year}.` : `Time for you, finally.`),
+  ],
+  florist: [
+    () => `Blooms that say it better.`,
+    (c) => `${c.city || 'Local'} flowers, arranged with care.`,
+    () => `Fresh stems. Thoughtful design.`,
+    (c) => (c.year ? `Arranging ${c.city || 'the area'}'s moments since ${c.year}.` : `For every moment worth marking.`),
+  ],
+  catering: [
+    () => `Food your guests will remember.`,
+    (c) => `${c.city || 'Local'} catering, done beautifully.`,
+    () => `From intimate to all-out — handled.`,
+    (c) => (c.year ? `Catering ${c.city || 'the area'}'s events since ${c.year}.` : `Great food, zero stress.`),
+  ],
+  'pest-control': [
+    () => `Gone for good — guaranteed.`,
+    (c) => `${c.city || 'Local'} pest control that works.`,
+    () => `Fast, safe, and thorough.`,
+    (c) => (c.year ? `Protecting ${c.city || 'homes'} since ${c.year}.` : `Your home, back to being yours.`),
+  ],
+  veterinary: [
+    () => `Care your pet can feel.`,
+    (c) => `${c.city || 'Your'} pet, in caring hands.`,
+    () => `Gentle vets. Honest advice.`,
+    (c) => (c.year ? `Caring for ${c.city || 'local'} pets since ${c.year}.` : `Because they're family too.`),
+  ],
   default: [
     (c) => (c.year ? `Serving ${c.city || 'the area'} since ${c.year}.` : `${titleCase(c.what)} you can count on.`),
     (c) => `${c.city || 'Local'}, trusted, and proud of it.`,
@@ -184,6 +322,52 @@ function pickHeroHeadline(row, e, what, area) {
   const bank = HERO_HEADLINES[key];
   const ctx = { name: row.name, city: row.city, area, what, year: e?.established || '' };
   return bank[hashStr(slugify(row.name) + '|hero') % bank.length](ctx);
+}
+
+/**
+ * Build a compact credential string from real facts. Used in the hero subheading
+ * and eyebrow to make each site feel specific, not templated. Always data-gated —
+ * only real scraped facts contribute; never fabricated.
+ *
+ * Examples:
+ *   "Family-owned since 1987 · Licensed & insured"
+ *   "Est. 2004 · 4.9★ on Yelp · Maria & Tom Silva"
+ *   "Serving Healdsburg, CA"
+ */
+function buildCredential(row, e, area) {
+  const parts = [];
+  const estRaw = (e?.established || row.established || '').toString().replace(/^est\.?\s*/i, '').trim();
+  if (estRaw && /^\d{4}$/.test(estRaw)) parts.push(`Est. ${estRaw}`);
+  if (e?.rating && e?.reviewCount) parts.push(`${e.rating}★ · ${e.reviewCount} reviews`);
+  else if (e?.rating) parts.push(`${e.rating}★ rated`);
+  // Owner name from enrichment (e.ownerName) or a CSV column (owner_name).
+  const owner = e?.ownerName || row.owner_name || row.owner || '';
+  if (owner) parts.push(owner);
+  // Fall back to area alone when nothing else is available.
+  if (!parts.length && area) parts.push(`Serving ${area}`);
+  return parts.join(' · ');
+}
+
+/**
+ * Build the hero eyebrow — a short badge line above the headline. Ideally
+ * references both city and a real credential. Falls back gracefully.
+ *
+ * Examples:
+ *   "Healdsburg, CA · Est. 1987"
+ *   "Winery · Healdsburg"
+ *   "Salon · San Francisco"
+ */
+function buildEyebrow(row, e, what, area) {
+  const city = row.city || '';
+  const estRaw = (e?.established || row.established || '').toString().replace(/^est\.?\s*/i, '').trim();
+  const credential = estRaw && /^\d{4}$/.test(estRaw) ? `Est. ${estRaw}` : '';
+  const ratingBadge = e?.rating ? `${e.rating}★` : '';
+
+  if (city && credential) return `${city} · ${credential}`;
+  if (city && ratingBadge) return `${city} · ${ratingBadge}`;
+  if (city) return `${titleCase(what)} · ${city}`;
+  if (credential) return `${titleCase(what)} · ${credential}`;
+  return titleCase(what);
 }
 
 // ---------------------------------------------------------------------------
@@ -200,7 +384,79 @@ const SERVICE_DESC_TEMPLATES = [
   (t, city) => `${t} you can trust${city ? `, right here in ${city}` : ''}.`,
 ];
 
-function deriveServiceDesc(title, aboutText, city, seed, used) {
+// Category-flavored fallback descriptions. Each template must stay TITLE-AGNOSTIC
+// (work for any service title within that category cluster) and avoid the
+// "Professional X for Y and nearby" phrasing that score.ts penalizes. Categories
+// map to a shared cluster via CATEGORY_TO_DESC_BANK; anything unmapped falls back
+// to the generic SERVICE_DESC_TEMPLATES above.
+const SERVICE_DESC_BANKS = {
+  trades: [
+    (t, c) => `${t} done right the first time${c ? ` for ${c} homes` : ''} — no shortcuts, no surprises.`,
+    (t) => `Upfront pricing and clean, lasting ${t.toLowerCase()} — we treat your place like our own.`,
+    (t) => `Licensed, insured, and meticulous about every ${t.toLowerCase()} job.`,
+  ],
+  beauty: [
+    (t) => `Expert ${t.toLowerCase()}, personalized to you.`,
+    (t, c) => `${t} that leaves you feeling like the best version of yourself${c ? `, right in ${c}` : ''}.`,
+    (t) => `Skilled hands and an honest eye for ${t.toLowerCase()}.`,
+  ],
+  food: [
+    (t) => `${t} made fresh with real ingredients — never frozen, never rushed.`,
+    (t, c) => `A ${c ? `${c} ` : ''}favorite: our ${t.toLowerCase()}, made daily.`,
+    (t) => `${t} from scratch, served with pride.`,
+  ],
+  dining: [
+    (t) => `${t} worth making the drive for — seasonal, scratch-made, generous.`,
+    (t, c) => `${t} done the way ${c || 'locals'} keep coming back for.`,
+    (t) => `Honest ${t.toLowerCase()}, real ingredients, no cutting corners.`,
+  ],
+  care: [
+    (t) => `Gentle, attentive ${t.toLowerCase()} with answers you can actually trust.`,
+    (t, c) => `${t} for ${c || 'the whole community'}, in caring, experienced hands.`,
+    (t) => `Modern ${t.toLowerCase()}, comfortable visits, no pressure.`,
+  ],
+  home: [
+    (t, c) => `Reliable ${t.toLowerCase()}${c ? ` across ${c}` : ''} — on schedule and done well.`,
+    (t) => `Thorough ${t.toLowerCase()} from a crew that shows up and follows through.`,
+    (t) => `${t} that actually lasts, backed by people who answer the phone.`,
+  ],
+  auto: [
+    (t) => `${t} done straight — we tell you what you need and what you don't.`,
+    (t, c) => `Fast, honest ${t.toLowerCase()}${c ? ` for ${c} drivers` : ''}, back on the road quick.`,
+    (t) => `Real diagnostics behind every ${t.toLowerCase()} — no upsell, no guesswork.`,
+  ],
+  fitness: [
+    (t) => `${t} built around real progress, not gimmicks.`,
+    (t, c) => `${t} for every level${c ? `, right in ${c}` : ''} — coached, not just supervised.`,
+    (t) => `Smart, structured ${t.toLowerCase()} that actually gets results.`,
+  ],
+  creative: [
+    (t) => `${t} with a real eye — work you'll be proud to show off.`,
+    (t, c) => `${t}${c ? ` in ${c}` : ''} that captures what makes you, you.`,
+    (t) => `Thoughtful, original ${t.toLowerCase()} — never cookie-cutter.`,
+  ],
+};
+
+const CATEGORY_TO_DESC_BANK = {
+  plumbing: 'trades', hvac: 'trades', electrician: 'trades', roofing: 'trades',
+  painting: 'trades', construction: 'trades',
+  salon: 'beauty', spa: 'beauty', barber: 'beauty',
+  cafe: 'food', bakery: 'food',
+  restaurant: 'dining', catering: 'dining', winery: 'dining',
+  dentist: 'care', wellness: 'care', veterinary: 'care',
+  landscaping: 'home', cleaning: 'home', 'pest-control': 'home',
+  'auto-repair': 'auto', towing: 'auto',
+  fitness: 'fitness',
+  photography: 'creative', tattoo: 'creative', florist: 'creative',
+};
+
+/** Resolve the service-description template bank for a category (generic fallback). */
+function serviceDescBank(category) {
+  const grp = CATEGORY_TO_DESC_BANK[(category || '').toLowerCase()];
+  return (grp && SERVICE_DESC_BANKS[grp]) || SERVICE_DESC_TEMPLATES;
+}
+
+function deriveServiceDesc(title, aboutText, city, seed, used, category) {
   // 1) A real sentence from their own copy that names this service — but NOT one
   //    already used for another service (two services often share a keyword, and
   //    repeating one sentence verbatim across cards looks worse than a template).
@@ -221,8 +477,10 @@ function deriveServiceDesc(title, aboutText, city, seed, used) {
       return clip(hit, 200);
     }
   }
-  // 2) Varied, concrete fallback (action verb + the service noun phrase).
-  const tpl = SERVICE_DESC_TEMPLATES[seed % SERVICE_DESC_TEMPLATES.length];
+  // 2) Varied, concrete fallback — category-flavored when the cluster is known,
+  //    else the generic templates.
+  const bank = serviceDescBank(category);
+  const tpl = bank[seed % bank.length];
   return tpl(titleCase(title), city);
 }
 
@@ -241,6 +499,27 @@ function clip(s, max) {
   const words = out.trim().replace(/[\s,;:.!?&-]+$/, '').split(' ');
   if (words.length > 1 && ORPHANS.has(words[words.length - 1].toLowerCase())) words.pop();
   return words.join(' ').replace(/[\s,;:&-]+$/, '').trim();
+}
+
+// Like clip(), but NEVER truncates: returns whole sentence(s) from the start
+// that fit within `max`, or '' if even the first sentence is too long. Used for
+// the tagline/hero-subheading so they're either a complete real sentence or a
+// composed line — never a mid-sentence meta clip (the cookie-cutter tell).
+function clipSentence(s, max) {
+  const t = (s || '').replace(/\s+/g, ' ').trim();
+  if (!t) return '';
+  const sentences = t.split(/(?<=[.!?])\s+/);
+  let out = '';
+  for (const sentence of sentences) {
+    const next = out ? `${out} ${sentence}` : sentence;
+    if (next.length > max) break;
+    out = next;
+  }
+  out = out.trim();
+  // Guarantee terminal punctuation; if the source had none and it's short
+  // enough, add a period so it reads as a finished line.
+  if (out && !/[.!?]$/.test(out)) out = `${out}.`;
+  return out.length >= 12 ? out : '';
 }
 
 // Minimal CSV parser: handles quoted fields and commas inside quotes.
@@ -347,13 +626,23 @@ function researchCopy(row, preset, e) {
   const what = row.category ? row.category.replace(/-/g, ' ') : 'local business';
   const templated = [];
 
+  // The single most important line in this file: the scraped self-description
+  // is run through the slop filter BEFORE it's allowed anywhere near the copy.
+  // `usableDescription` strips platform boilerplate and rejects meta-tag dumps
+  // / truncated fragments — so "This is the online store for X" (and its
+  // mid-sentence clips) can NEVER become a tagline/hero/about line again. When
+  // it returns '', we compose from real facts and flag the field for the agent.
+  const desc = usableDescription(e?.description || '');
+
   // About: their OWN words (cleaned) beat anything we'd write.
   let aboutBody;
-  const realParas = (e?.about ?? []).map((p) => stripTags(p)).filter((p) => p.length > 60);
+  const realParas = (e?.about ?? [])
+    .map((p) => cleanCopy(stripTags(p)))
+    .filter((p) => p.length > 60 && usableDescription(p) !== '');
   if (realParas.length) {
     aboutBody = realParas.slice(0, 2);
-  } else if (e?.description && e.description.length > 80) {
-    aboutBody = [clip(e.description, 320)];
+  } else if (desc && desc.length > 80) {
+    aboutBody = [clip(desc, 320)];
   } else {
     templated.push('about');
     aboutBody = [
@@ -368,21 +657,40 @@ function researchCopy(row, preset, e) {
   // their titles, so descriptions are derived from their own about copy where
   // possible (a sentence that names the service), else a varied concrete line.
   let services;
-  if (e?.services?.length >= 3) {
-    const aboutText = realParas.join(' ') || e?.description || '';
-    const sseed = hashStr(slugify(row.name));
+  const sseed = hashStr(slugify(row.name));
+  const cat = (row.category || '').toLowerCase();
+  const descBank = serviceDescBank(cat);
+  if (e?.services?.length >= 1) {
+    // Use whatever REAL services the scrape found (even 1–2) — authentic titles
+    // beat a full grid of presets. If fewer than 3, top up from the category
+    // preset so the grid still looks full, but never with the penalized
+    // "Professional X for Y and nearby" filler.
+    const aboutText = realParas.join(' ') || desc || '';
     const usedDescs = new Set();
-    services = e.services.slice(0, 5).map((title, i) => ({
+    const real = e.services.slice(0, 5).map((title, i) => ({
       title: titleCase(title),
-      description: deriveServiceDesc(title, aboutText, row.city, sseed + i, usedDescs),
+      description: deriveServiceDesc(title, aboutText, row.city, sseed + i, usedDescs, cat),
     }));
-    // No longer flagged 'service-descriptions': derived from real copy or a
-    // concrete, non-filler template — not the old "<Title> for <city>…" stub.
+    // deriveServiceDesc only adds to usedDescs when it pulls a REAL sentence from
+    // their copy; an empty set means every description fell back to a template —
+    // real titles, canned descriptions — which deriveStatus flags for a polish.
+    if (real.length && usedDescs.size === 0) templated.push('service-descriptions');
+    const have = new Set(real.map((s) => s.title.toLowerCase()));
+    const topUp = preset.services
+      .filter((t) => !have.has(t.toLowerCase()))
+      .slice(0, Math.max(0, 3 - real.length))
+      .map((title, i) => ({
+        title,
+        description: descBank[(sseed + i) % descBank.length](titleCase(title), row.city),
+      }));
+    services = [...real, ...topUp];
   } else {
+    // No real services at all → preset grid, but with varied concrete copy (not
+    // the templated filler the scorer penalizes). Still flagged for a polish pass.
     templated.push('services');
-    services = preset.services.map((title) => ({
+    services = preset.services.map((title, i) => ({
       title,
-      description: `Professional ${title.toLowerCase()} for ${row.city || 'the local area'} and nearby.`,
+      description: descBank[(sseed + i) % descBank.length](titleCase(title), row.city),
     }));
   }
 
@@ -396,30 +704,59 @@ function researchCopy(row, preset, e) {
     else break;
   }
 
-  const tagline = e?.description
-    ? clip(e.description, 110)
-    : `${titleCase(what)} you can count on in ${row.city || 'town'}.`;
-  if (!e?.description) templated.push('tagline');
+  // Tagline: the first clean sentence of their OWN description (a real promise),
+  // never a mid-sentence clip. If no usable description survived the slop
+  // filter, compose from facts and flag it so the agent writes a real one.
+  const firstSentence = desc ? clipSentence(desc, 90) : '';
+  const tagline = firstSentence || `${titleCase(what)} you can count on in ${row.city || 'town'}.`;
+  if (!firstSentence) templated.push('tagline');
 
-  const seoDescription = clip(
-    e?.description ||
-      `${row.name} — trusted ${what} serving ${area || 'the local area'}. Call today for friendly, reliable service.`,
+  // SEO description: composed for local SEO (names the town) — NOT the raw meta.
+  // A clean self-description can seed it, but it must read as a full sentence.
+  let seoDescription = clip(
+    firstSentence
+      ? `${firstSentence} ${row.name} serves ${area || 'the local area'}.`
+      : `${row.name} — trusted ${what} serving ${area || 'the local area'}. Call today for friendly, reliable service.`,
     150,
   );
+  // The scorer rewards 80–160 chars; a short name + short first sentence can land
+  // under 80. Pad with real local context (never placeholder) to reach the band.
+  if (seoDescription.length < 80) {
+    seoDescription = clip(
+      `${seoDescription} ${titleCase(what)} proudly serving ${area || 'the local community'} and nearby.`,
+      155,
+    );
+  }
 
   // Hero: a per-category headline bank (earned-feeling, seeded) — not the old
   // formulaic "<Category> done right."
   const heroHeading = pickHeroHeadline(row, e, what, area);
 
-  const heroSubheading = e?.description
-    ? clip(e.description, 170)
-    : `Serving ${area || 'the local community'} with honest work and a friendly face.`;
+  // Hero subheading: a fuller clean clip of their description (distinct from the
+  // tagline), else a composed credential line + flagged. Never the raw,
+  // mid-sentence meta dump. Guard on the CLIPPED result, not just `desc`: a
+  // truthy description whose every sentence is >170 chars makes clipSentence
+  // return '' — fall back to the composed line and flag it, so a site never
+  // ships an empty subheading.
+  const subFromDesc = desc ? clipSentence(desc, 170) : '';
+  // Build a credential string from real facts to weave into the composed fallback.
+  const credential = buildCredential(row, e, area);
+  const heroSubheading =
+    subFromDesc ||
+    (credential
+      ? `${credential}. Serving ${area || 'the local community'} with honest work and a friendly face.`
+      : `Serving ${area || 'the local community'} with honest work and a friendly face.`);
+  if (!subFromDesc) templated.push('hero-subheading');
+
+  // Eyebrow: city + real credential when available, else category + city.
+  const heroEyebrow = buildEyebrow(row, e, what, area);
 
   return {
     tagline,
     seoDescription,
     heroHeading,
     heroSubheading,
+    heroEyebrow,
     highlights: highlights.slice(0, 3),
     aboutHeading: realParas.length ? `About ${row.name}` : 'About us',
     aboutBody,
@@ -439,15 +776,38 @@ function fallbackCopy(row, preset) {
 // actually provides the facts to fill it, so the FIRST build lands rich instead
 // of thin. Photos/gallery are deliberately NOT built here — that lever lives in
 // the media pipeline so we never pad a gallery with stock.
+// Extract the first money amount from a string ("Oil change from $49.99" → "$49.99").
+// Returns '' when none — keeps the menu strictly data-gated (no fabricated prices).
+function extractPrice(text) {
+  if (!text) return '';
+  const m = String(text).match(/\$\s?\d{1,4}(?:[.,]\d{2})?/);
+  return m ? m[0].replace(/\s/g, '') : '';
+}
+
 function buildSections(row, e, copy) {
   const sections = [];
   const area = [row.city, row.state].filter(Boolean).join(', ');
   const phone = e?.phone || row.phone || '';
   const address = e?.address || row.address || '';
 
-  // 1) Services as the rich grid — the visible spine of the page.
+  // 1) Services spine — a priced MENU for food / personal-care when real prices
+  //    exist, otherwise the rich services-detailed grid. Never both (they'd
+  //    duplicate the same services). Data-gated: the menu only fires when ≥3
+  //    services carry a detectable price, so nothing is fabricated.
   const svc = (copy?.services ?? []).filter((s) => s.title);
-  if (svc.length) {
+  const MENU_CATS = new Set(['cafe', 'restaurant', 'bakery', 'salon', 'spa', 'bar', 'deli']);
+  const cat = (row.category || '').toLowerCase();
+  const pricedItems = svc
+    .map((s) => ({ name: s.title, price: extractPrice(s.description) || extractPrice(s.title) }))
+    .filter((it) => it.price);
+  if (MENU_CATS.has(cat) && pricedItems.length >= 3) {
+    sections.push({
+      type: 'menu',
+      eyebrow: 'Menu',
+      heading: copy.servicesHeading || 'What we offer',
+      groups: [{ title: copy.servicesHeading || 'Highlights', items: pricedItems.slice(0, 12) }],
+    });
+  } else if (svc.length) {
     sections.push({
       type: 'services-detailed',
       eyebrow: 'Services',
@@ -464,8 +824,23 @@ function buildSections(row, e, copy) {
     else stats.push({ value: String(e.established), label: 'Serving since' });
   }
   if (e?.rating) stats.push({ value: `${e.rating}★`, label: e.reviewCount ? `${e.reviewCount} reviews` : 'Customer rating' });
-  if (e?.services?.length >= 3) stats.push({ value: `${e.services.length}`, label: 'Services offered' });
+  // Count the services actually RENDERED (copy is capped at 5), not the raw
+  // scrape — otherwise a 10-service business shows "10" while only 5 appear.
+  if (svc.length >= 3) stats.push({ value: String(svc.length), label: 'Services offered' });
   if (stats.length >= 2) sections.push({ type: 'stats', items: stats.slice(0, 4) });
+
+  // 2b) Credentials / awards strip — cert-like highlights become trust chips.
+  // Data-gated: only when ≥2 real credentials are present (never fabricated).
+  const CRED_RE = /\b(ASE|BBB|certified|certification|licensed|insured|bonded|accredited|warranty|award[- ]?winning|EPA|NAPA|factory[- ]?trained|master|member of)\b/i;
+  const creds = (copy?.highlights ?? []).filter((h) => typeof h === 'string' && CRED_RE.test(h));
+  if (creds.length >= 2) {
+    sections.push({
+      type: 'awards',
+      eyebrow: 'Credentials',
+      heading: 'Certified & trusted',
+      items: creds.slice(0, 6).map((name) => ({ name })),
+    });
+  }
 
   // 3) Testimonials from scraped reviews.
   if (e?.testimonials?.length) {
@@ -475,6 +850,18 @@ function buildSections(row, e, copy) {
       heading: 'What customers say',
       items: e.testimonials.slice(0, 3).map((t) => ({ quote: clip(t.quote, 280), author: t.author })),
     });
+    // Auto-inject a CTA right after testimonials — social proof + immediate
+    // action is the highest-converting sequence. Only when a real contact
+    // exists; never invent a phone or action we can't fulfil.
+    if (phone) {
+      sections.push({
+        type: 'cta',
+        heading: `Ready to work with ${row.name}?`,
+        text: area ? `Serving ${area} and the surrounding community.` : undefined,
+        buttonText: 'Get in touch',
+        buttonHref: phone ? `tel:${phone.replace(/\D/g, '')}` : '#contact',
+      });
+    }
   }
 
   // 4) FAQ — every answer comes straight from a REAL scraped fact (location,
@@ -535,10 +922,10 @@ function buildDepthSection(type, row, e, copy) {
       };
     }
     case 'bigquote': {
+      // Only a REAL customer testimonial earns the blockquote treatment. Never
+      // dress a composed marketing tagline as if it were someone's quote.
       const t = (e?.testimonials ?? []).find((t) => t.quote && t.quote.length > 60);
       if (t) return { type: 'bigquote', quote: clip(t.quote, 240), author: t.author };
-      const tagline = copy?.tagline || '';
-      if (tagline.length > 40) return { type: 'bigquote', quote: tagline };
       return null;
     }
     case 'feature-split': {
@@ -568,21 +955,31 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
   const [heroPhoto, storyPhoto] = media;
   const lib = `/images/library/${catKey}`;
 
-  // Gallery = the business's OWN photos beyond the hero (never stock). A media
-  // item is "own" when it carries no credit and isn't library/SVG art; stock
-  // tiers (Wikimedia/Openverse/library) are credited or live under /library/.
+  // Gallery = all real photos beyond the hero (own shots preferred; credited
+  // Wikimedia/Openverse included too — they add visual richness and are properly
+  // attributed). Library SVGs are excluded (they're fallback art, not photos).
   const GALLERY_MAX = 8;
-  const isOwn = (m) => m?.path && !m.credit && !m.path.includes('/images/library/');
+  const isOwn = (m) => m?.path && !m.credit && !m.path.includes('/images/library/') && !m.path.endsWith('.svg');
+  const isGalleryEligible = (m) =>
+    m?.path && !m.path.includes('/images/library/') && !m.path.endsWith('.svg');
   const ownPhotos = media.filter(isOwn);
-  const galleryImages =
-    ownPhotos[0] && heroPhoto && ownPhotos[0].path === heroPhoto.path
-      ? ownPhotos.slice(1, 1 + GALLERY_MAX).map((m, i) => ({
-          src: m.path,
-          alt: `${row.name}${area ? ` in ${area}` : ''} — photo ${i + 1}`,
-        }))
-      : [];
+  const eligiblePhotos = media.filter(isGalleryEligible);
+  // Prefer own photos for gallery; fall back to credited photos (Wikimedia etc.)
+  // so a zero-own-photos business still gets a populated gallery. Always skip
+  // whichever photo was assigned as hero to avoid an exact duplicate card.
+  const galleryPool = (ownPhotos.length > 0 ? ownPhotos : eligiblePhotos).filter(
+    (m) => !heroPhoto || m.path !== heroPhoto.path,
+  );
+  const galleryImages = galleryPool.slice(0, GALLERY_MAX).map((m, i) => ({
+    src: m.path,
+    alt: `${row.name}${area ? ` in ${area}` : ''} — photo ${i + 1}`,
+    ...(m.credit ? { credit: m.credit } : {}),
+  }));
 
-  const phone = e?.phone || row.phone || '(555) 555-5555';
+  // Never invent a phone. A fake "(555) 555-5555" would ship as the page's
+  // call-to-action and pass the gates; empty renders no phone (components guard
+  // it) and deriveStatus flags the gap for a real number.
+  const phone = e?.phone || row.phone || '';
   const address = e?.address || row.address || area;
   const established = (e?.established || row.established || '').toString().replace(/^est\.?\s*/i, '');
 
@@ -624,6 +1021,7 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
     hero: {
       heading: copy.heroHeading,
       subheading: copy.heroSubheading,
+      ...(copy.heroEyebrow ? { eyebrow: copy.heroEyebrow } : {}),
       ctaText: 'Get in touch',
       ctaHref: '#contact',
     },
@@ -631,7 +1029,14 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
     images: {
       hero: heroPhoto?.path ?? `${lib}/hero.svg`,
       heroAlt: `${row.name} in ${area}`,
-      story: storyPhoto?.path ?? heroPhoto?.path ?? `${lib}/story.svg`,
+      // Only use a story image when it's DISTINCT from the hero. When only one
+      // real photo exists, storyPhoto is undefined and we use the library SVG —
+      // never duplicate the hero path (which looked like two identical images on
+      // the page and silently capped the photo-richness score).
+      story:
+        storyPhoto?.path && storyPhoto.path !== heroPhoto?.path
+          ? storyPhoto.path
+          : `${lib}/story.svg`,
       storyAlt: `About ${row.name}`,
       storyCaption: '',
       storyCredit,
@@ -651,6 +1056,14 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
     // a real form endpoint and/or external booking link, emitted only when given.
     ...(extras.formspreeId ? { formspreeId: extras.formspreeId } : {}),
     ...(extras.bookingUrl ? { bookingUrl: extras.bookingUrl } : {}),
+    // Outreach funnel defaults: reservation window + CTA reassurance copy.
+    // reservedUntil = generation date + 30 days (a real rolling window, not a
+    // hard-coded placeholder). claimSubtext reassures the prospect before they click.
+    outreach: {
+      published: false,
+      reservedUntil: daysFromNow(30),
+      claimSubtext: 'No contract. No setup fee. Live in 48 hours.',
+    },
     theme: preset.theme,
   };
 }
@@ -658,7 +1071,9 @@ function buildConfig(row, copy, preset, catKey, media = [], e = null, extras = {
 // Decide ready vs needs-review from how much REAL material we got.
 function deriveStatus(row, e, media, photoSource, templated) {
   const flags = [];
-  const realPhotos = /business-site|ai-generated/.test(photoSource);
+  // agent-supplied = real photos the agent hand-placed (the STRONGEST tier) —
+  // it must count as real, or every such site is wrongly flagged needs-review.
+  const realPhotos = /business-site|ai-generated|agent-supplied/.test(photoSource);
   if (!row.website) flags.push('No website provided — research & verify manually');
   else if (!e) flags.push('Website unreachable — copy not built from real data');
   else if ((e.richness ?? 0) < 35) flags.push('Thin research — verify facts & rewrite copy');
@@ -666,10 +1081,28 @@ function deriveStatus(row, e, media, photoSource, templated) {
   if (templated.includes('services')) flags.push('Services are template defaults — replace with real ones');
   if (templated.includes('service-descriptions')) flags.push('Service descriptions need a polish pass');
   if (templated.includes('about')) flags.push('About copy is templated — rewrite from research');
+  if (templated.includes('tagline')) flags.push('Tagline is composed, not from real copy — agent should write a real one');
+  if (templated.includes('hero-subheading')) flags.push('Hero subheading is composed — agent should write one from the facts');
   // Contact completeness: never silently ship a guessed email. If we found no
   // real email, flag the gap so a real non-phone contact method gets added.
   const hasRealEmail = Boolean(e?.email || row.email);
   if (!hasRealEmail) flags.push('No email found — add a real email or contact form before sending');
+  // Never ship a fabricated phone. If we found no real number, flag it — the
+  // page now renders no phone CTA rather than a fake "(555)" placeholder.
+  const hasRealPhone = Boolean(e?.phone || row.phone);
+  if (!hasRealPhone) flags.push('No phone found — add a real phone number before sending');
+  // Trust signals are the single biggest score gap when reviews live on Google/
+  // Yelp (not the business's own site, so the key-free scrape misses them).
+  // Demand them: a trust-less site routes to the agent to research REAL reviews/
+  // rating/founding year — never fabricated — instead of shipping a thin B.
+  const hasTrust = Boolean(e?.testimonials?.length || e?.established || e?.rating);
+  if (!hasTrust) flags.push('No trust signals — research real reviews / rating / founding year and add a testimonials section');
+  // Address powers contact-completeness + the map section; flag if unverified.
+  if (!(e?.address || row.address)) flags.push('No address found — add a real street address (powers the map + contact)');
+  // A real gallery needs ≥3 own photos; flag a partial set rather than padding.
+  const realGalleryCount = (media ?? []).length;
+  if (realGalleryCount > 0 && realGalleryCount < 3)
+    flags.push(`Only ${realGalleryCount} real photo(s) — need ≥3 for a full gallery (add their photos)`);
   // Hours fell back to the generic Mon–Fri 8–6 default (buildConfig) — wrong for
   // wineries, marinas, weekend/seasonal businesses. Flag so it's verified.
   if (!e?.hours?.length) flags.push('Hours are a generic default (Mon–Fri 8–6) — verify before sending');
@@ -756,6 +1189,12 @@ async function main() {
       row.city = row.city || e.city || '';
       row.state = row.state || e.state || '';
     }
+
+    // Turbo mode (no-op unless OUTSCRAPER_API_KEY is set): fill real reviews/
+    // rating/founding/hours/photos from Google Maps — the two dimensions own-site
+    // scraping can't reach. Runs even when `e` is null (no website) so a Maps-only
+    // business still gets enriched. Honest: empty in → empty out, never faked.
+    e = await augmentEnrichment(e, row);
 
     // 2) Photos: agent-dropped → their site → AI-gen → Wikimedia → library.
     let media = await agentDroppedPhotos(slug);

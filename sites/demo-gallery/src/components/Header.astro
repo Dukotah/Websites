@@ -9,8 +9,18 @@
  * progressive script only adds aria-expanded sync + close-on-navigate/Escape.
  */
 import type { ProspectConfig } from '../types';
+import { categoryLabelFor } from '../lib/labels';
+import { inferCategory } from '../lib/art-direction';
 const { config } = Astro.props as { config: ProspectConfig };
-const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
+const phone = config.contact.phone?.trim();
+const telHref = phone ? `tel:${phone.replace(/[^+\d]/g, '')}` : '';
+
+// Identity bar: shown only in demo/unclaimed mode, below the nav.
+const isDemo = !config.outreach?.published;
+// Human-readable category (e.g. "Auto Repair", "Winery & Tasting Room").
+const categoryLabel = config.categoryLabel ?? categoryLabelFor(inferCategory(config));
+// Use the full area string as-is (already formatted "City, ST").
+const cityPart = config.area?.trim() ?? '';
 ---
 
 <header class="hdr">
@@ -29,10 +39,12 @@ const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
         <a href="#contact" data-hdr-link>Contact</a>
       </nav>
 
-      <a href={telHref} class="hdr__call">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
-        <span class="hdr__call-num">{config.contact.phone}</span>
-      </a>
+      {phone && (
+        <a href={telHref} class="hdr__call">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
+          <span class="hdr__call-num">{phone}</span>
+        </a>
+      )}
 
       <label for="hdr-toggle" class="hdr__burger" role="button" tabindex="0" aria-controls="hdr-toggle" aria-expanded="false" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -40,6 +52,16 @@ const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
     </div>
   </div>
 </header>
+
+{isDemo && (categoryLabel || cityPart) && (
+  <div class="id-bar">
+    <span class="id-bar__inner">
+      {categoryLabel && <span class="id-bar__category">{categoryLabel}</span>}
+      {categoryLabel && cityPart && <span class="id-bar__sep" aria-hidden="true"> · </span>}
+      {cityPart && <span class="id-bar__city">{cityPart}</span>}
+    </span>
+  </div>
+)}
 
 <script is:inline>
   // Progressive enhancement only — the checkbox hack already opens/closes the
@@ -172,5 +194,35 @@ const telHref = `tel:${config.contact.phone.replace(/[^+\d]/g, '')}`;
 
   @media (prefers-reduced-motion: reduce) {
     .hdr__burger span { transition: none; }
+  }
+
+  /* Identity bar — slim demo-mode indicator below the sticky nav */
+  .id-bar {
+    background: var(--brand);
+    color: var(--brand-contrast);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .id-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-height: 24px;
+    padding: 0.3rem var(--gutter);
+    max-width: var(--maxw);
+    margin-inline: auto;
+  }
+  .id-bar__sep {
+    opacity: 0.7;
+    padding-inline: 0.1em;
+  }
+  .id-bar__category,
+  .id-bar__city {
+    opacity: 0.95;
   }
 </style>

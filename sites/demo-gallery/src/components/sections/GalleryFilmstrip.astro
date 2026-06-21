@@ -71,9 +71,9 @@ const {
         align={align}
       />
 
-      <div class="gf__track" data-reveal aria-label="Photo filmstrip, scroll to see more">
+      <div class="gf__track" data-reveal role="group" aria-label="Photo filmstrip, scroll to see more">
         {images.map((img) => (
-          <figure class="gf__tile" data-frame aria-label={img.alt}>
+          <figure class="gf__tile" data-frame>
             <div class="gf__thumb">
               <SiteImage
                 src={img.src}

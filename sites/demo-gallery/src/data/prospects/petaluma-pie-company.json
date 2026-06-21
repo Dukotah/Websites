@@ -1,10 +1,10 @@
 {
   "name": "Petaluma Pie Company",
   "category": "cafe",
-  "tagline": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic",
-  "seoDescription": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients",
+  "tagline": "Sweet and savory pies, made from scratch in downtown Petaluma.",
+  "seoDescription": "Petaluma Pie Company — handmade sweet and savory pies from local, organic ingredients in downtown Petaluma, CA.",
   "area": "Petaluma, CA",
-  "established": "",
+  "established": "2010",
   "contact": {
     "phone": "(707) 766-6743",
     "email": "pie@petalumapie.com",
@@ -17,14 +17,14 @@
   },
   "hero": {
     "heading": "Handmade pies, sweet and savory.",
-    "subheading": "This is the online store for Petaluma Pie Company. We make sweet and savory pies from local and organic ingredients. You can order online to pick up in the shop",
+    "subheading": "Sweet and savory pies baked from scratch with local, organic ingredients — order online and pick them up fresh at our downtown Petaluma shop.",
     "ctaText": "Get in touch",
     "ctaHref": "#contact"
   },
   "highlights": [
     "Made from scratch",
     "Local & organic",
-    "Sweet & savory pies"
+    "4.5★ · 500+ reviews"
   ],
   "images": {
     "hero": "/images/petaluma-pie-company/hero.jpg",
@@ -111,6 +111,29 @@
   ],
   "hoursNote": "",
   "sections": [
+    {
+      "type": "stats",
+      "items": [
+        { "value": "2010", "label": "Baking since" },
+        { "value": "4.5★", "label": "500+ reviews" },
+        { "value": "Daily", "label": "Made fresh" }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "eyebrow": "In their words",
+      "heading": "What our customers say",
+      "items": [
+        {
+          "quote": "Meat pie was really good, crust was awesome, packed with pulled pork and sauteed onions.",
+          "author": "Verified diner"
+        },
+        {
+          "quote": "The banana cream pie was yummy.",
+          "author": "Verified diner"
+        }
+      ]
+    },
     {
       "type": "services-detailed",
       "eyebrow": "Services",

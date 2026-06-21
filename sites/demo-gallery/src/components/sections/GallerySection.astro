@@ -47,6 +47,10 @@ interface GalleryImage {
 interface Props extends SectionEnvelope {
   images: GalleryImage[];
   index?: number;
+  /** Photo treatment from artDirection config — applies to all gallery cells. */
+  photoTreatment?: 'duotone' | 'natural' | 'muted';
+  /** Film-grain texture from artDirection config — adds [data-grain] to cells. */
+  photoGrain?: boolean;
 }
 
 const {
@@ -57,7 +61,13 @@ const {
   tone = 'default',
   align = 'center',
   index,
+  photoTreatment = 'natural',
+  photoGrain = false,
 } = Astro.props as Props;
+
+// Derive treatment classes/attrs for .gallery__thumb wrappers
+const thumbDuotone = photoTreatment === 'duotone';
+const thumbMuted   = photoTreatment === 'muted';
 
 /**
  * Assign each image a "slot" within its repeating group.
@@ -148,15 +158,24 @@ const renderGroups = buildRenderGroups(slotted);
               <figure
                 class={`gallery__cell gallery__cell--${grp.id}${si}`}
                 data-frame
-                aria-label={img.alt}
               >
-                <div class="gallery__thumb">
+                <div
+                  class={[
+                    'gallery__thumb',
+                    thumbDuotone ? 'img-duotone' : '',
+                  ].filter(Boolean).join(' ')}
+                  data-treat={thumbMuted ? 'grade' : undefined}
+                  data-grain={photoGrain ? '' : undefined}
+                >
                   <SiteImage
                     src={img.src}
                     alt={img.alt}
                     class="gallery__img"
                     sizes="(min-width: 768px) 50vw, 100vw"
                   />
+                  {thumbDuotone && photoGrain && (
+                    <span class="grain-layer" aria-hidden="true"></span>
+                  )}
                   {img.caption && (
                     <figcaption class="gallery__cap" aria-hidden="true">
                       <span class="gallery__cap-text">{img.caption}</span>

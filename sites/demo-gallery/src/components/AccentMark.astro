@@ -1,0 +1,200 @@
+---
+/**
+ * AccentMark — inline hand-drawn SVG decoration for key heading words.
+ *
+ * Props:
+ *   type   — 'underline' | 'circle' | 'arrow'
+ *   color  — CSS color value; defaults to var(--accent) with var(--brand) fallback
+ *   delay  — optional CSS animation delay string, e.g. "0.3s"
+ *
+ * Usage (inside an h1 or heading):
+ *   Some <span class="accent-wrap">word<AccentMark type="underline" /></span> here
+ *
+ * The wrapper span must be position:relative; display:inline-block — the AccentMark
+ * is position:absolute so it doesn't push text down.
+ *
+ * No-JS: the SVG is always rendered (no opacity:0 gate). The draw animation is
+ * CSS-only via stroke-dashoffset. Without JS the mark shows in its full drawn state
+ * because the animation drives from offset=length to 0, and no-JS leaves it in the
+ * final state when animation-fill-mode: forwards is in effect.
+ *
+ * Reduced-motion: animation is suppressed; the path renders fully-drawn (static).
+ */
+
+interface Props {
+  type: 'underline' | 'circle' | 'arrow';
+  color?: string;
+  delay?: string;
+}
+
+const { type, color, delay } = Astro.props as Props;
+
+// Resolved color expression — fallback chain so the token is never undefined.
+const resolvedColor = color ?? 'var(--accent, var(--brand))';
+// Unique animation id per instance to avoid cross-instance collisions.
+const uid = `am-${Math.random().toString(36).slice(2, 7)}`;
+---
+
+{type === 'underline' && (
+  <span class="am am--underline" aria-hidden="true" style={delay ? `--am-delay:${delay}` : undefined}>
+    <svg
+      viewBox="0 0 120 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="am__svg"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        id={uid}
+        d="M2,8 C18,4 40,11 60,7 C80,3 102,10 118,6"
+        stroke={resolvedColor}
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        class="am__path"
+      />
+    </svg>
+  </span>
+)}
+
+{type === 'circle' && (
+  <span class="am am--circle" aria-hidden="true" style={delay ? `--am-delay:${delay}` : undefined}>
+    <svg
+      viewBox="0 0 130 50"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="am__svg"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <ellipse
+        id={uid}
+        cx="65"
+        cy="25"
+        rx="60"
+        ry="20"
+        stroke={resolvedColor}
+        stroke-width="2.5"
+        stroke-linecap="round"
+        fill="none"
+        class="am__path am__ellipse"
+      />
+    </svg>
+  </span>
+)}
+
+{type === 'arrow' && (
+  <span class="am am--arrow" aria-hidden="true" style={delay ? `--am-delay:${delay}` : undefined}>
+    <svg
+      viewBox="0 0 48 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="am__svg"
+      aria-hidden="true"
+    >
+      <path
+        id={uid}
+        d="M2,12 C10,9 30,12 42,12 M36,6 L44,12 L36,18"
+        stroke={resolvedColor}
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        class="am__path"
+      />
+    </svg>
+  </span>
+)}
+
+<style>
+  /* ── Shell ─────────────────────────────────────────────────────────────────── */
+  .am {
+    position: absolute;
+    pointer-events: none;
+    /* The containing heading span must be position:relative; display:inline-block */
+  }
+
+  /* ── Underline — sits just below the text baseline ──────────────────────── */
+  .am--underline {
+    left: -2%;
+    right: -2%;
+    bottom: -0.25em;
+    height: 0.55em;
+    width: 104%;
+  }
+
+  /* ── Circle — surrounds the word ────────────────────────────────────────── */
+  .am--circle {
+    left: -8%;
+    right: -8%;
+    top: -15%;
+    bottom: -15%;
+    width: 116%;
+    height: 130%;
+  }
+
+  /* ── Arrow — sits to the right of the word (inline direction) ──────────── */
+  .am--arrow {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.2em;
+    height: 1em;
+    margin-left: 0.2em;
+  }
+
+  /* ── SVG fills the span ─────────────────────────────────────────────────── */
+  .am__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  /* ── Draw-in animation (non-reduced-motion only) ───────────────────────── */
+  /*
+   * stroke-dasharray length approximations:
+   *   underline path  ≈ 120
+   *   ellipse         ≈ 252 (circumference of rx=60, ry=20 ellipse)
+   *   arrow path      ≈ 65
+   * Set dasharray to a safe overestimate — browser clips to actual length.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    .am--underline .am__path {
+      stroke-dasharray: 130;
+      stroke-dashoffset: 130;
+      animation: am-draw 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: var(--am-delay, 0.15s);
+    }
+
+    .am--circle .am__ellipse {
+      stroke-dasharray: 260;
+      stroke-dashoffset: 260;
+      animation: am-draw 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: var(--am-delay, 0.2s);
+    }
+
+    .am--arrow .am__path {
+      stroke-dasharray: 70;
+      stroke-dashoffset: 70;
+      animation: am-draw 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: var(--am-delay, 0.1s);
+    }
+
+    @keyframes am-draw {
+      to { stroke-dashoffset: 0; }
+    }
+  }
+
+  /* ── Reduced-motion: render path in fully-drawn state immediately ────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .am__path,
+    .am__ellipse {
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+  }
+</style>

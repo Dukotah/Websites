@@ -1,0 +1,111 @@
+---
+/**
+ * AwardsSection — credentials / certifications strip.
+ *
+ * A horizontal row of trust "chips" (ASE Certified · BBB A+ · Licensed & Insured)
+ * sourced from cert-like highlights. Distinct from SpecStrip (numeric KPIs) and
+ * LogosStrip (image logos): this is TEXT credentials with a shield/check mark.
+ * Token-driven, AA-legible, reveal + reduced-motion safe (global.css handles the
+ * reduced-motion hard block; data-reveal-stagger is gated by .js-reveal-ready).
+ */
+import type { SectionEnvelope } from '../../types';
+
+interface AwardItem {
+  name: string;
+  detail?: string;
+  /** Optional glyph override; defaults to a shield-check SVG. */
+  icon?: string;
+}
+interface Props extends SectionEnvelope {
+  items: AwardItem[];
+}
+
+const {
+  items = [],
+  eyebrow = 'Credentials',
+  heading,
+  tone = 'alt',
+} = Astro.props as Props;
+---
+
+{items.length > 0 && (
+  <section class="section awards" data-tone={tone} id="awards">
+    <div class="container">
+      {(eyebrow || heading) && (
+        <div class="awards__head" data-reveal>
+          {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+          {heading && <h2 class="awards__heading">{heading}</h2>}
+        </div>
+      )}
+
+      <ul class="awards__row" role="list" data-reveal-stagger>
+        {items.map(({ name, detail, icon }) => (
+          <li class="award">
+            <span class="award__mark" aria-hidden="true">
+              {icon ? icon : (
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="m8.5 12 2.5 2.5L16 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+            </span>
+            <span class="award__text">
+              <strong class="award__name">{name}</strong>
+              {detail && <span class="award__detail">{detail}</span>}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .awards { padding-block: calc(var(--section-pad) * 0.7); }
+  .container { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+
+  .awards__head { text-align: center; max-width: 56ch; margin: 0 auto calc(var(--section-pad) * 0.4); }
+  .eyebrow {
+    font-family: var(--font-body); font-size: var(--step--1); font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--brand); margin: 0 0 0.4rem;
+  }
+  .awards__heading {
+    font-family: var(--font-display); font-size: var(--step-2); font-weight: var(--fw-display);
+    letter-spacing: var(--tracking-display); line-height: var(--leading-display); color: var(--text); margin: 0;
+  }
+
+  .awards__row {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem 1rem;
+  }
+  .award {
+    display: flex; align-items: center; gap: 0.65rem;
+    padding: 0.7rem 1.1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+  .award__mark { flex-shrink: 0; display: grid; place-items: center; width: 26px; height: 26px; color: var(--brand); }
+  .award__mark svg { width: 24px; height: 24px; }
+  .award__text { display: flex; flex-direction: column; line-height: 1.2; }
+  .award__name {
+    font-family: var(--font-body); font-size: var(--step--1); font-weight: var(--fw-bold);
+    color: var(--text); letter-spacing: 0.01em;
+  }
+  .award__detail { font-size: 0.72rem; color: var(--text-muted); }
+
+  /* ── Tone surfaces ── */
+  .awards[data-tone="alt"] { background: var(--bg-alt); }
+  .awards[data-tone="alt"] .award { background: var(--bg); }
+  .awards[data-tone="deep"] { background: var(--bg-deep); color: var(--text-on-dark); }
+  .awards[data-tone="deep"] .awards__heading { color: var(--text-on-dark); }
+  .awards[data-tone="deep"] .award { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.14); }
+  .awards[data-tone="deep"] .award__name { color: var(--text-on-dark); }
+  .awards[data-tone="deep"] .award__mark { color: var(--accent); }
+
+  @media (max-width: 540px) {
+    .awards__row { gap: 0.6rem; }
+    .award { padding: 0.6rem 0.9rem; }
+  }
+</style>

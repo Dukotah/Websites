@@ -15,12 +15,25 @@
  */
 import type { ProspectConfig } from '../../types';
 import SiteImage from '../SiteImage.astro';
+import TrustBadge from '../TrustBadge.astro';
 const { config } = Astro.props as { config: ProspectConfig };
 
-const { hero, images, contact, highlights = [], established, area } = config;
+const { hero, images, contact, highlights = [], established, area, artDirection, rating } = config;
 const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
 const eyebrow = [established, area].filter(Boolean).join(' · ');
 const hasPhoto = Boolean(images?.hero);
+
+// Art-direction photo treatment
+const treatment = artDirection?.photoTreatment ?? 'natural';
+const useGrain  = artDirection?.photoGrain ?? false;
+const mediaClass = [
+  'ea-hero__media',
+  treatment === 'duotone' ? 'img-duotone' : '',
+].filter(Boolean).join(' ');
+const mediaTreat = treatment === 'muted' ? 'grade' : undefined;
+
+const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
+const trustLine = highlights[0] ?? '';
 ---
 
 <section class="ea-hero" id="top" aria-label="Hero" data-has-photo={hasPhoto ? 'true' : undefined}>
@@ -55,9 +68,14 @@ const hasPhoto = Boolean(images?.hero);
     </div>
   </div>
 
-  <!-- ② Photo column (35%, full-height tight crop) — decorative -->
+  <!-- ② Photo column (35%, full-height tight crop) — decorative; treatment wired -->
   {hasPhoto && (
-    <div class="ea-hero__media" aria-hidden="true">
+    <div
+      class={mediaClass}
+      aria-hidden="true"
+      data-treat={mediaTreat}
+      data-grain={useGrain ? '' : undefined}
+    >
       <SiteImage
         src={images.hero}
         alt=""
@@ -67,6 +85,19 @@ const hasPhoto = Boolean(images?.hero);
         fetchpriority="high"
         fit="cover"
       />
+      {treatment === 'duotone' && useGrain && (
+        <span class="grain-layer" aria-hidden="true"></span>
+      )}
+      <!-- Trust badge floated inside photo column, bottom-right -->
+      <div class="ea-hero__badge-wrap">
+        <TrustBadge
+          year={badgeYear || undefined}
+          rating={rating?.value}
+          reviewCount={rating?.count}
+          highlight={trustLine || undefined}
+          position="bottom-right"
+        />
+      </div>
     </div>
   )}
 </section>
@@ -227,6 +258,14 @@ const hasPhoto = Boolean(images?.hero);
   .ea-hero__media :global(img) {
     width: 100%;
     height: 100%;
+  }
+
+  /* Trust badge anchored inside photo column */
+  .ea-hero__badge-wrap {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 5;
   }
 
   /* ── Mobile: stack type over a shorter photo band ───────────────────────── */

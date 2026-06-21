@@ -1,0 +1,166 @@
+---
+/**
+ * LocalSignals — compact local-trust block: address + hours summary +
+ * optional Google Maps embed (place-name-based, no API key required).
+ *
+ * Usage: import and place wherever local trust signals are needed —
+ * typically in a contact section, footer area, or alongside a hero.
+ * Self-contained; the HEROES agent can import it for inline use.
+ *
+ * The Maps embed uses an iframe place-search URL (public, no key needed).
+ * Only rendered when config.social.google is present (the Google Maps place URL)
+ * or when config.contact.address is present (fallback place-name search).
+ */
+import type { ProspectConfig } from '../types';
+
+interface Props {
+  config: ProspectConfig;
+  /** Show the map embed? Default true when address or google maps URL exists. */
+  showMap?: boolean;
+  /** Compact mode: tighter padding, smaller text. */
+  compact?: boolean;
+}
+
+const { config, showMap = true, compact = false } = Astro.props as Props & { config: ProspectConfig };
+
+const address = config.contact?.address?.trim();
+const hours = config.hours ?? [];
+
+// Hours summary: pick the first 2 rows as a preview.
+const hoursSummary = hours
+  .slice(0, 3)
+  .filter((r) => r?.day && r?.hours)
+  .map((r) => `${r.day}: ${r.hours}`);
+
+// Google Maps embed src: use the place URL from social if present,
+// otherwise build a place-search embed from address + city.
+let mapSrc = '';
+if (showMap) {
+  if (config.social?.google) {
+    // Extract place ID or use the search form of the embed
+    // Most GBP URLs are https://maps.google.com/?cid=... or maps.app.goo.gl
+    // Safe fallback: embed a place-name search
+    const searchQuery = [config.name, address, config.area].filter(Boolean).join(', ');
+    mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(searchQuery)}&output=embed`;
+  } else if (address) {
+    const searchQuery = [config.name, address].filter(Boolean).join(', ');
+    mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(searchQuery)}&output=embed`;
+  }
+}
+
+const hasContent = address || hoursSummary.length > 0 || mapSrc;
+---
+
+{hasContent && (
+  <div class:list={['lsig', compact && 'lsig--compact']}>
+    {mapSrc && (
+      <div class="lsig__map">
+        <iframe
+          title={`Map for ${config.name}`}
+          src={mapSrc}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          aria-hidden="true"
+          tabindex="-1"
+        ></iframe>
+      </div>
+    )}
+    <div class="lsig__info">
+      {address && (
+        <p class="lsig__address">
+          <svg class="lsig__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="16" height="16">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/>
+          </svg>
+          <span>{address}</span>
+        </p>
+      )}
+      {hoursSummary.length > 0 && (
+        <div class="lsig__hours">
+          <svg class="lsig__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="16" height="16">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/>
+          </svg>
+          <ul class="lsig__hours-list" aria-label="Business hours">
+            {hoursSummary.map((line) => (
+              <li>{line}</li>
+            ))}
+            {hours.length > 3 && (
+              <li class="lsig__hours-more">+ {hours.length - 3} more days</li>
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
+<style>
+  .lsig {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .lsig--compact {
+    font-size: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .lsig__map {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: var(--border-weight) solid var(--border);
+    background: var(--surface-alt, var(--surface));
+  }
+
+  .lsig--compact .lsig__map {
+    aspect-ratio: 16 / 6;
+  }
+
+  .lsig__map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .lsig__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .lsig__address,
+  .lsig__hours {
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .lsig__icon {
+    flex-shrink: 0;
+    margin-top: 0.15em;
+    color: var(--brand);
+    opacity: 0.8;
+  }
+
+  .lsig__hours-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .lsig__hours-more {
+    opacity: 0.65;
+    font-style: italic;
+  }
+</style>

@@ -34,17 +34,39 @@ if (o.claimByDate) {
     claimBy = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   }
 }
+
+// Reservation scarcity: show "Reserved for {name} through {date}" when present.
+// Determine if the date is ≤7 days out (show with urgency) or further (plain text).
+let reservedLine = '';
+let reservedUrgent = false;
+if (o.reservedUntil) {
+  const rDate = new Date(`${o.reservedUntil}T00:00:00`);
+  if (!Number.isNaN(rDate.getTime())) {
+    const rLabel = rDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    reservedLine = `Reserved for ${config.name} through ${rLabel}.`;
+    const msUntil = rDate.getTime() - Date.now();
+    reservedUrgent = msUntil > 0 && msUntil <= 7 * 24 * 60 * 60 * 1000;
+  }
+}
 ---
 
 <aside class="claim-bar" data-claim-bar aria-label="Demo site offer">
   <div class="claim-bar__inner">
     <p class="claim-bar__msg">
       <strong class="claim-bar__lead">This site was custom-built for {config.name}.</strong>
+      {reservedLine && (
+        <span class={reservedUrgent ? 'claim-bar__reserved claim-bar__reserved--urgent' : 'claim-bar__reserved'}>
+          {reservedLine}
+        </span>
+      )}
       {o.note && <span class="claim-bar__note">{o.note}</span>}
       {claimBy && <span class="claim-bar__date">Offer good through {claimBy}.</span>}
     </p>
     <div class="claim-bar__actions">
-      <a class="claim-bar__cta" href={claimHref}>{claimLabel}</a>
+      <div class="claim-bar__cta-wrap">
+        <a class="claim-bar__cta" href={claimHref}>{claimLabel}</a>
+        {o.claimSubtext && <span class="claim-bar__subtext">{o.claimSubtext}</span>}
+      </div>
       <button type="button" class="claim-bar__dismiss" data-claim-dismiss aria-label="Dismiss">
         &times;
       </button>
@@ -108,6 +130,28 @@ if (o.claimByDate) {
   .claim-bar__date {
     opacity: 0.85;
   }
+  .claim-bar__reserved {
+    opacity: 0.9;
+    font-style: italic;
+  }
+  .claim-bar__reserved--urgent {
+    font-weight: var(--fw-bold);
+    opacity: 1;
+  }
+  .claim-bar__cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .claim-bar__subtext {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    opacity: 0.75;
+    text-align: center;
+    color: var(--brand-contrast);
+    line-height: 1.3;
+  }
   .claim-bar__actions {
     display: flex;
     align-items: center;
@@ -167,6 +211,18 @@ if (o.claimByDate) {
     .claim-bar__actions {
       width: 100%;
       justify-content: space-between;
+    }
+    .claim-bar__cta-wrap {
+      align-items: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .claim-bar__cta {
+      transition: none;
+    }
+    .claim-bar__dismiss {
+      transition: none;
     }
   }
 </style>

@@ -145,6 +145,82 @@
 
 
 /* ─────────────────────────────────────────────────────────────────────────────
+   2d. .img-duotone — CSS-class-based duotone wrapper (used by artDirection)
+   Distinct from [data-treat="duotone"] — applied as a class on an image wrapper
+   by components reading artDirection.photoTreatment === 'duotone'.
+   Wrapper must be position:relative; overflow:hidden (set below).
+   The image inside sits beneath both pseudo-element layers:
+     ::before  brand-dark multiply shadow (darkens + tints toward brand hue)
+     ::after   brand + white lighten highlight (lifts mid-tones into brand color)
+   pointer-events:none on both layers — purely decorative, no a11y impact.
+   ──────────────────────────────────────────────────────────────────────────── */
+.img-duotone {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  /* Strength dial — 0 = none, 1 = full re-colour. Components/art-direction can
+     override locally. Kept modest so the photo reads as branded, not crushed. */
+  --duotone-strength: 0.5;
+}
+
+/* Desaturate the photo first so the colour layer produces a clean duotone
+   rather than fighting the original hues. */
+.img-duotone img {
+  filter: grayscale(0.85) contrast(1.05);
+}
+
+/* Brand re-colour layer. mix-blend-mode:color shifts HUE+SATURATION toward the
+   brand while PRESERVING the photo's luminance — so dark photos stay as-dark
+   (never crushed to black) and light photos stay light. This is the dark-photo
+   guard: a `color` blend cannot darken the way `multiply` of --brand-dark did. */
+.img-duotone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--brand);
+  mix-blend-mode: color;
+  opacity: var(--duotone-strength, 0.5);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* Light depth wash — a gentle brand-dark shadow at low opacity for richness.
+   Deliberately faint (≈0.18 at default strength) so it adds depth, not murk. */
+.img-duotone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--brand-dark, var(--brand));
+  mix-blend-mode: multiply;
+  opacity: calc(var(--duotone-strength, 0.5) * 0.36);
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+/* Grain overlay for the class-based duotone wrapper. Components add
+   <span class="grain-layer" aria-hidden="true"></span> as the last child when
+   grain is requested (the [data-treat="duotone"] selector above does not match
+   the class-based wrapper, so it needs its own rule). */
+.img-duotone[data-grain] .grain-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No transitions on .img-duotone; these are static overlays — nothing to gate. */
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
    3. FILM GRAIN / TEXTURE — [data-grain]
    CSS-only SVG feTurbulence noise baked into a data URI.
    Rendered as a ::after overlay at very low opacity (--grain-opacity).

@@ -1,0 +1,456 @@
+---
+/**
+ * HeroEditorialOverlap — full-viewport grid; photo fills the right ~60%, branded
+ * panel occupies the left ~40%. The headline bleeds slightly into the photo zone
+ * via a negative margin-right, breaking the clean column boundary so this reads
+ * as a genuine layout decision rather than a template fill.
+ *
+ * Secondary image (galleryImages[0]): floats bottom-right of the photo column,
+ * slightly rotated, white border, shadow — the editorial "peek" gesture.
+ *
+ * Cover-fill is set via SiteImage fit="cover" (NOT scoped parent img rules —
+ * Astro scopes styles per-component and they won't pierce SiteImage children).
+ *
+ * Photo treatment: reads config.artDirection.photoTreatment and photoGrain.
+ *   'duotone'  → .img-duotone on the photo wrapper
+ *   'natural'  → no treatment class
+ *   'muted'    → [data-treat="grade"] (subtle desaturate)
+ *   photoGrain → adds [data-grain] attribute (treatment.css handles the texture)
+ *
+ * Accent mark: reads config.artDirection.accentMark; wraps a key word of the
+ * heading in a relative-positioned span and renders AccentMark after it.
+ *
+ * Variant string: 'editorial-overlap'
+ */
+import type { ProspectConfig } from '../../types';
+import SiteImage from '../SiteImage.astro';
+import TrustBadge from '../TrustBadge.astro';
+import AccentMark from '../AccentMark.astro';
+
+const { config } = Astro.props as { config: ProspectConfig };
+
+const {
+  hero,
+  images,
+  contact,
+  highlights = [],
+  established,
+  area,
+  galleryImages = [],
+  artDirection,
+  rating,
+} = config;
+
+const telHref = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
+const eyebrow  = [established, area].filter(Boolean).join(' · ');
+const badgeYear = (established || '').toString().replace(/^est\.?\s*/i, '');
+
+// Art-direction treatment
+const treatment  = artDirection?.photoTreatment ?? 'natural';
+const useGrain   = artDirection?.photoGrain ?? false;
+const accentMark = artDirection?.accentMark ?? 'none';
+
+// Treatment classes/attrs for photo wrapper
+const wrapperClass = [
+  'eo-hero__photo-inner',
+  treatment === 'duotone' ? 'img-duotone' : '',
+].filter(Boolean).join(' ');
+
+const wrapperDataTreat = treatment === 'muted' ? 'grade' : undefined;
+
+// Secondary gallery photo
+const secondaryImg = galleryImages.length > 0 ? galleryImages[0] : null;
+
+// Trust badge data
+const badgeRating     = rating?.value;
+const badgeCount      = rating?.count;
+const badgeHighlight  = highlights[0];
+
+// Heading: split into words; wrap the 2nd word (or last word if < 2) with accent span.
+// Keep this safe — if heading is empty just render as-is.
+const words = hero.heading.trim().split(/\s+/);
+const accentWordIndex = words.length >= 2 ? 1 : 0;
+const useAccent = accentMark !== 'none' && words.length > 0;
+---
+
+<section class="eo-hero" id="top" aria-label="Hero">
+
+  <!-- ① Left brand panel (~40%) -->
+  <div class="eo-hero__panel">
+    <div class="eo-hero__panel-mesh" aria-hidden="true"></div>
+    <div class="eo-hero__copy" data-reveal data-reveal-order="1">
+
+      {eyebrow && (
+        <p class="eo-hero__eyebrow">{eyebrow}</p>
+      )}
+
+      <h1 class="eo-hero__title">
+        {useAccent ? (
+          <>
+            {accentWordIndex > 0 && words.slice(0, accentWordIndex).join(' ')}{accentWordIndex > 0 ? ' ' : ''}
+            <span class="eo-hero__accent-wrap">
+              {words[accentWordIndex]}
+              <AccentMark type={accentMark as 'underline' | 'circle' | 'arrow'} delay="0.35s" />
+            </span>
+            {accentWordIndex < words.length - 1 ? ' ' + words.slice(accentWordIndex + 1).join(' ') : ''}
+          </>
+        ) : (
+          hero.heading
+        )}
+      </h1>
+
+      {hero.subheading && (
+        <p class="eo-hero__sub">{hero.subheading}</p>
+      )}
+
+      <div class="eo-hero__actions" data-reveal data-reveal-order="2">
+        <a href={hero.ctaHref} class="btn eo-hero__cta">{hero.ctaText}</a>
+        {contact.phone && (
+          <a href={telHref} class="eo-hero__phone">
+            <svg class="eo-hero__phone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+            {contact.phone}
+          </a>
+        )}
+      </div>
+
+      {highlights.length > 0 && (
+        <ul class="eo-hero__highlights" data-reveal data-reveal-order="3" aria-label="Key highlights">
+          {highlights.map((h: string) => <li>{h}</li>)}
+        </ul>
+      )}
+    </div>
+  </div>
+
+  <!-- ② Right photo area (~60%) — headline overlaps into this zone -->
+  <div class="eo-hero__media-zone" aria-hidden="true">
+
+    <!-- Primary photo wrapper — treatment classes/attrs applied here -->
+    <div
+      class={wrapperClass}
+      data-treat={wrapperDataTreat}
+      data-grain={useGrain ? '' : undefined}
+    >
+      <SiteImage
+        src={images.hero}
+        alt={images.heroAlt}
+        placeholder={images.placeholder}
+        fetchpriority="high"
+        loading="eager"
+        sizes="(min-width: 900px) 60vw, 100vw"
+        fit="cover"
+      />
+      {treatment === 'duotone' && useGrain && (
+        <span class="grain-layer" aria-hidden="true"></span>
+      )}
+    </div>
+
+    <!-- Trust badge — bottom-right of photo zone -->
+    <div class="eo-hero__trust">
+      <TrustBadge
+        year={badgeYear || undefined}
+        rating={badgeRating}
+        reviewCount={badgeCount}
+        highlight={badgeHighlight}
+        position="bottom-right"
+      />
+    </div>
+
+    <!-- Secondary photo — editorial "peek" gesture, bottom-right, slight rotate -->
+    {secondaryImg && (
+      <div class="eo-hero__secondary" data-reveal data-reveal-order="4" aria-hidden="true">
+        <SiteImage
+          src={secondaryImg.src}
+          alt={secondaryImg.alt}
+          placeholder={images.placeholder}
+          loading="lazy"
+          sizes="(min-width: 900px) 22vw, 45vw"
+          fit="cover"
+        />
+      </div>
+    )}
+
+  </div>
+
+</section>
+
+<style>
+  /* ── Shell: 40/60 grid, full viewport height ─────────────────────────────── */
+  .eo-hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 40fr 60fr;
+    grid-template-rows: 1fr;
+    min-height: min(94vh, 900px);
+    overflow: hidden;
+    background: var(--bg-deep);
+  }
+
+  /* ── ① Brand panel (left 40%) ───────────────────────────────────────────── */
+  .eo-hero__panel {
+    position: relative;
+    isolation: isolate;
+    background: var(--bg-deep);
+    color: var(--text-on-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 4vw, 3.5rem) clamp(3rem, 8vw, 6rem) clamp(2rem, 5vw, 5rem);
+    /* z-index above the media zone so copy never clips under the photo */
+    z-index: 2;
+  }
+
+  /* Gradient mesh behind copy */
+  .eo-hero__panel-mesh {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(
+        ellipse 90% 70% at -5% 105%,
+        color-mix(in srgb, var(--brand) 24%, transparent) 0%,
+        transparent 62%
+      ),
+      radial-gradient(
+        ellipse 55% 42% at 110% -8%,
+        color-mix(in srgb, var(--accent) 14%, transparent) 0%,
+        transparent 58%
+      );
+    pointer-events: none;
+  }
+
+  .eo-hero__copy {
+    position: relative;
+    z-index: 1;
+    max-width: min(36ch, 100%);
+    /*
+     * Negative right margin — the headline intentionally overlaps into the photo
+     * column by a few percent, breaking the clean column boundary. This is the
+     * key editorial gesture of this variant.
+     */
+    margin-right: clamp(-3rem, -6vw, -1.5rem);
+  }
+
+  /* Eyebrow */
+  .eo-hero__eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--text-on-dark) 68%, transparent);
+    margin: 0 0 1.2rem;
+  }
+  .eo-hero__eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 1.6rem;
+    height: 2px;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    background: var(--accent);
+  }
+
+  /* Oversized display headline */
+  .eo-hero__title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    font-size: clamp(2.6rem, 5.5vw, 5.2rem);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--text-on-dark);
+    margin: 0 0 1.1rem;
+    text-shadow: 0 2px 24px color-mix(in srgb, var(--bg-deep) 45%, transparent);
+    /* text-wrap: balance ensures even line breaks through the overlap zone */
+    text-wrap: balance;
+  }
+
+  /* Accent word container — must be inline-block + relative for AccentMark */
+  .eo-hero__accent-wrap {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Subheading */
+  .eo-hero__sub {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: var(--leading-body);
+    color: color-mix(in srgb, var(--text-on-dark) 80%, transparent);
+    max-width: 44ch;
+    margin: 0 0 1.85rem;
+  }
+
+  /* CTA cluster */
+  .eo-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.6rem;
+  }
+
+  .eo-hero__cta {
+    font-size: var(--step-0);
+    padding: 0.85em 1.7em;
+    box-shadow: 0 4px 18px color-mix(in srgb, var(--brand) 42%, transparent);
+  }
+
+  .eo-hero__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    font-family: var(--font-body);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-0);
+    color: var(--text-on-dark);
+    text-decoration: none;
+    border-bottom: var(--border-weight) solid
+      color-mix(in srgb, var(--text-on-dark) 40%, transparent);
+    padding-bottom: 2px;
+    transition: border-color var(--motion-fade) var(--motion-ease);
+  }
+  .eo-hero__phone:hover {
+    text-decoration: none;
+    border-color: var(--text-on-dark);
+  }
+  .eo-hero__phone:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .eo-hero__phone-icon {
+    width: 1.05em;
+    height: 1.05em;
+    flex-shrink: 0;
+  }
+
+  /* Highlights strip */
+  .eo-hero__highlights {
+    list-style: none;
+    margin: 2.25rem 0 0;
+    padding: 1.4rem 0 0;
+    border-top: var(--border-weight) solid
+      color-mix(in srgb, var(--text-on-dark) 18%, transparent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.75rem;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--text-on-dark) 70%, transparent);
+  }
+
+  /* ── ② Photo zone (right 60%) ───────────────────────────────────────────── */
+  .eo-hero__media-zone {
+    position: relative;
+    isolation: isolate;
+    z-index: 1;
+    overflow: hidden;
+    background: var(--bg-deep);
+    align-self: stretch;
+    /* Provide a definite height so the absolutely-positioned primary photo fills it */
+    min-height: min(94vh, 900px);
+  }
+
+  /* Primary photo wrapper — fills entire zone; SiteImage handles cover */
+  .eo-hero__photo-inner {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* Trust badge — anchored to bottom-right of the photo zone */
+  .eo-hero__trust {
+    position: absolute;
+    bottom: 2rem;
+    right: 1.5rem;
+    z-index: 10;
+  }
+
+  /* Secondary photo — bottom-right corner, slight rotate, white border */
+  .eo-hero__secondary {
+    position: absolute;
+    bottom: clamp(2rem, 4vw, 3rem);
+    right: clamp(2rem, 4vw, 3rem);
+    width: clamp(120px, 22vw, 220px);
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius);
+    border: 3px solid #fff;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.36),
+      0 2px 8px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    z-index: 5;
+    /* Slight rotation breaks the template-grid feel */
+    transform: rotate(-3.5deg);
+    /* Push down so trust badge has room */
+    bottom: clamp(6rem, 12vw, 9rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .eo-hero__secondary {
+      transform: none;
+    }
+  }
+
+  /* ── Reduced-motion: disable any transform/transition ───────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .eo-hero__copy {
+      margin-right: 0;
+    }
+  }
+
+  /* ── Mobile: single column, photo stacks above copy ─────────────────────── */
+  @media (max-width: 860px) {
+    .eo-hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      min-height: unset;
+    }
+
+    /* Photo zone stacks first on mobile */
+    .eo-hero__media-zone {
+      order: -1;
+      min-height: 50vh;
+    }
+
+    /* Drop the headline overlap — no column to bleed into */
+    .eo-hero__copy {
+      margin-right: 0;
+      max-width: none;
+    }
+
+    /* Hide secondary photo on mobile — too cluttered */
+    .eo-hero__secondary {
+      display: none;
+    }
+
+    .eo-hero__title {
+      font-size: clamp(2.2rem, 9vw, 3.4rem);
+    }
+
+    .eo-hero__panel {
+      padding: 2.5rem var(--gutter);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .eo-hero__media-zone {
+      min-height: 42vh;
+    }
+  }
+
+  /* ── Archetype tweaks ────────────────────────────────────────────────────── */
+  [data-archetype="magazine"] .eo-hero__title {
+    font-size: clamp(3rem, 7vw, 6rem);
+    letter-spacing: -0.03em;
+  }
+  [data-archetype="editorial"] .eo-hero__title {
+    letter-spacing: -0.02em;
+  }
+</style>

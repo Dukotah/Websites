@@ -13,6 +13,7 @@ import HeroCollage from './HeroCollage.astro';
 import HeroStatement from './HeroStatement.astro';
 import HeroTypographicFill from './HeroTypographicFill.astro';
 import HeroEditorialAsym from './HeroEditorialAsym.astro';
+import HeroEditorialOverlap from './HeroEditorialOverlap.astro';
 
 interface Props {
   config: ProspectConfig;
@@ -30,3 +31,4 @@ const { config, variant = 'split' } = Astro.props as Props;
 {variant === 'statement' && <HeroStatement config={config} />}
 {variant === 'typographic' && <HeroTypographicFill config={config} />}
 {variant === 'editorial-asym' && <HeroEditorialAsym config={config} />}
+{variant === 'editorial-overlap' && <HeroEditorialOverlap config={config} />}
