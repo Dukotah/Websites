@@ -101,6 +101,14 @@ function candidateWidths(maxW: number): number[] {
   return fit.length ? fit : [maxW];
 }
 const resolvedWidths = asset ? (widths ?? candidateWidths(asset.width)) : undefined;
+
+// The hero photo is the LCP element on full-bleed/split heroes and is ALWAYS sat
+// under a darkening scrim, so a leaner compression quality is imperceptible there
+// but meaningfully cuts the transfer bytes that gate LCP on Slow-4G (heavy-photo
+// pages like canevaris/miguel were landing ~2630ms, just over the 2500ms budget).
+// `fetchpriority="high"` is the hero/LCP signal, so we trim its quality; every
+// other (lazy, below-fold) image keeps the full default. Caller can still override.
+const effQuality = fetchpriority === 'high' ? Math.min(quality, 62) : quality;
 ---
 
 {asset ? (
@@ -110,7 +118,7 @@ const resolvedWidths = asset ? (widths ?? candidateWidths(asset.width)) : undefi
     widths={resolvedWidths}
     sizes={sizes}
     format={format}
-    quality={quality}
+    quality={effQuality}
     loading={loading}
     fetchpriority={fetchpriority}
     decoding={decoding}
