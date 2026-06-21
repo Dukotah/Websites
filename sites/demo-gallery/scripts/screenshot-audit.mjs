@@ -12,6 +12,22 @@
  * the cold-link first impression) AND full-page (1440 wide) into `.shots/`.
  * Then the agent (or you) opens `.shots/fold/<slug>.png` and judges each one.
  *
+ * It ALSO runs a MOBILE-RESPONSIVENESS GATE: ~50% of real traffic is mobile,
+ * but the desktop captures (1440px) leave the 375/768px layouts programmatically
+ * untested. After the desktop shots, this drives the SAME preview through the
+ * Chrome DevTools Protocol at two real device viewports — 375×667 (phone) and
+ * 768×1024 (tablet) — screenshots each into `.shots/mobile/<vw>/<slug>.png` and
+ * MEASURES the live DOM/CSS to assert, key-free:
+ *   • no horizontal overflow (documentElement.scrollWidth <= viewport),
+ *   • base body text >= 16px (legible on a phone),
+ *   • touch targets >= 44×44 CSS px (WCAG 2.5.8) — especially the
+ *     StickyContactBar, which only appears at <=560px and so is invisible to the
+ *     desktop captures.
+ * Real responsiveness failures make this exit non-zero so a regressed media
+ * query / overflow / tiny tap target is caught BEFORE it ships. The gate is
+ * fail-soft: if Chrome can't be driven over CDP it WARNS and skips rather than
+ * blocking the desktop evidence.
+ *
  *   npm run shots              # all prospects
  *   npm run shots -- vasquez   # just matching slugs
  *   npm run shots -- --no-build # skip the rebuild (faster re-run)
@@ -143,8 +159,174 @@ for (const slug of slugs) {
   console.log(`${ok ? '✓' : '✗'} ${slug}`);
 }
 
+// ── Mobile-responsiveness gate ───────────────────────────────────────────────
+// Desktop captures (1440px) never exercise the 375/768px layouts. Drive the same
+// preview through CDP at two real device viewports and MEASURE the live DOM/CSS.
+// Key-free, and fail-soft: if Chrome can't be driven we WARN and skip.
+const MOBILE_VIEWPORTS = [
+  { id: 'phone', label: '375×667', width: 375, height: 667 },
+  { id: 'tablet', label: '768×1024', width: 768, height: 1024 },
+];
+const MIN_TEXT_PX = 16; // legible body text on a phone
+const MIN_TAP_PX = 44; // WCAG 2.5.8 target size
+
+// Probe runs INSIDE the page: returns overflow, base font-size, and any
+// interactive element (link/button) whose rendered box is under 44×44 CSS px.
+// We only flag VISIBLE, on-screen controls so an off-canvas/closed menu item
+// (legitimately 0×0) is never a false positive. The StickyContactBar lives at
+// <=560px, so its buttons are measured at the phone viewport — exactly the
+// 560px boundary the roadmap calls out.
+const PROBE = `(() => {
+  const doc = document.documentElement;
+  const overflow = doc.scrollWidth - window.innerWidth;
+  const baseFs = parseFloat(getComputedStyle(document.body).fontSize) || 0;
+  const small = [];
+  const seen = new Set();
+  for (const el of document.querySelectorAll('a[href], button, [role="button"], input:not([type="hidden"]), select')) {
+    const cs = getComputedStyle(el);
+    if (cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) === 0) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width === 0 || r.height === 0) continue; // not laid out / off-canvas
+    if (r.bottom < 0 || r.top > window.innerHeight * 4) continue; // far off-page
+    if (r.width >= ${MIN_TAP_PX} && r.height >= ${MIN_TAP_PX}) continue;
+    const key = el.className + '|' + (el.textContent || '').trim().slice(0, 24);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    small.push({
+      w: Math.round(r.width), h: Math.round(r.height),
+      tag: el.tagName.toLowerCase(), cls: (el.className || '').toString().slice(0, 40),
+      text: (el.getAttribute('aria-label') || el.textContent || '').trim().slice(0, 28),
+    });
+  }
+  return JSON.stringify({ overflow, baseFs, small: small.slice(0, 8) });
+})()`;
+
+async function cdpSend(ws, method, params, id) {
+  return new Promise((res, rej) => {
+    const onMsg = (e) => {
+      const m = JSON.parse(e.data);
+      if (m.id === id) {
+        ws.removeEventListener('message', onMsg);
+        m.error ? rej(new Error(m.error.message)) : res(m.result);
+      }
+    };
+    ws.addEventListener('message', onMsg);
+    ws.send(JSON.stringify({ id, method, params }));
+  });
+}
+
+async function mobileGate() {
+  const CDP_PORT = 9344;
+  const profileDir = join(SHOTS, '.cdp-profile');
+  const chrome = spawn(
+    CHROME,
+    [
+      '--headless=new',
+      '--disable-gpu',
+      '--hide-scrollbars',
+      '--force-prefers-reduced-motion',
+      '--no-first-run',
+      '--no-default-browser-check',
+      `--remote-debugging-port=${CDP_PORT}`,
+      `--user-data-dir=${profileDir}`,
+    ],
+    { stdio: 'ignore' },
+  );
+
+  let failures = 0;
+  try {
+    // Wait for CDP to come up (fail-soft: give up after ~9s).
+    let ver = null;
+    for (let i = 0; i < 30; i++) {
+      try {
+        ver = await (await fetch(`http://localhost:${CDP_PORT}/json/version`)).json();
+        break;
+      } catch {
+        await sleep(300);
+      }
+    }
+    if (!ver) throw new Error('CDP did not start');
+
+    for (const vp of MOBILE_VIEWPORTS) {
+      mkdirSync(join(SHOTS, 'mobile', vp.id), { recursive: true });
+      for (const slug of slugs) {
+        const tab = await (
+          await fetch(`http://localhost:${CDP_PORT}/json/new?about:blank`, { method: 'PUT' })
+        ).json();
+        const ws = new WebSocket(tab.webSocketDebuggerUrl);
+        await new Promise((r) => ws.addEventListener('open', r, { once: true }));
+        let id = 0;
+        try {
+          await cdpSend(ws, 'Page.enable', {}, ++id);
+          await cdpSend(
+            ws,
+            'Emulation.setDeviceMetricsOverride',
+            { width: vp.width, height: vp.height, deviceScaleFactor: 2, mobile: true },
+            ++id,
+          );
+          await cdpSend(ws, 'Page.navigate', { url: `http://localhost:${port}/s/${slug}` }, ++id);
+          await sleep(1500);
+
+          const probe = await cdpSend(
+            ws,
+            'Runtime.evaluate',
+            { expression: PROBE, returnByValue: true },
+            ++id,
+          );
+          const { overflow, baseFs, small } = JSON.parse(probe.result.value);
+
+          const shotResult = await cdpSend(
+            ws,
+            'Page.captureScreenshot',
+            { format: 'png', captureBeyondViewport: true },
+            ++id,
+          );
+          const { writeFile } = await import('node:fs/promises');
+          await writeFile(
+            join(SHOTS, 'mobile', vp.id, `${slug}.png`),
+            Buffer.from(shotResult.data, 'base64'),
+          );
+
+          const probs = [];
+          if (overflow > 1) probs.push(`overflow +${overflow}px`);
+          if (baseFs < MIN_TEXT_PX) probs.push(`text ${baseFs.toFixed(1)}px < ${MIN_TEXT_PX}`);
+          if (small.length) {
+            probs.push(
+              `${small.length} tap<44: ` +
+                small.map((s) => `${s.tag}.${s.cls || '∅'}(${s.w}×${s.h}"${s.text}")`).join(', '),
+            );
+          }
+          if (probs.length) {
+            failures++;
+            console.log(`  ✗ ${vp.label} ${slug}: ${probs.join(' | ')}`);
+          } else {
+            console.log(`  ✓ ${vp.label} ${slug}`);
+          }
+        } finally {
+          ws.close();
+        }
+      }
+    }
+  } catch (err) {
+    console.warn(`▲ mobile gate skipped (fail-soft): ${err.message}`);
+    chrome.kill();
+    return null; // signal "could not run" — not a hard fail
+  }
+  chrome.kill();
+  return failures;
+}
+
+console.log('\n▶ mobile-responsiveness gate (375×667 + 768×1024)…');
+const mobileFailures = await mobileGate();
+
 preview.kill();
 console.log(
-  `\n▶ done → ${SHOTS}\n  fold/  = above-the-fold (the cold-link first impression)\n  full/  = whole page\nReview every fold/<slug>.png before sending links.`,
+  `\n▶ done → ${SHOTS}\n  fold/   = above-the-fold (the cold-link first impression)\n  full/   = whole page\n  mobile/ = 375×667 + 768×1024 device-viewport captures\nReview every fold/<slug>.png before sending links.`,
 );
+if (mobileFailures && mobileFailures > 0) {
+  console.error(
+    `\n✗ mobile gate FAILED: ${mobileFailures} viewport(s) had overflow / tiny text / sub-44px tap targets.`,
+  );
+  process.exit(1);
+}
 process.exit(0);

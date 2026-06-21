@@ -50,6 +50,19 @@ async function isConfirmed(slug) {
   }
 }
 
+/** True iff ANY research file exists for this slug (confirmed or not). A site with
+ *  no research file behind it that ALSO reaches for a cliché headline is the pure
+ *  "AI batch" tell — nothing was researched and the most important line is filler,
+ *  so the cliché finding is promoted warn→critical (R4). */
+async function hasResearchFile(slug) {
+  try {
+    await readFile(join(RESEARCH, `${slug}.json`), 'utf8');
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // Tokens injected at runtime by tokens.ts (artDirectionToCss) — always present.
 const INJECTED = new Set([
   'brand','brand-vivid','brand-vivid-contrast','brand-dark','brand-contrast','accent','accent-contrast','bg','bg-alt','bg-deep',
@@ -191,7 +204,7 @@ const allSections = (c) => (c.pages ?? []).flatMap((p) => p.sections ?? []);
  * the home hero is the first 'hero' section (heading at section.heading, photo at
  * section.image.src), and the OG/share image is config.images.hero.
  */
-function auditProspect(slug, c, confirmed = false) {
+function auditProspect(slug, c, confirmed = false, researched = false) {
   const issues = [];
   const sections = allSections(c);
   const homeHero = (c.pages?.[0]?.sections ?? []).find((s) => s.kind === 'hero');
@@ -254,6 +267,10 @@ function auditProspect(slug, c, confirmed = false) {
   if (HEADLINE_CLICHES.test(heading)) {
     if (confirmed)
       issues.push(['info', `headline "${heading}" matches a cliché pattern but is verified-authored copy`]);
+    else if (!researched)
+      // No research file backs the site AND the headline is filler — the pure
+      // "AI batch" tell. Critical: a researched, specific promise is required.
+      issues.push(['critical', `cliché headline "${heading}" with no research backing — research a specific, earned promise`]);
     else
       issues.push(['warn', `cliché headline "${heading}" — rewrite with a specific, earned promise`]);
   }
@@ -567,7 +584,8 @@ async function main() {
     const slug = f.replace(/\.json$/, '');
     const c = JSON.parse(await readFile(join(PREMIUM, f), 'utf8'));
     const confirmed = await isConfirmed(slug);
-    const issues = auditProspect(slug, c, confirmed);
+    const researched = confirmed || await hasResearchFile(slug);
+    const issues = auditProspect(slug, c, confirmed, researched);
     // Re-score the real photos this config references (fuzzy / low-res surfaced
     // from the bytes — the strict photo gate, measured at audit time too).
     issues.push(...await auditPhotos(slug, c));
@@ -637,7 +655,8 @@ async function main() {
 export async function auditConfigCriticals(slug, config) {
   try {
     const confirmed = await isConfirmed(slug);
-    const issues = auditProspect(slug, config, confirmed);
+    const researched = confirmed || await hasResearchFile(slug);
+    const issues = auditProspect(slug, config, confirmed, researched);
     return issues.filter((i) => i[0] === 'critical').map((i) => i[1]);
   } catch {
     return []; // fail soft — never let an audit hiccup block authoring

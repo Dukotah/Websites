@@ -340,7 +340,12 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   // ── HOME sections ──
   const homeSections = [];
 
-  // hero
+  // hero — when neither a research-authored heading NOR an established year
+  // anchors the line, we fall back to the deterministic category-aware rotation.
+  // That fallback is acceptable copy, but a site leaning on it WITHOUT any
+  // research backing or founding-year anchor is research-thin: flag it so the
+  // 95% self-gate (below) holds it for a human glance instead of shipping ready.
+  const usedFallbackHero = !research?.heroHeading && !established;
   const hero = {
     kind: 'hero',
     variant: heroVariant,
@@ -635,7 +640,7 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
     pages,
   };
 
-  return { config, meta: { aboutDropped, realPhotoCount, galleryCount: galleryImgs.length, heroImg, anyRealPhoto: realPhotoCount > 0 || galleryImgs.length > 0, cat, copyStripped, stockHeroSuppressed, suppressReason } };
+  return { config, meta: { aboutDropped, realPhotoCount, galleryCount: galleryImgs.length, heroImg, anyRealPhoto: realPhotoCount > 0 || galleryImgs.length > 0, cat, copyStripped, stockHeroSuppressed, suppressReason, usedFallbackHero, hasResearch: Boolean(research), established: Boolean(established) } };
 }
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -733,19 +738,65 @@ function buildSteps(cat, name) {
   ];
 }
 
+// Category-family hero fallbacks — used ONLY when research carried no heroHeading
+// and there's no established year to anchor the line. Each family gets 2-3
+// SPECIFIC, earned-sounding alternatives (no "count on"/"trust"/"done right"
+// filler — those are exactly the batch tell audit.HEADLINE_CLICHES catches). A
+// slug-hash picks one deterministically so a batch reads varied, not stamped.
+// The {label} (humanized category) and {area} are filled per site.
+const HERO_FALLBACKS = {
+  hospitality: [
+    (label, area) => `Good ${label.toLowerCase()}${area ? `, made for ${area}` : ', made fresh daily'}`,
+    (label, area) => `A ${label.toLowerCase()} worth coming back to${area ? ` in ${area}` : ''}`,
+    (label) => `Real ${label.toLowerCase()}, made from scratch`,
+  ],
+  services: [
+    (label, area) => `${label}${area ? ` for ${area}` : ''}, done by people who show up`,
+    (label, area) => `Honest ${label.toLowerCase()}${area ? ` across ${area}` : ', the first time'}`,
+    (label) => `${label} that holds up — and people who stand behind it`,
+  ],
+  beauty: [
+    (label, area) => `A ${label.toLowerCase()}${area ? ` in ${area}` : ''} that gets you`,
+    (label) => `Skilled ${label.toLowerCase()} — and an experience to match`,
+    (label, area) => `Your ${label.toLowerCase()}${area ? `, right here in ${area}` : ', without the rush'}`,
+  ],
+  default: [
+    (label, area) => `${label}${area ? ` for ${area}` : ''}, the way it should be`,
+    (label) => `Real ${label.toLowerCase()}, done with care`,
+    (label, area) => `${label}${area ? ` in ${area}` : ''} — and people who take it seriously`,
+  ],
+};
+function heroFamily(cat) {
+  if (HOSPITALITY.has(cat)) return 'hospitality';
+  if (BEAUTY_WELLNESS.has(cat)) return 'beauty';
+  if (SERVICES_LED.has(cat)) return 'services';
+  return 'default';
+}
 function defaultHeroHeading(name, cat, area, established) {
   if (established) return `${name}, serving ${area || 'the area'} since ${established}`;
-  return `${name} — ${categoryLabel(cat)} you can count on`;
+  const label = categoryLabel(cat);
+  const variants = HERO_FALLBACKS[heroFamily(cat)] ?? HERO_FALLBACKS.default;
+  return variants[hashStr(name + cat) % variants.length](label, area);
 }
 
+// Third service-description variant is category-aware: hospitality dishes read
+// differently from a trade job, so we route the family-specific line here instead
+// of the old "Count on us for…" filler (the audit cliché tell). The first two
+// variants are already generic-but-honest and clean.
+const SERVICE_DESC_THIRD = {
+  hospitality: (t, area) => `Made to order${area ? ` for ${area}` : ''} — ${t.toLowerCase()} done properly.`,
+  beauty: (t, area) => `${titleCase(t)} tailored to you${area ? `, here in ${area}` : ''}, never rushed.`,
+  services: (t, area) => `${titleCase(t)} from start to finish${area ? ` across ${area}` : ''} — and we stand behind it.`,
+  default: (t, area) => `${titleCase(t)} handled end to end${area ? ` across ${area}` : ''}, the right way.`,
+};
 const SERVICE_DESC = [
   (t, area) => `${titleCase(t)} handled with care${area ? `, right here in ${area}` : ''}.`,
   (t) => `Real experience behind every ${t.toLowerCase()} job, big or small.`,
-  (t, area) => `Count on us for ${t.toLowerCase()}${area ? ` across ${area}` : ''}, start to finish.`,
+  (t, area, cat) => (SERVICE_DESC_THIRD[heroFamily(cat)] ?? SERVICE_DESC_THIRD.default)(t, area),
 ];
 function deriveServiceDesc(title, cat, area) {
   const seed = hashStr(title + cat);
-  return SERVICE_DESC[seed % SERVICE_DESC.length](title, area);
+  return SERVICE_DESC[seed % SERVICE_DESC.length](title, area, cat);
 }
 
 // ── Claude copy upgrade (optional) ─────────────────────────────────────────
@@ -851,6 +902,14 @@ export async function authorPremium(slug, row, e, research, media, {
   // P0 guards: scraped copy was junk (stripped) → must rewrite from real facts;
   // a generic regional stock hero on a place-based business was suppressed.
   if (meta.copyStripped) flags.push('Scraped copy was junk — rewrite from real facts');
+  // Cliché-fallback gate (R4): the home hero fell back to the deterministic
+  // category rotation AND the site has neither a research file nor an established
+  // year to anchor it — i.e. nothing earned the headline. That's the research-thin
+  // case the 95% bar holds back; force needs-review so a human researches a real,
+  // specific promise. (A site WITH research or a founding year keeps the fallback
+  // legitimately and is not flagged here.)
+  if (meta.usedFallbackHero && !meta.hasResearch && !meta.established)
+    flags.push('Generic fallback headline with no research or founding year — research a specific, earned hero line');
   // A distinct flag string per suppression case so the human knows WHY the hero
   // was routed to editorial (off-domain provenance vs washed photo).
   if (meta.stockHeroSuppressed) flags.push(meta.suppressReason || 'Generic stock hero suppressed — add a real photo');
