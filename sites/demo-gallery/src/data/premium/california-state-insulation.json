@@ -1,0 +1,88 @@
+{
+  "slug": "california-state-insulation",
+  "name": "California State Insulation",
+  "legalName": "California State Insulation",
+  "tagline": "",
+  "seoDescription": "California State Insulation — Default serving Santa Rosa, CA.",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 546-3177",
+    "email": "calstate707@gmail.com",
+    "address": "1244 Tapadera Dr"
+  },
+  "social": {},
+  "brand": {
+    "color": "#3c5a76",
+    "fontId": "modern-grotesk"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "California State Insulation — Default you can count on",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/california-state-insulation/contact"
+          },
+          "secondaryCta": {
+            "label": "Contact us",
+            "href": "/s/california-state-insulation/contact"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with California State Insulation",
+          "body": "Find us at 1244 Tapadera Dr. Call (707) 546-3177 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/california-state-insulation/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 546-3177",
+            "href": "tel:+17075463177"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach California State Insulation at 1244 Tapadera Dr or call (707) 546-3177.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "No website provided — research & verify manually",
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Single-page content — needs more real material for multi-page",
+    "No About content — about page folded",
+    "Audit critical — templated-headline-only — hero \"California State Insulation — Default you can count on\" is the deterministic fallback and the page has no real story/services/testimonials; research and write real copy",
+    "Audit critical — no real photos and thin layout — not enough composed structure to carry a zero-photo page"
+  ],
+  "photoSource": "library"
+}

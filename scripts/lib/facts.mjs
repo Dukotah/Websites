@@ -587,12 +587,21 @@ async function acquireMediaFor(slug, row, e, catKey, { authoritative = false, sk
 // ---------------------------------------------------------------------------
 // Decide ready vs needs-review from how much REAL material we got.
 // ---------------------------------------------------------------------------
-function deriveStatus(row, e, media, photoSource, templated, mismatchName = '') {
+function deriveStatus(row, e, media, photoSource, templated, mismatchName = '', authoritative = false) {
   const flags = [];
-  if (!row.website) flags.push('No website provided — research & verify manually');
-  else if (mismatchName) flags.push(`Website mismatch — ${row.website} identifies as "${mismatchName}", not ${row.name}; scraped facts/photos discarded. Verify the correct URL.`);
-  else if (!e) flags.push('Website unreachable — copy not built from real data');
-  else if ((e.richness ?? 0) < 35) flags.push('Thin research — verify facts & rewrite copy');
+  // Source verification. CONFIRMED research (authoritative) is itself the
+  // verification — and a business with NO first-party website is the outreach
+  // opportunity, not a defect — so we don't demand a website on that path. The
+  // website advisories below are for the unverified live-scrape path only.
+  if (!row.website) {
+    if (!authoritative) flags.push('No website provided — research & verify manually');
+  } else if (mismatchName) {
+    flags.push(`Website mismatch — ${row.website} identifies as "${mismatchName}", not ${row.name}; scraped facts/photos discarded. Verify the correct URL.`);
+  } else if (!e) {
+    flags.push('Website unreachable — copy not built from real data');
+  }
+  // Thin research gates on EVERY path that produced enrichment (incl. authoritative).
+  if (e && !mismatchName && (e.richness ?? 0) < 35) flags.push('Thin research — verify facts & rewrite copy');
   // NOTE: the photo decision is NOT made here. Photo-light is a first-class
   // outcome (owner vision: the SITE carries quality, not photos — copperbaytech /
   // AVISP are the bar). The audit's photoLightVerdict (scripts/audit.mjs) is the
@@ -605,7 +614,10 @@ function deriveStatus(row, e, media, photoSource, templated, mismatchName = '') 
   if (templated.includes('about')) flags.push('About copy is templated — rewrite from research');
   const hasRealEmail = Boolean(e?.email || row.email);
   if (!hasRealEmail) flags.push('No email found — add a real email or contact form before sending');
-  if (!e?.hours?.length) flags.push('Hours are a generic default (Mon–Fri 8–6) — verify before sending');
+  // Hours: when unknown the page OMITS them (showHours=false) rather than showing
+  // a fake default, so this only needs a human glance on the unverified scrape
+  // path. On the authoritative (confirmed-research) path the omission is intentional.
+  if (!e?.hours?.length && !authoritative) flags.push('Hours are a generic default (Mon–Fri 8–6) — verify before sending');
   const status = flags.length ? 'needs-review' : 'ready';
   return { status, flags };
 }

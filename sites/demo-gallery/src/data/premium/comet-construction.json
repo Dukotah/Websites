@@ -1,0 +1,362 @@
+{
+  "slug": "comet-construction",
+  "name": "Comet Construction",
+  "legalName": "Comet Construction",
+  "tagline": "Family-owned Santa Rosa general contractor since 1983",
+  "seoDescription": "Comet Construction, Inc. is a family-owned Santa Rosa general contractor since 1983 for kitchen and bath remodels, home additions, and whole-house renovations",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1983",
+  "contact": {
+    "phone": "(707) 578-4506",
+    "email": "cometconstruction@sbcglobal.net",
+    "address": "3011 Manning Ct"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/CometConstructionInc/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7am–5pm"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#bd762a",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 1983",
+          "heading": "Kitchens, baths, and additions built to last in Sonoma County",
+          "subheading": "A family-owned Santa Rosa general contractor remodeling North Bay homes since 1983, holding California general building license #414519.",
+          "badges": [
+            "Serving since 1983",
+            "Family-owned and operated since 1983",
+            "Licensed CA general building contractor (Lic"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/comet-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/comet-construction/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Comet Construction",
+          "items": [
+            {
+              "title": "Family-Owned And Operated Since 1983",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Licensed CA General Building Contractor (Lic",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Specializing In Kitchens, Baths, And Home",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Santa Rosa And Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Member, Redwood Empire Remodelers Association",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Member, North Coast Builders Exchange",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Comet Construction",
+          "body": [
+            "Comet Construction, Inc. has been a family-owned and operated general contractor in Santa Rosa since 1983, remodeling kitchens, baths, and homes across Sonoma County. The company holds California general building contractor license #414519 (Class B) and works from its shop at 3011 Manning Court in Santa Rosa.",
+            "Over more than four decades, Comet Construction has focused on residential remodeling and additions — coordinating the trades, managing change orders in writing, and keeping projects on schedule and on budget. The company is a member of the Redwood Empire Remodelers Association and the North Coast Builders Exchange."
+          ],
+          "highlights": [
+            "Family-owned and operated since 1983",
+            "Licensed CA general building contractor (Lic. #414519, Class B)",
+            "Specializing in kitchens, baths, and home additions",
+            "Serving Santa Rosa and Sonoma County"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Kitchen Remodeling",
+              "description": "Full kitchen renovations — cabinetry, counters, layout changes, and finishes — managed start to finish for Sonoma County homes."
+            },
+            {
+              "title": "Bathroom Remodeling",
+              "description": "Bathroom updates and full remodels, from refreshed fixtures and tile to reconfigured layouts."
+            },
+            {
+              "title": "Home Additions",
+              "description": "Room additions and expansions that add living space while matching the look and structure of your existing home."
+            },
+            {
+              "title": "General Remodeling",
+              "description": "Whole-house and multi-room remodels for single-family homes, coordinating all of the specialized trades under one contractor."
+            },
+            {
+              "title": "Home Renovations",
+              "description": "Renovations and improvements for established Sonoma County homes, with change orders written up and signed to avoid billing surprises."
+            },
+            {
+              "title": "New Construction",
+              "description": "Single-family residential building backed by a California Class B general building license."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Comet Construction and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Comet Construction",
+          "body": "Find us at 3011 Manning Ct. Call (707) 578-4506 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/comet-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 578-4506",
+            "href": "tel:+17075784506"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "A family-owned Santa Rosa general contractor remodeling North Bay homes since 1983, holding California general building license #414519.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Kitchen Remodeling",
+              "description": "Full kitchen renovations — cabinetry, counters, layout changes, and finishes — managed start to finish for Sonoma County homes."
+            },
+            {
+              "title": "Bathroom Remodeling",
+              "description": "Bathroom updates and full remodels, from refreshed fixtures and tile to reconfigured layouts."
+            },
+            {
+              "title": "Home Additions",
+              "description": "Room additions and expansions that add living space while matching the look and structure of your existing home."
+            },
+            {
+              "title": "General Remodeling",
+              "description": "Whole-house and multi-room remodels for single-family homes, coordinating all of the specialized trades under one contractor."
+            },
+            {
+              "title": "Home Renovations",
+              "description": "Renovations and improvements for established Sonoma County homes, with change orders written up and signed to avoid billing surprises."
+            },
+            {
+              "title": "New Construction",
+              "description": "Single-family residential building backed by a California Class B general building license."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Comet Construction and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 3011 Manning Ct."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7am–5pm; Sat–Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 578-4506 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 3011 Manning Ct. Call (707) 578-4506 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/comet-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 578-4506",
+            "href": "tel:+17075784506"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Comet Construction",
+          "heading": "About Comet Construction",
+          "subheading": "Comet Construction, Inc. has been a family-owned and operated general contractor in Santa Rosa since 1983, remodeling kitchens, baths, and homes across Sonoma County",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Comet Construction",
+          "body": [
+            "Comet Construction, Inc. has been a family-owned and operated general contractor in Santa Rosa since 1983, remodeling kitchens, baths, and homes across Sonoma County. The company holds California general building contractor license #414519 (Class B) and works from its shop at 3011 Manning Court in Santa Rosa.",
+            "Over more than four decades, Comet Construction has focused on residential remodeling and additions — coordinating the trades, managing change orders in writing, and keeping projects on schedule and on budget. The company is a member of the Redwood Empire Remodelers Association and the North Coast Builders Exchange."
+          ],
+          "highlights": [
+            "Family-owned and operated since 1983",
+            "Licensed CA general building contractor (Lic. #414519, Class B)",
+            "Specializing in kitchens, baths, and home additions",
+            "Serving Santa Rosa and Sonoma County"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "43+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Comet Construction",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/comet-construction/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Comet Construction at 3011 Manning Ct or call (707) 578-4506.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "comet-construction",
+  "confirmed": true,
+  "established": "1983",
+  "tagline": "Family-owned Santa Rosa general contractor since 1983",
+  "seoDescription": "Comet Construction, Inc. is a family-owned Santa Rosa general contractor since 1983 for kitchen and bath remodels, home additions, and whole-house renovations. CA Lic. #414519.",
+  "heroHeading": "Kitchens, baths, and additions built to last in Sonoma County",
+  "heroSubheading": "A family-owned Santa Rosa general contractor remodeling North Bay homes since 1983, holding California general building license #414519.",
+  "highlights": [
+    "Family-owned and operated since 1983",
+    "Licensed CA general building contractor (Lic. #414519, Class B)",
+    "Specializing in kitchens, baths, and home additions",
+    "Serving Santa Rosa and Sonoma County",
+    "Member, Redwood Empire Remodelers Association",
+    "Member, North Coast Builders Exchange"
+  ],
+  "aboutHeading": "About Comet Construction",
+  "aboutBody": [
+    "Comet Construction, Inc. has been a family-owned and operated general contractor in Santa Rosa since 1983, remodeling kitchens, baths, and homes across Sonoma County. The company holds California general building contractor license #414519 (Class B) and works from its shop at 3011 Manning Court in Santa Rosa.",
+    "Over more than four decades, Comet Construction has focused on residential remodeling and additions — coordinating the trades, managing change orders in writing, and keeping projects on schedule and on budget. The company is a member of the Redwood Empire Remodelers Association and the North Coast Builders Exchange."
+  ],
+  "servicesHeading": "What we build",
+  "services": [
+    {
+      "title": "Kitchen Remodeling",
+      "description": "Full kitchen renovations — cabinetry, counters, layout changes, and finishes — managed start to finish for Sonoma County homes."
+    },
+    {
+      "title": "Bathroom Remodeling",
+      "description": "Bathroom updates and full remodels, from refreshed fixtures and tile to reconfigured layouts."
+    },
+    {
+      "title": "Home Additions",
+      "description": "Room additions and expansions that add living space while matching the look and structure of your existing home."
+    },
+    {
+      "title": "General Remodeling",
+      "description": "Whole-house and multi-room remodels for single-family homes, coordinating all of the specialized trades under one contractor."
+    },
+    {
+      "title": "Home Renovations",
+      "description": "Renovations and improvements for established Sonoma County homes, with change orders written up and signed to avoid billing surprises."
+    },
+    {
+      "title": "New Construction",
+      "description": "Single-family residential building backed by a California Class B general building license."
+    }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "7am–5pm" },
+    { "day": "Sat–Sun", "hours": "Closed" }
+  ],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/CometConstructionInc/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED FACTS (this is the Santa Rosa, CA company at 3011 Manning Ct, 95403, phone 707-578-4506). CSLB: License #414519, classification B (General Building), established 1983, $15,000 bond with American Contractors Indemnity Company, license active with expiration 8/31/2026 (per CSLB data surfaced in search; cslb.ca.gov license-detail page returned HTTP 403 to direct fetch but the number, class, 1983 date, and bond were corroborated across multiple sources). DISAMBIGUATION: confirmed Santa Rosa company via matching address (3011 Manning Ct, also a related address 1312 Crestview Ct, Santa Rosa) and phone. OWNERSHIP: family-owned; CSLB/permit records associate Carl Eugene Portscheller (President) and Debbie Lee Portscheller, with Thad & Amber Mazzoni also listed as company contacts (some directories show alt phone 707-495-0413 and thad@cometconstructioninc.com). Owner left blank in _lead to avoid asserting a single name. SERVICES: 'General Remodeling, Kitchens, Baths & Additions' and 'Single-family Houses' per RERA and directory listings — these are real. New Construction inferred from Class B license; framed conservatively. MEMBERSHIPS: Redwood Empire Remodelers Association (rera.com/cometconstruction) and North Coast Builders Exchange (ncbeonline.com) — both list the company. HOURS: Mon-Fri 7am-5pm, closed weekends per directory listings. BuildZoom score 105 (top 8% of CA contractors), ~23 permitted projects in 3 years (BuildZoom; not used as a hard claim since page was 403). TESTIMONIALS: An Angi summary referenced positive reviews (a 9-week kitchen remodel finished on time/on budget; written/signed change orders), but I could not retrieve a directly attributed verbatim quote from a verifiable source, so testimonials left EMPTY rather than risk a fabricated quote. PHOTOS: official website cometconstructioninc.com is DEAD; web.archive.org was not fetchable in this environment; no clearly-theirs direct image URLs found, so realPhotoUrls is empty. Facebook page exists (facebook.com/CometConstructionInc) and may hold real project photos for manual review. Email per lead: cometconstruction@sbcglobal.net.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Comet Construction",
+    "category": "contractor",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 578-4506",
+    "email": "cometconstruction@sbcglobal.net",
+    "address": "3011 Manning Ct",
+    "owner": ""
+  }
+}

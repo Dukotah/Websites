@@ -1,0 +1,92 @@
+{
+  "slug": "merciari-construction-design",
+  "confirmed": true,
+  "established": "2015",
+  "tagline": "Design-build remodels and custom homes across Sonoma, Napa, and the North Bay",
+  "seoDescription": "Merciari Construction Design is a licensed Santa Rosa design-build contractor for remodels, additions, and custom homes across Sonoma and Napa counties.",
+  "heroHeading": "Design-build craftsmanship for Sonoma County homes",
+  "heroSubheading": "Led by general contractor Anthony Merciari, we partner with you from first concept through final finish on remodels, additions, and ground-up custom builds.",
+  "highlights": [
+    "Licensed California general contractor (CSLB #1057612)",
+    "Founded in 2015 on 20+ years of construction and landscape-design experience",
+    "True design-build process: concept and planning under the same roof as construction",
+    "Serving Santa Rosa, Sonoma, and Napa counties",
+    "30 reviews on Yelp with detailed praise for communication and craftsmanship",
+    "BuildZoom score ranks in the top 1% of California licensed contractors"
+  ],
+  "aboutHeading": "About Merciari Construction Design",
+  "aboutBody": [
+    "Merciari Construction Design is a Santa Rosa design-build contractor founded in 2015 as the culmination of more than 20 years of construction and landscape-design work. General contractor Anthony Merciari built the company around a client-focused, custom-build methodology that keeps design and construction under one roof.",
+    "The team works with each client to understand the site's needs while incorporating the homeowner's vision, delivering personalized spaces across the North and West Bay. Clients consistently highlight Anthony's transparency, responsiveness, and the skilled, courteous crews behind every project, serving Santa Rosa, Sonoma, and Napa counties."
+  ],
+  "servicesHeading": "What we build",
+  "services": [
+    {
+      "title": "Concept & Design",
+      "description": "We meet with you to shape your vision for the space, then develop floor plans and a buildable design before a single board is cut."
+    },
+    {
+      "title": "Home Remodels",
+      "description": "Whole-home and room-by-room remodels that update aging layouts and finishes while respecting the character of your house."
+    },
+    {
+      "title": "Kitchen & Bathroom Remodels",
+      "description": "Reworking cramped, outdated kitchens and baths into functional, well-finished spaces built to last."
+    },
+    {
+      "title": "Home Additions",
+      "description": "Adding square footage and new rooms to your existing home with construction that blends seamlessly into the original structure."
+    },
+    {
+      "title": "New & Custom Home Construction",
+      "description": "Ground-up custom homes and new construction tailored to your site, lifestyle, and budget across the North Bay."
+    },
+    {
+      "title": "Demolition & Site Prep",
+      "description": "Clearing and preparing the site so each project starts on a clean, well-managed foundation."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "From their first meeting, Anthony and his team were friendly, attentive, collaborative, and great with communicating. When an issue did arise, Anthony responded quickly and with a solution. His crew and team of subcontractors were skilled, courteous, and cleaned up at the end of the day.",
+      "author": "Yelp reviewer"
+    },
+    {
+      "quote": "Excellent judgment, responsive, good aesthetic, excellent workmanship. Fair prices. The team showed they knew and understood wood, rot, and the importance of keeping moisture out.",
+      "author": "Yelp reviewer"
+    },
+    {
+      "quote": "As someone who works with many contractors professionally, I was particularly impressed by Anthony's open-book transparency and honesty. He was incredibly patient and collaborative with high-level finishing details. If you want a builder who prioritizes integrity and craftsmanship, MCD is highly recommended.",
+      "author": "Yelp reviewer"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/MerciariDesign/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED via web search of the business's live website (merciaridesign.com / merciariconstructiondesign.com), Yelp, BBB, BuildZoom, and Houzz. NOTE: the website is NOT dead — both merciaridesign.com and merciariconstructiondesign.com are live (returned 403 to automated fetch but resolve and are indexed). Founded 2015; owner/general contractor Anthony Merciari (full name Anthony Davis Merciari per BuildZoom). CSLB license #1057612, expiration 8/31/2027 (confirmed via multiple sources; could NOT directly verify current active status or classification because cslb.ca.gov returned 403 to fetch — one search snippet mentioned the license was 'at one point cancelled,' so verify live status at cslb.ca.gov before sending). Phone (707) 477-6174 confirmed. ADDRESS DISCREPANCY: lead gives 887 Sebastopol Rd, but every public source (Yelp, BBB, website) lists 2885 Santa Rosa Ave, Ste A, Santa Rosa, CA 95407 — confirm correct address with owner. Services confirmed from the live Services pages: Concept Design, Remodels, New Construction, Home Additions (kitchens/baths, demolition mentioned). Service area: Santa Rosa, Sonoma, and Napa counties; North/West Bay focus. Hours Mon–Fri 8am–5pm, weekends closed. ~30 Yelp reviews (107 photos) and a BuildZoom score in the top 1% of CA contractors. Testimonials are real verbatim/near-verbatim quotes surfaced from Yelp via search; reviewer names not captured (Yelp/BuildZoom blocked direct fetch), labeled generically. Photos: business has 107 photos on Yelp and a Houzz portfolio but none could be downloaded as clearly-theirs (sites blocked); realPhotoUrls left empty — pull from Wikimedia/category library or revisit Yelp/Houzz manually. [cleanup] Address set to verified 2885 Santa Rosa Ave Ste A (lead sheet had 887 Sebastopol Rd).",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Merciari Construction Design",
+    "category": "contractor",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 477-6174",
+    "email": "merciariconstructiondesign@gmail.com",
+    "address": "2885 Santa Rosa Ave Ste A",
+    "owner": "Anthony Merciari"
+  }
+}

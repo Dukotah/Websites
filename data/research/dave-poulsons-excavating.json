@@ -1,0 +1,84 @@
+{
+  "slug": "dave-poulsons-excavating",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Owner-operated excavating and grading across Sonoma County",
+  "seoDescription": "Dave Poulson's Excavating in Santa Rosa, CA. Owner-run excavation, grading, demolition, site work and driveways with 40+ years experience. Free estimates.",
+  "heroHeading": "Excavating and grading done right, by the owner who runs the machine",
+  "heroSubheading": "Santa Rosa's owner-operated excavation contractor — site prep, grading, demolition and driveways across Sonoma County, with over 40 years of experience.",
+  "highlights": [
+    "Over 40 years of hands-on excavation experience",
+    "Owner Dave Poulson is on every job site",
+    "Locally owned and operated in Santa Rosa, Sonoma County",
+    "No job too big or too small — all work 100% guaranteed",
+    "California licensed General Engineering contractor (Lic. #641736)",
+    "Free estimates"
+  ],
+  "aboutHeading": "About Dave Poulson's Excavating",
+  "aboutBody": [
+    "Dave Poulson's Excavating is a locally owned and operated excavation contractor based at 620 Clover Drive in Santa Rosa, serving Sonoma County. Owner Dave Poulson brings over 40 years of hands-on experience to every project, and he's on site for every job — so the person you hire is the person running the equipment.",
+    "From clearing and grading land to demolition, driveways, and site work, no job is too big or too small. The focus is straightforward: accurate, professional work and customer satisfaction, with every job backed by a 100% guarantee."
+  ],
+  "servicesHeading": "Excavation and Site Work Services",
+  "services": [
+    {
+      "title": "Excavation & Site Work",
+      "description": "Full-service excavation and site preparation for residential and commercial projects of any size, from foundations and footings to complete site work."
+    },
+    {
+      "title": "Grading & Land Clearing",
+      "description": "Clearing and grading land for projects large and small, getting your site level, drained, and ready to build."
+    },
+    {
+      "title": "Demolition & Removals",
+      "description": "Structure demolition and removal, including mobile-home demolition and pad work, with courteous, professional crews."
+    },
+    {
+      "title": "Driveways",
+      "description": "New driveway construction and improvements built to hold up to Sonoma County weather and use."
+    },
+    {
+      "title": "Trucking, Loading & Rip Rap",
+      "description": "Hauling, loading, and rock and rip rap placement for erosion control, drainage, and site stabilization."
+    },
+    {
+      "title": "Pools & Specialty Excavation",
+      "description": "Swimming pool excavation and other specialty digging where precise, careful operation matters."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Sat",
+      "hours": "7am–6pm"
+    },
+    {
+      "day": "Sun",
+      "hours": "Closed"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "There was never an issue with accuracy, professionalism or on site conduct. They were courteous to the residents and did their best to accommodate all the other traffic in the park with their large equipment.",
+      "author": "Mobile home community manager, Santa Rosa"
+    }
+  ],
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED via WebSearch (CSLB direct lookup and most listing pages returned HTTP 403 / host not in network allowlist, so confirmed via search snippets and aggregator listings). Business: Dave Poulson's Excavating, 620 Clover Dr, Santa Rosa, CA 95401 (Sonoma County); phone (707) 526-1462; email dpexcavating@yahoo.com; website dpexc.com (now DEAD). Owner: Dave Poulson (DMV/FMCSA: David W Poulson; USDOT 2668449). CSLB CONTRACTOR LICENSE #641736, classification Class A General Engineering (per multiple WebSearch results — NOT independently confirmed against cslb.ca.gov because direct fetch was blocked; recommend manual CSLB verification of status/issue date/classification before using the license # in cold email). ESTABLISHED YEAR: left blank — aggregator listings say 'established 2012' (likely the listing/LLC date) but the business advertises 'over 40 years experience' (Dave's personal experience); the two conflict, so no firm founding year asserted. Hours 'Mon-Sat 7am-6pm, Sun Closed' from Hometown Demolition / listings (note: lead-supplied prompt suggested Mon-Fri 7-5; listings consistently show Mon-Sat 7-6, used the listing version). SERVICES verified from dpexc.com snippets + aggregators: excavating, grading, land clearing/clearing, driveways, demolition & removals (incl. mobile homes), trucking, loading, rip rap, site work, swimming pool, footings/general construction. CLAIMS: 'locally owned and operated', 'over 40 Years Experience', 'owner on all jobs', 'no job too big or too small', 'all work 100% Guaranteed', 'free estimates' — all from the business's own dpexc.com copy per search snippets. TESTIMONIAL is REAL: from a mobile-home community manager review on Hometown Demolition (hometowndemolitioncontractors.com), ~Oct 2018, re: removing old homes and building new pads; attributed descriptively since full reviewer name not surfaced. PHOTOS: dpexc.com is dead and aggregator/Yelp/BBB pages blocked (403), so no clearly-theirs images could be captured — realPhotoUrls left []. Sources: dpexc.com (cached snippets), poulsons-dave-excavating.hub.biz, bbb.org profile, yelp.com biz page, buildzoom.com, hometowndemolitioncontractors.com, yellowpages.com, buzzfile.com, FMCSA SAFER (USDOT 2668449).",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Dave Poulson's Excavating",
+    "category": "excavating",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 526-1462",
+    "email": "dpexcavating@yahoo.com",
+    "address": "620 Clover Dr",
+    "owner": "Dave Poulson"
+  }
+}

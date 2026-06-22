@@ -1,0 +1,373 @@
+{
+  "slug": "gerald-e-dixon-and-scott-e-dixon-dds",
+  "name": "Dixon Dentistry",
+  "legalName": "Dixon Dentistry",
+  "tagline": "Two generations of gentle family dentistry in Sebastopol",
+  "seoDescription": "Dixon Dentistry in Sebastopol, CA — family-owned dental care since 1975. Cleanings, crowns, implants, cosmetic & restorative dentistry. (707) 823-8529.",
+  "category": "dental",
+  "categoryLabel": "Dental",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "1975",
+  "contact": {
+    "phone": "(707) 823-8529",
+    "email": "dixondentistry@gmail.com",
+    "address": "6800 Palm Ave"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/p/Dr-Scott-Dixon-DDS-100021562650892/"
+  },
+  "hours": [
+    {
+      "day": "Tue–Fri",
+      "hours": "8am–5pm"
+    }
+  ],
+  "brand": {
+    "color": "#0f7a86",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA · Est. 1975",
+          "heading": "The Dixon family has cared for Sebastopol smiles since 1975",
+          "subheading": "A hometown dental practice carried from father to son — Dr. Gerald Dixon to Dr. Scott Dixon, DDS — serving western Sonoma County with gentle, personalized care.",
+          "badges": [
+            "Serving since 1975",
+            "Family-owned and operated in Sebastopol since",
+            "Founded by Dr. Gerald Dixon and continued by"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gerald-e-dixon-and-scott-e-dixon-dds/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/gerald-e-dixon-and-scott-e-dixon-dds/services"
+          },
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Dixon Dentistry",
+          "items": [
+            {
+              "title": "Family-Owned And Operated In Sebastopol Since",
+              "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Founded By Dr. Gerald Dixon And Continued By",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Dr. Scott Dixon Is A Sebastopol Native And UCSF",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Comprehensive Family Care: Cleanings, Fillings",
+              "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Generations Of Patients — Many Families Have",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Highly Rated For Gentle, Unhurried Care And",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Dixon Dentistry",
+          "body": [
+            "Dixon Dentistry has been a fixture of western Sonoma County since 1975, when Dr. Gerald Dixon began caring for Sebastopol families. Decades later, his son, Dr. Scott Dixon, DDS, carries on that tradition at the same Palm Avenue office. Born and raised in Sebastopol, Dr. Scott attended local public schools, earned a degree in Biochemistry from UC Davis, worked as a research scientist in a dental lab at UC San Francisco, and went on to graduate from the UCSF Dental School before returning home to continue his family's practice.",
+            "With Dr. Gerald now retired and his patients in good hands, Dr. Scott and a familiar, longtime team uphold the same ideals: high-quality, gentle dentistry delivered with the personal attention of a true hometown practice. Many local families have trusted the Dixons for generations — some for more than forty years."
+          ],
+          "highlights": [
+            "Family-owned and operated in Sebastopol since 1975",
+            "Founded by Dr. Gerald Dixon and continued by his son, Dr. Scott Dixon, DDS",
+            "Dr. Scott Dixon is a Sebastopol native and UCSF Dental School graduate",
+            "Comprehensive family care: cleanings, fillings, crowns, implants & cosmetic dentistry"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Comprehensive care for the whole family",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Exams & Cleanings",
+              "description": "Routine check-ups, professional cleanings, digital x-rays, and oral cancer screenings to keep your smile healthy and catch issues early."
+            },
+            {
+              "title": "Restorative Dentistry",
+              "description": "Tooth-colored composite fillings, crowns (caps), and fixed bridges to repair and rebuild damaged or missing teeth."
+            },
+            {
+              "title": "Dental Implants & Dentures",
+              "description": "Single implants, fixed implant bridges, and removable implant dentures — including full-arch and 'teeth in a day' options — to restore your bite and confidence."
+            },
+            {
+              "title": "Root Canal Therapy",
+              "description": "Gentle endodontic treatment to relieve pain, clear infection, and save a tooth that might otherwise be lost."
+            },
+            {
+              "title": "Cosmetic Dentistry",
+              "description": "Teeth whitening, porcelain veneers, and Invisalign clear aligners to brighten and align your smile."
+            },
+            {
+              "title": "Children'S & Family Dentistry",
+              "description": "Kid-friendly preventive care including fluoride treatments and sealants, plus at-home guidance for patients of every age."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Dixon Dentistry and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "He was so gentle and took his time while still being efficient.",
+              "author": "Patient review"
+            },
+            {
+              "quote": "Scott's office and staff — Trina, Tracy and Monica are the folks I see most often — are terrific.",
+              "author": "Longtime patient"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Dixon Dentistry",
+          "body": "Find us at 6800 Palm Ave. Call (707) 823-8529 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gerald-e-dixon-and-scott-e-dixon-dds/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 823-8529",
+            "href": "tel:+17078238529"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "A hometown dental practice carried from father to son — Dr. Gerald Dixon to Dr. Scott Dixon, DDS — serving western Sonoma County with gentle, personalized care.",
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Comprehensive care for the whole family",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Exams & Cleanings",
+              "description": "Routine check-ups, professional cleanings, digital x-rays, and oral cancer screenings to keep your smile healthy and catch issues early."
+            },
+            {
+              "title": "Restorative Dentistry",
+              "description": "Tooth-colored composite fillings, crowns (caps), and fixed bridges to repair and rebuild damaged or missing teeth."
+            },
+            {
+              "title": "Dental Implants & Dentures",
+              "description": "Single implants, fixed implant bridges, and removable implant dentures — including full-arch and 'teeth in a day' options — to restore your bite and confidence."
+            },
+            {
+              "title": "Root Canal Therapy",
+              "description": "Gentle endodontic treatment to relieve pain, clear infection, and save a tooth that might otherwise be lost."
+            },
+            {
+              "title": "Cosmetic Dentistry",
+              "description": "Teeth whitening, porcelain veneers, and Invisalign clear aligners to brighten and align your smile."
+            },
+            {
+              "title": "Children'S & Family Dentistry",
+              "description": "Kid-friendly preventive care including fluoride treatments and sealants, plus at-home guidance for patients of every age."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Dixon Dentistry and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 6800 Palm Ave."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Tue–Fri: 8am–5pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 823-8529 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 6800 Palm Ave. Call (707) 823-8529 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gerald-e-dixon-and-scott-e-dixon-dds/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 823-8529",
+            "href": "tel:+17078238529"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Dixon Dentistry",
+          "heading": "About Dixon Dentistry",
+          "subheading": "Dixon Dentistry has been a fixture of western Sonoma County since 1975, when Dr. Gerald Dixon began caring for Sebastopol families. Decades later, his son, Dr",
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Dixon Dentistry",
+          "body": [
+            "Dixon Dentistry has been a fixture of western Sonoma County since 1975, when Dr. Gerald Dixon began caring for Sebastopol families. Decades later, his son, Dr. Scott Dixon, DDS, carries on that tradition at the same Palm Avenue office. Born and raised in Sebastopol, Dr. Scott attended local public schools, earned a degree in Biochemistry from UC Davis, worked as a research scientist in a dental lab at UC San Francisco, and went on to graduate from the UCSF Dental School before returning home to continue his family's practice.",
+            "With Dr. Gerald now retired and his patients in good hands, Dr. Scott and a familiar, longtime team uphold the same ideals: high-quality, gentle dentistry delivered with the personal attention of a true hometown practice. Many local families have trusted the Dixons for generations — some for more than forty years."
+          ],
+          "highlights": [
+            "Family-owned and operated in Sebastopol since 1975",
+            "Founded by Dr. Gerald Dixon and continued by his son, Dr. Scott Dixon, DDS",
+            "Dr. Scott Dixon is a Sebastopol native and UCSF Dental School graduate",
+            "Comprehensive family care: cleanings, fillings, crowns, implants & cosmetic dentistry"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "51+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Dixon Dentistry",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gerald-e-dixon-and-scott-e-dixon-dds/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Dixon Dentistry at 6800 Palm Ave or call (707) 823-8529.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

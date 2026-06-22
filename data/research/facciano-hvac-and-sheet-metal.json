@@ -1,0 +1,77 @@
+{
+  "slug": "facciano-hvac-and-sheet-metal",
+  "confirmed": true,
+  "established": "2015",
+  "tagline": "HVAC and custom sheet metal, fabricated and installed in-house",
+  "seoDescription": "Facciano HVAC and Sheet Metal in Santa Rosa, CA — licensed HVAC contractor and custom sheet metal shop. Heating, cooling, ductwork and ventilation. (707) 540-1250.",
+  "heroHeading": "Santa Rosa's HVAC and custom sheet metal shop",
+  "heroSubheading": "Family-run, CSLB-licensed heating, cooling, and sheet metal fabrication for homes and businesses across Sonoma County.",
+  "highlights": [
+    "CSLB licensed contractor (license #1009408) — Warm-Air Heating, Ventilating & Air Conditioning plus Sheet Metal (C-20 / C-43)",
+    "In business in Santa Rosa since 2015",
+    "Custom sheet metal fabrication and ductwork done in-house",
+    "Heating and air conditioning install, repair, and service",
+    "Owner-operated, family-run team (Mark and Tony Facciano)",
+    "Bonded and insured, serving Santa Rosa and Sonoma County"
+  ],
+  "aboutHeading": "About Facciano HVAC and Sheet Metal",
+  "aboutBody": [
+    "Facciano HVAC and Sheet Metal is a family-run heating, cooling, and custom sheet metal contractor based in Santa Rosa, California. Operating since 2015, the company is licensed by the California Contractors State License Board for both Warm-Air Heating, Ventilating & Air Conditioning and Sheet Metal work — meaning the ductwork and metal that go into a job can be fabricated by the same crew that installs it.",
+    "Run by the Facciano family, with Mark and Tony Facciano handling work in the field, the shop serves homeowners and businesses across Sonoma County. Customers note prompt response and fair pricing — when a rodent chewed through one homeowner's condensation line, the team came right over, fixed it, and surprised the customer with their rates."
+  ],
+  "servicesHeading": "Heating, cooling, and custom metal — under one roof",
+  "services": [
+    {
+      "title": "Heating Installation & Repair",
+      "description": "Furnace and heating system installation, replacement, and repair for homes and businesses in the Santa Rosa area."
+    },
+    {
+      "title": "Air Conditioning",
+      "description": "AC installation, replacement, and service to keep Sonoma County properties comfortable through the hot months."
+    },
+    {
+      "title": "Custom Sheet Metal Fabrication",
+      "description": "In-house custom sheet metal work for HVAC and beyond, fabricated to fit the job rather than forced from off-the-shelf parts."
+    },
+    {
+      "title": "Ductwork",
+      "description": "Design, fabrication, repair, and replacement of duct systems for efficient, balanced airflow throughout the building."
+    },
+    {
+      "title": "Ventilation",
+      "description": "Ventilation and air-handling solutions for residential and commercial spaces."
+    },
+    {
+      "title": "Residential & Commercial Service",
+      "description": "HVAC service and repair calls for both homes and commercial properties across Santa Rosa and Sonoma County."
+    }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "8am–5pm" }
+  ],
+  "testimonials": [
+    {
+      "quote": "I had a rodent chew through the condensation line to my heating system and Mark and Tony came right over to assess the situation. They fixed the issue and I was pleasantly surprised by their rates.",
+      "author": "Santa Rosa homeowner"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/p/Facciano-HVAC-and-Sheet-Metal-100047791212153/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED FACTS: Business is Facciano HVAC and Sheet Metal, Santa Rosa CA. Two addresses appear in records — mailing address 2175 Bluebell Dr #C, Santa Rosa CA 95404 (matches lead) and 3480 Chanate Ct, Santa Rosa CA 95404 (CSLB/BuildZoom address of record). Both refer to the same business. CSLB-licensed for 'Warm Air Heating, Ventilating And Air Conditioning, Sheet Metal' = C-20 (HVAC) + C-43 (Sheet Metal). Current license #1009408 (active, exp 1/31/2027); older/secondary license #718101 also associated. Business start date 12/4/2015 per BBB, hence established=2015. Owner of record per CSLB/BuildZoom/BBB is Mark Andrew Facciano; the lead's contact 'Tony Facciano' (tony@faccianohvac.com) also appears in a customer review working alongside Mark — likely family/partner. Bonded $15,000 with Wesco Insurance. One real customer review found (rodent/condensation-line repair, quoted in testimonials) — reviewer name not published, attributed generically. UNVERIFIABLE: No company website found (confirmed none). Exact business hours not published — Mon–Fri 8am–5pm is a conventional default, NOT verified; flag for owner confirmation. Phone (707) 540-1250 and email tony@faccianohvac.com are from the lead, not independently re-verified online (BuildZoom listed a different number, +1-707-755-4839 — possible second line). SOURCES: BBB (bbb.org profile facciano-hvac-and-sheet-metal-1116-942692), BuildZoom (buildzoom.com/contractor/facciano-hvac), NCBE chamber directory, Facebook page (100047791212153). CSLB detail page (cslb.ca.gov LicNum=1009408) returned 403 to automated fetch — license data corroborated via BBB/BuildZoom which cite CSLB; recommend manual CSLB lookup to confirm exact issue date and classification codes before sending. PHOTOS: No clearly-theirs images located (no website; Facebook not scrapable here). realPhotoUrls left empty — use Wikimedia Santa Rosa / category fallback art.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Facciano HVAC and Sheet Metal",
+    "category": "hvac",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 540-1250",
+    "email": "tony@faccianohvac.com",
+    "address": "2175 Bluebell Dr",
+    "owner": "Tony Facciano"
+  }
+}

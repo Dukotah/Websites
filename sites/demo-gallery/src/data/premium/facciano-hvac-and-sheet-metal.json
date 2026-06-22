@@ -1,0 +1,369 @@
+{
+  "slug": "facciano-hvac-and-sheet-metal",
+  "name": "Facciano HVAC and Sheet Metal",
+  "legalName": "Facciano HVAC and Sheet Metal",
+  "tagline": "HVAC and custom sheet metal, fabricated and installed in-house",
+  "seoDescription": "Facciano HVAC and Sheet Metal in Santa Rosa, CA — licensed HVAC contractor and custom sheet metal shop. Heating, cooling, ductwork and ventilation",
+  "category": "hvac",
+  "categoryLabel": "HVAC",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2015",
+  "contact": {
+    "phone": "(707) 540-1250",
+    "email": "tony@faccianohvac.com",
+    "address": "2175 Bluebell Dr"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/p/Facciano-HVAC-and-Sheet-Metal-100047791212153/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    }
+  ],
+  "brand": {
+    "color": "#218f8f",
+    "fontId": "modern-grotesk"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2015",
+          "heading": "Santa Rosa's HVAC and custom sheet metal shop",
+          "subheading": "Family-run, CSLB-licensed heating, cooling, and sheet metal fabrication for homes and businesses across Sonoma County.",
+          "badges": [
+            "Serving since 2015",
+            "CSLB licensed contractor (license #1009408) —",
+            "In business in Santa Rosa since 2015"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/facciano-hvac-and-sheet-metal/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/facciano-hvac-and-sheet-metal/services"
+          },
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Facciano HVAC and Sheet Metal",
+          "items": [
+            {
+              "title": "CSLB Licensed Contractor (License #1009408) —",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "In Business In Santa Rosa Since 2015",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Custom Sheet Metal Fabrication And Ductwork",
+              "body": "Made with care and real ingredients — quality you can taste.",
+              "icon": "check"
+            },
+            {
+              "title": "Heating And Air Conditioning Install, Repair",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Owner-Operated, Family-Run Team (Mark And Tony",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Bonded And Insured, Serving Santa Rosa",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Facciano HVAC and Sheet Metal",
+          "body": [
+            "Facciano HVAC and Sheet Metal is a family-run heating, cooling, and custom sheet metal contractor based in Santa Rosa, California. Operating since 2015, the company is licensed by the California Contractors State License Board for both Warm-Air Heating, Ventilating & Air Conditioning and Sheet Metal work — meaning the ductwork and metal that go into a job can be fabricated by the same crew that installs it.",
+            "Run by the Facciano family, with Mark and Tony Facciano handling work in the field, the shop serves homeowners and businesses across Sonoma County. Customers note prompt response and fair pricing — when a rodent chewed through one homeowner's condensation line, the team came right over, fixed it, and surprised the customer with their rates."
+          ],
+          "highlights": [
+            "CSLB licensed contractor (license #1009408) — Warm-Air Heating, Ventilating & Air Conditioning plus Sheet Metal (C-20 / C-43)",
+            "In business in Santa Rosa since 2015",
+            "Custom sheet metal fabrication and ductwork done in-house",
+            "Heating and air conditioning install, repair, and service"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Heating, cooling, and custom metal — under one roof",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Heating Installation & Repair",
+              "description": "Furnace and heating system installation, replacement, and repair for homes and businesses in the Santa Rosa area."
+            },
+            {
+              "title": "Air Conditioning",
+              "description": "AC installation, replacement, and service to keep Sonoma County properties comfortable through the hot months."
+            },
+            {
+              "title": "Custom Sheet Metal Fabrication",
+              "description": "In-house custom sheet metal work for HVAC and beyond, fabricated to fit the job rather than forced from off-the-shelf parts."
+            },
+            {
+              "title": "Ductwork",
+              "description": "Design, fabrication, repair, and replacement of duct systems for efficient, balanced airflow throughout the building."
+            },
+            {
+              "title": "Ventilation",
+              "description": "Ventilation and air-handling solutions for residential and commercial spaces."
+            },
+            {
+              "title": "Residential & Commercial Service",
+              "description": "HVAC service and repair calls for both homes and commercial properties across Santa Rosa and Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Facciano HVAC and Sheet Metal and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "I had a rodent chew through the condensation line to my heating system and Mark and Tony came right over to assess the situation. They fixed the issue and I was pleasantly surprised by their rates.",
+              "author": "Santa Rosa homeowner"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Facciano HVAC and Sheet Metal",
+          "body": "Find us at 2175 Bluebell Dr. Call (707) 540-1250 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/facciano-hvac-and-sheet-metal/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 540-1250",
+            "href": "tel:+17075401250"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Family-run, CSLB-licensed heating, cooling, and sheet metal fabrication for homes and businesses across Sonoma County.",
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Heating, cooling, and custom metal — under one roof",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Heating Installation & Repair",
+              "description": "Furnace and heating system installation, replacement, and repair for homes and businesses in the Santa Rosa area."
+            },
+            {
+              "title": "Air Conditioning",
+              "description": "AC installation, replacement, and service to keep Sonoma County properties comfortable through the hot months."
+            },
+            {
+              "title": "Custom Sheet Metal Fabrication",
+              "description": "In-house custom sheet metal work for HVAC and beyond, fabricated to fit the job rather than forced from off-the-shelf parts."
+            },
+            {
+              "title": "Ductwork",
+              "description": "Design, fabrication, repair, and replacement of duct systems for efficient, balanced airflow throughout the building."
+            },
+            {
+              "title": "Ventilation",
+              "description": "Ventilation and air-handling solutions for residential and commercial spaces."
+            },
+            {
+              "title": "Residential & Commercial Service",
+              "description": "HVAC service and repair calls for both homes and commercial properties across Santa Rosa and Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Facciano HVAC and Sheet Metal and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 2175 Bluebell Dr."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 8am–5pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 540-1250 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 2175 Bluebell Dr. Call (707) 540-1250 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/facciano-hvac-and-sheet-metal/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 540-1250",
+            "href": "tel:+17075401250"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Facciano HVAC and Sheet Metal",
+          "heading": "About Facciano HVAC and Sheet Metal",
+          "subheading": "Facciano HVAC and Sheet Metal is a family-run heating, cooling, and custom sheet metal contractor based in Santa Rosa, California",
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Facciano HVAC and Sheet Metal",
+          "body": [
+            "Facciano HVAC and Sheet Metal is a family-run heating, cooling, and custom sheet metal contractor based in Santa Rosa, California. Operating since 2015, the company is licensed by the California Contractors State License Board for both Warm-Air Heating, Ventilating & Air Conditioning and Sheet Metal work — meaning the ductwork and metal that go into a job can be fabricated by the same crew that installs it.",
+            "Run by the Facciano family, with Mark and Tony Facciano handling work in the field, the shop serves homeowners and businesses across Sonoma County. Customers note prompt response and fair pricing — when a rodent chewed through one homeowner's condensation line, the team came right over, fixed it, and surprised the customer with their rates."
+          ],
+          "highlights": [
+            "CSLB licensed contractor (license #1009408) — Warm-Air Heating, Ventilating & Air Conditioning plus Sheet Metal (C-20 / C-43)",
+            "In business in Santa Rosa since 2015",
+            "Custom sheet metal fabrication and ductwork done in-house",
+            "Heating and air conditioning install, repair, and service"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "11+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Facciano HVAC and Sheet Metal",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/facciano-hvac-and-sheet-metal/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Facciano HVAC and Sheet Metal at 2175 Bluebell Dr or call (707) 540-1250.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

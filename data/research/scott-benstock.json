@@ -1,0 +1,62 @@
+{
+  "slug": "scott-benstock",
+  "name": "Benstock Dental Care",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Gentle, personalized family dentistry in Sebastopol",
+  "seoDescription": "Benstock Dental Care is the Sebastopol practice of Dr. Scott Benstock, DDS — general, family & cosmetic dentistry with gentle, personalized care. Rated 4.8 stars.",
+  "heroHeading": "Comfortable family dentistry on Petaluma Avenue",
+  "heroSubheading": "Dr. Scott Benstock and his team provide gentle, health-centered general, family, and cosmetic dentistry in the heart of Sebastopol.",
+  "highlights": [
+    "Led by Dr. Scott Benstock, DDS — doctorate in dentistry from Emory University (1984)",
+    "Decades of experience caring for Sebastopol families and patients across Sonoma County",
+    "General, family & cosmetic dentistry — cleanings, crowns, implants, veneers & more",
+    "Continuing education in Invisalign, sedation dentistry, laser therapy & cosmetic care",
+    "Member of the American Dental Association, California Dental Association & Redwood Empire Dental Society",
+    "Rated 4.8 stars by patients across review platforms"
+  ],
+  "aboutHeading": "About Benstock Dental Care",
+  "aboutBody": [
+    "At Benstock Dental Care, the focus is comfortable, health-centered dentistry with a strong emphasis on getting to know each patient. From routine cleanings and exams to cosmetic and restorative care, Dr. Scott Benstock and his team are dedicated to the kind of personalized, gentle care that turns a dentist visit into something you don't dread.",
+    "Dr. Benstock earned his doctorate in dentistry from Emory University and has spent decades building long-term relationships with Sebastopol families and patients throughout Sonoma County. He has pursued continuing education across Invisalign, sedation dentistry, laser therapy, periodontics, endodontics, oral surgery, and cosmetic dentistry, and is a member of the American Dental Association, the California Dental Association, and the Redwood Empire Dental Society. Patients consistently describe him as thorough, easy to talk to, and someone who explains every step and makes sure you're comfortable along the way."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {"title": "Cleanings & Exams", "description": "Routine preventive checkups and professional cleanings to keep your teeth and gums healthy for the long term."},
+    {"title": "Porcelain Crowns & Fillings", "description": "Tooth-colored fillings and natural-looking porcelain crowns to restore damaged or decayed teeth."},
+    {"title": "Dental Implants", "description": "Replacing missing teeth with implants that look, feel, and function like your own."},
+    {"title": "Cosmetic Dentistry", "description": "Porcelain veneers and cosmetic care to brighten and reshape your smile."},
+    {"title": "Root Canals & Restorative Care", "description": "Root canal treatment, dentures, and partials to relieve pain and rebuild your smile."},
+    {"title": "Dental Emergencies", "description": "Prompt attention when a toothache, break, or other urgent dental problem can't wait."}
+  ],
+  "hours": [
+    {"day": "Tue, Thu, Fri", "hours": "8am–5pm"},
+    {"day": "Wed", "hours": "9am–6pm"},
+    {"day": "Mon", "hours": "Closed"},
+    {"day": "Sat–Sun", "hours": "Closed"}
+  ],
+  "testimonials": [
+    {"quote": "Dr. Benstock was very thorough in finding the problem, discussed options with me, wasn't pushy, listened to my concerns and did a great job with a major cavity fill and a crown. He even called me later that evening after my appointment to make sure I was doing okay! I highly recommend him.", "author": "Verified patient"},
+    {"quote": "Dr. Benstock is highly skilled and patient oriented. I highly recommend him and plan to use his services as long as I am in Sonoma county.", "author": "Verified patient"}
+  ],
+  "rating": {"value": 4.8, "count": 598, "source": "Birdeye"},
+  "social": {
+    "facebook": "https://www.facebook.com/ScottBenstockDDS/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "CONFIRMED this is the Sebastopol practice: Dr. Scott Benstock, DDS, Benstock Dental Care, 652 Petaluma Ave, Suite A, Sebastopol, CA 95472, (707) 823-5339 — verified across Yelp, Healthgrades, WebMD, PatientConnect365, Birdeye, US News, and the practice's own site copy (benstockdentalcare.com). NOTE on website: the brief calls benstockdentalcare.com 'dead', but it is still indexed and live to browsers; WebFetch got HTTP 403 (bot block) on every page, and the Wayback Machine was unreachable from this environment, so I could NOT read the site directly. All facts below come from search-result snippets of the site + third-party directories. Education: Dr. Benstock received his doctorate in dentistry from Emory University, 1984 (per practice site copy quoted in search results) — credible and multiply-cited, but only from one originating source (their own site), so treat as their stated claim. Years in practice: archived site copy said 'over twenty three years', but that text is undated, so I left 'established' EMPTY rather than computing a wrong founding year — 'decades of experience' used in copy as a safe paraphrase. Memberships (ADA, California Dental Association, Redwood Empire Dental Society, Dental Organization for Conscious Sedation) and CE topics (Invisalign, periodontics, laser, endodontics, cosmetic, sedation, oral surgery) are from their own site copy. Services list confirmed: cleanings/exams, implants, porcelain veneers, root canals, dentures/partials, tooth-colored fillings, porcelain crowns, emergencies. Rating: Birdeye 4.8 stars / 598 reviews; Yelp shows ~29 reviews; PatientConnect365 ~72. Used Birdeye 4.8/598 conservatively (single most-cited figure). HOURS are LOW CONFIDENCE — a single search snippet reported Mon closed, Tue 8-5, Wed 9-6, Thu 8-5, Fri 8-5, weekends closed; not independently confirmed and could be stale — VERIFY by phone before sending. Testimonials are REAL quotes surfaced via search (WebMD/Healthgrades-style reviews); exact reviewer names were not captured, so attributed as 'Verified patient' rather than inventing names. Email doctor@benstockdentalcare.com per the lead (not independently verified). NO usable real photos: site is bot-blocked and no clearly-theirs image URLs were obtainable, so realPhotoUrls is empty — will fall back to Wikimedia/library art. Facebook page exists (facebook.com/ScottBenstockDDS); no Instagram/Google profile URL confirmed.",
+  "_richness": 78,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Scott Benstock",
+    "category": "dentist",
+    "city": "Sebastopol",
+    "state": "CA",
+    "phone": "(707) 823-5339",
+    "email": "doctor@benstockdentalcare.com",
+    "address": "652 Petaluma Ave",
+    "owner": "Dr. Scott Benstock"
+  }
+}

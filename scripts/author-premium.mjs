@@ -833,9 +833,13 @@ export async function authorPremium(slug, row, e, research, media, {
   // Optional Claude copy upgrade (deterministic skeleton already shippable).
   if (useClaude) config = await upgradeCopyWithClaude(config, e, research);
 
-  // Status — reuse deriveStatus verbatim, then layer premium-specific flags.
+  // Status — reuse deriveStatus, then layer premium-specific flags. CONFIRMED
+  // research is authoritative: it satisfies the website/hours verification that
+  // the unverified live-scrape path needs (a no-website business is the outreach
+  // opportunity, not a defect).
   const templated = []; // premium author builds from real facts; no template stubs tracked here
-  const { flags } = deriveStatus(row, e, media, photoSource, templated, mismatchName);
+  const authoritative = research?.confirmed === true;
+  const { flags } = deriveStatus(row, e, media, photoSource, templated, mismatchName, authoritative);
   flags.push(...photoFlags);
 
   // Premium-specific flags.

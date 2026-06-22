@@ -1,0 +1,395 @@
+{
+  "slug": "scott-benstock",
+  "name": "Benstock Dental Care",
+  "legalName": "Benstock Dental Care",
+  "tagline": "Gentle, personalized family dentistry in Sebastopol",
+  "seoDescription": "Benstock Dental Care is the Sebastopol practice of Dr. Scott Benstock, DDS — general, family & cosmetic dentistry with gentle, personalized care",
+  "category": "dental",
+  "categoryLabel": "Dental",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 823-5339",
+    "email": "doctor@benstockdentalcare.com",
+    "address": "652 Petaluma Ave"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/ScottBenstockDDS/"
+  },
+  "hours": [
+    {
+      "day": "Tue, Thu, Fri",
+      "hours": "8am–5pm"
+    },
+    {
+      "day": "Wed",
+      "hours": "9am–6pm"
+    },
+    {
+      "day": "Mon",
+      "hours": "Closed"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "rating": {
+    "value": 4.8,
+    "count": 598,
+    "source": "Birdeye"
+  },
+  "brand": {
+    "color": "#0e6f86",
+    "fontId": "clean-sans"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA",
+          "heading": "Comfortable family dentistry on Petaluma Avenue",
+          "subheading": "Dr. Scott Benstock and his team provide gentle, health-centered general, family, and cosmetic dentistry in the heart of Sebastopol.",
+          "badges": [
+            "4.8★ from 598 reviews",
+            "Led by Dr. Scott Benstock, DDS — doctorate",
+            "Decades of experience caring for Sebastopol"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/scott-benstock/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/scott-benstock/services"
+          },
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Benstock Dental Care",
+          "body": [
+            "At Benstock Dental Care, the focus is comfortable, health-centered dentistry with a strong emphasis on getting to know each patient. From routine cleanings and exams to cosmetic and restorative care, Dr. Scott Benstock and his team are dedicated to the kind of personalized, gentle care that turns a dentist visit into something you don't dread.",
+            "Dr. Benstock earned his doctorate in dentistry from Emory University and has spent decades building long-term relationships with Sebastopol families and patients throughout Sonoma County. He has pursued continuing education across Invisalign, sedation dentistry, laser therapy, periodontics, endodontics, oral surgery, and cosmetic dentistry, and is a member of the American Dental Association, the California Dental Association, and the Redwood Empire Dental Society"
+          ],
+          "highlights": [
+            "Led by Dr. Scott Benstock, DDS — doctorate in dentistry from Emory University (1984)",
+            "Decades of experience caring for Sebastopol families and patients across Sonoma County",
+            "General, family & cosmetic dentistry — cleanings, crowns, implants, veneers & more",
+            "Continuing education in Invisalign, sedation dentistry, laser therapy & cosmetic care"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Cleanings & Exams",
+              "description": "Routine preventive checkups and professional cleanings to keep your teeth and gums healthy for the long term."
+            },
+            {
+              "title": "Porcelain Crowns & Fillings",
+              "description": "Tooth-colored fillings and natural-looking porcelain crowns to restore damaged or decayed teeth."
+            },
+            {
+              "title": "Dental Implants",
+              "description": "Replacing missing teeth with implants that look, feel, and function like your own."
+            },
+            {
+              "title": "Cosmetic Dentistry",
+              "description": "Porcelain veneers and cosmetic care to brighten and reshape your smile."
+            },
+            {
+              "title": "Root Canals & Restorative Care",
+              "description": "Root canal treatment, dentures, and partials to relieve pain and rebuild your smile."
+            },
+            {
+              "title": "Dental Emergencies",
+              "description": "Prompt attention when a toothache, break, or other urgent dental problem can't wait."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Benstock Dental Care and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Benstock Dental Care",
+          "items": [
+            {
+              "title": "Led By Dr. Scott Benstock, DDS — Doctorate",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Decades Of Experience Caring For Sebastopol",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "General, Family & Cosmetic Dentistry —",
+              "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Continuing Education In Invisalign, Sedation",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Member Of The American Dental Association",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Rated 4.8 Stars By Patients Across Review",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "rating": {
+            "value": 4.8,
+            "count": 598,
+            "source": "Birdeye"
+          },
+          "items": [
+            {
+              "quote": "Dr. Benstock was very thorough in finding the problem, discussed options with me, wasn't pushy, listened to my concerns and did a great job with a major cavity fill and a crown. He even called me later that evening after my appointment to make sure I was doing okay",
+              "author": "Verified patient"
+            },
+            {
+              "quote": "Dr. Benstock is highly skilled and patient oriented. I highly recommend him and plan to use his services as long as I am in Sonoma county.",
+              "author": "Verified patient"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Benstock Dental Care",
+          "body": "Find us at 652 Petaluma Ave. Call (707) 823-5339 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/scott-benstock/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 823-5339",
+            "href": "tel:+17078235339"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Dr. Scott Benstock and his team provide gentle, health-centered general, family, and cosmetic dentistry in the heart of Sebastopol.",
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Cleanings & Exams",
+              "description": "Routine preventive checkups and professional cleanings to keep your teeth and gums healthy for the long term."
+            },
+            {
+              "title": "Porcelain Crowns & Fillings",
+              "description": "Tooth-colored fillings and natural-looking porcelain crowns to restore damaged or decayed teeth."
+            },
+            {
+              "title": "Dental Implants",
+              "description": "Replacing missing teeth with implants that look, feel, and function like your own."
+            },
+            {
+              "title": "Cosmetic Dentistry",
+              "description": "Porcelain veneers and cosmetic care to brighten and reshape your smile."
+            },
+            {
+              "title": "Root Canals & Restorative Care",
+              "description": "Root canal treatment, dentures, and partials to relieve pain and rebuild your smile."
+            },
+            {
+              "title": "Dental Emergencies",
+              "description": "Prompt attention when a toothache, break, or other urgent dental problem can't wait."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Benstock Dental Care and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 652 Petaluma Ave."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Tue, Thu, Fri: 8am–5pm; Wed: 9am–6pm; Mon: Closed; Sat–Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 823-5339 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 652 Petaluma Ave. Call (707) 823-5339 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/scott-benstock/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 823-5339",
+            "href": "tel:+17078235339"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Benstock Dental Care",
+          "heading": "About Benstock Dental Care",
+          "subheading": "At Benstock Dental Care, the focus is comfortable, health-centered dentistry with a strong emphasis on getting to know each patient",
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Benstock Dental Care",
+          "body": [
+            "At Benstock Dental Care, the focus is comfortable, health-centered dentistry with a strong emphasis on getting to know each patient. From routine cleanings and exams to cosmetic and restorative care, Dr. Scott Benstock and his team are dedicated to the kind of personalized, gentle care that turns a dentist visit into something you don't dread.",
+            "Dr. Benstock earned his doctorate in dentistry from Emory University and has spent decades building long-term relationships with Sebastopol families and patients throughout Sonoma County. He has pursued continuing education across Invisalign, sedation dentistry, laser therapy, periodontics, endodontics, oral surgery, and cosmetic dentistry, and is a member of the American Dental Association, the California Dental Association, and the Redwood Empire Dental Society"
+          ],
+          "highlights": [
+            "Led by Dr. Scott Benstock, DDS — doctorate in dentistry from Emory University (1984)",
+            "Decades of experience caring for Sebastopol families and patients across Sonoma County",
+            "General, family & cosmetic dentistry — cleanings, crowns, implants, veneers & more",
+            "Continuing education in Invisalign, sedation dentistry, laser therapy & cosmetic care"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4.8★",
+              "label": "598 reviews"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Benstock Dental Care",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/scott-benstock/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Benstock Dental Care at 652 Petaluma Ave or call (707) 823-5339.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

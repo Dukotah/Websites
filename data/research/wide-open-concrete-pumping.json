@@ -1,0 +1,85 @@
+{
+  "slug": "wide-open-concrete-pumping",
+  "confirmed": true,
+  "established": "2011",
+  "tagline": "Family-run concrete pumping serving Santa Rosa and the Bay Area",
+  "seoDescription": "Wide Open Concrete Pumping — family-owned line pumping in Santa Rosa, placing concrete for residential & commercial jobs across the North Bay and beyond.",
+  "heroHeading": "Concrete placed clean, fast, and exactly where you need it",
+  "heroSubheading": "Owner-operated line pumping for residential and commercial pours across Sonoma, Napa, Marin and the greater Bay Area.",
+  "highlights": [
+    "Family-owned and operated, carrying on a Santa Rosa concrete-pumping legacy started decades ago by the Medeiros family",
+    "Residential and commercial concrete pumping and placing",
+    "Handles dry mixes, sand slurry, well casings, and 1\" rock mixes through 2\"–4\" hose",
+    "Operators run the hose on every job unless you request otherwise",
+    "Serves Sonoma, Napa, Marin, Solano, San Mateo, Santa Clara, Alameda, Contra Costa & San Francisco counties",
+    "Crew shows up, works efficiently, and leaves the site clean"
+  ],
+  "aboutHeading": "About Wide Open Concrete Pumping",
+  "aboutBody": [
+    "Wide Open Concrete Pumping is the next chapter of a Santa Rosa family business. Owner Steve Medeiros was born and raised in Santa Rosa and grew up around concrete pumps and heavy equipment, leaving school at noon during high school to work for his father at Medeiros Concrete Pumping. Over those years he learned the trade from every angle — running and repairing the pumps in the shop, and handling billing and dispatch in the office.",
+    "After his father passed away unexpectedly, Steve took over what remained of the family operation, started fresh with new equipment and crew, and relaunched it as Wide Open Concrete Pumping. He runs the company on the same values his father was known for — generosity, integrity, and compassion toward clients, employees, and family — placing concrete cleanly and efficiently for residential and commercial projects throughout the Bay Area."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Residential concrete pumping",
+      "description": "Foundations, driveways, patios, walkways, and back-yard pours — placing the mud evenly so your finishers can get straight to work."
+    },
+    {
+      "title": "Commercial concrete pumping",
+      "description": "Pumping and placing concrete for commercial projects of all sizes across the Bay Area."
+    },
+    {
+      "title": "Dry mix & specialty pumping",
+      "description": "Equipped to pump dry mixes, sand slurry, and 1\" rock mixes for a range of placement jobs."
+    },
+    {
+      "title": "Well casing pours",
+      "description": "Pumping concrete for well casings and similar specialty pours."
+    },
+    {
+      "title": "Hose placement",
+      "description": "Our operators run 2\"–4\" hose and place concrete directly on every job unless you'd rather your own crew handle the hose."
+    },
+    {
+      "title": "Bay Area service area",
+      "description": "Mobile concrete pumping across Sonoma, Napa, Marin, Solano, San Mateo, Santa Clara, Alameda, Contra Costa, and San Francisco counties."
+    }
+  ],
+  "hours": [
+    {"day": "Mon–Fri", "hours": "7am–5pm"}
+  ],
+  "testimonials": [
+    {
+      "quote": "Steve and his employees did an outstanding job. He did what he said he would and kept everything clean when the job was complete.",
+      "author": "Residential customer"
+    },
+    {
+      "quote": "Steve with Wide Open Concrete knows concrete pumping, and makes the job look easy. He worked well at placing the mud evenly, which made it easy to finish.",
+      "author": "Verified review"
+    },
+    {
+      "quote": "Family owned and hard working young men — our go-to for concrete work.",
+      "author": "Repeat client"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/wideopenconcretepumping/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED via business's own live site (wideopenconcretepumping.com — note: it is LIVE, not dead, but returns HTTP 403 to automated fetch; facts pulled from search-engine indexing of the site's About/Steve Medeiros/legacy pages), plus Yelp, Facebook, and directory listings. CONFIRMED FACTS: Owner Steve Medeiros, born & raised in Santa Rosa; business is the relaunch of his late father's company 'Medeiros Concrete Pumping' (ran ~25–30 yrs, once described as the largest concrete pumping outfit in the Bay Area). Address 297 Anteeo Way, Santa Rosa CA 95407; phone (707) 974-9463. Specialties (verbatim from site/directories): dry mixes, sand slurry, well casings, 1\" rock mixes, 2\"–4\" hose; residential & commercial; operators run the hose unless asked otherwise. Registered as 'WIDE OPEN CONCRETE PUMPING LLC' with USDOT #3915979 (FMCSA SAFER). FOUNDING YEAR: used 2011 — the About page states Steve's father passed away unexpectedly and Steve relaunched as Wide Open; email 'wideopen2011@hotmail.com' corroborates ~2011. CONFLICT: several third-party directories (Yellow Pages, Manta, Yahoo, homeyou) list 'established 2010' and the About page itself elsewhere reads the father died 'in 2010'; treat founding as 2010–2011, displaying 2011. UNVERIFIED: CSLB license number/classification could NOT be retrieved (CSLB Check-A-License portal returns 403 to automated fetch and the number is not in the search index) — concrete pumping in CA typically falls under C-8 Concrete or D-6 Concrete-Related Services, but DO NOT assert a license number/class without confirming at cslb.ca.gov. Hours: directories list '24 hours / open 24/7'; the 7am–5pm Mon–Fri above is a conservative business-hours placeholder — confirm with owner before publishing (they advertise 24/7 availability). Yelp star rating is INCONSISTENT across sources (one search returned ~10 reviews, another 3.2/9) so no aggregate rating is asserted. TESTIMONIALS are paraphrased/condensed from real review snippets surfaced in search (Yelp/Facebook) — verify exact wording & attribution against the live review pages before quoting publicly; authors anonymized as descriptive since full names weren't captured. No boom-pump size/fleet specifics confirmed (site emphasizes line/hose pumping). PHOTOS: business has photos on Yelp (31) and Facebook and on its own site, but no clearly-theirs image URLs could be captured (site 403s) — realPhotoUrls left empty; pull from Yelp/Facebook/their site manually if usable. Community note (color, verify before use): reportedly donated equipment/manpower to pump out flooded school parking lots during heavy rain. Second nearby address '546 Scenic Ave' appeared in one source — likely stale; 297 Anteeo Way is the consistent listing.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Wide Open Concrete Pumping",
+    "category": "concrete",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 974-9463",
+    "email": "wideopen2011@hotmail.com",
+    "address": "297 Anteeo Way",
+    "owner": "Steve Medeiros"
+  }
+}

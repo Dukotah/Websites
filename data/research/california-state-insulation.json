@@ -1,0 +1,54 @@
+{
+  "slug": "california-state-insulation",
+  "confirmed": true,
+  "established": "2001",
+  "tagline": "Sonoma County insulation and general contracting since 2001",
+  "seoDescription": "California State Insulation is a licensed Santa Rosa insulation and general contractor serving Sonoma County since 2001. Insulation, drywall, stucco and more.",
+  "heroHeading": "Licensed Santa Rosa insulation and general contracting",
+  "heroSubheading": "Run by Alvaro Beltran since 2001, California State Insulation handles insulation alongside framing, drywall, stucco and plaster for homes and businesses across Sonoma County.",
+  "highlights": [
+    "Serving Santa Rosa and Sonoma County since 2001",
+    "Licensed CSLB #795223 — Insulation & Acoustical (C-2) and General Building (B)",
+    "Insulation plus full general contracting: framing, drywall, stucco, plaster",
+    "Bonded contractor (active California license)",
+    "Local, owner-operated by Alvaro Beltran"
+  ],
+  "aboutHeading": "About California State Insulation",
+  "aboutBody": [
+    "California State Insulation & General Contractor has worked out of Santa Rosa since 2001. Owner Alvaro Beltran built the company on insulation work and grew it into a full general contracting operation, holding both the C-2 Insulation and Acoustical and the B General Building classifications under California license #795223.",
+    "From the shop on Tapadera Drive, the crew serves homeowners and businesses across Sonoma County. Beyond insulation, they take on framing, stucco, interior plaster, drywall, concrete and demolition — handling the building envelope and the work around it on the same job."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {"title": "Insulation", "description": "Insulation installation for residential and commercial buildings under the company's C-2 Insulation and Acoustical license."},
+    {"title": "Framing", "description": "Structural framing as part of new construction, additions and remodels."},
+    {"title": "Stucco", "description": "Exterior stucco application for new builds and repairs."},
+    {"title": "Interior Plaster & Drywall", "description": "Interior plaster and drywall installation and finishing."},
+    {"title": "Concrete", "description": "Concrete work for foundations, slabs and related construction."},
+    {"title": "Demolition", "description": "Demolition to prepare sites for new construction and remodels."}
+  ],
+  "hours": [
+    {"day": "Mon–Fri", "hours": "7am–5pm"},
+    {"day": "Sat–Sun", "hours": "Closed"}
+  ],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/CalstateInsulation/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED active and licensed. CSLB RESULT: License #795223, status Active when last checked, classifications Insulation and Acoustical (C-2) and General Building (B); the business is bonded ($15,000 bond via Hudson Insurance per BuildZoom). Established/started locally 5/16/2001 (BuildZoom, MerchantCircle). Owner/manager: Alvaro Beltran (BuildZoom, Manta, Blue Book). Address 1244 Tapadera Dr, Santa Rosa, CA 95407; phone (707) 546-3177. Services list (insulation, framing, stucco, interior plaster, drywall, concrete, demolition) per The Blue Book listing ('Insulation Contractors—Cold & Heat'). Hours Mon–Fri 7am–5pm per directory listing. SOURCES: BuildZoom (buildzoom.com/contractor/california-state-insulation-and-general-contractor), The Blue Book (thebluebook.com iProView 1025598), BBB (bbb.org Santa Rosa profile 1116-538834 — BBB file opened 6/26/2015, NOT accredited, no BBB rating issued), MerchantCircle, Yellowpages, Manta, Procore, Facebook (facebook.com/CalstateInsulation/). UNVERIFIABLE: NO company website found (confirmed none — email is calstate707@gmail.com). NO real customer review quotes obtainable — BBB has no rating, no Yelp profile surfaced for this exact business, and BBB/BuildZoom/Blue Book/Facebook pages all returned HTTP 403 to direct fetch — so testimonials intentionally left EMPTY rather than invent any. Could NOT confirm specific insulation sub-services (batt vs blown-in vs spray foam), Title 24/energy work, attic/wall/floor specifics, weatherization, removal, or service-area boundaries — left generic. NO clearly-theirs photos obtainable (no website; social/directory image hosts blocked) so realPhotoUrls is EMPTY. DISAMBIGUATION: this is the Santa Rosa Sonoma County company at 1244 Tapadera Dr / (707) 546-3177 / Alvaro Beltran / CSLB #795223 — distinct from other 'insulation' firms in Santa Rosa (Coast Insulation, Insulation Solutions, North Bay Pacific, Verdin, Apperson, B & D, Santa Rosa Insulation & Fireproofing).",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "California State Insulation",
+    "category": "insulation",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 546-3177",
+    "email": "calstate707@gmail.com",
+    "address": "1244 Tapadera Dr",
+    "owner": "Alvaro Beltran"
+  }
+}

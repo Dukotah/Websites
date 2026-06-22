@@ -1,0 +1,311 @@
+{
+  "slug": "dave-poulsons-excavating",
+  "name": "Dave Poulson's Excavating",
+  "legalName": "Dave Poulson's Excavating",
+  "tagline": "Owner-operated excavating and grading across Sonoma County",
+  "seoDescription": "Dave Poulson's Excavating in Santa Rosa, CA. Owner-run excavation, grading, demolition, site work and driveways with 40+ years experience. Free estimates.",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 526-1462",
+    "email": "dpexcavating@yahoo.com",
+    "address": "620 Clover Dr"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon–Sat",
+      "hours": "7am–6pm"
+    },
+    {
+      "day": "Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#365470",
+    "fontId": "modern-grotesk"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Excavating and grading done right, by the owner who runs the machine",
+          "subheading": "Santa Rosa's owner-operated excavation contractor — site prep, grading, demolition and driveways across Sonoma County, with over 40 years of experience.",
+          "badges": [
+            "Over 40 years of hands-on excavation experience",
+            "Owner Dave Poulson is on every job site",
+            "Locally owned and operated in Santa Rosa"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/dave-poulsons-excavating/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/dave-poulsons-excavating/services"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Dave Poulson's Excavating",
+          "items": [
+            {
+              "title": "Over 40 Years Of Hands-On Excavation Experience",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Owner Dave Poulson Is On Every Job Site",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Locally Owned And Operated In Santa Rosa",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "leaf"
+            },
+            {
+              "title": "No Job Too Big Or Too Small — All Work 100%",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            },
+            {
+              "title": "California Licensed General Engineering",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Free Estimates",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Dave Poulson's Excavating",
+          "body": [
+            "Dave Poulson's Excavating is a locally owned and operated excavation contractor based at 620 Clover Drive in Santa Rosa, serving Sonoma County. Owner Dave Poulson brings over 40 years of hands-on experience to every project, and he's on site for every job — so the person you hire is the person running the equipment.",
+            "From clearing and grading land to demolition, driveways, and site work, no job is too big or too small. The focus is straightforward: accurate, professional work and customer satisfaction, with every job backed by a 100% guarantee."
+          ],
+          "highlights": [
+            "Over 40 years of hands-on excavation experience",
+            "Owner Dave Poulson is on every job site",
+            "Locally owned and operated in Santa Rosa, Sonoma County",
+            "No job too big or too small — all work 100% guaranteed"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Excavation and Site Work Services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Excavation & Site Work",
+              "description": "Full-service excavation and site preparation for residential and commercial projects of any size, from foundations and footings to complete site work."
+            },
+            {
+              "title": "Grading & Land Clearing",
+              "description": "Clearing and grading land for projects large and small, getting your site level, drained, and ready to build."
+            },
+            {
+              "title": "Demolition & Removals",
+              "description": "Structure demolition and removal, including mobile-home demolition and pad work, with courteous, professional crews."
+            },
+            {
+              "title": "Driveways",
+              "description": "New driveway construction and improvements built to hold up to Sonoma County weather and use."
+            },
+            {
+              "title": "Trucking, Loading & Rip Rap",
+              "description": "Hauling, loading, and rock and rip rap placement for erosion control, drainage, and site stabilization."
+            },
+            {
+              "title": "Pools & Specialty Excavation",
+              "description": "Swimming pool excavation and other specialty digging where precise, careful operation matters."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "There was never an issue with accuracy, professionalism or on site conduct. They were courteous to the residents and did their best to accommodate all the other traffic in the park with their large equipment.",
+              "author": "Mobile home community manager, Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Dave Poulson's Excavating",
+          "body": "Find us at 620 Clover Dr. Call (707) 526-1462 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/dave-poulsons-excavating/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 526-1462",
+            "href": "tel:+17075261462"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Santa Rosa's owner-operated excavation contractor — site prep, grading, demolition and driveways across Sonoma County, with over 40 years of experience.",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Excavation and Site Work Services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Excavation & Site Work",
+              "description": "Full-service excavation and site preparation for residential and commercial projects of any size, from foundations and footings to complete site work."
+            },
+            {
+              "title": "Grading & Land Clearing",
+              "description": "Clearing and grading land for projects large and small, getting your site level, drained, and ready to build."
+            },
+            {
+              "title": "Demolition & Removals",
+              "description": "Structure demolition and removal, including mobile-home demolition and pad work, with courteous, professional crews."
+            },
+            {
+              "title": "Driveways",
+              "description": "New driveway construction and improvements built to hold up to Sonoma County weather and use."
+            },
+            {
+              "title": "Trucking, Loading & Rip Rap",
+              "description": "Hauling, loading, and rock and rip rap placement for erosion control, drainage, and site stabilization."
+            },
+            {
+              "title": "Pools & Specialty Excavation",
+              "description": "Swimming pool excavation and other specialty digging where precise, careful operation matters."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 620 Clover Dr."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Sat: 7am–6pm; Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 526-1462 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 620 Clover Dr. Call (707) 526-1462 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/dave-poulsons-excavating/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 526-1462",
+            "href": "tel:+17075261462"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Dave Poulson's Excavating",
+          "heading": "About Dave Poulson's Excavating",
+          "subheading": "Dave Poulson's Excavating is a locally owned and operated excavation contractor based at 620 Clover Drive in Santa Rosa, serving Sonoma County",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Dave Poulson's Excavating",
+          "body": [
+            "Dave Poulson's Excavating is a locally owned and operated excavation contractor based at 620 Clover Drive in Santa Rosa, serving Sonoma County. Owner Dave Poulson brings over 40 years of hands-on experience to every project, and he's on site for every job — so the person you hire is the person running the equipment.",
+            "From clearing and grading land to demolition, driveways, and site work, no job is too big or too small. The focus is straightforward: accurate, professional work and customer satisfaction, with every job backed by a 100% guarantee."
+          ],
+          "highlights": [
+            "Over 40 years of hands-on excavation experience",
+            "Owner Dave Poulson is on every job site",
+            "Locally owned and operated in Santa Rosa, Sonoma County",
+            "No job too big or too small — all work 100% guaranteed"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Dave Poulson's Excavating",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/dave-poulsons-excavating/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Dave Poulson's Excavating at 620 Clover Dr or call (707) 526-1462.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

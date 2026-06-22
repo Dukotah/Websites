@@ -1,0 +1,378 @@
+{
+  "slug": "merciari-construction-design",
+  "name": "Merciari Construction Design",
+  "legalName": "Merciari Construction Design",
+  "tagline": "Design-build remodels and custom homes across Sonoma, Napa, and the North Bay",
+  "seoDescription": "Merciari Construction Design is a licensed Santa Rosa design-build contractor for remodels, additions, and custom homes across Sonoma and Napa counties.",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2015",
+  "contact": {
+    "phone": "(707) 477-6174",
+    "email": "merciariconstructiondesign@gmail.com",
+    "address": "2885 Santa Rosa Ave Ste A"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/MerciariDesign/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#c77d2a",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2015",
+          "heading": "Design-build craftsmanship for Sonoma County homes",
+          "subheading": "Led by general contractor Anthony Merciari, we partner with you from first concept through final finish on remodels, additions, and ground-up custom builds.",
+          "badges": [
+            "Serving since 2015",
+            "Licensed California general contractor (CSLB",
+            "Founded in 2015 on 20+ years of construction"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/merciari-construction-design/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/merciari-construction-design/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Merciari Construction Design",
+          "items": [
+            {
+              "title": "Licensed California General Contractor (CSLB",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Founded In 2015 On 20+ Years Of Construction",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "True Design-Build Process: Concept And Planning",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Santa Rosa, Sonoma, And Napa Counties",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "30 Reviews On Yelp With Detailed Praise",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "BuildZoom Score Ranks In The Top 1%",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Merciari Construction Design",
+          "body": [
+            "Merciari Construction Design is a Santa Rosa design-build contractor founded in 2015 as the culmination of more than 20 years of construction and landscape-design work. General contractor Anthony Merciari built the company around a client-focused, custom-build methodology that keeps design and construction under one roof.",
+            "The team works with each client to understand the site's needs while incorporating the homeowner's vision, delivering personalized spaces across the North and West Bay. Clients consistently highlight Anthony's transparency, responsiveness, and the skilled, courteous crews behind every project, serving Santa Rosa, Sonoma, and Napa counties."
+          ],
+          "highlights": [
+            "Licensed California general contractor (CSLB #1057612)",
+            "Founded in 2015 on 20+ years of construction and landscape-design experience",
+            "True design-build process: concept and planning under the same roof as construction",
+            "Serving Santa Rosa, Sonoma, and Napa counties"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Concept & Design",
+              "description": "We meet with you to shape your vision for the space, then develop floor plans and a buildable design before a single board is cut."
+            },
+            {
+              "title": "Home Remodels",
+              "description": "Whole-home and room-by-room remodels that update aging layouts and finishes while respecting the character of your house."
+            },
+            {
+              "title": "Kitchen & Bathroom Remodels",
+              "description": "Reworking cramped, outdated kitchens and baths into functional, well-finished spaces built to last."
+            },
+            {
+              "title": "Home Additions",
+              "description": "Adding square footage and new rooms to your existing home with construction that blends seamlessly into the original structure."
+            },
+            {
+              "title": "New & Custom Home Construction",
+              "description": "Ground-up custom homes and new construction tailored to your site, lifestyle, and budget across the North Bay."
+            },
+            {
+              "title": "Demolition & Site Prep",
+              "description": "Clearing and preparing the site so each project starts on a clean, well-managed foundation."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Merciari Construction Design and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "From their first meeting, Anthony and his team were friendly, attentive, collaborative, and great with communicating. When an issue did arise, Anthony responded quickly and with a solution"
+            },
+            {
+              "quote": "Excellent judgment, responsive, good aesthetic, excellent workmanship. Fair prices. The team showed they knew and understood wood, rot, and the importance of keeping moisture out."
+            },
+            {
+              "quote": "As someone who works with many contractors professionally, I was particularly impressed by Anthony's open-book transparency and honesty. He was incredibly patient and collaborative with high-level finishing details"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Merciari Construction Design",
+          "body": "Find us at 2885 Santa Rosa Ave Ste A. Call (707) 477-6174 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/merciari-construction-design/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 477-6174",
+            "href": "tel:+17074776174"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Led by general contractor Anthony Merciari, we partner with you from first concept through final finish on remodels, additions, and ground-up custom builds.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Concept & Design",
+              "description": "We meet with you to shape your vision for the space, then develop floor plans and a buildable design before a single board is cut."
+            },
+            {
+              "title": "Home Remodels",
+              "description": "Whole-home and room-by-room remodels that update aging layouts and finishes while respecting the character of your house."
+            },
+            {
+              "title": "Kitchen & Bathroom Remodels",
+              "description": "Reworking cramped, outdated kitchens and baths into functional, well-finished spaces built to last."
+            },
+            {
+              "title": "Home Additions",
+              "description": "Adding square footage and new rooms to your existing home with construction that blends seamlessly into the original structure."
+            },
+            {
+              "title": "New & Custom Home Construction",
+              "description": "Ground-up custom homes and new construction tailored to your site, lifestyle, and budget across the North Bay."
+            },
+            {
+              "title": "Demolition & Site Prep",
+              "description": "Clearing and preparing the site so each project starts on a clean, well-managed foundation."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Merciari Construction Design and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 2885 Santa Rosa Ave Ste A."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 8am–5pm; Sat–Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 477-6174 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 2885 Santa Rosa Ave Ste A. Call (707) 477-6174 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/merciari-construction-design/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 477-6174",
+            "href": "tel:+17074776174"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Merciari Construction Design",
+          "heading": "About Merciari Construction Design",
+          "subheading": "Merciari Construction Design is a Santa Rosa design-build contractor founded in 2015 as the culmination of more than 20 years of construction and landscape-design work",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Merciari Construction Design",
+          "body": [
+            "Merciari Construction Design is a Santa Rosa design-build contractor founded in 2015 as the culmination of more than 20 years of construction and landscape-design work. General contractor Anthony Merciari built the company around a client-focused, custom-build methodology that keeps design and construction under one roof.",
+            "The team works with each client to understand the site's needs while incorporating the homeowner's vision, delivering personalized spaces across the North and West Bay. Clients consistently highlight Anthony's transparency, responsiveness, and the skilled, courteous crews behind every project, serving Santa Rosa, Sonoma, and Napa counties."
+          ],
+          "highlights": [
+            "Licensed California general contractor (CSLB #1057612)",
+            "Founded in 2015 on 20+ years of construction and landscape-design experience",
+            "True design-build process: concept and planning under the same roof as construction",
+            "Serving Santa Rosa, Sonoma, and Napa counties"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "11+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Merciari Construction Design",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/merciari-construction-design/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Merciari Construction Design at 2885 Santa Rosa Ave Ste A or call (707) 477-6174.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}
