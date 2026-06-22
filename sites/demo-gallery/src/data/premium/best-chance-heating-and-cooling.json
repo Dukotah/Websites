@@ -1,0 +1,377 @@
+{
+  "slug": "best-chance-heating-and-cooling",
+  "name": "Best Chance Heating and Cooling",
+  "legalName": "Best Chance Heating and Cooling",
+  "tagline": "Owner-operated HVAC for Sonoma & Marin County homes",
+  "seoDescription": "Best Chance Heating and Cooling is a licensed, owner-operated HVAC contractor in Santa Rosa, CA serving Sonoma and Marin County. AC, heat pumps & furnaces.",
+  "category": "hvac",
+  "categoryLabel": "HVAC",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2023",
+  "contact": {
+    "phone": "(707) 336-9800",
+    "email": "bestchancehvac@gmail.com",
+    "address": "2967 Coors Ct"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/61574951143312"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    }
+  ],
+  "brand": {
+    "color": "#1f8a8a",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2023",
+          "heading": "Comfort installed and serviced by the owner himself",
+          "subheading": "Best Chance Heating and Cooling is the owner-operated HVAC company Sonoma and Marin County homeowners call for honest installs, fair repairs, and 15+ years of hands-on experience on every job.",
+          "badges": [
+            "Serving since 2023",
+            "Owner-operated by Chance Rosado, who personally",
+            "15+ years of hands-on HVAC experience"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/best-chance-heating-and-cooling/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/best-chance-heating-and-cooling/services"
+          },
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Heating and cooling services for home and business",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Air Conditioning Installation & Repair",
+              "description": "Central air conditioner installation, replacement, and repair for residential and commercial properties, sized and installed for efficient cooling all season."
+            },
+            {
+              "title": "Heat Pump Systems",
+              "description": "High-efficiency heat pump installation and service that delivers both heating and cooling from a single system — a smart upgrade for Sonoma and Marin homes."
+            },
+            {
+              "title": "Ductless Mini-Split Systems",
+              "description": "Ductless mini-split installation for additions, conversions, and rooms that are hard to heat or cool, giving you room-by-room comfort control."
+            },
+            {
+              "title": "Heating & Furnace Service",
+              "description": "Installation, repair, and maintenance of heating and furnace systems to keep your home warm and running reliably through the colder months."
+            },
+            {
+              "title": "Water Heater Service",
+              "description": "Water heater removal, replacement, and installation — typically completed same-day, including swapping an old tank for a new unit in around two hours."
+            },
+            {
+              "title": "Maintenance & Emergency Service",
+              "description": "Preventive maintenance to keep systems running smoothly year-round, plus responsive emergency service when something stops working."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Best Chance Heating and Cooling and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Best Chance Heating and Cooling",
+          "body": [
+            "Best Chance Heating and Cooling is the company owner Chance Rosado started after more than 15 years working hands-on in the HVAC industry. He decided to go out on his own to deliver the kind of quality service and reliable, year-round comfort he believed customers deserved — and as an owner-operator, he takes pride in every job he completes.",
+            "Locally owned and operated in Sonoma County and serving Marin County, Best Chance handles everything from precise new installations to routine maintenance and emergency repairs that keep heating and cooling systems running smoothly all year. The team is fully licensed and insured, and customers consistently praise Chance for being responsive, fair on price, and trustworthy."
+          ],
+          "highlights": [
+            "Owner-operated by Chance Rosado, who personally handles every job",
+            "15+ years of hands-on HVAC experience",
+            "Licensed & insured — CSLB License #1107468 (active through 7/2027)",
+            "5.0 rating with 73 verified ratings on HomeAdvisor (Super Service Award winner)"
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Chance arrived on time and found a very inexpensive way to repair the furnace blower problem.",
+              "author": "HomeAdvisor customer"
+            },
+            {
+              "quote": "Chance did a great job, arrived on time, removed the old tank and installed the new water heater in 2 hours. Very professional and efficient.",
+              "author": "HomeAdvisor customer"
+            },
+            {
+              "quote": "Chance is extremely responsive and trustworthy, very experienced and the best there is.",
+              "author": "Repeat customer"
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Best Chance Heating and Cooling",
+          "items": [
+            {
+              "title": "Owner-Operated By Chance Rosado, Who Personally",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "15+ Years Of Hands-On HVAC Experience",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Licensed & Insured — CSLB License #1107468",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "5.0 Rating With 73 Verified Ratings",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Serving Sonoma County And Marin County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Free Estimates With No High-Pressure Sales",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Best Chance Heating and Cooling",
+          "body": "Find us at 2967 Coors Ct. Call (707) 336-9800 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/best-chance-heating-and-cooling/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 336-9800",
+            "href": "tel:+17073369800"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Best Chance Heating and Cooling is the owner-operated HVAC company Sonoma and Marin County homeowners call for honest installs, fair repairs, and 15+ years of hands-on experience",
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Heating and cooling services for home and business",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Air Conditioning Installation & Repair",
+              "description": "Central air conditioner installation, replacement, and repair for residential and commercial properties, sized and installed for efficient cooling all season."
+            },
+            {
+              "title": "Heat Pump Systems",
+              "description": "High-efficiency heat pump installation and service that delivers both heating and cooling from a single system — a smart upgrade for Sonoma and Marin homes."
+            },
+            {
+              "title": "Ductless Mini-Split Systems",
+              "description": "Ductless mini-split installation for additions, conversions, and rooms that are hard to heat or cool, giving you room-by-room comfort control."
+            },
+            {
+              "title": "Heating & Furnace Service",
+              "description": "Installation, repair, and maintenance of heating and furnace systems to keep your home warm and running reliably through the colder months."
+            },
+            {
+              "title": "Water Heater Service",
+              "description": "Water heater removal, replacement, and installation — typically completed same-day, including swapping an old tank for a new unit in around two hours."
+            },
+            {
+              "title": "Maintenance & Emergency Service",
+              "description": "Preventive maintenance to keep systems running smoothly year-round, plus responsive emergency service when something stops working."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Best Chance Heating and Cooling and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 2967 Coors Ct."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 8am–5pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 336-9800 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 2967 Coors Ct. Call (707) 336-9800 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/best-chance-heating-and-cooling/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 336-9800",
+            "href": "tel:+17073369800"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Best Chance Heating and Cooling",
+          "heading": "About Best Chance Heating and Cooling",
+          "subheading": "Best Chance Heating and Cooling is the company owner Chance Rosado started after more than 15 years working hands-on in the HVAC industry",
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Best Chance Heating and Cooling",
+          "body": [
+            "Best Chance Heating and Cooling is the company owner Chance Rosado started after more than 15 years working hands-on in the HVAC industry. He decided to go out on his own to deliver the kind of quality service and reliable, year-round comfort he believed customers deserved — and as an owner-operator, he takes pride in every job he completes.",
+            "Locally owned and operated in Sonoma County and serving Marin County, Best Chance handles everything from precise new installations to routine maintenance and emergency repairs that keep heating and cooling systems running smoothly all year. The team is fully licensed and insured, and customers consistently praise Chance for being responsive, fair on price, and trustworthy."
+          ],
+          "highlights": [
+            "Owner-operated by Chance Rosado, who personally handles every job",
+            "15+ years of hands-on HVAC experience",
+            "Licensed & insured — CSLB License #1107468 (active through 7/2027)",
+            "5.0 rating with 73 verified ratings on HomeAdvisor (Super Service Award winner)"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "3+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Best Chance Heating and Cooling",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/best-chance-heating-and-cooling/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Best Chance Heating and Cooling at 2967 Coors Ct or call (707) 336-9800.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

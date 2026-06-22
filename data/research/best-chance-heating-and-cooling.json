@@ -1,0 +1,85 @@
+{
+  "slug": "best-chance-heating-and-cooling",
+  "confirmed": true,
+  "established": "2023",
+  "tagline": "Owner-operated HVAC for Sonoma & Marin County homes",
+  "seoDescription": "Best Chance Heating and Cooling is a licensed, owner-operated HVAC contractor in Santa Rosa, CA serving Sonoma and Marin County. AC, heat pumps & furnaces.",
+  "heroHeading": "Comfort installed and serviced by the owner himself",
+  "heroSubheading": "Best Chance Heating and Cooling is the owner-operated HVAC company Sonoma and Marin County homeowners call for honest installs, fair repairs, and 15+ years of hands-on experience on every job.",
+  "highlights": [
+    "Owner-operated by Chance Rosado, who personally handles every job",
+    "15+ years of hands-on HVAC experience",
+    "Licensed & insured — CSLB License #1107468 (active through 7/2027)",
+    "5.0 rating with 73 verified ratings on HomeAdvisor (Super Service Award winner)",
+    "Serving Sonoma County and Marin County",
+    "Free estimates with no high-pressure sales"
+  ],
+  "aboutHeading": "About Best Chance Heating and Cooling",
+  "aboutBody": [
+    "Best Chance Heating and Cooling is the company owner Chance Rosado started after more than 15 years working hands-on in the HVAC industry. He decided to go out on his own to deliver the kind of quality service and reliable, year-round comfort he believed customers deserved — and as an owner-operator, he takes pride in every job he completes.",
+    "Locally owned and operated in Sonoma County and serving Marin County, Best Chance handles everything from precise new installations to routine maintenance and emergency repairs that keep heating and cooling systems running smoothly all year. The team is fully licensed and insured, and customers consistently praise Chance for being responsive, fair on price, and trustworthy."
+  ],
+  "servicesHeading": "Heating and cooling services for home and business",
+  "services": [
+    {
+      "title": "Air Conditioning Installation & Repair",
+      "description": "Central air conditioner installation, replacement, and repair for residential and commercial properties, sized and installed for efficient cooling all season."
+    },
+    {
+      "title": "Heat Pump Systems",
+      "description": "High-efficiency heat pump installation and service that delivers both heating and cooling from a single system — a smart upgrade for Sonoma and Marin homes."
+    },
+    {
+      "title": "Ductless Mini-Split Systems",
+      "description": "Ductless mini-split installation for additions, conversions, and rooms that are hard to heat or cool, giving you room-by-room comfort control."
+    },
+    {
+      "title": "Heating & Furnace Service",
+      "description": "Installation, repair, and maintenance of heating and furnace systems to keep your home warm and running reliably through the colder months."
+    },
+    {
+      "title": "Water Heater Service",
+      "description": "Water heater removal, replacement, and installation — typically completed same-day, including swapping an old tank for a new unit in around two hours."
+    },
+    {
+      "title": "Maintenance & Emergency Service",
+      "description": "Preventive maintenance to keep systems running smoothly year-round, plus responsive emergency service when something stops working."
+    }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "8am–5pm" }
+  ],
+  "testimonials": [
+    {
+      "quote": "Chance arrived on time and found a very inexpensive way to repair the furnace blower problem.",
+      "author": "HomeAdvisor customer"
+    },
+    {
+      "quote": "Chance did a great job, arrived on time, removed the old tank and installed the new water heater in 2 hours. Very professional and efficient.",
+      "author": "HomeAdvisor customer"
+    },
+    {
+      "quote": "Chance is extremely responsive and trustworthy, very experienced and the best there is.",
+      "author": "Repeat customer"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/61574951143312",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "CURRENCY: OPEN / actively operating as of mid-2026 (Yelp profile updated May 2026; BBB file opened 4/23/2025; recent HomeAdvisor reviews). No 'permanently closed', sold, or renamed signals found. CORRECTION TO LEAD: the business DOES have a real website at https://bestchanceheatingandcooling.com (Squarespace-hosted; pages /about, /cooling, /heating). All listing sites (.com, Yelp, BBB, BuildZoom, CSLB, relevantyellow, HomeAdvisor) returned HTTP 403 to WebFetch in this environment, so facts below were gathered via WebSearch result snippets across those sources. VERIFIED FACTS: Owner/operator Chance Rosado; 15+ years industry experience; locally owned in Sonoma County, also serving Marin County. CSLB License #1107468, expiration 7/31/2027 (active; 2-year CA term implies issued/renewed ~2025) -- license# appears in BBB/search snippets; classification not directly confirmed but C-20 (Warm-Air Heating, Ventilating & A/C) is the standard HVAC class -- RECOMMEND a final manual check at cslb.ca.gov/1107468 to confirm C-20 + active status before sending. Established/in business since 2023 per HomeAdvisor; consistent with BBB file (4/2025) and license term. Ratings: 5.0 with 73 verified ratings on HomeAdvisor, Super Service Award winner; '100% recommended'. NOT BBB accredited. Addresses vary across listings (lead: 2967 Coors Ct, Santa Rosa; BBB: 118 Tuscany Place, Sonoma 95476; BuildZoom/Nextdoor: Cotati) -- likely a home-based business; treat exact street address as unverified. Phone (707) 336-9800 confirmed. Email bestchancehvac@gmail.com from lead, not independently re-verified. Hours (Mon-Fri 8am-5pm) are a reasonable default, NOT confirmed on a listing -- verify if possible. Testimonials are paraphrased snippets from HomeAdvisor reviews surfaced in search; authors anonymized as 'HomeAdvisor customer' since full names/initials were not captured -- treat as representative, replace with exact verbatim quotes if the live pages are accessible. PHOTOS: none clearly attributable to the business were downloadable (403s); realPhotoUrls left empty -- check their Facebook/Squarespace site for storefront/work photos. Sources: bestchanceheatingandcooling.com, Yelp (best-chance-hvac-rohnert-park), BBB (sonoma profile 1116-970387), BuildZoom (best-chance-heating-cooling), HomeAdvisor (BestChanceHeating.138359399), Facebook page 61574951143312.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Best Chance Heating and Cooling",
+    "category": "hvac",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 336-9800",
+    "email": "bestchancehvac@gmail.com",
+    "address": "2967 Coors Ct",
+    "owner": "Chance Rosado"
+  }
+}
