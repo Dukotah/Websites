@@ -176,9 +176,11 @@ function startAuroraWebGL(canvas: HTMLCanvasElement, host: HTMLElement): Cleanup
   let running = true;
   const start = performance.now();
   // The aurora is a soft, blurry field — it doesn't need device resolution.
-  // Rendering at ~0.6x DPR slashes fragment-shader work (it's a per-pixel cost)
-  // with no visible loss, keeping frame time tiny on weak GPUs.
-  const DPR = Math.min(window.devicePixelRatio || 1, 1) * 0.6;
+  // Rendering below native DPR slashes fragment-shader work (it's a per-pixel
+  // cost) while a CSS blur on the layer hides the lower sampling. We sit at
+  // ~0.8x (was 0.6x): the old value dithered into visible banding once the
+  // header's backdrop-filter blurred it, so 0.8x + the layer blur reads clean.
+  const DPR = Math.min(window.devicePixelRatio || 1, 1) * 0.8;
   // Cap to ~30fps: a drifting aurora is imperceptibly different at 30 vs 60fps,
   // and halving the draw count keeps the main thread/GPU well clear of jank.
   const FRAME_MS = 1000 / 30;
@@ -248,7 +250,9 @@ function startAuroraWebGL(canvas: HTMLCanvasElement, host: HTMLElement): Cleanup
 function startAuroraCanvas2D(canvas: HTMLCanvasElement, host: HTMLElement): Cleanup | null {
   const ctx = canvas.getContext('2d');
   if (!ctx) return null;
-  const DPR = Math.min(window.devicePixelRatio || 1, 1) * 0.6;
+  // Match the WebGL path: ~0.8x DPR + the layer's CSS blur keeps the drifting
+  // blobs smooth instead of banding when blurred through the header glass.
+  const DPR = Math.min(window.devicePixelRatio || 1, 1) * 0.8;
   const FRAME_MS = 1000 / 30;
   let lastDraw = 0;
   const brand = readBrandRGB(host, '--p-primary', '#2f7d52').map((v) => Math.round(v * 255));
@@ -365,6 +369,7 @@ function initScrollEngine() {
   let eased = window.scrollY;
   let target = window.scrollY;
   let velocity = 0;
+  let skewCurrent = 0;
   let raf = 0;
   let running = true;
 
@@ -382,7 +387,7 @@ function initScrollEngine() {
     if (heroBg) {
       const r = heroBg.getBoundingClientRect();
       if (r.bottom > 0 && r.top < window.innerHeight) {
-        heroBg.style.transform = `translate3d(0, ${(eased * 0.18).toFixed(1)}px, 0)`;
+        heroBg.style.transform = `translate3d(0, ${(eased * 0.26).toFixed(1)}px, 0)`;
       }
     }
     // Hero figures (split/editorial): a gentler counter-drift for layered depth.
@@ -394,22 +399,31 @@ function initScrollEngine() {
       }
     }
     // Velocity skew on opted-in scrolling media: a subtle whip that follows the
-    // scroll speed and relaxes to flat. Clamped so it always reads as polish.
-    const skew = Math.max(-3.2, Math.min(3.2, velocity * 0.45));
+    // scroll speed and relaxes to flat. The clamped velocity is the TARGET; we
+    // ease skewCurrent toward it each frame so the whip ramps + settles smoothly
+    // instead of snapping to a hard-clamped value (one extra lerp/frame).
+    const skewTarget = Math.max(-3.2, Math.min(3.2, velocity * 0.45));
+    skewCurrent = lerp(skewCurrent, skewTarget, 0.18);
     for (const el of skewTargets) {
       const r = el.getBoundingClientRect();
       if (r.bottom > -200 && r.top < window.innerHeight + 200) {
-        el.style.transform = `skewY(${skew.toFixed(2)}deg)`;
+        el.style.transform = `skewY(${skewCurrent.toFixed(2)}deg)`;
       }
     }
 
-    // Keep ticking while the eased value is still catching up OR there is
-    // residual velocity; otherwise sleep until the next scroll.
-    if (Math.abs(target - eased) > 0.4 || Math.abs(velocity) > 0.3) {
+    // Keep ticking while the eased value is still catching up, there is residual
+    // velocity, OR the eased skew has not yet relaxed back to flat; otherwise
+    // sleep until the next scroll.
+    if (
+      Math.abs(target - eased) > 0.4 ||
+      Math.abs(velocity) > 0.3 ||
+      Math.abs(skewCurrent) > 0.01
+    ) {
       raf = requestAnimationFrame(tick);
     } else {
       eased = target;
       velocity = 0;
+      skewCurrent = 0;
       // settle skew to flat
       for (const el of skewTargets) el.style.transform = 'skewY(0deg)';
     }
@@ -454,7 +468,7 @@ function init() {
     requestIdleCallback?: (cb: () => void, o?: { timeout?: number }) => number;
   };
   const idle = (cb: () => void) =>
-    w.requestIdleCallback ? w.requestIdleCallback(cb, { timeout: 800 }) : window.setTimeout(cb, 1);
+    w.requestIdleCallback ? w.requestIdleCallback(cb, { timeout: 450 }) : window.setTimeout(cb, 1);
   idle(() => {
     if (reduceQuery?.matches) return;
     initAurora();
