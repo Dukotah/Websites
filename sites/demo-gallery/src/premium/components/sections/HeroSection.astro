@@ -342,7 +342,11 @@ const glassCred = isFullbleed && badges.length > 0;
   .p-hero__inner { position: relative; z-index: 1; width: 100%; }
 
   /* ---- Content -----------------------------------------------------------*/
-  .p-hero__content { max-width: min(46rem, 100%); min-width: 0; }
+  /* Nudge the hero text in from the left by ~1/16 of the viewport (capped) so big
+     headlines don't crowd the screen edge and read easier. This indents the TEXT
+     block only — the header bar and any hero photo/full-bleed art are unaffected.
+     box-sizing keeps it inside the column, so no horizontal overflow. */
+  .p-hero__content { max-width: min(46rem, 100%); min-width: 0; padding-inline-start: clamp(1rem, 6.25vw, 6rem); }
   .p-hero__heading {
     font-size: var(--p-text-hero);
     margin-top: var(--p-space-4);

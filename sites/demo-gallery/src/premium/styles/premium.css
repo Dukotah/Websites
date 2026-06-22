@@ -71,7 +71,7 @@
   --p-shadow-md: 0 2px 6px rgb(20 30 50 / 0.07), 0 10px 28px rgb(20 30 50 / 0.10);
   --p-shadow-lg: 0 4px 10px rgb(20 30 50 / 0.08), 0 24px 56px rgb(20 30 50 / 0.14);
 
-  --p-container: 72rem;
+  --p-container: 64rem;
   --p-header-h: 4.5rem;
 
   /* Base body type for the whole premium subtree. */
@@ -113,7 +113,12 @@
 .premium ::selection { background: color-mix(in srgb, var(--p-primary) 18%, #fff); }
 
 /* --- Layout helpers -------------------------------------------------------- */
-.premium .container { width: min(var(--p-container), 100% - 2.5rem); margin-inline: auto; }
+/* Content column. The subtracted clamp is the MINIMUM side gutter (per side it's
+   half this): it grows with viewport so the header, hero, and every section keep
+   a comfortable inset off the screen edges instead of hugging the left/right on
+   laptops. Above --p-container the column caps and centers, so wide screens get
+   even more margin. Was a flat `100% - 2.5rem` (only ~20px/side). */
+.premium .container { width: min(var(--p-container), 100% - clamp(2.5rem, 6vw, 6rem)); margin-inline: auto; }
 
 .premium .section { padding-block: clamp(4rem, 3.2rem + 3.5vw, 7rem); }
 /* Deep band gets a whisper of brand-tinted depth + a hairline top edge so the
