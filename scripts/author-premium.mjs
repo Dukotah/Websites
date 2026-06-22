@@ -647,11 +647,33 @@ function cleanSocial(s) {
   return out;
 }
 
+// A hero badge is a short LABEL, not a sentence. Clip at a word boundary and
+// never leave a dangling/unmatched parenthetical (the "(Lic"/"(CSLB" bug) — drop
+// from the last unmatched "(" and trim trailing connective punctuation. The full
+// untruncated highlight still lives in the story section, so trust signals (a
+// license #, a credential) are preserved for the audit even when trimmed here.
+function cleanBadge(h, max = 48) {
+  let s = String(h || '').replace(/\s+/g, ' ').trim();
+  // A badge is a short LABEL — drop any parenthetical detail (e.g. a license #;
+  // the full highlight still carries it in the story section for the audit).
+  s = s.replace(/\s*\([^)]*\)?\s*/g, ' ').replace(/\s+/g, ' ').trim();
+  // Trim trailing connective punctuation, em/en dashes, then a dangling connective.
+  s = s.replace(/[\s,;:·—–\-(]+$/, '').trim();
+  s = s.replace(/\s+(for|and|of|the|to|with|in|on|at|by|from|or|a|an|since|as|who|that|which)$/i, '').trim();
+  // Still a full sentence, not a label → skip it rather than truncate mid-clause.
+  if (s.length > max) return '';
+  return s;
+}
+
 function buildBadges(established, rating, highlights) {
   const b = [];
   if (established) b.push(`Serving since ${established}`);
   if (rating) b.push(`${rating.value}★${rating.count ? ` from ${rating.count} reviews` : ''}`);
-  for (const h of highlights) { if (b.length >= 3) break; if (!b.includes(h)) b.push(clip(h, 48)); }
+  for (const h of highlights) {
+    if (b.length >= 3) break;
+    const badge = cleanBadge(h);
+    if (badge && !b.includes(badge)) b.push(badge);
+  }
   return b.slice(0, 3);
 }
 

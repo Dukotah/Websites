@@ -7,6 +7,8 @@
   "heroHeading": "Concrete placed clean, fast, and exactly where you need it",
   "heroSubheading": "Owner-operated line pumping for residential and commercial pours across Sonoma, Napa, Marin and the greater Bay Area.",
   "highlights": [
+    "Second-generation Santa Rosa pumper",
+    "Serves 9 Bay Area counties",
     "Family-owned and operated, carrying on a Santa Rosa concrete-pumping legacy started decades ago by the Medeiros family",
     "Residential and commercial concrete pumping and placing",
     "Handles dry mixes, sand slurry, well casings, and 1\" rock mixes through 2\"–4\" hose",
@@ -47,7 +49,10 @@
     }
   ],
   "hours": [
-    {"day": "Mon–Fri", "hours": "7am–5pm"}
+    {
+      "day": "Mon–Fri",
+      "hours": "7am–5pm"
+    }
   ],
   "testimonials": [
     {

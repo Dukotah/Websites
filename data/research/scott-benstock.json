@@ -8,6 +8,8 @@
   "heroHeading": "Comfortable family dentistry on Petaluma Avenue",
   "heroSubheading": "Dr. Scott Benstock and his team provide gentle, health-centered general, family, and cosmetic dentistry in the heart of Sebastopol.",
   "highlights": [
+    "Emory University-trained dentist",
+    "Gentle, health-centered care",
     "Led by Dr. Scott Benstock, DDS — doctorate in dentistry from Emory University (1984)",
     "Decades of experience caring for Sebastopol families and patients across Sonoma County",
     "General, family & cosmetic dentistry — cleanings, crowns, implants, veneers & more",
@@ -22,24 +24,64 @@
   ],
   "servicesHeading": "What we do",
   "services": [
-    {"title": "Cleanings & Exams", "description": "Routine preventive checkups and professional cleanings to keep your teeth and gums healthy for the long term."},
-    {"title": "Porcelain Crowns & Fillings", "description": "Tooth-colored fillings and natural-looking porcelain crowns to restore damaged or decayed teeth."},
-    {"title": "Dental Implants", "description": "Replacing missing teeth with implants that look, feel, and function like your own."},
-    {"title": "Cosmetic Dentistry", "description": "Porcelain veneers and cosmetic care to brighten and reshape your smile."},
-    {"title": "Root Canals & Restorative Care", "description": "Root canal treatment, dentures, and partials to relieve pain and rebuild your smile."},
-    {"title": "Dental Emergencies", "description": "Prompt attention when a toothache, break, or other urgent dental problem can't wait."}
+    {
+      "title": "Cleanings & Exams",
+      "description": "Routine preventive checkups and professional cleanings to keep your teeth and gums healthy for the long term."
+    },
+    {
+      "title": "Porcelain Crowns & Fillings",
+      "description": "Tooth-colored fillings and natural-looking porcelain crowns to restore damaged or decayed teeth."
+    },
+    {
+      "title": "Dental Implants",
+      "description": "Replacing missing teeth with implants that look, feel, and function like your own."
+    },
+    {
+      "title": "Cosmetic Dentistry",
+      "description": "Porcelain veneers and cosmetic care to brighten and reshape your smile."
+    },
+    {
+      "title": "Root Canals & Restorative Care",
+      "description": "Root canal treatment, dentures, and partials to relieve pain and rebuild your smile."
+    },
+    {
+      "title": "Dental Emergencies",
+      "description": "Prompt attention when a toothache, break, or other urgent dental problem can't wait."
+    }
   ],
   "hours": [
-    {"day": "Tue, Thu, Fri", "hours": "8am–5pm"},
-    {"day": "Wed", "hours": "9am–6pm"},
-    {"day": "Mon", "hours": "Closed"},
-    {"day": "Sat–Sun", "hours": "Closed"}
+    {
+      "day": "Tue, Thu, Fri",
+      "hours": "8am–5pm"
+    },
+    {
+      "day": "Wed",
+      "hours": "9am–6pm"
+    },
+    {
+      "day": "Mon",
+      "hours": "Closed"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed"
+    }
   ],
   "testimonials": [
-    {"quote": "Dr. Benstock was very thorough in finding the problem, discussed options with me, wasn't pushy, listened to my concerns and did a great job with a major cavity fill and a crown. He even called me later that evening after my appointment to make sure I was doing okay! I highly recommend him.", "author": "Verified patient"},
-    {"quote": "Dr. Benstock is highly skilled and patient oriented. I highly recommend him and plan to use his services as long as I am in Sonoma county.", "author": "Verified patient"}
+    {
+      "quote": "Dr. Benstock was very thorough in finding the problem, discussed options with me, wasn't pushy, listened to my concerns and did a great job with a major cavity fill and a crown. He even called me later that evening after my appointment to make sure I was doing okay! I highly recommend him.",
+      "author": "Verified patient"
+    },
+    {
+      "quote": "Dr. Benstock is highly skilled and patient oriented. I highly recommend him and plan to use his services as long as I am in Sonoma county.",
+      "author": "Verified patient"
+    }
   ],
-  "rating": {"value": 4.8, "count": 598, "source": "Birdeye"},
+  "rating": {
+    "value": 4.8,
+    "count": 598,
+    "source": "Birdeye"
+  },
   "social": {
     "facebook": "https://www.facebook.com/ScottBenstockDDS/",
     "instagram": "",

@@ -44,8 +44,8 @@
           "subheading": "A hometown dental practice carried from father to son — Dr. Gerald Dixon to Dr. Scott Dixon, DDS — serving western Sonoma County with gentle, personalized care.",
           "badges": [
             "Serving since 1975",
-            "Family-owned and operated in Sebastopol since",
-            "Founded by Dr. Gerald Dixon and continued by"
+            "Father-to-son family practice",
+            "UCSF Dental School-trained"
           ],
           "primaryCta": {
             "label": "Get in touch",
@@ -62,6 +62,16 @@
           "eyebrow": "Why choose us",
           "heading": "Why Dixon Dentistry",
           "items": [
+            {
+              "title": "Father-To-Son Family Practice",
+              "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "UCSF Dental School-Trained",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
             {
               "title": "Family-Owned And Operated In Sebastopol Since",
               "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
@@ -81,16 +91,6 @@
               "title": "Comprehensive Family Care: Cleanings, Fillings",
               "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
               "icon": "check"
-            },
-            {
-              "title": "Generations Of Patients — Many Families Have",
-              "body": "A standard we hold on every job, not just the easy ones.",
-              "icon": "check"
-            },
-            {
-              "title": "Highly Rated For Gentle, Unhurried Care And",
-              "body": "A standard we hold on every job, not just the easy ones.",
-              "icon": "check"
             }
           ]
         },
@@ -103,10 +103,10 @@
             "With Dr. Gerald now retired and his patients in good hands, Dr. Scott and a familiar, longtime team uphold the same ideals: high-quality, gentle dentistry delivered with the personal attention of a true hometown practice. Many local families have trusted the Dixons for generations — some for more than forty years."
           ],
           "highlights": [
+            "Father-to-son family practice",
+            "UCSF Dental School-trained",
             "Family-owned and operated in Sebastopol since 1975",
-            "Founded by Dr. Gerald Dixon and continued by his son, Dr. Scott Dixon, DDS",
-            "Dr. Scott Dixon is a Sebastopol native and UCSF Dental School graduate",
-            "Comprehensive family care: cleanings, fillings, crowns, implants & cosmetic dentistry"
+            "Founded by Dr. Gerald Dixon and continued by his son, Dr. Scott Dixon, DDS"
           ]
         },
         {
@@ -136,7 +136,7 @@
               "description": "Teeth whitening, porcelain veneers, and Invisalign clear aligners to brighten and align your smile."
             },
             {
-              "title": "Children'S & Family Dentistry",
+              "title": "Children's & Family Dentistry",
               "description": "Kid-friendly preventive care including fluoride treatments and sealants, plus at-home guidance for patients of every age."
             }
           ]
@@ -233,7 +233,7 @@
               "description": "Teeth whitening, porcelain veneers, and Invisalign clear aligners to brighten and align your smile."
             },
             {
-              "title": "Children'S & Family Dentistry",
+              "title": "Children's & Family Dentistry",
               "description": "Kid-friendly preventive care including fluoride treatments and sealants, plus at-home guidance for patients of every age."
             }
           ]
@@ -321,10 +321,10 @@
             "With Dr. Gerald now retired and his patients in good hands, Dr. Scott and a familiar, longtime team uphold the same ideals: high-quality, gentle dentistry delivered with the personal attention of a true hometown practice. Many local families have trusted the Dixons for generations — some for more than forty years."
           ],
           "highlights": [
+            "Father-to-son family practice",
+            "UCSF Dental School-trained",
             "Family-owned and operated in Sebastopol since 1975",
-            "Founded by Dr. Gerald Dixon and continued by his son, Dr. Scott Dixon, DDS",
-            "Dr. Scott Dixon is a Sebastopol native and UCSF Dental School graduate",
-            "Comprehensive family care: cleanings, fillings, crowns, implants & cosmetic dentistry"
+            "Founded by Dr. Gerald Dixon and continued by his son, Dr. Scott Dixon, DDS"
           ]
         },
         {

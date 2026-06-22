@@ -132,7 +132,10 @@ const CATEGORIES = {
 const slugify = (s) =>
   s.toLowerCase().trim().replace(/['']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
-const titleCase = (s) => s.replace(/\b\w/g, (c) => c.toUpperCase());
+// Capitalize the first letter of each word, but NOT a letter that follows an
+// apostrophe (so "children's" → "Children's", not "Children'S"). Only uppercases,
+// never lowercases, so acronyms like "HVAC"/"CSLB" are preserved.
+const titleCase = (s) => String(s).replace(/(^|[^'\w])(\w)/g, (_, pre, c) => pre + c.toUpperCase());
 
 // Humanize a category slug for prose, keeping trade acronyms uppercased so a
 // headline reads "HVAC" not "Hvac". Hyphens AND underscores both become spaces.
