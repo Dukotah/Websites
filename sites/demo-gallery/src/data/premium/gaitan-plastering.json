@@ -12,7 +12,7 @@
   "established": "1978",
   "contact": {
     "phone": "(707) 566-9118",
-    "email": "tidalwavepoolandspa@gmail.com",
+    "email": "",
     "address": "3237 Santa Rosa Ave"
   },
   "social": {},
@@ -315,7 +315,9 @@
       ]
     }
   ],
-  "status": "ready",
-  "flags": [],
+  "status": "needs-review",
+  "flags": [
+    "No email found — add a real email or contact form before sending"
+  ],
   "photoSource": "library"
 }

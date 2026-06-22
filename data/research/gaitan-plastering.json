@@ -47,7 +47,10 @@
     }
   ],
   "hours": [
-    { "day": "Mon–Fri", "hours": "8am–5pm" }
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    }
   ],
   "testimonials": [
     {
@@ -61,7 +64,7 @@
     "google": ""
   },
   "realPhotoUrls": [],
-  "notes": "VERIFIED FACTS (high confidence): Owner Joe Gaitan; business operates as 'Gaitan Plastering' / 'Gaitan Plastering & Architectural' (LinkedIn) and is registered as 'Joe Gaitan Plastering, Inc.' Located 3237 Santa Rosa Ave, Santa Rosa, CA 95407, Sonoma County. Phone (707) 566-9118. Joe Gaitan has been in the plastering trade since 1978 (used as 'established'). CSLB contractor license #1037501, classification C-35 (Lathing & Plastering), expiration 3/31/2026 (per BBB; INCLUDE in copy, but re-verify status directly on CSLB before sending — CSLB Check-A-License blocked automated fetch here). BBB Accredited since 4/5/2015 with an A+ rating. Services confirmed across BBB/Blue Book/Yelp: stucco, residential & commercial plastering, and architectural foam shapes (decorative foam columns, foam sills, chimney caps, posts, door/window trim, precut decorative foam shapes); interior plaster, lath, and color/finish coats are standard C-35 work inferred from the classification. Listed in the Blue Book since 2002. TESTIMONIAL is a real published quote (appears to be a peer/industry endorsement rather than a named retail customer — attributed generically; verify/replace before send if a named customer quote is preferred). No Yelp/Google star rating could be read (pages 403-blocked). \n\nTIDAL WAVE / EMAIL MISMATCH: The contact email tidalwavepoolandspa@gmail.com could NOT be linked to Gaitan Plastering by any source. No 'Tidal Wave Pool and Spa' business was found in Santa Rosa, CA (only an unrelated Tidal Wave Pool & Spa in El Paso, TX). It is PLAUSIBLE the same owner also does pool plastering/replastering (a common adjacent service for a C-35 plasterer) and uses a pool-branded Gmail — but this is UNVERIFIED. Treating cautiously: did NOT add pool plastering as a headline service, left all social blank, and flag that the email/business pairing should be human-confirmed before any outreach email is sent to that address. Do not assert a pool business exists. \n\nPHOTOS: Website gaitanplastering.com (incl. /samples/samples.html) returned 403 to automated fetch — treated as dead/unusable; no real photos captured, realPhotoUrls left empty. Sources: BBB (bbb.org/.../gaitan-plastering-1116-25726), Yelp listing, The Blue Book ProView, BuildZoom, Procore, LinkedIn (Joe Gaitan).",
+  "notes": "VERIFIED FACTS (high confidence): Owner Joe Gaitan; business operates as 'Gaitan Plastering' / 'Gaitan Plastering & Architectural' (LinkedIn) and is registered as 'Joe Gaitan Plastering, Inc.' Located 3237 Santa Rosa Ave, Santa Rosa, CA 95407, Sonoma County. Phone (707) 566-9118. Joe Gaitan has been in the plastering trade since 1978 (used as 'established'). CSLB contractor license #1037501, classification C-35 (Lathing & Plastering), expiration 3/31/2026 (per BBB; INCLUDE in copy, but re-verify status directly on CSLB before sending — CSLB Check-A-License blocked automated fetch here). BBB Accredited since 4/5/2015 with an A+ rating. Services confirmed across BBB/Blue Book/Yelp: stucco, residential & commercial plastering, and architectural foam shapes (decorative foam columns, foam sills, chimney caps, posts, door/window trim, precut decorative foam shapes); interior plaster, lath, and color/finish coats are standard C-35 work inferred from the classification. Listed in the Blue Book since 2002. TESTIMONIAL is a real published quote (appears to be a peer/industry endorsement rather than a named retail customer — attributed generically; verify/replace before send if a named customer quote is preferred). No Yelp/Google star rating could be read (pages 403-blocked). \n\nTIDAL WAVE / EMAIL MISMATCH: The contact email tidalwavepoolandspa@gmail.com could NOT be linked to Gaitan Plastering by any source. No 'Tidal Wave Pool and Spa' business was found in Santa Rosa, CA (only an unrelated Tidal Wave Pool & Spa in El Paso, TX). It is PLAUSIBLE the same owner also does pool plastering/replastering (a common adjacent service for a C-35 plasterer) and uses a pool-branded Gmail — but this is UNVERIFIED. Treating cautiously: did NOT add pool plastering as a headline service, left all social blank, and flag that the email/business pairing should be human-confirmed before any outreach email is sent to that address. Do not assert a pool business exists. \n\nPHOTOS: Website gaitanplastering.com (incl. /samples/samples.html) returned 403 to automated fetch — treated as dead/unusable; no real photos captured, realPhotoUrls left empty. Sources: BBB (bbb.org/.../gaitan-plastering-1116-25726), Yelp listing, The Blue Book ProView, BuildZoom, Procore, LinkedIn (Joe Gaitan). [EMAIL YANKED] tidalwavepoolandspa@gmail.com belongs to a different business name (Tidal Wave Pool & Spa); Gaitan/Tidal Wave common ownership unconfirmed — held from send until Joe Gaitan's real email is verified.",
   "_richness": 0,
   "_source": "agent-research",
   "_lead": {
@@ -70,7 +73,7 @@
     "city": "Santa Rosa",
     "state": "CA",
     "phone": "(707) 566-9118",
-    "email": "tidalwavepoolandspa@gmail.com",
+    "email": "",
     "address": "3237 Santa Rosa Ave",
     "owner": "Joe Gaitan"
   }
