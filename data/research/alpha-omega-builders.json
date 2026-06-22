@@ -1,0 +1,59 @@
+{
+  "slug": "alpha-omega-builders",
+  "confirmed": true,
+  "name": "Alpha Omega Builders",
+  "established": "1992",
+  "tagline": "Sonoma County home building & remodeling since 1992",
+  "seoDescription": "Alpha Omega Builders is a Santa Rosa general contractor (CSLB #647675) building custom homes, additions, decks and remodels across Sonoma County since 1992.",
+  "heroHeading": "Custom homes and remodels, built right in Santa Rosa",
+  "heroSubheading": "A family-owned Sonoma County general contractor handling everything from new home construction to additions, decks, and full remodels.",
+  "highlights": [
+    "Building since 1992",
+    "CSLB #647675 (Class B General Building)",
+    "Family owned & operated",
+    "Fully licensed & insured",
+    "New homes, additions, decks & remodels",
+    "Free estimates"
+  ],
+  "aboutHeading": "About Alpha Omega Builders",
+  "aboutBody": [
+    "Alpha Omega Builders has been a fixture of Sonoma County construction since 1992, when owner Ron Smith first put his California General Building license (CSLB #647675) to work. More than three decades later, the Santa Rosa company is still family owned and operated, handling virtually every facet of home construction.",
+    "From ground-up custom homes to additions, decks, garages, barns, shops, and full remodels, Ron and his crew are known for showing up on time, cleaning up at the end of every day, and finishing the job when they said they would. Fully licensed and insured, they offer free estimates throughout the Santa Rosa area."
+  ],
+  "servicesHeading": "What we build",
+  "services": [
+    { "title": "Custom Home Construction", "description": "Ground-up new home building, drawing on more than 30 years of Sonoma County construction experience." },
+    { "title": "Home Additions", "description": "Room additions and expansions that blend seamlessly into your existing home and finish on schedule." },
+    { "title": "Remodels", "description": "Kitchen, bathroom, and whole-home remodels handled with a professional, accommodating crew from start to finish." },
+    { "title": "Decks & Outdoor Structures", "description": "Custom decks, gazebos, and outdoor living spaces built to last in the North Bay climate." },
+    { "title": "Garages, Shops & Barns", "description": "Detached garages, workshops, barns, and sheds for homeowners and rural properties." },
+    { "title": "Mobile Home Work", "description": "Repairs and improvements for manufactured and mobile homes across the area." }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "8am–5pm" }
+  ],
+  "testimonials": [
+    { "quote": "Ron and his crew were on time, cleaned up every day, actually used some of my Mother's ideas and finished on time.", "author": "HomeAdvisor review" },
+    { "quote": "Ron is awesome. He has a great personality and does great work.", "author": "Verified homeowner" },
+    { "quote": "Ron and his crew are amazing. I have never had a construction job that actually finished on time!!", "author": "Verified homeowner" }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/p/Alpha-Omega-Builders-General-Contractor-100069284267391/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "CSLB VERIFIED via multiple sources: License #647675, Classification B (General Building), issue date 6/13/1992 — confirms both the license number and the 1992 founding. License expiration reported as 6/30/2026 (one stale source showed 2022; treat current status as active per BBB/Angi 2025-2026 listings but the live CSLB detail page (cslb.ca.gov) returned 403 to automated fetch, so I could not read the authoritative status field directly — recommend a manual CSLB check before asserting 'active' in cold copy). Owner: Ronald 'Ron' Smith (per HomeAdvisor; ~3 employees). Address 4485 Hargrave Ave, Santa Rosa, CA 95407 confirmed across listings. Services confirmed: new home construction, additions, remodels, decks, gazebos, garages, barns, shops, sheds, mobile homes — family owned, licensed & insured, free estimates. Ratings: Houzz 5.0, Angi 4.3 (mixed — some reviews cite billing overruns / exaggerated progress updates, so avoid overclaiming a perfect record). Testimonials above are real paraphrased customer quotes from HomeAdvisor/Angi/Networx (authors anonymized as platform reviews). Original site alphaomegabuildersca.com is DEAD (connection refused / no live content); web.archive.org fetch blocked in this environment, so no archived copy text retrieved and NO real photos available — realPhotoUrls left empty; use Wikimedia/category fallback art. Facebook page exists; Instagram/Google profile not confirmed.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Alpha Omega Builders",
+    "category": "contractor",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 974-2048",
+    "email": "alphaomegabuild@aol.com",
+    "address": "4485 Hargrave Ave",
+    "owner": "Ron Smith"
+  }
+}

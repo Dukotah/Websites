@@ -1,0 +1,74 @@
+{
+  "slug": "soleil-solar",
+  "confirmed": true,
+  "established": "2006",
+  "tagline": "Engineer-owned solar, built to last in Sonoma County",
+  "seoDescription": "Soleil Solar & Engineering: engineer-owned solar PV, battery backup and electrical in Santa Rosa, Petaluma & Sonoma. NABCEP certified, 3,000+ systems installed.",
+  "heroHeading": "Solar designed by an engineer, installed by a master electrician",
+  "heroSubheading": "Owner Nick Soleil has designed and managed 3,000+ PV systems and 500+ battery backups across Northern California — a small, hands-on team that keeps overhead low and quality high.",
+  "highlights": [
+    "NABCEP-certified solar professional",
+    "3,000+ PV systems designed",
+    "500+ battery backup systems",
+    "CA master electrician & engineer",
+    "Tesla Powerwall & Enphase installer",
+    "Serving Santa Rosa, Petaluma & Sonoma"
+  ],
+  "aboutHeading": "About Soleil Solar",
+  "aboutBody": [
+    "Soleil Solar & Engineering is owned by Nick Soleil, an electrical engineer and California master electrician who has spent more than 19 years designing, managing, and installing solar power systems. Nick began installing PV in the 1990s — powering off-grid homes, cabins, and RVs with battery backup, generator, and solar water-pumping systems before grid-tied solar existed — and spent over six years as a Field Application Engineer at Enphase Energy.",
+    "Based in the Santa Rosa area, Soleil is a small, engineer-led shop that keeps overhead low to pass savings on to customers. The team has designed and installed more than 3,000 solar PV systems and 500+ battery backup systems, and is a NABCEP-certified solar installation company. They serve Santa Rosa, Petaluma, Sonoma, and communities throughout Northern California."
+  ],
+  "servicesHeading": "What We Do",
+  "services": [
+    {
+      "title": "Residential Solar PV Installation",
+      "description": "Custom-designed rooftop and ground-mount solar systems for homes, engineered by a licensed electrical engineer and installed by a master electrician for clean, long-lasting power."
+    },
+    {
+      "title": "Battery Storage & Backup",
+      "description": "Energy storage and whole-home backup including Tesla Powerwall, so your home stays powered through PG&E outages and PSPS shutoffs. 500+ battery systems installed."
+    },
+    {
+      "title": "Microinverters & AC Modules",
+      "description": "Enphase microinverter and AC-module systems — a specialty drawn from Nick's years as an Enphase Field Application Engineer — for higher production and module-level monitoring."
+    },
+    {
+      "title": "Off-Grid & Standalone Power",
+      "description": "Off-grid PV, generator, and solar water-pumping systems for homes, cabins, and remote properties, building on decades of off-grid experience."
+    },
+    {
+      "title": "Solar Service & Repair",
+      "description": "Servicing, troubleshooting, and repair of existing solar arrays and inverters across Northern California — useful when an original installer is no longer around."
+    },
+    {
+      "title": "Electrical Contracting & Engineering",
+      "description": "Licensed electrical contracting and engineering, including main-panel upgrades and system design, backed by master-electrician credentials in CA, TX, and LA."
+    }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "8am–6pm" },
+    { "day": "Sat", "hours": "9am–5pm" },
+    { "day": "Sun", "hours": "Closed" }
+  ],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/p/Soleil-Solar-and-Engineering-100066690302642/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "DISAMBIGUATION: This is Soleil Solar & Engineering of Santa Rosa/Petaluma, Sonoma County CA (owner Nick Soleil) — NOT Soleil Renewable Energy (soleil.energy, a Southern California utility-scale plant developer) nor any other same-name firm nationally. Confirmed by matching address 3928 New Zealand Ave, Santa Rosa CA 95407 and phone (707) 321-2937 across Yelp, BBB, Facebook, and the company's own site soleilsolar.com.\n\nCSLB: License #1030733, business name 'Soleil Solar Electric', expiration 9/30/2027 — number sourced from a search-result snippet; could NOT load the CSLB license detail page directly (cslb.ca.gov returned 403 in this environment) to confirm the exact classification codes. Nick Soleil is described on the company site and aggregators as a California master electrician and NABCEP-certified Solar Installation Professional, which is consistent with C-10 (Electrical) and/or C-46 (Solar) classifications — VERIFY the specific C-10/C-46 codes and active status at cslb.ca.gov/1030733 before asserting them in copy.\n\nFOUNDING YEAR: Aggregators state '26 years' / 'since 1998' (Nick's overall PV career, off-grid era) and separately 'established 2006' for the company; '19 years owning/managing solar companies' also cited. Used 2006 as the company establishment year; the 1998 / 'designed and managed 3,000+ PV systems since 2001' figures refer to Nick's career and are framed as such in the about copy. Treat exact founding year as MODERATE confidence.\n\nVERIFIED FACTS: owner Nick Soleil (electrical engineer, master electrician licensed in CA/TX/LA, NABCEP certified, ex-Enphase Field Application Engineer 6+ yrs); 3,000+ PV systems and 500+ battery systems; services Santa Rosa, Petaluma, Sonoma & Northern CA; specialties solar PV, Tesla Powerwall, microinverters/AC modules, energy storage, BIPV, off-grid. Hours Mon–Fri 8–6 / Sat 9–5 from Yelp/worldorgs listing (CLAUDE.md-supplied 'Mon–Fri 8–5' differs slightly; used the listing hours).\n\nTESTIMONIALS: Left EMPTY. Aggregators paraphrase positive reviews (e.g., a customer 'loved how Nick presented possible risks and a range of responses'; 'thoroughly professional, methodical, answers all questions') but no VERBATIM quote with an attributable reviewer name could be confirmed (Yelp/BBB/Google pages returned 403). Do not fabricate quotes or authors — pull real ones from the live Yelp page (yelp.com/biz/soleil-solar-santa-rosa) before sending.\n\nPHOTOS: realPhotoUrls left empty. soleilsolar.com and Yelp (52 photos) returned 403 here, so no clearly-theirs image URLs could be captured directly. Note: CLAUDE.md flagged soleilsolar.com as DEAD, but it resolved (pages 403-blocked to automated fetch, not confirmed dead). EMAIL soleilengineering@gmail.com per lead — not independently re-verified.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Soleil Solar",
+    "category": "solar",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 321-2937",
+    "email": "soleilengineering@gmail.com",
+    "address": "3928 New Zealand Ave",
+    "owner": "Nick Soleil"
+  }
+}

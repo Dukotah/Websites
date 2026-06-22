@@ -1,0 +1,71 @@
+{
+  "slug": "kaya-jade-aesthetics",
+  "confirmed": true,
+  "name": "Kaya Jade Aesthetics",
+  "established": "",
+  "tagline": "Holistic, results-driven skincare in the heart of Santa Rosa",
+  "seoDescription": "Kaya Jade Aesthetics is a Santa Rosa skin studio led by esthetician Kaya Lane, blending holistic care with science-based facials, peels and acne treatment.",
+  "heroHeading": "Skincare that meets your skin where it is",
+  "heroSubheading": "Custom facials, chemical peels and acne care from licensed esthetician Kaya Lane, blending holistic wellness with results-oriented treatments at her Santa Rosa studio.",
+  "highlights": [
+    "Licensed esthetician",
+    "Certified acne specialist",
+    "Trained under celebrity esthetician Gina Mari in Beverly Hills",
+    "Holistic + science-based approach to every facial",
+    "Custom-prescribed home care with every treatment",
+    "Santa Rosa skin studio on Mendocino Ave"
+  ],
+  "aboutHeading": "About Kaya Jade Aesthetics",
+  "aboutBody": [
+    "Kaya Jade Aesthetics is the Santa Rosa skin studio of Kaya Lane, a licensed esthetician, holistic facialist and certified acne specialist. After struggling with hormonal acne through her teens and early twenties, Kaya pursued an education in aesthetics and went on to work for celebrity esthetician Gina Mari in Beverly Hills, deepening her focus on results-oriented skincare under that mentorship.",
+    "Her method blends holistic wellness techniques with targeted, science-based treatments. Rather than forcing a one-size-fits-all routine, Kaya meets the skin in its current state and treats it accordingly, protecting its health and balance. In-studio treatments are paired with custom-prescribed home care so results are long-lasting and radiant."
+  ],
+  "servicesHeading": "Treatments",
+  "services": [
+    {
+      "title": "Custom Facial",
+      "description": "A facial built around your skin's current condition, blending holistic technique with science-based products and finished with custom home-care guidance."
+    },
+    {
+      "title": "Dermaplane Facial",
+      "description": "Manual exfoliation that removes dead skin and fine vellus hair for a smooth, bright finish, often paired with a peel for deeper renewal."
+    },
+    {
+      "title": "Chemical Peels (Face Reality & BioRePeel)",
+      "description": "Professional peels including the Italian-made BioRePeel and a 35% TCA peel paired with dermaplaning to improve texture, hyperpigmentation, acne and scarring with little to no downtime."
+    },
+    {
+      "title": "Microchanneling",
+      "description": "Controlled micro-channeling to stimulate collagen and improve skin tone and texture on the face and other targeted areas."
+    },
+    {
+      "title": "Acne Healing Treatment",
+      "description": "Targeted acne care from a certified acne specialist, combining in-studio treatment with a custom home-care protocol to calm and clear the skin over time."
+    },
+    {
+      "title": "Dry Microdermabrasion",
+      "description": "Gentle mechanical resurfacing for the face and full body to refine texture and renew the skin's surface."
+    }
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/kayajadeaesthetics/",
+    "instagram": "https://www.instagram.com/kayajade_aesthetics/",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED from the business's own site skinbykaya.com (About + Services pages, read via search snippets; the site, Yelp, Facebook and Linktree all returned 403 to direct fetch). Owner/founder is Kaya Lane, a licensed esthetician (CA estheticians are licensed by the Board of Barbering & Cosmetology), holistic facialist and certified acne specialist. Backstory verified: struggled with hormonal acne in teens/early 20s, pursued aesthetics education, then worked under celebrity esthetician Gina Mari in Beverly Hills. Services verified from the site/search: Custom Facial, Dermaplane Facial, Chemical Peels (Face Reality & BioRePeel, incl. Italian-made BioRePeel and a 35% TCA peel w/ dermaplaning), Microchanneling, Acne Healing Treatment, Dry Microdermabrasion (face & full body); also seen: Kaya Jade Signature Treatment, Sculpting Massage Facial, Reflexology Facial, 30-Min Facial, LED Infusion, Co2 Lift. Address: 1116 Mendocino Ave, Ste 7, Santa Rosa, CA 95401; phone (707) 671-4633; email skinbykaya@gmail.com. Instagram handle is @kayajade_aesthetics (display name 'Kaya | Facialist'). UNVERIFIED / left blank: founding/established year (not stated anywhere found); business hours (not published in any accessible source); star rating and individual reviews (Yelp listing exists but blocked 403, and Yelp oddly lists category as 'Massage' - no review text could be confirmed, so no testimonials included); Google profile URL. NOTE the business DOES have a full website (skinbykaya.com) despite the Linktree-only premise in the brief. No real photo URLs captured (image hosts/social blocked); use Wikimedia/Santa Rosa imagery or category fallback art. Do not invent reviews, hours, or a founding year.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Kaya Jade Aesthetics",
+    "category": "spa",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 671-4633",
+    "email": "skinbykaya@gmail.com",
+    "address": "1116 Mendocino Ave",
+    "owner": "Kaya Lane"
+  }
+}

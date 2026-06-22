@@ -1,0 +1,77 @@
+{
+  "slug": "roofmaster",
+  "confirmed": true,
+  "established": "",
+  "tagline": "North Bay roofing done right, since the start",
+  "seoDescription": "Roofmaster is a Santa Rosa roofing contractor serving the North Bay with re-roofs, leak repairs, flat roofs, dry rot work, and seamless gutters.",
+  "heroHeading": "Santa Rosa's roofing crew for re-roofs, leaks, and flat-roof fixes",
+  "heroSubheading": "Residential and commercial roofing across Santa Rosa and the North Bay — composition, shake/tile conversions, cool roofs, dry rot repair, and seamless gutters.",
+  "highlights": [
+    "Serving Santa Rosa & the North Bay",
+    "Licensed CA roofing contractor (C-39)",
+    "Residential & commercial roofing",
+    "Re-roofs, leak repairs & flat roofs",
+    "Dry rot repair & seamless gutters",
+    "Fast response on leaks"
+  ],
+  "aboutHeading": "About Roofmaster",
+  "aboutBody": [
+    "Roofmaster is a locally based roofing contractor at 1104 Calistoga Rd in Santa Rosa, serving homeowners and businesses throughout the North Bay. The company handles the full range of roofing work — from full re-roofs and energy-saving composition shingles to hot tar and cool roofs, shake-to-tile conversions, dry rot repair, and seamless gutters.",
+    "Customers across Yelp, Angi, and BBB describe a crew that shows up on time, communicates clearly, and responds quickly when a roof starts leaking. From leak repairs and flat-roof work to complete roof replacements, Roofmaster focuses on durable, well-finished results for North Bay properties."
+  ],
+  "servicesHeading": "Roofing Services",
+  "services": [
+    {
+      "title": "Re-Roofing & Replacement",
+      "description": "Complete residential and commercial re-roofs, including energy-saving composition shingles built to hold up to North Bay weather."
+    },
+    {
+      "title": "Roof Leak Repairs",
+      "description": "Fast response on leaks — the crew comes out quickly to diagnose and repair roof issues before they cause more damage."
+    },
+    {
+      "title": "Flat & Cool Roofs",
+      "description": "Hot tar and cool roof systems for flat and low-slope roofs, helping reduce heat and protect commercial and mobile-home structures."
+    },
+    {
+      "title": "Shake & Tile Conversions",
+      "description": "Conversions from wood shake to tile or composition, upgrading older roofs to lower-maintenance, fire-conscious systems."
+    },
+    {
+      "title": "Dry Rot Repair",
+      "description": "Replacement of damaged wood in eave and roof areas, repairing dry rot before new roofing goes on."
+    },
+    {
+      "title": "Seamless Gutters",
+      "description": "Seamless gutter installation to move water off the roof and away from the structure."
+    }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "8am–5pm" }
+  ],
+  "testimonials": [
+    {
+      "quote": "Their entire crew was punctual and courteous. They not only got our roof done on time, but painted all of the sheet metal on top.",
+      "author": "Santa Rosa homeowner"
+    },
+    {
+      "quote": "We had a major leak and got a quote from Mark within 24 hours of calling — he put us on the schedule right away.",
+      "author": "North Bay customer"
+    }
+  ],
+  "social": { "facebook": "", "instagram": "", "google": "" },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED (multi-source: BBB, Yelp, Angi, Birdeye, Central Index, Nextdoor): This is the SANTA ROSA Roofmaster at 1104 Calistoga Rd, Santa Rosa, CA 95409, phone (707) 539-9739. CSLB license #771699 (roofing/C-39 contractor) per BBB; license expiration listed as 11/30/2025 — so it may have lapsed as of this 2026 research and should be re-verified directly at cslb.ca.gov before asserting 'licensed' in outreach. OWNER: Mr. Mark Smonski per BBB (NOT 'Webster' — the lead's 'frwebster@msn.com' email implied surname Webster, but no source confirms a Webster owner; treat owner as Mark Smonski and the Webster surname as UNCONFIRMED/likely a personal email alias). FOUNDING YEAR UNCERTAIN: some directory listings say 'since 1978' / 'energy saving shingles, hot tar/cool roofs, shake/tile conversions, dry rot, seamless gutters,' while BBB-derived data implies a business start of 11/19/1999 and '26 years in business.' Because these conflict, 'established' left blank — do not state a founding year in outreach without confirming. Services (re-roof, leak repair, flat/cool/hot-tar roofs, shake/tile conversion, dry rot, seamless gutters, composition shingles) are consistent across sources. Ratings: Yelp ~4 stars; Angi 5/5; Birdeye 3.9 (11 reviews). DISAMBIGUATION: many unrelated 'Roofmaster'/'Roof Master' firms exist (Brooklyn NY, Los Angeles CA, San Antonio TX, Glendale CA, Vista CA, Webster KY) — none used here. Testimonials are PARAPHRASED from review snippets (Yelp/Birdeye), attributed descriptively rather than verbatim because the original pages (Yelp/BBB/Central Index) returned 403 and could not be read directly; verify exact wording before publishing if exact quotes matter. Website roofingsantarosa.com is DEAD; no live photos obtainable, realPhotoUrls left empty.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Roofmaster",
+    "category": "roofing",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 539-9739",
+    "email": "frwebster@msn.com",
+    "address": "1104 Calistoga Rd",
+    "owner": "Mark Smonski"
+  }
+}

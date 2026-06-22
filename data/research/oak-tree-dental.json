@@ -1,0 +1,86 @@
+{
+  "slug": "oak-tree-dental",
+  "confirmed": true,
+  "established": "",
+  "tagline": "A husband-and-wife dental team dedicated to making Sebastopol smile",
+  "seoDescription": "Oak Tree Dental in downtown Sebastopol: locally-owned family & cosmetic care from Drs. Grados & Shehadeh. CEREC same-day crowns, implants, Invisalign. 4.9 stars.",
+  "heroHeading": "Locally-owned family dentistry in downtown Sebastopol",
+  "heroSubheading": "Drs. Anthony Grados and Karimeh Shehadeh provide patient-centered care that's never rushed — for the whole family, from children to seniors.",
+  "highlights": [
+    "Locally-owned & 5-star rated",
+    "Rated 4.9 stars (453+ reviews)",
+    "CEREC same-day crowns",
+    "Husband-and-wife dentist team — Drs. Grados & Shehadeh",
+    "Welcoming new patients",
+    "General, family, cosmetic & emergency care under one roof"
+  ],
+  "aboutHeading": "About Oak Tree Dental",
+  "aboutBody": [
+    "Oak Tree Dental is a locally-owned, family practice led by Drs. Anthony Grados and Karimeh Shehadeh, a husband-and-wife team dedicated to making Sebastopol smile. After Dr. Grados completed dental school at NYU and Dr. Shehadeh at the University of the Pacific, the two met during residency in Brooklyn and married a few years later. Drawn back to California, they fell in love with Sebastopol and purchased their practice here at 220 Petaluma Ave in the heart of downtown.",
+    "Their approach is simple: excellent, personalized care that's always patient-centered and never rushed. Dr. Grados graduated with honors in endodontics, while Dr. Shehadeh — who previously served as a dentist at Facebook — focuses on helping kids and anxious patients overcome their fears by building real trust. Together they care for families from across Sonoma County, including Sebastopol, Graton, Santa Rosa, Cotati, Forestville and beyond."
+  ],
+  "servicesHeading": "Comprehensive care for the whole family",
+  "services": [
+    {
+      "title": "Family & Preventive Dentistry",
+      "description": "Routine exams, thorough cleanings and at-home care guidance for every age, from children to seniors — the foundation of a healthy smile."
+    },
+    {
+      "title": "CEREC Same-Day Crowns",
+      "description": "Restore a damaged tooth in a single visit. With CEREC technology, your custom crown is designed, milled and placed the same day — no second appointment, no temporary."
+    },
+    {
+      "title": "Dental Implants",
+      "description": "Permanent, natural-looking replacements for missing teeth that restore both function and confidence, planned and placed by Dr. Grados."
+    },
+    {
+      "title": "Invisalign Clear Aligners",
+      "description": "A modern, discreet alternative to braces using custom clear trays to gently straighten teeth — a focus area for Dr. Shehadeh."
+    },
+    {
+      "title": "Cosmetic Dentistry",
+      "description": "From whitening to smile makeovers, a full range of cosmetic options to help you achieve the smile you've always wanted."
+    },
+    {
+      "title": "Emergency Dentistry",
+      "description": "Same-day relief for dental emergencies — toothaches, broken or knocked-out teeth — so you're never left in pain."
+    }
+  ],
+  "hours": [
+    { "day": "Mon–Thu", "hours": "8:30am–5pm" },
+    { "day": "Fri–Sun", "hours": "Closed" }
+  ],
+  "testimonials": [
+    {
+      "quote": "I've been at Oak Tree Dental for two-and-a-half years now and my experience has continued to be stellar. Dr. Grados is incredibly skilled, knowledgeable, helpful and kind.",
+      "author": "Yelp reviewer"
+    },
+    {
+      "quote": "Dr. Grados and team are the MOST compassionate, caring staff I have come across. Not only was I completely supported, they took the time to explain everything I needed to know.",
+      "author": "Yelp reviewer"
+    },
+    {
+      "quote": "They are warm and kind people with a good sense of humor and easy to be around, especially for us nervous types.",
+      "author": "Yelp reviewer"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/oaktreedentalsebastopol/",
+    "instagram": "https://www.instagram.com/oaktreedental_sebastopol/",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED via web search (oaktreedentalsebastopol.com pages, Yelp, LinkedIn, Birdeye). Note: the site marked 'DEAD' in the brief is actually LIVE (returns HTTP 403 to direct fetch/curl, so couldn't pull images, but pages are indexed and content confirmed via search). Dentists: Dr. Anthony Grados, DDS (NYU College of Dentistry 2014, honors in endodontics) and Dr. Karimeh Shehadeh, DDS (University of the Pacific; formerly a dentist at Facebook). Husband-and-wife team; met during residency in Brooklyn, married, returned to CA and PURCHASED the existing practice (so 'established' year of current ownership not confirmed — left empty rather than guess). Address: 220 Petaluma Ave, Ste D, Sebastopol, CA 95472. Phone (707) 823-1029. Hours Mon–Thu 8:30am–5pm (closed Fri–Sun) — confirmed across multiple listings. RATING: 4.9 stars with 453+ reviews (Google/Birdeye); self-described 'locally-owned & 5-star rated.' Yelp page exists (24 reviews) but exact Yelp star value not captured. Confirmed services: general/family/children's dentistry, exams & cleanings, CEREC same-day crowns, dental implants, Invisalign/clear aligners, cosmetic dentistry, dentures, root canals, emergency dentistry. Testimonials are real Yelp quotes but specific reviewer names were not captured — attributed generically as 'Yelp reviewer'. Service area: Sebastopol, Graton, Santa Rosa, Cotati, Rohnert Park, Forestville, Guerneville, Petaluma. No real photos downloadable (site blocks fetch); realPhotoUrls empty.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Oak Tree Dental",
+    "category": "dentist",
+    "city": "Sebastopol",
+    "state": "CA",
+    "phone": "(707) 823-1029",
+    "email": "oaktreedentalsebastopol@gmail.com",
+    "address": "220 Petaluma Ave",
+    "owner": "Dr. Anthony Grados & Dr. Karimeh Shehadeh"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "west-coast-construction",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Family-run asphalt & concrete paving across Sonoma County for 40+ years",
+  "seoDescription": "West Coast Construction is a family-owned Santa Rosa & Petaluma paving contractor — asphalt, sealcoating, grading, driveways and parking lots across Sonoma County.",
+  "heroHeading": "Driveways and parking lots done right, by a 40-year family crew",
+  "heroSubheading": "Owner Gary Stanley and his family have paved Sonoma County's homes and businesses for over four decades — asphalt, concrete, grading and sealcoating, from a cracked driveway to a full parking lot.",
+  "highlights": [
+    "Family-owned, 40+ years",
+    "Asphalt & concrete contractor",
+    "Residential & commercial",
+    "Driveways, parking lots & grading",
+    "Serving all of Sonoma County",
+    "Free estimates"
+  ],
+  "aboutHeading": "About West Coast Construction",
+  "aboutBody": [
+    "West Coast Construction has proudly served the Greater Bay Area for more than 40 years. Owner Gary Stanley started the family business at a very young age and has built an extensive background in both residential and commercial construction, with his wife Tina Stanley running the office.",
+    "It's a full-service asphalt and concrete installation and repair company that handles everything from new parking lots to driveway cracks. Their customers range from homeowners to retail shopping centers, apartment complexes and commercial businesses across Santa Rosa, Petaluma and the rest of Sonoma County — new paving, repairs, or full tear-out and re-installation."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Asphalt Paving & Repair",
+      "description": "New asphalt paving plus repairs, tear-outs and re-installations for driveways, parking lots and roadways — residential or commercial."
+    },
+    {
+      "title": "Concrete Paving",
+      "description": "All types of concrete work — driveways, parking lots, foundations, patios, sidewalks, walkways and stairs."
+    },
+    {
+      "title": "Sealcoating",
+      "description": "Sealcoating to protect and extend the life of asphalt surfaces and keep parking lots and driveways looking new."
+    },
+    {
+      "title": "Grading & Site Prep",
+      "description": "Grading and surface preparation to set up driveways, lots and pads for a paving job that lasts."
+    },
+    {
+      "title": "Parking Lots",
+      "description": "Commercial parking lots for retail centers, apartment complexes and businesses — from new construction to resurfacing and striping."
+    },
+    {
+      "title": "Driveways",
+      "description": "Residential driveways in asphalt or concrete, from a single cracked apron to a complete replacement."
+    }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "7am–7pm" }
+  ],
+  "testimonials": [
+    {
+      "quote": "Gary was organized, knowledgeable, on time, on budget.",
+      "author": "Paving client"
+    },
+    {
+      "quote": "Gary and his team are nothing but superior — he made challenging driveway work seem simple and did an amazing job.",
+      "author": "Driveway client"
+    },
+    {
+      "quote": "Great experience, very responsive — the project was started and completed in a very timely manner.",
+      "author": "Sonoma County customer"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/West-Coast-Construction-104841810996058/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED (multiple independent sources, Jun 2026): Owner Gary Stanley (per BBB, 'Mr. Gary Stanley, Owner'); wife Tina Stanley listed as Office Manager — consistent with lead email stanley.tina@icloud.com. Family-owned, 'serving the Greater Bay Area for more than 40+ years.' Two confirmed locations / same business: Santa Rosa CA 95407 at 288 Scenic Ave, phone (707) 360-0017 (the lead) AND Petaluma at 911 Lakeville St Ste 223, CA 94952, phone (707) 480-6027 (the more public listing, Yelp 25 reviews/60 photos as of Apr 2026). Website westcoastconstructionsp.com is actually LIVE (not dead) but 403-blocks automated fetch/curl in this environment — content captured via search snippets of their own pages. Services per their own site: asphalt paving/repair (new, repair, tear-out/re-install), all concrete (driveways, parking lots, foundations, patios, sidewalks, walkways, stairs), grading, seal coating, striping, retaining walls, stamped concrete. Customers: retail shopping stores, apartment complexes, commercial businesses, homeowners. Hours: Mon-Fri 7am-7pm per Yahoo Local listing. DISAMBIGUATION: many 'West Coast Construction' entities exist nationally (FL, OR, 'West Coast Construction Group' wccinc.com, etc.) and locally a near-identical 'Westside Grading & Paving' also lists at 911 Lakeville, Petaluma — confirmed THIS business by the matching 288 Scenic Ave / Santa Rosa address, owner name Gary/Tina Stanley, and the stanley.tina@icloud.com email tie. CSLB: BBB profile reports license #823119 (exp 8/31/2025) for Gary Stanley's West Coast Construction; could NOT independently confirm on cslb.ca.gov (all CSLB pages 403-blocked here) and could NOT verify the classifications (A General Engineering / C-12 Earthwork & Paving / C-8 Concrete) — license # is recorded here as BBB-reported only; VERIFY at cslb.ca.gov before citing in any email, and confirm current renewal since the listed expiry (8/31/2025) has passed. ESTABLISHED YEAR left blank: '40+ years' implies ~1980s, but a Yahoo directory said 'established 1990' — conflicting/unreliable, so omitted rather than asserted. A second email wstcstcon@gmail.com appears on a Yahoo listing; lead email stanley.tina@icloud.com kept as primary. Testimonials are REAL review snippets (Yelp/Angi/aggregators) lightly cleaned for grammar; reviewer full names not captured (pages 403), so authors are descriptive. Site is live but blocked + has no clearly-theirs photo URLs captured here, so realPhotoUrls left empty — pull hero/story from Wikimedia (Sonoma County / paving) or category fallback. Facebook page exists (link included); no confirmed Instagram or Google listing URL captured.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "West Coast Construction",
+    "category": "paving",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 360-0017",
+    "email": "stanley.tina@icloud.com",
+    "address": "288 Scenic Ave",
+    "owner": "Gary Stanley"
+  }
+}

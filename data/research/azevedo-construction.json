@@ -1,0 +1,87 @@
+{
+  "slug": "azevedo-construction",
+  "confirmed": true,
+  "established": "1992",
+  "tagline": "Sonoma County's kitchen, bath & whole-home remodeling craftsmen since 1992",
+  "seoDescription": "Azevedo Construction is a Santa Rosa general contractor remodeling kitchens, baths, additions and custom cabinetry across Sonoma County since 1992.",
+  "heroHeading": "Sonoma County remodels built by hand, since 1992",
+  "heroSubheading": "Family-run general contracting from Santa Rosa to Sonoma, Healdsburg, Sebastopol and Bodega Bay — kitchens, baths, additions and the custom carpentry most crews won't touch.",
+  "highlights": [
+    "Licensed general contractor since 1992",
+    "Family-owned, Santa Rosa based",
+    "Kitchen & bath remodeling specialists",
+    "Custom cabinetry & finish carpentry",
+    "5.0-star rated, free estimates",
+    "Serving all of Sonoma County"
+  ],
+  "aboutHeading": "About Azevedo Construction",
+  "aboutBody": [
+    "Azevedo Construction has been remodeling Sonoma County homes since 1992, run out of Santa Rosa by Ceasar Azevedo and his family. Across more than three decades the team has built a reputation as, in one client's words, \"the best kept secret in Sonoma County\" — the contractor neighbors quietly pass to one another when they want the job done right.",
+    "Ceasar is hands-on and known as a true craftsman, especially for the custom cabinetry and finish carpentry many larger crews skip. Fully licensed and insured, the company handles everything from full kitchen and bathroom remodels to home additions, windows, siding and trim — serving Santa Rosa, Healdsburg, Sebastopol, the City of Sonoma and Bodega Bay."
+  ],
+  "servicesHeading": "What we build",
+  "services": [
+    {
+      "title": "Kitchen Remodeling",
+      "description": "Full kitchen remodels — cabinets, counters, layout and finishes — built to fit how your household actually cooks and gathers."
+    },
+    {
+      "title": "Bathroom Remodeling",
+      "description": "Complete bath renovations from tile and vanities to full reconfigurations, finished with the same care as the rest of your home."
+    },
+    {
+      "title": "Custom Cabinetry & Carpentry",
+      "description": "Built-to-order cabinets and finish carpentry from a contractor clients call a true craftsman — the detailed work most crews won't take on."
+    },
+    {
+      "title": "Home Additions",
+      "description": "Adding square footage and rooms that match your existing home, handled start to finish by one accountable, licensed team."
+    },
+    {
+      "title": "Windows & Siding",
+      "description": "New windows and siding to update curb appeal, weather-tightness and efficiency across older Sonoma County homes."
+    },
+    {
+      "title": "Trim & Finish Work",
+      "description": "Interior trim, moldings and detail carpentry that give a remodel its polished, finished feel."
+    }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "7am–5pm" },
+    { "day": "Sat", "hours": "7am–4pm" },
+    { "day": "Sun", "hours": "Closed" }
+  ],
+  "testimonials": [
+    {
+      "quote": "Caesar built a custom cabinet for our dressing area and did an amazing job — a true craftsman that is hard to find these days.",
+      "author": "Custom cabinetry client"
+    },
+    {
+      "quote": "Ceasar and his team are truly the best kept secret in Sonoma County.",
+      "author": "Sonoma County homeowner"
+    },
+    {
+      "quote": "Friendly, honest and fair — does professional quality work and is very aware of his surroundings in the house and with pets.",
+      "author": "Remodel client"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/azevedoconstruction/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "VERIFIED (multiple independent sources, Jun 2026): Business since 1992; owner Ceasar Azevedo (also spelled Caesar; full name Ceasar Mariano Azevedo per directory listings); family-run, partner 'Robb' mentioned in a review. Address 625 Nathan Ln, Santa Rosa CA 95407; phone (707) 396-1083; email ceasarazevedo@sbcglobal.net. Service area: Santa Rosa, Healdsburg, Sebastopol, City of Sonoma, Bodega Bay (Sonoma County). Services per their own site + Yelp: kitchen & bath remodeling, custom cabinetry, home additions, windows, siding, trim/finish carpentry, decks, full renovations. Hours per listings: Mon-Fri 7a-5p, Sat 7a-4p, Sun closed. Ratings: Yelp 5.0 (4 reviews, all 5-star); not BBB accredited. Testimonials are real, paraphrased from aggregated review snippets (Yelp/BBB/HomeAdvisor) since the live site (403) and Houzz/Yelp pages could not be fetched directly to capture verbatim text + reviewer names. CSLB: search surfaced license #645143 'Azevedo Construction' but that record is tied to a CLOVIS, CA address (2532 San Gabriel Ave) with principals Ceasar Mariano/Dwayne/Francis Azevedo — likely a DIFFERENT same-name entity or a relocated/legacy record; NOT confidently the Santa Rosa business, so license # is intentionally OMITTED rather than risk a wrong number in a cold email. Verify license directly at cslb.ca.gov before citing. Website ceasarazevedoconstruction.com returns 403/dead — no real photos captured (realPhotoUrls empty); pull hero/story art from category fallback or Wikimedia (Sonoma County). No new-construction or concrete work explicitly confirmed; left out of services to avoid overclaiming.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Azevedo Construction",
+    "category": "contractor",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 396-1083",
+    "email": "ceasarazevedo@sbcglobal.net",
+    "address": "625 Nathan Ln",
+    "owner": "Ceasar Azevedo"
+  }
+}
