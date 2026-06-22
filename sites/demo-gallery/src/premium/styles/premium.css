@@ -215,8 +215,10 @@
 .premium .btn:active { transform: translateY(1px); }
 .premium .btn--primary { background: var(--p-primary); color: var(--p-primary-contrast); box-shadow: var(--p-shadow-sm); }
 .premium .btn--primary:hover { background: var(--p-primary-strong); color: var(--p-primary-contrast); box-shadow: var(--p-shadow-md); }
-/* Subtle lift + shadow grow on the primary CTA, hover-pointer only. */
-@media (hover: hover) { .premium .btn--primary:hover { transform: translateY(-1px); box-shadow: var(--p-shadow-lg); } }
+/* Subtle lift + slight scale + shadow grow on the primary CTA, hover-pointer
+   only. Compositor-only (transform + already-optimized shadow); magnetic drift
+   stays data-magnetic-only via the JS inline transform that overrides this. */
+@media (hover: hover) { .premium .btn--primary:hover { transform: translateY(-1px) scale(1.02); box-shadow: var(--p-shadow-lg); } }
 .premium .btn--outline { border-color: var(--p-line); background: var(--p-surface); color: var(--p-ink-strong); }
 .premium .btn--outline:hover { border-color: var(--p-structure); color: var(--p-structure); }
 .premium .btn--ghost-light { border-color: rgb(255 255 255 / 0.4); color: #fff; background: transparent; }
