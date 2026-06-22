@@ -1,0 +1,320 @@
+{
+  "slug": "soleil-solar",
+  "name": "Soleil Solar",
+  "legalName": "Soleil Solar",
+  "tagline": "Engineer-owned solar, built to last in Sonoma County",
+  "seoDescription": "Soleil Solar & Engineering: engineer-owned solar PV, battery backup and electrical in Santa Rosa, Petaluma & Sonoma. NABCEP certified, 3,000+ systems installed.",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2006",
+  "contact": {
+    "phone": "(707) 321-2937",
+    "email": "soleilengineering@gmail.com",
+    "address": "3928 New Zealand Ave"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/p/Soleil-Solar-and-Engineering-100066690302642/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–6pm"
+    },
+    {
+      "day": "Sat",
+      "hours": "9am–5pm"
+    },
+    {
+      "day": "Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#365470",
+    "fontId": "classic-trad"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2006",
+          "heading": "Solar designed by an engineer, installed by a master electrician",
+          "subheading": "Owner Nick Soleil has designed and managed 3,000+ PV systems and 500+ battery backups across Northern California — a small, hands-on team that keeps overhead low and quality high.",
+          "badges": [
+            "Serving since 2006",
+            "NABCEP-certified solar professional",
+            "3,000+ PV systems designed"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/soleil-solar/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/soleil-solar/services"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Soleil Solar",
+          "items": [
+            {
+              "title": "NABCEP-Certified Solar Professional",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "3,000+ PV Systems Designed",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "500+ Battery Backup Systems",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "CA Master Electrician & Engineer",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Tesla Powerwall & Enphase Installer",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Santa Rosa, Petaluma & Sonoma",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Soleil Solar",
+          "body": [
+            "Soleil Solar & Engineering is owned by Nick Soleil, an electrical engineer and California master electrician who has spent more than 19 years designing, managing, and installing solar power systems. Nick began installing PV in the 1990s — powering off-grid homes, cabins, and RVs with battery backup, generator, and solar water-pumping systems before grid-tied solar existed — and spent over six years as a Field Application Engineer at Enphase Energy.",
+            "Based in the Santa Rosa area, Soleil is a small, engineer-led shop that keeps overhead low to pass savings on to customers. The team has designed and installed more than 3,000 solar PV systems and 500+ battery backup systems, and is a NABCEP-certified solar installation company. They serve Santa Rosa, Petaluma, Sonoma, and communities throughout Northern California."
+          ],
+          "highlights": [
+            "NABCEP-certified solar professional",
+            "3,000+ PV systems designed",
+            "500+ battery backup systems",
+            "CA master electrician & engineer"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What We Do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Solar PV Installation",
+              "description": "Custom-designed rooftop and ground-mount solar systems for homes, engineered by a licensed electrical engineer and installed by a master electrician for clean, long-lasting power."
+            },
+            {
+              "title": "Battery Storage & Backup",
+              "description": "Energy storage and whole-home backup including Tesla Powerwall, so your home stays powered through PG&E outages and PSPS shutoffs. 500+ battery systems installed."
+            },
+            {
+              "title": "Microinverters & AC Modules",
+              "description": "Enphase microinverter and AC-module systems — a specialty drawn from Nick's years as an Enphase Field Application Engineer — for higher production and module-level monitoring."
+            },
+            {
+              "title": "Off-Grid & Standalone Power",
+              "description": "Off-grid PV, generator, and solar water-pumping systems for homes, cabins, and remote properties, building on decades of off-grid experience."
+            },
+            {
+              "title": "Solar Service & Repair",
+              "description": "Servicing, troubleshooting, and repair of existing solar arrays and inverters across Northern California — useful when an original installer is no longer around."
+            },
+            {
+              "title": "Electrical Contracting & Engineering",
+              "description": "Licensed electrical contracting and engineering, including main-panel upgrades and system design, backed by master-electrician credentials in CA, TX, and LA."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Soleil Solar",
+          "body": "Find us at 3928 New Zealand Ave. Call (707) 321-2937 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/soleil-solar/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 321-2937",
+            "href": "tel:+17073212937"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Owner Nick Soleil has designed and managed 3,000+ PV systems and 500+ battery backups across Northern California — a small, hands-on team that keeps overhead low and quality high.",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What We Do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Solar PV Installation",
+              "description": "Custom-designed rooftop and ground-mount solar systems for homes, engineered by a licensed electrical engineer and installed by a master electrician for clean, long-lasting power."
+            },
+            {
+              "title": "Battery Storage & Backup",
+              "description": "Energy storage and whole-home backup including Tesla Powerwall, so your home stays powered through PG&E outages and PSPS shutoffs. 500+ battery systems installed."
+            },
+            {
+              "title": "Microinverters & AC Modules",
+              "description": "Enphase microinverter and AC-module systems — a specialty drawn from Nick's years as an Enphase Field Application Engineer — for higher production and module-level monitoring."
+            },
+            {
+              "title": "Off-Grid & Standalone Power",
+              "description": "Off-grid PV, generator, and solar water-pumping systems for homes, cabins, and remote properties, building on decades of off-grid experience."
+            },
+            {
+              "title": "Solar Service & Repair",
+              "description": "Servicing, troubleshooting, and repair of existing solar arrays and inverters across Northern California — useful when an original installer is no longer around."
+            },
+            {
+              "title": "Electrical Contracting & Engineering",
+              "description": "Licensed electrical contracting and engineering, including main-panel upgrades and system design, backed by master-electrician credentials in CA, TX, and LA."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 3928 New Zealand Ave."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 8am–6pm; Sat: 9am–5pm; Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 321-2937 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 3928 New Zealand Ave. Call (707) 321-2937 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/soleil-solar/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 321-2937",
+            "href": "tel:+17073212937"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Soleil Solar",
+          "heading": "About Soleil Solar",
+          "subheading": "Soleil Solar & Engineering is owned by Nick Soleil, an electrical engineer and California master electrician who has spent more than 19 years designing, managing, and installing",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Soleil Solar",
+          "body": [
+            "Soleil Solar & Engineering is owned by Nick Soleil, an electrical engineer and California master electrician who has spent more than 19 years designing, managing, and installing solar power systems. Nick began installing PV in the 1990s — powering off-grid homes, cabins, and RVs with battery backup, generator, and solar water-pumping systems before grid-tied solar existed — and spent over six years as a Field Application Engineer at Enphase Energy.",
+            "Based in the Santa Rosa area, Soleil is a small, engineer-led shop that keeps overhead low to pass savings on to customers. The team has designed and installed more than 3,000 solar PV systems and 500+ battery backup systems, and is a NABCEP-certified solar installation company. They serve Santa Rosa, Petaluma, Sonoma, and communities throughout Northern California."
+          ],
+          "highlights": [
+            "NABCEP-certified solar professional",
+            "3,000+ PV systems designed",
+            "500+ battery backup systems",
+            "CA master electrician & engineer"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "20+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Soleil Solar",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/soleil-solar/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Soleil Solar at 3928 New Zealand Ave or call (707) 321-2937.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

@@ -1,0 +1,385 @@
+{
+  "slug": "azevedo-construction",
+  "name": "Azevedo Construction",
+  "legalName": "Azevedo Construction",
+  "tagline": "Sonoma County's kitchen, bath & whole-home remodeling craftsmen since 1992",
+  "seoDescription": "Azevedo Construction is a Santa Rosa general contractor remodeling kitchens, baths, additions and custom cabinetry across Sonoma County since 1992.",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1992",
+  "contact": {
+    "phone": "(707) 396-1083",
+    "email": "ceasarazevedo@sbcglobal.net",
+    "address": "625 Nathan Ln"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/azevedoconstruction/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7am–5pm"
+    },
+    {
+      "day": "Sat",
+      "hours": "7am–4pm"
+    },
+    {
+      "day": "Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#c77d2a",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 1992",
+          "heading": "Sonoma County remodels built by hand, since 1992",
+          "subheading": "Family-run general contracting from Santa Rosa to Sonoma, Healdsburg, Sebastopol and Bodega Bay — kitchens, baths, additions and the custom carpentry most crews won't touch.",
+          "badges": [
+            "Serving since 1992",
+            "Family-owned, Santa Rosa based",
+            "Kitchen & bath remodeling specialists"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/azevedo-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/azevedo-construction/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Azevedo Construction",
+          "body": [
+            "Azevedo Construction has been remodeling Sonoma County homes since 1992, run out of Santa Rosa by Ceasar Azevedo and his family. Across more than three decades the team has built a reputation as, in one client's words, \"the best kept secret in Sonoma County\" — the contractor neighbors quietly pass to one another when they want the job done right.",
+            "Ceasar is hands-on and known as a true craftsman, especially for the custom cabinetry and finish carpentry many larger crews skip. Fully licensed and insured, the company handles everything from full kitchen and bathroom remodels to home additions, windows, siding and trim — serving Santa Rosa, Healdsburg, Sebastopol, the City of Sonoma and Bodega Bay."
+          ],
+          "highlights": [
+            "Licensed general contractor since 1992",
+            "Family-owned, Santa Rosa based",
+            "Kitchen & bath remodeling specialists",
+            "Custom cabinetry & finish carpentry"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Kitchen Remodeling",
+              "description": "Full kitchen remodels — cabinets, counters, layout and finishes — built to fit how your household actually cooks and gathers."
+            },
+            {
+              "title": "Bathroom Remodeling",
+              "description": "Complete bath renovations from tile and vanities to full reconfigurations, finished with the same care as the rest of your home."
+            },
+            {
+              "title": "Custom Cabinetry & Carpentry",
+              "description": "Built-to-order cabinets and finish carpentry from a contractor clients call a true craftsman — the detailed work most crews won't take on."
+            },
+            {
+              "title": "Home Additions",
+              "description": "Adding square footage and rooms that match your existing home, handled start to finish by one accountable, licensed team."
+            },
+            {
+              "title": "Windows & Siding",
+              "description": "New windows and siding to update curb appeal, weather-tightness and efficiency across older Sonoma County homes."
+            },
+            {
+              "title": "Trim & Finish Work",
+              "description": "Interior trim, moldings and detail carpentry that give a remodel its polished, finished feel."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Azevedo Construction and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Azevedo Construction",
+          "items": [
+            {
+              "title": "Licensed General Contractor Since 1992",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Family-Owned, Santa Rosa Based",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Kitchen & Bath Remodeling Specialists",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Custom Cabinetry & Finish Carpentry",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "5.0-Star Rated, Free Estimates",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving All Of Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Caesar built a custom cabinet for our dressing area and did an amazing job — a true craftsman that is hard to find these days.",
+              "author": "Custom cabinetry client"
+            },
+            {
+              "quote": "Ceasar and his team are truly the best kept secret in Sonoma County.",
+              "author": "Sonoma County homeowner"
+            },
+            {
+              "quote": "Friendly, honest and fair — does professional quality work and is very aware of his surroundings in the house and with pets.",
+              "author": "Remodel client"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Azevedo Construction",
+          "body": "Find us at 625 Nathan Ln. Call (707) 396-1083 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/azevedo-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 396-1083",
+            "href": "tel:+17073961083"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Family-run general contracting from Santa Rosa to Sonoma, Healdsburg, Sebastopol and Bodega Bay — kitchens, baths, additions and the custom carpentry most crews won't touch.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Kitchen Remodeling",
+              "description": "Full kitchen remodels — cabinets, counters, layout and finishes — built to fit how your household actually cooks and gathers."
+            },
+            {
+              "title": "Bathroom Remodeling",
+              "description": "Complete bath renovations from tile and vanities to full reconfigurations, finished with the same care as the rest of your home."
+            },
+            {
+              "title": "Custom Cabinetry & Carpentry",
+              "description": "Built-to-order cabinets and finish carpentry from a contractor clients call a true craftsman — the detailed work most crews won't take on."
+            },
+            {
+              "title": "Home Additions",
+              "description": "Adding square footage and rooms that match your existing home, handled start to finish by one accountable, licensed team."
+            },
+            {
+              "title": "Windows & Siding",
+              "description": "New windows and siding to update curb appeal, weather-tightness and efficiency across older Sonoma County homes."
+            },
+            {
+              "title": "Trim & Finish Work",
+              "description": "Interior trim, moldings and detail carpentry that give a remodel its polished, finished feel."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Azevedo Construction and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 625 Nathan Ln."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7am–5pm; Sat: 7am–4pm; Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 396-1083 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 625 Nathan Ln. Call (707) 396-1083 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/azevedo-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 396-1083",
+            "href": "tel:+17073961083"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Azevedo Construction",
+          "heading": "About Azevedo Construction",
+          "subheading": "Azevedo Construction has been remodeling Sonoma County homes since 1992, run out of Santa Rosa by Ceasar Azevedo and his family",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Azevedo Construction",
+          "body": [
+            "Azevedo Construction has been remodeling Sonoma County homes since 1992, run out of Santa Rosa by Ceasar Azevedo and his family. Across more than three decades the team has built a reputation as, in one client's words, \"the best kept secret in Sonoma County\" — the contractor neighbors quietly pass to one another when they want the job done right.",
+            "Ceasar is hands-on and known as a true craftsman, especially for the custom cabinetry and finish carpentry many larger crews skip. Fully licensed and insured, the company handles everything from full kitchen and bathroom remodels to home additions, windows, siding and trim — serving Santa Rosa, Healdsburg, Sebastopol, the City of Sonoma and Bodega Bay."
+          ],
+          "highlights": [
+            "Licensed general contractor since 1992",
+            "Family-owned, Santa Rosa based",
+            "Kitchen & bath remodeling specialists",
+            "Custom cabinetry & finish carpentry"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "34+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Azevedo Construction",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/azevedo-construction/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Azevedo Construction at 625 Nathan Ln or call (707) 396-1083.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

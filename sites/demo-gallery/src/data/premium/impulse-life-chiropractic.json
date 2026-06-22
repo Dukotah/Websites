@@ -1,0 +1,303 @@
+{
+  "slug": "impulse-life-chiropractic",
+  "name": "Impulse Life Chiropractic",
+  "legalName": "Impulse Life Chiropractic",
+  "tagline": "Gentle chiropractic care for Sebastopol's families and athletes",
+  "seoDescription": "Impulse Life Chiropractic in Sebastopol, CA. Dr. Kendell Jack offers gentle, personalized adjustments for families, athletes, and all ages. Book online today.",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "2025",
+  "contact": {
+    "phone": "(707) 806-3989",
+    "email": "impulselifechiropractic@gmail.com",
+    "address": "7765 Healdsburg Ave"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/people/Impulse-Life-Chiropractic/61586536832834/",
+    "instagram": "https://www.instagram.com/_impulse__life/"
+  },
+  "brand": {
+    "color": "#3f5f7e",
+    "fontId": "clean-sans"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA · Est. 2025",
+          "heading": "Restore movement, balance, and your body's natural ability to heal",
+          "subheading": "Dr. Kendell Jack provides gentle, personalized chiropractic adjustments in Sebastopol — caring for everyone from newborns to seniors.",
+          "badges": [
+            "Serving since 2025",
+            "Led by Dr. Kendell Jack, Doctor of Chiropractic",
+            "Licensed CA chiropractor"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/impulse-life-chiropractic/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/impulse-life-chiropractic/services"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Impulse Life Chiropractic",
+          "body": [
+            "Impulse Life Chiropractic is led by Dr. Kendell Jack, DC, a Doctor of Chiropractic dedicated to helping Sebastopol's families and athletes live healthier, more connected lives. After years of study and a vision for a true healing space, Dr. Jack opened his own clinic in Sebastopol to deliver care that supports the body's natural ability to thrive.",
+            "His approach centers on gentle, personalized adjustments that restore balance in the spine and nervous system, allowing the body to function at its best and heal naturally. Dr. Jack has had the privilege of working with people of all ages — from newborns to seniors — and also focuses on extremity care for the feet, ankles, and knees, because lasting movement starts at the ground."
+          ],
+          "highlights": [
+            "Led by Dr. Kendell Jack, Doctor of Chiropractic",
+            "Licensed CA chiropractor (license #37361)",
+            "Gentle, personalized adjustments",
+            "Care for all ages — newborns to seniors"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "How we help you move and feel better",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Chiropractic Adjustments",
+              "description": "Gentle, personalized spinal adjustments that restore balance to the spine and nervous system, helping your body function at its best and heal naturally."
+            },
+            {
+              "title": "Extremity Adjusting",
+              "description": "Care for the feet, ankles, and knees — because movement starts at the ground. Hands-on adjusting to keep you mobile and balanced from the floor up."
+            },
+            {
+              "title": "Athlete & Sports Care",
+              "description": "Chiropractic support built for active bodies, helping Sebastopol's athletes recover, move better, and stay in the game."
+            },
+            {
+              "title": "Family Chiropractic",
+              "description": "Personalized care for the whole family, working with people of all ages from newborns to seniors in a welcoming, family-focused practice."
+            },
+            {
+              "title": "Nervous System & Wellness Care",
+              "description": "Ongoing adjustments that support a balanced nervous system, helping you feel more connected, vibrant, and empowered in daily life."
+            },
+            {
+              "title": "New Patient Exams",
+              "description": "A thorough first visit to understand your body and goals, so your care plan is tailored to you. New patients welcome — book your visit online."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Impulse Life Chiropractic",
+          "items": [
+            {
+              "title": "Led By Dr. Kendell Jack, Doctor Of Chiropractic",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Licensed CA Chiropractor (License #37361)",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Gentle, Personalized Adjustments",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Care For All Ages — Newborns To Seniors",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Dedicated To Families And Athletes",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Easy Online Booking",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Impulse Life Chiropractic",
+          "body": "Find us at 7765 Healdsburg Ave. Call (707) 806-3989 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/impulse-life-chiropractic/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 806-3989",
+            "href": "tel:+17078063989"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Dr. Kendell Jack provides gentle, personalized chiropractic adjustments in Sebastopol — caring for everyone from newborns to seniors.",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "How we help you move and feel better",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Chiropractic Adjustments",
+              "description": "Gentle, personalized spinal adjustments that restore balance to the spine and nervous system, helping your body function at its best and heal naturally."
+            },
+            {
+              "title": "Extremity Adjusting",
+              "description": "Care for the feet, ankles, and knees — because movement starts at the ground. Hands-on adjusting to keep you mobile and balanced from the floor up."
+            },
+            {
+              "title": "Athlete & Sports Care",
+              "description": "Chiropractic support built for active bodies, helping Sebastopol's athletes recover, move better, and stay in the game."
+            },
+            {
+              "title": "Family Chiropractic",
+              "description": "Personalized care for the whole family, working with people of all ages from newborns to seniors in a welcoming, family-focused practice."
+            },
+            {
+              "title": "Nervous System & Wellness Care",
+              "description": "Ongoing adjustments that support a balanced nervous system, helping you feel more connected, vibrant, and empowered in daily life."
+            },
+            {
+              "title": "New Patient Exams",
+              "description": "A thorough first visit to understand your body and goals, so your care plan is tailored to you. New patients welcome — book your visit online."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 7765 Healdsburg Ave."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 806-3989 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 7765 Healdsburg Ave. Call (707) 806-3989 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/impulse-life-chiropractic/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 806-3989",
+            "href": "tel:+17078063989"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Impulse Life Chiropractic",
+          "heading": "About Impulse Life Chiropractic",
+          "subheading": "Impulse Life Chiropractic is led by Dr. Kendell Jack, DC, a Doctor of Chiropractic dedicated to helping Sebastopol's families and athletes live healthier, more connected lives",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Impulse Life Chiropractic",
+          "body": [
+            "Impulse Life Chiropractic is led by Dr. Kendell Jack, DC, a Doctor of Chiropractic dedicated to helping Sebastopol's families and athletes live healthier, more connected lives. After years of study and a vision for a true healing space, Dr. Jack opened his own clinic in Sebastopol to deliver care that supports the body's natural ability to thrive.",
+            "His approach centers on gentle, personalized adjustments that restore balance in the spine and nervous system, allowing the body to function at its best and heal naturally. Dr. Jack has had the privilege of working with people of all ages — from newborns to seniors — and also focuses on extremity care for the feet, ankles, and knees, because lasting movement starts at the ground."
+          ],
+          "highlights": [
+            "Led by Dr. Kendell Jack, Doctor of Chiropractic",
+            "Licensed CA chiropractor (license #37361)",
+            "Gentle, personalized adjustments",
+            "Care for all ages — newborns to seniors"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "1+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Impulse Life Chiropractic",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/impulse-life-chiropractic/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Impulse Life Chiropractic at 7765 Healdsburg Ave or call (707) 806-3989.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

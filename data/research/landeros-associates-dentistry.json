@@ -1,0 +1,93 @@
+{
+  "slug": "landeros-associates-dentistry",
+  "confirmed": true,
+  "name": "Landeros & Associates Dentistry",
+  "established": "2012",
+  "tagline": "Family & cosmetic dentistry with a gentle, unhurried touch",
+  "seoDescription": "Landeros & Associates Family & Cosmetic Dentistry in Santa Rosa, CA. Gentle family care, cleanings, crowns, implants, Invisalign & veneers. Rated 4.7+ stars.",
+  "heroHeading": "Honest, gentle dentistry for every Santa Rosa family",
+  "heroSubheading": "Dr. Luke Landeros and Dr. Alyssa Peake provide patient-first family and cosmetic care on Guerneville Road, from a child's first cleaning to a full smile makeover.",
+  "highlights": [
+    "Rated 4.7 stars on Yelp",
+    "Family & cosmetic dentistry",
+    "Caring for Santa Rosa since 2012",
+    "UoP Dugoni-trained dentists",
+    "Invisalign, veneers, crowns & implants",
+    "Same-day care for dental emergencies"
+  ],
+  "aboutHeading": "About Landeros & Associates Dentistry",
+  "aboutBody": [
+    "Landeros & Associates Family & Cosmetic Dentistry has cared for Santa Rosa families on Guerneville Road since Dr. Luke Landeros began practicing here in 2012. A California native raised in the Central Valley, Dr. Landeros earned his Bachelor's in Biological Sciences from the University of the Pacific and his DDS from UoP's Arthur A. Dugoni School of Dentistry in San Francisco.",
+    "Patients consistently describe the practice the same way: calm, gentle, and genuinely focused on their health rather than the bottom line. Working alongside Dr. Landeros, Dr. Alyssa Peake brings a Doctorate from New York University College of Dentistry and a kind, unhurried chairside manner. Whether you're bringing a child in for a first exam or planning a smile makeover, the team meets you with respect and care."
+  ],
+  "servicesHeading": "Comprehensive care for every smile",
+  "services": [
+    {
+      "title": "Family & Preventive Dentistry",
+      "description": "Routine cleanings, exams, and preventive care for patients of every age, with a gentle approach that helps kids and anxious patients feel at ease."
+    },
+    {
+      "title": "Cosmetic Dentistry & Veneers",
+      "description": "Custom-crafted porcelain veneers and professional whitening to enhance the appearance of your smile and address chips, stains, and gaps."
+    },
+    {
+      "title": "Invisalign Clear Aligners",
+      "description": "Discreet, removable aligners that straighten teeth and correct bite issues without traditional metal braces."
+    },
+    {
+      "title": "Crowns & Restorations",
+      "description": "Custom-made crowns and tooth-shade composite fillings that restore decayed or damaged teeth while blending seamlessly with your smile."
+    },
+    {
+      "title": "Dental Implants & Dentures",
+      "description": "Implant restorations and dentures to replace missing teeth and restore confident, comfortable function."
+    },
+    {
+      "title": "Emergency Dental Care",
+      "description": "Help when you need it most. The team works to see patients with dental emergencies quickly, often within 24 hours."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Dr. Landeros is the best dentist I've ever been to. He's patient, smart, precise, gentle, listens to questions and responds with depth and explanation, considers your concerns, not money hungry, realistic and truly wants the best for his patients.",
+      "author": "Verified patient review"
+    },
+    {
+      "quote": "From the front office staff, to the dental hygienists, I was greeted kindly and treated with respect. The major plus is that I could tell that Dr. L isn't in this business for profit, he genuinely wants to give me a healthy smile!",
+      "author": "New patient"
+    },
+    {
+      "quote": "Dr Luke Landeros is very skilled and gentle, and his staff is professional and friendly.",
+      "author": "Yelp reviewer"
+    }
+  ],
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "STATUS: OPEN and operating (verified via Yelp, Birdeye, and live website mysantarosadentist.com as of June 2026 — the lead's stated website was marked dead, but the live site is mysantarosadentist.com and is active). Address: 2448 Guerneville Rd, Ste 700, Santa Rosa, CA 95403. Phone on all current listings is (707) 526-6160 (lead CSV lists (707) 702-0594 — kept in _lead per instructions but the publicly listed number is 526-6160; verify before sending). RATINGS: Yelp 4.7 stars / 42 reviews; Birdeye 4.8 stars / 136 reviews. DENTISTS: Dr. Luke Landeros, DDS — CA native from Central Valley, BS Biological Sciences from University of the Pacific (2004), DDS from UoP Arthur A. Dugoni School of Dentistry, San Francisco (2008), practicing in Santa Rosa since 2012. Dr. Alyssa Peake, DDS — raised in Tucson AZ, BS biochemistry University of Arizona (2011), DDS New York University College of Dentistry (2015), in Sonoma County since 2016. A 'leave a review' page references 'Luke Landeros, DDS and Scott Bonin, DDS' and the practice has historical ties to Hammer & Bonin Cosmetic & Family Dentistry — Bonin association is uncertain/possibly legacy, so omitted from copy. SERVICES verified from website: family/preventive dentistry, cosmetic dentistry, Invisalign, veneers, crowns, composite fillings, dental implants, dentures, whitening, emergency care (often seen within 24 hrs). HOURS: Mon–Fri 8am–5pm, weekends closed (verified). 'established' set to 2012 (Dr. Landeros's start in Santa Rosa) — practice/building may predate this. PHOTOS: Yelp/Healthgrades/website blocked WebFetch with 403; no clearly-theirs image URLs captured, realPhotoUrls left empty. Testimonials are verbatim from public Yelp/Birdeye reviews; authors anonymized as reviewer names not reliably captured.",
+  "_richness": 0,
+  "_source": "agent-research",
+  "_lead": {
+    "name": "Landeros & Associates Family & Cosmetic Dentistry",
+    "category": "dentist",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 702-0594",
+    "email": "drlukelanderos@emaildds.com",
+    "address": "2448 Guerneville Rd",
+    "owner": "Dr. Luke Landeros"
+  }
+}

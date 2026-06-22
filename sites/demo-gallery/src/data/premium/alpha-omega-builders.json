@@ -1,0 +1,377 @@
+{
+  "slug": "alpha-omega-builders",
+  "name": "Alpha Omega Builders",
+  "legalName": "Alpha Omega Builders",
+  "tagline": "Sonoma County home building & remodeling since 1992",
+  "seoDescription": "Alpha Omega Builders is a Santa Rosa general contractor (CSLB #647675) building custom homes, additions, decks and remodels across Sonoma County since 1992.",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1992",
+  "contact": {
+    "phone": "(707) 974-2048",
+    "email": "alphaomegabuild@aol.com",
+    "address": "4485 Hargrave Ave"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/p/Alpha-Omega-Builders-General-Contractor-100069284267391/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    }
+  ],
+  "brand": {
+    "color": "#c77d2a",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 1992",
+          "heading": "Custom homes and remodels, built right in Santa Rosa",
+          "subheading": "A family-owned Sonoma County general contractor handling everything from new home construction to additions, decks, and full remodels.",
+          "badges": [
+            "Serving since 1992",
+            "CSLB #647675",
+            "Family owned & operated"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/alpha-omega-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/alpha-omega-builders/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Custom Home Construction",
+              "description": "Ground-up new home building, drawing on more than 30 years of Sonoma County construction experience."
+            },
+            {
+              "title": "Home Additions",
+              "description": "Room additions and expansions that blend seamlessly into your existing home and finish on schedule."
+            },
+            {
+              "title": "Remodels",
+              "description": "Kitchen, bathroom, and whole-home remodels handled with a professional, accommodating crew from start to finish."
+            },
+            {
+              "title": "Decks & Outdoor Structures",
+              "description": "Custom decks, gazebos, and outdoor living spaces built to last in the North Bay climate."
+            },
+            {
+              "title": "Garages, Shops & Barns",
+              "description": "Detached garages, workshops, barns, and sheds for homeowners and rural properties."
+            },
+            {
+              "title": "Mobile Home Work",
+              "description": "Repairs and improvements for manufactured and mobile homes across the area."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Alpha Omega Builders and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Alpha Omega Builders",
+          "body": [
+            "Alpha Omega Builders has been a fixture of Sonoma County construction since 1992, when owner Ron Smith first put his California General Building license (CSLB #647675) to work. More than three decades later, the Santa Rosa company is still family owned and operated, handling virtually every facet of home construction.",
+            "From ground-up custom homes to additions, decks, garages, barns, shops, and full remodels, Ron and his crew are known for showing up on time, cleaning up at the end of every day, and finishing the job when they said they would. Fully licensed and insured, they offer free estimates throughout the Santa Rosa area."
+          ],
+          "highlights": [
+            "Building since 1992",
+            "CSLB #647675 (Class B General Building)",
+            "Family owned & operated",
+            "Fully licensed & insured"
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Ron and his crew were on time, cleaned up every day, actually used some of my Mother's ideas and finished on time.",
+              "author": "HomeAdvisor review"
+            },
+            {
+              "quote": "Ron is awesome. He has a great personality and does great work.",
+              "author": "Verified homeowner"
+            },
+            {
+              "quote": "Ron and his crew are amazing. I have never had a construction job that actually finished on time!!",
+              "author": "Verified homeowner"
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Alpha Omega Builders",
+          "items": [
+            {
+              "title": "Building Since 1992",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "CSLB #647675 (Class B General Building)",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Family Owned & Operated",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Fully Licensed & Insured",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "New Homes, Additions, Decks & Remodels",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Free Estimates",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Alpha Omega Builders",
+          "body": "Find us at 4485 Hargrave Ave. Call (707) 974-2048 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/alpha-omega-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 974-2048",
+            "href": "tel:+17079742048"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "A family-owned Sonoma County general contractor handling everything from new home construction to additions, decks, and full remodels.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Custom Home Construction",
+              "description": "Ground-up new home building, drawing on more than 30 years of Sonoma County construction experience."
+            },
+            {
+              "title": "Home Additions",
+              "description": "Room additions and expansions that blend seamlessly into your existing home and finish on schedule."
+            },
+            {
+              "title": "Remodels",
+              "description": "Kitchen, bathroom, and whole-home remodels handled with a professional, accommodating crew from start to finish."
+            },
+            {
+              "title": "Decks & Outdoor Structures",
+              "description": "Custom decks, gazebos, and outdoor living spaces built to last in the North Bay climate."
+            },
+            {
+              "title": "Garages, Shops & Barns",
+              "description": "Detached garages, workshops, barns, and sheds for homeowners and rural properties."
+            },
+            {
+              "title": "Mobile Home Work",
+              "description": "Repairs and improvements for manufactured and mobile homes across the area."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Alpha Omega Builders and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 4485 Hargrave Ave."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 8am–5pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 974-2048 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 4485 Hargrave Ave. Call (707) 974-2048 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/alpha-omega-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 974-2048",
+            "href": "tel:+17079742048"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Alpha Omega Builders",
+          "heading": "About Alpha Omega Builders",
+          "subheading": "Alpha Omega Builders has been a fixture of Sonoma County construction since 1992, when owner Ron Smith first put his California General Building license (CSLB #647675) to work",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Alpha Omega Builders",
+          "body": [
+            "Alpha Omega Builders has been a fixture of Sonoma County construction since 1992, when owner Ron Smith first put his California General Building license (CSLB #647675) to work. More than three decades later, the Santa Rosa company is still family owned and operated, handling virtually every facet of home construction.",
+            "From ground-up custom homes to additions, decks, garages, barns, shops, and full remodels, Ron and his crew are known for showing up on time, cleaning up at the end of every day, and finishing the job when they said they would. Fully licensed and insured, they offer free estimates throughout the Santa Rosa area."
+          ],
+          "highlights": [
+            "Building since 1992",
+            "CSLB #647675 (Class B General Building)",
+            "Family owned & operated",
+            "Fully licensed & insured"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "34+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Alpha Omega Builders",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/alpha-omega-builders/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Alpha Omega Builders at 4485 Hargrave Ave or call (707) 974-2048.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

@@ -1,0 +1,357 @@
+{
+  "slug": "roofmaster",
+  "name": "Roofmaster",
+  "legalName": "Roofmaster",
+  "tagline": "North Bay roofing done right, since the start",
+  "seoDescription": "Roofmaster is a Santa Rosa roofing contractor serving the North Bay with re-roofs, leak repairs, flat roofs, dry rot work, and seamless gutters.",
+  "category": "roofing",
+  "categoryLabel": "Roofing",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 539-9739",
+    "email": "frwebster@msn.com",
+    "address": "1104 Calistoga Rd"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    }
+  ],
+  "brand": {
+    "color": "#9c3b2e",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Santa Rosa's roofing crew for re-roofs, leaks, and flat-roof fixes",
+          "subheading": "Residential and commercial roofing across Santa Rosa and the North Bay — composition, shake/tile conversions, cool roofs, dry rot repair, and seamless gutters.",
+          "badges": [
+            "Serving Santa Rosa & the North Bay",
+            "Licensed CA roofing contractor",
+            "Residential & commercial roofing"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/roofmaster/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/roofmaster/services"
+          },
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Roofmaster",
+          "items": [
+            {
+              "title": "Serving Santa Rosa & The North Bay",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Licensed CA Roofing Contractor (C-39)",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Residential & Commercial Roofing",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Re-Roofs, Leak Repairs & Flat Roofs",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Dry Rot Repair & Seamless Gutters",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Fast Response On Leaks",
+              "body": "When it matters, we move quickly — you won’t be left waiting.",
+              "icon": "clock"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Roofmaster",
+          "body": [
+            "Roofmaster is a locally based roofing contractor at 1104 Calistoga Rd in Santa Rosa, serving homeowners and businesses throughout the North Bay. The company handles the full range of roofing work — from full re-roofs and energy-saving composition shingles to hot tar and cool roofs, shake-to-tile conversions, dry rot repair, and seamless gutters.",
+            "Customers across Yelp, Angi, and BBB describe a crew that shows up on time, communicates clearly, and responds quickly when a roof starts leaking. From leak repairs and flat-roof work to complete roof replacements, Roofmaster focuses on durable, well-finished results for North Bay properties."
+          ],
+          "highlights": [
+            "Serving Santa Rosa & the North Bay",
+            "Licensed CA roofing contractor (C-39)",
+            "Residential & commercial roofing",
+            "Re-roofs, leak repairs & flat roofs"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Roofing Services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Re-Roofing & Replacement",
+              "description": "Complete residential and commercial re-roofs, including energy-saving composition shingles built to hold up to North Bay weather."
+            },
+            {
+              "title": "Roof Leak Repairs",
+              "description": "Fast response on leaks — the crew comes out quickly to diagnose and repair roof issues before they cause more damage."
+            },
+            {
+              "title": "Flat & Cool Roofs",
+              "description": "Hot tar and cool roof systems for flat and low-slope roofs, helping reduce heat and protect commercial and mobile-home structures."
+            },
+            {
+              "title": "Shake & Tile Conversions",
+              "description": "Conversions from wood shake to tile or composition, upgrading older roofs to lower-maintenance, fire-conscious systems."
+            },
+            {
+              "title": "Dry Rot Repair",
+              "description": "Replacement of damaged wood in eave and roof areas, repairing dry rot before new roofing goes on."
+            },
+            {
+              "title": "Seamless Gutters",
+              "description": "Seamless gutter installation to move water off the roof and away from the structure."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Roofmaster and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Their entire crew was punctual and courteous. They not only got our roof done on time, but painted all of the sheet metal on top.",
+              "author": "Santa Rosa homeowner"
+            },
+            {
+              "quote": "We had a major leak and got a quote from Mark within 24 hours of calling — he put us on the schedule right away.",
+              "author": "North Bay customer"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Roofmaster",
+          "body": "Find us at 1104 Calistoga Rd. Call (707) 539-9739 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/roofmaster/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 539-9739",
+            "href": "tel:+17075399739"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Residential and commercial roofing across Santa Rosa and the North Bay — composition, shake/tile conversions, cool roofs, dry rot repair, and seamless gutters.",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Roofing Services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Re-Roofing & Replacement",
+              "description": "Complete residential and commercial re-roofs, including energy-saving composition shingles built to hold up to North Bay weather."
+            },
+            {
+              "title": "Roof Leak Repairs",
+              "description": "Fast response on leaks — the crew comes out quickly to diagnose and repair roof issues before they cause more damage."
+            },
+            {
+              "title": "Flat & Cool Roofs",
+              "description": "Hot tar and cool roof systems for flat and low-slope roofs, helping reduce heat and protect commercial and mobile-home structures."
+            },
+            {
+              "title": "Shake & Tile Conversions",
+              "description": "Conversions from wood shake to tile or composition, upgrading older roofs to lower-maintenance, fire-conscious systems."
+            },
+            {
+              "title": "Dry Rot Repair",
+              "description": "Replacement of damaged wood in eave and roof areas, repairing dry rot before new roofing goes on."
+            },
+            {
+              "title": "Seamless Gutters",
+              "description": "Seamless gutter installation to move water off the roof and away from the structure."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Roofmaster and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 1104 Calistoga Rd."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 8am–5pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 539-9739 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 1104 Calistoga Rd. Call (707) 539-9739 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/roofmaster/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 539-9739",
+            "href": "tel:+17075399739"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Roofmaster",
+          "heading": "About Roofmaster",
+          "subheading": "Roofmaster is a locally based roofing contractor at 1104 Calistoga Rd in Santa Rosa, serving homeowners and businesses throughout the North Bay",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Roofmaster",
+          "body": [
+            "Roofmaster is a locally based roofing contractor at 1104 Calistoga Rd in Santa Rosa, serving homeowners and businesses throughout the North Bay. The company handles the full range of roofing work — from full re-roofs and energy-saving composition shingles to hot tar and cool roofs, shake-to-tile conversions, dry rot repair, and seamless gutters.",
+            "Customers across Yelp, Angi, and BBB describe a crew that shows up on time, communicates clearly, and responds quickly when a roof starts leaking. From leak repairs and flat-roof work to complete roof replacements, Roofmaster focuses on durable, well-finished results for North Bay properties."
+          ],
+          "highlights": [
+            "Serving Santa Rosa & the North Bay",
+            "Licensed CA roofing contractor (C-39)",
+            "Residential & commercial roofing",
+            "Re-roofs, leak repairs & flat roofs"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Roofmaster",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/roofmaster/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Roofmaster at 1104 Calistoga Rd or call (707) 539-9739.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

@@ -1,0 +1,317 @@
+{
+  "slug": "west-coast-construction",
+  "name": "West Coast Construction",
+  "legalName": "West Coast Construction",
+  "tagline": "Family-run asphalt & concrete paving across Sonoma County for 40+ years",
+  "seoDescription": "West Coast Construction is a family-owned Santa Rosa & Petaluma paving contractor — asphalt, sealcoating, grading, driveways and parking lots across Sonoma",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 360-0017",
+    "email": "stanley.tina@icloud.com",
+    "address": "288 Scenic Ave"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/West-Coast-Construction-104841810996058/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7am–7pm"
+    }
+  ],
+  "brand": {
+    "color": "#486682",
+    "fontId": "classic-trad"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Driveways and parking lots done right, by a 40-year family crew",
+          "subheading": "Owner Gary Stanley and his family have paved Sonoma County's homes and businesses for over four decades — asphalt, concrete, grading and sealcoating, from a cracked driveway to a full parking lot.",
+          "badges": [
+            "Family-owned, 40+ years",
+            "Asphalt & concrete contractor",
+            "Residential & commercial"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/west-coast-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/west-coast-construction/services"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why West Coast Construction",
+          "items": [
+            {
+              "title": "Family-Owned, 40+ Years",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Asphalt & Concrete Contractor",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Residential & Commercial",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Driveways, Parking Lots & Grading",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving All Of Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Free Estimates",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About West Coast Construction",
+          "body": [
+            "West Coast Construction has proudly served the Greater Bay Area for more than 40 years. Owner Gary Stanley started the family business at a very young age and has built an extensive background in both residential and commercial construction, with his wife Tina Stanley running the office.",
+            "It's a full-service asphalt and concrete installation and repair company that handles everything from new parking lots to driveway cracks. Their customers range from homeowners to retail shopping centers, apartment complexes and commercial businesses across Santa Rosa, Petaluma and the rest of Sonoma County — new paving, repairs, or full tear-out and re-installation."
+          ],
+          "highlights": [
+            "Family-owned, 40+ years",
+            "Asphalt & concrete contractor",
+            "Residential & commercial",
+            "Driveways, parking lots & grading"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Asphalt Paving & Repair",
+              "description": "New asphalt paving plus repairs, tear-outs and re-installations for driveways, parking lots and roadways — residential or commercial."
+            },
+            {
+              "title": "Concrete Paving",
+              "description": "All types of concrete work — driveways, parking lots, foundations, patios, sidewalks, walkways and stairs."
+            },
+            {
+              "title": "Sealcoating",
+              "description": "Sealcoating to protect and extend the life of asphalt surfaces and keep parking lots and driveways looking new."
+            },
+            {
+              "title": "Grading & Site Prep",
+              "description": "Grading and surface preparation to set up driveways, lots and pads for a paving job that lasts."
+            },
+            {
+              "title": "Parking Lots",
+              "description": "Commercial parking lots for retail centers, apartment complexes and businesses — from new construction to resurfacing and striping."
+            },
+            {
+              "title": "Driveways",
+              "description": "Residential driveways in asphalt or concrete, from a single cracked apron to a complete replacement."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Gary was organized, knowledgeable, on time, on budget.",
+              "author": "Paving client"
+            },
+            {
+              "quote": "Gary and his team are nothing but superior — he made challenging driveway work seem simple and did an amazing job.",
+              "author": "Driveway client"
+            },
+            {
+              "quote": "Great experience, very responsive — the project was started and completed in a very timely manner.",
+              "author": "Sonoma County customer"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with West Coast Construction",
+          "body": "Find us at 288 Scenic Ave. Call (707) 360-0017 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/west-coast-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 360-0017",
+            "href": "tel:+17073600017"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Owner Gary Stanley and his family have paved Sonoma County's homes and businesses for over four decades — asphalt, concrete, grading and sealcoating, from a cracked driveway to",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Asphalt Paving & Repair",
+              "description": "New asphalt paving plus repairs, tear-outs and re-installations for driveways, parking lots and roadways — residential or commercial."
+            },
+            {
+              "title": "Concrete Paving",
+              "description": "All types of concrete work — driveways, parking lots, foundations, patios, sidewalks, walkways and stairs."
+            },
+            {
+              "title": "Sealcoating",
+              "description": "Sealcoating to protect and extend the life of asphalt surfaces and keep parking lots and driveways looking new."
+            },
+            {
+              "title": "Grading & Site Prep",
+              "description": "Grading and surface preparation to set up driveways, lots and pads for a paving job that lasts."
+            },
+            {
+              "title": "Parking Lots",
+              "description": "Commercial parking lots for retail centers, apartment complexes and businesses — from new construction to resurfacing and striping."
+            },
+            {
+              "title": "Driveways",
+              "description": "Residential driveways in asphalt or concrete, from a single cracked apron to a complete replacement."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 288 Scenic Ave."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7am–7pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 360-0017 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 288 Scenic Ave. Call (707) 360-0017 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/west-coast-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 360-0017",
+            "href": "tel:+17073600017"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About West Coast Construction",
+          "heading": "About West Coast Construction",
+          "subheading": "West Coast Construction has proudly served the Greater Bay Area for more than 40 years. Owner Gary Stanley started the family business at a very young age and has built",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About West Coast Construction",
+          "body": [
+            "West Coast Construction has proudly served the Greater Bay Area for more than 40 years. Owner Gary Stanley started the family business at a very young age and has built an extensive background in both residential and commercial construction, with his wife Tina Stanley running the office.",
+            "It's a full-service asphalt and concrete installation and repair company that handles everything from new parking lots to driveway cracks. Their customers range from homeowners to retail shopping centers, apartment complexes and commercial businesses across Santa Rosa, Petaluma and the rest of Sonoma County — new paving, repairs, or full tear-out and re-installation."
+          ],
+          "highlights": [
+            "Family-owned, 40+ years",
+            "Asphalt & concrete contractor",
+            "Residential & commercial",
+            "Driveways, parking lots & grading"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see West Coast Construction",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/west-coast-construction/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach West Coast Construction at 288 Scenic Ave or call (707) 360-0017.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

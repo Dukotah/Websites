@@ -669,10 +669,15 @@ function buildBadges(established, rating, highlights) {
   const b = [];
   if (established) b.push(`Serving since ${established}`);
   if (rating) b.push(`${rating.value}★${rating.count ? ` from ${rating.count} reviews` : ''}`);
+  const yr = established ? String(established) : '';
   for (const h of highlights) {
     if (b.length >= 3) break;
     const badge = cleanBadge(h);
-    if (badge && !b.includes(badge)) b.push(badge);
+    if (!badge || b.includes(badge)) continue;
+    // Skip a highlight that just repeats the established year ("Serving since
+    // 1992" + "Building since 1992") — surface a different fact instead.
+    if (yr && badge.includes(yr)) continue;
+    b.push(badge);
   }
   return b.slice(0, 3);
 }
