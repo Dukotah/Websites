@@ -1,0 +1,99 @@
+{
+  "slug": "essential-massage-therapy",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Therapeutic bodywork and aromatherapy massage in Petaluma",
+  "seoDescription": "Essential Massage Therapy in Petaluma, CA offers deep tissue, prenatal, hot stone, couples, and aromatherapy massage with custom essential-oil blends and cupping. Rated 5 stars on Yelp.",
+  "heroHeading": "Massage therapy that meets your body where it is",
+  "heroSubheading": "A calm Petaluma studio for deep tissue, prenatal, hot stone, and aromatherapy bodywork — tailored to what you need that day.",
+  "highlights": [
+    "Rated 5.0 on Yelp and 4.8 on Google",
+    "Custom aromatherapy blends of essential oils and herbal extracts",
+    "Deep tissue, prenatal, hot stone, and couples massage",
+    "Add cupping, gua sha, exfoliation, or hot stones to any session",
+    "Open seven days a week, mornings through evening"
+  ],
+  "aboutHeading": "A quiet space to restore",
+  "aboutBody": [
+    "Essential Massage Therapy is a Petaluma studio built around one idea: a good massage should be tailored to you, not run from a script. Owner and therapist BinBin and the team work with each client to choose the right pressure and technique, whether that means easing deep muscle tension, supporting a pregnancy, or simply unwinding after a long week.",
+    "Sessions can be enhanced with custom aromatherapy blends, hot stones, cupping, gua sha, or exfoliation. The room is kept serene and unhurried, and the studio is open seven days a week so it is easy to find a time that works. A second location serves the Santa Rosa area."
+  ],
+  "servicesHeading": "Bodywork tailored to your body",
+  "services": [
+    {
+      "title": "Deep Tissue Massage",
+      "description": "Focused, firmer pressure that releases chronic muscle tension and knots in the back, shoulders, and neck."
+    },
+    {
+      "title": "Aromatherapy Massage",
+      "description": "A relaxing full-body massage paired with a customized blend of essential oils and herbal extracts chosen for you."
+    },
+    {
+      "title": "Prenatal Massage",
+      "description": "Gentle, supportive bodywork that eases the aches of pregnancy and helps you rest more comfortably."
+    },
+    {
+      "title": "Hot Stone Massage",
+      "description": "Warm stones glide over tight muscles to melt away tension — a deeply relaxing way to finish or feature a session."
+    },
+    {
+      "title": "Couples Massage",
+      "description": "Two therapists, one room — unwind side by side with a partner or friend."
+    },
+    {
+      "title": "Cupping & Gua Sha",
+      "description": "Traditional add-on techniques that boost circulation and relieve stubborn tension, available with any massage."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "9:30 AM – 8:00 PM"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "10:00 AM – 8:00 PM"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "BinBin was my massage therapist and she was amazing. She was on time, thorough, prompt, considerate, and so skilled at massage.",
+      "author": "Verified review · Petaluma"
+    },
+    {
+      "quote": "BinBin the owner is so knowledgeable on aromatherapy and cupping — she really knows how to use it and it works.",
+      "author": "Verified review · Petaluma"
+    },
+    {
+      "quote": "Lucy used hot stones on my back at the end, which is an exceptionally relaxing experience. Both BinBin and Lucy are some of the most skilled and present massage therapists I have been to.",
+      "author": "Verified review · Petaluma"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/profile.php?id=61553670135330",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://essential-mt.com/wp-content/uploads/2024/02/Bard_Generated_Image.webp.jpg",
+    "https://essential-mt.com/wp-content/uploads/2024/02/massage2-e1708063389716.jpeg",
+    "https://essential-mt.com/wp-content/uploads/2024/02/sonoma.webp",
+    "https://maps.google.com/maps#038;t=m&#038;z=10&#038;output=embed&#038;iwloc=near",
+    "https://essential-mt.com/wp-content/uploads/2024/02/addons4.jpeg",
+    "https://essential-mt.com/wp-content/uploads/2024/02/leaf2.png",
+    "https://essential-mt.com/wp-content/uploads/2024/02/stoneswindows-1.jpeg"
+  ],
+  "notes": "Verified 2026-06-23. Sources: essential-mt.com (home/about/services/contact), Fresha booking page (service menu: deep tissue, prenatal, hot stone, couples, reflexology, lymphatic drainage, cupping, etc.), Yelp (5.0 / ~61-62 reviews, real quotes re BinBin & Lucy), Google (4.8 / 34). Owner/therapist = BinBin; Lucy also on team. Hours verified (Mon-Fri 9:30a-8p, Sat-Sun 10a-8p). Second location serves Santa Rosa (707-206-1621). Founding year NOT verified — left blank (FB page created ~early 2024 but unconfirmed; do not assert). Add-ons confirmed: aromatherapy, Chinese herbal medicine, exfoliation, hot stones, sea salt, cupping. CAMTC cert not found online — omitted.",
+  "_richness": 46,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "Essential Massage Therapy",
+    "category": "spa",
+    "city": "Petaluma",
+    "state": "CA",
+    "phone": "(707) 871-6046",
+    "email": "contact@essential-mt.com",
+    "address": "131 Lynch Creek Way, Petaluma, CA 94954",
+    "owner": "BinBin"
+  }
+}

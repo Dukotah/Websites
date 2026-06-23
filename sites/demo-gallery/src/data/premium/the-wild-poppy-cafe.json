@@ -1,0 +1,388 @@
+{
+  "slug": "the-wild-poppy-cafe",
+  "name": "The Wild Poppy Cafe",
+  "legalName": "The Wild Poppy Cafe",
+  "tagline": "A cozy roadside cafe, Sebastopol style",
+  "seoDescription": "The Wild Poppy is a family-run creekside cafe and market in Sebastopol, serving farm-to-table brunch and lunch with house-made focaccia, organic produce",
+  "category": "cafe",
+  "categoryLabel": "Cafe",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "2024",
+  "contact": {
+    "phone": "(707) 503-6332",
+    "email": "info@thewildpoppycafe.com",
+    "address": "9890 Bodega Hwy, Sebastopol, CA 95472"
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/thewildpoppycafe"
+  },
+  "brand": {
+    "color": "#a8612f",
+    "fontId": "handcrafted"
+  },
+  "images": {
+    "hero": "/images/the-wild-poppy-cafe/hero.webp",
+    "heroAlt": "The Wild Poppy Cafe in Sebastopol, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "fullbleed",
+          "eyebrow": "Sebastopol, CA · Est. 2024",
+          "heading": "Creekside brunch, made from scratch",
+          "subheading": "Family-run West County cafe and market on Bodega Highway, serving organic, regenerative, and farm-sourced food on a patio under the oaks.",
+          "badges": [
+            "Serving since 2024",
+            "Family-owned and operated by chef Martin",
+            "Brunch and lunch built on organic"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/the-wild-poppy-cafe/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/the-wild-poppy-cafe/menu"
+          },
+          "image": {
+            "src": "/images/the-wild-poppy-cafe/hero.webp",
+            "alt": "The Wild Poppy Cafe in Sebastopol, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why The Wild Poppy Cafe",
+          "items": [
+            {
+              "title": "Family-Owned And Operated By Chef Martin",
+              "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Brunch And Lunch Built On Organic",
+              "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Everything From Scratch — House-Made Focaccia",
+              "body": "Made with care and real ingredients — quality you can taste.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Generous Vegan And Gluten-Free Menu, With",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "check"
+            },
+            {
+              "title": "Leafy Creekside Patio Above Atascadero Creek",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A Sonoma County homecoming",
+          "body": [
+            "The Wild Poppy opened in spring 2024 in the charming roadside spot just outside Sebastopol that was once home to Fork Roadhouse. Chef-owner Martin Maigaard cooked in the area at the Gypsy Cafe in the early 2010s before he and his wife Danielle moved back to Kansas. They always meant to return to Sonoma County, and when this creekside property became available, the timing was finally right.",
+            "It's a true family affair. Danielle runs front of house alongside her sister Emily, Emily's partner Andrew lends a hand in the kitchen, and the Maigaards' daughter Anya works as a food runner and baker — the chocolate chip cookies are her recipe. The kitchen leans on its own house-made tofu, scratch-baked focaccia, and farm-to-table produce, with a small market up front stocked with local wine, snacks, and gifts."
+          ],
+          "highlights": [
+            "Family-owned and operated by chef Martin Maigaard and his wife Danielle",
+            "Brunch and lunch built on organic, regenerative, and biodynamic local ingredients",
+            "Everything from scratch — house-made focaccia, tofu, baked goods, and seasonal soups",
+            "Generous vegan and gluten-free menu, with a dedicated gluten-free fryer"
+          ],
+          "image": {
+            "src": "/images/the-wild-poppy-cafe/story.webp",
+            "alt": "Inside The Wild Poppy Cafe",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Brunch & Breakfast",
+              "description": "Strawberries-and-cream French toast, frittata sandwiches on house-made focaccia, and tofu rancheros — with morning mimosas if you like."
+            },
+            {
+              "title": "Sandwiches On House-Made Focaccia",
+              "description": "The grilled mushroom sandwich with walnut-mushroom pâté, the house tofu banh mi, and other lunch favorites built on focaccia toasted Italian-style."
+            },
+            {
+              "title": "Salads & Seasonal Soups",
+              "description": "The kale Caesar with lemon-almond vinaigrette, the Teller's salad, and a rotating soup of the day made fresh."
+            },
+            {
+              "title": "Tacos & Small Plates",
+              "description": "Baja fish tacos with cornmeal-fried rock cod on organic corn tortillas, plus cosmic queso — cashew queso with pepita chimichurri — and chips."
+            },
+            {
+              "title": "Vegan & Gluten-Free",
+              "description": "Clearly marked vegan options in every category, a vegan kids' menu, and a dedicated gluten-free fryer so nearly everything can be made GF."
+            },
+            {
+              "title": "Bakery & Coffee",
+              "description": "Daily scones, Anya's chocolate chip cookies, and other house-baked goods alongside lattes, coffee, green juice, and local wine."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Fresh food and amazing focaccia bread, which is toasted just like in Italy.",
+              "author": "Verified review · Sebastopol"
+            },
+            {
+              "quote": "Cute little cafe with several clearly labeled vegan options. Great food and atmosphere.",
+              "author": "Verified review · Sebastopol"
+            },
+            {
+              "quote": "The best veggie food in Sonoma County! Loved the order-at-the-counter casual feel and the amazing outdoor seating.",
+              "author": "Verified review · Sebastopol"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside The Wild Poppy Cafe",
+          "images": [
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-5.webp",
+              "alt": "The Wild Poppy Cafe — photo 1"
+            },
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-9.webp",
+              "alt": "The Wild Poppy Cafe — photo 2"
+            },
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-3.webp",
+              "alt": "The Wild Poppy Cafe — photo 3"
+            },
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-6.webp",
+              "alt": "The Wild Poppy Cafe — photo 4"
+            },
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-7.webp",
+              "alt": "The Wild Poppy Cafe — photo 5"
+            },
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-8.webp",
+              "alt": "The Wild Poppy Cafe — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 9890 Bodega Hwy, Sebastopol, CA 95472. Call (707) 503-6332 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-wild-poppy-cafe/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 503-6332",
+            "href": "tel:+17075036332"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Family-run West County cafe and market on Bodega Highway, serving organic, regenerative, and farm-sourced food on a patio under the oaks.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Brunch & Breakfast",
+              "description": "Strawberries-and-cream French toast, frittata sandwiches on house-made focaccia, and tofu rancheros — with morning mimosas if you like."
+            },
+            {
+              "title": "Sandwiches On House-Made Focaccia",
+              "description": "The grilled mushroom sandwich with walnut-mushroom pâté, the house tofu banh mi, and other lunch favorites built on focaccia toasted Italian-style."
+            },
+            {
+              "title": "Salads & Seasonal Soups",
+              "description": "The kale Caesar with lemon-almond vinaigrette, the Teller's salad, and a rotating soup of the day made fresh."
+            },
+            {
+              "title": "Tacos & Small Plates",
+              "description": "Baja fish tacos with cornmeal-fried rock cod on organic corn tortillas, plus cosmic queso — cashew queso with pepita chimichurri — and chips."
+            },
+            {
+              "title": "Vegan & Gluten-Free",
+              "description": "Clearly marked vegan options in every category, a vegan kids' menu, and a dedicated gluten-free fryer so nearly everything can be made GF."
+            },
+            {
+              "title": "Bakery & Coffee",
+              "description": "Daily scones, Anya's chocolate chip cookies, and other house-baked goods alongside lattes, coffee, green juice, and local wine."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 9890 Bodega Hwy, Sebastopol, CA 95472."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 503-6332 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 9890 Bodega Hwy, Sebastopol, CA 95472. Call (707) 503-6332 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-wild-poppy-cafe/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 503-6332",
+            "href": "tel:+17075036332"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About The Wild Poppy Cafe",
+          "heading": "A Sonoma County homecoming",
+          "subheading": "The Wild Poppy opened in spring 2024 in the charming roadside spot just outside Sebastopol that was once home to Fork Roadhouse",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A Sonoma County homecoming",
+          "body": [
+            "The Wild Poppy opened in spring 2024 in the charming roadside spot just outside Sebastopol that was once home to Fork Roadhouse. Chef-owner Martin Maigaard cooked in the area at the Gypsy Cafe in the early 2010s before he and his wife Danielle moved back to Kansas. They always meant to return to Sonoma County, and when this creekside property became available, the timing was finally right.",
+            "It's a true family affair. Danielle runs front of house alongside her sister Emily, Emily's partner Andrew lends a hand in the kitchen, and the Maigaards' daughter Anya works as a food runner and baker — the chocolate chip cookies are her recipe. The kitchen leans on its own house-made tofu, scratch-baked focaccia, and farm-to-table produce, with a small market up front stocked with local wine, snacks, and gifts."
+          ],
+          "highlights": [
+            "Family-owned and operated by chef Martin Maigaard and his wife Danielle",
+            "Brunch and lunch built on organic, regenerative, and biodynamic local ingredients",
+            "Everything from scratch — house-made focaccia, tofu, baked goods, and seasonal soups",
+            "Generous vegan and gluten-free menu, with a dedicated gluten-free fryer"
+          ],
+          "image": {
+            "src": "/images/the-wild-poppy-cafe/story.webp",
+            "alt": "Inside The Wild Poppy Cafe",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "2+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-5.webp",
+              "alt": "The Wild Poppy Cafe — photo 1"
+            },
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-9.webp",
+              "alt": "The Wild Poppy Cafe — photo 2"
+            },
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-3.webp",
+              "alt": "The Wild Poppy Cafe — photo 3"
+            },
+            {
+              "src": "/images/the-wild-poppy-cafe/photo-6.webp",
+              "alt": "The Wild Poppy Cafe — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see The Wild Poppy Cafe",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-wild-poppy-cafe/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach The Wild Poppy Cafe at 9890 Bodega Hwy, Sebastopol, CA 95472 or call (707) 503-6332.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

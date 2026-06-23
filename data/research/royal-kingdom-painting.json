@@ -1,0 +1,82 @@
+{
+  "slug": "royal-kingdom-painting",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Residential & commercial painting in Sonoma County",
+  "seoDescription": "Royal Kingdom Painting is a licensed, insured Sonoma County painting and decorating company. Interior, exterior, cabinet refinishing, decks and fences, and commercial painting done with care. Call (707) 892-9868.",
+  "heroHeading": "Sonoma County's painting and decorating company",
+  "heroSubheading": "Locally owned, licensed and insured. Interior, exterior, and commercial painting done with kindness, integrity, and craftsmanship that lasts.",
+  "highlights": [
+    "Owned and operated by Kyle Isom, serving Sonoma County",
+    "CSLB licensed, bonded and insured (C-33 #1117067)",
+    "Residential and commercial painting and decorating",
+    "Cabinet refinishing, decks, and fences",
+    "A rating with the Better Business Bureau"
+  ],
+  "aboutHeading": "Painting Sonoma County with kindness and integrity",
+  "aboutBody": [
+    "Royal Kingdom Painting (RKP) is a Sonoma County based painting and decorating company that takes pride in its workmanship. Owned and operated by Kyle Isom, the company treats every client with kindness and integrity and approaches each project as if it were their own home or business.",
+    "As a locally owned company, RKP knows the styles and conditions of Sonoma County homes and commercial spaces. The crew is licensed, bonded and insured, and committed to a seamless experience from the first call through the final walkthrough, leaving each space looking its best."
+  ],
+  "servicesHeading": "What we paint",
+  "services": [
+    {
+      "title": "Interior Painting",
+      "description": "Walls, ceilings, trim and detail work that refreshes the inside of your home with clean lines and a lasting finish."
+    },
+    {
+      "title": "Exterior Painting",
+      "description": "Durable exterior coatings that protect and renew your home against Sonoma County's sun, fog and seasonal weather."
+    },
+    {
+      "title": "Cabinet Painting & Refinishing",
+      "description": "Cabinet refinishing that gives kitchens and baths a fresh, factory-smooth look without the cost of replacement."
+    },
+    {
+      "title": "Decks & Fences",
+      "description": "Staining and painting for decks and fences to restore color, seal the wood and extend its life outdoors."
+    },
+    {
+      "title": "Commercial Painting",
+      "description": "Painting for offices, property management, education centers and medical facilities, scheduled around your operations."
+    }
+  ],
+  "hours": [],
+  "testimonials": [
+    {
+      "quote": "Royal Kingdom Painting has painted my house inside and out. Kyle the owner is a great guy, he is easy to deal with, accurate with his painting, so we have had him come back a couple of times to do separate projects, and he is always willing to complete jobs on time. We highly recommend Royal Kingdom Painting if you want a great job done.",
+      "author": "Verified review · Sonoma"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/royalkingdompainting",
+    "instagram": "https://www.instagram.com/royalkingdompainting/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/IMG_0638-2048x1536.jpg",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/2024-01-31.jpg",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/fivestar.png",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/IMG_20220307_112221069-scaled.jpg",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/IMG_20220307_112148459-scaled.jpg",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/IMG_20210806_144948833-scaled.jpg",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/IMG_20210806_144533486-scaled.jpg",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/IMG_20210414_123253646-scaled.jpg",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/IMG_20210415_142709823-scaled.jpg",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/IMG_20210531_175453834-scaled.jpg",
+    "https://rkpsonoma.com/wp-content/uploads/2024/02/IMG_20210531_175507055-scaled.jpg"
+  ],
+  "notes": "Verified 2026-06-23. Owner: Kyle Tate Isom (sole owner) per CSLB/BuildZoom. CSLB license #1117067, classification 'Painting and Decorating' (C-33), Active; bonded ($25k) and insured (workers' comp via Valley Forge). Address: 2460 Micawber Ln, Santa Rosa, CA 95401; serves Sonoma County (Santa Rosa, Petaluma, Cotati, Sonoma, Sebastopol, Windsor, Healdsburg, Napa Valley). BBB: A rating, not accredited, file opened 2024. Founding year NOT confirmed — work photos date to 2021 but BBB/license records ~2024, so 'established' left blank. Services verified from rkpsonoma.com (interior, exterior, cabinet refinishing, decks & fences, commercial: property mgmt/office/education/medical). One real testimonial (Kimberley S., 5-star) quoted from their site; no other reviews verifiable (Yelp 403). Sources: rkpsonoma.com, BuildZoom, BBB.",
+  "_richness": 90,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "Royal Kingdom Painting",
+    "category": "painting",
+    "city": "Sonoma",
+    "state": "CA",
+    "phone": "(707) 892-9868",
+    "email": "royalpaintingkingdom@gmail.com",
+    "address": "Sonoma, CA",
+    "owner": "Kyle Isom"
+  }
+}

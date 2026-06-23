@@ -1,0 +1,372 @@
+{
+  "slug": "difranco-gate-fence-company",
+  "name": "DiFranco Gate & Fence Company",
+  "legalName": "DiFranco Gate & Fence Company",
+  "tagline": "Sonoma County's custom automated gate, fence & deck contractor",
+  "seoDescription": "DiFranco Gate & Fence Company is a Sebastopol, CA contractor with 30+ years building custom automated gates, ornamental iron, wood and vineyard fencing, decks",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 829-8993",
+    "email": "info@difrancogateandfence.com",
+    "address": "1235 Gravenstein Highway S, Sebastopol, CA 95472"
+  },
+  "social": {},
+  "brand": {
+    "color": "#365470",
+    "fontId": "modern-grotesk"
+  },
+  "images": {
+    "hero": "/images/difranco-gate-fence-company/hero.jpg",
+    "heroAlt": "DiFranco Gate & Fence Company in Sebastopol, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Sebastopol, CA",
+          "heading": "Custom gates, fences & decks built to last in Sonoma County",
+          "subheading": "Family-owned and operated by Mike DiFranco for over 30 years — custom automated gates, ornamental iron, fencing of every kind, and redwood decks, designed and built for Sonoma County homes.",
+          "badges": [
+            "Over 30 years serving Sonoma County",
+            "Owner-operated by Mike DiFranco",
+            "CSLB Licensed #594909"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/difranco-gate-fence-company/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/difranco-gate-fence-company/services"
+          },
+          "image": {
+            "src": "/images/difranco-gate-fence-company/hero.jpg",
+            "alt": "DiFranco Gate & Fence Company in Sebastopol, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Custom Automated Gates",
+              "description": "Custom-designed and hand-built automatic driveway gates — swing, slider, and solar-powered systems — with reliable, well-built security that adds value and elegance to your property."
+            },
+            {
+              "title": "Electric Gate Entry & Access Systems",
+              "description": "Electric-automated gate entry systems, operators, and access control, professionally installed and serviced for residential and commercial properties."
+            },
+            {
+              "title": "Custom Fencing",
+              "description": "Picket, solid and recessed board, bamboo, corral, wire, and ornamental iron fencing — built from quality materials and crafted to fit your property and style."
+            },
+            {
+              "title": "Ornamental Iron & Fabrication",
+              "description": "Hand-fabricated ornamental iron gates, guard and stair railings, hand rails, and custom metalwork, with powder coating in black or your choice of colors."
+            },
+            {
+              "title": "Custom Redwood Decks",
+              "description": "Custom-built decks of all shapes and sizes — including sustainable redwood construction — designed to extend your outdoor living space."
+            },
+            {
+              "title": "Repairs, Restoration & Replacement",
+              "description": "Restoration, alterations, repairs, replacement, and tear-down services to keep existing gates, fences, and decks looking and working their best."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Three decades of craftsmanship in Sonoma County",
+          "body": [
+            "DiFranco Gate & Fence Company is a residential and commercial automated gate, fence, and deck contractor with over 30 years of professional experience serving Sonoma County. Owner-operated by Mike DiFranco (CSLB #594909), the company has built its reputation on excellence and craftsmanship, developing lasting relationships with homeowners and contractors across the region.",
+            "From custom automated entry gates and hand-fabricated ornamental iron to wood, bamboo, and vineyard fencing and redwood decks, every project is designed to beautify and enhance your property. DiFranco serves Sebastopol, Santa Rosa, Petaluma, Rohnert Park, Windsor, Healdsburg, Graton, Occidental, Forestville, and Guerneville."
+          ],
+          "highlights": [
+            "Over 30 years serving Sonoma County",
+            "Owner-operated by Mike DiFranco",
+            "CSLB Licensed #594909",
+            "Custom automated & solar-powered gate systems"
+          ],
+          "image": {
+            "src": "/images/difranco-gate-fence-company/story.jpg",
+            "alt": "Inside DiFranco Gate & Fence Company",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Mike DiFranco was absolutely stellar in his communication with me. And his partner/employee David was fantastic with the scheduling, coordination, and follow-through with the quoting process.",
+              "author": "Verified review · Sebastopol"
+            },
+            {
+              "quote": "Great, professional job. Mike DiFranco was professional, maintained communications well, and was priced fairly. His team of Tom and the fence workers discussed all design aspects.",
+              "author": "Verified review · Sebastopol"
+            },
+            {
+              "quote": "Mike and his crew are top notch! We are a local non-profit serving the homeless community in Santa Rosa. We needed some fence and gate work done, and Mike generously donated not only the labor but also the materials for our project.",
+              "author": "Verified review · Sebastopol"
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why DiFranco Gate & Fence Company",
+          "items": [
+            {
+              "title": "Over 30 Years Serving Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Owner-Operated By Mike DiFranco",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "CSLB Licensed #594909",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Custom Automated & Solar-Powered Gate Systems",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Ornamental Iron, Wood, Bamboo & Vineyard Fencing",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside DiFranco Gate & Fence Company",
+          "images": [
+            {
+              "src": "/images/difranco-gate-fence-company/photo-2.jpg",
+              "alt": "DiFranco Gate & Fence Company — photo 1"
+            },
+            {
+              "src": "/images/difranco-gate-fence-company/photo-3.jpg",
+              "alt": "DiFranco Gate & Fence Company — photo 2"
+            },
+            {
+              "src": "/images/difranco-gate-fence-company/photo-4.jpg",
+              "alt": "DiFranco Gate & Fence Company — photo 3"
+            },
+            {
+              "src": "/images/difranco-gate-fence-company/photo-5.jpg",
+              "alt": "DiFranco Gate & Fence Company — photo 4"
+            },
+            {
+              "src": "/images/difranco-gate-fence-company/photo-6.jpg",
+              "alt": "DiFranco Gate & Fence Company — photo 5"
+            },
+            {
+              "src": "/images/difranco-gate-fence-company/photo-8.webp",
+              "alt": "DiFranco Gate & Fence Company — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with DiFranco Gate & Fence Company",
+          "body": "Find us at 1235 Gravenstein Highway S, Sebastopol, CA 95472. Call (707) 829-8993 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/difranco-gate-fence-company/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 829-8993",
+            "href": "tel:+17078298993"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Family-owned and operated by Mike DiFranco for over 30 years — custom automated gates, ornamental iron, fencing of every kind, and redwood decks, designed and built for Sonoma",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Custom Automated Gates",
+              "description": "Custom-designed and hand-built automatic driveway gates — swing, slider, and solar-powered systems — with reliable, well-built security that adds value and elegance to your property."
+            },
+            {
+              "title": "Electric Gate Entry & Access Systems",
+              "description": "Electric-automated gate entry systems, operators, and access control, professionally installed and serviced for residential and commercial properties."
+            },
+            {
+              "title": "Custom Fencing",
+              "description": "Picket, solid and recessed board, bamboo, corral, wire, and ornamental iron fencing — built from quality materials and crafted to fit your property and style."
+            },
+            {
+              "title": "Ornamental Iron & Fabrication",
+              "description": "Hand-fabricated ornamental iron gates, guard and stair railings, hand rails, and custom metalwork, with powder coating in black or your choice of colors."
+            },
+            {
+              "title": "Custom Redwood Decks",
+              "description": "Custom-built decks of all shapes and sizes — including sustainable redwood construction — designed to extend your outdoor living space."
+            },
+            {
+              "title": "Repairs, Restoration & Replacement",
+              "description": "Restoration, alterations, repairs, replacement, and tear-down services to keep existing gates, fences, and decks looking and working their best."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 1235 Gravenstein Highway S, Sebastopol, CA 95472."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 829-8993 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 1235 Gravenstein Highway S, Sebastopol, CA 95472. Call (707) 829-8993 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/difranco-gate-fence-company/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 829-8993",
+            "href": "tel:+17078298993"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About DiFranco Gate & Fence Company",
+          "heading": "Three decades of craftsmanship in Sonoma County",
+          "subheading": "DiFranco Gate & Fence Company is a residential and commercial automated gate, fence, and deck contractor with over 30 years of professional experience serving Sonoma County",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Three decades of craftsmanship in Sonoma County",
+          "body": [
+            "DiFranco Gate & Fence Company is a residential and commercial automated gate, fence, and deck contractor with over 30 years of professional experience serving Sonoma County. Owner-operated by Mike DiFranco (CSLB #594909), the company has built its reputation on excellence and craftsmanship, developing lasting relationships with homeowners and contractors across the region.",
+            "From custom automated entry gates and hand-fabricated ornamental iron to wood, bamboo, and vineyard fencing and redwood decks, every project is designed to beautify and enhance your property. DiFranco serves Sebastopol, Santa Rosa, Petaluma, Rohnert Park, Windsor, Healdsburg, Graton, Occidental, Forestville, and Guerneville."
+          ],
+          "highlights": [
+            "Over 30 years serving Sonoma County",
+            "Owner-operated by Mike DiFranco",
+            "CSLB Licensed #594909",
+            "Custom automated & solar-powered gate systems"
+          ],
+          "image": {
+            "src": "/images/difranco-gate-fence-company/story.jpg",
+            "alt": "Inside DiFranco Gate & Fence Company",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/difranco-gate-fence-company/photo-2.jpg",
+              "alt": "DiFranco Gate & Fence Company — photo 1"
+            },
+            {
+              "src": "/images/difranco-gate-fence-company/photo-3.jpg",
+              "alt": "DiFranco Gate & Fence Company — photo 2"
+            },
+            {
+              "src": "/images/difranco-gate-fence-company/photo-4.jpg",
+              "alt": "DiFranco Gate & Fence Company — photo 3"
+            },
+            {
+              "src": "/images/difranco-gate-fence-company/photo-5.jpg",
+              "alt": "DiFranco Gate & Fence Company — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see DiFranco Gate & Fence Company",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/difranco-gate-fence-company/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach DiFranco Gate & Fence Company at 1235 Gravenstein Highway S, Sebastopol, CA 95472 or call (707) 829-8993.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

@@ -1,0 +1,449 @@
+{
+  "slug": "hahn-automotive",
+  "name": "Hahn Automotive",
+  "legalName": "Hahn Automotive",
+  "tagline": "Honest auto repair in Santa Rosa since 1969.",
+  "seoDescription": "Hahn Automotive is a family-owned, ASE-certified auto repair shop in Santa Rosa, CA",
+  "category": "auto-repair",
+  "categoryLabel": "Auto Repair",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1969",
+  "contact": {
+    "phone": "(707) 544-5080",
+    "email": "carcare@hahnautomotive.net",
+    "address": "940 N Dutton Avenue, Santa Rosa, CA 95401"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/HahnAuto",
+    "instagram": "https://www.instagram.com/hahnautomotive940/"
+  },
+  "hours": [
+    {
+      "day": "Monday – Friday",
+      "hours": "8:00 AM – 5:00 PM"
+    },
+    {
+      "day": "Saturday – Sunday",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#cf7d1e",
+    "fontId": "rugged-slab"
+  },
+  "images": {
+    "hero": "/images/hahn-automotive/hero.jpg",
+    "heroAlt": "Hahn Automotive in Santa Rosa, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "fullbleed",
+          "eyebrow": "Santa Rosa, CA · Est. 1969",
+          "heading": "Santa Rosa's trusted auto shop since 1969",
+          "subheading": "Family-owned, ASE-certified, and proudly fixing what other shops can't — for Sonoma County drivers for over 55 years.",
+          "badges": [
+            "Serving since 1969",
+            "Serving Sonoma County since 1969",
+            "ASE-certified technicians"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/hahn-automotive/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/hahn-automotive/services"
+          },
+          "image": {
+            "src": "/images/hahn-automotive/hero.jpg",
+            "alt": "Hahn Automotive in Santa Rosa, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we fix",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Brake Repair",
+              "description": "Inspection, pads, rotors and full brake-system service to keep your stops safe and quiet."
+            },
+            {
+              "title": "Electrical Diagnostics",
+              "description": "Our specialty. We track down battery, wiring and electrical gremlins other mechanics can't figure out."
+            },
+            {
+              "title": "Tire Service",
+              "description": "Tire sales, mounting, balancing, rotation and wheel alignment to keep you rolling straight."
+            },
+            {
+              "title": "AC & Heating Repair",
+              "description": "Diagnosis and repair of climate-control systems so your cabin stays comfortable year-round."
+            },
+            {
+              "title": "Engine Diagnostics & Tune-Ups",
+              "description": "Check-engine-light diagnosis, tune-ups and drivability repairs for all makes and models."
+            },
+            {
+              "title": "Preventative Maintenance",
+              "description": "Oil changes, factory-scheduled service and inspections — including RV, fleet and diesel."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Hahn Automotive and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "More than five decades on N Dutton Avenue",
+          "body": [
+            "Hahn Automotive has been the trusted name in auto repair in Santa Rosa since 1969. Owner Billy Coughlan started at the shop in 1979, worked his way up through the ranks, and bought the business in 1989 — bringing more than four decades of personal commitment to every car that rolls through the door.",
+            "We're an independent, family-owned shop, not a chain. Our ASE-certified technicians service every make and model — domestic, import, hybrid, diesel, even Tesla — with the experience and equipment to handle jobs other shops turn away. Every repair is done with integrity, explained clearly, priced honestly, and (if you're lucky) supervised by the shop dogs."
+          ],
+          "highlights": [
+            "Serving Sonoma County since 1969",
+            "ASE-certified technicians",
+            "Family-owned & independent",
+            "All makes & models — from Toyota to Tesla"
+          ],
+          "image": {
+            "src": "/images/hahn-automotive/story.jpg",
+            "alt": "Inside Hahn Automotive",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Did a great job fixing an electrical problem with a 2007 Nissan Frontier that several other mechanics could not figure out.",
+              "author": "Verified review · Santa Rosa"
+            },
+            {
+              "quote": "Great place and excellent service. Have been bringing my personal vehicles here for over twenty years.",
+              "author": "Verified review · Santa Rosa"
+            },
+            {
+              "quote": "Customer service is top notch and prices are very reasonable. Overall the best experience I've ever had with an automotive shop!",
+              "author": "Verified review · Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Hahn Automotive",
+          "items": [
+            {
+              "title": "Serving Sonoma County Since 1969",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "ASE-Certified Technicians",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Family-Owned & Independent",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "All Makes & Models — From Toyota To Tesla",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Brakes, Electrical, AC, Tires & Full-Service",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Hahn Automotive",
+          "images": [
+            {
+              "src": "/images/hahn-automotive/photo-6.jpg",
+              "alt": "Hahn Automotive — photo 1"
+            },
+            {
+              "src": "/images/hahn-automotive/photo-4.jpg",
+              "alt": "Hahn Automotive — photo 2"
+            },
+            {
+              "src": "/images/hahn-automotive/photo-7.jpg",
+              "alt": "Hahn Automotive — photo 3"
+            },
+            {
+              "src": "/images/hahn-automotive/photo-2.jpg",
+              "alt": "Hahn Automotive — photo 4"
+            },
+            {
+              "src": "/images/hahn-automotive/photo-12.jpg",
+              "alt": "Hahn Automotive — photo 5"
+            },
+            {
+              "src": "/images/hahn-automotive/photo-11.jpg",
+              "alt": "Hahn Automotive — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Hahn Automotive",
+          "body": "Find us at 940 N Dutton Avenue, Santa Rosa, CA 95401. Call (707) 544-5080 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/hahn-automotive/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 544-5080",
+            "href": "tel:+17075445080"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Family-owned, ASE-certified, and proudly fixing what other shops can't — for Sonoma County drivers for over 55 years.",
+          "motif": "/images/library/auto-repair/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we fix",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Brake Repair",
+              "description": "Inspection, pads, rotors and full brake-system service to keep your stops safe and quiet."
+            },
+            {
+              "title": "Electrical Diagnostics",
+              "description": "Our specialty. We track down battery, wiring and electrical gremlins other mechanics can't figure out."
+            },
+            {
+              "title": "Tire Service",
+              "description": "Tire sales, mounting, balancing, rotation and wheel alignment to keep you rolling straight."
+            },
+            {
+              "title": "AC & Heating Repair",
+              "description": "Diagnosis and repair of climate-control systems so your cabin stays comfortable year-round."
+            },
+            {
+              "title": "Engine Diagnostics & Tune-Ups",
+              "description": "Check-engine-light diagnosis, tune-ups and drivability repairs for all makes and models."
+            },
+            {
+              "title": "Preventative Maintenance",
+              "description": "Oil changes, factory-scheduled service and inspections — including RV, fleet and diesel."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Hahn Automotive and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 940 N Dutton Avenue, Santa Rosa, CA 95401."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Monday – Friday: 8:00 AM – 5:00 PM; Saturday – Sunday: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 544-5080 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 940 N Dutton Avenue, Santa Rosa, CA 95401. Call (707) 544-5080 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/hahn-automotive/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 544-5080",
+            "href": "tel:+17075445080"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Hahn Automotive",
+          "heading": "More than five decades on N Dutton Avenue",
+          "subheading": "Hahn Automotive has been the trusted name in auto repair in Santa Rosa since 1969. Owner Billy Coughlan started at the shop in 1979, worked his way up through the ranks",
+          "motif": "/images/library/auto-repair/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "More than five decades on N Dutton Avenue",
+          "body": [
+            "Hahn Automotive has been the trusted name in auto repair in Santa Rosa since 1969. Owner Billy Coughlan started at the shop in 1979, worked his way up through the ranks, and bought the business in 1989 — bringing more than four decades of personal commitment to every car that rolls through the door.",
+            "We're an independent, family-owned shop, not a chain. Our ASE-certified technicians service every make and model — domestic, import, hybrid, diesel, even Tesla — with the experience and equipment to handle jobs other shops turn away. Every repair is done with integrity, explained clearly, priced honestly, and (if you're lucky) supervised by the shop dogs."
+          ],
+          "highlights": [
+            "Serving Sonoma County since 1969",
+            "ASE-certified technicians",
+            "Family-owned & independent",
+            "All makes & models — from Toyota to Tesla"
+          ],
+          "image": {
+            "src": "/images/hahn-automotive/story.jpg",
+            "alt": "Inside Hahn Automotive",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "57+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/hahn-automotive/photo-6.jpg",
+              "alt": "Hahn Automotive — photo 1"
+            },
+            {
+              "src": "/images/hahn-automotive/photo-4.jpg",
+              "alt": "Hahn Automotive — photo 2"
+            },
+            {
+              "src": "/images/hahn-automotive/photo-7.jpg",
+              "alt": "Hahn Automotive — photo 3"
+            },
+            {
+              "src": "/images/hahn-automotive/photo-2.jpg",
+              "alt": "Hahn Automotive — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Hahn Automotive",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/hahn-automotive/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Hahn Automotive at 940 N Dutton Avenue, Santa Rosa, CA 95401 or call (707) 544-5080.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

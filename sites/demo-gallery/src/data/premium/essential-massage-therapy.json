@@ -1,0 +1,334 @@
+{
+  "slug": "essential-massage-therapy",
+  "name": "Essential Massage Therapy",
+  "legalName": "Essential Massage Therapy",
+  "tagline": "Therapeutic bodywork and aromatherapy massage in Petaluma",
+  "seoDescription": "Essential Massage Therapy in Petaluma, CA offers deep tissue, prenatal, hot stone, couples, and aromatherapy massage with custom essential-oil blends",
+  "category": "spa",
+  "categoryLabel": "Spa",
+  "area": "Petaluma, CA",
+  "city": "Petaluma",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 871-6046",
+    "email": "contact@essential-mt.com",
+    "address": "131 Lynch Creek Way, Petaluma, CA 94954"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/profile.php?id=61553670135330"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "9:30 AM – 8:00 PM"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "10:00 AM – 8:00 PM"
+    }
+  ],
+  "brand": {
+    "color": "#8a6bb0",
+    "fontId": "organic-serif"
+  },
+  "images": {
+    "hero": "/images/essential-massage-therapy/hero.jpg",
+    "heroAlt": "Essential Massage Therapy in Petaluma, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Petaluma, CA",
+          "heading": "Massage therapy that meets your body where it is",
+          "subheading": "A calm Petaluma studio for deep tissue, prenatal, hot stone, and aromatherapy bodywork — tailored to what you need that day.",
+          "badges": [
+            "Rated 5.0 on Yelp and 4.8 on Google",
+            "Custom aromatherapy blends of essential oils",
+            "Deep tissue, prenatal, hot stone, and couples"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/essential-massage-therapy/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/essential-massage-therapy/services"
+          },
+          "image": {
+            "src": "/images/essential-massage-therapy/hero.jpg",
+            "alt": "Essential Massage Therapy in Petaluma, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Bodywork tailored to your body",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Deep Tissue Massage",
+              "description": "Focused, firmer pressure that releases chronic muscle tension and knots in the back, shoulders, and neck."
+            },
+            {
+              "title": "Aromatherapy Massage",
+              "description": "A relaxing full-body massage paired with a customized blend of essential oils and herbal extracts chosen for you."
+            },
+            {
+              "title": "Prenatal Massage",
+              "description": "Gentle, supportive bodywork that eases the aches of pregnancy and helps you rest more comfortably."
+            },
+            {
+              "title": "Hot Stone Massage",
+              "description": "Warm stones glide over tight muscles to melt away tension — a deeply relaxing way to finish or feature a session."
+            },
+            {
+              "title": "Couples Massage",
+              "description": "Two therapists, one room — unwind side by side with a partner or friend."
+            },
+            {
+              "title": "Cupping & Gua Sha",
+              "description": "Traditional add-on techniques that boost circulation and relieve stubborn tension, available with any massage."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A quiet space to restore",
+          "body": [
+            "Essential Massage Therapy is a Petaluma studio built around one idea: a good massage should be tailored to you, not run from a script. Owner and therapist BinBin and the team work with each client to choose the right pressure and technique, whether that means easing deep muscle tension, supporting a pregnancy, or simply unwinding after a long week.",
+            "Sessions can be enhanced with custom aromatherapy blends, hot stones, cupping, gua sha, or exfoliation. The room is kept serene and unhurried, and the studio is open seven days a week so it is easy to find a time that works. A second location serves the Santa Rosa area."
+          ],
+          "highlights": [
+            "Rated 5.0 on Yelp and 4.8 on Google",
+            "Custom aromatherapy blends of essential oils and herbal extracts",
+            "Deep tissue, prenatal, hot stone, and couples massage",
+            "Add cupping, gua sha, exfoliation, or hot stones to any session"
+          ],
+          "image": {
+            "src": "/images/essential-massage-therapy/story.jpg",
+            "alt": "Inside Essential Massage Therapy",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "BinBin was my massage therapist and she was amazing. She was on time, thorough, prompt, considerate, and so skilled at massage.",
+              "author": "Verified review · Petaluma"
+            },
+            {
+              "quote": "BinBin the owner is so knowledgeable on aromatherapy and cupping — she really knows how to use it and it works.",
+              "author": "Verified review · Petaluma"
+            },
+            {
+              "quote": "Lucy used hot stones on my back at the end, which is an exceptionally relaxing experience. Both BinBin and Lucy are some of the most skilled and present massage therapists I have been to.",
+              "author": "Verified review · Petaluma"
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Essential Massage Therapy",
+          "items": [
+            {
+              "title": "Rated 5.0 On Yelp And 4.8 On Google",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Custom Aromatherapy Blends Of Essential Oils",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Deep Tissue, Prenatal, Hot Stone, And Couples",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Add Cupping, Gua Sha, Exfoliation, Or Hot",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Open Seven Days A Week, Mornings Through Evening",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Essential Massage Therapy",
+          "body": "Find us at 131 Lynch Creek Way, Petaluma, CA 94954. Call (707) 871-6046 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/essential-massage-therapy/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 871-6046",
+            "href": "tel:+17078716046"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "A calm Petaluma studio for deep tissue, prenatal, hot stone, and aromatherapy bodywork — tailored to what you need that day.",
+          "motif": "/images/library/spa/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Bodywork tailored to your body",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Deep Tissue Massage",
+              "description": "Focused, firmer pressure that releases chronic muscle tension and knots in the back, shoulders, and neck."
+            },
+            {
+              "title": "Aromatherapy Massage",
+              "description": "A relaxing full-body massage paired with a customized blend of essential oils and herbal extracts chosen for you."
+            },
+            {
+              "title": "Prenatal Massage",
+              "description": "Gentle, supportive bodywork that eases the aches of pregnancy and helps you rest more comfortably."
+            },
+            {
+              "title": "Hot Stone Massage",
+              "description": "Warm stones glide over tight muscles to melt away tension — a deeply relaxing way to finish or feature a session."
+            },
+            {
+              "title": "Couples Massage",
+              "description": "Two therapists, one room — unwind side by side with a partner or friend."
+            },
+            {
+              "title": "Cupping & Gua Sha",
+              "description": "Traditional add-on techniques that boost circulation and relieve stubborn tension, available with any massage."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 131 Lynch Creek Way, Petaluma, CA 94954."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 9:30 AM – 8:00 PM; Sat–Sun: 10:00 AM – 8:00 PM."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Petaluma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 871-6046 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 131 Lynch Creek Way, Petaluma, CA 94954. Call (707) 871-6046 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/essential-massage-therapy/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 871-6046",
+            "href": "tel:+17078716046"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Essential Massage Therapy",
+          "heading": "A quiet space to restore",
+          "subheading": "Essential Massage Therapy is a Petaluma studio built around one idea: a good massage should be tailored to you, not run from a script",
+          "motif": "/images/library/spa/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A quiet space to restore",
+          "body": [
+            "Essential Massage Therapy is a Petaluma studio built around one idea: a good massage should be tailored to you, not run from a script. Owner and therapist BinBin and the team work with each client to choose the right pressure and technique, whether that means easing deep muscle tension, supporting a pregnancy, or simply unwinding after a long week.",
+            "Sessions can be enhanced with custom aromatherapy blends, hot stones, cupping, gua sha, or exfoliation. The room is kept serene and unhurried, and the studio is open seven days a week so it is easy to find a time that works. A second location serves the Santa Rosa area."
+          ],
+          "highlights": [
+            "Rated 5.0 on Yelp and 4.8 on Google",
+            "Custom aromatherapy blends of essential oils and herbal extracts",
+            "Deep tissue, prenatal, hot stone, and couples massage",
+            "Add cupping, gua sha, exfoliation, or hot stones to any session"
+          ],
+          "image": {
+            "src": "/images/essential-massage-therapy/story.jpg",
+            "alt": "Inside Essential Massage Therapy",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Essential Massage Therapy",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/essential-massage-therapy/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Essential Massage Therapy at 131 Lynch Creek Way, Petaluma, CA 94954 or call (707) 871-6046.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

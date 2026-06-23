@@ -1,0 +1,302 @@
+{
+  "slug": "lilys-salon",
+  "name": "Lily's Salon",
+  "legalName": "Lily's Salon",
+  "tagline": "Hair, color, skin & spa in the heart of Sebastopol",
+  "seoDescription": "Lily's Salon in Sebastopol, CA is a full-service hair and day spa owned by Lisa Houston",
+  "category": "salon",
+  "categoryLabel": "Salon",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 824-1075",
+    "email": "Lisa@lilyssaloninsebastopol.com",
+    "address": "145 Pleasant Hill Avenue North, Suite 101, Sebastopol, CA 95472"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/lilys.sebastopol/"
+  },
+  "brand": {
+    "color": "#b5557f",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA",
+          "heading": "A salon Sebastopol has trusted for years",
+          "subheading": "Owner-led haircuts, color, facials and waxing from a tight-knit team of artists who know your hair by name.",
+          "badges": [
+            "Owned and operated by Lisa Houston, a hair",
+            "Full-service salon and day spa: hair, color",
+            "Balayage, highlights, tint and corrective"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lilys-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/lilys-salon/services"
+          },
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Hair, color, skin & spa",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Cuts & Styling",
+              "description": "Precision haircuts for adults and kids, clipper cuts, bang trims, blow-dry styles and special-occasion up-dos, shaped to your hair and how you actually wear it."
+            },
+            {
+              "title": "Color & Balayage",
+              "description": "Single-process tint, partial and full highlights, hand-painted balayage and custom toners — natural, sun-kissed dimension or a bold new direction, done with care."
+            },
+            {
+              "title": "Hair Health Treatments",
+              "description": "Olaplex to repair broken bonds, Malibu to clear mineral build-up, and deep-conditioning treatments using naturally inspired Eufora products for stronger, healthier hair."
+            },
+            {
+              "title": "Facials & Skin Care",
+              "description": "From the Signature and Mini facial to anti-aging, acne and ultra-pampering treatments and Jan Marini peels, delivered by licensed estheticians Nancy and Amber."
+            },
+            {
+              "title": "Waxing & Hair Removal",
+              "description": "Brow, lip and full-face waxing, underarm, bikini, custom and Brazilian, and lower, upper or full-leg waxing — clean, meticulous and comfortable."
+            },
+            {
+              "title": "Perms & Specialty",
+              "description": "Perms and finishing touches, plus makeup and a curated shelf of Eufora products to keep your color and style looking salon-fresh between visits."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Meet Lisa and the Lily's family",
+          "body": [
+            "Lily's Salon is a full-service salon and day spa in Sebastopol, owned and operated by Lisa Houston. Lisa has worked in the creative field since 1985 and sharpened her craft through advanced training with Vidal Sassoon, Toni & Guy, Pivot Point, Gary Gerrard, Wella Professional Hair Color and Eufora Concepts. She treats every client as a new canvas, listening carefully to what you want before she ever picks up the shears — which is why so many of her clients have followed her for well over a decade.",
+            "Behind the chairs is a small, talented team. Clara Marlow brings eighteen years of cutting and color expertise; Eliana Ponek lives for creating bold, exciting color. On the skin-care side, estheticians Nancy Giacobbe of Belladonna Skin Care and Amber Burke of Amber Rose Skin Care round out the spa menu with facials and waxing. The salon leans on naturally inspired Eufora products and a warm, unhurried atmosphere, so a visit feels less like an appointment and more like catching up with people who genuinely care how you look and feel."
+          ],
+          "highlights": [
+            "Owned and operated by Lisa Houston, a hair artist and colorist in the craft since 1985",
+            "Full-service salon and day spa: hair, color, facials, waxing and makeup under one roof",
+            "Balayage, highlights, tint and corrective color, plus Olaplex and Malibu treatments",
+            "Naturally inspired Eufora products chosen for the health and nourishment of your hair"
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "We're so lucky to have such amazing local talent at LiLy's Salon.",
+              "author": "Verified review · Sebastopol"
+            },
+            {
+              "quote": "This is a great salon! I have been going to LiLy's since it opened and love the environment.",
+              "author": "Verified review · Sebastopol"
+            },
+            {
+              "quote": "Warm and Sunny! Lisa has been doing an exceptional job with my hair for over 15 years.",
+              "author": "Verified review · Sebastopol"
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Lily's Salon",
+          "items": [
+            {
+              "title": "Owned And Operated By Lisa Houston, A Hair",
+              "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Full-Service Salon And Day Spa: Hair, Color",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Balayage, Highlights, Tint And Corrective",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Naturally Inspired Eufora Products Chosen",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "A Relaxed, Welcoming Chair Where Clients Stay",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Lily's Salon",
+          "body": "Find us at 145 Pleasant Hill Avenue North, Suite 101, Sebastopol, CA 95472. Call (707) 824-1075 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lilys-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 824-1075",
+            "href": "tel:+17078241075"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Owner-led haircuts, color, facials and waxing from a tight-knit team of artists who know your hair by name.",
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Hair, color, skin & spa",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Cuts & Styling",
+              "description": "Precision haircuts for adults and kids, clipper cuts, bang trims, blow-dry styles and special-occasion up-dos, shaped to your hair and how you actually wear it."
+            },
+            {
+              "title": "Color & Balayage",
+              "description": "Single-process tint, partial and full highlights, hand-painted balayage and custom toners — natural, sun-kissed dimension or a bold new direction, done with care."
+            },
+            {
+              "title": "Hair Health Treatments",
+              "description": "Olaplex to repair broken bonds, Malibu to clear mineral build-up, and deep-conditioning treatments using naturally inspired Eufora products for stronger, healthier hair."
+            },
+            {
+              "title": "Facials & Skin Care",
+              "description": "From the Signature and Mini facial to anti-aging, acne and ultra-pampering treatments and Jan Marini peels, delivered by licensed estheticians Nancy and Amber."
+            },
+            {
+              "title": "Waxing & Hair Removal",
+              "description": "Brow, lip and full-face waxing, underarm, bikini, custom and Brazilian, and lower, upper or full-leg waxing — clean, meticulous and comfortable."
+            },
+            {
+              "title": "Perms & Specialty",
+              "description": "Perms and finishing touches, plus makeup and a curated shelf of Eufora products to keep your color and style looking salon-fresh between visits."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 145 Pleasant Hill Avenue North, Suite 101, Sebastopol, CA 95472."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 824-1075 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 145 Pleasant Hill Avenue North, Suite 101, Sebastopol, CA 95472. Call (707) 824-1075 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lilys-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 824-1075",
+            "href": "tel:+17078241075"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Lily's Salon",
+          "heading": "Meet Lisa and the Lily's family",
+          "subheading": "Lily's Salon is a full-service salon and day spa in Sebastopol, owned and operated by Lisa Houston",
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Meet Lisa and the Lily's family",
+          "body": [
+            "Lily's Salon is a full-service salon and day spa in Sebastopol, owned and operated by Lisa Houston. Lisa has worked in the creative field since 1985 and sharpened her craft through advanced training with Vidal Sassoon, Toni & Guy, Pivot Point, Gary Gerrard, Wella Professional Hair Color and Eufora Concepts. She treats every client as a new canvas, listening carefully to what you want before she ever picks up the shears — which is why so many of her clients have followed her for well over a decade.",
+            "Behind the chairs is a small, talented team. Clara Marlow brings eighteen years of cutting and color expertise; Eliana Ponek lives for creating bold, exciting color. On the skin-care side, estheticians Nancy Giacobbe of Belladonna Skin Care and Amber Burke of Amber Rose Skin Care round out the spa menu with facials and waxing. The salon leans on naturally inspired Eufora products and a warm, unhurried atmosphere, so a visit feels less like an appointment and more like catching up with people who genuinely care how you look and feel."
+          ],
+          "highlights": [
+            "Owned and operated by Lisa Houston, a hair artist and colorist in the craft since 1985",
+            "Full-service salon and day spa: hair, color, facials, waxing and makeup under one roof",
+            "Balayage, highlights, tint and corrective color, plus Olaplex and Malibu treatments",
+            "Naturally inspired Eufora products chosen for the health and nourishment of your hair"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Lily's Salon",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lilys-salon/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Lily's Salon at 145 Pleasant Hill Avenue North, Suite 101, Sebastopol, CA 95472 or call (707) 824-1075.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

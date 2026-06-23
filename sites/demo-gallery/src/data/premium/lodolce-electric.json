@@ -1,0 +1,435 @@
+{
+  "slug": "lodolce-electric",
+  "name": "LoDolce Electric",
+  "legalName": "LoDolce Electric",
+  "tagline": "Family-owned electricians serving Sonoma County for 45+ years",
+  "seoDescription": "LoDolce Electric is a family-owned, licensed electrician serving Santa Rosa and Sonoma County for 45+ years",
+  "category": "electrician",
+  "categoryLabel": "Electrician",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 494-1611",
+    "email": "LoDolceElectric@gmail.com",
+    "address": "Santa Rosa, CA"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/LoDolceElectric/",
+    "instagram": "https://www.instagram.com/lodolceelectric/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8:00 AM – 5:00 PM"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#e0a11e",
+    "fontId": "modern-grotesk"
+  },
+  "images": {
+    "hero": "/images/lodolce-electric/hero.jpg",
+    "heroAlt": "LoDolce Electric in Santa Rosa, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Sonoma County's family electricians for 45+ years",
+          "subheading": "Clean, code-compliant electrical work for homes and businesses across Santa Rosa and Sonoma County — plus expert Generac standby generator service. Licensed, insured, and done right the first time.",
+          "badges": [
+            "Family-owned, serving Sonoma County 45+ years",
+            "Authorized Generac generator service & repair",
+            "Most Generac factory-trained techs in Sonoma"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lodolce-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/lodolce-electric/services"
+          },
+          "image": {
+            "src": "/images/lodolce-electric/hero.jpg",
+            "alt": "LoDolce Electric in Santa Rosa, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why LoDolce Electric",
+          "items": [
+            {
+              "title": "Family-Owned, Serving Sonoma County 45+ Years",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Authorized Generac Generator Service & Repair",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Most Generac Factory-Trained Techs In Sonoma",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "CA Electrician License #1026407, Fully Insured",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Upfront, Transparent Pricing",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Three generations of trusted Sonoma County electricians",
+          "body": [
+            "The LoDolce family has provided residential and commercial electrical contracting to Sonoma County for more than 45 years. Owner Joe LoDolce followed in his father's footsteps, learned the trade from the ground up, and now leads the team with the same reliable standards customers have trusted for decades.",
+            "As an Authorized Generac service and repair dealer, LoDolce Electric has more Generac factory-trained, certified technicians than any other company in Sonoma, Napa, and Marin counties combined — so your standby generator is ready when the next PSPS or outage hits. From a single outlet to whole-house wiring, Joe's team treats every job like it's in their own home: clean work, honest guidance, and transparent pricing."
+          ],
+          "highlights": [
+            "Family-owned, serving Sonoma County 45+ years",
+            "Authorized Generac generator service & repair dealer",
+            "Most Generac factory-trained techs in Sonoma, Napa & Marin combined",
+            "CA Electrician License #1026407, fully insured"
+          ],
+          "image": {
+            "src": "/images/lodolce-electric/story.jpg",
+            "alt": "Inside LoDolce Electric",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Full-service electrical for homes and businesses",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Electrical",
+              "description": "Safe, clean electrical work for your home — lighting installation and upgrades, dedicated circuits, panel improvements and labeling, plus outlets, switches, and dimmers."
+            },
+            {
+              "title": "Commercial Electrical",
+              "description": "Professional service for offices, retail, and facilities, including tenant improvements, lighting retrofits and controls, dedicated equipment circuits, and troubleshooting with minimal disruption."
+            },
+            {
+              "title": "Generator Services",
+              "description": "Backup power you can count on. As an Authorized Generac dealer, LoDolce Electric handles standby generator installation planning, transfer switches, maintenance, and troubleshooting to keep your home or business running during outages."
+            },
+            {
+              "title": "New Construction",
+              "description": "Complete rough-in to final electrical for new builds, additions, and remodels — service planning, lighting plans, and final trim support."
+            },
+            {
+              "title": "Electrical Repair",
+              "description": "Troubleshooting and reliable fixes for breakers, outlets, switches, flickering lights, and general power problems."
+            },
+            {
+              "title": "Electrical Service & Upgrades",
+              "description": "Scheduled visits for ceiling fans, GFCI/AFCI updates, circuit additions, and safety improvements that keep your electrical system current and code-compliant."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message LoDolce Electric and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Great price. Family owned and professionally driven! Joe and his wife Cammie are running a customer service oriented business. They responded to my needs on schedule and fixed my service panel in one call",
+              "author": "Verified review · Santa Rosa"
+            },
+            {
+              "quote": "Joe installed my stand-by generator 5 years ago, and has provided excellent support and maintenance since then. In this era of PSPS's, having a stand-by generator with reliable service is almost required.",
+              "author": "Verified review · Santa Rosa"
+            },
+            {
+              "quote": "Prompt, knowledgeable and easy to discuss the situation in lay-man terms. The job was done quickly and correctly. Great folks in the office and in the field.",
+              "author": "Verified review · Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside LoDolce Electric",
+          "images": [
+            {
+              "src": "/images/lodolce-electric/photo-2.jpg",
+              "alt": "LoDolce Electric — photo 1"
+            },
+            {
+              "src": "/images/lodolce-electric/photo-3.jpg",
+              "alt": "LoDolce Electric — photo 2"
+            },
+            {
+              "src": "/images/lodolce-electric/photo-6.jpg",
+              "alt": "LoDolce Electric — photo 3"
+            },
+            {
+              "src": "/images/lodolce-electric/photo-7.jpg",
+              "alt": "LoDolce Electric — photo 4"
+            },
+            {
+              "src": "/images/lodolce-electric/photo-8.jpg",
+              "alt": "LoDolce Electric — photo 5"
+            },
+            {
+              "src": "/images/lodolce-electric/photo-9.jpg",
+              "alt": "LoDolce Electric — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with LoDolce Electric",
+          "body": "Find us at Santa Rosa, CA. Call (707) 494-1611 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lodolce-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 494-1611",
+            "href": "tel:+17074941611"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Clean, code-compliant electrical work for homes and businesses across Santa Rosa and Sonoma County — plus expert Generac standby generator service",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Full-service electrical for homes and businesses",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Electrical",
+              "description": "Safe, clean electrical work for your home — lighting installation and upgrades, dedicated circuits, panel improvements and labeling, plus outlets, switches, and dimmers."
+            },
+            {
+              "title": "Commercial Electrical",
+              "description": "Professional service for offices, retail, and facilities, including tenant improvements, lighting retrofits and controls, dedicated equipment circuits, and troubleshooting with minimal disruption."
+            },
+            {
+              "title": "Generator Services",
+              "description": "Backup power you can count on. As an Authorized Generac dealer, LoDolce Electric handles standby generator installation planning, transfer switches, maintenance, and troubleshooting to keep your home or business running during outages."
+            },
+            {
+              "title": "New Construction",
+              "description": "Complete rough-in to final electrical for new builds, additions, and remodels — service planning, lighting plans, and final trim support."
+            },
+            {
+              "title": "Electrical Repair",
+              "description": "Troubleshooting and reliable fixes for breakers, outlets, switches, flickering lights, and general power problems."
+            },
+            {
+              "title": "Electrical Service & Upgrades",
+              "description": "Scheduled visits for ceiling fans, GFCI/AFCI updates, circuit additions, and safety improvements that keep your electrical system current and code-compliant."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message LoDolce Electric and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at Santa Rosa, CA."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 8:00 AM – 5:00 PM; Sat–Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 494-1611 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at Santa Rosa, CA. Call (707) 494-1611 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lodolce-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 494-1611",
+            "href": "tel:+17074941611"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About LoDolce Electric",
+          "heading": "Three generations of trusted Sonoma County electricians",
+          "subheading": "The LoDolce family has provided residential and commercial electrical contracting to Sonoma County for more than 45 years",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Three generations of trusted Sonoma County electricians",
+          "body": [
+            "The LoDolce family has provided residential and commercial electrical contracting to Sonoma County for more than 45 years. Owner Joe LoDolce followed in his father's footsteps, learned the trade from the ground up, and now leads the team with the same reliable standards customers have trusted for decades.",
+            "As an Authorized Generac service and repair dealer, LoDolce Electric has more Generac factory-trained, certified technicians than any other company in Sonoma, Napa, and Marin counties combined — so your standby generator is ready when the next PSPS or outage hits. From a single outlet to whole-house wiring, Joe's team treats every job like it's in their own home: clean work, honest guidance, and transparent pricing."
+          ],
+          "highlights": [
+            "Family-owned, serving Sonoma County 45+ years",
+            "Authorized Generac generator service & repair dealer",
+            "Most Generac factory-trained techs in Sonoma, Napa & Marin combined",
+            "CA Electrician License #1026407, fully insured"
+          ],
+          "image": {
+            "src": "/images/lodolce-electric/story.jpg",
+            "alt": "Inside LoDolce Electric",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/lodolce-electric/photo-2.jpg",
+              "alt": "LoDolce Electric — photo 1"
+            },
+            {
+              "src": "/images/lodolce-electric/photo-3.jpg",
+              "alt": "LoDolce Electric — photo 2"
+            },
+            {
+              "src": "/images/lodolce-electric/photo-6.jpg",
+              "alt": "LoDolce Electric — photo 3"
+            },
+            {
+              "src": "/images/lodolce-electric/photo-7.jpg",
+              "alt": "LoDolce Electric — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see LoDolce Electric",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lodolce-electric/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach LoDolce Electric at Santa Rosa, CA or call (707) 494-1611.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

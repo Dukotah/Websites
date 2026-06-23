@@ -1,0 +1,128 @@
+{
+  "slug": "the-wild-poppy-cafe",
+  "confirmed": true,
+  "established": "2024",
+  "tagline": "A cozy roadside cafe, Sebastopol style",
+  "seoDescription": "The Wild Poppy is a family-run creekside cafe and market in Sebastopol, serving farm-to-table brunch and lunch with house-made focaccia, organic produce, and plenty of vegan and gluten-free options on a leafy patio above Atascadero Creek.",
+  "heroHeading": "Creekside brunch, made from scratch",
+  "heroSubheading": "Family-run West County cafe and market on Bodega Highway, serving organic, regenerative, and farm-sourced food on a patio under the oaks.",
+  "highlights": [
+    "Family-owned and operated by chef Martin Maigaard and his wife Danielle",
+    "Brunch and lunch built on organic, regenerative, and biodynamic local ingredients",
+    "Everything from scratch — house-made focaccia, tofu, baked goods, and seasonal soups",
+    "Generous vegan and gluten-free menu, with a dedicated gluten-free fryer",
+    "Leafy creekside patio above Atascadero Creek, dog-friendly and walk-in only"
+  ],
+  "aboutHeading": "A Sonoma County homecoming",
+  "aboutBody": [
+    "The Wild Poppy opened in spring 2024 in the charming roadside spot just outside Sebastopol that was once home to Fork Roadhouse. Chef-owner Martin Maigaard cooked in the area at the Gypsy Cafe in the early 2010s before he and his wife Danielle moved back to Kansas. They always meant to return to Sonoma County, and when this creekside property became available, the timing was finally right.",
+    "It's a true family affair. Danielle runs front of house alongside her sister Emily, Emily's partner Andrew lends a hand in the kitchen, and the Maigaards' daughter Anya works as a food runner and baker — the chocolate chip cookies are her recipe. The kitchen leans on its own house-made tofu, scratch-baked focaccia, and farm-to-table produce, with a small market up front stocked with local wine, snacks, and gifts."
+  ],
+  "servicesHeading": "On the menu",
+  "services": [
+    {
+      "title": "Brunch & breakfast",
+      "description": "Strawberries-and-cream French toast, frittata sandwiches on house-made focaccia, and tofu rancheros — with morning mimosas if you like."
+    },
+    {
+      "title": "Sandwiches on house-made focaccia",
+      "description": "The grilled mushroom sandwich with walnut-mushroom pâté, the house tofu banh mi, and other lunch favorites built on focaccia toasted Italian-style."
+    },
+    {
+      "title": "Salads & seasonal soups",
+      "description": "The kale Caesar with lemon-almond vinaigrette, the Teller's salad, and a rotating soup of the day made fresh."
+    },
+    {
+      "title": "Tacos & small plates",
+      "description": "Baja fish tacos with cornmeal-fried rock cod on organic corn tortillas, plus cosmic queso — cashew queso with pepita chimichurri — and chips."
+    },
+    {
+      "title": "Vegan & gluten-free",
+      "description": "Clearly marked vegan options in every category, a vegan kids' menu, and a dedicated gluten-free fryer so nearly everything can be made GF."
+    },
+    {
+      "title": "Bakery & coffee",
+      "description": "Daily scones, Anya's chocolate chip cookies, and other house-baked goods alongside lattes, coffee, green juice, and local wine."
+    }
+  ],
+  "hours": [],
+  "testimonials": [
+    {
+      "quote": "Fresh food and amazing focaccia bread, which is toasted just like in Italy.",
+      "author": "Verified review · Sebastopol"
+    },
+    {
+      "quote": "Cute little cafe with several clearly labeled vegan options. Great food and atmosphere.",
+      "author": "Verified review · Sebastopol"
+    },
+    {
+      "quote": "The best veggie food in Sonoma County! Loved the order-at-the-counter casual feel and the amazing outdoor seating.",
+      "author": "Verified review · Sebastopol"
+    }
+  ],
+  "social": {
+    "facebook": "",
+    "instagram": "https://www.instagram.com/thewildpoppycafe",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/efbd6590-df61-41aa-ba27-e5a147af1d23/PhotoEmmaKruch-EmmaKCreative-06359.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/9c350f6d-3e7e-4387-a6d7-0da99887d5e8/TWP-wine-bottle.png",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/37157211-2502-4c3b-bc6e-45270b590dfd/PhotoEmmaKruch-EmmaKCreative-1231.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/93a84eb9-7f6a-46ba-aa5c-e6d3f6fcf2f1/PhotoEmmaKruch-EmmaKCreative-1227.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/1e477998-f829-42ca-b064-d7a4485e7a8d/PhotoEmmaKruch-EmmaKCreative-the-wild-poppy-sebastopol_0009_PhotoEmmaKruch-EmmaKCreative-2-3.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/dadd7eb6-bd71-4ced-b61e-dd3bffe230d0/PhotoEmmaKruch-EmmaKCreative-thewildpoppy_0001_PhotoEmmaKruch-EmmaKCreative-06407.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/8075a712-f9ee-42c1-97aa-4068de1cf734/PhotoEmmaKruch-EmmaKCreative-the-wild-poppy-sebastopol_0007_PhotoEmmaKruch-EmmaKCreative-06340.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/5699d1b6-2764-4447-a325-5a63b2e39616/PhotoEmmaKruch-EmmaKCreative-thewildpoppy_0000_PhotoEmmaKruch-EmmaKCreative-06387.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/43e7bf38-d3b4-4965-abda-d84101a3a134/PhotoEmmaKruch-EmmaKCreative-the-wild-poppy-sebastopol_0010_Background.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/4ab7a764-8240-4c57-898f-086ffe4fbb9e/PhotoEmmaKruch-EmmaKCreative-the-wild-poppy-sebastopol_0008_PhotoEmmaKruch-EmmaKCreative-1249.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/21a83fae-e7c3-423c-b8fc-9d258c980467/PhotoEmmaKruch-EmmaKCreative-thewildpoppy_0002_PhotoEmmaKruch-EmmaKCreative-06496.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/14e63c61-ca7e-49d7-bced-5933a203ca96/PhotoEmmaKruch-EmmaKCreative-the-wild-poppy-sebastopol_0006_PhotoEmmaKruch-EmmaKCreative-06348.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/96c2c9ac-a846-44c2-a197-79db0949c50a/PhotoEmmaKruch-EmmaKCreative-2.jpg",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/125251d7-b216-4980-9e30-4ad5f271147e/TWP-web-backgrounds-04.png",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/website.components.imageFluid.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.shape/80a1c486-f343-4806-8400-35c03a367ea8_1077/website.components.shape.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.html/6026cdbc-2825-4399-a34e-e1e9370f4ed5_682/website.components.html.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/5356cd53-7013-4dad-84aa-d0f03fbbf8e9_854/website.components.form.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.button/1d4538bb-7c93-44ea-a060-a48f8d3ffce5_852/website.components.button.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/image-effect-liquid.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/image-effect-film-grain.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/8018.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/image-effect-refracted-lines.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/image-effect-parallax.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/9882.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/image-effect-refracted-circles.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/5356cd53-7013-4dad-84aa-d0f03fbbf8e9_854/website.components.form.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.html/6026cdbc-2825-4399-a34e-e1e9370f4ed5_682/website.components.html.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/748.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.button/1d4538bb-7c93-44ea-a060-a48f8d3ffce5_852/website.components.button.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.shape/80a1c486-f343-4806-8400-35c03a367ea8_1077/website.components.shape.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/website.components.imageFluid.visitor.js",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/efbd6590-df61-41aa-ba27-e5a147af1d23/PhotoEmmaKruch-EmmaKCreative-06359.jpg&quot;,",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.html/6026cdbc-2825-4399-a34e-e1e9370f4ed5_682/website.components.html.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.html/6026cdbc-2825-4399-a34e-e1e9370f4ed5_682/website.components.html.visitor.js&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.shape/80a1c486-f343-4806-8400-35c03a367ea8_1077/website.components.shape.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.shape/80a1c486-f343-4806-8400-35c03a367ea8_1077/website.components.shape.visitor.js&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.button/1d4538bb-7c93-44ea-a060-a48f8d3ffce5_852/website.components.button.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.button/1d4538bb-7c93-44ea-a060-a48f8d3ffce5_852/website.components.button.visitor.js&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.imageFluid/61d495c3-1495-4343-9186-b585214a5644_669/website.components.imageFluid.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/5356cd53-7013-4dad-84aa-d0f03fbbf8e9_854/website.components.form.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/5356cd53-7013-4dad-84aa-d0f03fbbf8e9_854/website.components.form.visitor.js&quot;]",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/96c2c9ac-a846-44c2-a197-79db0949c50a/PhotoEmmaKruch-EmmaKCreative-2.jpg&quot;,",
+    "https://video.squarespace-cdn.com/content/v1/5ec321c2af33de48734cc929/30bc7c3d-4046-4c9b-9e2a-43686450dff6/%7Bvariant%7D&quot;,",
+    "https://images.squarespace-cdn.com/content/v1/65aae1d6bfeaf5615b1b27f2/125251d7-b216-4980-9e30-4ad5f271147e/TWP-web-backgrounds-04.png&quot;,"
+  ],
+  "notes": "Site was UNREACHABLE to the automated scraper; ALL facts below were rebuilt from external web research (2026-06-23). Verified: opened spring 2024 in the former Fork Roadhouse space just outside Sebastopol; family-owned by chef Martin Maigaard + wife Danielle (front of house w/ sister Emily, partner Andrew in kitchen, daughter Anya as baker/runner — her chocolate chip cookie recipe); Martin previously cooked at the Gypsy Cafe in early 2010s, returned from Kansas. Concept: farm-to-table brunch/lunch + small market (local wine/snacks/gifts), organic/regenerative/biodynamic ingredients, house-made focaccia + house tofu, strong vegan/GF program (dedicated GF fryer), creekside patio over Atascadero Creek, walk-in only, dog-friendly. Verified dishes: cosmic queso (cashew queso, pepita chimichurri), kale Caesar (lemon-almond vinaigrette), Baja fish tacos (cornmeal-fried rock cod), grilled mushroom sandwich (walnut-mushroom pâté on focaccia), tofu banh mi, tofu rancheros, strawberries-and-cream French toast, scones, Anya's cookies; mimosas/cocktails. Ratings ~4.7-4.8 across Yelp/Google. HOURS LEFT EMPTY: sources disagree (Yelp Wed/Sun 10-4; Restaurantji Wed-Sun 10-2:30; Farm Trails Wed-Sat 9-3, Sun 9-2; Sonoma Mag Thu-Sun 10-3) — owner should confirm before publishing. Testimonials are real review excerpts (HappyCow + aggregated Yelp/Restaurantji). Sources: thewildpoppycafe.com, sonomamag.com (2 features), restaurantji.com, happycow.net, yelp.com, sonomacounty.com, KSRO 'At the Table'. Note: a second location, The Barlow Cafe & Market, reportedly opening July 2026.",
+  "_richness": 90,
+  "_source": "web-research",
+  "_lead": {
+    "name": "The Wild Poppy Cafe",
+    "category": "cafe",
+    "city": "Sebastopol",
+    "state": "CA",
+    "phone": "(707) 503-6332",
+    "email": "info@thewildpoppycafe.com",
+    "address": "9890 Bodega Hwy, Sebastopol, CA 95472",
+    "owner": "Martin & Danielle Maigaard"
+  }
+}

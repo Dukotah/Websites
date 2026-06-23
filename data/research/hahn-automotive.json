@@ -1,0 +1,116 @@
+{
+  "slug": "hahn-automotive",
+  "confirmed": true,
+  "established": "1969",
+  "tagline": "Honest auto repair in Santa Rosa since 1969.",
+  "seoDescription": "Hahn Automotive is a family-owned, ASE-certified auto repair shop in Santa Rosa, CA. Serving Sonoma County since 1969 — brakes, electrical, tires, AC, diagnostics and more for all makes and models.",
+  "heroHeading": "Santa Rosa's trusted auto shop since 1969",
+  "heroSubheading": "Family-owned, ASE-certified, and proudly fixing what other shops can't — for Sonoma County drivers for over 55 years.",
+  "highlights": [
+    "Serving Sonoma County since 1969",
+    "ASE-certified technicians",
+    "Family-owned & independent",
+    "All makes & models — from Toyota to Tesla",
+    "Brakes, electrical, AC, tires & full-service repair"
+  ],
+  "aboutHeading": "More than five decades on N Dutton Avenue",
+  "aboutBody": [
+    "Hahn Automotive has been the trusted name in auto repair in Santa Rosa since 1969. Owner Billy Coughlan started at the shop in 1979, worked his way up through the ranks, and bought the business in 1989 — bringing more than four decades of personal commitment to every car that rolls through the door.",
+    "We're an independent, family-owned shop, not a chain. Our ASE-certified technicians service every make and model — domestic, import, hybrid, diesel, even Tesla — with the experience and equipment to handle jobs other shops turn away. Every repair is done with integrity, explained clearly, priced honestly, and (if you're lucky) supervised by the shop dogs."
+  ],
+  "servicesHeading": "What we fix",
+  "services": [
+    {
+      "title": "Brake Repair",
+      "description": "Inspection, pads, rotors and full brake-system service to keep your stops safe and quiet."
+    },
+    {
+      "title": "Electrical Diagnostics",
+      "description": "Our specialty. We track down battery, wiring and electrical gremlins other mechanics can't figure out."
+    },
+    {
+      "title": "Tire Service",
+      "description": "Tire sales, mounting, balancing, rotation and wheel alignment to keep you rolling straight."
+    },
+    {
+      "title": "AC & Heating Repair",
+      "description": "Diagnosis and repair of climate-control systems so your cabin stays comfortable year-round."
+    },
+    {
+      "title": "Engine Diagnostics & Tune-Ups",
+      "description": "Check-engine-light diagnosis, tune-ups and drivability repairs for all makes and models."
+    },
+    {
+      "title": "Preventative Maintenance",
+      "description": "Oil changes, factory-scheduled service and inspections — including RV, fleet and diesel."
+    }
+  ],
+  "hours": [
+    { "day": "Monday – Friday", "hours": "8:00 AM – 5:00 PM" },
+    { "day": "Saturday – Sunday", "hours": "Closed" }
+  ],
+  "testimonials": [
+    {
+      "quote": "Did a great job fixing an electrical problem with a 2007 Nissan Frontier that several other mechanics could not figure out.",
+      "author": "Verified review · Santa Rosa"
+    },
+    {
+      "quote": "Great place and excellent service. Have been bringing my personal vehicles here for over twenty years.",
+      "author": "Verified review · Santa Rosa"
+    },
+    {
+      "quote": "Customer service is top notch and prices are very reasonable. Overall the best experience I've ever had with an automotive shop!",
+      "author": "Verified review · Santa Rosa"
+    },
+    {
+      "quote": "Folks at Hahn are very friendly, good communication — and the icing on the cake is friendly dogs to keep you company.",
+      "author": "Verified review · Santa Rosa"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/HahnAuto",
+    "instagram": "https://www.instagram.com/hahnautomotive940/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://hahn-automotive-v1773785200.websitepro-cdn.com/wp-content/uploads/2021/12/2021-08-26-11.23.36-scaled.jpg",
+    "https://www.hahnautomotive.net/assets/shop-lift-ram.jpg",
+    "https://www.hahnautomotive.net/assets/maggie-cape.jpg",
+    "https://cdn.apigateway.co/webchat-client..prod/sdk.js",
+    "https://www.hahnautomotive.net/assets/billy-coughlin-owner-hahn-automotive-santa-rosa.jpg",
+    "https://www.hahnautomotive.net/assets/shop-dogs-at-reception-hahn-automotive.jpg",
+    "https://www.hahnautomotive.net/assets/classic-car-service-on-lift-santa-rosa-1.jpg",
+    "https://www.hahnautomotive.net/assets/fleet-trucks.jpg",
+    "https://www.hahnautomotive.net/assets/tesla-suspension-control-arms-santa-rosa.jpg",
+    "https://www.hahnautomotive.net/assets/alignment-equipment.jpg",
+    "https://www.hahnautomotive.net/assets/parts-shop.jpg",
+    "https://www.hahnautomotive.net/assets/jasper-engines-parts-hahn-automotive.jpg",
+    "https://www.hahnautomotive.net/assets/dogs-mat.jpg",
+    "https://www.hahnautomotive.net/assets/shop-exterior.jpg",
+    "https://www.hahnautomotive.net/assets/services/tire-service-santa-rosa-1.jpg",
+    "https://www.hahnautomotive.net/assets/services/tire-service-santa-rosa-2.jpg",
+    "https://www.hahnautomotive.net/assets/hahn-automotive-monument-sign-santa-rosa.jpg",
+    "https://www.hahnautomotive.net/assets/services/brake-repair-santa-rosa-1.jpg",
+    "https://www.hahnautomotive.net/assets/services/brake-repair-santa-rosa-2.jpg",
+    "https://hahn-automotive-v1773785200.websitepro-cdn.com/wp-content/uploads/2021/12/oil-drum.png",
+    "https://hahn-automotive-v1773785200.websitepro-cdn.com/wp-content/uploads/2021/12/repairing-service.png",
+    "https://hahn-automotive-v1773785200.websitepro-cdn.com/wp-content/uploads/2021/12/electricity.png",
+    "https://hahn-automotive-v1773785200.websitepro-cdn.com/wp-content/uploads/2021/12/battery.png",
+    "https://hahn-automotive-v1773785200.websitepro-cdn.com/wp-content/uploads/2021/12/wind.png",
+    "https://hahn-automotive-v1773785200.websitepro-cdn.com/wp-content/uploads/2021/12/electric-car.png",
+    "https://hahn-automotive-v1773785200.websitepro-cdn.com/wp-content/uploads/2021/12/diesel.png"
+  ],
+  "notes": "Verified 2026-06-23. Founding year 1969 confirmed on hahnautomotive.net (\"Since 1969\") and corroborated across web sources; Billy (William) Coughlan Jr started 1979, bought the shop 1989 (BBB business-start date 9/11/1989, A+ rating, principal William Coughlan Jr). ASE-certified technicians stated on their site. Services (brakes, electrical, tires, AC, diagnostics, maintenance, RV/fleet/diesel) and makes (Toyota–Tesla, BMW/Mercedes/Audi/VW) from hahnautomotive.net. Hours Mon–Fri 8–5, weekends closed (site). Testimonials are real verified customer reviews from Birdeye (reviews.birdeye.com, 4.8★/360) and the shop's site; authors anonymized to 'Verified review · Santa Rosa'. Sources: hahnautomotive.net, bbb.org, yelp.com, reviews.birdeye.com.",
+  "_richness": 100,
+  "_source": "auto-scrape",
+  "_lead": {
+    "name": "Hahn Automotive",
+    "category": "auto-repair",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 544-5080",
+    "email": "carcare@hahnautomotive.net",
+    "address": "940 N Dutton Avenue, Santa Rosa, CA 95401",
+    "owner": "Billy (William) Coughlan Jr"
+  }
+}

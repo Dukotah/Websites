@@ -1,0 +1,445 @@
+{
+  "slug": "north-hvac-services",
+  "name": "North HVAC Services",
+  "legalName": "North HVAC Services",
+  "tagline": "Family-owned heating & air conditioning, trusted across Sonoma and Marin since 1988.",
+  "seoDescription": "North HVAC Services is a family-owned heating, cooling, and air quality company serving Petaluma and Sonoma & Marin Counties",
+  "category": "hvac",
+  "categoryLabel": "HVAC",
+  "area": "Petaluma, CA",
+  "city": "Petaluma",
+  "state": "CA",
+  "established": "1988",
+  "contact": {
+    "phone": "(707) 430-3360",
+    "email": "northhvacservices@gmail.com",
+    "address": "3855 Cypress Dr # H, Petaluma, CA 94952"
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/p/C_D92l6PDJF/",
+    "google": "https://maps.google.com/?cid=17363657280944284206"
+  },
+  "hours": [
+    {
+      "day": "Monday – Friday",
+      "hours": "6:00 AM – 4:00 PM"
+    },
+    {
+      "day": "After hours",
+      "hours": "Available by appointment"
+    }
+  ],
+  "brand": {
+    "color": "#218f8f",
+    "fontId": "modern-grotesk"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Petaluma, CA · Est. 1988",
+          "heading": "Comfort you can count on, all year round",
+          "subheading": "North HVAC Services is a family-owned heating and air conditioning company keeping Petaluma, Sonoma, and Marin homes comfortable since 1988.",
+          "badges": [
+            "Serving since 1988",
+            "Family-owned and operated since 1988",
+            "Mitsubishi Diamond Authorized Dealer & Trane"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/north-hvac-services/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/north-hvac-services/services"
+          },
+          "image": {
+            "src": "/images/north-hvac-services/story.jpg",
+            "alt": "Inside North HVAC Services",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Your neighbors in home comfort",
+          "body": [
+            "North HVAC Services is a family-owned, full-service heating and air conditioning business dedicated to keeping homes throughout Sonoma and Marin Counties comfortable and safe year round. Established in 1988, the company's owners bring more than 48 years of combined experience in the trade, and our friends and neighbors have trusted us to care for their homes for decades.",
+            "We're a true family operation. Chris, a well-rounded journeyman who leads the company, partnered with the original owner in 2019 and brought on his brother Paul as a skilled service technician, along with installation manager Ivan. From the owners to our installers, technicians, and office staff, we're committed to quality craftsmanship and honest customer service at fair prices."
+          ],
+          "highlights": [
+            "Family-owned and operated since 1988",
+            "Mitsubishi Diamond Authorized Dealer & Trane Factory Dealer",
+            "CSLB Licensed #1054297",
+            "A+ rated with the Better Business Bureau"
+          ],
+          "image": {
+            "src": "/images/north-hvac-services/story.jpg",
+            "alt": "Inside North HVAC Services",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Heating Installation & Repair",
+              "description": "Gas furnace repair, maintenance, and high-efficiency replacements to keep your home warm through the coldest North Bay nights."
+            },
+            {
+              "title": "Air Conditioning",
+              "description": "AC repair, tune-ups, and new system installations sized right for your home so you stay cool and energy-efficient all summer."
+            },
+            {
+              "title": "Heat Pumps & Mini-Splits",
+              "description": "As a Mitsubishi Diamond Authorized Dealer, we install and service ductless mini-split and heat pump systems for efficient, all-electric comfort."
+            },
+            {
+              "title": "HVAC Maintenance & Tune-Ups",
+              "description": "Routine maintenance and seasonal tune-ups that extend equipment life, protect efficiency, and head off breakdowns before they start."
+            },
+            {
+              "title": "Indoor Air Quality",
+              "description": "Air quality solutions and ductwork that help your family breathe cleaner, healthier air at home."
+            },
+            {
+              "title": "Commercial HVAC",
+              "description": "Service, repair, and installation for commercial spaces across Sonoma and Marin Counties."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message North HVAC Services and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why North HVAC Services",
+          "items": [
+            {
+              "title": "Family-Owned And Operated Since 1988",
+              "body": "Rooted right here in Petaluma, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Mitsubishi Diamond Authorized Dealer & Trane",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "CSLB Licensed #1054297",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "A+ Rated With The Better Business Bureau",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Sonoma & Marin Counties From Petaluma",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside North HVAC Services",
+          "images": [
+            {
+              "src": "/images/north-hvac-services/photo-4.jpg",
+              "alt": "North HVAC Services — photo 1"
+            },
+            {
+              "src": "/images/north-hvac-services/photo-8.webp",
+              "alt": "North HVAC Services — photo 2"
+            },
+            {
+              "src": "/images/north-hvac-services/photo-5.jpg",
+              "alt": "North HVAC Services — photo 3"
+            },
+            {
+              "src": "/images/north-hvac-services/photo-6.jpg",
+              "alt": "North HVAC Services — photo 4"
+            },
+            {
+              "src": "/images/north-hvac-services/photo-7.jpg",
+              "alt": "North HVAC Services — photo 5"
+            },
+            {
+              "src": "/images/north-hvac-services/photo-9.jpg",
+              "alt": "North HVAC Services — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "It's always a pleasure to work with Chris & Paul. Definitely recommend.",
+              "author": "Verified review · Petaluma"
+            },
+            {
+              "quote": "Great communication to start! Paul arrived on time and did a great job.",
+              "author": "Verified review · Petaluma"
+            },
+            {
+              "quote": "The entire project was so pleasant we would give it 10 stars if possible!",
+              "author": "Verified review · Petaluma"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with North HVAC Services",
+          "body": "Find us at 3855 Cypress Dr # H, Petaluma, CA 94952. Call (707) 430-3360 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/north-hvac-services/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 430-3360",
+            "href": "tel:+17074303360"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "North HVAC Services is a family-owned heating and air conditioning company keeping Petaluma, Sonoma, and Marin homes comfortable since 1988.",
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Heating Installation & Repair",
+              "description": "Gas furnace repair, maintenance, and high-efficiency replacements to keep your home warm through the coldest North Bay nights."
+            },
+            {
+              "title": "Air Conditioning",
+              "description": "AC repair, tune-ups, and new system installations sized right for your home so you stay cool and energy-efficient all summer."
+            },
+            {
+              "title": "Heat Pumps & Mini-Splits",
+              "description": "As a Mitsubishi Diamond Authorized Dealer, we install and service ductless mini-split and heat pump systems for efficient, all-electric comfort."
+            },
+            {
+              "title": "HVAC Maintenance & Tune-Ups",
+              "description": "Routine maintenance and seasonal tune-ups that extend equipment life, protect efficiency, and head off breakdowns before they start."
+            },
+            {
+              "title": "Indoor Air Quality",
+              "description": "Air quality solutions and ductwork that help your family breathe cleaner, healthier air at home."
+            },
+            {
+              "title": "Commercial HVAC",
+              "description": "Service, repair, and installation for commercial spaces across Sonoma and Marin Counties."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message North HVAC Services and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 3855 Cypress Dr # H, Petaluma, CA 94952."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Monday – Friday: 6:00 AM – 4:00 PM; After hours: Available by appointment."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Petaluma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 430-3360 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 3855 Cypress Dr # H, Petaluma, CA 94952. Call (707) 430-3360 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/north-hvac-services/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 430-3360",
+            "href": "tel:+17074303360"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About North HVAC Services",
+          "heading": "Your neighbors in home comfort",
+          "subheading": "North HVAC Services is a family-owned, full-service heating and air conditioning business dedicated to keeping homes throughout Sonoma and Marin Counties comfortable and safe year",
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Your neighbors in home comfort",
+          "body": [
+            "North HVAC Services is a family-owned, full-service heating and air conditioning business dedicated to keeping homes throughout Sonoma and Marin Counties comfortable and safe year round. Established in 1988, the company's owners bring more than 48 years of combined experience in the trade, and our friends and neighbors have trusted us to care for their homes for decades.",
+            "We're a true family operation. Chris, a well-rounded journeyman who leads the company, partnered with the original owner in 2019 and brought on his brother Paul as a skilled service technician, along with installation manager Ivan. From the owners to our installers, technicians, and office staff, we're committed to quality craftsmanship and honest customer service at fair prices."
+          ],
+          "highlights": [
+            "Family-owned and operated since 1988",
+            "Mitsubishi Diamond Authorized Dealer & Trane Factory Dealer",
+            "CSLB Licensed #1054297",
+            "A+ rated with the Better Business Bureau"
+          ],
+          "image": {
+            "src": "/images/north-hvac-services/story.jpg",
+            "alt": "Inside North HVAC Services",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "38+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/north-hvac-services/photo-4.jpg",
+              "alt": "North HVAC Services — photo 1"
+            },
+            {
+              "src": "/images/north-hvac-services/photo-8.webp",
+              "alt": "North HVAC Services — photo 2"
+            },
+            {
+              "src": "/images/north-hvac-services/photo-5.jpg",
+              "alt": "North HVAC Services — photo 3"
+            },
+            {
+              "src": "/images/north-hvac-services/photo-6.jpg",
+              "alt": "North HVAC Services — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see North HVAC Services",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/north-hvac-services/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach North HVAC Services at 3855 Cypress Dr # H, Petaluma, CA 94952 or call (707) 430-3360.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied:below-floor"
+}

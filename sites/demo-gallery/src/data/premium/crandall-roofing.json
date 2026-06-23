@@ -1,0 +1,431 @@
+{
+  "slug": "crandall-roofing",
+  "name": "Crandall Roofing",
+  "legalName": "Crandall Roofing",
+  "tagline": "Proudly protecting our communities from the elements — including time.",
+  "seoDescription": "Crandall Roofing, Inc. is a Diamond Certified, GAF Master Elite roofing contractor serving Santa Rosa and the North Bay since 1995",
+  "category": "roofing",
+  "categoryLabel": "Roofing",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1995",
+  "contact": {
+    "phone": "(707) 744-3744",
+    "email": "crandallroofing@aol.com",
+    "address": "183 Oceanic Way, Santa Rosa, CA 95407"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/CrandallRoofing",
+    "instagram": "https://www.instagram.com/crandallroofinginc/"
+  },
+  "brand": {
+    "color": "#933628",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 1995",
+          "heading": "North Bay roofing done right since 1995",
+          "subheading": "Diamond Certified, GAF Master Elite roofing for Santa Rosa, Sonoma, Marin, and Napa — from full re-roofs to repairs, sheet metal, and commercial work.",
+          "badges": [
+            "Serving since 1995",
+            "Serving the North Bay since 1995 — 30 years",
+            "Diamond Certified and GAF Master Elite"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/crandall-roofing/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/crandall-roofing/services"
+          },
+          "image": {
+            "src": "/images/crandall-roofing/story.jpg",
+            "alt": "Inside Crandall Roofing",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Crandall Roofing",
+          "items": [
+            {
+              "title": "Serving The North Bay Since 1995 — 30 Years",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Diamond Certified And GAF Master Elite",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "CSLB Licensed #452195 (C-39 Roofing) · BBB A+",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Composition, Tile, Flat/Low-Slope, Metal, Sheet",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Sonoma, Marin & Napa Counties — Santa Rosa",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Three decades of North Bay roofs",
+          "body": [
+            "Crandall Roofing, Inc. has been protecting homes and businesses across the North Bay since 1995. Based at 183 Oceanic Way in Santa Rosa and led by Thomas Carrell, the company has completed thousands of residential and commercial roofing projects throughout Sonoma, Marin, and Napa Counties.",
+            "That track record has earned the credentials that matter: Diamond Certified — awarded to fewer than 5% of California contractors after independent customer surveys — along with GAF Master Elite and ShingleMaster status, Malarkey certification, an A+ BBB accreditation, and CSLB License #452195. From composition shingle to tile, flat, and metal roofs, Crandall builds with Class A fire-rated materials and backs the work with factory-certified extended warranties. The team serves both English- and Spanish-speaking customers."
+          ],
+          "highlights": [
+            "Serving the North Bay since 1995 — 30 years in business",
+            "Diamond Certified and GAF Master Elite contractor",
+            "CSLB Licensed #452195 (C-39 Roofing) · BBB A+ Accredited",
+            "Composition, tile, flat/low-slope, metal, sheet metal & gutters"
+          ],
+          "image": {
+            "src": "/images/crandall-roofing/story.jpg",
+            "alt": "Inside Crandall Roofing",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Roofing services for every home and building",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Roof Replacement & Re-Roofing",
+              "description": "Complete tear-off and replacement in composition shingle, tile, flat/low-slope, and metal — installed with Class A fire-rated materials and factory-certified extended warranties."
+            },
+            {
+              "title": "New Roof Construction",
+              "description": "Roofing for new builds and additions, engineered and installed to North Bay code and the demands of local weather."
+            },
+            {
+              "title": "Roof Repair",
+              "description": "Fast, clean fixes for leaks, storm and wind damage, and aging roofs — with crews that answer the call and get someone out promptly."
+            },
+            {
+              "title": "Roof Maintenance & Restoration",
+              "description": "Inspections and upkeep that extend the life of your existing roof and head off costly water damage before it starts."
+            },
+            {
+              "title": "Sheet Metal Fabrication & Gutters",
+              "description": "Custom sheet metal work, flashing, and seamless gutter systems that move water away from your home for good."
+            },
+            {
+              "title": "Commercial Roofing",
+              "description": "Low-slope and flat-roof systems for commercial and multi-family properties, completed with minimal disruption to tenants and operations."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Crandall Roofing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "The quality of their work is really high. They were professional, they gave us updates throughout the job and they made sure our area was left cleaner than when they arrived.",
+              "author": "Verified review · Santa Rosa"
+            },
+            {
+              "quote": "I was just impressed with how quick and how tidy they were. There was never a mess. They had someone cleaning up all the time. They were good about answering my calls and sending someone out immediately when I had a leak.",
+              "author": "Verified review · Santa Rosa"
+            },
+            {
+              "quote": "The crew on the site was superb. They were respectful of our needs, and they cleaned up daily.",
+              "author": "Verified review · Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Crandall Roofing",
+          "images": [
+            {
+              "src": "/images/crandall-roofing/photo-6.jpg",
+              "alt": "Crandall Roofing — photo 1"
+            },
+            {
+              "src": "/images/crandall-roofing/photo-2.jpg",
+              "alt": "Crandall Roofing — photo 2"
+            },
+            {
+              "src": "/images/crandall-roofing/photo-7.jpg",
+              "alt": "Crandall Roofing — photo 3"
+            },
+            {
+              "src": "/images/crandall-roofing/photo-4.jpg",
+              "alt": "Crandall Roofing — photo 4"
+            },
+            {
+              "src": "/images/crandall-roofing/photo-8.jpg",
+              "alt": "Crandall Roofing — photo 5"
+            },
+            {
+              "src": "/images/crandall-roofing/photo-11.jpg",
+              "alt": "Crandall Roofing — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Crandall Roofing",
+          "body": "Find us at 183 Oceanic Way, Santa Rosa, CA 95407. Call (707) 744-3744 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/crandall-roofing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 744-3744",
+            "href": "tel:+17077443744"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Diamond Certified, GAF Master Elite roofing for Santa Rosa, Sonoma, Marin, and Napa — from full re-roofs to repairs, sheet metal, and commercial work.",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Roofing services for every home and building",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Roof Replacement & Re-Roofing",
+              "description": "Complete tear-off and replacement in composition shingle, tile, flat/low-slope, and metal — installed with Class A fire-rated materials and factory-certified extended warranties."
+            },
+            {
+              "title": "New Roof Construction",
+              "description": "Roofing for new builds and additions, engineered and installed to North Bay code and the demands of local weather."
+            },
+            {
+              "title": "Roof Repair",
+              "description": "Fast, clean fixes for leaks, storm and wind damage, and aging roofs — with crews that answer the call and get someone out promptly."
+            },
+            {
+              "title": "Roof Maintenance & Restoration",
+              "description": "Inspections and upkeep that extend the life of your existing roof and head off costly water damage before it starts."
+            },
+            {
+              "title": "Sheet Metal Fabrication & Gutters",
+              "description": "Custom sheet metal work, flashing, and seamless gutter systems that move water away from your home for good."
+            },
+            {
+              "title": "Commercial Roofing",
+              "description": "Low-slope and flat-roof systems for commercial and multi-family properties, completed with minimal disruption to tenants and operations."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Crandall Roofing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 183 Oceanic Way, Santa Rosa, CA 95407."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 744-3744 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 183 Oceanic Way, Santa Rosa, CA 95407. Call (707) 744-3744 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/crandall-roofing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 744-3744",
+            "href": "tel:+17077443744"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Crandall Roofing",
+          "heading": "Three decades of North Bay roofs",
+          "subheading": "Crandall Roofing, Inc. has been protecting homes and businesses across the North Bay since 1995",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Three decades of North Bay roofs",
+          "body": [
+            "Crandall Roofing, Inc. has been protecting homes and businesses across the North Bay since 1995. Based at 183 Oceanic Way in Santa Rosa and led by Thomas Carrell, the company has completed thousands of residential and commercial roofing projects throughout Sonoma, Marin, and Napa Counties.",
+            "That track record has earned the credentials that matter: Diamond Certified — awarded to fewer than 5% of California contractors after independent customer surveys — along with GAF Master Elite and ShingleMaster status, Malarkey certification, an A+ BBB accreditation, and CSLB License #452195. From composition shingle to tile, flat, and metal roofs, Crandall builds with Class A fire-rated materials and backs the work with factory-certified extended warranties. The team serves both English- and Spanish-speaking customers."
+          ],
+          "highlights": [
+            "Serving the North Bay since 1995 — 30 years in business",
+            "Diamond Certified and GAF Master Elite contractor",
+            "CSLB Licensed #452195 (C-39 Roofing) · BBB A+ Accredited",
+            "Composition, tile, flat/low-slope, metal, sheet metal & gutters"
+          ],
+          "image": {
+            "src": "/images/crandall-roofing/story.jpg",
+            "alt": "Inside Crandall Roofing",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "31+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/crandall-roofing/photo-6.jpg",
+              "alt": "Crandall Roofing — photo 1"
+            },
+            {
+              "src": "/images/crandall-roofing/photo-2.jpg",
+              "alt": "Crandall Roofing — photo 2"
+            },
+            {
+              "src": "/images/crandall-roofing/photo-7.jpg",
+              "alt": "Crandall Roofing — photo 3"
+            },
+            {
+              "src": "/images/crandall-roofing/photo-4.jpg",
+              "alt": "Crandall Roofing — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Crandall Roofing",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/crandall-roofing/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Crandall Roofing at 183 Oceanic Way, Santa Rosa, CA 95407 or call (707) 744-3744.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

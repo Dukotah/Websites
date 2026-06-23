@@ -1,0 +1,442 @@
+{
+  "slug": "dejusto-plumbing",
+  "name": "DeJusto Plumbing",
+  "legalName": "DeJusto Plumbing",
+  "tagline": "Honest, code-compliant plumbing for Sonoma County.",
+  "seoDescription": "DeJusto Plumbing is a licensed, owner-operated plumbing company serving Santa Rosa and Sonoma County since 2016",
+  "category": "plumbing",
+  "categoryLabel": "Plumbing",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2016",
+  "contact": {
+    "phone": "(707) 322-9873",
+    "email": "dejustoplumbing@gmail.com",
+    "address": "2205 Gold Leaf Ln, Santa Rosa, CA 95403"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7:00am–7:00pm"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Emergency service only"
+    }
+  ],
+  "brand": {
+    "color": "#1c5fbf",
+    "fontId": "clean-sans"
+  },
+  "images": {
+    "hero": "/images/dejusto-plumbing/hero.webp",
+    "heroAlt": "DeJusto Plumbing in Santa Rosa, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Santa Rosa, CA · Est. 2016",
+          "heading": "Sonoma County's straight-shooting plumber since 2016",
+          "subheading": "Owner-operated by Mike DeJusto, with 35+ years on high-end homes across Marin, Sonoma, and the Bay Area. Licensed, bonded, and insured (CSLB #995688).",
+          "badges": [
+            "Serving since 2016",
+            "Owner-operated since 2016 — you work with Mike",
+            "35+ years of plumbing experience; in the trade"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/dejusto-plumbing/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/dejusto-plumbing/services"
+          },
+          "image": {
+            "src": "/images/dejusto-plumbing/hero.webp",
+            "alt": "DeJusto Plumbing in Santa Rosa, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why DeJusto Plumbing",
+          "items": [
+            {
+              "title": "Owner-Operated Since 2016 — You Work With Mike",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            },
+            {
+              "title": "35+ Years Of Plumbing Experience; In The Trade",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Licensed, Bonded & Insured — CSLB #995688",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Serving Santa Rosa, Petaluma, Rohnert Park",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Same-Day Help And Emergency Service Available",
+              "body": "When it matters, we move quickly — you won’t be left waiting.",
+              "icon": "clock"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Built on honest work and clean job sites",
+          "body": [
+            "Mike DeJusto has worked in plumbing since 1988, learning the trade on high-end homes and remodels across Marin, Sonoma, San Francisco, and the greater Bay Area. He founded DeJusto Plumbing in 2016 to give Sonoma County a plumber who shows up, explains the work clearly, and stands behind it. He's PHCC school-trained and carries Gastite, Uponor Wirsbo, and fire sprinkler certifications.",
+            "As an owner-operator, Mike does the work himself — from a backed-up drain to a whole-home re-pipe to custom-designed systems for new construction. Customers know him for straightforward communication, fair pricing, and leaving the job site as clean as he found it. His dog Sadie often rides along to keep things friendly."
+          ],
+          "highlights": [
+            "Owner-operated since 2016 — you work with Mike, not a call center",
+            "35+ years of plumbing experience; in the trade since 1988",
+            "Licensed, bonded & insured — CSLB #995688",
+            "Serving Santa Rosa, Petaluma, Rohnert Park, Windsor, Healdsburg & Sonoma County"
+          ],
+          "image": {
+            "src": "/images/dejusto-plumbing/story.webp",
+            "alt": "Inside DeJusto Plumbing",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Residential & commercial plumbing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Emergency & General Repairs",
+              "description": "Same-day help for leaks, clogs, and failures, plus everyday repairs to faucets, sinks, toilets, and garbage disposals. Mike diagnoses the problem and shows you what's wrong before fixing it."
+            },
+            {
+              "title": "Water Heaters & Tankless Systems",
+              "description": "Repair, maintenance, and new installation of tank and tankless water heaters, including warranty work and hot-water recirculation systems."
+            },
+            {
+              "title": "Drain Cleaning & Hydro Jetting",
+              "description": "Clearing slow and blocked drains, sewer clean-outs, and high-pressure hydro jetting to fully scour lines back to flow."
+            },
+            {
+              "title": "Sewer Line Repair & Camera Inspection",
+              "description": "Sewer main repair and replacement with in-line camera inspections to pinpoint root intrusion, breaks, and blockages before any digging."
+            },
+            {
+              "title": "Gas Line Installation & Repair",
+              "description": "Gastite-certified gas line installation, extension, and repair for appliances, ranges, and outdoor connections — done to code."
+            },
+            {
+              "title": "Whole-Home Re-Piping & Appliance Hookups",
+              "description": "Full water re-pipes for aging or failing plumbing, plus appliance installation and custom-designed systems for remodels and new construction."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message DeJusto Plumbing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Mike came out the same day I called and was honest, explaining everything he was doing as he did it. Reliable, tidy, and fair-priced — I'd highly recommend DeJusto Plumbing.",
+              "author": "Verified review · Santa Rosa"
+            },
+            {
+              "quote": "Professional, efficient, and kind. He's the guy for your plumbing needs.",
+              "author": "Verified review · Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside DeJusto Plumbing",
+          "images": [
+            {
+              "src": "/images/dejusto-plumbing/photo-2.webp",
+              "alt": "DeJusto Plumbing — photo 1"
+            },
+            {
+              "src": "/images/dejusto-plumbing/photo-5.jpg",
+              "alt": "DeJusto Plumbing — photo 2"
+            },
+            {
+              "src": "/images/dejusto-plumbing/photo-4.webp",
+              "alt": "DeJusto Plumbing — photo 3"
+            },
+            {
+              "src": "/images/dejusto-plumbing/photo-3.webp",
+              "alt": "DeJusto Plumbing — photo 4"
+            },
+            {
+              "src": "/images/dejusto-plumbing/photo-6.webp",
+              "alt": "DeJusto Plumbing — photo 5"
+            },
+            {
+              "src": "/images/dejusto-plumbing/photo-7.webp",
+              "alt": "DeJusto Plumbing — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with DeJusto Plumbing",
+          "body": "Find us at 2205 Gold Leaf Ln, Santa Rosa, CA 95403. Call (707) 322-9873 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/dejusto-plumbing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 322-9873",
+            "href": "tel:+17073229873"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Owner-operated by Mike DeJusto, with 35+ years on high-end homes across Marin, Sonoma, and the Bay Area. Licensed, bonded, and insured (CSLB #995688).",
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Residential & commercial plumbing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Emergency & General Repairs",
+              "description": "Same-day help for leaks, clogs, and failures, plus everyday repairs to faucets, sinks, toilets, and garbage disposals. Mike diagnoses the problem and shows you what's wrong before fixing it."
+            },
+            {
+              "title": "Water Heaters & Tankless Systems",
+              "description": "Repair, maintenance, and new installation of tank and tankless water heaters, including warranty work and hot-water recirculation systems."
+            },
+            {
+              "title": "Drain Cleaning & Hydro Jetting",
+              "description": "Clearing slow and blocked drains, sewer clean-outs, and high-pressure hydro jetting to fully scour lines back to flow."
+            },
+            {
+              "title": "Sewer Line Repair & Camera Inspection",
+              "description": "Sewer main repair and replacement with in-line camera inspections to pinpoint root intrusion, breaks, and blockages before any digging."
+            },
+            {
+              "title": "Gas Line Installation & Repair",
+              "description": "Gastite-certified gas line installation, extension, and repair for appliances, ranges, and outdoor connections — done to code."
+            },
+            {
+              "title": "Whole-Home Re-Piping & Appliance Hookups",
+              "description": "Full water re-pipes for aging or failing plumbing, plus appliance installation and custom-designed systems for remodels and new construction."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message DeJusto Plumbing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 2205 Gold Leaf Ln, Santa Rosa, CA 95403."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7:00am–7:00pm; Sat–Sun: Emergency service only."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 322-9873 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 2205 Gold Leaf Ln, Santa Rosa, CA 95403. Call (707) 322-9873 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/dejusto-plumbing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 322-9873",
+            "href": "tel:+17073229873"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About DeJusto Plumbing",
+          "heading": "Built on honest work and clean job sites",
+          "subheading": "Mike DeJusto has worked in plumbing since 1988, learning the trade on high-end homes and remodels across Marin, Sonoma, San Francisco, and the greater Bay Area",
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Built on honest work and clean job sites",
+          "body": [
+            "Mike DeJusto has worked in plumbing since 1988, learning the trade on high-end homes and remodels across Marin, Sonoma, San Francisco, and the greater Bay Area. He founded DeJusto Plumbing in 2016 to give Sonoma County a plumber who shows up, explains the work clearly, and stands behind it. He's PHCC school-trained and carries Gastite, Uponor Wirsbo, and fire sprinkler certifications.",
+            "As an owner-operator, Mike does the work himself — from a backed-up drain to a whole-home re-pipe to custom-designed systems for new construction. Customers know him for straightforward communication, fair pricing, and leaving the job site as clean as he found it. His dog Sadie often rides along to keep things friendly."
+          ],
+          "highlights": [
+            "Owner-operated since 2016 — you work with Mike, not a call center",
+            "35+ years of plumbing experience; in the trade since 1988",
+            "Licensed, bonded & insured — CSLB #995688",
+            "Serving Santa Rosa, Petaluma, Rohnert Park, Windsor, Healdsburg & Sonoma County"
+          ],
+          "image": {
+            "src": "/images/dejusto-plumbing/story.webp",
+            "alt": "Inside DeJusto Plumbing",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "10+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/dejusto-plumbing/photo-2.webp",
+              "alt": "DeJusto Plumbing — photo 1"
+            },
+            {
+              "src": "/images/dejusto-plumbing/photo-5.jpg",
+              "alt": "DeJusto Plumbing — photo 2"
+            },
+            {
+              "src": "/images/dejusto-plumbing/photo-4.webp",
+              "alt": "DeJusto Plumbing — photo 3"
+            },
+            {
+              "src": "/images/dejusto-plumbing/photo-3.webp",
+              "alt": "DeJusto Plumbing — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see DeJusto Plumbing",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/dejusto-plumbing/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach DeJusto Plumbing at 2205 Gold Leaf Ln, Santa Rosa, CA 95403 or call (707) 322-9873.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}
