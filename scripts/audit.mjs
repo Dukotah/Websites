@@ -154,7 +154,10 @@ const PLACEHOLDER_AUTHOR =
 // scrape artifact. Returns true when 2+ identical trimmed clauses appear.
 function hasDuplicatedClause(s) {
   if (!s) return false;
-  const clauses = String(s).split(/[:.]/).map((c) => c.trim().toLowerCase()).filter((c) => c.length >= 6);
+  // Require multi-token clauses (a space): splitting on ':' chops times like
+  // "8:30am–4:00pm" into single fragments ("30am–4") that repeat across day
+  // ranges and falsely look duplicated. Real duplicated clauses are phrases.
+  const clauses = String(s).split(/[:.]/).map((c) => c.trim().toLowerCase()).filter((c) => c.length >= 6 && /\s/.test(c));
   const seen = new Set();
   for (const c of clauses) { if (seen.has(c)) return true; seen.add(c); }
   return false;
@@ -445,11 +448,14 @@ function auditProspect(slug, c, confirmed = false, researched = false) {
 // via the SAME photo-score the acquisition + author gates use, and surfaces:
 //   • FUZZY photo (hero or tile) → CRITICAL — a soft/out-of-focus frame is the
 //     owner-vision red line; it must be omitted, never shipped.
-//   • LOW-RES photo → WARN only — these are already-CROPPED OUTPUT files, so a
-//     small portrait gallery/hero-split tile is legitimately ~600-1000px wide and
-//     cleared its SOURCE resolution floor (SLOT_CONTRACT.minW) at acquisition.
-//     Re-flagging output width as critical would wrongly block valid small tiles;
-//     we surface it as a non-blocking heads-up to source a larger original.
+//   • LOW-RES HERO (full-bleed/split) → CRITICAL — a hero renders at its slot size
+//     (full-bleed = 100vw, needs ≥1600w; split side column needs ≥1000w), so a
+//     source under that floor upscales into a pixelated header. This matches the
+//     LOCKED CONTRACT image-qa.mjs already fails on, so the two gates agree.
+//   • LOW-RES tile/aside → WARN only — gallery/story/editorial-aside files are
+//     already-CROPPED OUTPUTS legitimately ~600-1000px wide that cleared their
+//     SOURCE floor at acquisition; flagging their output width critical would
+//     wrongly block valid small tiles, so it's a non-blocking heads-up.
 // A library SVG / missing file is skipped (not a real photo). Best-effort: an
 // unreadable file is reported, never crashes the run.
 const realImgPaths = (c) => {
@@ -490,8 +496,20 @@ async function auditPhotos(slug, c) {
     if (q.fuzzy) {
       // FUZZY = critical (blocks the gate): omit it or replace with a sharp shot.
       issues.push(['critical', `${isHero ? 'HERO ' : ''}photo ${file_} is fuzzy/out-of-focus — omit it (text/library hero) or replace with a sharp shot`]);
+    } else if (isHero && (homeHero?.variant === 'fullbleed' || homeHero?.variant === 'split')) {
+      // The hero renders AT its slot size: full-bleed spans 100vw (needs ≥1600w),
+      // a split side column is a ~40vw 4/5 box (needs ≥1000w). A source under its
+      // slot floor upscales into a pixelated header → CRITICAL, matching the LOCKED
+      // CONTRACT image-qa.mjs already fails on (the two gates must agree). An
+      // editorial hero renders its photo only as a small aside, so it stays a warn.
+      const heroFloor = homeHero.variant === 'fullbleed' ? 1600 : 1000;
+      if (q.w && q.w < heroFloor) {
+        issues.push(['critical', `HERO photo ${file_} is ${q.w}×${q.h} — under the ${homeHero.variant === 'fullbleed' ? 'full-bleed 1600w' : 'side-column 1000w'} floor; it upscales into a pixelated header. Use a larger photo or drop to a text hero`]);
+      } else if (q.lowRes) {
+        issues.push(['warn', `HERO photo ${file_} renders small (${q.w}×${q.h}) — source a higher-resolution original if a larger crop is wanted`]);
+      }
     } else if (q.lowRes) {
-      // LOW-RES on a cropped output = non-blocking warn (source a larger original).
+      // LOW-RES on a cropped side/gallery output = non-blocking warn (source a larger original).
       issues.push(['warn', `${isHero ? 'HERO ' : ''}photo ${file_} renders small (${q.w}×${q.h}) — source a higher-resolution original if a larger crop is wanted`]);
     }
   }

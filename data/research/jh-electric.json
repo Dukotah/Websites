@@ -1,0 +1,33 @@
+{
+  "slug": "jh-electric",
+  "confirmed": true,
+  "established": "2003",
+  "tagline": "Sonoma's owner-run electrician since 2003",
+  "seoDescription": "JH Electric — Sonoma native Javier Hernandez has run his own licensed electrical business in Sonoma, CA since 2003, handling residential and commercial wiring, re-wires and panel upgrades. CSLB #816936.",
+  "heroHeading": "Sonoma's owner-run electrician since 2003",
+  "heroSubheading": "JH Electric is Javier Hernandez's Sonoma electrical business — a Sonoma native who has worked in the trade since 1996 and gone out on his own since 2003, handling residential and commercial wiring, troubleshooting and panel upgrades.",
+  "highlights": [
+    "Owner-operated by Sonoma native Javier Hernandez",
+    "In business since 2003",
+    "Licensed electrician · CSLB #816936",
+    "Residential & commercial wiring",
+    "Troubleshooting, re-wires & panel upgrades"
+  ],
+  "aboutHeading": "About JH Electric",
+  "aboutBody": [
+    "JH Electric is owned and operated by Javier Hernandez, a Sonoma native who began working in the electrical field in 1996 and started his own business in 2003. Based in Sonoma, he serves homeowners and businesses around the Sonoma Valley.",
+    "JH Electric focuses on residential and commercial electrical work for both new construction and remodels, specializing in troubleshooting, re-wiring and panel upgrades. The business is a licensed C-10 electrical contractor, California contractor's license #816936."
+  ],
+  "servicesHeading": "Electrical services",
+  "services": [
+    { "title": "Panel Upgrades", "description": "Upgrading and replacing electrical panels to safely handle modern household and business loads." },
+    { "title": "Wiring & Re-Wiring", "description": "New wiring and re-wires for remodels, additions and new construction, residential or commercial." },
+    { "title": "Troubleshooting & Repair", "description": "Diagnosing and fixing electrical problems, faults and code issues throughout your property." },
+    { "title": "New Construction & Remodels", "description": "Complete electrical for remodels and new builds, handled by the owner himself." }
+  ],
+  "hours": [],
+  "testimonials": [
+    { "quote": "Javier was reasonably priced, knowledgeable and provided very good service and communication — responsive when we needed him on site.", "author": "Verified Yelp review · Sonoma" }
+  ],
+  "notes": "Sources: CSLB license lookup (cslb.ca.gov/816936 — J H ELECTRIC, C-10 Electrical, ACTIVE, exp 01/31/2027 — verified directly), BBB (Sonoma; not accredited, not rated), Yelp, Facebook. Website status: NO website (Facebook + Yelp + directory listings only) — strong target. Owner Javier Hernandez, sole ownership; Sonoma native, in trade since 1996, business since 2003 (BBB start date 2/1/2003). Phone (707) 935-2800 (alt 707-953-7783). Address 104 El Portola Dr, Sonoma, CA 95476. TRUST SIGNAL = verified CSLB #816936 (active C-10). CAUTION applied: a search result wrongly attributed license #872324 to JH — that # actually belongs to S A K Enterprises / AC Electric, so I verified JH's real license (#816936) directly before asserting. Testimonial is a condensed but faithful paraphrase of real Yelp review language (Yelp 403 blocks exact-text capture in this env)."
+}

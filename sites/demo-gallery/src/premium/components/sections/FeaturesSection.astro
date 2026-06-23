@@ -32,22 +32,35 @@ const ICONS: Record<FeatureIcon, string> = {
 };
 const iconFor = (k?: FeatureIcon) => ICONS[k ?? 'check'] ?? ICONS.check;
 
+// Bento layout: an asymmetric tile rhythm (see .bento--features in effects.css)
+// kicks in for 3+ items where there's enough to compose a varied grid. Two or
+// fewer falls back to the clean even grid so a sparse band never looks broken.
+// The span pattern + grid-auto-flow:dense guarantees no holes at any count.
+const useBento = items.length >= 3;
 const cols = items.length % 3 === 0 || items.length > 4 ? 'grid-3' : 'grid-2';
+// Tile indexes that get the wide "lead" treatment (must mirror the nth-child
+// pattern in effects.css: 5n+1 and 5n+4) so they get the brand-tinted base.
+const isLead = (i: number) => i % 5 === 0 || i % 5 === 3;
 ---
 
 <section class="section p-features">
   <div class="container">
     {(data.eyebrow || data.heading || data.intro) && (
-      <div class="section-head" data-reveal>
+      <div class="section-head" data-reveal data-draw-underline>
         {data.eyebrow && <p class="eyebrow">{data.eyebrow}</p>}
         {data.heading && <h2>{data.heading}</h2>}
         {data.intro && <p>{data.intro}</p>}
       </div>
     )}
 
-    <div class:list={['grid', cols, 'p-features__grid']}>
+    <div class:list={['p-features__grid', useBento ? ['bento', 'bento--features'] : ['grid', cols]]}>
       {items.map((it, i) => (
-        <article class="card card--accent p-features__card" data-reveal data-reveal-delay={((i % 3) + 1)}>
+        <article
+          class:list={['card', 'card--accent', 'p-features__card', { 'is-bento-lead': useBento && isLead(i) }]}
+          data-tilt-gloss
+          data-reveal
+          data-reveal-delay={((i % 3) + 1)}
+        >
           <span class="p-features__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

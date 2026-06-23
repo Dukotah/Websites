@@ -1,0 +1,306 @@
+{
+  "slug": "david-coffaro-vineyard-winery",
+  "name": "David Coffaro Vineyard & Winery",
+  "legalName": "David Coffaro Vineyard & Winery",
+  "tagline": "100% estate-grown Dry Creek Valley wines",
+  "seoDescription": "David Coffaro Vineyard & Winery: a family-run Dry Creek Valley estate in Geyserville making 100% estate-grown, produced, and bottled Zinfandel and signature",
+  "category": "winery",
+  "categoryLabel": "Winery",
+  "area": "Geyserville, CA",
+  "city": "Geyserville",
+  "state": "CA",
+  "established": "1994",
+  "contact": {
+    "phone": "(707) 433-9715",
+    "email": "",
+    "address": "7485 Dry Creek Rd"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Thu–Mon",
+      "hours": "11:00am–3:00pm (by appointment)"
+    },
+    {
+      "day": "Tue–Wed",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#5e2330",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Geyserville, CA · Est. 1994",
+          "heading": "100% estate wines from Dry Creek Valley",
+          "subheading": "Every bottle is grown, produced, and bottled on the Coffaro family's Dry Creek Valley estate in Geyserville — Zinfandel and bold red blends, poured by appointment since 1994.",
+          "badges": [
+            "Serving since 1994",
+            "100% estate grown, produced & bottled",
+            "Family-run Dry Creek Valley estate since 1994"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/david-coffaro-vineyard-winery/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/david-coffaro-vineyard-winery/menu"
+          },
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About David Coffaro",
+          "body": [
+            "David and Pat Coffaro bought their Dry Creek Valley property in 1979, when the valley was still a virtually unknown grape-growing region, and made their first estate vintage in 1994. It remains a true family estate: every wine is 100% grown, produced, and bottled right on the property at 7485 Dry Creek Road in Geyserville.",
+            "The winery is best known for richly-flavored Zinfandel and bold, well-priced red blends sold direct to a loyal following through Dave's wine clubs. Tastings are a relaxed, no-pretense affair by appointment — wine poured on an expansive deck overlooking the estate vineyard, with walk-ins welcomed as staffing allows."
+          ],
+          "highlights": [
+            "100% estate grown, produced & bottled",
+            "Family-run Dry Creek Valley estate since 1994",
+            "Zinfandel & signature red blends",
+            "Dave's 6- & 12-bottle wine clubs"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "Visit & taste",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Estate Tastings",
+              "description": "Taste current estate releases by appointment, Thursday–Monday; the $10 fee is waived with a purchase. Walk-ins welcome as availability permits."
+            },
+            {
+              "title": "Dave'S Wine Clubs",
+              "description": "Direct-to-you shipments: the 6-bottle club at $132 a shipment or the 12-bottle club at $252 — members get first access to new releases."
+            },
+            {
+              "title": "Estate Zinfandel & Red Blends",
+              "description": "Signature Dry Creek Zinfandel and proprietary red blends, all estate grown and bottled on site."
+            },
+            {
+              "title": "Buy Direct From The Winery",
+              "description": "Wines are sold straight from the estate and shipped to club members and customers."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why David Coffaro Vineyard & Winery",
+          "items": [
+            {
+              "title": "100% Estate Grown, Produced & Bottled",
+              "body": "Made with care and real ingredients — quality you can taste.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Family-Run Dry Creek Valley Estate Since 1994",
+              "body": "Rooted right here in Geyserville, CA, with a real stake in doing it right.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Zinfandel & Signature Red Blends",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Dave'S 6- & 12-Bottle Wine Clubs",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Tastings By Appointment, Thursday–Monday",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "clock"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Probably the most unpretentious tasting room in all of Dry Creek — laid-back, welcoming, and every wine estate-grown right there on the property.",
+              "author": "Tripadvisor reviewer"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 7485 Dry Creek Rd. Call (707) 433-9715 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/david-coffaro-vineyard-winery/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 433-9715",
+            "href": "tel:+17074339715"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Every bottle is grown, produced, and bottled on the Coffaro family's Dry Creek Valley estate in Geyserville — Zinfandel and bold red blends, poured by appointment since 1994.",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Visit & taste",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Estate Tastings",
+              "description": "Taste current estate releases by appointment, Thursday–Monday; the $10 fee is waived with a purchase. Walk-ins welcome as availability permits."
+            },
+            {
+              "title": "Dave'S Wine Clubs",
+              "description": "Direct-to-you shipments: the 6-bottle club at $132 a shipment or the 12-bottle club at $252 — members get first access to new releases."
+            },
+            {
+              "title": "Estate Zinfandel & Red Blends",
+              "description": "Signature Dry Creek Zinfandel and proprietary red blends, all estate grown and bottled on site."
+            },
+            {
+              "title": "Buy Direct From The Winery",
+              "description": "Wines are sold straight from the estate and shipped to club members and customers."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 7485 Dry Creek Rd."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Thu–Mon: 11:00am–3:00pm (by appointment); Tue–Wed: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Geyserville, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 433-9715 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 7485 Dry Creek Rd. Call (707) 433-9715 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/david-coffaro-vineyard-winery/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 433-9715",
+            "href": "tel:+17074339715"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About David Coffaro Vineyard & Winery",
+          "heading": "About David Coffaro",
+          "subheading": "David and Pat Coffaro bought their Dry Creek Valley property in 1979, when the valley was still a virtually unknown grape-growing region, and made their first estate vintage",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About David Coffaro",
+          "body": [
+            "David and Pat Coffaro bought their Dry Creek Valley property in 1979, when the valley was still a virtually unknown grape-growing region, and made their first estate vintage in 1994. It remains a true family estate: every wine is 100% grown, produced, and bottled right on the property at 7485 Dry Creek Road in Geyserville.",
+            "The winery is best known for richly-flavored Zinfandel and bold, well-priced red blends sold direct to a loyal following through Dave's wine clubs. Tastings are a relaxed, no-pretense affair by appointment — wine poured on an expansive deck overlooking the estate vineyard, with walk-ins welcomed as staffing allows."
+          ],
+          "highlights": [
+            "100% estate grown, produced & bottled",
+            "Family-run Dry Creek Valley estate since 1994",
+            "Zinfandel & signature red blends",
+            "Dave's 6- & 12-bottle wine clubs"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "32+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see David Coffaro Vineyard & Winery",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/david-coffaro-vineyard-winery/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach David Coffaro Vineyard & Winery at 7485 Dry Creek Rd or call (707) 433-9715.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "No email found — add a real email or contact form before sending"
+  ],
+  "photoSource": "library"
+}

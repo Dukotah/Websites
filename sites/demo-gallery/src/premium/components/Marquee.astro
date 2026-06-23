@@ -1,0 +1,48 @@
+---
+/**
+ * Marquee.astro — an infinite, paused-on-hover credential strip.
+ *
+ * Renders TWO identical track copies inside an overflow-clipped, edge-masked
+ * rail; the CSS (.p-marquee in effects.css) translates the track -50% so the
+ * loop is seamless. Paused on hover/focus-within. Under reduced motion the
+ * animation is off and the duplicate clone is hidden (one static, wrapped row).
+ *
+ * Pure presentation, no JS. Renders NOTHING when given no items (graceful) so a
+ * host section can drop it in unconditionally. Token-driven; re-themes per brand.
+ */
+interface Props {
+  /** Credential / badge / rating strings (already-derived by the host). */
+  items?: (string | null | undefined)[];
+  /** Seconds for one full loop. Longer = slower. Defaults to a calm 38s. */
+  duration?: number;
+  /** Optional aria-label for the marquee region. */
+  label?: string;
+}
+const { items = [], duration = 38, label = 'Credentials' } = Astro.props;
+const clean = items.filter((s): s is string => !!s && String(s).trim().length > 0);
+// Need at least 2 to make a marquee read as a strip; 1 would just sit there.
+const show = clean.length >= 2;
+---
+
+{show && (
+  <div
+    class="p-marquee"
+    role="region"
+    aria-label={label}
+    style={`--p-marquee-dur:${duration}s`}
+  >
+    <div class="p-marquee__track">
+      {clean.map((c) => (
+        <span class="p-marquee__item">{c}</span>
+      ))}
+    </div>
+    {/* Duplicate copy — the seamless second half the -50% translate loops to.
+        aria-hidden + data-clone so SR reads the list once and reduced-motion CSS
+        can hide it. */}
+    <div class="p-marquee__track" data-clone aria-hidden="true">
+      {clean.map((c) => (
+        <span class="p-marquee__item">{c}</span>
+      ))}
+    </div>
+  </div>
+)}

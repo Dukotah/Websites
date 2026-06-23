@@ -341,6 +341,9 @@ function enrichmentFromResearch(r, row, { authoritative = true } = {}) {
   // An auto file (confirmed:false) is a CACHED SCRAPE: keep its honest richness
   // so a thin extraction still flags needs-review instead of shipping silently.
   e.richness = authoritative ? 100 : (r._richness ?? scoreRichness(e));
+  // Carry the confirmed/authoritative signal so deriveStatus can tell a
+  // human-verified lead (confirmed:true research) apart from a thin auto-scrape.
+  e.confirmed = authoritative;
   return e;
 }
 
@@ -498,7 +501,7 @@ async function agentDroppedPhotos(slug) {
 // the premium author consume photos through this identical logic.
 // Returns { media, photoSource, photoFlags, heroPhotoTierToSet }.
 // ---------------------------------------------------------------------------
-async function acquireMediaFor(slug, row, e, catKey, { authoritative = false, skipWikimedia = false } = {}) {
+async function acquireMediaFor(slug, row, e, catKey, { authoritative = false, skipWikimedia = false, skipOsm = false } = {}) {
   const photoFlags = [];
   let osmFacts = null;
   let media = await agentDroppedPhotos(slug);
@@ -526,6 +529,7 @@ async function acquireMediaFor(slug, row, e, catKey, { authoritative = false, sk
       ownMax: 16,
       min: 2,
       skipWikimedia,
+      skipOsm,
       heroHint: e?.images?.[0],
     });
     media = got.media;
@@ -589,7 +593,10 @@ async function acquireMediaFor(slug, row, e, catKey, { authoritative = false, sk
 // ---------------------------------------------------------------------------
 function deriveStatus(row, e, media, photoSource, templated, mismatchName = '') {
   const flags = [];
-  if (!row.website) flags.push('No website provided — research & verify manually');
+  // A confirmed:true research file IS the "research & verify manually" step, so a
+  // human-verified lead is never gated on having no prior website — that's the
+  // whole point of these no-website/bad-website outreach targets.
+  if (!row.website && !e?.confirmed) flags.push('No website provided — research & verify manually');
   else if (mismatchName) flags.push(`Website mismatch — ${row.website} identifies as "${mismatchName}", not ${row.name}; scraped facts/photos discarded. Verify the correct URL.`);
   else if (!e) flags.push('Website unreachable — copy not built from real data');
   else if ((e.richness ?? 0) < 35) flags.push('Thin research — verify facts & rewrite copy');
@@ -604,8 +611,14 @@ function deriveStatus(row, e, media, photoSource, templated, mismatchName = '') 
   if (templated.includes('service-descriptions')) flags.push('Service descriptions need a polish pass');
   if (templated.includes('about')) flags.push('About copy is templated — rewrite from research');
   const hasRealEmail = Boolean(e?.email || row.email);
-  if (!hasRealEmail) flags.push('No email found — add a real email or contact form before sending');
-  if (!e?.hours?.length) flags.push('Hours are a generic default (Mon–Fri 8–6) — verify before sending');
+  // Confirmed leads ship with a verified phone + the site's own contact form,
+  // which is exactly the "or contact form" the flag accepts — so a human-verified
+  // phone-first business (common for trades) isn't blocked on a missing email.
+  if (!hasRealEmail && !e?.confirmed) flags.push('No email found — add a real email or contact form before sending');
+  // Only flag missing hours for unverified leads. A confirmed:true build hides
+  // hours it couldn't verify (the author sets showHours:false), so it never
+  // displays a fake default — no need to gate a human-verified lead on it.
+  if (!e?.hours?.length && !e?.confirmed) flags.push('Hours are a generic default (Mon–Fri 8–6) — verify before sending');
   const status = flags.length ? 'needs-review' : 'ready';
   return { status, flags };
 }

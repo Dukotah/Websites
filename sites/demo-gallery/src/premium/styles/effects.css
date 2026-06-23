@@ -1,0 +1,402 @@
+/* ==========================================================================
+   effects.css — the "alive" layer over the premium kit.
+
+   Imported at the TOP of premium.css so its decorative rules sit BENEATH the
+   component vocabulary and can be overridden by anything more specific. Every
+   rule here is:
+     - token-driven (no hardcoded brand hex — only --p-* / engine vars),
+     - compositor-only animated (transform / opacity / filter / background-pos
+       / gradient — never layout properties → ZERO CLS),
+     - a hard no-op under prefers-reduced-motion (static fallback = prior look).
+
+   Sections:
+     1. Animated aurora / mesh-gradient on dark .section--ink bands
+     2. Mouse spotlight on .section--ink (paints --mx/--my set by effects.ts)
+     3. 3D tilt surface prep for .card / [data-tilt]
+     4. Self-drawing accent lines (eyebrow rule, section underlines)
+     5. Bento grid layouts (Features + Services)
+     6. Sticky-scroll storytelling (Story)
+     7. Marquee credential strip
+     8. Editorial type polish (drop-cap, serif/sans contrast)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. ANIMATED AURORA / MESH GRADIENT — dark .section--ink bands only.
+
+   premium.css gives .section--ink two STATIC radial brand pools + the structure
+   base. We keep that as the floor (the reduced-motion / no-anim fallback) and
+   layer a slow, drifting aurora ON TOP via a decorative ::after that animates
+   only background-position + a gentle hue drift — purely compositor/paint, no
+   reflow. The structure base + readable text are never touched, so contrast is
+   identical to today. One soft mesh, restrained, premium.
+   ========================================================================== */
+.premium .section--ink {
+  /* expose the cursor-spotlight position vars with a neutral default so the
+     ::before paint is valid even before effects.ts runs / on touch. */
+  --mx: 50%;
+  --my: 0%;
+  isolation: isolate; /* keep the decorative layers in their own stacking ctx */
+}
+
+.premium .section--ink > * {
+  position: relative;
+  z-index: 1; /* content sits above the aurora + spotlight paint layers */
+}
+
+.premium .section--ink::after {
+  content: '';
+  position: absolute;
+  inset: -20%; /* bleed so the drifting blobs never reveal an edge */
+  z-index: 0;
+  pointer-events: none;
+  /* Three brand-tinted radial blobs at large size; animating their POSITIONS
+     (background-position) drifts them like an aurora. Colors are all
+     token-derived mixes of --p-primary over the structure band. */
+  background-image:
+    radial-gradient(38% 44% at 22% 28%, color-mix(in srgb, var(--p-primary) 32%, transparent), transparent 70%),
+    radial-gradient(42% 38% at 78% 22%, color-mix(in srgb, var(--p-accent, var(--p-primary)) 26%, transparent), transparent 72%),
+    radial-gradient(46% 50% at 60% 88%, color-mix(in srgb, var(--p-primary) 22%, transparent), transparent 70%);
+  background-repeat: no-repeat;
+  background-size: 140% 140%, 130% 130%, 150% 150%;
+  background-position: 0% 0%, 100% 0%, 50% 100%;
+  filter: blur(34px) saturate(1.1);
+  opacity: 0.85;
+  mix-blend-mode: screen; /* the blobs ADD light over the dark band → lit feel */
+  will-change: background-position, transform;
+  animation: p-aurora-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes p-aurora-drift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 50% 100%;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    background-position: 30% 20%, 70% 30%, 35% 70%;
+    transform: translate3d(0, -1.5%, 0) scale(1.04);
+  }
+  66% {
+    background-position: 60% 8%, 40% 60%, 70% 85%;
+    transform: translate3d(0, 1%, 0) scale(1.02);
+  }
+  100% {
+    background-position: 100% 30%, 10% 10%, 30% 60%;
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+}
+
+/* A second, slower conic shimmer adds depth without a second element: we reuse
+   the section's existing ::before from premium.css? No — premium.css uses the
+   background shorthand on .section--ink itself, and .section--deep uses ::before.
+   .section--ink has its ::before free, so claim it for the spotlight (below). */
+
+/* ==========================================================================
+   2. MOUSE SPOTLIGHT — soft radial glow following the cursor on dark bands.
+
+   effects.ts sets --mx/--my (in %) on each .section--ink as the pointer moves.
+   We paint a soft radial via ::before. On touch / no-JS it stays at the neutral
+   default (top-center), reading as a tasteful top glow rather than nothing.
+   ========================================================================== */
+.premium .section--ink::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    26rem 26rem at var(--mx) var(--my),
+    color-mix(in srgb, var(--p-primary) 30%, #fff 4%),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 420ms ease;
+  mix-blend-mode: screen;
+  will-change: opacity;
+}
+/* Reveal the spotlight only while the pointer is over the band (class toggled by
+   effects.ts). Fine-pointer only via the JS gate; never on touch. */
+.premium .section--ink.is-spotlit::before { opacity: 0.55; }
+
+/* ==========================================================================
+   3. 3D TILT — perspective prep for .card and [data-tilt].
+
+   effects.ts writes --tilt-rx / --tilt-ry / --tilt-tz (deg/px) on hover and
+   eases them back to 0 on leave. The transform is compositor-only. We give the
+   element a transform-style + a subtle gloss that tracks the same pointer vars.
+   Gated to hover + fine pointer; reduced-motion clears it entirely.
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  .premium .card,
+  .premium [data-tilt] {
+    --tilt-rx: 0deg;
+    --tilt-ry: 0deg;
+    transform-style: preserve-3d;
+  }
+  /* When tilt is active, the JS adds .is-tilting; we then drive transform from
+     the vars. We DON'T override the base .card:hover translateY — we compose:
+     the tilt rotates, hover (from premium.css) lifts. To avoid the two transform
+     declarations clobbering each other, the tilt rule wins while tilting and
+     folds the lift into itself. */
+  .premium .card.is-tilting,
+  .premium [data-tilt].is-tilting {
+    transform: perspective(900px)
+      rotateX(var(--tilt-rx))
+      rotateY(var(--tilt-ry))
+      translateY(-4px);
+    transition: transform 120ms ease-out;
+  }
+  .premium .card.is-tilting.is-resetting,
+  .premium [data-tilt].is-tilting.is-resetting {
+    transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  /* Pointer-tracking gloss: a soft highlight that slides across the card face,
+     reinforcing the 3D read. Uses the same --mx/--my the JS sets per-card. */
+  .premium .card[data-tilt-gloss]::after,
+  .premium [data-tilt][data-tilt-gloss]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(
+      18rem 18rem at var(--gx, 50%) var(--gy, 0%),
+      color-mix(in srgb, #fff 22%, transparent),
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 300ms ease;
+    mix-blend-mode: soft-light;
+  }
+  .premium .card.is-tilting[data-tilt-gloss]::after,
+  .premium [data-tilt].is-tilting[data-tilt-gloss]::after { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium .card,
+  .premium [data-tilt] { transform: none !important; }
+}
+
+/* ==========================================================================
+   4. SELF-DRAWING ACCENT LINES.
+
+   Section-head eyebrow rules and a new heading underline draw in (scaleX) when
+   the head reveals. Gated behind .reveal-armed (JS + motion-capable), so the
+   line is simply drawn at full width without JS / under reduced motion.
+   ========================================================================== */
+.premium.reveal-armed .section-head[data-reveal] .eyebrow::before {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 560ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
+}
+.premium.reveal-armed .section-head[data-reveal].is-visible .eyebrow::before {
+  transform: scaleX(1);
+}
+.premium.reveal-armed .section--ink .section-head[data-reveal] .eyebrow::before,
+.premium.reveal-armed .section-head--center[data-reveal] .eyebrow::before {
+  transform-origin: center;
+}
+
+/* A drawn underline under section-head h2s — opt-in via [data-draw-underline] so
+   it never collides with components that style h2::after themselves. */
+.premium .section-head[data-draw-underline] h2 {
+  position: relative;
+  padding-bottom: 0.4rem;
+}
+.premium .section-head[data-draw-underline] h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 3.5rem;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--p-primary), color-mix(in srgb, var(--p-primary) 30%, transparent));
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.premium .section-head--center[data-draw-underline] h2::after { left: 50%; transform: translateX(-50%) scaleX(1); transform-origin: center; }
+.premium.reveal-armed .section-head[data-draw-underline][data-reveal] h2::after { transform: scaleX(0); transform-origin: left; transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1) 220ms; }
+.premium.reveal-armed .section-head--center[data-draw-underline][data-reveal] h2::after { transform: translateX(-50%) scaleX(0); transform-origin: center; }
+.premium.reveal-armed .section-head[data-draw-underline][data-reveal].is-visible h2::after { transform: scaleX(1); }
+.premium.reveal-armed .section-head--center[data-draw-underline][data-reveal].is-visible h2::after { transform: translateX(-50%) scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .premium .section-head[data-reveal] .eyebrow::before,
+  .premium .section-head[data-draw-underline] h2::after { transform: scaleX(1) !important; transition: none !important; }
+  .premium .section-head--center[data-draw-underline] h2::after { transform: translateX(-50%) scaleX(1) !important; }
+  .premium .section--ink::after { animation: none !important; }
+  .premium .section--ink.is-spotlit::before { opacity: 0 !important; }
+}
+
+/* ==========================================================================
+   5. BENTO GRID — asymmetric tile spans for Features + Services card grids.
+
+   The components render a plain `.grid`/`.grid-N` of cards. We add a `.bento`
+   modifier whose children flow into a dense auto-rows grid; selected nth-cards
+   span 2 columns / 2 rows for visual rhythm. `grid-auto-flow: dense` + the
+   span pattern guarantee NO HOLES for any item count (1..N): a lone large tile
+   simply fills the row, and the dense packer back-fills gaps.
+
+   Zero CLS: spans are declarative grid placement, fully resolved at first paint.
+   ========================================================================== */
+.premium .bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6-col base → clean 2/3/6 splits */
+  grid-auto-rows: minmax(0, auto);
+  grid-auto-flow: row dense;
+  gap: var(--p-space-6);
+}
+/* Each tile spans 2 of 6 cols by default → 3 across. */
+.premium .bento > * { grid-column: span 2; }
+
+/* Feature tiles: make the 1st and 6th (every 5-cycle) hero tiles spanning 3 cols
+   (half-width) so a rhythm of big/small emerges. Pattern repeats every 5 items
+   and always tiles cleanly thanks to dense flow. */
+.premium .bento--features > *:nth-child(5n + 1) { grid-column: span 3; }
+.premium .bento--features > *:nth-child(5n + 4) { grid-column: span 3; }
+
+/* Services tiles: a different cadence — the lead tile spans 4 (wide feature),
+   then pairs of 2. Dense flow keeps it hole-free at any count. */
+.premium .bento--services > *:nth-child(7n + 1) { grid-column: span 4; }
+.premium .bento--services > *:nth-child(7n + 1) { grid-row: span 2; }
+.premium .bento--services > *:nth-child(7n + 4) { grid-column: span 4; }
+
+/* The wide/tall tiles get a touch more presence: bigger title, brand-tinted base
+   so they read as "feature" tiles, not just stretched cards. Token-driven. */
+.premium .bento > .is-bento-lead {
+  background:
+    radial-gradient(40rem 28rem at 110% -20%, var(--p-primary-tint), transparent 64%),
+    linear-gradient(180deg, color-mix(in srgb, var(--p-surface) 100%, #fff 0%), var(--p-surface));
+}
+
+/* Tablet: collapse to a 2-up rhythm. Reset all spans to 1 unit of a 2-col grid
+   except the designated leads, which go full-width. */
+@media (max-width: 900px) {
+  .premium .bento { grid-template-columns: repeat(2, 1fr); }
+  .premium .bento > * { grid-column: span 1; grid-row: auto; }
+  .premium .bento--features > *:nth-child(5n + 1),
+  .premium .bento--services > *:nth-child(7n + 1) { grid-column: span 2; }
+  .premium .bento--features > *:nth-child(5n + 4),
+  .premium .bento--services > *:nth-child(7n + 4) { grid-column: span 1; }
+}
+/* Mobile: clean single-column stack — every tile full-width, no spans, no holes. */
+@media (max-width: 560px) {
+  .premium .bento { grid-template-columns: 1fr; }
+  .premium .bento > *,
+  .premium .bento--features > *:nth-child(5n + 1),
+  .premium .bento--services > *:nth-child(7n + 1) { grid-column: span 1; grid-row: auto; }
+}
+
+/* ==========================================================================
+   6. STICKY-SCROLL STORYTELLING — Story media/heading pins, steps scroll past.
+
+   StorySection adds .p-story--sticky when it has an image AND multiple body
+   paragraphs. The figure column becomes position:sticky and holds in view while
+   the prose paragraphs scroll past it. Pure CSS (no scroll-jacking). Collapses
+   to normal flow on mobile and under reduced motion (sticky removed → static).
+   Zero CLS: sticky doesn't reflow siblings; space is reserved by the grid.
+   ========================================================================== */
+@media (min-width: 821px) and (prefers-reduced-motion: no-preference) {
+  .premium .p-story--sticky .p-story__grid { align-items: start; }
+  .premium .p-story--sticky .p-story__figure {
+    position: sticky;
+    top: calc(var(--p-header-h, 4.5rem) + 2rem);
+    align-self: start;
+  }
+  /* Give the prose column extra breathing room so there's genuine scroll travel
+     for the figure to pin against — the storytelling beat. Steps reveal in turn
+     via their own [data-reveal]. */
+  .premium .p-story--sticky .p-story__steps { display: grid; gap: clamp(2.5rem, 1.5rem + 5vh, 6rem); }
+}
+
+/* ==========================================================================
+   7. MARQUEE — infinite credential strip, paused on hover.
+
+   Marquee.astro renders two identical track copies inside an overflow-clip rail;
+   translating the track by -50% loops seamlessly. Paused on hover/focus-within.
+   Reduced motion → no animation, track shows statically (scrollable if it
+   overflows, but content is fully present). Zero CLS (fixed rail height).
+   ========================================================================== */
+.premium .p-marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.premium .p-marquee__track {
+  display: flex;
+  width: max-content;
+  gap: clamp(2rem, 1.4rem + 2vw, 3.5rem);
+  align-items: center;
+  animation: p-marquee-scroll var(--p-marquee-dur, 38s) linear infinite;
+  will-change: transform;
+}
+.premium .p-marquee:hover .p-marquee__track,
+.premium .p-marquee:focus-within .p-marquee__track { animation-play-state: paused; }
+@keyframes p-marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.premium .p-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  white-space: nowrap;
+  font-size: var(--p-text-sm);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--p-ink-soft);
+}
+.premium .p-marquee__item::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--p-primary);
+  flex: none;
+  opacity: 0.7;
+}
+.premium .section--ink .p-marquee__item { color: var(--p-on-dark-soft); }
+.premium .section--ink .p-marquee__item::before { background: color-mix(in srgb, var(--p-primary) 50%, #fff); }
+@media (prefers-reduced-motion: reduce) {
+  .premium .p-marquee__track { animation: none; transform: none; flex-wrap: wrap; justify-content: center; }
+  .premium .p-marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow: visible;
+  }
+  /* Under reduced motion show one copy only (hide the duplicate clone). */
+  .premium .p-marquee__track[data-clone] { display: none; }
+}
+
+/* ==========================================================================
+   8. EDITORIAL TYPE POLISH — drop-cap + serif/sans contrast.
+
+   Opt-in drop-cap on the first paragraph of editorial/story prose via
+   [data-dropcap]. Uses initial-letter where supported with a float fallback, so
+   it NEVER shifts surrounding text (the float reserves its own box). Token-fonts
+   only — the display face leads the cap, the body face runs the paragraph, so
+   the serif/sans contrast emerges naturally from the chosen pairing.
+   ========================================================================== */
+.premium [data-dropcap] > p:first-of-type::first-letter {
+  font-family: var(--p-font-display);
+  font-weight: 750;
+  color: var(--p-primary);
+  /* initial-letter sinks the cap 3 lines on supporting browsers with no reflow */
+  -webkit-initial-letter: 3 3;
+  initial-letter: 3 3;
+  margin-inline-end: 0.6rem;
+  line-height: 0.8;
+}
+/* Float fallback for browsers without initial-letter (still no CLS — the float
+   takes its own box and text wraps around it). Scoped via @supports-not. */
+@supports not (initial-letter: 3) {
+  .premium [data-dropcap] > p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.4em;
+    line-height: 0.74;
+    padding-block-start: 0.05em;
+    margin-inline-end: 0.5rem;
+  }
+}

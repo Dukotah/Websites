@@ -1,0 +1,305 @@
+{
+  "slug": "titan-roofing-and-construction",
+  "name": "Titan Roofing and Construction",
+  "legalName": "Titan Roofing and Construction",
+  "tagline": "Looking for a reliable roofing contractor? Titan Roofing offers quality roofing services in Santa Rosa, CA",
+  "seoDescription": "Looking for a reliable roofing contractor? Titan Roofing offers quality roofing services in Santa Rosa, CA. Contact us today for a free quote.",
+  "category": "roofing",
+  "categoryLabel": "Roofing",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 495-8685",
+    "email": "abel@titanroofer.com",
+    "address": "4589 Arlington Ave"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/TitanRoofingandConstruction/"
+  },
+  "brand": {
+    "color": "#a6402f",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Honest roofing across Santa Rosa, CA",
+          "subheading": "Call 707-495-8685 or fill out the form to the right to speak with our friendly roofing staff.",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/titan-roofing-and-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/titan-roofing-and-construction/services"
+          },
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Titan Roofing and Construction",
+          "body": [
+            "Call 707-495-8685 or fill out the form to the right to speak with our friendly roofing staff.",
+            "Your Santa Rosa, CA roof is an important part of your home, and if you feel that there is a problem with it it’s vital that you have it looked at as soon as possible. But it’s not easy to know what you’re looking at, and it can also be dangerous for the average person."
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Free Santa Rosa, CA Roofing Quote",
+              "description": "Free Santa Rosa, CA Roofing Quote handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Our Services Residential Roofing Repair",
+              "description": "Our Services Residential Roofing Repair from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Residential Roofing Replacement",
+              "description": "Residential Roofing Replacement from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Commercial Roofing Repair",
+              "description": "Commercial Roofing Repair from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Commercial Roofing Replacement",
+              "description": "Commercial Roofing Replacement handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "METAL ROOFING",
+              "description": "METAL ROOFING from start to finish across Santa Rosa, CA — and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Titan Roofing and Construction and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "We are dedicated to providing the highest quality roofing service in the Santa Rosa industry, custom fit to meet all our customer's needs. Our knowledgeable team of experts are ready to help. Call us at 707-495-8685 today! Titan Roofing and Construction"
+            },
+            {
+              "quote": "We are dedicated to providing the highest quality roofing service in the Santa Rosa industry, custom fit to meet all our customer's needs. Our knowledgeable team of experts are ready to help. Call us at 707-495-8685 today!"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Titan Roofing and Construction",
+          "body": "Find us at 4589 Arlington Ave. Call (707) 495-8685 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/titan-roofing-and-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 495-8685",
+            "href": "tel:+17074958685"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Call 707-495-8685 or fill out the form to the right to speak with our friendly roofing staff.",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Free Santa Rosa, CA Roofing Quote",
+              "description": "Free Santa Rosa, CA Roofing Quote handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Our Services Residential Roofing Repair",
+              "description": "Our Services Residential Roofing Repair from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Residential Roofing Replacement",
+              "description": "Residential Roofing Replacement from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Commercial Roofing Repair",
+              "description": "Commercial Roofing Repair from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Commercial Roofing Replacement",
+              "description": "Commercial Roofing Replacement handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "METAL ROOFING",
+              "description": "METAL ROOFING from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "TILE ROOFING",
+              "description": "TILE ROOFING handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Our Service Area",
+              "description": "Real experience behind every our service area job, big or small."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Titan Roofing and Construction and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 4589 Arlington Ave."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 495-8685 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 4589 Arlington Ave. Call (707) 495-8685 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/titan-roofing-and-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 495-8685",
+            "href": "tel:+17074958685"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Titan Roofing and Construction",
+          "heading": "About Titan Roofing and Construction",
+          "subheading": "Call 707-495-8685 or fill out the form to the right to speak with our friendly roofing staff.",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Titan Roofing and Construction",
+          "body": [
+            "Call 707-495-8685 or fill out the form to the right to speak with our friendly roofing staff.",
+            "Your Santa Rosa, CA roof is an important part of your home, and if you feel that there is a problem with it it’s vital that you have it looked at as soon as possible. But it’s not easy to know what you’re looking at, and it can also be dangerous for the average person."
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Titan Roofing and Construction",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/titan-roofing-and-construction/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Titan Roofing and Construction at 4589 Arlington Ave or call (707) 495-8685.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Generic fallback headline with no research or founding year — research a specific, earned hero line"
+  ],
+  "photoSource": "library"
+}

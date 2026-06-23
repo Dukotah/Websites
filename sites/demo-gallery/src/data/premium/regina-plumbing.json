@@ -1,0 +1,336 @@
+{
+  "slug": "regina-plumbing",
+  "name": "Regina Plumbing",
+  "legalName": "Regina Plumbing",
+  "tagline": "BBB-accredited plumbing serving Cloverdale and north Sonoma County",
+  "seoDescription": "Regina Plumbing is a BBB A+ accredited, family-run plumbing contractor in Cloverdale, CA serving Cloverdale, Healdsburg, Geyserville and north Sonoma County —",
+  "category": "plumbing",
+  "categoryLabel": "Plumbing",
+  "area": "Cloverdale, CA",
+  "city": "Cloverdale",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 431-0300",
+    "email": "",
+    "address": "218 N Washington St"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7:30am–4:00pm"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "8:30am–4:00pm"
+    }
+  ],
+  "brand": {
+    "color": "#2068d6",
+    "fontId": "modern-grotesk"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Cloverdale, CA",
+          "heading": "Cloverdale's BBB-accredited plumbing contractor",
+          "subheading": "Regina Plumbing is a long-established, family-run plumber on N Washington St in Cloverdale, serving north Sonoma County with repairs, water heaters, re-piping and septic work",
+          "badges": [
+            "Serving Cloverdale & north Sonoma County",
+            "BBB A+ accredited since 2017",
+            "Licensed & insured · CSLB #857665"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/regina-plumbing/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/regina-plumbing/services"
+          },
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Plumbing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Plumbing Repairs & Service",
+              "description": "Diagnosis and repair of leaks, fixtures, drains and everyday plumbing problems for homes and businesses."
+            },
+            {
+              "title": "Water Heater Installation & Repair",
+              "description": "Repair and replacement of tank and tankless water heaters, sized and installed to code."
+            },
+            {
+              "title": "Re-Piping",
+              "description": "Whole-house and partial re-piping to replace aging or failing supply lines."
+            },
+            {
+              "title": "Septic & General Repairs",
+              "description": "Septic service plus the full range of general residential and commercial plumbing repairs across north Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Regina Plumbing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Regina Plumbing",
+          "body": [
+            "Regina Plumbing is a family-run plumbing contractor based on N Washington Street in Cloverdale, serving Cloverdale, Healdsburg, Geyserville and the rest of north Sonoma County. Longtime neighbors know the Regina team as honest, experienced and efficient — the kind of local plumber who shows up, does the highest-quality work and charges a fair price.",
+            "From everyday repairs and water-heater installs to whole-house re-piping, septic and general service work, Regina Plumbing handles residential and commercial jobs across the north county. The company is fully licensed and insured under California contractor's license #857665 and is BBB A+ accredited (accredited since 2017)."
+          ],
+          "highlights": [
+            "Serving Cloverdale & north Sonoma County",
+            "BBB A+ accredited since 2017",
+            "Licensed & insured · CSLB #857665",
+            "4.8 stars on Yelp (51 reviews)"
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Regina Plumbing is outstanding, professional and does the highest-quality work at a fair price.",
+              "author": "Verified Yelp review · Cloverdale"
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Regina Plumbing",
+          "items": [
+            {
+              "title": "Serving Cloverdale & North Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "BBB A+ Accredited Since 2017",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Licensed & Insured · CSLB #857665",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "4.8 Stars On Yelp (51 Reviews)",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Repairs, Water Heaters, Re-Piping & Septic",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Regina Plumbing",
+          "body": "Find us at 218 N Washington St. Call (707) 431-0300 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/regina-plumbing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 431-0300",
+            "href": "tel:+17074310300"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Regina Plumbing is a long-established, family-run plumber on N Washington St in Cloverdale, serving north Sonoma County with repairs, water heaters, re-piping and septic work",
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Plumbing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Plumbing Repairs & Service",
+              "description": "Diagnosis and repair of leaks, fixtures, drains and everyday plumbing problems for homes and businesses."
+            },
+            {
+              "title": "Water Heater Installation & Repair",
+              "description": "Repair and replacement of tank and tankless water heaters, sized and installed to code."
+            },
+            {
+              "title": "Re-Piping",
+              "description": "Whole-house and partial re-piping to replace aging or failing supply lines."
+            },
+            {
+              "title": "Septic & General Repairs",
+              "description": "Septic service plus the full range of general residential and commercial plumbing repairs across north Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Regina Plumbing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 218 N Washington St."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7:30am–4:00pm; Sat–Sun: 8:30am–4:00pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Cloverdale, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 431-0300 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 218 N Washington St. Call (707) 431-0300 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/regina-plumbing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 431-0300",
+            "href": "tel:+17074310300"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Regina Plumbing",
+          "heading": "About Regina Plumbing",
+          "subheading": "Regina Plumbing is a family-run plumbing contractor based on N Washington Street in Cloverdale, serving Cloverdale, Healdsburg, Geyserville and the rest of north Sonoma County",
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Regina Plumbing",
+          "body": [
+            "Regina Plumbing is a family-run plumbing contractor based on N Washington Street in Cloverdale, serving Cloverdale, Healdsburg, Geyserville and the rest of north Sonoma County. Longtime neighbors know the Regina team as honest, experienced and efficient — the kind of local plumber who shows up, does the highest-quality work and charges a fair price.",
+            "From everyday repairs and water-heater installs to whole-house re-piping, septic and general service work, Regina Plumbing handles residential and commercial jobs across the north county. The company is fully licensed and insured under California contractor's license #857665 and is BBB A+ accredited (accredited since 2017)."
+          ],
+          "highlights": [
+            "Serving Cloverdale & north Sonoma County",
+            "BBB A+ accredited since 2017",
+            "Licensed & insured · CSLB #857665",
+            "4.8 stars on Yelp (51 reviews)"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Regina Plumbing",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/regina-plumbing/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Regina Plumbing at 218 N Washington St or call (707) 431-0300.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

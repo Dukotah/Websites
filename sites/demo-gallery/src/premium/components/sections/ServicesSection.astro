@@ -26,6 +26,13 @@ const isRows = layout === 'rows';
 
 // Pick a sensible grid density so cards fill the row without stranding one.
 const cols = items.length % 3 === 0 || items.length > 4 ? 'grid-3' : 'grid-2';
+// Bento rhythm for the grid layout with 3+ offerings (see .bento--services in
+// effects.css). Dense flow guarantees no holes for any count. Cards WITH photos
+// keep the even grid — a media tile spanning 2 cols/rows distorts the crop — so
+// bento only applies when the grid is text-led (no item images).
+const anyImage = items.some((it) => !!it.image);
+const useBento = !isRows && items.length >= 3 && !anyImage;
+const isLead = (i: number) => i % 7 === 0;
 
 // In the grid layout, move the intro into a split section-head (heading left,
 // lede right) so this section doesn't read as another centered eyebrow→grid
@@ -77,9 +84,14 @@ const splitHead = !isRows && !!intro;
         ))}
       </div>
     ) : (
-      <div class:list={['grid', cols, 'p-services__cards']}>
+      <div class:list={['p-services__cards', useBento ? ['bento', 'bento--services'] : ['grid', cols]]}>
         {items.map((item, i) => (
-          <article class="card card--accent p-services__card" data-reveal data-reveal-delay={((i % 3) + 1)}>
+          <article
+            class:list={['card', 'card--accent', 'p-services__card', { 'is-bento-lead': useBento && isLead(i) }]}
+            data-tilt-gloss
+            data-reveal
+            data-reveal-delay={((i % 3) + 1)}
+          >
             {item.image && (
               <div class="media p-services__card-media">
                 <SiteImage

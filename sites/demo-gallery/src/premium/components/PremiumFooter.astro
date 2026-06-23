@@ -113,11 +113,15 @@ const socials = [
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: center;
     gap: clamp(2rem, 1.2rem + 3.5vw, 4.5rem);
     padding-block: clamp(3rem, 2.4rem + 2.5vw, 5rem);
   }
-  .p-ft__brand { flex: 2 1 16rem; max-width: 32rem; }
-  .p-ft__col { flex: 1 1 9rem; min-width: 8rem; }
+  /* Columns take their natural width and the whole group is centered (was: each
+     column flex-grew to fill, which shoved the nav/contact/hours block hard to
+     the right edge and left the footer reading right-heavy). */
+  .p-ft__brand { flex: 0 1 24rem; max-width: 32rem; }
+  .p-ft__col { flex: 0 1 auto; min-width: 8rem; }
   .p-ft__id { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; color: #fff; }
   .p-ft__mono {
     display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 8px;
@@ -138,7 +142,7 @@ const socials = [
   .p-ft__hours th { text-align: left; font-weight: 600; color: var(--p-on-dark); padding: 0.2rem 0.75rem 0.2rem 0; white-space: nowrap; }
   .p-ft__hours td { text-align: right; color: var(--p-on-dark-soft); padding: 0.2rem 0; white-space: nowrap; }
   .p-ft__bottom { border-top: 1px solid color-mix(in srgb, #fff 12%, transparent); }
-  .p-ft__bottom-inner { display: flex; justify-content: space-between; gap: var(--p-space-4); flex-wrap: wrap; padding-block: var(--p-space-6); }
+  .p-ft__bottom-inner { display: flex; justify-content: center; text-align: center; gap: var(--p-space-2) var(--p-space-6); flex-wrap: wrap; padding-block: var(--p-space-6); }
   .p-ft__bottom-inner p { color: var(--p-on-dark-soft); font-size: var(--p-text-xs); }
   @media (max-width: 760px) {
     .p-ft__brand { flex-basis: 100%; }

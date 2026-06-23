@@ -1,0 +1,37 @@
+{
+  "slug": "roofing-done-right",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Licensed roof repair & replacement in Santa Rosa",
+  "seoDescription": "Roofing Done Right — a licensed Santa Rosa roofing contractor (CSLB #1105080) led by Juan Antonio Mejia, ranked in the top 5% of California contractors, with same- or next-day estimates. Roof repair, metal roofing, skylights, gutters and roof cleaning across Sonoma County.",
+  "heroHeading": "Licensed roof repair & replacement in Santa Rosa",
+  "heroSubheading": "Owner-operated by Juan Antonio Mejia — a licensed Santa Rosa roofer (CSLB #1105080) ranked in the top 5% of California contractors — offering fast, fairly-priced roof repair, metal roofing and gutter work with same- or next-day estimates.",
+  "highlights": [
+    "Owner-operated by Juan Antonio Mejia",
+    "Licensed contractor · CSLB #1105080",
+    "Top 5% of California contractors (BuildZoom)",
+    "Same- or next-day estimates",
+    "Roof repair, metal roofing, skylights & gutters"
+  ],
+  "aboutHeading": "About Roofing Done Right",
+  "aboutBody": [
+    "Roofing Done Right is an owner-operated Santa Rosa roofing company led by Juan Antonio Mejia, who brings roughly ten years of roofing experience to every job. The focus is straightforward: responsive scheduling, careful workmanship, and simple, affordable pricing.",
+    "From leak and roof repair to metal roofing, skylight installation, gutter work and roof cleaning, Roofing Done Right serves homeowners across Santa Rosa and Sonoma County. The company is a licensed California roofing contractor (CSLB #1105080), ranked by BuildZoom in the top 5% of the state's contractors, and offers same- or next-day estimates."
+  ],
+  "servicesHeading": "Roofing & gutter services",
+  "services": [
+    { "title": "Roof Repair", "description": "Fast, affordable repair of leaks, storm damage and worn roofing for homes across Sonoma County." },
+    { "title": "Metal Roofing", "description": "Durable metal roofing installation built to stand up to Sonoma County weather." },
+    { "title": "Skylight Installation", "description": "Professional skylight installation that brings in natural light without leaks." },
+    { "title": "Gutters & Roof Cleaning", "description": "Gutter repair and cleaning plus full roof cleaning to keep water moving and your roof healthy." }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "7:00am–8:00pm" },
+    { "day": "Sat", "hours": "7:00am–5:00pm" },
+    { "day": "Sun", "hours": "9:00am–3:00pm" }
+  ],
+  "testimonials": [
+    { "quote": "I got five bids and Juan's was the best — his personal attention was better than the other four roofers I contacted. Responsive, fast, and a simple, affordable pricing structure.", "author": "Verified Yelp review · Santa Rosa" }
+  ],
+  "notes": "Verified from public web research (Yelp 66 photos/12 reviews, BuildZoom top 5%, CSLB #1105080 active). Owner Juan Antonio Mejia, ~10 yrs experience. Testimonial condensed from a real Yelp review (reviewer's name not public in research). No usable own photos → photo-less editorial build. Address 2522 Tachevah Dr, Santa Rosa; (707) 791-0494. Founding year not confirmed — omitted. Yelp-only, no real website — primary 'no website' target."
+}

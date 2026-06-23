@@ -216,7 +216,7 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   // gallery files on disk are still fine to use.
   const photos = await discoverPhotos(slug);
   const heroDropped = !media.length;
-  const scoreOf = (p) => photos.quality?.[p] || { faded: false, dynamicRange: 1, score: 0, fuzzy: false, lowRes: false };
+  const scoreOf = (p) => photos.quality?.[p] || { faded: false, dynamicRange: 1, score: 0, fuzzy: false, lowRes: false, w: 0 };
   // STRICT PHOTO GATE (author-time): a FUZZY/out-of-focus frame must NEVER ship —
   // not as a hero, story, aside, or gallery tile. The acquisition pipeline already
   // drops fuzzy+below-floor SOURCES, but a file could have been dropped straight
@@ -226,6 +226,14 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   // gallery/hero-split tile is legitimately ~600-1000px and cleared its SOURCE
   // floor at acquisition); re-rejecting on output width would drop valid tiles.
   const isFuzzyPhoto = (p) => Boolean(scoreOf(p).fuzzy);
+
+  // HERO SOURCE-WIDTH FLOORS — kept in lockstep with image-qa.mjs's LOCKED IMAGE
+  // CONTRACT (the gate that fails a deploy on under-resolution). A full-bleed hero
+  // spans 100vw so it needs a wide source; a split/editorial side column is only a
+  // ~40vw 4/5 box. We measure the REAL on-disk width (scorePhoto's `w`) and route
+  // the hero so a too-small photo is never upscaled into a pixelated header.
+  const HERO_FULLBLEED_MINW = 1600; // == image-qa CONTRACT['hero-fullbleed'].minW
+  const HERO_SIDE_MINW = 1000;      // == image-qa CONTRACT['hero-split'].minW
 
   // ── CONGRUENCE GATE (key-free, deterministic) ──────────────────────────────
   // Decides hero-vs-editorial. The strongest key-free signal is PROVENANCE: only
@@ -262,6 +270,14 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
       // other case (a fuzzy own-photo is still a bad photo).
       heroImg = null; stockHeroSuppressed = true;
       suppressReason = 'Fuzzy/out-of-focus hero suppressed — add a sharp photo or ship the text hero';
+    } else if ((scoreOf(heroImg).w || 0) < HERO_SIDE_MINW) {
+      // RESOLUTION FLOOR (author-time, authoritative): the hero file on disk is
+      // narrower than even the side-column floor, so a real header would upscale
+      // into a blurry/pixelated band. Drop the photo and ship the clean editorial
+      // text hero — the fix for the pixelated-header slop the coin-flip variant
+      // used to let through (it chose split/fullbleed without checking resolution).
+      heroImg = null; stockHeroSuppressed = true;
+      suppressReason = 'Low-resolution hero suppressed — source too small for a sharp header; add a larger photo or ship the text hero';
     } else if (INDOOR_PLACE.has(cat) && !ownDomain) {
       // CORE FIX: for an indoor place-based cat, only the business's OWN photo may
       // hero. An off-domain shot (Joon's OSM/scraped-but-off-domain mountain) fails.
@@ -310,16 +326,21 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   const color = pickBrandColor(cat, slug, research?.brand?.color || e?.brandColor || '');
 
   // ── HERO VARIANT GUARD (P0) ────────────────────────────────────────────────
-  // NEVER emit a split/fullbleed hero without an image — the premium.css grid
-  // for those expects a figure and renders a blank column otherwise. So:
-  //   • no hero photo            → 'editorial' (type-forward; motif/aside fill the
-  //                                right column, never blank)
-  //   • hero photo present       → 'split' or 'fullbleed' chosen DETERMINISTICALLY
-  //                                by hash(slug) so two photo-having siblings don't
-  //                                open identically.
+  // NEVER emit a split/fullbleed hero without an image — the premium.css grid for
+  // those expects a figure and renders a blank column otherwise. And never emit a
+  // FULL-BLEED hero from a source too narrow to fill 100vw — that upscales into a
+  // pixelated header. The hero is already nulled above when below the side floor, so:
+  //   • no hero photo       → 'editorial' (type-forward; aside/motif fills the
+  //                            right column, never blank)
+  //   • source ≥ 1600w      → 'split' or 'fullbleed' chosen DETERMINISTICALLY by
+  //                            hash(slug) so two photo siblings don't open alike
+  //   • 1000–1599w          → 'split' only (side column; never upscaled full-bleed)
   const heroTreatSeed = hashStr(slug + 'hero');
+  const heroSrcW = heroImg ? (scoreOf(heroImg).w || 0) : 0;
   const heroVariant = heroImg
-    ? (heroTreatSeed % 2 === 0 ? 'split' : 'fullbleed')
+    ? (heroSrcW >= HERO_FULLBLEED_MINW
+        ? (heroTreatSeed % 2 === 0 ? 'split' : 'fullbleed')
+        : 'split')
     : 'editorial';
 
   // For an editorial (photo-less) hero, fill the right column with REAL material

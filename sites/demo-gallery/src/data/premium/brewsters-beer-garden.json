@@ -1,0 +1,128 @@
+{
+  "slug": "brewsters-beer-garden",
+  "name": "Brewsters Beer Garden",
+  "legalName": "Brewsters Beer Garden",
+  "tagline": "Enjoy seasonal cuisine, craft beers, and live music at Brewsters in downtown Petaluma",
+  "seoDescription": "Enjoy seasonal cuisine, craft beers, and live music at Brewsters in downtown Petaluma. Family-friendly outdoor dining with local ingredients and vibrant vibes.",
+  "category": "restaurant",
+  "categoryLabel": "Restaurant",
+  "area": "Petaluma, CA",
+  "city": "Petaluma",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 981-8330",
+    "email": "info@brewstersgarden.com",
+    "address": "229 Water Street Petaluma, CA, 94952"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/brewstersbeergarden/",
+    "instagram": "https://www.instagram.com/brewstersbeergarden"
+  },
+  "brand": {
+    "color": "#9c3b2e",
+    "fontId": "boutique-contrast"
+  },
+  "images": {
+    "hero": "/images/brewsters-beer-garden/hero.webp",
+    "heroAlt": "Brewsters Beer Garden in Petaluma, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Petaluma, CA",
+          "heading": "Real restaurant, made from scratch",
+          "badges": [],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/brewsters-beer-garden/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/brewsters-beer-garden/contact"
+          },
+          "image": {
+            "src": "/images/brewsters-beer-garden/hero.webp",
+            "alt": "Brewsters Beer Garden in Petaluma, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Brewsters Beer Garden",
+          "images": [
+            {
+              "src": "/images/brewsters-beer-garden/photo-2.webp",
+              "alt": "Brewsters Beer Garden — photo 1"
+            },
+            {
+              "src": "/images/brewsters-beer-garden/photo-3.webp",
+              "alt": "Brewsters Beer Garden — photo 2"
+            },
+            {
+              "src": "/images/brewsters-beer-garden/photo-5.webp",
+              "alt": "Brewsters Beer Garden — photo 3"
+            },
+            {
+              "src": "/images/brewsters-beer-garden/photo-7.webp",
+              "alt": "Brewsters Beer Garden — photo 4"
+            },
+            {
+              "src": "/images/brewsters-beer-garden/photo-9.webp",
+              "alt": "Brewsters Beer Garden — photo 5"
+            },
+            {
+              "src": "/images/brewsters-beer-garden/photo-10.webp",
+              "alt": "Brewsters Beer Garden — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 229 Water Street Petaluma, CA, 94952. Call (707) 981-8330 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/brewsters-beer-garden/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 981-8330",
+            "href": "tel:+17079818330"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Brewsters Beer Garden at 229 Water Street Petaluma, CA, 94952 or call (707) 981-8330.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Single-page content — needs more real material for multi-page",
+    "No About content — about page folded",
+    "Generic fallback headline with no research or founding year — research a specific, earned hero line"
+  ],
+  "photoSource": "agent-supplied"
+}

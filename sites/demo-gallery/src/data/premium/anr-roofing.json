@@ -1,0 +1,339 @@
+{
+  "slug": "anr-roofing",
+  "name": "ANR Roofing",
+  "legalName": "ANR Roofing",
+  "tagline": "Petaluma's family-run roofing contractor since 2004",
+  "seoDescription": "ANR Roofing of Petaluma — a licensed, family-owned father-and-son roofing contractor serving Petaluma, Santa Rosa and Sonoma County since 2004",
+  "category": "roofing",
+  "categoryLabel": "Roofing",
+  "area": "Petaluma, CA",
+  "city": "Petaluma",
+  "state": "CA",
+  "established": "2004",
+  "contact": {
+    "phone": "(707) 548-9576",
+    "email": "",
+    "address": "2044 Willow Dr"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon–Sat",
+      "hours": "7:00am–5:00pm"
+    },
+    {
+      "day": "Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#933628",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Petaluma, CA · Est. 2004",
+          "heading": "Sonoma County's family-run roofing contractor since 2004",
+          "subheading": "ANR Roofing is a licensed, father-and-son roofing company in Petaluma — full-service residential and commercial roofing, leak repair and dry-rot work across Sonoma County, done on time and priced",
+          "badges": [
+            "Serving since 2004",
+            "Family-owned father-and-son crew",
+            "Serving Sonoma County since 2004"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/anr-roofing/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/anr-roofing/services"
+          },
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About ANR Roofing",
+          "body": [
+            "ANR Roofing of Petaluma is a family-owned, father-and-son roofing company that has served Petaluma, Santa Rosa and the wider Sonoma County since 2004. Owner Eloy “Rigo” Rigoberto and his crew handle the whole job themselves, from the first inspection to the final cleanup.",
+            "From routine maintenance and leak repair to extensive dry-rot and decking replacement and complete residential or commercial re-roofs, ANR is known for doing careful, code-correct work on time and at a fair price. The company is fully licensed and insured under California contractor's license #849115."
+          ],
+          "highlights": [
+            "Family-owned father-and-son crew",
+            "Serving Sonoma County since 2004",
+            "Licensed & insured · CSLB #849115",
+            "Residential & commercial roofing"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Roofing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Roof Repair & Leak Repair",
+              "description": "Fast diagnosis and repair of leaks, storm damage and worn roofing — patched right so it lasts."
+            },
+            {
+              "title": "Re-Roofs & Replacement",
+              "description": "Complete residential and commercial re-roofs in composition shingle, tile and flat systems."
+            },
+            {
+              "title": "Dry Rot & Decking",
+              "description": "Expert repair of dry rot and damaged decking uncovered during tear-off, handled before the new roof goes on."
+            },
+            {
+              "title": "Inspections & Maintenance",
+              "description": "Roof inspections and preventative maintenance to catch problems early and extend the life of your roof."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message ANR Roofing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why ANR Roofing",
+          "items": [
+            {
+              "title": "Family-Owned Father-And-Son Crew",
+              "body": "Rooted right here in Petaluma, CA, with a real stake in doing it right.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Serving Sonoma County Since 2004",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Licensed & Insured · CSLB #849115",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Residential & Commercial Roofing",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Leak Repair, Dry-Rot & Full Re-Roofs",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with ANR Roofing",
+          "body": "Find us at 2044 Willow Dr. Call (707) 548-9576 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/anr-roofing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 548-9576",
+            "href": "tel:+17075489576"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "ANR Roofing is a licensed, father-and-son roofing company in Petaluma — full-service residential and commercial roofing, leak repair and dry-rot work across Sonoma County, done",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Roofing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Roof Repair & Leak Repair",
+              "description": "Fast diagnosis and repair of leaks, storm damage and worn roofing — patched right so it lasts."
+            },
+            {
+              "title": "Re-Roofs & Replacement",
+              "description": "Complete residential and commercial re-roofs in composition shingle, tile and flat systems."
+            },
+            {
+              "title": "Dry Rot & Decking",
+              "description": "Expert repair of dry rot and damaged decking uncovered during tear-off, handled before the new roof goes on."
+            },
+            {
+              "title": "Inspections & Maintenance",
+              "description": "Roof inspections and preventative maintenance to catch problems early and extend the life of your roof."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message ANR Roofing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 2044 Willow Dr."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Sat: 7:00am–5:00pm; Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Petaluma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 548-9576 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 2044 Willow Dr. Call (707) 548-9576 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/anr-roofing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 548-9576",
+            "href": "tel:+17075489576"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About ANR Roofing",
+          "heading": "About ANR Roofing",
+          "subheading": "ANR Roofing of Petaluma is a family-owned, father-and-son roofing company that has served Petaluma, Santa Rosa and the wider Sonoma County since 2004",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About ANR Roofing",
+          "body": [
+            "ANR Roofing of Petaluma is a family-owned, father-and-son roofing company that has served Petaluma, Santa Rosa and the wider Sonoma County since 2004. Owner Eloy “Rigo” Rigoberto and his crew handle the whole job themselves, from the first inspection to the final cleanup.",
+            "From routine maintenance and leak repair to extensive dry-rot and decking replacement and complete residential or commercial re-roofs, ANR is known for doing careful, code-correct work on time and at a fair price. The company is fully licensed and insured under California contractor's license #849115."
+          ],
+          "highlights": [
+            "Family-owned father-and-son crew",
+            "Serving Sonoma County since 2004",
+            "Licensed & insured · CSLB #849115",
+            "Residential & commercial roofing"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "22+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see ANR Roofing",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/anr-roofing/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach ANR Roofing at 2044 Willow Dr or call (707) 548-9576.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

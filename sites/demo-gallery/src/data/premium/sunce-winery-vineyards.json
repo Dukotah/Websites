@@ -1,0 +1,306 @@
+{
+  "slug": "sunce-winery-vineyards",
+  "name": "Sunce Winery & Vineyards",
+  "legalName": "Sunce Winery & Vineyards",
+  "tagline": "Small-lot, ultra-premium wines on Olivet Road",
+  "seoDescription": "Sunce Winery & Vineyards: a small, family-owned ultra-premium winery on Olivet Road west of Santa Rosa, crafting limited lots of rare varietals, vineyard",
+  "category": "winery",
+  "categoryLabel": "Winery",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1991",
+  "contact": {
+    "phone": "(707) 526-9463",
+    "email": "",
+    "address": "1839 Olivet Rd"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Thu–Mon",
+      "hours": "10:30am–5:00pm"
+    },
+    {
+      "day": "Tue–Wed",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#7a2b3a",
+    "fontId": "classic-trad"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 1991",
+          "heading": "Rare small-lot wines from a Sonoma family",
+          "subheading": "Founded in 1991 by the Franicevic family, Sunce — Croatian for ‘sun’ — pours limited releases of rare varietals, vineyard designates, and classic blends on Olivet Road.",
+          "badges": [
+            "Serving since 1991",
+            "Family-owned since 1991",
+            "‘Sunce’ — Croatian for sun"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/sunce-winery-vineyards/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/sunce-winery-vineyards/menu"
+          },
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Sunce Winery & Vineyards",
+          "items": [
+            {
+              "title": "Family-Owned Since 1991",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "‘Sunce’ — Croatian For Sun",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Rare Varietals, Vineyard Designates & Classic",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Limited Releases — Often 200 Cases Or Fewer",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Open Thursday–Monday; Pets & Kids Welcome",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Sunce Winery",
+          "body": [
+            "Sunce — ‘sun’ in Croatian — is a small, family-owned, ultra-premium winery on Olivet Road west of Santa Rosa, in the heart of Sonoma County's Russian River Valley. Founded by the Franicevic family in 1991, it has spent more than three decades making wine the way a family does: by hand, in small lots, with quality always preferred over quantity.",
+            "Each release is limited — sometimes to 200 cases or fewer — and spans rare varietals, single-vineyard designates, and classic blends, with many wines pre-sold to members through barrel futures. Tastings are by the glass in a relaxed, welcoming setting where kids are always free and well-behaved pets are welcome."
+          ],
+          "highlights": [
+            "Family-owned since 1991",
+            "‘Sunce’ — Croatian for sun",
+            "Rare varietals, vineyard designates & classic blends",
+            "Limited releases — often 200 cases or fewer"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "Visit & taste",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Wine Tastings",
+              "description": "Seated tastings of current small-lot releases, $25 per person; free for members and up to two guests. Reservations recommended — capacity is limited."
+            },
+            {
+              "title": "Wine Club & Barrel Futures",
+              "description": "Members taste free and reserve upcoming limited bottlings as barrel futures before they sell out."
+            },
+            {
+              "title": "Rare Varietals & Vineyard Designates",
+              "description": "An ever-changing lineup of rare varietals, single-vineyard designates, and classic Sonoma blends made in tiny quantities."
+            },
+            {
+              "title": "Private Tastings & Events",
+              "description": "Intimate gatherings hosted at the winery for members, clubs, and special occasions."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "A low-key, friendly, family-run winery — the kind of welcoming tasting room you make a point to stop at.",
+              "author": "Tripadvisor reviewer"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 1839 Olivet Rd. Call (707) 526-9463 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/sunce-winery-vineyards/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 526-9463",
+            "href": "tel:+17075269463"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Founded in 1991 by the Franicevic family, Sunce — Croatian for ‘sun’ — pours limited releases of rare varietals, vineyard designates, and classic blends on Olivet Road.",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Visit & taste",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Wine Tastings",
+              "description": "Seated tastings of current small-lot releases, $25 per person; free for members and up to two guests. Reservations recommended — capacity is limited."
+            },
+            {
+              "title": "Wine Club & Barrel Futures",
+              "description": "Members taste free and reserve upcoming limited bottlings as barrel futures before they sell out."
+            },
+            {
+              "title": "Rare Varietals & Vineyard Designates",
+              "description": "An ever-changing lineup of rare varietals, single-vineyard designates, and classic Sonoma blends made in tiny quantities."
+            },
+            {
+              "title": "Private Tastings & Events",
+              "description": "Intimate gatherings hosted at the winery for members, clubs, and special occasions."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 1839 Olivet Rd."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Thu–Mon: 10:30am–5:00pm; Tue–Wed: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 526-9463 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 1839 Olivet Rd. Call (707) 526-9463 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/sunce-winery-vineyards/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 526-9463",
+            "href": "tel:+17075269463"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Sunce Winery & Vineyards",
+          "heading": "About Sunce Winery",
+          "subheading": "Sunce — ‘sun’ in Croatian — is a small, family-owned, ultra-premium winery on Olivet Road west of Santa Rosa, in the heart of Sonoma County's Russian River Valley",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Sunce Winery",
+          "body": [
+            "Sunce — ‘sun’ in Croatian — is a small, family-owned, ultra-premium winery on Olivet Road west of Santa Rosa, in the heart of Sonoma County's Russian River Valley. Founded by the Franicevic family in 1991, it has spent more than three decades making wine the way a family does: by hand, in small lots, with quality always preferred over quantity.",
+            "Each release is limited — sometimes to 200 cases or fewer — and spans rare varietals, single-vineyard designates, and classic blends, with many wines pre-sold to members through barrel futures. Tastings are by the glass in a relaxed, welcoming setting where kids are always free and well-behaved pets are welcome."
+          ],
+          "highlights": [
+            "Family-owned since 1991",
+            "‘Sunce’ — Croatian for sun",
+            "Rare varietals, vineyard designates & classic blends",
+            "Limited releases — often 200 cases or fewer"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "35+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Sunce Winery & Vineyards",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/sunce-winery-vineyards/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Sunce Winery & Vineyards at 1839 Olivet Rd or call (707) 526-9463.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "No email found — add a real email or contact form before sending"
+  ],
+  "photoSource": "library"
+}

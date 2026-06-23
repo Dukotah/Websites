@@ -1,0 +1,290 @@
+{
+  "slug": "heritage-fence-builders",
+  "name": "Heritage Fence Builders",
+  "legalName": "Heritage Fence Builders",
+  "tagline": "Owner-operated fence builder in Sebastopol since 2007",
+  "seoDescription": "Heritage Fence Builders — an owner-operated, licensed fencing contractor in Sebastopol, CA, serving Sonoma County since 2007",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "2007",
+  "contact": {
+    "phone": "(707) 823-8608",
+    "email": "",
+    "address": "5750 McFarlane Rd"
+  },
+  "social": {},
+  "brand": {
+    "color": "#3b5a78",
+    "fontId": "clean-sans"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA · Est. 2007",
+          "heading": "Sonoma County fence builder since 2007",
+          "subheading": "Heritage Fence Builders is an owner-operated, licensed fencing contractor in Sebastopol — residential fence installation done on time and priced fairly, with options to suit your property rather than",
+          "badges": [
+            "Serving since 2007",
+            "Owner-operated by Jason Gonsalves",
+            "Serving Sonoma County since 2007"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/heritage-fence-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/heritage-fence-builders/services"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Fencing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Fence Installation",
+              "description": "New fence installation for homes across Sonoma County, with options chosen to fit your property and budget."
+            },
+            {
+              "title": "Fence Replacement",
+              "description": "Replacing old, failing or storm-damaged fencing with sturdy, well-built new fence."
+            },
+            {
+              "title": "Gates",
+              "description": "Matching gates installed as part of your fence for clean access and curb appeal."
+            },
+            {
+              "title": "Estimates & Options",
+              "description": "Prompt callbacks and honest, no-pressure estimates laying out the choices available to you."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Heritage Fence Builders",
+          "body": [
+            "Heritage Fence Builders is an owner-operated fencing company in Sebastopol, run by Jason Gonsalves and serving homeowners across Sonoma County since 2007. As a single-operator shop, Jason handles the work himself — from the first call and estimate through to a clean, finished fence.",
+            "Customers consistently note that he returns calls promptly, lays out several fencing options without pushing the most expensive one, and finishes on time at a fair price. The company is a licensed California fencing contractor, license #904463, and has earned 23 reviews from local clients."
+          ],
+          "highlights": [
+            "Owner-operated by Jason Gonsalves",
+            "Serving Sonoma County since 2007",
+            "Licensed fencing contractor · CSLB #904463",
+            "Residential fence installation"
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Returned my call right away, gave me several fencing options without pushing the priciest, and finished on time at a fair price.",
+              "author": "Verified Yelp review · Sebastopol"
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Heritage Fence Builders",
+          "items": [
+            {
+              "title": "Owner-Operated By Jason Gonsalves",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Sonoma County Since 2007",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Licensed Fencing Contractor · CSLB #904463",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Residential Fence Installation",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "23 Reviews Praising Prompt, Fair, On-Time Work",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "wrench"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Heritage Fence Builders",
+          "body": "Find us at 5750 McFarlane Rd. Call (707) 823-8608 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/heritage-fence-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 823-8608",
+            "href": "tel:+17078238608"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Heritage Fence Builders is an owner-operated, licensed fencing contractor in Sebastopol — residential fence installation done on time and priced fairly, with options to suit your",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Fencing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Fence Installation",
+              "description": "New fence installation for homes across Sonoma County, with options chosen to fit your property and budget."
+            },
+            {
+              "title": "Fence Replacement",
+              "description": "Replacing old, failing or storm-damaged fencing with sturdy, well-built new fence."
+            },
+            {
+              "title": "Gates",
+              "description": "Matching gates installed as part of your fence for clean access and curb appeal."
+            },
+            {
+              "title": "Estimates & Options",
+              "description": "Prompt callbacks and honest, no-pressure estimates laying out the choices available to you."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 5750 McFarlane Rd."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 823-8608 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 5750 McFarlane Rd. Call (707) 823-8608 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/heritage-fence-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 823-8608",
+            "href": "tel:+17078238608"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Heritage Fence Builders",
+          "heading": "About Heritage Fence Builders",
+          "subheading": "Heritage Fence Builders is an owner-operated fencing company in Sebastopol, run by Jason Gonsalves and serving homeowners across Sonoma County since 2007",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Heritage Fence Builders",
+          "body": [
+            "Heritage Fence Builders is an owner-operated fencing company in Sebastopol, run by Jason Gonsalves and serving homeowners across Sonoma County since 2007. As a single-operator shop, Jason handles the work himself — from the first call and estimate through to a clean, finished fence.",
+            "Customers consistently note that he returns calls promptly, lays out several fencing options without pushing the most expensive one, and finishes on time at a fair price. The company is a licensed California fencing contractor, license #904463, and has earned 23 reviews from local clients."
+          ],
+          "highlights": [
+            "Owner-operated by Jason Gonsalves",
+            "Serving Sonoma County since 2007",
+            "Licensed fencing contractor · CSLB #904463",
+            "Residential fence installation"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "19+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Heritage Fence Builders",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/heritage-fence-builders/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Heritage Fence Builders at 5750 McFarlane Rd or call (707) 823-8608.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

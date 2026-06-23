@@ -1,0 +1,318 @@
+{
+  "slug": "discount-tree-service",
+  "name": "Discount Tree Service",
+  "legalName": "Discount Tree Service",
+  "tagline": "Santa Rosa tree work, 40+ years in Sonoma County",
+  "seoDescription": "Discount Tree Service — owner Joe Pacheco has provided tree trimming, pruning, removals and stump grinding across Sonoma County for more than 40 years, serving",
+  "category": "landscaping",
+  "categoryLabel": "Landscaping",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 236-7649",
+    "email": "",
+    "address": ""
+  },
+  "social": {},
+  "brand": {
+    "color": "#2f8f3e",
+    "fontId": "organic-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Sonoma County tree work, more than 40 years strong",
+          "subheading": "Discount Tree Service is Joe Pacheco's Santa Rosa tree company — a small, local crew that has trimmed, pruned and removed trees across Sonoma County for over 40 years, at competitive prices.",
+          "badges": [
+            "Serving Sonoma County for 40+ years",
+            "Owner-operated by Joe Pacheco",
+            "22 Faves from neighbors on Nextdoor"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/discount-tree-service/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/discount-tree-service/services"
+          },
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Discount Tree Service",
+          "items": [
+            {
+              "title": "Serving Sonoma County For 40+ Years",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Owner-Operated By Joe Pacheco",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "22 Faves From Neighbors On Nextdoor",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Trimming, Pruning, Removals & Stump Grinding",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "View Clearance & Dead-Wood Removal",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Discount Tree Service",
+          "body": [
+            "Discount Tree Service is a small, local tree company run by owner Joe Pacheco, who has lived in the Santa Rosa area his whole life and worked Sonoma County's trees for more than 40 years. The crew serves Santa Rosa, Kenwood, Sonoma, Windsor, Rohnert Park, Glen Ellen, Penngrove, Healdsburg and Sebastopol.",
+            "The company specializes in shaping, pruning, removals, view clearance, dead-wood removal and tree cleaning, along with stump grinding — quality tree work at competitive prices. Neighbors have given Discount Tree Service 22 Faves on Nextdoor, with reviewers noting Joe's careful coordination and tidy clean-up."
+          ],
+          "highlights": [
+            "Serving Sonoma County for 40+ years",
+            "Owner-operated by Joe Pacheco",
+            "22 Faves from neighbors on Nextdoor",
+            "Trimming, pruning, removals & stump grinding"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Tree services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Tree Trimming & Pruning",
+              "description": "Shaping, safety pruning and dead-wood removal to keep your trees healthy and your property safe."
+            },
+            {
+              "title": "Tree Removal",
+              "description": "Removal of hazardous, dead or overgrown trees, including trees overhanging neighboring properties."
+            },
+            {
+              "title": "View Clearance",
+              "description": "Selective trimming and clearing to open up and protect your views."
+            },
+            {
+              "title": "Stump Grinding & Clean-Up",
+              "description": "Stump grinding and thorough clean-up so the job is finished and your yard left tidy."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Discount Tree Service and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "The tree hung over 3 properties and Joe even helped coordinate with the neighbors to get the job done.",
+              "author": "Verified Yelp review · Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Discount Tree Service",
+          "body": "Call (707) 236-7649 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/discount-tree-service/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 236-7649",
+            "href": "tel:+17072367649"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Discount Tree Service is Joe Pacheco's Santa Rosa tree company — a small, local crew that has trimmed, pruned and removed trees across Sonoma County for over 40 years",
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Tree services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Tree Trimming & Pruning",
+              "description": "Shaping, safety pruning and dead-wood removal to keep your trees healthy and your property safe."
+            },
+            {
+              "title": "Tree Removal",
+              "description": "Removal of hazardous, dead or overgrown trees, including trees overhanging neighboring properties."
+            },
+            {
+              "title": "View Clearance",
+              "description": "Selective trimming and clearing to open up and protect your views."
+            },
+            {
+              "title": "Stump Grinding & Clean-Up",
+              "description": "Stump grinding and thorough clean-up so the job is finished and your yard left tidy."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Discount Tree Service and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 236-7649 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Call (707) 236-7649 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/discount-tree-service/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 236-7649",
+            "href": "tel:+17072367649"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Discount Tree Service",
+          "heading": "About Discount Tree Service",
+          "subheading": "Discount Tree Service is a small, local tree company run by owner Joe Pacheco, who has lived in the Santa Rosa area his whole life and worked Sonoma County's trees for more than",
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Discount Tree Service",
+          "body": [
+            "Discount Tree Service is a small, local tree company run by owner Joe Pacheco, who has lived in the Santa Rosa area his whole life and worked Sonoma County's trees for more than 40 years. The crew serves Santa Rosa, Kenwood, Sonoma, Windsor, Rohnert Park, Glen Ellen, Penngrove, Healdsburg and Sebastopol.",
+            "The company specializes in shaping, pruning, removals, view clearance, dead-wood removal and tree cleaning, along with stump grinding — quality tree work at competitive prices. Neighbors have given Discount Tree Service 22 Faves on Nextdoor, with reviewers noting Joe's careful coordination and tidy clean-up."
+          ],
+          "highlights": [
+            "Serving Sonoma County for 40+ years",
+            "Owner-operated by Joe Pacheco",
+            "22 Faves from neighbors on Nextdoor",
+            "Trimming, pruning, removals & stump grinding"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Discount Tree Service",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/discount-tree-service/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Discount Tree Service or call (707) 236-7649.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

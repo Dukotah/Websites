@@ -24,21 +24,8 @@ const { data, config } = Astro.props;
 const sig = hash((config?.slug ?? config?.name ?? 'flow') + ':hero');
 const scrimDir = rangeInt(sig, 0, 2); // 0 bottom-up, 1 corner BL, 2 corner BR
 const glowSide = chance(sig >> 3, 0.5) ? 'r' : 'l';
-// Deterministic motif tilt (±12deg) so five same-category photo-less heroes stop
-// looking stamped from one mold — each slug gets its own settled angle, stable on
-// re-run. Reduced motion neutralizes it to 0 in CSS (the rest of the composition
-// is unchanged), so the static title-card never tilts for motion-averse visitors.
-const motifTilt = rangeInt(sig >> 7, -12, 12);
 
 const img = data.image;
-// Decorative category motif (a library SVG drawn in currentColor) for the
-// photo-less editorial hero — a brand-tinted illustrative backdrop behind the
-// type. Clearly NOT a photo. When absent we still show the monogram watermark.
-const motif = data.motif;
-// Oversized monogram watermark for the photo-less editorial hero — gives a
-// deliberate, composed visual weight (brand-tinted, decorative) instead of a
-// bare type block. First letter of the business name.
-const monogram = (config?.name || '').trim().charAt(0).toUpperCase();
 // No image ⇒ editorial regardless of what was requested.
 const variant: NonNullable<SecHero['variant']> = !img
   ? 'editorial'
@@ -66,12 +53,6 @@ const scrimBias = +(focalY / 100).toFixed(3);
 const isFullbleed = variant === 'fullbleed' && !!img;
 const isSplit = variant === 'split' && !!img;
 const isEditorial = !isFullbleed && !isSplit;
-// Photo-less editorial hero is a deliberate DARK "title-card": a brand-structured
-// band with light text + layered glow, motif/monogram at real presence, and a
-// hairline texture. This is what turns "where's the image?" into "designed this
-// way on purpose" — it borrows the same dark-band confidence as the photo heroes
-// and AVISP's hero, but built entirely from type + brand color, no photo.
-const isDarkEditorial = isEditorial && !img;
 // Photo-less editorial hero: when there's no aside photo, give the right zone
 // real architecture — a brand-tinted "credential card" built from the badges +
 // the lede — so the hero reads as a composed two-column layout (AVISP-caliber),
@@ -84,36 +65,18 @@ const glassCred = isFullbleed && badges.length > 0;
 ---
 
 <section
-  class:list={['p-hero', `p-hero--${variant}`, { 'section--ink': isFullbleed || isDarkEditorial, 'p-hero--editorial-solo': isDarkEditorial, 'p-hero--editorial-paired': soloAside, 'p-hero--has-glass': glassCred }]}
+  class:list={['p-hero', `p-hero--${variant}`, { 'section--ink': isFullbleed, 'p-hero--editorial-paired': soloAside, 'p-hero--has-glass': glassCred }]}
   data-scrim={scrimDir}
   data-glow={glowSide}
   style={isFullbleed ? `--scrim-bias:${scrimBias}` : undefined}
 >
-  {isDarkEditorial && (
-    <>
-      {/* Living aurora field — a slowly drifting brand-light canvas painted behind
-          the title-card so the dark hero shimmers with depth instead of sitting
-          static. JS-only enhancement: the canvas paints OVER the existing static
-          gradient band (which is the reduced-motion / no-JS / no-WebGL fallback),
-          so nothing is hidden waiting on it. Decorative. */}
-      <canvas class="p-hero__aurora" data-hero-aurora aria-hidden="true"></canvas>
-      <div class="p-hero__sweep" aria-hidden="true"></div>
-      <div class="p-hero__texture" aria-hidden="true"></div>
-    </>
-  )}
-
-  {isDarkEditorial && motif && (
-    <div
-      class="p-hero__motif"
-      aria-hidden="true"
-      style={`-webkit-mask-image:url("${motif}");mask-image:url("${motif}");--p-motif-tilt:${motifTilt}deg`}
-    ></div>
-  )}
-
-  {isDarkEditorial && monogram && (
-    <div class="p-hero__wm" aria-hidden="true">
-      <span class="p-hero__wm-mono">{monogram}</span>
-    </div>
+  {/* Editorial (photo-less) hero: a brand-colored flowing-aurora WebGL backdrop
+      painted BEHIND the type by hero-webgl. This host only reserves the box +
+      carries a static CSS gradient that IS the LCP backdrop; the canvas is added
+      on top after first paint and only on motion-capable WebGL clients. If WebGL
+      is unavailable / JS off / reduced-motion, the static gradient shows alone. */}
+  {isEditorial && (
+    <div class="p-hero__fx p-hero__fx--aurora" data-hero-fx="aurora" aria-hidden="true"></div>
   )}
 
   {isFullbleed && img && (
@@ -121,8 +84,10 @@ const glassCred = isFullbleed && badges.length > 0;
       {/* Photo wrapper carries the cinematic entrance: a clip-path wipe reveals
           the image and a slow Ken-Burns drift gives it depth. Both are pure
           compositor transforms armed AFTER first paint (.hero-armed), so the
-          photo is fully painted for LCP and only enhances on motion clients. */}
-      <div class="p-hero__photo" data-hero-photo data-hero-parallax="bg">
+          photo is fully painted for LCP and only enhances on motion clients.
+          The photo is also art-directed via a brand duotone gradient-map + film
+          grain (CSS/SVG, see <style>) so mediocre scraped photos read cohesive. */}
+      <div class="p-hero__photo p-hero__photo--treated" data-hero-photo data-hero-parallax="bg">
         <SiteImage
           src={img.src}
           alt={img.alt ?? ''}
@@ -131,8 +96,15 @@ const glassCred = isFullbleed && badges.length > 0;
           fetchpriority="high"
           sizes="100vw"
         />
+        {/* Brand duotone wash (mix-blend) — turns a scraped photo into an
+            art-directed, palette-consistent image without hiding the subject. */}
+        <span class="p-hero__duotone" aria-hidden="true"></span>
       </div>
+      {/* Restrained WebGL grain-drift shimmer OVER the photo (hero-webgl,
+          shimmer mode). Ultra-low opacity; static base = the photo + scrim. */}
+      <div class="p-hero__fx p-hero__fx--shimmer" data-hero-fx="shimmer" aria-hidden="true"></div>
       <div class="p-hero__scrim"></div>
+      <div class="p-hero__grain" aria-hidden="true"></div>
       <div class="p-hero__glow" aria-hidden="true"></div>
     </div>
   )}
@@ -160,7 +132,7 @@ const glassCred = isFullbleed && badges.length > 0;
           )}
           {secondaryCta && (
             <a
-              class:list={['btn', 'btn--lg', (isFullbleed || isDarkEditorial) ? 'btn--ghost-light' : 'btn--outline']}
+              class:list={['btn', 'btn--lg', isFullbleed ? 'btn--ghost-light' : 'btn--outline']}
               href={secondaryCta.href}
             >{secondaryCta.label}</a>
           )}
@@ -202,7 +174,7 @@ const glassCred = isFullbleed && badges.length > 0;
     {isSplit && img && (
       <div class="p-hero__figure" data-reveal="right" data-hero-parallax="figure">
         <span class="p-hero__figure-frame" aria-hidden="true"></span>
-        <div class="media p-hero__photo" data-hero-photo>
+        <div class="media p-hero__photo p-hero__photo--treated" data-hero-photo>
           <SiteImage
             src={img.src}
             alt={img.alt ?? ''}
@@ -211,6 +183,7 @@ const glassCred = isFullbleed && badges.length > 0;
             fetchpriority="high"
             sizes="(min-width: 820px) 48vw, 100vw"
           />
+          <span class="p-hero__duotone" aria-hidden="true"></span>
         </div>
       </div>
     )}
@@ -259,6 +232,8 @@ const glassCred = isFullbleed && badges.length > 0;
      --scrim-bias (0..1, from the photo's focal Y) shifts the vertical anchor:
      focal high → darken the bottom; focal low → darken the top. */
   .p-hero__scrim {
+    /* Above the photo + the over-photo shimmer, so text protection always wins. */
+    z-index: 2;
     /* 0 = darken bottom, 1 = darken top; default neutral if no photo focal. */
     --scrim-bias: 0.5;
     /* Per-edge weights derived from the bias so the darkening tracks the subject. */
@@ -326,6 +301,7 @@ const glassCred = isFullbleed && badges.length > 0;
   .p-hero__glow {
     position: absolute;
     inset: 0;
+    z-index: 2;
     pointer-events: none;
     background:
       radial-gradient(42rem 30rem at 88% 8%,
@@ -401,13 +377,13 @@ const glassCred = isFullbleed && badges.length > 0;
     color: var(--p-on-dark-soft);
     text-shadow: 0 1px 14px rgb(0 0 0 / 0.4);
   }
-  .p-hero--fullbleed .pill,
-  .p-hero--editorial-solo .pill {
+  .p-hero--fullbleed .pill {
     background: rgb(255 255 255 / 0.1);
     border-color: rgb(255 255 255 / 0.32);
     color: #fff;
-    backdrop-filter: blur(6px);
   }
+  /* Over a real photo, frosting the chips reads as premium depth. */
+  .p-hero--fullbleed .pill { backdrop-filter: blur(6px); }
 
   /* ---- Frosted credential card over the photo (layered depth) ------------ */
   .p-hero__glass {
@@ -487,113 +463,6 @@ const glassCred = isFullbleed && badges.length > 0;
   /* ---- Editorial: type-forward, optional smaller aside photo ------------ */
   .p-hero--editorial .p-hero__heading { max-width: 18ch; }
 
-  /* ---- Photo-less editorial hero = a DELIBERATE DARK TITLE-CARD ----------- */
-  /* The fix for "reads as a missing image": instead of light type floating on a
-     near-white gradient, the photo-less hero becomes a confident brand-structured
-     dark band (same family as the photo heroes + AVISP's hero) with light text,
-     layered brand glow, a hairline texture, an oversized brand monogram, and the
-     category motif at real presence. Fully composed → reads as designed, not
-     unfinished. Built only from type + brand color — no photo. Token-driven;
-     if color-mix is unsupported the --p-structure base still gives a solid dark
-     band (never a broken light block). */
-  .p-hero--editorial-solo {
-    background:
-      radial-gradient(54rem 40rem at 82% -16%, color-mix(in srgb, var(--p-primary) 32%, transparent), transparent 56%),
-      radial-gradient(46rem 34rem at 2% 112%, color-mix(in srgb, var(--p-accent) 20%, transparent), transparent 54%),
-      radial-gradient(70rem 50rem at 50% 130%, color-mix(in srgb, var(--p-primary) 12%, transparent), transparent 60%),
-      linear-gradient(165deg,
-        color-mix(in srgb, var(--p-structure) 92%, #fff 8%) 0%,
-        var(--p-structure) 52%,
-        color-mix(in srgb, var(--p-structure) 88%, #000 12%) 100%);
-  }
-  /* Hairline diagonal-grid texture — gives the dark band branded richness (the
-     "considered surface" look) without a photo. Very low contrast, decorative. */
-  .p-hero__texture {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.5;
-    background-image:
-      repeating-linear-gradient(
-        115deg,
-        color-mix(in srgb, var(--p-on-dark) 6%, transparent) 0 1px,
-        transparent 1px 26px);
-    -webkit-mask-image: linear-gradient(105deg, #000 0%, transparent 72%);
-    mask-image: linear-gradient(105deg, #000 0%, transparent 72%);
-  }
-  /* Category motif — brand-tinted illustrative panel (library SVG used as a mask,
-     painted brand-primary) anchored low-right, behind the type. Now at MEANINGFUL
-     presence on the dark band (not a 6% ghost). Decorative, never a photo. */
-  .p-hero__motif {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    /* Stronger brand-forward fill so the motif reads as a confident graphic, not
-       a washed ghost. Adaptive opacity + blend (emitted from brand lightness in
-       tokens.ts) keep it legible on both light and dark brands. */
-    background-color: color-mix(in srgb, var(--p-primary) 78%, #fff);
-    opacity: var(--p-motif-opacity, 0.34);
-    mix-blend-mode: var(--p-motif-blend, screen);
-    /* Deterministic per-slug tilt about the low-right anchor so siblings differ. */
-    transform: rotate(var(--p-motif-tilt, 0deg));
-    transform-origin: 88% 92%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: right -4% bottom -8%;
-    mask-position: right -4% bottom -8%;
-    -webkit-mask-size: clamp(26rem, 20rem + 28vw, 52rem) auto;
-    mask-size: clamp(26rem, 20rem + 28vw, 52rem) auto;
-  }
-  /* Oversized brand monogram — a confident brand-weight letter pinned to the
-     right that fills the frame and anchors the composition. Real presence on the
-     dark band (a soft outline-fill, brand-tinted) rather than a faint ghost. */
-  .p-hero__wm {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  .p-hero__wm-mono {
-    font-family: var(--p-font-display);
-    font-weight: 800;
-    font-size: clamp(20rem, 14rem + 30vw, 46rem);
-    line-height: 0.7;
-    letter-spacing: -0.06em;
-    color: transparent;
-    -webkit-text-stroke: 2px color-mix(in srgb, var(--p-primary) 72%, #fff);
-    /* Stronger brand gradient fill — the monogram now anchors the composition with
-       real weight (a confident brand letter), not a faint ghost. */
-    background:
-      linear-gradient(180deg,
-        color-mix(in srgb, var(--p-primary) 52%, transparent),
-        color-mix(in srgb, var(--p-primary) 14%, transparent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    opacity: var(--p-wm-opacity, 0.6);
-    transform: translateX(14%);
-    user-select: none;
-  }
-  /* No background-clip:text support → fall back to a soft solid brand fill. */
-  @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-    .p-hero__wm-mono {
-      color: color-mix(in srgb, var(--p-primary) 26%, transparent);
-      -webkit-text-stroke: 0;
-      opacity: 1;
-    }
-  }
-  .p-hero--editorial-solo .p-hero__inner { position: relative; z-index: 1; }
-
-  /* Light-text treatment on the dark editorial band (mirrors the full-bleed
-     hero). Headline white, lede softened, eyebrow brand-tinted-on-dark. */
-  .p-hero--editorial-solo .p-hero__heading { color: #fff; text-shadow: 0 2px 30px rgb(0 0 0 / 0.28); }
-  .p-hero--editorial-solo .p-hero__sub { color: var(--p-on-dark-soft); }
-
   /* Paired editorial hero: type on the left, a designed brand "credential card"
      on the right built from the badges — gives a photo-less hero a true two-zone
      composition (AVISP-caliber) instead of type over emptiness. */
@@ -604,9 +473,9 @@ const glassCred = isFullbleed && badges.length > 0;
     align-items: center;
   }
   .p-hero--editorial-paired .p-hero__content { max-width: 100%; }
-  /* Credential card sits on the dark title-card band → a crisp light surface
-     with a brand-tinted corner wash and a lifted shadow, so it reads as a
-     deliberate floated panel (depth against the dark), not a stray box. */
+  /* Credential card on the light editorial hero — a crisp surface with a
+     brand-tinted corner wash and a soft lift, so it reads as a deliberate
+     floated panel beside the headline, not a stray box. */
   .p-hero__cred {
     position: relative;
     align-self: center;
@@ -617,8 +486,8 @@ const glassCred = isFullbleed && badges.length > 0;
       radial-gradient(30rem 22rem at 120% -30%, var(--p-primary-tint), transparent 60%),
       var(--p-surface);
     box-shadow:
-      0 1px 0 rgb(255 255 255 / 0.5) inset,
-      0 24px 56px rgb(0 0 0 / 0.32);
+      0 1px 0 rgb(255 255 255 / 0.6) inset,
+      0 18px 40px rgb(2 6 23 / 0.10);
   }
   .p-hero__cred-rule {
     position: absolute;
@@ -742,48 +611,6 @@ const glassCred = isFullbleed && badges.length > 0;
     transform: scale(1);
   }
 
-  /* ---- Living aurora field (photo-less dark editorial) ------------------- */
-  /* A canvas painted OVER the static gradient band. It is invisible until JS
-     fades it in, so no-JS/no-WebGL/reduced-motion keep the static title-card. */
-  .p-hero__aurora {
-    position: absolute; inset: 0; z-index: 0;
-    width: 100%; height: 100%;
-    opacity: 0;
-    transition: opacity 600ms ease;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    /* The canvas renders below native DPR for cheap fragment cost; a soft blur
-       turns any residual stair-stepping into the intended smooth light field
-       (and keeps it smooth even when the header glass blurs it). scale() pushes
-       the blurred transparent rim out past the hero edges. */
-    filter: blur(14px);
-    transform: scale(1.08);
-  }
-  .p-hero__aurora.is-live { opacity: 0.9; }
-
-  /* A single slow brand-light sweep across the dark band — adds a sense of a
-     light source moving over the surface. Pure CSS, GPU transform. */
-  .p-hero__sweep {
-    position: absolute; inset: -20% -40%; z-index: 0;
-    pointer-events: none;
-    background: linear-gradient(
-      105deg,
-      transparent 38%,
-      color-mix(in srgb, var(--p-primary) 22%, transparent) 50%,
-      transparent 62%);
-    opacity: 0;
-    transform: translateX(-30%);
-  }
-  .premium .p-hero.hero-armed .p-hero__sweep {
-    opacity: 0.6;
-    animation: p-hero-sweep 14s ease-in-out 1200ms infinite;
-  }
-  @keyframes p-hero-sweep {
-    0%   { transform: translateX(-34%); }
-    50%  { transform: translateX(34%); }
-    100% { transform: translateX(-34%); }
-  }
-
   /* ---- Choreographed entrance for the content rail ----------------------- */
   /* Eyebrow, sub, actions, badges, cred card cascade up just behind the
      headline word-reveal. Painted visible by default; the hidden start-state
@@ -859,9 +686,172 @@ const glassCred = isFullbleed && badges.length > 0;
       opacity: 1 !important; transform: none !important;
       transition: none !important;
     }
-    .p-hero__sweep { animation: none !important; opacity: 0 !important; }
-    .p-hero__aurora { display: none !important; }
-    /* No per-slug motif tilt under reduced motion — the title-card sits square. */
-    .p-hero__motif { transform: none !important; }
+  }
+
+  /* ======================================================================
+     FLAGSHIP FX LAYER — WebGL aurora (editorial) + grain-drift shimmer
+     (fullbleed), photo art-direction (brand duotone + film grain + Ken
+     Burns), and the variable-font headline emphasis. Everything below is a
+     progressive enhancement: a STATIC base is painted here (the LCP backdrop),
+     and the canvas / motion only layer on top after first paint on capable,
+     motion-OK clients. Reduced motion neutralizes every animation.
+     ====================================================================== */
+
+  /* ---- WebGL fx host (shared) -------------------------------------------- */
+  /* The host reserves the box and paints a STATIC brand gradient that IS the
+     backdrop until/unless the canvas mounts. .hero-fx-armed is added by JS only
+     once the GL/2D context is live + painting, fading the canvas in over the
+     static base (so a failed mount never flashes). Pure compositor; zero CLS. */
+  .p-hero__fx { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .p-hero__fx :global(canvas.p-hero__fx-canvas) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+  }
+  .p-hero__fx.hero-fx-armed :global(canvas.p-hero__fx-canvas) {
+    opacity: 1;
+    transition: opacity 900ms ease;
+  }
+
+  /* Editorial aurora: the STATIC base is a layered brand mesh-gradient — already
+     "wow" on its own — and the canvas animates it into a flowing aurora on top.
+     Uses the resolved brand tokens, never hardcoded hex. */
+  .p-hero__fx--aurora {
+    background:
+      radial-gradient(60% 80% at 16% 18%, color-mix(in srgb, var(--p-primary) 26%, transparent), transparent 60%),
+      radial-gradient(70% 90% at 88% 30%, color-mix(in srgb, var(--p-accent) 22%, transparent), transparent 62%),
+      radial-gradient(80% 70% at 50% 110%, color-mix(in srgb, var(--p-structure) 16%, transparent), transparent 60%),
+      linear-gradient(160deg, var(--p-primary-tint), var(--p-paper) 70%);
+  }
+  /* Editorial hero gains presence from the aurora behind it — let the type breathe
+     over it with a touch more contrast scaffolding (kept light for legibility). */
+  .p-hero--editorial { isolation: isolate; }
+
+  /* Fullbleed shimmer sits OVER the photo (above the photo, below the scrim's
+     text protection), additively. Static base = nothing (the photo carries it);
+     the canvas adds an ultra-faint live sheen. screen-ish so it only lifts. */
+  .p-hero__fx--shimmer {
+    z-index: 1; /* above the photo (z auto in bg), under scrim (added after) */
+    mix-blend-mode: screen;
+  }
+
+  /* ---- Photo art-direction: brand duotone + film grain + Ken Burns ------- */
+  /* Duotone wash: a brand gradient mapped onto the photo via mix-blend so
+     scraped photos across the gallery share one art-directed look. Soft-light
+     keeps the photo's detail while pulling its color toward the brand; opacity
+     is restrained so the subject is never lost and text contrast holds. */
+  /* --treated only needs a positioning context for the duotone overlay; the
+     full-bleed bg photo is already absolute (don't override that), the split/
+     editorial figures are already relative — so we only ensure the overlay
+     anchors and never change the wrapper's own positioning. */
+  .p-hero__duotone {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(150deg,
+        color-mix(in srgb, var(--p-structure) 70%, transparent) 0%,
+        color-mix(in srgb, var(--p-primary) 30%, transparent) 55%,
+        color-mix(in srgb, var(--p-accent) 24%, transparent) 100%);
+    mix-blend-mode: soft-light;
+    opacity: 0.55;
+  }
+  /* On the small split/editorial figures the duotone reads stronger at full
+     opacity, so dial it for those framed photos. */
+  .p-hero--split .p-hero__duotone,
+  .p-hero--editorial .p-hero__duotone { opacity: 0.42; mix-blend-mode: soft-light; }
+
+  /* Film grain over the full-bleed photo (kills banding + adds texture). An
+     inline SVG fractal-noise data URI, tiled, very low opacity, multiply. This
+     is STATIC by default (no animation cost); a slow drift is added only when
+     armed + motion-OK. */
+  .p-hero__grain {
+    position: absolute;
+    inset: -2%;
+    pointer-events: none;
+    z-index: 3; /* texture over the scrim */
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  /* Ken Burns: a slow, infinite pan/zoom on the full-bleed photo — pure
+     transform (zero CLS), armed only after the entrance clip-wipe settles, and
+     disabled under reduced motion. Layered on top of the entrance transform by
+     animating a CHILD-less keyframe on the treated photo once it's "in". The
+     amplitude is tiny (≤2.5% scale) so the upscaled photo stays crisp. */
+  @keyframes p-hero-kenburns {
+    0%   { transform: scale(1.0) translate3d(0, 0, 0); }
+    50%  { transform: scale(1.025) translate3d(-1.2%, -0.8%, 0); }
+    100% { transform: scale(1.0) translate3d(0, 0, 0); }
+  }
+  /* Only after the entrance has settled (.is-hero-in) do we hand the photo to the
+     Ken-Burns loop. The entrance transition above resolves to scale(1); the
+     animation then takes over from that resting state. The parallax engine writes
+     inline transform on the SAME element — so we run Ken Burns on the inner img
+     wrapper instead to avoid fighting it: target the SiteImage's rendered img. */
+  .premium .p-hero.hero-armed.is-hero-in .p-hero__bg .p-hero__photo--treated :global(img) {
+    animation: p-hero-kenburns 28s ease-in-out 1200ms infinite;
+    will-change: transform;
+  }
+  /* Drift the grain slowly for life (cheap background-position animation). */
+  @keyframes p-hero-grain-drift {
+    0%   { background-position: 0 0; }
+    100% { background-position: 160px 160px; }
+  }
+  .premium .p-hero.hero-armed.is-hero-in .p-hero__grain {
+    animation: p-hero-grain-drift 7s steps(6) infinite;
+  }
+
+  /* ---- Variable-font headline emphasis ----------------------------------- */
+  /* When the chosen display family is a real variable font, hero-cinematic flags
+     the heading .p-hero__heading--vf and animates the wght axis per word. Here we
+     (a) declare the transition so the weight eases (and reduced motion can kill
+     it), and (b) push the editorial display larger/heavier for drama. Size is set
+     statically (no reflow mid-animation); only the variation axis animates. */
+  .p-hero__heading--vf .p-hero__word {
+    transition: font-variation-settings 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--w) * 40ms + 120ms);
+  }
+  /* Editorial heroes with a variable face go bigger + bolder — the headline IS
+     the hero, so let it command the frame. Still token-driven sizing (scaled off
+     the existing hero step), text-wrap balance keeps the rag clean. */
+  .p-hero--editorial .p-hero__heading--vf {
+    font-size: clamp(2.9rem, 2.0rem + 4.6vw, 5.6rem);
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+  }
+
+  /* Reduced motion: every flagship animation is neutralized. The static aurora
+     gradient, the static (un-panned) photo + duotone + grain, and the headline at
+     its resting weight all remain — fully legible, zero motion. The canvas never
+     mounts under reduce (JS bails), so only the CSS pieces need silencing here. */
+  @media (prefers-reduced-motion: reduce) {
+    .premium .p-hero .p-hero__photo--treated :global(img),
+    .premium .p-hero.hero-armed.is-hero-in .p-hero__bg .p-hero__photo--treated :global(img) {
+      animation: none !important;
+    }
+    .premium .p-hero .p-hero__grain,
+    .premium .p-hero.hero-armed.is-hero-in .p-hero__grain {
+      animation: none !important;
+    }
+    .p-hero__heading--vf .p-hero__word {
+      transition: none !important;
+    }
+    .p-hero__fx.hero-fx-armed :global(canvas.p-hero__fx-canvas) {
+      transition: none !important;
+    }
   }
 </style>
+
+<!-- Flagship WebGL hero fx — brand-colored aurora (editorial) / grain-drift
+     shimmer (fullbleed), painted on TOP of the static hero, capability-gated,
+     reduced-motion + View-Transition safe (own teardown). Astro bundles this
+     component <script>; no PremiumBase edit needed. -->
+<script>
+  import '../../scripts/hero-webgl';
+</script>

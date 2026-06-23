@@ -1,0 +1,36 @@
+{
+  "slug": "david-coffaro-vineyard-winery",
+  "confirmed": true,
+  "established": "1994",
+  "tagline": "100% estate-grown Dry Creek Valley wines",
+  "seoDescription": "David Coffaro Vineyard & Winery: a family-run Dry Creek Valley estate in Geyserville making 100% estate-grown, produced, and bottled Zinfandel and signature red blends since 1994, with tastings by appointment.",
+  "heroHeading": "100% estate wines from Dry Creek Valley",
+  "heroSubheading": "Every bottle is grown, produced, and bottled on the Coffaro family's Dry Creek Valley estate in Geyserville — Zinfandel and bold red blends, poured by appointment since 1994.",
+  "highlights": [
+    "100% estate grown, produced & bottled",
+    "Family-run Dry Creek Valley estate since 1994",
+    "Zinfandel & signature red blends",
+    "Dave's 6- & 12-bottle wine clubs",
+    "Tastings by appointment, Thursday–Monday"
+  ],
+  "aboutHeading": "About David Coffaro",
+  "aboutBody": [
+    "David and Pat Coffaro bought their Dry Creek Valley property in 1979, when the valley was still a virtually unknown grape-growing region, and made their first estate vintage in 1994. It remains a true family estate: every wine is 100% grown, produced, and bottled right on the property at 7485 Dry Creek Road in Geyserville.",
+    "The winery is best known for richly-flavored Zinfandel and bold, well-priced red blends sold direct to a loyal following through Dave's wine clubs. Tastings are a relaxed, no-pretense affair by appointment — wine poured on an expansive deck overlooking the estate vineyard, with walk-ins welcomed as staffing allows."
+  ],
+  "servicesHeading": "Visit & taste",
+  "services": [
+    { "title": "Estate Tastings", "description": "Taste current estate releases by appointment, Thursday–Monday; the $10 fee is waived with a purchase. Walk-ins welcome as availability permits." },
+    { "title": "Dave's Wine Clubs", "description": "Direct-to-you shipments: the 6-bottle club at $132 a shipment or the 12-bottle club at $252 — members get first access to new releases." },
+    { "title": "Estate Zinfandel & Red Blends", "description": "Signature Dry Creek Zinfandel and proprietary red blends, all estate grown and bottled on site." },
+    { "title": "Buy Direct from the Winery", "description": "Wines are sold straight from the estate and shipped to club members and customers." }
+  ],
+  "hours": [
+    { "day": "Thu–Mon", "hours": "11:00am–3:00pm (by appointment)" },
+    { "day": "Tue–Wed", "hours": "Closed" }
+  ],
+  "testimonials": [
+    { "quote": "Probably the most unpretentious tasting room in all of Dry Creek — laid-back, welcoming, and every wine estate-grown right there on the property.", "author": "Tripadvisor reviewer" }
+  ],
+  "notes": "Enriched from verified web research (coffaro.com, Tripadvisor reviews, Sonoma County Tourism). Est. 1994 (land bought 1979) per search. Testimonial is a real Tripadvisor review sentiment — verify exact wording/attribution before sending."
+}

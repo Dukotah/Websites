@@ -41,7 +41,15 @@ const VALIDATE = join(ROOT, 'scripts', 'premium-validate.mjs');
 async function main() {
   const csvArg = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : 'data/prospects.sample.csv';
   const csvPath = resolve(ROOT, csvArg);
-  const skipWikimedia = process.argv.includes('--no-photos');
+  // STRUCTURE-FIRST (default): use ONLY the business's own photos — their live
+  // site + anything agent-dropped. When none are good/available, we SKIP stock
+  // imagery entirely (no Wikimedia/OSM substitutes) so the site renders the clean,
+  // photo-less editorial structure instead of a generic shared stock header (the
+  // "every winery has the same vineyard photo" problem). Opt back into stock
+  // fallbacks with --stock-photos.
+  const useStock = process.argv.includes('--stock-photos');
+  const skipWikimedia = !useStock;
+  const skipOsm = !useStock;
   const useClaude = !process.argv.includes('--no-claude');
   // SINGLE-LEAD mode: `--only <slug>` builds just that one lead; `--no-manifest`
   // leaves data/outreach-links.json + the CRM sync untouched (disjoint per-lead).
@@ -61,7 +69,7 @@ async function main() {
   console.log(
     `Authoring ${rows.length} premium site(s) → /s/<slug>.\n` +
     `  Copy:   ${useClaude && process.env.ANTHROPIC_API_KEY ? 'Claude upgrade over deterministic skeleton' : 'deterministic (real facts)'}\n` +
-    `  Photos: agent-dropped → their site → ${skipWikimedia ? '' : 'Wikimedia → '}library\n`,
+    `  Photos: ${useStock ? 'agent-dropped → their site → Wikimedia/OSM → library' : 'OWN only (their site + agent-dropped) — no stock; none → clean photo-less structure'}\n`,
   );
 
   const built = [];
@@ -103,7 +111,7 @@ async function main() {
 
     // 1) Photos + contact backfill — reuse the route-agnostic media pipeline.
     const { media, photoSource, photoFlags } =
-      await acquireMediaFor(slug, row, e, catKey, { authoritative, skipWikimedia });
+      await acquireMediaFor(slug, row, e, catKey, { authoritative, skipWikimedia, skipOsm });
 
     // 2) Author the premium multi-page config from the real facts + media.
     const { config, status, flags } = await authorPremium(slug, row, e, research, media, {

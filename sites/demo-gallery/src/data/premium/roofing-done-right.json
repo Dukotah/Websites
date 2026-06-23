@@ -1,0 +1,340 @@
+{
+  "slug": "roofing-done-right",
+  "name": "Roofing Done Right",
+  "legalName": "Roofing Done Right",
+  "tagline": "Licensed roof repair & replacement in Santa Rosa",
+  "seoDescription": "Roofing Done Right — a licensed Santa Rosa roofing contractor (CSLB #1105080) led by Juan Antonio Mejia, ranked in the top 5% of California contractors",
+  "category": "roofing",
+  "categoryLabel": "Roofing",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 791-0494",
+    "email": "",
+    "address": "2522 Tachevah Dr"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7:00am–8:00pm"
+    },
+    {
+      "day": "Sat",
+      "hours": "7:00am–5:00pm"
+    },
+    {
+      "day": "Sun",
+      "hours": "9:00am–3:00pm"
+    }
+  ],
+  "brand": {
+    "color": "#993c2e",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Licensed roof repair & replacement in Santa Rosa",
+          "subheading": "Owner-operated by Juan Antonio Mejia — a licensed Santa Rosa roofer (CSLB #1105080) ranked in the top 5% of California contractors — offering fast, fairly-priced roof repair, metal roofing and gutter",
+          "badges": [
+            "Owner-operated by Juan Antonio Mejia",
+            "Licensed contractor · CSLB #1105080",
+            "Top 5% of California contractors (BuildZoom)"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/roofing-done-right/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/roofing-done-right/services"
+          },
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Roofing Done Right",
+          "items": [
+            {
+              "title": "Owner-Operated By Juan Antonio Mejia",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Licensed Contractor · CSLB #1105080",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Top 5% Of California Contractors (BuildZoom)",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Same- Or Next-Day Estimates",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Roof Repair, Metal Roofing, Skylights & Gutters",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Roofing Done Right",
+          "body": [
+            "Roofing Done Right is an owner-operated Santa Rosa roofing company led by Juan Antonio Mejia, who brings roughly ten years of roofing experience to every job. The focus is straightforward: responsive scheduling, careful workmanship, and simple, affordable pricing.",
+            "From leak and roof repair to metal roofing, skylight installation, gutter work and roof cleaning, Roofing Done Right serves homeowners across Santa Rosa and Sonoma County. The company is a licensed California roofing contractor (CSLB #1105080), ranked by BuildZoom in the top 5% of the state's contractors, and offers same- or next-day estimates."
+          ],
+          "highlights": [
+            "Owner-operated by Juan Antonio Mejia",
+            "Licensed contractor · CSLB #1105080",
+            "Top 5% of California contractors (BuildZoom)",
+            "Same- or next-day estimates"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Roofing & gutter services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Roof Repair",
+              "description": "Fast, affordable repair of leaks, storm damage and worn roofing for homes across Sonoma County."
+            },
+            {
+              "title": "Metal Roofing",
+              "description": "Durable metal roofing installation built to stand up to Sonoma County weather."
+            },
+            {
+              "title": "Skylight Installation",
+              "description": "Professional skylight installation that brings in natural light without leaks."
+            },
+            {
+              "title": "Gutters & Roof Cleaning",
+              "description": "Gutter repair and cleaning plus full roof cleaning to keep water moving and your roof healthy."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Roofing Done Right and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "I got five bids and Juan's was the best — his personal attention was better than the other four roofers I contacted. Responsive, fast, and a simple, affordable pricing structure.",
+              "author": "Verified Yelp review · Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Roofing Done Right",
+          "body": "Find us at 2522 Tachevah Dr. Call (707) 791-0494 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/roofing-done-right/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 791-0494",
+            "href": "tel:+17077910494"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Owner-operated by Juan Antonio Mejia — a licensed Santa Rosa roofer (CSLB #1105080) ranked in the top 5% of California contractors — offering fast, fairly-priced roof repair",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Roofing & gutter services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Roof Repair",
+              "description": "Fast, affordable repair of leaks, storm damage and worn roofing for homes across Sonoma County."
+            },
+            {
+              "title": "Metal Roofing",
+              "description": "Durable metal roofing installation built to stand up to Sonoma County weather."
+            },
+            {
+              "title": "Skylight Installation",
+              "description": "Professional skylight installation that brings in natural light without leaks."
+            },
+            {
+              "title": "Gutters & Roof Cleaning",
+              "description": "Gutter repair and cleaning plus full roof cleaning to keep water moving and your roof healthy."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Roofing Done Right and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 2522 Tachevah Dr."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7:00am–8:00pm; Sat: 7:00am–5:00pm; Sun: 9:00am–3:00pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 791-0494 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 2522 Tachevah Dr. Call (707) 791-0494 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/roofing-done-right/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 791-0494",
+            "href": "tel:+17077910494"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Roofing Done Right",
+          "heading": "About Roofing Done Right",
+          "subheading": "Roofing Done Right is an owner-operated Santa Rosa roofing company led by Juan Antonio Mejia, who brings roughly ten years of roofing experience to every job",
+          "motif": "/images/library/roofing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Roofing Done Right",
+          "body": [
+            "Roofing Done Right is an owner-operated Santa Rosa roofing company led by Juan Antonio Mejia, who brings roughly ten years of roofing experience to every job. The focus is straightforward: responsive scheduling, careful workmanship, and simple, affordable pricing.",
+            "From leak and roof repair to metal roofing, skylight installation, gutter work and roof cleaning, Roofing Done Right serves homeowners across Santa Rosa and Sonoma County. The company is a licensed California roofing contractor (CSLB #1105080), ranked by BuildZoom in the top 5% of the state's contractors, and offers same- or next-day estimates."
+          ],
+          "highlights": [
+            "Owner-operated by Juan Antonio Mejia",
+            "Licensed contractor · CSLB #1105080",
+            "Top 5% of California contractors (BuildZoom)",
+            "Same- or next-day estimates"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Roofing Done Right",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/roofing-done-right/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Roofing Done Right at 2522 Tachevah Dr or call (707) 791-0494.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

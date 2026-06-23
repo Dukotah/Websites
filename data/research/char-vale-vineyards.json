@@ -1,0 +1,34 @@
+{
+  "slug": "char-vale-vineyards",
+  "confirmed": true,
+  "established": "2014",
+  "tagline": "Family-grown estate Pinot Noir in Green Valley",
+  "seoDescription": "Char Vale Vineyards: a family-owned estate winery in the Green Valley of Russian River Valley near Sebastopol, farming ten acres of award-winning estate Pinot Noir, Chardonnay, Riesling and more.",
+  "heroHeading": "Family-grown estate Pinot Noir in Green Valley",
+  "heroSubheading": "On ten contiguous acres in the Green Valley of the Russian River Valley near Sebastopol, the Char Vale family farms award-winning estate Pinot Noir, Rosé, Riesling, Chardonnay and Pinot Gris.",
+  "highlights": [
+    "Family-owned & farmed",
+    "Ten acres in Green Valley of the Russian River Valley",
+    "Award-winning estate Pinot Noir",
+    "Estate Rosé, Riesling, Chardonnay & Pinot Gris",
+    "Open Thursday–Monday, near Sebastopol"
+  ],
+  "aboutHeading": "About Char Vale",
+  "aboutBody": [
+    "Char Vale Vineyards and Winery is a family-owned operation in the renowned Green Valley of the Russian River Valley, a mile west of Highway 116 near Sebastopol. The family farms ten contiguous acres of world-class grape varietals and makes the wine themselves, in small, estate-focused lots.",
+    "The result is a lineup built around award-winning estate Pinot Noir, alongside an estate Rosé of Pinot Noir, estate Riesling, single-vineyard Chardonnay and Pinot Gris. Visitors taste in a relaxed, welcoming setting on the estate, Thursday through Monday."
+  ],
+  "servicesHeading": "Visit & taste",
+  "services": [
+    { "title": "Estate Tastings", "description": "Taste the current estate lineup at the winery, open 11am–4:30pm Thursday through Monday." },
+    { "title": "Estate Pinot Noir", "description": "Award-winning, estate-grown Pinot Noir from ten acres in the cool Green Valley appellation." },
+    { "title": "Estate Whites & Rosé", "description": "Estate Riesling, single-vineyard Chardonnay, Pinot Gris, and a Rosé of Pinot Noir." },
+    { "title": "Buy Online or at the Winery", "description": "Limited-production wines are available at the winery, online, or by phone." }
+  ],
+  "hours": [
+    { "day": "Thu–Mon", "hours": "11:00am–4:30pm" },
+    { "day": "Tue–Wed", "hours": "Closed" }
+  ],
+  "testimonials": [],
+  "notes": "Enriched from verified web research (charvalewinery.com, Sonoma County Tourism, Yelp 79 photos/54 reviews). Founding year ~2014 per research agent."
+}

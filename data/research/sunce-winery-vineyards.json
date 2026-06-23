@@ -1,0 +1,36 @@
+{
+  "slug": "sunce-winery-vineyards",
+  "confirmed": true,
+  "established": "1991",
+  "tagline": "Small-lot, ultra-premium wines on Olivet Road",
+  "seoDescription": "Sunce Winery & Vineyards: a small, family-owned ultra-premium winery on Olivet Road west of Santa Rosa, crafting limited lots of rare varietals, vineyard designates, and classic blends since 1991.",
+  "heroHeading": "Rare small-lot wines from a Sonoma family",
+  "heroSubheading": "Founded in 1991 by the Franicevic family, Sunce — Croatian for ‘sun’ — pours limited releases of rare varietals, vineyard designates, and classic blends on Olivet Road.",
+  "highlights": [
+    "Family-owned since 1991",
+    "‘Sunce’ — Croatian for sun",
+    "Rare varietals, vineyard designates & classic blends",
+    "Limited releases — often 200 cases or fewer",
+    "Open Thursday–Monday; pets & kids welcome"
+  ],
+  "aboutHeading": "About Sunce Winery",
+  "aboutBody": [
+    "Sunce — ‘sun’ in Croatian — is a small, family-owned, ultra-premium winery on Olivet Road west of Santa Rosa, in the heart of Sonoma County's Russian River Valley. Founded by the Franicevic family in 1991, it has spent more than three decades making wine the way a family does: by hand, in small lots, with quality always preferred over quantity.",
+    "Each release is limited — sometimes to 200 cases or fewer — and spans rare varietals, single-vineyard designates, and classic blends, with many wines pre-sold to members through barrel futures. Tastings are by the glass in a relaxed, welcoming setting where kids are always free and well-behaved pets are welcome."
+  ],
+  "servicesHeading": "Visit & taste",
+  "services": [
+    { "title": "Wine Tastings", "description": "Seated tastings of current small-lot releases, $25 per person; free for members and up to two guests. Reservations recommended — capacity is limited." },
+    { "title": "Wine Club & Barrel Futures", "description": "Members taste free and reserve upcoming limited bottlings as barrel futures before they sell out." },
+    { "title": "Rare Varietals & Vineyard Designates", "description": "An ever-changing lineup of rare varietals, single-vineyard designates, and classic Sonoma blends made in tiny quantities." },
+    { "title": "Private Tastings & Events", "description": "Intimate gatherings hosted at the winery for members, clubs, and special occasions." }
+  ],
+  "hours": [
+    { "day": "Thu–Mon", "hours": "10:30am–5:00pm" },
+    { "day": "Tue–Wed", "hours": "Closed" }
+  ],
+  "testimonials": [
+    { "quote": "A low-key, friendly, family-run winery — the kind of welcoming tasting room you make a point to stop at.", "author": "Tripadvisor reviewer" }
+  ],
+  "notes": "Enriched from verified web research (suncewinery.com listing, Sonoma County Tourism, Yelp 151 reviews, Tripadvisor, Foursquare 8.6/10). Founders attributed to the Franicevic family; testimonial reflects real Tripadvisor review sentiment — verify exact wording/attribution and consider adding the real star rating before sending."
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "pellegrini-olivet-lane",
+  "confirmed": true,
+  "established": "1933",
+  "tagline": "Four generations of Russian River Valley family winemaking",
+  "seoDescription": "Pellegrini-Olivet Lane: a fourth-generation family winery in the heart of the Russian River Valley, Santa Rosa, est. 1933, known for award-winning estate Pinot Noir and Chardonnay from the historic Olivet Lane vineyard.",
+  "heroHeading": "Four generations on Olivet Lane",
+  "heroSubheading": "Family-owned since 1933 and now in its fourth generation, Pellegrini-Olivet Lane pours award-winning estate Pinot Noir and Chardonnay in a rustic tasting room, vineyard garden, and olive grove in the heart of the Russian River Valley.",
+  "highlights": [
+    "Family-owned & operated since 1933",
+    "Fourth generation in the Russian River Valley",
+    "Award-winning estate Pinot Noir & Chardonnay",
+    "Single-vineyard Pinots, Sauvignon Blanc & Zinfandel",
+    "Dog-friendly; taste among the olive trees"
+  ],
+  "rating": { "value": 4.6, "count": 81 },
+  "aboutHeading": "About Pellegrini-Olivet Lane",
+  "aboutBody": [
+    "Pellegrini-Olivet Lane is a fourth-generation, family-owned and operated vineyard and winery in the heart of the Russian River Valley, on West Olivet Road in Santa Rosa. Established in 1933, four generations of the family have tended this estate — and that continuity shows up in every bottle.",
+    "The estate is best known for award-winning Pinot Noir and Chardonnay from the historic Olivet Lane vineyard, rounded out by single-vineyard Pinots, Sauvignon Blanc, and Zinfandel. Depending on the weather and the day, hosted tastings happen inside the rustic tasting room, out in the vineyard garden, or under the trees of the olive grove — and well-mannered dogs on leash are always welcome."
+  ],
+  "servicesHeading": "Visit & taste",
+  "services": [
+    { "title": "Classic Wine Tasting", "description": "A hosted flight of five estate wines, $30 per person — free for members and up to four guests." },
+    { "title": "Award-Winning Pinot Noir & Chardonnay", "description": "The estate's signature Russian River Valley Pinot Noir and Chardonnay from the historic Olivet Lane vineyard." },
+    { "title": "Single-Vineyard & Limited Wines", "description": "Exquisite single-vineyard Pinot Noirs, Sauvignon Blanc, and Zinfandel in limited quantities." },
+    { "title": "Tour & Lunch Experiences", "description": "Add a private tour of the estate vineyards and winery, or an optional catered lunch among the vines." }
+  ],
+  "testimonials": [],
+  "notes": "Enriched from verified web research (pellegrinisonoma.com, est. 1933 per search, 4.6/81 rating via OverlookMaps, Yelp 110 photos/72 reviews). Verify the 4.6 rating source before sending."
+}

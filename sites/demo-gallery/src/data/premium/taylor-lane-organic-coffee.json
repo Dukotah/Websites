@@ -1,0 +1,199 @@
+{
+  "slug": "taylor-lane-organic-coffee",
+  "name": "Taylor Lane Organic Coffee",
+  "legalName": "Taylor Lane Organic Coffee",
+  "tagline": "Taylor Lane offers 100% premium organic coffee and teas in our store and online",
+  "seoDescription": "Taylor Lane offers 100% premium organic coffee and teas in our store and online! Learn more about our organic coffee beans and find a premium roast today!",
+  "category": "cafe",
+  "categoryLabel": "Cafe",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "1993",
+  "contact": {
+    "phone": "(707) 634-7129",
+    "email": "info@taylorlane.com",
+    "address": "6790 McKinley Ave Ste 170"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/brewtaylorlane",
+    "instagram": "https://www.instagram.com/brewtaylorlane/"
+  },
+  "brand": {
+    "color": "#c2683a",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA · Est. 1993",
+          "heading": "Taylor Lane Organic Coffee, serving Sebastopol, CA since 1993",
+          "subheading": "Keeping the sustainable spirit of Sonoma County alive in small-batch roasts packaged by hand",
+          "badges": [
+            "Serving since 1993"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/taylor-lane-organic-coffee/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/taylor-lane-organic-coffee/contact"
+          },
+          "image": {
+            "src": "/images/taylor-lane-organic-coffee/story.webp",
+            "alt": "Inside Taylor Lane Organic Coffee",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Taylor Lane Organic Coffee",
+          "body": [
+            "Keeping the sustainable spirit of Sonoma County alive in small-batch roasts packaged by hand",
+            "Taylor Lane is a roaster that believes in community, sustainability, and experimentation. Every small batch is roasted in our Loring Smart Roast, a locally made (Santa Rosa, CA) and energy efficient roaster that greatly reduces our carbon footprint without sacrificing quality. We aim to bring together the artistry and science of roasting in our offerings, which range from light and fruity to dark and bold."
+          ],
+          "image": {
+            "src": "/images/taylor-lane-organic-coffee/story.webp",
+            "alt": "Inside Taylor Lane Organic Coffee",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Taylor Lane Organic Coffee",
+          "images": [
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-2.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 1"
+            },
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-3.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 2"
+            },
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-5.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 3"
+            },
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-6.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 4"
+            },
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-8.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 5"
+            },
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-11.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 6790 McKinley Ave Ste 170. Call (707) 634-7129 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/taylor-lane-organic-coffee/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 634-7129",
+            "href": "tel:+17076347129"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Taylor Lane Organic Coffee",
+          "heading": "About Taylor Lane Organic Coffee",
+          "subheading": "Keeping the sustainable spirit of Sonoma County alive in small-batch roasts packaged by hand",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Taylor Lane Organic Coffee",
+          "body": [
+            "Keeping the sustainable spirit of Sonoma County alive in small-batch roasts packaged by hand",
+            "Taylor Lane is a roaster that believes in community, sustainability, and experimentation. Every small batch is roasted in our Loring Smart Roast, a locally made (Santa Rosa, CA) and energy efficient roaster that greatly reduces our carbon footprint without sacrificing quality. We aim to bring together the artistry and science of roasting in our offerings, which range from light and fruity to dark and bold."
+          ],
+          "image": {
+            "src": "/images/taylor-lane-organic-coffee/story.webp",
+            "alt": "Inside Taylor Lane Organic Coffee",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-2.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 1"
+            },
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-3.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 2"
+            },
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-5.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 3"
+            },
+            {
+              "src": "/images/taylor-lane-organic-coffee/photo-6.jpg",
+              "alt": "Taylor Lane Organic Coffee — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Taylor Lane Organic Coffee",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/taylor-lane-organic-coffee/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Taylor Lane Organic Coffee at 6790 McKinley Ave Ste 170 or call (707) 634-7129.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Low-resolution hero suppressed — source too small for a sharp header; add a larger photo or ship the text hero"
+  ],
+  "photoSource": "agent-supplied"
+}

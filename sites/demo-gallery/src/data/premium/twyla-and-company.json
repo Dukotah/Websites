@@ -1,0 +1,173 @@
+{
+  "slug": "twyla-and-company",
+  "name": "Twyla and Company",
+  "legalName": "Twyla and Company",
+  "tagline": "Located in the heart of Downtown Santa Rosa, TWYLA & CO. hair salon provides a range of salon services",
+  "seoDescription": "Located in the heart of Downtown Santa Rosa, TWYLA & CO. hair salon provides a range of salon services, including master hair color, hair extensions, creative",
+  "category": "salon",
+  "categoryLabel": "Salon",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 481-7012",
+    "email": "TwylaCoStaff@gmail.com",
+    "address": "606 5th St"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/twylaandcompany",
+    "instagram": "https://www.instagram.com/twyla_and_company_on_5th/"
+  },
+  "brand": {
+    "color": "#aa5279",
+    "fontId": "warm-humanist"
+  },
+  "images": {
+    "hero": "/images/twyla-and-company/hero.jpg",
+    "heroAlt": "Twyla and Company in Santa Rosa, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "fullbleed",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "A salon in Santa Rosa, CA that gets you",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/twyla-and-company/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/twyla-and-company/services"
+          },
+          "image": {
+            "src": "/images/twyla-and-company/hero.jpg",
+            "alt": "Twyla and Company in Santa Rosa, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Services",
+              "description": "Services handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Trendy, Artistic, Custom Color And Shear Work.",
+              "description": "Real experience behind every trendy, artistic, custom color and shear work. job, big or small."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Twyla and Company",
+          "body": "Find us at 606 5th St. Call (707) 481-7012 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/twyla-and-company/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 481-7012",
+            "href": "tel:+17074817012"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Services",
+              "description": "Services handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Trendy, Artistic, Custom Color And Shear Work.",
+              "description": "Real experience behind every trendy, artistic, custom color and shear work. job, big or small."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 606 5th St."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 481-7012 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 606 5th St. Call (707) 481-7012 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/twyla-and-company/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 481-7012",
+            "href": "tel:+17074817012"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Twyla and Company at 606 5th St or call (707) 481-7012.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "No About content — about page folded",
+    "Generic fallback headline with no research or founding year — research a specific, earned hero line"
+  ],
+  "photoSource": "agent-supplied"
+}

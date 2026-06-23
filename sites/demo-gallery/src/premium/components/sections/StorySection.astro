@@ -6,6 +6,7 @@
  */
 import type { SecStory, PremiumConfig } from '../../lib/premium-types';
 import SiteImage from '../../../components/SiteImage.astro';
+import Marquee from '../Marquee.astro';
 
 interface Props {
   data: SecStory;
@@ -27,20 +28,40 @@ const hasImage = !!img;
 // single centered text column. Falls back to the centered measure when there are
 // no highlights to fill the aside.
 const soloPanel = !hasImage && highlights.length > 0;
+
+// Sticky-scroll storytelling: when there's an image AND enough prose to scroll
+// (2+ paragraphs), the figure pins in view while the narrative steps scroll past
+// it (CSS position:sticky — no scroll-jacking; collapses to normal flow on
+// mobile + reduced motion via effects.css). Reserves space via the grid → 0 CLS.
+const sticky = hasImage && body.length >= 2;
+
+// A credential strip beneath the story — derived from existing highlights (no
+// schema change). Renders only when there are 4+ differentiators (enough to read
+// as a moving strip rather than a thin row) AND the section has an image (so the
+// inline checklist isn't the only place they appear). In that case the strip
+// REPLACES the inline checklist so the highlights never read twice on one screen.
+const useMarquee = hasImage && !soloPanel && highlights.length >= 4;
+const credentials = highlights;
 ---
 
-<section class:list={['section', 'p-story', { 'p-story--solo': !hasImage, 'p-story--panel': soloPanel }]}>
+<section class:list={['section', 'p-story', { 'p-story--solo': !hasImage, 'p-story--panel': soloPanel, 'p-story--sticky': sticky }]}>
   <div class="container">
     <div class="p-story__grid">
       <div class="p-story__body" data-reveal={hasImage || soloPanel ? 'left' : ''}>
         {eyebrow && <p class="eyebrow">{eyebrow}</p>}
         <h2 class="p-story__heading">{heading}</h2>
 
-        <div class="p-story__prose">
-          {body.map((para) => <p>{para}</p>)}
+        <div class:list={['p-story__prose', { 'p-story__steps': sticky }]} data-dropcap>
+          {body.map((para, i) =>
+            sticky ? (
+              <p data-reveal data-reveal-delay={Math.min((i % 8) + 1, 8)}>{para}</p>
+            ) : (
+              <p>{para}</p>
+            ),
+          )}
         </div>
 
-        {highlights.length > 0 && !soloPanel && (
+        {highlights.length > 0 && !soloPanel && !useMarquee && (
           <ul class="checklist p-story__highlights">
             {highlights.map((h) => <li>{h}</li>)}
           </ul>
@@ -72,6 +93,15 @@ const soloPanel = !hasImage && highlights.length > 0;
         </aside>
       )}
     </div>
+
+    {/* Credential strip — an infinite marquee of the differentiators, beneath the
+        story. Derived from existing `highlights` (no schema change); REPLACES the
+        inline checklist when present so they never read twice on one screen. */}
+    {useMarquee && (
+      <div class="p-story__credentials" data-reveal>
+        <Marquee items={credentials} label="What sets us apart" />
+      </div>
+    )}
   </div>
 </section>
 
@@ -171,6 +201,13 @@ const soloPanel = !hasImage && highlights.length > 0;
     max-width: 34rem;
     margin-inline: auto;
     text-align: left;
+  }
+
+  /* Credential marquee beneath the story — a hairline-topped strip. */
+  .p-story__credentials {
+    margin-top: clamp(2.5rem, 1.8rem + 2.5vw, 4rem);
+    padding-top: var(--p-space-8);
+    border-top: 1px solid var(--p-line);
   }
 
   @media (max-width: 820px) {

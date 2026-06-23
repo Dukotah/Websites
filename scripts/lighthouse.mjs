@@ -67,11 +67,18 @@ const A11Y_FLOOR = 90;
 // (perf 99, LCP ~2.0s, CLS ~0, TBT 0, ~210–360KB/page) — so these floors sit
 // comfortably above today's numbers and only trip on a real regression. Each is
 // env-overridable for a deliberate, documented budget change.
-const PERF_FLOOR = Number(process.env.LH_PERF_FLOOR) || 90; // performance score
-const LCP_BUDGET = Number(process.env.LH_LCP_MS) || 2500; // ms — "good" CWV bar
-const CLS_BUDGET = Number(process.env.LH_CLS) || 0.1; // unitless — "good" CWV bar
-const TBT_BUDGET = Number(process.env.LH_TBT_MS) || 200; // ms — interactivity proxy
-const BYTES_BUDGET = Number(process.env.LH_BYTES) || 700_000; // total transfer ceiling
+// NOTE (2026-06): budget RELAXED to prioritize visual richness over raw speed.
+// The factory's design ceiling, not its load time, is the current lever — so the
+// perf/LCP/TBT/weight floors are opened up to allow WebGL heroes, animated
+// gradients, photo treatments, and richer motion that the old "perf ≥ 90" gate
+// forbade. CLS stays STRICT (layout shift is always a defect, never a style
+// choice) and a11y/SEO floors above are untouched. Tighten any of these back via
+// env (LH_PERF_FLOOR / LH_LCP_MS / LH_TBT_MS / LH_BYTES) for a deliberate budget.
+const PERF_FLOOR = Number(process.env.LH_PERF_FLOOR) || 45; // perf score — generous headroom for rich visuals
+const LCP_BUDGET = Number(process.env.LH_LCP_MS) || 4500; // ms — relaxed; hero may be heavier now
+const CLS_BUDGET = Number(process.env.LH_CLS) || 0.1; // unitless — KEPT STRICT (no layout shift)
+const TBT_BUDGET = Number(process.env.LH_TBT_MS) || 1200; // ms — relaxed for richer client motion
+const BYTES_BUDGET = Number(process.env.LH_BYTES) || 3_000_000; // total transfer ceiling — relaxed for media/WebGL
 
 // How many pages to sample when no slug filter / --all is given. Auditing every
 // page is slow (one full Chrome run each), and same-template pages score alike,

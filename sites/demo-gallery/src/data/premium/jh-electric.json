@@ -1,0 +1,336 @@
+{
+  "slug": "jh-electric",
+  "name": "JH Electric",
+  "legalName": "JH Electric",
+  "tagline": "Sonoma's owner-run electrician since 2003",
+  "seoDescription": "JH Electric — Sonoma native Javier Hernandez has run his own licensed electrical business in Sonoma, CA since 2003, handling residential and commercial wiring",
+  "category": "electrician",
+  "categoryLabel": "Electrician",
+  "area": "Sonoma, CA",
+  "city": "Sonoma",
+  "state": "CA",
+  "established": "2003",
+  "contact": {
+    "phone": "(707) 935-2800",
+    "email": "",
+    "address": "104 El Portola Dr"
+  },
+  "social": {},
+  "brand": {
+    "color": "#cf911e",
+    "fontId": "clean-sans"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sonoma, CA · Est. 2003",
+          "heading": "Sonoma's owner-run electrician since 2003",
+          "subheading": "JH Electric is Javier Hernandez's Sonoma electrical business — a Sonoma native who has worked in the trade since 1996 and gone out on his own since 2003, handling residential and commercial wiring",
+          "badges": [
+            "Serving since 2003",
+            "Owner-operated by Sonoma native Javier Hernandez",
+            "In business since 2003"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/jh-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/jh-electric/services"
+          },
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About JH Electric",
+          "body": [
+            "JH Electric is owned and operated by Javier Hernandez, a Sonoma native who began working in the electrical field in 1996 and started his own business in 2003. Based in Sonoma, he serves homeowners and businesses around the Sonoma Valley.",
+            "JH Electric focuses on residential and commercial electrical work for both new construction and remodels, specializing in troubleshooting, re-wiring and panel upgrades. The business is a licensed C-10 electrical contractor, California contractor's license #816936."
+          ],
+          "highlights": [
+            "Owner-operated by Sonoma native Javier Hernandez",
+            "In business since 2003",
+            "Licensed electrician · CSLB #816936",
+            "Residential & commercial wiring"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Electrical services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Panel Upgrades",
+              "description": "Upgrading and replacing electrical panels to safely handle modern household and business loads."
+            },
+            {
+              "title": "Wiring & Re-Wiring",
+              "description": "New wiring and re-wires for remodels, additions and new construction, residential or commercial."
+            },
+            {
+              "title": "Troubleshooting & Repair",
+              "description": "Diagnosing and fixing electrical problems, faults and code issues throughout your property."
+            },
+            {
+              "title": "New Construction & Remodels",
+              "description": "Complete electrical for remodels and new builds, handled by the owner himself."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message JH Electric and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why JH Electric",
+          "items": [
+            {
+              "title": "Owner-Operated By Sonoma Native Javier Hernandez",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "In Business Since 2003",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Licensed Electrician · CSLB #816936",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Residential & Commercial Wiring",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Troubleshooting, Re-Wires & Panel Upgrades",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Javier was reasonably priced, knowledgeable and provided very good service and communication — responsive when we needed him on site.",
+              "author": "Verified Yelp review · Sonoma"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with JH Electric",
+          "body": "Find us at 104 El Portola Dr. Call (707) 935-2800 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/jh-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 935-2800",
+            "href": "tel:+17079352800"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "JH Electric is Javier Hernandez's Sonoma electrical business — a Sonoma native who has worked in the trade since 1996 and gone out on his own since 2003, handling residential",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Electrical services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Panel Upgrades",
+              "description": "Upgrading and replacing electrical panels to safely handle modern household and business loads."
+            },
+            {
+              "title": "Wiring & Re-Wiring",
+              "description": "New wiring and re-wires for remodels, additions and new construction, residential or commercial."
+            },
+            {
+              "title": "Troubleshooting & Repair",
+              "description": "Diagnosing and fixing electrical problems, faults and code issues throughout your property."
+            },
+            {
+              "title": "New Construction & Remodels",
+              "description": "Complete electrical for remodels and new builds, handled by the owner himself."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message JH Electric and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 104 El Portola Dr."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sonoma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 935-2800 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 104 El Portola Dr. Call (707) 935-2800 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/jh-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 935-2800",
+            "href": "tel:+17079352800"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About JH Electric",
+          "heading": "About JH Electric",
+          "subheading": "JH Electric is owned and operated by Javier Hernandez, a Sonoma native who began working in the electrical field in 1996 and started his own business in 2003",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About JH Electric",
+          "body": [
+            "JH Electric is owned and operated by Javier Hernandez, a Sonoma native who began working in the electrical field in 1996 and started his own business in 2003. Based in Sonoma, he serves homeowners and businesses around the Sonoma Valley.",
+            "JH Electric focuses on residential and commercial electrical work for both new construction and remodels, specializing in troubleshooting, re-wiring and panel upgrades. The business is a licensed C-10 electrical contractor, California contractor's license #816936."
+          ],
+          "highlights": [
+            "Owner-operated by Sonoma native Javier Hernandez",
+            "In business since 2003",
+            "Licensed electrician · CSLB #816936",
+            "Residential & commercial wiring"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "23+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see JH Electric",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/jh-electric/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach JH Electric at 104 El Portola Dr or call (707) 935-2800.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

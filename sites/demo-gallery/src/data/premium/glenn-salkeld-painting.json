@@ -1,0 +1,276 @@
+{
+  "slug": "glenn-salkeld-painting",
+  "name": "Glenn Salkeld Painting",
+  "legalName": "Glenn Salkeld Painting",
+  "tagline": "Owner-operated house painting in west Sonoma County",
+  "seoDescription": "Glenn Salkeld Painting — an owner-operated, licensed painting and decorating contractor based in Graton/Sebastopol, CA, serving west Sonoma County",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 829-5783",
+    "email": "",
+    "address": "9656 O'Connell Rd"
+  },
+  "social": {},
+  "brand": {
+    "color": "#3b5a78",
+    "fontId": "classic-trad"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA",
+          "heading": "Licensed house painting in west Sonoma County",
+          "subheading": "Glenn Salkeld Painting is an owner-operated, licensed painting and decorating contractor serving Sebastopol, Graton and west Sonoma County — thorough prep, helpful color guidance and clean, careful",
+          "badges": [
+            "Owner-operated by Glenn Salkeld",
+            "Serving Sebastopol, Graton & west Sonoma County",
+            "Licensed Painting & Decorating contractor ·"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/glenn-salkeld-painting/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/glenn-salkeld-painting/services"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Glenn Salkeld Painting",
+          "items": [
+            {
+              "title": "Owner-Operated By Glenn Salkeld",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Sebastopol, Graton & West Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Licensed Painting & Decorating Contractor ·",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Interior & Exterior Residential Painting",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Known For Meticulous Prep And Daily Cleanup",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Glenn Salkeld Painting",
+          "body": [
+            "Glenn Salkeld Painting is an owner-operated painting business based in Graton and serving Sebastopol and west Sonoma County. Glenn handles jobs personally, helping homeowners choose colors and finishes and treating each house with the kind of care that comes from doing the work himself.",
+            "Customers single out the thorough preparation — sanding and sealing every gap, crack and flaw before a brush touches the wall — along with daily cleanup and fair pricing. The business is a licensed California Painting and Decorating (C-33) contractor, license #699134."
+          ],
+          "highlights": [
+            "Owner-operated by Glenn Salkeld",
+            "Serving Sebastopol, Graton & west Sonoma County",
+            "Licensed Painting & Decorating contractor · CSLB #699134",
+            "Interior & exterior residential painting"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Painting services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Interior Painting",
+              "description": "Clean, careful interior painting with meticulous prep and daily cleanup so your home stays livable."
+            },
+            {
+              "title": "Exterior Painting",
+              "description": "Exterior repaints with thorough sanding, sealing and surface prep to protect the home and last."
+            },
+            {
+              "title": "Color Consultation",
+              "description": "Hands-on help choosing colors and finishes from an owner who guides you through the options."
+            },
+            {
+              "title": "Surface Prep & Repair",
+              "description": "Sanding and sealing gaps, cracks and flaws so the finished coat goes on right."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Great color suggestions and fantastic prep — sanding and sealing every gap, crack and flaw, with daily cleanup and fair pricing.",
+              "author": "Verified BuildZoom review · Sebastopol"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Glenn Salkeld Painting",
+          "body": "Find us at 9656 O'Connell Rd. Call (707) 829-5783 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/glenn-salkeld-painting/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 829-5783",
+            "href": "tel:+17078295783"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Glenn Salkeld Painting is an owner-operated, licensed painting and decorating contractor serving Sebastopol, Graton and west Sonoma County — thorough prep, helpful color guidance",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Painting services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Interior Painting",
+              "description": "Clean, careful interior painting with meticulous prep and daily cleanup so your home stays livable."
+            },
+            {
+              "title": "Exterior Painting",
+              "description": "Exterior repaints with thorough sanding, sealing and surface prep to protect the home and last."
+            },
+            {
+              "title": "Color Consultation",
+              "description": "Hands-on help choosing colors and finishes from an owner who guides you through the options."
+            },
+            {
+              "title": "Surface Prep & Repair",
+              "description": "Sanding and sealing gaps, cracks and flaws so the finished coat goes on right."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 9656 O'Connell Rd."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 829-5783 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 9656 O'Connell Rd. Call (707) 829-5783 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/glenn-salkeld-painting/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 829-5783",
+            "href": "tel:+17078295783"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Glenn Salkeld Painting",
+          "heading": "About Glenn Salkeld Painting",
+          "subheading": "Glenn Salkeld Painting is an owner-operated painting business based in Graton and serving Sebastopol and west Sonoma County",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Glenn Salkeld Painting",
+          "body": [
+            "Glenn Salkeld Painting is an owner-operated painting business based in Graton and serving Sebastopol and west Sonoma County. Glenn handles jobs personally, helping homeowners choose colors and finishes and treating each house with the kind of care that comes from doing the work himself.",
+            "Customers single out the thorough preparation — sanding and sealing every gap, crack and flaw before a brush touches the wall — along with daily cleanup and fair pricing. The business is a licensed California Painting and Decorating (C-33) contractor, license #699134."
+          ],
+          "highlights": [
+            "Owner-operated by Glenn Salkeld",
+            "Serving Sebastopol, Graton & west Sonoma County",
+            "Licensed Painting & Decorating contractor · CSLB #699134",
+            "Interior & exterior residential painting"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Glenn Salkeld Painting",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/glenn-salkeld-painting/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Glenn Salkeld Painting at 9656 O'Connell Rd or call (707) 829-5783.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

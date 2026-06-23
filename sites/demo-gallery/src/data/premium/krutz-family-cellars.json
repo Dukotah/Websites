@@ -1,0 +1,293 @@
+{
+  "slug": "krutz-family-cellars",
+  "name": "Krutz Family Cellars",
+  "legalName": "Krutz Family Cellars",
+  "tagline": "A Sonoma family winery, from 60 cases on",
+  "seoDescription": "Krutz Family Cellars: a Santa Rosa family winery founded in 2003, handcrafting small-lot, critically-acclaimed wines from prestigious Northern California",
+  "category": "winery",
+  "categoryLabel": "Winery",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2003",
+  "contact": {
+    "phone": "(707) 536-1532",
+    "email": "info@krutzfamilycellars.com",
+    "address": "3354 Coffey Ln Ste A"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "10:00am–4:00pm (by reservation)"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#6b2737",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2003",
+          "heading": "A Sonoma family winery since 2003",
+          "subheading": "Krutz Family Cellars began in 2003 with just 60 cases. Today the family crafts small-lot, critically-acclaimed wines from some of Northern California's most prestigious vineyards — tasted from",
+          "badges": [
+            "Serving since 2003",
+            "Syrah rated 94 points — Wine Enthusiast",
+            "Chardonnay rated 93 points — Wine Enthusiast"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/krutz-family-cellars/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/krutz-family-cellars/menu"
+          },
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Krutz Family Cellars",
+          "body": [
+            "Krutz Family Cellars started in 2003 with a single, hopeful batch — just 60 cases. In 2011 brothers Bryan and Cole Krutz joined Patrick as owners, and the family and the production have grown together into a small Sonoma County winery built on hands-on, personal winemaking.",
+            "The family sources fruit from some of the most prestigious vineyards across Northern California and makes the wine in small lots — work that's earned real recognition, including a 94-point Editor's Choice Syrah and a 93-point Chardonnay from Wine Enthusiast. Visits are personal by design: a reservation brings a one-on-one tour and a taste straight from the barrel."
+          ],
+          "highlights": [
+            "Syrah rated 94 points — Wine Enthusiast Editor's Choice",
+            "Chardonnay rated 93 points — Wine Enthusiast",
+            "Family winery since 2003, from just 60 cases",
+            "Fruit from prestigious Northern California vineyards"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "Visit & taste",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Barrel Tastings",
+              "description": "A personalized tour and a taste from the barrel, by reservation — Monday through Friday, 10am–4pm."
+            },
+            {
+              "title": "Award-Winning Small-Lot Wines",
+              "description": "Critically-acclaimed, handcrafted wines from prestigious Northern California vineyards, made in limited quantities."
+            },
+            {
+              "title": "Wine Club",
+              "description": "Join the family to receive new small-lot releases as they're bottled."
+            },
+            {
+              "title": "Private Tastings",
+              "description": "Intimate, by-appointment tastings for small groups and special occasions."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Krutz Family Cellars",
+          "items": [
+            {
+              "title": "Syrah Rated 94 Points — Wine Enthusiast",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Chardonnay Rated 93 Points — Wine Enthusiast",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Family Winery Since 2003, From Just 60 Cases",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Fruit From Prestigious Northern California",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Personalized Barrel Tastings By Reservation",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 3354 Coffey Ln Ste A. Call (707) 536-1532 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/krutz-family-cellars/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 536-1532",
+            "href": "tel:+17075361532"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Krutz Family Cellars began in 2003 with just 60 cases. Today the family crafts small-lot, critically-acclaimed wines from some of Northern California's most prestigious vineyards",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Visit & taste",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Barrel Tastings",
+              "description": "A personalized tour and a taste from the barrel, by reservation — Monday through Friday, 10am–4pm."
+            },
+            {
+              "title": "Award-Winning Small-Lot Wines",
+              "description": "Critically-acclaimed, handcrafted wines from prestigious Northern California vineyards, made in limited quantities."
+            },
+            {
+              "title": "Wine Club",
+              "description": "Join the family to receive new small-lot releases as they're bottled."
+            },
+            {
+              "title": "Private Tastings",
+              "description": "Intimate, by-appointment tastings for small groups and special occasions."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 3354 Coffey Ln Ste A."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 10:00am–4:00pm (by reservation); Sat–Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 536-1532 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 3354 Coffey Ln Ste A. Call (707) 536-1532 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/krutz-family-cellars/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 536-1532",
+            "href": "tel:+17075361532"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Krutz Family Cellars",
+          "heading": "About Krutz Family Cellars",
+          "subheading": "Krutz Family Cellars started in 2003 with a single, hopeful batch — just 60 cases. In 2011 brothers Bryan and Cole Krutz joined Patrick as owners, and the family and",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Krutz Family Cellars",
+          "body": [
+            "Krutz Family Cellars started in 2003 with a single, hopeful batch — just 60 cases. In 2011 brothers Bryan and Cole Krutz joined Patrick as owners, and the family and the production have grown together into a small Sonoma County winery built on hands-on, personal winemaking.",
+            "The family sources fruit from some of the most prestigious vineyards across Northern California and makes the wine in small lots — work that's earned real recognition, including a 94-point Editor's Choice Syrah and a 93-point Chardonnay from Wine Enthusiast. Visits are personal by design: a reservation brings a one-on-one tour and a taste straight from the barrel."
+          ],
+          "highlights": [
+            "Syrah rated 94 points — Wine Enthusiast Editor's Choice",
+            "Chardonnay rated 93 points — Wine Enthusiast",
+            "Family winery since 2003, from just 60 cases",
+            "Fruit from prestigious Northern California vineyards"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "23+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Krutz Family Cellars",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/krutz-family-cellars/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Krutz Family Cellars at 3354 Coffey Ln Ste A or call (707) 536-1532.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

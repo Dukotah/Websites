@@ -77,11 +77,8 @@ const ctaLabel = phone ? formatPhone(phone) : 'Get in touch';
     border-bottom: 1px solid var(--p-line);
     transition: background-color 200ms ease;
   }
-  /* Frosted glass only once any low-DPR aurora hero has scrolled past. Blurring a
-     sub-native canvas through backdrop-filter dithers into blocky banding, so over
-     a photo-less editorial hero the header runs clean (no blur) until it clears.
-     [data-scrolled] is set immediately by the script below when there is no aurora,
-     so photo/paper heroes keep the frosted glass from the very top as before. */
+  /* Frosted glass. [data-scrolled] is set on load by the script below for every
+     header — the photo and paper heroes blur cleanly behind it. */
   .p-hdr[data-scrolled] {
     backdrop-filter: saturate(140%) blur(10px);
   }
@@ -151,32 +148,11 @@ const ctaLabel = phone ? formatPhone(phone) : 'Get in touch';
       });
     });
   }
-  // Frosted-glass gate. The header persists across View Transitions, but the
-  // aurora hero is re-created per page, so re-evaluate on every page-load and
-  // disconnect any prior observer. When the page has no aurora field, enable the
-  // glass immediately (photo/paper heroes blur fine). When it does, suppress the
-  // blur while the header band still overlaps the low-DPR aurora — blurring it
-  // dithers into banding — and re-enable once the hero has scrolled past.
+  // Frosted-glass header — the photo and paper heroes blur cleanly, so the glass
+  // is simply enabled on every page (no hero-overlap special-casing needed).
   function initHeaderGlass() {
     document.querySelectorAll('[data-premium-header]').forEach((hdr) => {
-      const el = hdr as HTMLElement & { _glassIO?: IntersectionObserver };
-      el._glassIO?.disconnect();
-      const aurora = document.querySelector('[data-hero-aurora]');
-      if (!aurora || !('IntersectionObserver' in window)) {
-        el.setAttribute('data-scrolled', '');
-        return;
-      }
-      el.removeAttribute('data-scrolled');
-      const headerH = el.offsetHeight || 64;
-      const io = new IntersectionObserver(
-        (entries) => {
-          if (entries[0]?.isIntersecting) el.removeAttribute('data-scrolled');
-          else el.setAttribute('data-scrolled', '');
-        },
-        { rootMargin: `-${headerH}px 0px 0px 0px`, threshold: 0 },
-      );
-      io.observe(aurora);
-      el._glassIO = io;
+      hdr.setAttribute('data-scrolled', '');
     });
   }
   document.addEventListener('astro:page-load', () => {

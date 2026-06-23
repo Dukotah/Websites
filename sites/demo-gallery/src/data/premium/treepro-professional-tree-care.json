@@ -1,0 +1,321 @@
+{
+  "slug": "treepro-professional-tree-care",
+  "name": "TreePro Professional Tree Care",
+  "legalName": "TreePro Professional Tree Care",
+  "tagline": "Sebastopol's certified-arborist tree care since 1990",
+  "seoDescription": "TreePro Professional Tree Care of Sebastopol — owner Ron Wallace and his crew have provided certified-arborist-directed tree pruning, removal and stump",
+  "category": "landscaping",
+  "categoryLabel": "Landscaping",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "1990",
+  "contact": {
+    "phone": "(707) 829-3300",
+    "email": "",
+    "address": ""
+  },
+  "social": {},
+  "brand": {
+    "color": "#2d8a3a",
+    "fontId": "warm-humanist"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA · Est. 1990",
+          "heading": "Certified-arborist tree care in Sebastopol since 1990",
+          "subheading": "TreePro Professional Tree Care is Ron Wallace's Sebastopol tree company — every job is completed under the direction of a Certified Arborist, from routine pruning to hazardous removals and stump",
+          "badges": [
+            "Serving since 1990",
+            "Serving Sonoma County since 1990",
+            "Work directed by a Certified Arborist"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/treepro-professional-tree-care/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/treepro-professional-tree-care/services"
+          },
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About TreePro Professional Tree Care",
+          "body": [
+            "TreePro Professional Tree Care has been the professional choice for tree care in and around Sebastopol since 1990. Owner Ron Wallace, a Certified Arborist, and his crew serve homeowners and property managers throughout Sonoma County.",
+            "Every TreePro job is completed under the direction of a Certified Arborist, so trees are pruned, shaped or removed the right way. Services range from tree pruning and hazardous tree removal to stump grinding, tree consulting and 24/7 emergency response, and TreePro even grows replacement trees in its own nursery. The company is rated 4.8 on Angi across years of customer reviews."
+          ],
+          "highlights": [
+            "Serving Sonoma County since 1990",
+            "Work directed by a Certified Arborist",
+            "Rated 4.8 on Angi · 82 Yelp reviews",
+            "Tree pruning, removal & stump grinding"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Tree services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Tree Pruning & Shaping",
+              "description": "Arborist-directed pruning and shaping to keep trees healthy, safe and well-formed."
+            },
+            {
+              "title": "Tree Removal",
+              "description": "Safe removal of hazardous, dead or unwanted trees by an experienced crew."
+            },
+            {
+              "title": "Stump Grinding",
+              "description": "Grinding down leftover stumps so you can reclaim the space in your yard."
+            },
+            {
+              "title": "Consulting & Emergency Service",
+              "description": "Tree consulting plus 24/7 emergency response when storms or hazards strike."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message TreePro Professional Tree Care and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why TreePro Professional Tree Care",
+          "items": [
+            {
+              "title": "Serving Sonoma County Since 1990",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Work Directed By A Certified Arborist",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Rated 4.8 On Angi · 82 Yelp Reviews",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Tree Pruning, Removal & Stump Grinding",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Free Estimates · 24/7 Emergency Service",
+              "body": "When it matters, we move quickly — you won’t be left waiting.",
+              "icon": "clock"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with TreePro Professional Tree Care",
+          "body": "Call (707) 829-3300 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/treepro-professional-tree-care/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 829-3300",
+            "href": "tel:+17078293300"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "TreePro Professional Tree Care is Ron Wallace's Sebastopol tree company — every job is completed under the direction of a Certified Arborist, from routine pruning to hazardous",
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Tree services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Tree Pruning & Shaping",
+              "description": "Arborist-directed pruning and shaping to keep trees healthy, safe and well-formed."
+            },
+            {
+              "title": "Tree Removal",
+              "description": "Safe removal of hazardous, dead or unwanted trees by an experienced crew."
+            },
+            {
+              "title": "Stump Grinding",
+              "description": "Grinding down leftover stumps so you can reclaim the space in your yard."
+            },
+            {
+              "title": "Consulting & Emergency Service",
+              "description": "Tree consulting plus 24/7 emergency response when storms or hazards strike."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message TreePro Professional Tree Care and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 829-3300 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Call (707) 829-3300 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/treepro-professional-tree-care/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 829-3300",
+            "href": "tel:+17078293300"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About TreePro Professional Tree Care",
+          "heading": "About TreePro Professional Tree Care",
+          "subheading": "TreePro Professional Tree Care has been the professional choice for tree care in and around Sebastopol since 1990",
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About TreePro Professional Tree Care",
+          "body": [
+            "TreePro Professional Tree Care has been the professional choice for tree care in and around Sebastopol since 1990. Owner Ron Wallace, a Certified Arborist, and his crew serve homeowners and property managers throughout Sonoma County.",
+            "Every TreePro job is completed under the direction of a Certified Arborist, so trees are pruned, shaped or removed the right way. Services range from tree pruning and hazardous tree removal to stump grinding, tree consulting and 24/7 emergency response, and TreePro even grows replacement trees in its own nursery. The company is rated 4.8 on Angi across years of customer reviews."
+          ],
+          "highlights": [
+            "Serving Sonoma County since 1990",
+            "Work directed by a Certified Arborist",
+            "Rated 4.8 on Angi · 82 Yelp reviews",
+            "Tree pruning, removal & stump grinding"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "36+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see TreePro Professional Tree Care",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/treepro-professional-tree-care/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach TreePro Professional Tree Care or call (707) 829-3300.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

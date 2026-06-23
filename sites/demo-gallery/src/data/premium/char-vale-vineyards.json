@@ -1,0 +1,293 @@
+{
+  "slug": "char-vale-vineyards",
+  "name": "Char Vale Vineyards",
+  "legalName": "Char Vale Vineyards",
+  "tagline": "Family-grown estate Pinot Noir in Green Valley",
+  "seoDescription": "Char Vale Vineyards: a family-owned estate winery in the Green Valley of Russian River Valley near Sebastopol, farming ten acres of award-winning estate Pinot",
+  "category": "winery",
+  "categoryLabel": "Winery",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "2014",
+  "contact": {
+    "phone": "(707) 827-6102",
+    "email": "charvale@charvalewinery.com",
+    "address": "9280 Occidental Rd"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Thu–Mon",
+      "hours": "11:00am–4:30pm"
+    },
+    {
+      "day": "Tue–Wed",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#5e2330",
+    "fontId": "organic-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA · Est. 2014",
+          "heading": "Family-grown estate Pinot Noir in Green Valley",
+          "subheading": "On ten contiguous acres in the Green Valley of the Russian River Valley near Sebastopol, the Char Vale family farms award-winning estate Pinot Noir, Rosé, Riesling, Chardonnay and Pinot Gris.",
+          "badges": [
+            "Serving since 2014",
+            "Family-owned & farmed",
+            "Ten acres in Green Valley of the Russian River"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/char-vale-vineyards/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/char-vale-vineyards/menu"
+          },
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Char Vale Vineyards",
+          "items": [
+            {
+              "title": "Family-Owned & Farmed",
+              "body": "Rooted right here in Sebastopol, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Ten Acres In Green Valley Of The Russian River",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Award-Winning Estate Pinot Noir",
+              "body": "Made with care and real ingredients — quality you can taste.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Estate Rosé, Riesling, Chardonnay & Pinot Gris",
+              "body": "Made with care and real ingredients — quality you can taste.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Open Thursday–Monday, Near Sebastopol",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Char Vale",
+          "body": [
+            "Char Vale Vineyards and Winery is a family-owned operation in the renowned Green Valley of the Russian River Valley, a mile west of Highway 116 near Sebastopol. The family farms ten contiguous acres of world-class grape varietals and makes the wine themselves, in small, estate-focused lots.",
+            "The result is a lineup built around award-winning estate Pinot Noir, alongside an estate Rosé of Pinot Noir, estate Riesling, single-vineyard Chardonnay and Pinot Gris. Visitors taste in a relaxed, welcoming setting on the estate, Thursday through Monday."
+          ],
+          "highlights": [
+            "Family-owned & farmed",
+            "Ten acres in Green Valley of the Russian River Valley",
+            "Award-winning estate Pinot Noir",
+            "Estate Rosé, Riesling, Chardonnay & Pinot Gris"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "Visit & taste",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Estate Tastings",
+              "description": "Taste the current estate lineup at the winery, open 11am–4:30pm Thursday through Monday."
+            },
+            {
+              "title": "Estate Pinot Noir",
+              "description": "Award-winning, estate-grown Pinot Noir from ten acres in the cool Green Valley appellation."
+            },
+            {
+              "title": "Estate Whites & Rosé",
+              "description": "Estate Riesling, single-vineyard Chardonnay, Pinot Gris, and a Rosé of Pinot Noir."
+            },
+            {
+              "title": "Buy Online Or At The Winery",
+              "description": "Limited-production wines are available at the winery, online, or by phone."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 9280 Occidental Rd. Call (707) 827-6102 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/char-vale-vineyards/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 827-6102",
+            "href": "tel:+17078276102"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "On ten contiguous acres in the Green Valley of the Russian River Valley near Sebastopol, the Char Vale family farms award-winning estate Pinot Noir, Rosé, Riesling, Chardonnay",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Visit & taste",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Estate Tastings",
+              "description": "Taste the current estate lineup at the winery, open 11am–4:30pm Thursday through Monday."
+            },
+            {
+              "title": "Estate Pinot Noir",
+              "description": "Award-winning, estate-grown Pinot Noir from ten acres in the cool Green Valley appellation."
+            },
+            {
+              "title": "Estate Whites & Rosé",
+              "description": "Estate Riesling, single-vineyard Chardonnay, Pinot Gris, and a Rosé of Pinot Noir."
+            },
+            {
+              "title": "Buy Online Or At The Winery",
+              "description": "Limited-production wines are available at the winery, online, or by phone."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 9280 Occidental Rd."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Thu–Mon: 11:00am–4:30pm; Tue–Wed: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 827-6102 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Find us at 9280 Occidental Rd. Call (707) 827-6102 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/char-vale-vineyards/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 827-6102",
+            "href": "tel:+17078276102"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Char Vale Vineyards",
+          "heading": "About Char Vale",
+          "subheading": "Char Vale Vineyards and Winery is a family-owned operation in the renowned Green Valley of the Russian River Valley, a mile west of Highway 116 near Sebastopol",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Char Vale",
+          "body": [
+            "Char Vale Vineyards and Winery is a family-owned operation in the renowned Green Valley of the Russian River Valley, a mile west of Highway 116 near Sebastopol. The family farms ten contiguous acres of world-class grape varietals and makes the wine themselves, in small, estate-focused lots.",
+            "The result is a lineup built around award-winning estate Pinot Noir, alongside an estate Rosé of Pinot Noir, estate Riesling, single-vineyard Chardonnay and Pinot Gris. Visitors taste in a relaxed, welcoming setting on the estate, Thursday through Monday."
+          ],
+          "highlights": [
+            "Family-owned & farmed",
+            "Ten acres in Green Valley of the Russian River Valley",
+            "Award-winning estate Pinot Noir",
+            "Estate Rosé, Riesling, Chardonnay & Pinot Gris"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "12+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Char Vale Vineyards",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/char-vale-vineyards/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Char Vale Vineyards at 9280 Occidental Rd or call (707) 827-6102.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

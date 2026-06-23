@@ -1,15 +1,9 @@
 /**
  * hero-cinematic.ts — the jaw-drop layer for the premium hero + first scroll.
  *
- * Two engines, both pure progressive enhancement over an already-painted hero:
+ * One engine, pure progressive enhancement over an already-painted hero:
  *
- *   1. AURORA — a drifting brand-light field rendered behind the photo-less dark
- *      "title-card" hero. Tries a tiny WebGL fragment shader (smooth, GPU); falls
- *      back to a 2D-canvas blob field; falls back again to nothing (the static
- *      CSS gradient band stays). Brand color is read from the resolved --p-primary
- *      / --p-structure tokens so it re-themes per business with zero config.
- *
- *   2. SCROLL — a hand-rolled smooth-scroll substrate (rAF lerp toward the native
+ *   SCROLL — a hand-rolled smooth-scroll substrate (rAF lerp toward the native
  *      scroll target) that yields an eased position + velocity, used to drive:
  *        • hero photo parallax (background drifts slower than content → depth),
  *        • a subtle velocity-skew on scrolling section media,
@@ -17,7 +11,7 @@
  *
  * HARD RULES honored:
  *   - SSR/no-window safe.
- *   - prefers-reduced-motion: hard no-op (both engines bail; static base shows).
+ *   - prefers-reduced-motion: hard no-op (the engine bails; static base shows).
  *   - Never hides the LCP hero — everything paints on TOP of the static layout.
  *   - Full teardown on astro:before-swap so nothing leaks across page swaps.
  *   - Re-inits on astro:page-load.
@@ -42,310 +36,7 @@ function destroyAll() {
   }
 }
 
-/* ------------------------------------------------------------------ utils -- */
-
-/** Resolve a CSS color token to an [r,g,b] 0..1 triple via a throwaway canvas. */
-function readBrandRGB(el: Element, varName: string, fallback: string): [number, number, number] {
-  const raw = getComputedStyle(el).getPropertyValue(varName).trim() || fallback;
-  const probe = document.createElement('canvas');
-  probe.width = probe.height = 1;
-  const ctx = probe.getContext('2d');
-  if (!ctx) return hexToRgb(fallback);
-  try {
-    ctx.fillStyle = raw;
-    ctx.fillRect(0, 0, 1, 1);
-    const d = ctx.getImageData(0, 0, 1, 1).data;
-    return [d[0] / 255, d[1] / 255, d[2] / 255];
-  } catch {
-    return hexToRgb(fallback);
-  }
-}
-
-function hexToRgb(hex: string): [number, number, number] {
-  const m = hex.replace('#', '');
-  const n = parseInt(m.length === 3 ? m.replace(/(.)/g, '$1$1') : m, 16);
-  return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
-}
-
-/* ------------------------------------------------------------ 1. AURORA --- */
-
-const AURORA_FRAG = `
-precision mediump float;
-uniform vec2  u_res;
-uniform float u_time;
-uniform vec3  u_brand;
-uniform vec3  u_accent;
-
-// cheap value noise
-float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
-float noise(vec2 p){
-  vec2 i = floor(p), f = fract(p);
-  float a = hash(i), b = hash(i + vec2(1.0,0.0));
-  float c = hash(i + vec2(0.0,1.0)), d = hash(i + vec2(1.0,1.0));
-  vec2 u = f*f*(3.0-2.0*f);
-  return mix(mix(a,b,u.x), mix(c,d,u.x), u.y);
-}
-float fbm(vec2 p){
-  // 3 octaves is plenty for soft aurora bands and keeps the per-pixel cost low
-  // enough to hold 60fps on weak GPUs (5 octaves spiked frame time under throttle).
-  float v = 0.0, a = 0.6;
-  for(int i=0;i<3;i++){ v += a*noise(p); p *= 2.0; a *= 0.5; }
-  return v;
-}
-
-void main(){
-  vec2 uv = gl_FragCoord.xy / u_res.xy;
-  vec2 p = uv * 2.6;
-  p.x *= u_res.x / u_res.y;
-  float t = u_time * 0.045;
-
-  // two slow-drifting noise fields → soft aurora bands
-  float n1 = fbm(p + vec2(t, t*0.6));
-  float n2 = fbm(p*1.4 + vec2(-t*0.7, t*0.3) + 7.3);
-  float band = smoothstep(0.25, 0.95, n1 * 0.7 + n2 * 0.45);
-
-  // concentrate the glow toward the upper-right (matches the static band glow)
-  float focus = smoothstep(1.2, 0.0, distance(uv, vec2(0.82, 0.12)));
-  band *= 0.35 + focus * 0.95;
-
-  vec3 col = mix(u_brand, u_accent, smoothstep(0.2, 0.85, n2));
-  // gentle vertical falloff so the bottom stays calm/dark
-  float fall = smoothstep(0.0, 0.85, uv.y + 0.15);
-  float a = band * fall;
-  gl_FragColor = vec4(col * a, a);
-}`;
-
-const AURORA_VERT = `
-attribute vec2 a_pos;
-void main(){ gl_Position = vec4(a_pos, 0.0, 1.0); }`;
-
-function startAuroraWebGL(canvas: HTMLCanvasElement, host: HTMLElement): Cleanup | null {
-  const glOrNull =
-    (canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false }) as
-      | WebGLRenderingContext
-      | null) ||
-    (canvas.getContext('experimental-webgl') as WebGLRenderingContext | null);
-  if (!glOrNull) return null;
-  const gl: WebGLRenderingContext = glOrNull;
-
-  const compile = (type: number, src: string) => {
-    const s = gl.createShader(type)!;
-    gl.shaderSource(s, src);
-    gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
-      gl.deleteShader(s);
-      return null;
-    }
-    return s;
-  };
-  const vs = compile(gl.VERTEX_SHADER, AURORA_VERT);
-  const fs = compile(gl.FRAGMENT_SHADER, AURORA_FRAG);
-  if (!vs || !fs) return null;
-  const prog = gl.createProgram()!;
-  gl.attachShader(prog, vs);
-  gl.attachShader(prog, fs);
-  gl.linkProgram(prog);
-  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
-  gl.useProgram(prog);
-
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-  const loc = gl.getAttribLocation(prog, 'a_pos');
-  gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-
-  const uRes = gl.getUniformLocation(prog, 'u_res');
-  const uTime = gl.getUniformLocation(prog, 'u_time');
-  const uBrand = gl.getUniformLocation(prog, 'u_brand');
-  const uAccent = gl.getUniformLocation(prog, 'u_accent');
-
-  const brand = readBrandRGB(host, '--p-primary', '#2f7d52');
-  // a lighter, lifted brand tone for the aurora highlight
-  const accent: [number, number, number] = [
-    Math.min(1, brand[0] * 0.6 + 0.55),
-    Math.min(1, brand[1] * 0.6 + 0.62),
-    Math.min(1, brand[2] * 0.6 + 0.7),
-  ];
-  gl.uniform3f(uBrand, brand[0], brand[1], brand[2]);
-  gl.uniform3f(uAccent, accent[0], accent[1], accent[2]);
-  gl.enable(gl.BLEND);
-  gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-
-  let raf = 0;
-  let running = true;
-  const start = performance.now();
-  // The aurora is a soft, blurry field — it doesn't need device resolution.
-  // Rendering below native DPR slashes fragment-shader work (it's a per-pixel
-  // cost) while a CSS blur on the layer hides the lower sampling. We sit at
-  // ~0.8x (was 0.6x): the old value dithered into visible banding once the
-  // header's backdrop-filter blurred it, so 0.8x + the layer blur reads clean.
-  const DPR = Math.min(window.devicePixelRatio || 1, 1) * 0.8;
-  // Cap to ~30fps: a drifting aurora is imperceptibly different at 30 vs 60fps,
-  // and halving the draw count keeps the main thread/GPU well clear of jank.
-  const FRAME_MS = 1000 / 30;
-  let lastDraw = 0;
-
-  function resize() {
-    const r = host.getBoundingClientRect();
-    const w = Math.max(1, Math.round(r.width * DPR));
-    const h = Math.max(1, Math.round(r.height * DPR));
-    if (canvas.width !== w || canvas.height !== h) {
-      canvas.width = w;
-      canvas.height = h;
-    }
-    gl.viewport(0, 0, canvas.width, canvas.height);
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-  }
-  resize();
-
-  const ro = 'ResizeObserver' in window ? new ResizeObserver(resize) : null;
-  ro?.observe(host);
-
-  // Pause when the hero scrolls out of view (no wasted GPU).
-  let visible = true;
-  const io =
-    'IntersectionObserver' in window
-      ? new IntersectionObserver(
-          (e) => {
-            visible = e[0]?.isIntersecting ?? true;
-            if (visible && running && !raf) raf = requestAnimationFrame(frame);
-          },
-          { threshold: 0 },
-        )
-      : null;
-  io?.observe(host);
-
-  function frame(now: number) {
-    raf = 0;
-    if (!running) return;
-    if (now - lastDraw >= FRAME_MS) {
-      lastDraw = now;
-      gl.uniform1f(uTime, (now - start) / 1000);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-    }
-    if (visible && !document.hidden) raf = requestAnimationFrame(frame);
-  }
-  raf = requestAnimationFrame(frame);
-
-  const onVis = () => {
-    if (!document.hidden && visible && running && !raf) raf = requestAnimationFrame(frame);
-  };
-  document.addEventListener('visibilitychange', onVis);
-
-  canvas.classList.add('is-live');
-
-  return () => {
-    running = false;
-    if (raf) cancelAnimationFrame(raf);
-    ro?.disconnect();
-    io?.disconnect();
-    document.removeEventListener('visibilitychange', onVis);
-    const ext = gl.getExtension('WEBGL_lose_context');
-    ext?.loseContext();
-  };
-}
-
-/** 2D-canvas fallback: soft drifting brand blobs (cheaper, still alive). */
-function startAuroraCanvas2D(canvas: HTMLCanvasElement, host: HTMLElement): Cleanup | null {
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return null;
-  // Match the WebGL path: ~0.8x DPR + the layer's CSS blur keeps the drifting
-  // blobs smooth instead of banding when blurred through the header glass.
-  const DPR = Math.min(window.devicePixelRatio || 1, 1) * 0.8;
-  const FRAME_MS = 1000 / 30;
-  let lastDraw = 0;
-  const brand = readBrandRGB(host, '--p-primary', '#2f7d52').map((v) => Math.round(v * 255));
-  const rgb = `${brand[0]}, ${brand[1]}, ${brand[2]}`;
-
-  type Blob = { x: number; y: number; r: number; vx: number; vy: number; a: number };
-  let blobs: Blob[] = [];
-  let raf = 0;
-  let running = true;
-  let W = 0;
-  let H = 0;
-
-  function resize() {
-    const r = host.getBoundingClientRect();
-    W = canvas.width = Math.max(1, Math.round(r.width * DPR));
-    H = canvas.height = Math.max(1, Math.round(r.height * DPR));
-    blobs = Array.from({ length: 5 }, (_, i) => ({
-      x: (0.3 + 0.5 * Math.random()) * W + (i > 2 ? 0.2 * W : 0),
-      y: (0.1 + 0.5 * Math.random()) * H,
-      r: (0.35 + Math.random() * 0.4) * Math.max(W, H) * 0.5,
-      vx: (Math.random() - 0.5) * 0.12 * DPR,
-      vy: (Math.random() - 0.5) * 0.1 * DPR,
-      a: 0.1 + Math.random() * 0.12,
-    }));
-  }
-  resize();
-
-  const ro = 'ResizeObserver' in window ? new ResizeObserver(resize) : null;
-  ro?.observe(host);
-  let visible = true;
-  const io =
-    'IntersectionObserver' in window
-      ? new IntersectionObserver(
-          (e) => {
-            visible = e[0]?.isIntersecting ?? true;
-            if (visible && running && !raf) raf = requestAnimationFrame(frame);
-          },
-          { threshold: 0 },
-        )
-      : null;
-  io?.observe(host);
-
-  function frame(now: number) {
-    raf = 0;
-    if (!running) return;
-    if (now - lastDraw < FRAME_MS) {
-      if (visible && !document.hidden) raf = requestAnimationFrame(frame);
-      return;
-    }
-    lastDraw = now;
-    ctx!.clearRect(0, 0, W, H);
-    ctx!.globalCompositeOperation = 'lighter';
-    for (const b of blobs) {
-      b.x += b.vx;
-      b.y += b.vy;
-      if (b.x < -b.r || b.x > W + b.r) b.vx *= -1;
-      if (b.y < -b.r || b.y > H + b.r) b.vy *= -1;
-      const g = ctx!.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
-      g.addColorStop(0, `rgba(${rgb}, ${b.a})`);
-      g.addColorStop(1, `rgba(${rgb}, 0)`);
-      ctx!.fillStyle = g;
-      ctx!.beginPath();
-      ctx!.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-      ctx!.fill();
-    }
-    if (visible && !document.hidden) raf = requestAnimationFrame(frame);
-  }
-  raf = requestAnimationFrame(frame);
-  const onVis = () => {
-    if (!document.hidden && visible && running && !raf) raf = requestAnimationFrame(frame);
-  };
-  document.addEventListener('visibilitychange', onVis);
-
-  canvas.classList.add('is-live');
-  return () => {
-    running = false;
-    if (raf) cancelAnimationFrame(raf);
-    ro?.disconnect();
-    io?.disconnect();
-    document.removeEventListener('visibilitychange', onVis);
-  };
-}
-
-function initAurora() {
-  const canvas = document.querySelector<HTMLCanvasElement>('.premium [data-hero-aurora]');
-  if (!canvas) return;
-  const host = canvas.closest<HTMLElement>('.p-hero') ?? canvas.parentElement;
-  if (!host) return;
-  const stop = startAuroraWebGL(canvas, host) ?? startAuroraCanvas2D(canvas, host);
-  if (stop) teardown.push(stop);
-}
-
-/* ------------------------------------------------ 2. SMOOTH SCROLL ENGINE -- */
+/* --------------------------------------------------- SMOOTH SCROLL ENGINE -- */
 
 /**
  * Smooth-scroll substrate, hand-rolled (no dependency). We do NOT hijack the
@@ -451,6 +142,104 @@ function initScrollEngine() {
   });
 }
 
+/* ------------------------------------------------ VARIABLE-FONT HEADLINE -- */
+
+/**
+ * Enhance the existing per-word clip-reveal with a variable-axis settle: each
+ * word eases its font-weight (wght axis) from light → bold as it rises into
+ * place, so the headline doesn't just appear — it "gains presence". Pure
+ * font-variation-settings + the existing transform reveal → zero CLS.
+ *
+ * Guard rails:
+ *   - Only runs when the resolved display family is an actual VARIABLE font that
+ *     supports the wght axis. We detect this by checking the computed
+ *     font-family for a "* Variable" face AND verifying CSS variable-axis support.
+ *     Static faces (Spectral / Cormorant / Zilla Slab) degrade to the plain
+ *     clip-reveal already in CSS — no axis animation, no harm.
+ *   - The font is bumped HEAVIER + the editorial display pushed larger via a
+ *     class the CSS reads; this is opacity/transform/variation only, never a size
+ *     change that reflows (the box is sized by the static rules; we only animate
+ *     the variation axis on top).
+ *   - The settle fires once the hero is "in" (.is-hero-in), staggered per word
+ *     to ride just behind the rise. Fully no-op under reduced motion (this whole
+ *     engine bails before init() reaches here when reduce is set).
+ */
+function initVariableHeadline() {
+  const headings = Array.from(
+    document.querySelectorAll<HTMLElement>('.premium .p-hero__heading'),
+  );
+  if (!headings.length) return;
+
+  // Variable-axis capability: the browser must accept font-variation-settings.
+  const axisOk =
+    typeof CSS !== 'undefined' &&
+    typeof CSS.supports === 'function' &&
+    CSS.supports('font-variation-settings', '"wght" 700');
+  if (!axisOk) return;
+
+  for (const h1 of headings) {
+    const fam = getComputedStyle(h1).fontFamily || '';
+    // Only when the chosen display face is a real variable font (our registry
+    // tags variable faces as "<Name> Variable"). Otherwise leave it to plain CSS.
+    if (!/variable/i.test(fam)) continue;
+
+    const words = Array.from(h1.querySelectorAll<HTMLElement>('.p-hero__word'));
+    if (!words.length) continue;
+
+    // Flag the heading so scoped CSS can push the display heavier/larger for
+    // drama on capable clients, and prime each word's start weight.
+    h1.classList.add('p-hero__heading--vf');
+    const restWeight = 760; // bold resting presence on variable display faces
+    const startWeight = 280; // light, "unsettled" start
+
+    for (const w of words) {
+      w.style.fontVariationSettings = `"wght" ${startWeight}`;
+    }
+
+    // Drive the settle off the same readiness flag the CSS reveal uses. We poll a
+    // microtask after the hero is marked in (.is-hero-in) so weight + transform
+    // animate together. The transition itself is declared in CSS (so reduced
+    // motion can kill it); here we only flip to the resting axis value, staggered.
+    const heroEl = h1.closest<HTMLElement>('.p-hero');
+    let raf = 0;
+    let timers: number[] = [];
+
+    const settle = () => {
+      words.forEach((w, i) => {
+        const t = window.setTimeout(() => {
+          w.style.fontVariationSettings = `"wght" ${restWeight}`;
+        }, i * 40 + 120);
+        timers.push(t);
+      });
+    };
+
+    if (heroEl?.classList.contains('is-hero-in')) {
+      settle();
+    } else if (heroEl) {
+      // Wait for the hero to be marked in (set by the reveal script after paint).
+      const obs = new MutationObserver(() => {
+        if (heroEl.classList.contains('is-hero-in')) {
+          obs.disconnect();
+          settle();
+        }
+      });
+      obs.observe(heroEl, { attributes: true, attributeFilter: ['class'] });
+      teardown.push(() => obs.disconnect());
+    } else {
+      // No hero wrapper found → just settle so the headline isn't stuck light.
+      settle();
+    }
+
+    teardown.push(() => {
+      if (raf) cancelAnimationFrame(raf);
+      for (const t of timers) clearTimeout(t);
+      timers = [];
+      h1.classList.remove('p-hero__heading--vf');
+      for (const w of words) w.style.fontVariationSettings = '';
+    });
+  }
+}
+
 /* -------------------------------------------------------------- bootstrap -- */
 
 function init() {
@@ -458,12 +247,16 @@ function init() {
   destroyAll();
   if (reduceQuery?.matches) return; // hard no-op → static base state
 
+  // Variable-font headline settle rides WITH the reveal (not deferred), so the
+  // wght axis animates together with the per-word rise. No-op on static faces /
+  // browsers without variation-axis support, hard no-op under reduced motion.
+  initVariableHeadline();
+
   // The hero photo entrance + content cascade are pure CSS (already armed by the
   // reveal script the frame after first paint), so the cinematic MOMENT lands
-  // immediately. The JS engines below — WebGL shader compile (aurora) + the
-  // scroll rAF wiring — are deferred to main-thread idle so their one-time cost
-  // lands OUTSIDE the load/TBT window (same pattern as the count-up fix). Visually
-  // identical: the aurora fades in a beat after the band is already on screen.
+  // immediately. The scroll rAF wiring below is deferred to main-thread idle so
+  // its one-time cost lands OUTSIDE the load/TBT window (same pattern as the
+  // count-up fix).
   const w = window as Window & {
     requestIdleCallback?: (cb: () => void, o?: { timeout?: number }) => number;
   };
@@ -471,7 +264,6 @@ function init() {
     w.requestIdleCallback ? w.requestIdleCallback(cb, { timeout: 450 }) : window.setTimeout(cb, 1);
   idle(() => {
     if (reduceQuery?.matches) return;
-    initAurora();
     initScrollEngine();
   });
 }

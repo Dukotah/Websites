@@ -1,0 +1,36 @@
+{
+  "slug": "all-out-plumbers",
+  "confirmed": true,
+  "established": "2002",
+  "tagline": "Locally owned Cloverdale plumber serving Sonoma County since 2002",
+  "seoDescription": "All Out Plumbers is a locally owned plumbing company in Cloverdale, CA serving Cloverdale and north Sonoma County since 2002 — repairs, drain cleaning, leak detection, water heaters and emergency service. CSLB #812540.",
+  "heroHeading": "Locally owned Cloverdale plumbing since 2002",
+  "heroSubheading": "All Out Plumbers is an owner-run plumbing company in Cloverdale serving north Sonoma County — residential and commercial repairs, drain cleaning, leak detection, water heaters and emergency service. Licensed under CSLB #812540.",
+  "highlights": [
+    "Locally owned & operated since 2002",
+    "Serving Cloverdale & north Sonoma County",
+    "Licensed & insured · CSLB #812540",
+    "Drain cleaning, leak detection & water heaters",
+    "Emergency plumbing service"
+  ],
+  "aboutHeading": "About All Out Plumbers",
+  "aboutBody": [
+    "All Out Plumbers is a locally owned and operated plumbing company in Cloverdale, serving Cloverdale and the surrounding north Sonoma County area since 2002. Owner Chris is known by neighbors for answering the phone, responding fast, taking the time to explain the problem, and charging fair prices.",
+    "From everyday repairs, drain cleaning and leak detection to water-heater service, installations and emergency calls, All Out Plumbers handles residential and commercial work across the north county. The company is licensed and insured under California contractor's license #812540."
+  ],
+  "servicesHeading": "Plumbing services",
+  "services": [
+    { "title": "Repairs & Installations", "description": "Residential and commercial plumbing repairs and new installations, explained clearly before the work starts." },
+    { "title": "Drain Cleaning & Leak Detection", "description": "Clearing slow and clogged drains and locating hidden leaks before they cause damage." },
+    { "title": "Water Heater Service", "description": "Repair and replacement of tank and tankless water heaters." },
+    { "title": "Emergency Plumbing", "description": "Fast response for urgent plumbing problems across Cloverdale and north Sonoma County." }
+  ],
+  "hours": [
+    { "day": "Mon–Fri", "hours": "8:00am–5:00pm" },
+    { "day": "Sat–Sun", "hours": "Closed" }
+  ],
+  "testimonials": [
+    { "quote": "Chris answers the phone, responds fast and charges fair prices — a nice guy and a competent professional.", "author": "Verified review · Cloverdale" }
+  ],
+  "notes": "Sources: Yelp (yelp.com/biz/all-out-plumbers-cloverdale, 19 reviews), BBB (bbb.org Cloverdale profile — no website on file, file opened 2019, not accredited / not rated), BuildZoom, Nextdoor, Facebook. Website status = NO website (Facebook + Yelp + directory listings only) — a no-website target. Established 2002 per Yelp/business description; CSLB #812540 held by Christopher Thomas Cross (owner 'Chris'). Phone (707) 894-8434. Addresses seen: 1301 S Cloverdale Blvd and 5 Tarman Dr, Cloverdale 95425. Yelp star rating not cleanly captured in snippets (Birdeye shows 4.5/13); kept the rating out of highlights and used an honest condensed review quote instead. Trust signal = CSLB #812540 (active) + licensed/insured + condensed verified review. Photo-less build."
+}

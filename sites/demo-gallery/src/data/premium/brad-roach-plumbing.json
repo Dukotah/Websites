@@ -1,0 +1,340 @@
+{
+  "slug": "brad-roach-plumbing",
+  "name": "Brad Roach Plumbing",
+  "legalName": "Brad Roach Plumbing",
+  "tagline": "Owner-operated plumbing in Petaluma — one plumber, every job",
+  "seoDescription": "Brad Roach Plumbing is an owner-operated plumber in Petaluma, CA serving Petaluma, Santa Rosa, Sonoma and Novato",
+  "category": "plumbing",
+  "categoryLabel": "Plumbing",
+  "area": "Petaluma, CA",
+  "city": "Petaluma",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 860-1617",
+    "email": "",
+    "address": "1390 N McDowell Blvd Ste G-130"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7:00am–7:00pm"
+    },
+    {
+      "day": "Sat",
+      "hours": "8:30am–6:00pm"
+    },
+    {
+      "day": "Sun",
+      "hours": "Closed"
+    }
+  ],
+  "brand": {
+    "color": "#1c5fbf",
+    "fontId": "modern-grotesk"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Petaluma, CA",
+          "heading": "Owner-operated plumbing in Petaluma",
+          "subheading": "Brad Roach Plumbing is a one-plumber shop in Petaluma — Brad does every job himself, serving Petaluma, Santa Rosa, Sonoma and Novato with repairs, remodels and installations at fair, up-front prices",
+          "badges": [
+            "Owner-operated — Brad does every job himself",
+            "Serving Petaluma, Santa Rosa, Sonoma & Novato",
+            "Licensed & insured · CSLB #1087922"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/brad-roach-plumbing/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/brad-roach-plumbing/services"
+          },
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Brad Roach Plumbing",
+          "body": [
+            "Brad Roach Plumbing is an owner-operated plumbing business in Petaluma — Brad is the one and only plumber, so the person who answers the phone and gives the estimate is the person who does the work. He serves Petaluma, Santa Rosa, Sonoma and Novato, and customers consistently describe him as professional, easy to work with and fair on price.",
+            "Brad brings more than 25 years in the construction trades, including residential remodeling and a decade of plumbing, plus a California contractor's license, a Colorado Master Plumber's license and an engineering degree from Purdue. The business is licensed and insured under California contractor's license #1087922."
+          ],
+          "highlights": [
+            "Owner-operated — Brad does every job himself",
+            "Serving Petaluma, Santa Rosa, Sonoma & Novato",
+            "Licensed & insured · CSLB #1087922",
+            "5.0 stars on Yelp"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Plumbing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Plumbing Repairs",
+              "description": "Leaks, fixtures, drains and everyday plumbing problems, handled directly by the owner."
+            },
+            {
+              "title": "Remodel Plumbing",
+              "description": "Bath and kitchen remodel plumbing, drawing on 15 years of residential remodeling experience."
+            },
+            {
+              "title": "Fixture & Appliance Installation",
+              "description": "Installation of fixtures, water heaters and plumbing appliances, done to code."
+            },
+            {
+              "title": "Service Across The North Bay",
+              "description": "Plumbing service for Petaluma, Santa Rosa, Sonoma and Novato homeowners."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Brad Roach Plumbing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Brad Roach Plumbing",
+          "items": [
+            {
+              "title": "Owner-Operated — Brad Does Every Job Himself",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Petaluma, Santa Rosa, Sonoma & Novato",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Licensed & Insured · CSLB #1087922",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "5.0 Stars On Yelp",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "CA Contractor + Colorado Master Plumber License",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Brad is very professional and gave us a very reasonable price. Prices are fair and he's easy to work with — highly recommend him.",
+              "author": "Verified Yelp review · Petaluma"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Brad Roach Plumbing",
+          "body": "Find us at 1390 N McDowell Blvd Ste G-130. Call (707) 860-1617 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/brad-roach-plumbing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 860-1617",
+            "href": "tel:+17078601617"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Brad Roach Plumbing is a one-plumber shop in Petaluma — Brad does every job himself, serving Petaluma, Santa Rosa, Sonoma and Novato with repairs, remodels and installations",
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Plumbing services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Plumbing Repairs",
+              "description": "Leaks, fixtures, drains and everyday plumbing problems, handled directly by the owner."
+            },
+            {
+              "title": "Remodel Plumbing",
+              "description": "Bath and kitchen remodel plumbing, drawing on 15 years of residential remodeling experience."
+            },
+            {
+              "title": "Fixture & Appliance Installation",
+              "description": "Installation of fixtures, water heaters and plumbing appliances, done to code."
+            },
+            {
+              "title": "Service Across The North Bay",
+              "description": "Plumbing service for Petaluma, Santa Rosa, Sonoma and Novato homeowners."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Brad Roach Plumbing and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 1390 N McDowell Blvd Ste G-130."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7:00am–7:00pm; Sat: 8:30am–6:00pm; Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Petaluma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 860-1617 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 1390 N McDowell Blvd Ste G-130. Call (707) 860-1617 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/brad-roach-plumbing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 860-1617",
+            "href": "tel:+17078601617"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Brad Roach Plumbing",
+          "heading": "About Brad Roach Plumbing",
+          "subheading": "Brad Roach Plumbing is an owner-operated plumbing business in Petaluma — Brad is the one and only plumber, so the person who answers the phone and gives the estimate is the person",
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Brad Roach Plumbing",
+          "body": [
+            "Brad Roach Plumbing is an owner-operated plumbing business in Petaluma — Brad is the one and only plumber, so the person who answers the phone and gives the estimate is the person who does the work. He serves Petaluma, Santa Rosa, Sonoma and Novato, and customers consistently describe him as professional, easy to work with and fair on price.",
+            "Brad brings more than 25 years in the construction trades, including residential remodeling and a decade of plumbing, plus a California contractor's license, a Colorado Master Plumber's license and an engineering degree from Purdue. The business is licensed and insured under California contractor's license #1087922."
+          ],
+          "highlights": [
+            "Owner-operated — Brad does every job himself",
+            "Serving Petaluma, Santa Rosa, Sonoma & Novato",
+            "Licensed & insured · CSLB #1087922",
+            "5.0 stars on Yelp"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Brad Roach Plumbing",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/brad-roach-plumbing/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Brad Roach Plumbing at 1390 N McDowell Blvd Ste G-130 or call (707) 860-1617.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

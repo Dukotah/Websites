@@ -47,3 +47,6 @@ data/morning-*.csv
 data/cache/
 .gstack/
 .vercel
+
+# WSL: stashed Windows-binary node_modules
+node_modules.win-old/
