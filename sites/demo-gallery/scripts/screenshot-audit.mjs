@@ -159,13 +159,18 @@ for (const slug of slugs) {
   console.log(`${ok ? '✓' : '✗'} ${slug}`);
 }
 
-// ── Mobile-responsiveness gate ───────────────────────────────────────────────
-// Desktop captures (1440px) never exercise the 375/768px layouts. Drive the same
-// preview through CDP at two real device viewports and MEASURE the live DOM/CSS.
-// Key-free, and fail-soft: if Chrome can't be driven we WARN and skip.
+// ── Responsive overflow / clipping gate (360 / 768 / 1440) ───────────────────
+// Drive the same preview through CDP at the three breakpoints the framework
+// targets and MEASURE the live DOM/CSS for horizontal overflow (the #1 "it looks
+// broken on my phone" bug) at every width — plus legible-text + 44px tap targets
+// at the mobile widths (those checks are meaningless at desktop, where nav links
+// are legitimately <44px, so `full` gates them). Key-free, fail-soft: if Chrome
+// can't be driven we WARN and skip. `mobile`/`scale` set the emulation mode so the
+// desktop pass renders the true desktop layout, not a scaled phone view.
 const MOBILE_VIEWPORTS = [
-  { id: 'phone', label: '375×667', width: 375, height: 667 },
-  { id: 'tablet', label: '768×1024', width: 768, height: 1024 },
+  { id: 'phone', label: '360×780', width: 360, height: 780, mobile: true, scale: 2, full: true },
+  { id: 'tablet', label: '768×1024', width: 768, height: 1024, mobile: true, scale: 2, full: true },
+  { id: 'desktop', label: '1440×900', width: 1440, height: 900, mobile: false, scale: 1, full: false },
 ];
 const MIN_TEXT_PX = 16; // legible body text on a phone
 const MIN_TAP_PX = 44; // WCAG 2.5.8 target size
@@ -261,7 +266,7 @@ async function mobileGate() {
           await cdpSend(
             ws,
             'Emulation.setDeviceMetricsOverride',
-            { width: vp.width, height: vp.height, deviceScaleFactor: 2, mobile: true },
+            { width: vp.width, height: vp.height, deviceScaleFactor: vp.scale, mobile: vp.mobile },
             ++id,
           );
           await cdpSend(ws, 'Page.navigate', { url: `http://localhost:${port}/s/${slug}` }, ++id);
@@ -288,9 +293,11 @@ async function mobileGate() {
           );
 
           const probs = [];
-          if (overflow > 1) probs.push(`overflow +${overflow}px`);
-          if (baseFs < MIN_TEXT_PX) probs.push(`text ${baseFs.toFixed(1)}px < ${MIN_TEXT_PX}`);
-          if (small.length) {
+          // Horizontal overflow / clipping — checked at EVERY width (360/768/1440).
+          if (overflow > 1) probs.push(`overflow +${overflow}px (clips horizontally)`);
+          // Legible text + tap-target size only make sense on the mobile passes.
+          if (vp.full && baseFs < MIN_TEXT_PX) probs.push(`text ${baseFs.toFixed(1)}px < ${MIN_TEXT_PX}`);
+          if (vp.full && small.length) {
             probs.push(
               `${small.length} tap<44: ` +
                 small.map((s) => `${s.tag}.${s.cls || '∅'}(${s.w}×${s.h}"${s.text}")`).join(', '),
@@ -316,16 +323,16 @@ async function mobileGate() {
   return failures;
 }
 
-console.log('\n▶ mobile-responsiveness gate (375×667 + 768×1024)…');
+console.log('\n▶ responsive overflow/clipping gate (360 + 768 + 1440)…');
 const mobileFailures = await mobileGate();
 
 preview.kill();
 console.log(
-  `\n▶ done → ${SHOTS}\n  fold/   = above-the-fold (the cold-link first impression)\n  full/   = whole page\n  mobile/ = 375×667 + 768×1024 device-viewport captures\nReview every fold/<slug>.png before sending links.`,
+  `\n▶ done → ${SHOTS}\n  fold/   = above-the-fold (the cold-link first impression)\n  full/   = whole page\n  mobile/ = 360 + 768 + 1440 device-viewport captures\nReview every fold/<slug>.png before sending links.`,
 );
 if (mobileFailures && mobileFailures > 0) {
   console.error(
-    `\n✗ mobile gate FAILED: ${mobileFailures} viewport(s) had overflow / tiny text / sub-44px tap targets.`,
+    `\n✗ responsive gate FAILED: ${mobileFailures} viewport(s) had horizontal overflow / tiny text / sub-44px tap targets.`,
   );
   process.exit(1);
 }

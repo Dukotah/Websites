@@ -366,8 +366,8 @@
     mask-image: none;
     overflow: visible;
   }
-  /* Under reduced motion show one copy only (hide the duplicate clone). */
-  .premium .p-marquee__track[data-clone] { display: none; }
+  /* Under reduced motion show one copy only (hide the duplicate inline clone). */
+  .premium .p-marquee__item[data-clone] { display: none; }
 }
 
 /* ==========================================================================

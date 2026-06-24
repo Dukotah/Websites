@@ -18,6 +18,14 @@ const s = config.social ?? {};
 const hours = (config.hours ?? []).filter((h) => h && h.day && h.hours);
 const area = config.area ?? [config.city, config.state].filter(Boolean).join(', ');
 const monogram = (config.name || '?').trim().charAt(0).toUpperCase();
+// Copyright year. The footer used to render "© 1985–{name}" — the end-year was
+// never emitted, leaving a dangling dash. Render established–current (or just the
+// current year when no founding year is known). Built at SSG time, so the build
+// date is the publish year.
+const thisYear = new Date().getFullYear();
+const estYear = (config.established || '').match(/\b(?:18|19|20)\d{2}\b/)?.[0];
+const copyrightYears =
+  estYear && estYear !== String(thisYear) ? `${estYear}–${thisYear}` : String(thisYear);
 const telHref = c.phone ? `tel:${c.phone.replace(/[^0-9+]/g, '')}` : null;
 // Defense-in-depth phone display formatting (tel: href keeps raw digits).
 const formatPhone = (s?: string) => {
@@ -88,7 +96,7 @@ const socials = [
 
   <div class="p-ft__bottom">
     <div class="container p-ft__bottom-inner">
-      <p>© {config.established ? `${config.established}–` : ''}{config.name}. All rights reserved.</p>
+      <p>© {copyrightYears} {config.name}. All rights reserved.</p>
       <p class="p-ft__credit">Site by Copper Bay Tech</p>
     </div>
   </div>

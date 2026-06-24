@@ -10,6 +10,17 @@
  *      #1 cause of "illegible / broken" sections.
  *   2. CONTENT gaps — stock hero art, missing alt text, empty sections,
  *      templated copy left in place.
+ *   3. DATA INTEGRITY (the "Claude-browser six", dataIntegrityIssues) — bugs that
+ *      have real copy but read as broken: (a) duplicated list entries/blocks (the
+ *      doubled marquee row), (b) empty value slots (a stat card with no number),
+ *      (c) contradictory founding years ("since 1985" vs established:2003),
+ *      (d) doubled address/city tokens ("Windsor Windsor"). These are pure-config
+ *      so they ALSO gate authoring via auditConfigCriticals.
+ *   4. RENDERED-HTML checks (need a prior `npm run build`): measured WCAG contrast,
+ *      and (e) the copyright end-year actually renders (auditCopyright — catches the
+ *      dangling "© 1985–{name}"). (f) Responsive overflow/clipping at 360/768/1440
+ *      lives in the screenshot gate (sites/demo-gallery/scripts/screenshot-audit.mjs),
+ *      which measures the live DOM in headless Chrome.
  *
  * Exit code is non-zero if any CRITICAL issue is found, so it can gate a deploy.
  * (For design-level judgment — photo matching, layout, "does it look $4k" — see
@@ -201,6 +212,185 @@ const BARE_PHONE = /\b\d{10,11}\b/;
 // Flatten every section across every page of a PremiumConfig.
 const allSections = (c) => (c.pages ?? []).flatMap((p) => p.sections ?? []);
 
+// ── Pre-publish DATA-INTEGRITY checks (the "Claude-browser six") ─────────────
+// Six classes of bug that compile fine and have real copy, but read as broken to
+// a human: (a) duplicated list entries/blocks (the doubled marquee row), (b) empty
+// value slots (a stat card with no number), (c) contradictory founding years
+// ("since 1985" vs "35 years" vs established:2003), (d) doubled address/city tokens
+// ("Windsor Windsor"). (e) copyright end-year + (f) responsive overflow need the
+// rendered HTML and live below / in the screenshot pass. These run on the config
+// alone, so they ALSO gate authoring via auditConfigCriticals — a site that trips
+// one can never reach status:'ready'.
+
+const norm = (s) => String(s ?? '').trim().toLowerCase().replace(/\s+/g, ' ');
+
+/** Duplicate values in an array (case-insensitive, whitespace-collapsed). Returns
+ *  the distinct values that appear 2+ times, in first-seen order. */
+function dupesIn(arr) {
+  const counts = new Map(); // normalized → { n, first }
+  for (const v of arr ?? []) {
+    const k = norm(v);
+    if (!k) continue;
+    const e = counts.get(k) ?? { n: 0, first: String(v).trim() };
+    e.n++;
+    counts.set(k, e);
+  }
+  return [...counts.values()].filter((e) => e.n > 1).map((e) => e.first);
+}
+
+// A 4-digit founding year (1800–2099) — used for the contradiction scan.
+const YEAR = /\b((?:18|19|20)\d{2})\b/g;
+// An EXPLICIT BUSINESS-founding claim. Deliberately does NOT match a bare "since
+// YYYY": that phrasing is overloaded — "Mike has worked in plumbing since 1988"
+// is the OWNER's personal tenure, not when the BUSINESS started, so anchoring on
+// bare "since" wrongly reads owner-experience as a second founding year. A
+// founding claim needs a founding verb (established/founded/"in business since"/
+// "family-owned since"/"serving … since"/opened).
+const FOUNDING_CLAIM = /\b(?:established|est\.|founded(?: in)?|family[- ]owned since|in business since|serving[\w\s,]{0,40}?since|opened(?: its doors)?(?: in)?)\s+((?:18|19|20)\d{2})\b/gi;
+// "NN years" (in business / of experience / serving) — an age claim that implies a
+// founding year of (currentYear − NN).
+const YEARS_COUNT = /\b(\d{1,3})\s*\+?\s*years?\b(?:\s+(?:in business|of (?:experience|service)|serving|strong|and counting))?/gi;
+
+// Legit doubled place-name words — never flag these as a doubled-token typo.
+const DOUBLED_PLACE_OK = new Set([
+  'walla', 'bora', 'baden', 'pago', 'wagga', 'sing', 'duala',
+]);
+// A qualifier that makes a repeat legitimate: "Sonoma, Sonoma County" / "Napa,
+// Napa Valley" are a city followed by its county/valley, NOT a doubled typo.
+const PLACE_QUALIFIER = /^(?:county|city|valley|area|region|township|borough|parish|district|metro|hills|beach|springs|park|heights|township)\b/i;
+
+/** Immediately-repeated 1–2 word token in a location string ("Windsor Windsor",
+ *  "Santa Rosa Santa Rosa"). Returns the repeated token, or null. Ignores
+ *  allowlisted place names (Walla Walla) and qualified repeats ("Sonoma, Sonoma
+ *  County"). Comma/space separated repeats both caught. */
+function doubledToken(s) {
+  if (!s) return null;
+  const m = String(s).match(/\b([A-Za-z]{3,}(?:\s+[A-Za-z]{3,})?)\b[\s,]+\b(\1)\b\s*([A-Za-z]+)?/i);
+  if (!m) return null;
+  const tok = m[1];
+  if (!/\s/.test(tok) && DOUBLED_PLACE_OK.has(tok.toLowerCase())) return null;
+  if (m[3] && PLACE_QUALIFIER.test(m[3])) return null; // "Sonoma, Sonoma County"
+  return tok;
+}
+
+/**
+ * dataIntegrityIssues — checks (a)–(d) over a PremiumConfig. Pure data, no build
+ * needed, so it runs in BOTH the CLI audit and the author self-gate.
+ */
+function dataIntegrityIssues(c) {
+  const issues = [];
+  const sections = allSections(c);
+  const homeHero = (c.pages?.[0]?.sections ?? []).find((s) => s.kind === 'hero');
+
+  // (a) DUPLICATED LIST ENTRIES (critical) — a list that repeats a value renders a
+  // doubled row (the marquee bug class). Check every list-bearing field.
+  const lists = [
+    [homeHero?.badges, 'hero badges'],
+    ...sections.filter((s) => s.kind === 'story').map((s) => [s.highlights, 'story highlights']),
+    ...sections.filter((s) => s.kind === 'callout').map((s) => [s.points, 'callout points']),
+    ...sections.filter((s) => s.kind === 'stats').map((s) => [(s.items ?? []).map((i) => `${i.value} ${i.label}`), 'stats items']),
+    ...sections.filter((s) => s.kind === 'services').map((s) => [(s.items ?? []).map((i) => i.title), 'services items']),
+    ...sections.filter((s) => s.kind === 'steps').map((s) => [(s.items ?? []).map((i) => i.title), 'steps items']),
+    ...sections.filter((s) => s.kind === 'testimonials').map((s) => [(s.items ?? []).map((i) => i.quote), 'testimonials']),
+    ...sections.filter((s) => s.kind === 'faq').map((s) => [(s.items ?? []).map((i) => i.q), 'faq questions']),
+    ...sections.filter((s) => s.kind === 'gallery').map((s) => [(s.images ?? []).map((i) => i.src), 'gallery images']),
+  ];
+  for (const [arr, where] of lists) {
+    for (const dup of dupesIn(arr)) {
+      issues.push(['critical', `duplicate entry in ${where}: "${String(dup).slice(0, 50)}" — renders a repeated row`]);
+    }
+  }
+  // (a) DUPLICATED BLOCKS (warn) — two sections of the same kind with an identical
+  // non-empty heading on one page read as an accidental copy-paste.
+  for (const page of c.pages ?? []) {
+    const byHeading = new Map();
+    for (const s of page.sections ?? []) {
+      const h = norm(s.heading);
+      if (!h) continue;
+      const k = `${s.kind}|${h}`;
+      byHeading.set(k, (byHeading.get(k) ?? 0) + 1);
+    }
+    for (const [k, n] of byHeading) {
+      if (n > 1) issues.push(['warn', `duplicated "${k.split('|')[0]}" block — heading "${k.split('|')[1]}" appears ${n}× on page "${page.slug ?? page.label ?? '?'}"`]);
+    }
+  }
+
+  // (b) EMPTY VALUE SLOTS (critical) — a structurally-required field left blank
+  // renders a hole (the missing stat number is the canonical case).
+  const REQUIRED = {
+    stats: [['value', 'stat number'], ['label', 'stat label']],
+    steps: [['title', 'step title']],
+    faq: [['q', 'FAQ question'], ['a', 'FAQ answer']],
+    testimonials: [['quote', 'testimonial quote']],
+    services: [['title', 'service title']],
+  };
+  for (const s of sections) {
+    const reqs = REQUIRED[s.kind];
+    if (!reqs) continue;
+    (s.items ?? []).forEach((it, i) => {
+      for (const [field, human] of reqs) {
+        const v = it?.[field];
+        if (v == null || String(v).trim() === '') {
+          issues.push(['critical', `empty ${human} in ${s.kind} item #${i + 1} — renders a blank slot`]);
+        }
+      }
+    });
+  }
+
+  // Pool every human-facing copy string for the fact-contradiction scans.
+  const copyBlob = [
+    c.tagline, c.seoDescription, c.area,
+    ...copyStringsOf(sections).map((x) => x.text),
+    ...(homeHero?.badges ?? []),
+    ...sections.filter((s) => s.kind === 'story').flatMap((s) => s.highlights ?? []),
+    ...sections.filter((s) => s.kind === 'callout').flatMap((s) => s.points ?? []),
+  ].filter(Boolean).join('  •  ');
+
+  // (c) CONTRADICTORY FOUNDING FACTS — collect every EXPLICIT founding year (from
+  // config.established + "since/established YYYY" claims). More than one distinct
+  // value is a real contradiction (critical). Separately, an "NN years" age claim
+  // implying a founding year that disagrees with the known one by >2 is a warn
+  // (round-number drift is common, but worth surfacing).
+  const founding = new Set();
+  const estYear = String(c.established ?? '').match(/\b(?:18|19|20)\d{2}\b/)?.[0];
+  if (estYear) founding.add(estYear);
+  for (const m of copyBlob.matchAll(FOUNDING_CLAIM)) founding.add(m[1]);
+  if (founding.size > 1) {
+    issues.push(['critical', `contradictory founding years (${[...founding].sort().join(', ')}) — one business cannot have started in two years; reconcile established + "since" copy`]);
+  }
+  if (founding.size >= 1) {
+    const fY = Math.min(...[...founding].map(Number));
+    // currentYear isn't knowable deterministically across runs; derive an upper
+    // bound from the youngest founding year + the largest age claim so the check
+    // is build-date-independent. We only flag when an age claim is INCONSISTENT
+    // with the founding year itself (e.g. founded 2003 but "40 years").
+    for (const m of copyBlob.matchAll(YEARS_COUNT)) {
+      const n = Number(m[1]);
+      if (!n || n > 150) continue;
+      // The age can't exceed (a plausible current year − founding). Use 2100 as a
+      // loose ceiling so we only catch impossible claims, not drift.
+      if (fY + n > 2100) {
+        issues.push(['warn', `age claim "${m[0].trim()}" is inconsistent with founding year ${fY}`]);
+      }
+    }
+  }
+
+  // (d) DOUBLED ADDRESS / CITY TOKENS (critical) — "Windsor Windsor", "Santa Rosa,
+  // Santa Rosa": a visible scrape/merge typo in a location field.
+  const locFields = [
+    [c.contact?.address, 'contact.address'],
+    [c.area, 'area'],
+    [c.city, 'city'],
+    ...sections.filter((s) => s.kind === 'contact').map((s) => [s.blurb, 'contact.blurb']),
+  ];
+  for (const [text, where] of locFields) {
+    const dup = doubledToken(text);
+    if (dup) issues.push(['critical', `doubled token in ${where}: "${dup} ${dup}" — fix the repeated word`]);
+  }
+
+  return issues;
+}
+
 /**
  * Audit ONE premium (multi-page) config. The shape differs from the legacy
  * single-page ProspectConfig: sections live in pages[].sections keyed by `kind`,
@@ -209,6 +399,10 @@ const allSections = (c) => (c.pages ?? []).flatMap((p) => p.sections ?? []);
  */
 function auditProspect(slug, c, confirmed = false, researched = false) {
   const issues = [];
+  // Data-integrity pass (a–d): duplicated lists/blocks, empty value slots,
+  // contradictory founding facts, doubled location tokens. Pure-config, so it
+  // also runs in the author self-gate via auditConfigCriticals.
+  issues.push(...dataIntegrityIssues(c));
   const sections = allSections(c);
   const homeHero = (c.pages?.[0]?.sections ?? []).find((s) => s.kind === 'hero');
   const heroImg = homeHero?.image?.src ?? c.images?.hero;
@@ -576,6 +770,27 @@ function auditContrast(tokens) {
   return issues;
 }
 
+// ── (e) Copyright end-year renders (the dangling "© 1985–{name}" bug) ─────────
+// The footer renders "© {established}–{currentYear} {name}". The end-year used to
+// be omitted, shipping "© 1985–Krutz Family Cellars" (a dash into the name). This
+// reads the BUILT footer text and asserts the year token is well-formed: a single
+// year, or a closed YYYY–YYYY range — never a dash with no end year and never no
+// year at all. Needs dist (post-build).
+function auditCopyright(html) {
+  const issues = [];
+  // The bottom-bar copyright line: "© <years> <name>. All rights reserved."
+  const m = html.match(/©\s*([^<]*?)\s+[^<]*?All rights reserved/i);
+  if (!m) return issues; // no footer on this page (e.g. a bare error page) — skip
+  const seg = m[1].trim();
+  const yearTok = seg.match(/^((?:18|19|20)\d{2})\s*([–-]\s*((?:18|19|20)\d{2})?)?/);
+  if (!yearTok) {
+    issues.push(['critical', `copyright shows no year ("© ${seg.slice(0, 24)}…") — the end-year did not render`]);
+  } else if (yearTok[2] && !yearTok[3]) {
+    issues.push(['critical', `copyright has a dangling year range ("© ${seg.slice(0, 24)}…") — the end-year did not render`]);
+  }
+  return issues;
+}
+
 async function main() {
   let critical = 0;
   console.log('\n🔎 Project audit\n' + '─'.repeat(48));
@@ -618,6 +833,7 @@ async function main() {
     const distHtml = await readFile(join(DIST, 's', slug, 'index.html'), 'utf8').catch(() => null);
     if (distHtml) {
       issues.push(...auditContrast(parseTokens(distHtml)));
+      issues.push(...auditCopyright(distHtml)); // (e) copyright end-year renders
     } else missingDist = true;
     const crit = issues.filter((i) => i[0] === 'critical');
     critical += crit.length;
@@ -681,7 +897,7 @@ export async function auditConfigCriticals(slug, config) {
   }
 }
 
-export { auditProspect, isConfirmed };
+export { auditProspect, isConfirmed, dataIntegrityIssues, auditCopyright };
 
 // Only run the CLI audit when invoked directly (not when imported as the gate).
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

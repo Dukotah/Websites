@@ -2,10 +2,12 @@
 /**
  * Marquee.astro — an infinite, paused-on-hover credential strip.
  *
- * Renders TWO identical track copies inside an overflow-clipped, edge-masked
- * rail; the CSS (.p-marquee in effects.css) translates the track -50% so the
- * loop is seamless. Paused on hover/focus-within. Under reduced motion the
- * animation is off and the duplicate clone is hidden (one static, wrapped row).
+ * Renders ONE flex track that holds the items TWICE inline inside an
+ * overflow-clipped, edge-masked rail; the CSS (.p-marquee in effects.css)
+ * translates that single track -50% (exactly one copy's width) so the loop is
+ * seamless and reads as a SINGLE row. Paused on hover/focus-within. Under
+ * reduced motion the animation is off and the duplicate copy is hidden (one
+ * static, wrapped row).
  *
  * Pure presentation, no JS. Renders NOTHING when given no items (graceful) so a
  * host section can drop it in unconditionally. Token-driven; re-themes per brand.
@@ -35,13 +37,11 @@ const show = clean.length >= 2;
       {clean.map((c) => (
         <span class="p-marquee__item">{c}</span>
       ))}
-    </div>
-    {/* Duplicate copy — the seamless second half the -50% translate loops to.
-        aria-hidden + data-clone so SR reads the list once and reduced-motion CSS
-        can hide it. */}
-    <div class="p-marquee__track" data-clone aria-hidden="true">
+      {/* Seamless second copy, inline in the SAME track — the half the -50%
+          translate loops to. aria-hidden + data-clone so SR reads the list once
+          and reduced-motion CSS can hide this copy. */}
       {clean.map((c) => (
-        <span class="p-marquee__item">{c}</span>
+        <span class="p-marquee__item" data-clone aria-hidden="true">{c}</span>
       ))}
     </div>
   </div>

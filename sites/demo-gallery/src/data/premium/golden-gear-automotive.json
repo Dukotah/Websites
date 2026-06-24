@@ -2,8 +2,8 @@
   "slug": "golden-gear-automotive",
   "name": "Golden Gear Automotive",
   "legalName": "Golden Gear Automotive",
-  "tagline": "At Golden Gear Automotive, our family-owned and operated Sebastopol auto repair shop, we pride ourselves",
-  "seoDescription": "At Golden Gear Automotive, our family-owned and operated Sebastopol auto repair shop, we pride ourselves on servicing a diverse range of vehicles.",
+  "tagline": "Family-owned auto repair in Sebastopol — ASE Blue Seal Certified, all makes and models.",
+  "seoDescription": "Golden Gear Automotive is a family-owned, ASE Blue Seal Certified auto repair shop in Sebastopol, CA, servicing all makes and models — from everyday drivers to luxury imports.",
   "category": "auto-repair",
   "categoryLabel": "Auto Repair",
   "area": "Sebastopol, CA",
@@ -37,8 +37,8 @@
           "variant": "editorial",
           "eyebrow": "Sebastopol, CA",
           "heading": "Honest auto repair across Sebastopol, CA",
-          "subheading": "$30 Value. Limit one per customer. Some restrictions may apply. Cannot be combined with any other offer or special. Coupon must be presented in advance.",
-          "badges": [],
+          "subheading": "Family-owned and operated in Sebastopol — ASE Blue Seal Certified technicians servicing all makes and models, from everyday drivers to luxury imports.",
+          "badges": ["ASE Blue Seal Certified", "Family-owned & operated", "All makes & models"],
           "primaryCta": {
             "label": "Get in touch",
             "href": "/s/golden-gear-automotive/contact"
@@ -58,8 +58,8 @@
           "eyebrow": "Our story",
           "heading": "About Golden Gear Automotive",
           "body": [
-            "$30 Value. Limit one per customer. Some restrictions may apply. Cannot be combined with any other offer or special. Coupon must be presented in advance.",
-            "At Golden Gear Automotive, our family-owned and operated auto repair shop, we pride ourselves on servicing a diverse range of vehicles, ensuring every customer’s car receives the expert attention it deserves. From everyday drivers to luxury imports and high-performance vehicles, our ASE Blue Seal Certified technicians have the skills and tools to work on all makes and models. Whether you drive a Toyota, Honda, or Ford, our team delivers reliable repairs and maintenance tailored specifically to your vehicle."
+            "At Golden Gear Automotive — our family-owned and operated Sebastopol auto repair shop — we pride ourselves on servicing a diverse range of vehicles, making sure every customer’s car gets the expert attention it deserves.",
+            "From everyday drivers to luxury imports and high-performance vehicles, our ASE Blue Seal Certified technicians have the skills and tools to work on all makes and models. Whether you drive a Toyota, Honda, or Ford, we deliver reliable repairs and maintenance tailored to your vehicle."
           ],
           "image": {
             "src": "/images/golden-gear-automotive/story.webp",
@@ -74,8 +74,16 @@
           "layout": "grid",
           "items": [
             {
-              "title": "Services Vehicles",
-              "description": "Real experience behind every services vehicles job, big or small."
+              "title": "Repairs for all makes & models",
+              "description": "From domestic daily drivers to luxury imports and high-performance vehicles, our ASE Blue Seal Certified technicians handle it."
+            },
+            {
+              "title": "Honest diagnostics",
+              "description": "We track down the real problem and explain it in plain terms before any work begins."
+            },
+            {
+              "title": "Routine maintenance",
+              "description": "Oil, brakes, fluids, and scheduled service to keep your vehicle reliable mile after mile."
             }
           ]
         },
@@ -122,16 +130,6 @@
           ]
         },
         {
-          "kind": "testimonials",
-          "eyebrow": "In their words",
-          "heading": "What customers say",
-          "items": [
-            {
-              "quote": "${this.getReviewAuthor(review, authorDropdownValue)} ${this.getRatingHtml(review.rating)}"
-            }
-          ]
-        },
-        {
           "kind": "cta",
           "heading": "Work with Golden Gear Automotive",
           "body": "Call (707) 329-6105 — we’re glad to help.",
@@ -156,7 +154,7 @@
           "variant": "editorial",
           "eyebrow": "What we do",
           "heading": "How we can help",
-          "subheading": "$30 Value. Limit one per customer. Some restrictions may apply. Cannot be combined with any other offer or special. Coupon must be presented in advance.",
+          "subheading": "Honest diagnostics, repairs, and maintenance for every make and model — by ASE Blue Seal Certified technicians.",
           "motif": "/images/library/auto-repair/motif.svg"
         },
         {
@@ -165,8 +163,16 @@
           "layout": "grid",
           "items": [
             {
-              "title": "Services Vehicles",
-              "description": "Real experience behind every services vehicles job, big or small."
+              "title": "Repairs for all makes & models",
+              "description": "From domestic daily drivers to luxury imports and high-performance vehicles, our ASE Blue Seal Certified technicians handle it."
+            },
+            {
+              "title": "Honest diagnostics",
+              "description": "We track down the real problem and explain it in plain terms before any work begins."
+            },
+            {
+              "title": "Routine maintenance",
+              "description": "Oil, brakes, fluids, and scheduled service to keep your vehicle reliable mile after mile."
             }
           ]
         },
@@ -233,7 +239,7 @@
           "variant": "editorial",
           "eyebrow": "About Golden Gear Automotive",
           "heading": "About Golden Gear Automotive",
-          "subheading": "$30 Value. Limit one per customer. Some restrictions may apply. Cannot be combined with any other offer or special. Coupon must be presented in advance.",
+          "subheading": "A family-owned Sebastopol shop where ASE Blue Seal Certified technicians treat every vehicle — and every customer — with real care.",
           "motif": "/images/library/auto-repair/motif.svg"
         },
         {
@@ -241,8 +247,8 @@
           "eyebrow": "Our story",
           "heading": "About Golden Gear Automotive",
           "body": [
-            "$30 Value. Limit one per customer. Some restrictions may apply. Cannot be combined with any other offer or special. Coupon must be presented in advance.",
-            "At Golden Gear Automotive, our family-owned and operated auto repair shop, we pride ourselves on servicing a diverse range of vehicles, ensuring every customer’s car receives the expert attention it deserves. From everyday drivers to luxury imports and high-performance vehicles, our ASE Blue Seal Certified technicians have the skills and tools to work on all makes and models. Whether you drive a Toyota, Honda, or Ford, our team delivers reliable repairs and maintenance tailored specifically to your vehicle."
+            "At Golden Gear Automotive — our family-owned and operated Sebastopol auto repair shop — we pride ourselves on servicing a diverse range of vehicles, making sure every customer’s car gets the expert attention it deserves.",
+            "From everyday drivers to luxury imports and high-performance vehicles, our ASE Blue Seal Certified technicians have the skills and tools to work on all makes and models. Whether you drive a Toyota, Honda, or Ford, we deliver reliable repairs and maintenance tailored to your vehicle."
           ],
           "image": {
             "src": "/images/golden-gear-automotive/story.webp",
@@ -299,14 +305,7 @@
   "flags": [
     "No email found — add a real email or contact form before sending",
     "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
-    "hero photo below resolution floor — text hero used",
-    "Generic fallback headline with no research or founding year — research a specific, earned hero line",
-    "Audit critical — coupon/promo fine-print used as copy in hero.subheading: \"$30 Value. Limit one per customer. Some restrictions may app\"",
-    "Audit critical — coupon/promo fine-print used as copy in story.body: \"$30 Value. Limit one per customer. Some restrictions may app\"",
-    "Audit critical — unevaluated code/markup leaked into testimonials item.quote: \"${this.getReviewAuthor(review, authorDropdownValue)} ${this.\"",
-    "Audit critical — coupon/promo fine-print used as copy in hero.subheading: \"$30 Value. Limit one per customer. Some restrictions may app\"",
-    "Audit critical — coupon/promo fine-print used as copy in hero.subheading: \"$30 Value. Limit one per customer. Some restrictions may app\"",
-    "Audit critical — coupon/promo fine-print used as copy in story.body: \"$30 Value. Limit one per customer. Some restrictions may app\""
+    "hero photo below resolution floor — text hero used"
   ],
   "photoSource": "agent-supplied:below-floor"
 }
