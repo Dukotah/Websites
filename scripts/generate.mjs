@@ -33,7 +33,7 @@ import {
   nameMatchesSite, acquireMediaFor,
 } from './lib/facts.mjs';
 import { authorPremium } from './author-premium.mjs';
-import { norm } from './lib/match-key.mjs';
+import { matchKey } from './lib/match-key.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PREMIUM_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'premium');
@@ -184,12 +184,13 @@ async function main() {
   //    the /p/ split fallback). Keep every existing key + status vocabulary.
   const links = built.map((b) => ({
     // ADDITIVE join keys. `id` is the stable business id (Overture id) when the
-    // scraper supplies one (else ''); `matchKey` is the canonical normalized name
-    // shared with scraper-app/contract/normalize.js. The CRM still matches on
-    // `name` today and will PREFER `id` once it's populated — neither field
-    // replaces or renames any existing key.
+    // scraper supplies one (else ''); `matchKey` is the TIGHT canonical join key
+    // (strips only legal-entity forms, keeps distinguishing words) shared with
+    // scraper-app/contract/normalize.js. The CRM still matches on `name` today
+    // and will PREFER `id` once it's populated — neither field replaces or
+    // renames any existing key.
     id: b.id || '',
-    matchKey: norm(b.config.name),
+    matchKey: matchKey(b.config.name),
     name: b.config.name,
     slug: b.slug,
     email: b.config.contact?.email ?? '',
