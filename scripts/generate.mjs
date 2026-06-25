@@ -33,6 +33,7 @@ import {
   nameMatchesSite, acquireMediaFor,
 } from './lib/facts.mjs';
 import { authorPremium } from './author-premium.mjs';
+import { norm } from './lib/match-key.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PREMIUM_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'premium');
@@ -121,7 +122,10 @@ async function main() {
     // Carry the lead's EXISTING/source site (the bad/dead/placeholder one the
     // demo was built from, if any) so the CRM can show "current site". Empty for
     // true no-site prospects, which is accurate.
-    built.push({ slug, config, status, flags, photoSource, link: `${base}/s/${slug}`, existingWebsite: row.website || row.existing_website || '' });
+    // Stable business id (Overture id) threaded ADDITIVELY: prefer the research
+    // file's `_lead.id`, fall back to a raw `id` column on the CSV row, else ''.
+    const leadId = research?._lead?.id || row.id || '';
+    built.push({ slug, id: leadId, config, status, flags, photoSource, link: `${base}/s/${slug}`, existingWebsite: row.website || row.existing_website || '' });
   }
 
   // Re-seed colliding siblings: two slugs sharing an identical fontId+color.
@@ -179,6 +183,13 @@ async function main() {
   // 5) Build the links manifest — /s/<slug>, slug ALWAYS present (Duke never hits
   //    the /p/ split fallback). Keep every existing key + status vocabulary.
   const links = built.map((b) => ({
+    // ADDITIVE join keys. `id` is the stable business id (Overture id) when the
+    // scraper supplies one (else ''); `matchKey` is the canonical normalized name
+    // shared with scraper-app/contract/normalize.js. The CRM still matches on
+    // `name` today and will PREFER `id` once it's populated — neither field
+    // replaces or renames any existing key.
+    id: b.id || '',
+    matchKey: norm(b.config.name),
     name: b.config.name,
     slug: b.slug,
     email: b.config.contact?.email ?? '',
@@ -194,6 +205,11 @@ async function main() {
     thumbnailUrl: `/thumbnails/${b.slug}.png`,
   }));
   await writeFile(join(ROOT, 'data', 'outreach-links.json'), JSON.stringify(links, null, 2) + '\n');
+
+  // Non-fatal seam visibility: surface stable-id coverage so we can watch it climb
+  // as the scraper starts emitting ids. Pure logging — never gates anything.
+  const withId = links.filter((l) => l.id).length;
+  console.warn(`Seam check: ${withId}/${links.length} manifest entr${links.length === 1 ? 'y has' : 'ies have'} a stable id; ${links.length - withId} fall back to name/matchKey.`);
 
   process.stdout.write('\n' + validateOut + '\n');
   for (const b of built) console.log(`  ✓ ${b.config.name}  →  ${b.link}   [photos: ${b.photoSource} · ${b.status}]`);

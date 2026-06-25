@@ -166,6 +166,9 @@ function researchFromScrape(slug, e, lead, photoUrls, mismatchName = '') {
     // The lead's own identity, so the verification pass (verify-research.mjs) can
     // run standalone without re-joining the CSV. Ignored by the generator.
     _lead: {
+      // Stable business id (Overture id) carried through additively — '' when the
+      // source CSV had no id column, so existing research files are unaffected.
+      id: lead.id || '',
       name: lead.name, category: lead.category, city: lead.city, state: lead.state,
       phone: lead.phone, email: lead.email, address: lead.address, owner: lead.owner || '',
     },
