@@ -12,7 +12,7 @@
  * and caches each result as data/research/<slug>.json — the rich-fact file the
  * generator already prefers over a live scrape. It also fuses fields the scraper
  * already found (owner name, socials) that a live scrape would miss, and emits a
- * clean builder-shaped CSV you feed straight to `npm run generate-prospects`.
+ * clean builder-shaped CSV you feed straight to `npm run generate`.
  *
  * The files are written confirmed:false — honest, auto-extracted facts. The
  * generator treats those as a CACHED SCRAPE: real quality gates still apply, so a

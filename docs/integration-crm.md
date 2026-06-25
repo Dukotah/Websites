@@ -46,7 +46,7 @@ and a **thumbnail preview** — the *same* PNG used in the cold email.
 ## Run order (one session)
 
 ```bash
-npm run generate-prospects -- data/<leads>.csv   # writes prospect JSON + outreach-links.json
+npm run generate -- data/<leads>.csv   # writes prospect JSON + outreach-links.json
 GALLERY_BASE_URL=https://demos.copperbaytech.com npm run make-thumbnail   # publishes public/thumbnails/<slug>.png
 CRM_ADMIN_TOKEN=… GALLERY_BASE_URL=https://demos.copperbaytech.com npm run push-to-crm   # (--all to include needs-review)
 ```

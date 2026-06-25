@@ -39,8 +39,8 @@ name,category,city,state,phone,email,address,existing_website
 ## 2. Generate the prospect sites
 
 ```bash
-npm run generate-prospects                 # uses data/prospects.sample.csv
-npm run generate-prospects -- data/prospects.csv
+npm run generate                 # uses data/prospects.sample.csv
+npm run generate -- data/prospects.csv
 ```
 
 This writes one `sites/demo-gallery/src/data/prospects/<slug>.json` per row and
