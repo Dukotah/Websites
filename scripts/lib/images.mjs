@@ -28,6 +28,15 @@ import { getRealPhotos } from './photos.mjs';
 import { enrichFromOSM } from './osm.mjs';
 import { scorePhoto, dhash, hamming, NEAR_DUP_DISTANCE } from './photo-score.mjs';
 import { processSlot, heroTierForWidth, HERO_SLOT_BY_TIER } from './photo-art.mjs';
+// NEW IMAGERY TIERS (opt-in, env-gated). Both sit BETWEEN the business's own
+// photos / OSM (genuinely theirs) and the generic Wikimedia/library fallback, and
+// both no-op without their env keys so the key-free default chain is unchanged.
+// Stock = licensed ambiance/context (PEXELS_API_KEY/UNSPLASH_ACCESS_KEY); AI =
+// illustrative ambiance (AI_IMAGES_ENABLED + AI_IMAGE_API_KEY). Every image they
+// return is tagged in `source` (stock:pexels / ai:illustrative) so provenance is
+// never lost — they are NEVER presented as the business's own photo.
+import { acquireStockMedia } from './stock-images.mjs';
+import { acquireAiAmbiance } from './ai-images.mjs';
 
 const UA =
   'Mozilla/5.0 (compatible; websites-outreach/1.0; +https://github.com/dukotah/websites)';
@@ -786,6 +795,52 @@ export async function acquirePhotos(
           media = media.concat(got);
           source = source ? `${source}+osm` : 'osm';
         }
+      }
+    } catch {
+      /* fall through to Wikimedia */
+    }
+  }
+
+  // Tier 3.5: LICENSED STOCK ambiance/context (key-gated: PEXELS_API_KEY /
+  // UNSPLASH_ACCESS_KEY; no key → no-op). Sits ABOVE generic Wikimedia town shots
+  // because it's curated, category-relevant ambiance — but it is NOT the
+  // business's own photo, so it's tagged `stock:<provider>` in the source and each
+  // descriptor carries attribution + license. Only backfills the essentials.
+  if (media.length < min) {
+    try {
+      const stock = await acquireStockMedia(facts, {
+        destDir,
+        slug,
+        startIndex: media.length,
+        need: min - media.length,
+        category: row.category,
+      });
+      if (stock.length) {
+        media = media.concat(stock);
+        const tag = stock.provider || `stock:${stock[0]?.provenance?.split(':')[1] || 'stock'}`;
+        source = source ? `${source}+${tag}` : tag;
+      }
+    } catch {
+      /* fall through to AI ambiance / Wikimedia */
+    }
+  }
+
+  // Tier 3.6: OPT-IN AI ILLUSTRATIVE ambiance (double-gated: AI_IMAGES_ENABLED +
+  // AI_IMAGE_API_KEY; off by default → no-op). Last resort before generic
+  // Wikimedia/library: a non-literal, palette-friendly backdrop plate. Tagged
+  // `ai:illustrative` so it's never mistaken for a real or owned photo.
+  if (media.length < min) {
+    try {
+      const ai = await acquireAiAmbiance(facts, {
+        destDir,
+        slug,
+        startIndex: media.length,
+        need: min - media.length,
+        category: row.category,
+      });
+      if (ai.length) {
+        media = media.concat(ai);
+        source = source ? `${source}+ai:illustrative` : 'ai:illustrative';
       }
     } catch {
       /* fall through to Wikimedia */

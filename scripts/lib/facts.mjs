@@ -560,10 +560,16 @@ async function acquireMediaFor(slug, row, e, catKey, { authoritative = false, sk
     heroPhotoTierToSet = 'fullbleed';
   }
 
-  // RELEVANCE FLAG: a GENERIC STOCK hero (Wikimedia/Openverse) is real but not
-  // theirs — never auto-send; flag for a human relevance check.
+  // RELEVANCE / PROVENANCE FLAG: any NON-OWNED hero (Wikimedia/Openverse generic
+  // stock, the licensed stock:* ambiance tier, or the ai:illustrative tier) is
+  // real/curated but NOT the business's own photo — never auto-send; flag for a
+  // human relevance check. The photoSource carries the exact provenance tag.
   if (media.length && /wikimedia|openverse|commons/i.test(photoSource)) {
     photoFlags.push('hero is generic stock (not the business’s own photo) — verify relevance or replace before sending');
+  } else if (media.length && /(?:^|[+:])stock:/i.test(photoSource)) {
+    photoFlags.push('hero is LICENSED STOCK ambiance (not the business’s own photo) — illustrative/context only; verify relevance or replace before sending');
+  } else if (media.length && /(?:^|[+:])ai:illustrative/i.test(photoSource)) {
+    photoFlags.push('hero is AI ILLUSTRATIVE ambiance (synthetic, not a photo of the business) — backdrop only; verify before sending');
   }
 
   // OWN-SITE VALIDATION FLAG: the lead `website` resolved to an aggregator /
