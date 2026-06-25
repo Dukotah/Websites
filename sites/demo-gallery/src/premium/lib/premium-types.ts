@@ -48,6 +48,22 @@ export interface PremiumImage {
   focal?: string;
 }
 
+/**
+ * Structural layout variant for the WHOLE site shell (not a single section).
+ * Lets two sites in the same category differ in bones, not just color/font:
+ *  - 'classic'  (default) — centered vertical stack; identical to pre-existing
+ *    behavior, so omitting `layout` never changes any built site.
+ *  - 'editorial' — asymmetric magazine column: content sits in a left-biased
+ *    measure with a wide outer rail and a vertical brand wordmark, giving a
+ *    distinctly art-directed cadence.
+ *  - 'sidebar' — on wide screens the nav becomes a fixed vertical rail and the
+ *    content scrolls beside it (collapses back to the classic top bar on
+ *    tablet/mobile).
+ * Implemented purely in premium/layouts/PremiumBase.astro (a wrapper class +
+ * scoped global CSS), so section components are untouched.
+ */
+export type PremiumLayout = 'classic' | 'editorial' | 'sidebar';
+
 /** Brand inputs the agent pins for this business (all optional → engine derives). */
 export interface PremiumBrand {
   /** Seed/override brand color (hex). Drives the whole palette via palette.ts. */
@@ -323,6 +339,8 @@ export interface PremiumConfig {
   geo?: { lat: number; lng: number };
 
   brand?: PremiumBrand;
+  /** Structural shell variant (see PremiumLayout). Default 'classic'. */
+  layout?: PremiumLayout;
   /** Home hero image — also the OG/share image + JSON-LD image. */
   images?: { hero?: string; heroAlt?: string; logo?: string };
 

@@ -39,6 +39,14 @@ interface Props {
 const { config, page = 'home' } = Astro.props;
 const description = Astro.props.description ?? config.seoDescription;
 
+// Structural shell variant (see PremiumLayout). Sanitized to the known set so a
+// stray value can never emit an unknown class; default 'classic' renders exactly
+// as before (existing data files carry no `layout`, so they're untouched).
+const LAYOUTS = ['classic', 'editorial', 'sidebar'] as const;
+const layout = (LAYOUTS as readonly string[]).includes((config as any).layout)
+  ? ((config as any).layout as (typeof LAYOUTS)[number])
+  : 'classic';
+
 const categoryLabel = config.categoryLabel ?? categoryLabelFor(inferCategory(config as any));
 const baseTitle =
   categoryLabel && config.area
@@ -125,10 +133,106 @@ const jsonLd = buildJsonLd(config as any, { canonical, image: ogImage || undefin
     <style is:inline set:html={tokenCss}></style>
     <noscript><style>.premium [data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 
+    <!-- Structural LAYOUT variants. Opt-in via config.layout; 'classic' emits no
+         rules here so existing sites are byte-for-byte unchanged. Pure CSS over
+         the existing markup (wrapper class + header/main/footer), so section
+         components are untouched. Both variants degrade to the centered stack on
+         smaller screens. -->
+    <style is:global>
+      /* ── editorial: asymmetric magazine column ──────────────────────────── */
+      .premium.layout-editorial .container {
+        width: auto;
+        max-width: 62rem;
+        margin-inline: auto;
+      }
+      .premium.layout-editorial main {
+        position: relative;
+      }
+      /* Slightly taller section rhythm reinforces the unhurried editorial feel. */
+      .premium.layout-editorial .section {
+        padding-block: clamp(4.5rem, 3.4rem + 4.2vw, 8rem);
+      }
+      @media (min-width: 1080px) {
+        /* Left-biased measure with a generous right rail = magazine cadence. */
+        .premium.layout-editorial .container {
+          margin-inline-start: clamp(4rem, 14vw, 14rem);
+          margin-inline-end: clamp(2rem, 6vw, 6rem);
+        }
+        /* A thin brand-tinted rule runs down the left rail — editorial signature.
+           Decorative + token-driven; pointer-events off so it never intercepts. */
+        .premium.layout-editorial main::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: clamp(2rem, 9vw, 9rem);
+          width: 1px;
+          background: linear-gradient(
+            to bottom,
+            transparent,
+            color-mix(in srgb, var(--p-primary) 30%, var(--p-line)),
+            transparent
+          );
+          pointer-events: none;
+        }
+      }
+
+      /* ── sidebar: fixed vertical nav rail beside scrolling content ───────── */
+      @media (min-width: 1100px) {
+        .premium.layout-sidebar {
+          display: grid;
+          grid-template-columns: 16rem minmax(0, 1fr);
+          grid-template-areas:
+            'nav main'
+            'nav foot';
+          align-items: start;
+        }
+        .premium.layout-sidebar > .p-hdr {
+          grid-area: nav;
+          position: sticky;
+          top: 0;
+          height: 100vh;
+          border-bottom: 0;
+          border-inline-end: 1px solid var(--p-line);
+        }
+        .premium.layout-sidebar > .p-hdr .p-hdr__inner {
+          flex-direction: column;
+          align-items: flex-start;
+          height: 100%;
+          width: 100%;
+          padding-block: var(--p-space-8);
+          gap: var(--p-space-6);
+        }
+        .premium.layout-sidebar > .p-hdr .p-hdr__nav {
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 0;
+          gap: 0.15rem;
+          width: 100%;
+        }
+        .premium.layout-sidebar > .p-hdr .p-hdr__nav a {
+          width: 100%;
+        }
+        /* Push the CTA to the bottom of the rail. */
+        .premium.layout-sidebar > .p-hdr .p-hdr__actions {
+          margin: auto 0 0 0;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+        }
+        .premium.layout-sidebar > main {
+          grid-area: main;
+        }
+        .premium.layout-sidebar > footer {
+          grid-area: foot;
+        }
+      }
+    </style>
+
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
-    <div class="premium">
+    <div class:list={['premium', `layout-${layout}`]}>
       <a class="skip-link" href="#main">Skip to main content</a>
       <PremiumHeader config={config} page={page} />
       <main id="main" transition:name="page-main">
