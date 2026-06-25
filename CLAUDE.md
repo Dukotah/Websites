@@ -5,6 +5,28 @@ workflow is agent-driven and **needs no API keys**: a user opens a chat and says
 *"build me N websites from this CSV"*, and you (the agent) generate the sites,
 find photos, and launch them so the user gets live demo links to email.
 
+## Operating model — the agent is the on-demand operator (NOT a scheduler)
+
+The pipeline is run **on demand by the agent**, not by a cron. When the user asks,
+you (the `pipeline` agent — see `~/.claude/agents/pipeline.md`) do one of two things:
+
+- **Execute** a stage or the whole chain — find/refresh leads -> `build-research`
+  -> `verify-research` -> `generate` -> QA gate -> publish -> attach demos to the
+  CRM. You hand back the demo links; **a human sends every outreach email by hand.**
+- **Maintain & evolve the framework** — the `scripts/lib` core, the premium site
+  system, the QA gates, and the cross-repo seam.
+
+Non-negotiables: **email is human-only** (never enable/trigger auto-send); **branch +
+PR** for code (never commit to the deploy branch, never merge); **gate before
+publish** (build + `premium-validate` + `audit` clean; never ship `needs-review`);
+**keep the stable business id intact** across every handoff.
+
+> **Legacy — the morning scheduler is deprecated.** `scripts/morning-batch.mjs`,
+> `run-morning-batch.cmd`, and the disabled `MorningDemoBatch` Task Scheduler job
+> were the old *unattended* path. Don't re-enable them or build new automation on
+> them. If you want the gated-batch logic (QA gate + quarantine queue), fold it into
+> an on-demand command instead of a cron.
+
 ## Repo shape (what matters)
 
 - `sites/demo-gallery/` — ONE Astro app that renders every outreach prospect as

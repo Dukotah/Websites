@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 /*
+ * ⚠ DEPRECATED — legacy unattended scheduler. The pipeline is now run ON DEMAND
+ * by the `pipeline` agent (see ~/.claude/agents/pipeline.md and the "Operating
+ * model" section in CLAUDE.md), not by a cron. The `MorningDemoBatch` Task
+ * Scheduler job is disabled and should stay that way. This file is kept for
+ * reference only; don't re-enable it or build new automation on it. To reuse its
+ * gated-batch logic (QA gate + quarantine queue), fold those parts into an
+ * on-demand command instead.
+ *
  * morning-batch.mjs — produce a fresh batch of demo sites and land ONLY the ones
  * that pass quality in the CRM "New" tab. Built to run unattended on a schedule
  * (Task Scheduler), but safe to run by hand.

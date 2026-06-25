@@ -1,4 +1,7 @@
 @echo off
+REM ⚠ DEPRECATED — legacy unattended runner. The pipeline now runs ON DEMAND via
+REM the `pipeline` agent, not this scheduled task. The MorningDemoBatch Task
+REM Scheduler job is disabled; leave it disabled. Kept for reference only.
 REM Unattended morning demo-batch runner (scheduled via Task Scheduler).
 REM Builds a fresh batch, GATES it (only website leads; only QA-passing sites),
 REM pushes the passing sites live, then lands ONLY those in the CRM New tab.
