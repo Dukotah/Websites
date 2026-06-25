@@ -12,11 +12,15 @@
  */
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_DIR = join(ROOT, 'sites', 'demo-gallery', 'src', 'data', 'premium');
 const ASSET_ROOT = join(ROOT, 'sites', 'demo-gallery', 'src', 'assets', 'prospects');
+// Shared/library art (and other public files) are served verbatim from here, so a
+// `/images/library/...` or any `.svg` fallback resolves under public/, not under
+// the per-slug prospect dir. (Used by imageExists for the OG/hero fallback case.)
+const PUBLIC_ROOT = join(ROOT, 'sites', 'demo-gallery', 'public');
 
 const KNOWN_KINDS = new Set([
   'hero', 'story', 'services', 'stats', 'testimonials', 'gallery', 'faq', 'cta', 'callout', 'contact',
@@ -39,8 +43,23 @@ function collectImageSrcs(node, out) {
 // Resolve a /images/<slug>/<file> path to its on-disk asset file (any extension
 // the asset registry would accept). Returns true if a matching file exists.
 function imageExists(src) {
-  const m = /^\/images\/([^/]+)\/(.+?)(\.[a-z0-9]+)?$/i.exec(src || '');
-  if (!m) return src?.startsWith('http') || src?.endsWith('.svg'); // remote/library ok
+  if (!src) return false;
+  // SHARED / LIBRARY ART is served as-is from public/ — NOT from the per-slug
+  // prospect asset dir — so it must be checked there, not under prospects/<slug>.
+  // A photo-light site legitimately uses a library SVG as images.hero AND as the
+  // OG/share-image fallback; the old code ran the regex first, matched
+  // "/images/library/<cat>/hero.svg" as slug="library", disk-checked
+  // prospects/library (which never exists) and wrongly REJECTED it — blocking a
+  // real photo-light run. Resolve library/SVG/remote BEFORE the prospect check.
+  // (Any .svg is shared fallback art by convention — never a per-prospect photo.)
+  if (src.startsWith('http')) return true; // remote (e.g. Wikimedia) — trust it
+  if (src.startsWith('/images/library/') || src.endsWith('.svg')) {
+    // Verify it actually exists in public/ so a typo'd library path still fails,
+    // but treat the served-as-is location as the source of truth (not prospects/).
+    return existsSync(join(PUBLIC_ROOT, src.replace(/^\//, '')));
+  }
+  const m = /^\/images\/([^/]+)\/(.+?)(\.[a-z0-9]+)?$/i.exec(src);
+  if (!m) return false;
   const [, slug, base, ext] = m;
   const dir = join(ASSET_ROOT, slug);
   if (!existsSync(dir)) return false;
@@ -108,4 +127,11 @@ function main() {
   console.log('✓ All premium sites valid — every photo exists, schema clean.');
 }
 
-main();
+// Export the photo-resolution helpers so they're unit-testable without running
+// the CLI (main() calls process.exit, so it must NOT run on import).
+export { imageExists, validateOne };
+
+// Only run the CLI when invoked directly (not when imported by a test).
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}
