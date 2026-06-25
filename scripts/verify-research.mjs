@@ -38,6 +38,12 @@
  *   node scripts/verify-research.mjs                 # clean every confirmed:false file
  *   node scripts/verify-research.mjs <slug…>         # clean only these slugs
  *   node scripts/verify-research.mjs --promote       # + write copy, confirmed:"auto" (needs key, still gated)
+ *   node scripts/verify-research.mjs --targets       # print the web-research BRIEF
+ *                                                    # (gaps + Yelp/Google/FB/BBB/news
+ *                                                    # URLs) per file; writes nothing.
+ *                                                    # The key-free path to confirmed:true:
+ *                                                    # verify on the web, fill the file,
+ *                                                    # flip the flag by hand.
  *   node scripts/verify-research.mjs --dry-run       # report only, write nothing
  */
 import { readFile, writeFile, readdir } from 'node:fs/promises';
@@ -45,6 +51,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CATEGORIES, normCat, enrichmentFromResearch, generateCopyWithClaude } from './lib/facts.mjs';
 import { scoreRichness } from './lib/scrape-site.mjs';
+import { formatBrief, researchGaps } from './lib/research-targets.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const RESEARCH_DIR = join(ROOT, 'data', 'research');
@@ -149,8 +156,26 @@ async function main() {
   const argv = process.argv.slice(2);
   const dryRun = argv.includes('--dry-run');
   const promote = argv.includes('--promote');
+  const targetsMode = argv.includes('--targets');
   const slugs = argv.filter((a) => !a.startsWith('--'));
   const hasKey = Boolean(process.env.ANTHROPIC_API_KEY);
+
+  // --targets: print the per-file web-research BRIEF and exit (writes nothing).
+  // This is the key-free route to confirmed:true — it tells the agent exactly
+  // which facts are still missing and which sources to open to verify them.
+  if (targetsMode) {
+    const briefs = await listConfirmedFalse(slugs);
+    if (!briefs.length) { console.log('No confirmed:false research files to brief.'); return; }
+    console.log(`Web-research brief for ${briefs.length} file(s) — confirm these on the web, then set confirmed:true by hand.\n`);
+    let complete = 0;
+    for (const { r } of briefs) {
+      console.log(formatBrief(r));
+      console.log('');
+      if (!researchGaps(r).length) complete++;
+    }
+    console.log(`${complete}/${briefs.length} file(s) have no open gaps and are ready to verify → confirmed:true.`);
+    return;
+  }
 
   if (promote && !hasKey) {
     console.error('--promote needs ANTHROPIC_API_KEY (it writes prose with Claude). Run without --promote to clean only.');
