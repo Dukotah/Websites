@@ -464,7 +464,7 @@ async function main() {
   }
 
   if (!files.length) {
-    console.log('No prospect JSON files found. Run generate-prospects.mjs first.');
+    console.log('No prospect JSON files found. Run `npm run generate` first.');
     process.exit(0);
   }
 
@@ -496,7 +496,7 @@ async function main() {
   );
   if (!dryRun && ok > 0) {
     console.log('\nNext steps:');
-    console.log('  cd sites/demo-gallery && npm run dev   # preview at /p/<slug>');
+    console.log('  cd sites/demo-gallery && npm run dev   # preview at /s/<slug>');
     console.log('  git add sites/demo-gallery/src/data/prospects && git commit -m "design-pass"');
     console.log('  git push   # Vercel rebuilds the gallery');
   }
