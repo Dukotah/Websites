@@ -234,7 +234,7 @@ function nameMatchesSite(leadName, e) {
 // verify-research.mjs's --promote path; the premium author has its own copy
 // upgrade. Only ever runs when ANTHROPIC_API_KEY is set.
 // ---------------------------------------------------------------------------
-async function generateCopyWithClaude(row, preset, e) {
+async function generateCopyWithClaude(row, preset, e, { model, maxTokens = 8000 } = {}) {
   const system = [
     {
       type: 'text',
@@ -277,8 +277,10 @@ async function generateCopyWithClaude(row, preset, e) {
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: process.env.ANTHROPIC_MODEL ?? 'claude-sonnet-4-6',
-      max_tokens: 1024,
+      // COPY BUDGET governor lifted: 1024 → ~8000 default (full prose, not clipped
+      // mid-thought) and model is env/param-driven so the flagship path can pass Opus.
+      model: model || process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-6',
+      max_tokens: maxTokens,
       system,
       messages: [{ role: 'user', content: user }],
     }),
