@@ -1,0 +1,352 @@
+{
+  "slug": "leslie-jue-dds",
+  "name": "Leslie Jue DDS",
+  "legalName": "Leslie Jue DDS",
+  "tagline": "A legacy of trust in Sonoma County dentistry",
+  "seoDescription": "SOCO Dental Studio in Santa Rosa, CA offers cosmetic, restorative, and preventive dentistry. Dr. Leslie Jue has cared for smiles since 1987.",
+  "category": "dental",
+  "categoryLabel": "Dental",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1987",
+  "contact": {
+    "phone": "(707) 537-1904",
+    "email": "jueinfo@sonic.net",
+    "address": "55 Mission Cir"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/LeslieJueDDS/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Thu",
+      "hours": "8am–5pm"
+    },
+    {
+      "day": "Fri–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "rating": {
+    "value": 4.9,
+    "count": 63,
+    "source": "Birdeye"
+  },
+  "brand": {
+    "color": "#127d80",
+    "fontId": "organic-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 1987",
+          "heading": "Three generations of dentists, one Santa Rosa practice",
+          "subheading": "SOCO Dental Studio brings Dr. Leslie Jue's decades of cosmetic and family care together with Drs. Louie and Baird at 55 Mission Circle.",
+          "badges": [
+            "Serving since 1987",
+            "4.9★ from 63 reviews",
+            "Dr. Leslie Jue caring for smiles since 1987"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/leslie-jue-dds/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/leslie-jue-dds/services"
+          },
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "39+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.9★",
+              "label": "63 reviews"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About SOCO Dental Studio",
+          "body": [
+            "SOCO Dental Studio was formed when Dr. Michael Louie merged two long-established Santa Rosa practices into one home for multi-generational families across Sonoma County. The result is a team built on a legacy of trust, with three generations of dental experience under one roof.",
+            "Dr. Leslie Jue has delivered outstanding dental care since 1987. A UC Davis physiology graduate and University of the Pacific, Arthur A. Dugoni School of Dentistry alumna, she is a member of the American Academy of Cosmetic Dentistry and a longtime fixture of the local dental community."
+          ],
+          "highlights": [
+            "Dr. Leslie Jue caring for smiles since 1987",
+            "University of the Pacific, Dugoni School of Dentistry trained",
+            "Cosmetic, Invisalign, implants & full-mouth care",
+            "4.9-star rated by Sonoma County patients"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Cosmetic Dentistry",
+              "description": "Veneers, bonding, teeth whitening, and full smile makeovers tailored to each patient."
+            },
+            {
+              "title": "Invisalign",
+              "description": "Clear, removable aligners that straighten teeth without traditional metal braces."
+            },
+            {
+              "title": "Restorative Care",
+              "description": "Crowns, fillings, root canal therapy, and full-mouth rehabilitation to restore function."
+            },
+            {
+              "title": "Dental Implants",
+              "description": "Permanent, natural-looking replacements for missing or failing teeth."
+            },
+            {
+              "title": "Preventive & Hygiene",
+              "description": "Cleanings, exams, sealants, and periodontal care to keep smiles healthy long term."
+            },
+            {
+              "title": "Emergency Dentistry",
+              "description": "Prompt care for dental pain, breaks, and other urgent situations."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Leslie Jue DDS and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Leslie Jue DDS",
+          "body": "Find us at 55 Mission Cir. Call (707) 537-1904 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/leslie-jue-dds/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 537-1904",
+            "href": "tel:+17075371904"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "SOCO Dental Studio brings Dr. Leslie Jue's decades of cosmetic and family care together with Drs. Louie and Baird at 55 Mission Circle.",
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Cosmetic Dentistry",
+              "description": "Veneers, bonding, teeth whitening, and full smile makeovers tailored to each patient."
+            },
+            {
+              "title": "Invisalign",
+              "description": "Clear, removable aligners that straighten teeth without traditional metal braces."
+            },
+            {
+              "title": "Restorative Care",
+              "description": "Crowns, fillings, root canal therapy, and full-mouth rehabilitation to restore function."
+            },
+            {
+              "title": "Dental Implants",
+              "description": "Permanent, natural-looking replacements for missing or failing teeth."
+            },
+            {
+              "title": "Preventive & Hygiene",
+              "description": "Cleanings, exams, sealants, and periodontal care to keep smiles healthy long term."
+            },
+            {
+              "title": "Emergency Dentistry",
+              "description": "Prompt care for dental pain, breaks, and other urgent situations."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Leslie Jue DDS and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 55 Mission Cir."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Thu: 8am–5pm; Fri–Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 537-1904 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 55 Mission Cir. Call (707) 537-1904 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/leslie-jue-dds/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 537-1904",
+            "href": "tel:+17075371904"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Leslie Jue DDS",
+          "heading": "About SOCO Dental Studio",
+          "subheading": "SOCO Dental Studio was formed when Dr. Michael Louie merged two long-established Santa Rosa practices into one home for multi-generational families across Sonoma County",
+          "motif": "/images/library/dental/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About SOCO Dental Studio",
+          "body": [
+            "SOCO Dental Studio was formed when Dr. Michael Louie merged two long-established Santa Rosa practices into one home for multi-generational families across Sonoma County. The result is a team built on a legacy of trust, with three generations of dental experience under one roof.",
+            "Dr. Leslie Jue has delivered outstanding dental care since 1987. A UC Davis physiology graduate and University of the Pacific, Arthur A. Dugoni School of Dentistry alumna, she is a member of the American Academy of Cosmetic Dentistry and a longtime fixture of the local dental community."
+          ],
+          "highlights": [
+            "Dr. Leslie Jue caring for smiles since 1987",
+            "University of the Pacific, Dugoni School of Dentistry trained",
+            "Cosmetic, Invisalign, implants & full-mouth care",
+            "4.9-star rated by Sonoma County patients"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "39+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.9★",
+              "label": "63 reviews"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Leslie Jue DDS",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/leslie-jue-dds/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Leslie Jue DDS at 55 Mission Cir or call (707) 537-1904.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

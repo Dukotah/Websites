@@ -1,0 +1,364 @@
+{
+  "slug": "redwood-concrete-pumping",
+  "name": "Redwood Concrete Pumping",
+  "legalName": "Redwood Concrete Pumping",
+  "tagline": "Family-run concrete pumping in the North Bay since 1981",
+  "seoDescription": "Redwood Concrete Pump — family-owned, woman-owned concrete line and boom pumping serving Santa Rosa, Sonoma, Napa & Marin counties since 1981.",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1981",
+  "contact": {
+    "phone": "(707) 538-1206",
+    "email": "redwoodconcretepump@sonic.net",
+    "address": "1372 Los Alamos Rd"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/RedwoodConcretePump/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7am–5pm"
+    }
+  ],
+  "brand": {
+    "color": "#b56f28",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 1981",
+          "heading": "The North Bay's longest-running concrete pumping family, since 1981",
+          "subheading": "ACPA-certified operators placing concrete cleanly and efficiently across Sonoma, Napa, and Marin counties.",
+          "badges": [
+            "Serving since 1981",
+            "Family-owned & operated since 1981",
+            "Certified Woman Business Enterprise (WBE)"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/redwood-concrete-pumping/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/redwood-concrete-pumping/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Redwood Concrete Pumping",
+          "body": [
+            "Redwood Concrete Pump is a multi-generational, family-owned business that has been placing concrete across the North Bay since 1981. The Worden family treats every yard of concrete with care, getting the mud exactly where your crew needs it — from the ready-mix truck straight into your forms.",
+            "As a Certified Woman Business Enterprise and a registered public works subcontractor, Redwood handles everything from complex commercial and public works pours to tight-access residential jobs. Their ACPA-certified operators are known for being efficient, clean, and patient on every site."
+          ],
+          "highlights": [
+            "Family-owned & operated since 1981",
+            "Certified Woman Business Enterprise (WBE)",
+            "Registered public works subcontractor (DIR)",
+            "ACPA-certified, fully bonded & insured operators"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Commercial Concrete Pumping",
+              "description": "Slab-on-grade, drilled pier foundations, tilt-up walls, post-tension slabs, and public works infrastructure."
+            },
+            {
+              "title": "Residential Concrete Pumping",
+              "description": "Foundations, driveways, patios, pool decks, walkways, retaining walls, and ADU pours — including difficult-access sites."
+            },
+            {
+              "title": "Drilled Piers & Foundations",
+              "description": "Pier foundations and structural concrete for solar arrays, decks, and hillside projects."
+            },
+            {
+              "title": "Specialty Pumping",
+              "description": "Well seals and abatements, void filling, lightweight multi-story pumping, and pump/operator rental."
+            },
+            {
+              "title": "Public Works & Infrastructure",
+              "description": "Registered public works subcontractor for municipal, utility, and ADA infrastructure pours."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Redwood Concrete Pumping and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Redwood Concrete Pumping",
+          "items": [
+            {
+              "title": "Family-Owned & Operated Since 1981",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Certified Woman Business Enterprise (WBE)",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Registered Public Works Subcontractor (DIR)",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "ACPA-Certified, Fully Bonded & Insured Operators",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Serving Sonoma, Napa & Marin Counties",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Yesterday we had 6 yards of concrete delivered. Their pump guy was efficient, clean and patient. The whole operation went very smoothly.",
+              "author": "Douglas Bryant"
+            },
+            {
+              "quote": "Do yourself a favor and hire here guys. Their rates are reasonable and worth the exceptional service qualities.",
+              "author": "Rod A."
+            },
+            {
+              "quote": "We had a semi difficult pour of 7 yards delivered to Bolinas. Their pump guy was efficient, clean and patient.",
+              "author": "Daniel Sereni"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Redwood Concrete Pumping",
+          "body": "Find us at 1372 Los Alamos Rd. Call (707) 538-1206 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/redwood-concrete-pumping/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 538-1206",
+            "href": "tel:+17075381206"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "ACPA-certified operators placing concrete cleanly and efficiently across Sonoma, Napa, and Marin counties.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Commercial Concrete Pumping",
+              "description": "Slab-on-grade, drilled pier foundations, tilt-up walls, post-tension slabs, and public works infrastructure."
+            },
+            {
+              "title": "Residential Concrete Pumping",
+              "description": "Foundations, driveways, patios, pool decks, walkways, retaining walls, and ADU pours — including difficult-access sites."
+            },
+            {
+              "title": "Drilled Piers & Foundations",
+              "description": "Pier foundations and structural concrete for solar arrays, decks, and hillside projects."
+            },
+            {
+              "title": "Specialty Pumping",
+              "description": "Well seals and abatements, void filling, lightweight multi-story pumping, and pump/operator rental."
+            },
+            {
+              "title": "Public Works & Infrastructure",
+              "description": "Registered public works subcontractor for municipal, utility, and ADA infrastructure pours."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Redwood Concrete Pumping and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 1372 Los Alamos Rd."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7am–5pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 538-1206 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 1372 Los Alamos Rd. Call (707) 538-1206 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/redwood-concrete-pumping/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 538-1206",
+            "href": "tel:+17075381206"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Redwood Concrete Pumping",
+          "heading": "About Redwood Concrete Pumping",
+          "subheading": "Redwood Concrete Pump is a multi-generational, family-owned business that has been placing concrete across the North Bay since 1981",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Redwood Concrete Pumping",
+          "body": [
+            "Redwood Concrete Pump is a multi-generational, family-owned business that has been placing concrete across the North Bay since 1981. The Worden family treats every yard of concrete with care, getting the mud exactly where your crew needs it — from the ready-mix truck straight into your forms.",
+            "As a Certified Woman Business Enterprise and a registered public works subcontractor, Redwood handles everything from complex commercial and public works pours to tight-access residential jobs. Their ACPA-certified operators are known for being efficient, clean, and patient on every site."
+          ],
+          "highlights": [
+            "Family-owned & operated since 1981",
+            "Certified Woman Business Enterprise (WBE)",
+            "Registered public works subcontractor (DIR)",
+            "ACPA-certified, fully bonded & insured operators"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "45+",
+              "label": "Years in business"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Redwood Concrete Pumping",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/redwood-concrete-pumping/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Redwood Concrete Pumping at 1372 Los Alamos Rd or call (707) 538-1206.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

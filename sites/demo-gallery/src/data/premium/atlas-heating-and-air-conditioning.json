@@ -1,0 +1,366 @@
+{
+  "slug": "atlas-heating-and-air-conditioning",
+  "name": "Atlas Heating and Air Conditioning",
+  "legalName": "Atlas Heating and Air Conditioning",
+  "tagline": "Honest HVAC for Sonoma County since 2008",
+  "seoDescription": "Atlas Heating and Air Conditioning is a family-run Santa Rosa HVAC contractor offering honest heating, AC, and mini-split service across Sonoma County.",
+  "category": "hvac",
+  "categoryLabel": "HVAC",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2008",
+  "contact": {
+    "phone": "(707) 571-7522",
+    "email": "atlashvac@yahoo.com",
+    "address": "560 Silva Ave"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon–Thu",
+      "hours": "9am–5pm"
+    },
+    {
+      "day": "Fri–Sun",
+      "hours": "Closed"
+    }
+  ],
+  "rating": {
+    "value": 5,
+    "count": 38,
+    "source": "Yelp"
+  },
+  "brand": {
+    "color": "#1f8a8a",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2008",
+          "heading": "Santa Rosa's straight-shooting heating and cooling team",
+          "subheading": "Owner Ryan Gordon and his crew have kept Sonoma County homes comfortable since 2008 with honest diagnostics and fair pricing.",
+          "badges": [
+            "Serving since 2008",
+            "5★ from 38 reviews",
+            "Family-owned and operating since 2008"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/atlas-heating-and-air-conditioning/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/atlas-heating-and-air-conditioning/services"
+          },
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Atlas Heating and Air Conditioning",
+          "body": [
+            "Atlas Heating and Air Conditioning is a small, family-oriented company founded in Santa Rosa in 2008 by owner Ryan Gordon. From the shop on Silva Avenue, the team serves homeowners and businesses across Sonoma County and the surrounding North Bay.",
+            "Customers consistently point to the same thing: honest assessments and fair pricing. Atlas is known for recommending the right repair instead of pushing a full replacement, and for leaving the job site cleaner than they found it. The company holds a BBB A+ rating and carries a current California contractor's license (#917129)."
+          ],
+          "highlights": [
+            "Family-owned and operating since 2008",
+            "BBB A+ rated, fully licensed (CSLB #917129)",
+            "Trane and Daikin mini-split dealer",
+            "Honest diagnostics, no upsell pressure"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Heating Repair & Installation",
+              "description": "Furnace and heating system service, repair, and new installations, including dual-zone setups."
+            },
+            {
+              "title": "Air Conditioning",
+              "description": "AC installation and repair to keep your home comfortable through Sonoma County summers."
+            },
+            {
+              "title": "Ductless Mini-Splits",
+              "description": "Local Trane and Daikin dealer specializing in efficient ductless mini-split systems."
+            },
+            {
+              "title": "Water Heaters",
+              "description": "Installation of both tank and tankless water heaters."
+            },
+            {
+              "title": "Maintenance & Diagnostics",
+              "description": "Preventive maintenance and thorough diagnostic assessments with clear, detailed findings."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Atlas Heating and Air Conditioning and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "18+",
+              "label": "Years in business"
+            },
+            {
+              "value": "5★",
+              "label": "38 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "rating": {
+            "value": 5,
+            "count": 38,
+            "source": "Yelp"
+          },
+          "items": [
+            {
+              "quote": "Ryan went above and beyond in service, even added some things not in the quote.",
+              "author": "Richard I."
+            },
+            {
+              "quote": "Friendly, honest and reasonably priced.",
+              "author": "Debbie K."
+            },
+            {
+              "quote": "Ryan and his team are amazing!",
+              "author": "Ryan G."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Atlas Heating and Air Conditioning",
+          "body": "Find us at 560 Silva Ave. Call (707) 571-7522 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/atlas-heating-and-air-conditioning/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 571-7522",
+            "href": "tel:+17075717522"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Owner Ryan Gordon and his crew have kept Sonoma County homes comfortable since 2008 with honest diagnostics and fair pricing.",
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Heating Repair & Installation",
+              "description": "Furnace and heating system service, repair, and new installations, including dual-zone setups."
+            },
+            {
+              "title": "Air Conditioning",
+              "description": "AC installation and repair to keep your home comfortable through Sonoma County summers."
+            },
+            {
+              "title": "Ductless Mini-Splits",
+              "description": "Local Trane and Daikin dealer specializing in efficient ductless mini-split systems."
+            },
+            {
+              "title": "Water Heaters",
+              "description": "Installation of both tank and tankless water heaters."
+            },
+            {
+              "title": "Maintenance & Diagnostics",
+              "description": "Preventive maintenance and thorough diagnostic assessments with clear, detailed findings."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Atlas Heating and Air Conditioning and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 560 Silva Ave."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Thu: 9am–5pm; Fri–Sun: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 571-7522 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 560 Silva Ave. Call (707) 571-7522 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/atlas-heating-and-air-conditioning/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 571-7522",
+            "href": "tel:+17075717522"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Atlas Heating and Air Conditioning",
+          "heading": "About Atlas Heating and Air Conditioning",
+          "subheading": "Atlas Heating and Air Conditioning is a small, family-oriented company founded in Santa Rosa in 2008 by owner Ryan Gordon",
+          "motif": "/images/library/hvac/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Atlas Heating and Air Conditioning",
+          "body": [
+            "Atlas Heating and Air Conditioning is a small, family-oriented company founded in Santa Rosa in 2008 by owner Ryan Gordon. From the shop on Silva Avenue, the team serves homeowners and businesses across Sonoma County and the surrounding North Bay.",
+            "Customers consistently point to the same thing: honest assessments and fair pricing. Atlas is known for recommending the right repair instead of pushing a full replacement, and for leaving the job site cleaner than they found it. The company holds a BBB A+ rating and carries a current California contractor's license (#917129)."
+          ],
+          "highlights": [
+            "Family-owned and operating since 2008",
+            "BBB A+ rated, fully licensed (CSLB #917129)",
+            "Trane and Daikin mini-split dealer",
+            "Honest diagnostics, no upsell pressure"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "18+",
+              "label": "Years in business"
+            },
+            {
+              "value": "5★",
+              "label": "38 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Atlas Heating and Air Conditioning",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/atlas-heating-and-air-conditioning/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Atlas Heating and Air Conditioning at 560 Silva Ave or call (707) 571-7522.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

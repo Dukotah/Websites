@@ -1,0 +1,371 @@
+{
+  "slug": "california-state-insulation",
+  "leadId": "cab38b79-47ef-4f4c-874f-157bd13a75e6",
+  "name": "California State Insulation",
+  "legalName": "California State Insulation & General Contractor",
+  "tagline": "Insulation and full general-contracting work for Santa Rosa homes and job sites — licensed, bonded, and at it since 2001.",
+  "seoDescription": "California State Insulation & General Contractor is a Santa Rosa, CA insulation and general building company owned by Alvaro Beltran, serving Sonoma County since 2001 (CSLB Lic. #795223).",
+  "category": "contractor",
+  "categoryLabel": "Insulation & General Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2001",
+  "contact": {
+    "phone": "(707) 546-3177",
+    "email": "calstate707@gmail.com",
+    "address": "1244 Tapadera Drive, Santa Rosa, CA 95407"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/CalstateInsulation/"
+  },
+  "brand": {
+    "color": "#b5471c",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2001",
+          "heading": "Insulation and building work that holds up, season after season",
+          "subheading": "California State Insulation & General Contractor handles insulation, framing, plaster, drywall, and concrete for homes and job sites across Sonoma County. Owner-run by Alvaro Beltran since 2001.",
+          "badges": [
+            "Serving Sonoma County since 2001",
+            "CSLB Licensed #795223 — Insulation & General Building",
+            "Licensed, bonded & insured"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/california-state-insulation/contact"
+          },
+          "secondaryCta": {
+            "label": "What we do",
+            "href": "/s/california-state-insulation/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "An owner-run shop that does the work itself",
+          "body": [
+            "California State Insulation & General Contractor has been a fixture in Santa Rosa since 2001. Owner Alvaro Beltran built the business one job at a time, holding both an Insulation & Acoustical and a General Building license — so the same shop can insulate a home and handle the framing, plaster, drywall, and concrete around it.",
+            "From single-family retrofits to commercial projects, the work has ranged from small repairs to builds north of half a million dollars. It's a hands-on operation: when you call, you're talking to the people who'll actually be on the job, not a call center."
+          ],
+          "highlights": [
+            "Owner-operated by Alvaro Beltran since 2001",
+            "CSLB License #795223 — Insulation & Acoustical + General Building",
+            "Bonded and carries workers' compensation insurance",
+            "Projects from small repairs to $600K+ builds"
+          ],
+          "signature": "Alvaro Beltran, Owner"
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "2001",
+              "label": "Serving Sonoma County since"
+            },
+            {
+              "value": "24+",
+              "label": "Years in the trade"
+            },
+            {
+              "value": "Lic. #795223",
+              "label": "CSLB licensed & bonded"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "One shop for the shell of your project",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Insulation & Acoustical",
+              "description": "Residential and commercial insulation and acoustical work — the company's core trade and licensed specialty since day one."
+            },
+            {
+              "title": "General Building & Construction",
+              "description": "Full general-contracting under a CSLB General Building license, from new construction to additions and remodels."
+            },
+            {
+              "title": "Framing",
+              "description": "Wood framing for new builds, additions, and structural changes, squared up and ready for the trades that follow."
+            },
+            {
+              "title": "Stucco & Exterior Plaster",
+              "description": "Exterior stucco and plaster that seals and finishes the building envelope to hold up in the North Bay climate."
+            },
+            {
+              "title": "Interior Plaster & Drywall",
+              "description": "Interior plaster and drywall, hung and finished for a clean, paint-ready surface."
+            },
+            {
+              "title": "Concrete & Demolition",
+              "description": "Concrete work and demolition to prep a site or close out the parts of a job other contractors leave behind."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is straightforward",
+          "items": [
+            {
+              "title": "Call or message",
+              "body": "Tell us about the property and what you're trying to get done — insulation, a remodel, or a full shell."
+            },
+            {
+              "title": "We walk the job",
+              "body": "We look at the site in person, talk through the scope, and give you an honest read on the work."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our crew handles it directly, licensed and bonded, keeping you posted as it moves."
+            },
+            {
+              "title": "You're squared away",
+              "body": "The job's finished to standard and stands behind the license it was done under."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why owners call California State Insulation",
+          "items": [
+            {
+              "title": "Two licenses, one crew",
+              "body": "Insulation & Acoustical plus General Building means fewer subs to coordinate.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Licensed, bonded & insured",
+              "body": "CSLB #795223, with a surety bond and workers' comp — the work is covered.",
+              "icon": "shield"
+            },
+            {
+              "title": "Local since 2001",
+              "body": "More than two decades of Sonoma County jobs behind every estimate.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "You talk to the owner",
+              "body": "Alvaro runs the jobs himself — no layers between you and the work.",
+              "icon": "phone"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Have a project in Sonoma County?",
+          "body": "Reach California State Insulation at 1244 Tapadera Drive, Santa Rosa. Call (707) 546-3177 — Alvaro is glad to take a look.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/california-state-insulation/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 546-3177",
+            "href": "tel:+17075463177"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "Insulation through finish work, under one license",
+          "subheading": "California State Insulation carries both an Insulation & Acoustical and a General Building license, so a single Santa Rosa shop can take a project from the studs to the stucco.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Trades we handle",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Insulation & Acoustical",
+              "description": "Residential and commercial insulation and acoustical work — the company's core trade and licensed specialty since day one."
+            },
+            {
+              "title": "General Building & Construction",
+              "description": "Full general-contracting under a CSLB General Building license, from new construction to additions and remodels."
+            },
+            {
+              "title": "Framing",
+              "description": "Wood framing for new builds, additions, and structural changes, squared up and ready for the trades that follow."
+            },
+            {
+              "title": "Stucco & Exterior Plaster",
+              "description": "Exterior stucco and plaster that seals and finishes the building envelope to hold up in the North Bay climate."
+            },
+            {
+              "title": "Interior Plaster & Drywall",
+              "description": "Interior plaster and drywall, hung and finished for a clean, paint-ready surface."
+            },
+            {
+              "title": "Concrete & Demolition",
+              "description": "Concrete work and demolition to prep a site or close out the parts of a job other contractors leave behind."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How a job goes",
+          "items": [
+            {
+              "title": "Call or message",
+              "body": "Tell us about the property and what you're trying to get done."
+            },
+            {
+              "title": "We walk the job",
+              "body": "We look at the site in person and talk through the scope with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our crew handles it directly, licensed and bonded, keeping you posted."
+            },
+            {
+              "title": "You're squared away",
+              "body": "The job's finished to standard and stands behind the license."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Are you licensed and insured?",
+              "a": "Yes. California State Insulation holds CSLB License #795223 (Insulation & Acoustical and General Building), carries a surety bond, and holds workers' compensation insurance."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We're based in Santa Rosa and work throughout Sonoma County."
+            },
+            {
+              "q": "Do you only do insulation?",
+              "a": "No. Insulation is our specialty, but our General Building license lets us also handle framing, stucco, plaster, drywall, concrete, and demolition."
+            },
+            {
+              "q": "How do I get a quote?",
+              "a": "Call us at (707) 546-3177 or email calstate707@gmail.com and we'll set up a time to look at the job."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let's talk about your project",
+          "body": "Find us at 1244 Tapadera Drive, Santa Rosa, CA 95407. Call (707) 546-3177 — we're glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/california-state-insulation/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 546-3177",
+            "href": "tel:+17075463177"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About California State Insulation",
+          "heading": "A Santa Rosa contractor who's done the work himself since 2001",
+          "subheading": "Owner Alvaro Beltran built California State Insulation & General Contractor into a hands-on shop trusted on Sonoma County job sites for more than two decades.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "An owner-run shop that does the work itself",
+          "body": [
+            "California State Insulation & General Contractor has been a fixture in Santa Rosa since 2001. Owner Alvaro Beltran built the business one job at a time, holding both an Insulation & Acoustical and a General Building license — so the same shop can insulate a home and handle the framing, plaster, drywall, and concrete around it.",
+            "From single-family retrofits to commercial projects, the work has ranged from small repairs to builds north of half a million dollars. It's a hands-on operation: when you call, you're talking to the people who'll actually be on the job, not a call center."
+          ],
+          "highlights": [
+            "Owner-operated by Alvaro Beltran since 2001",
+            "CSLB License #795223 — Insulation & Acoustical + General Building",
+            "Bonded and carries workers' compensation insurance",
+            "Projects from small repairs to $600K+ builds"
+          ],
+          "signature": "Alvaro Beltran, Owner"
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "2001",
+              "label": "Serving Sonoma County since"
+            },
+            {
+              "value": "24+",
+              "label": "Years in the trade"
+            },
+            {
+              "value": "$600K+",
+              "label": "Largest project on record"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with California State Insulation",
+          "body": "Call (707) 546-3177 or email calstate707@gmail.com to talk through your project.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/california-state-insulation/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 546-3177",
+            "href": "tel:+17075463177"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach California State Insulation at 1244 Tapadera Drive, Santa Rosa, CA 95407, call (707) 546-3177, or email calstate707@gmail.com.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}

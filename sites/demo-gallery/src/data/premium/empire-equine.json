@@ -1,0 +1,307 @@
+{
+  "slug": "empire-equine",
+  "name": "Empire Equine",
+  "legalName": "Empire Equine",
+  "tagline": "Compassionate equine care, up-to-date treatment",
+  "seoDescription": "Empire Equine: mobile equine veterinary care in Sonoma County led by Dr. Michelle Beko (UC Davis '91)",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 545-3909",
+    "email": "empireequine@comcast.net",
+    "address": "2318 Olivet Ln"
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Mon, Tue, Thu, Fri",
+      "hours": "9am–4:30pm"
+    },
+    {
+      "day": "Wed",
+      "hours": "11am–3pm"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "Closed (24hr emergency)"
+    }
+  ],
+  "brand": {
+    "color": "#365470",
+    "fontId": "clean-sans"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Expert horse care from a Sonoma County vet who rides",
+          "subheading": "Dr. Michelle Beko, a UC Davis graduate and lifelong horsewoman, has cared for the area's horses through Empire Equine since 1992.",
+          "badges": [
+            "Led by Dr. Michelle Beko, UC Davis DVM (1992)",
+            "24-hour emergency service",
+            "Full-service equine care across Sonoma County"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/empire-equine/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/empire-equine/services"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Empire Equine",
+          "body": [
+            "Empire Equine was founded decades ago by Dr. Jack Woolsey and Dr. Bob Norrie. Today it is owned by Dr. Michelle Beko, a UC Davis veterinary graduate, former Eventing competitor, and seasoned horse owner who joined the practice in 1992 and continues their legacy of excellence.",
+            "From our base at 2318 Olivet Ln in Santa Rosa, we provide up-to-date, high-quality, and compassionate care to all kinds of horses, donkeys, mules, ponies, and miniatures, ranging from high-performance athletes to pleasure, backyard, and elderly horses. We welcome novice owners with full support and education."
+          ],
+          "highlights": [
+            "Led by Dr. Michelle Beko, UC Davis DVM (1992)",
+            "24-hour emergency service",
+            "Full-service equine care across Sonoma County",
+            "Member, AAEP & AVMA"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Preventative & Wellness Care",
+              "description": "Routine exams, vaccinations, and parasite control to keep your horse healthy year-round."
+            },
+            {
+              "title": "Annual Health Maintenance Program",
+              "description": "Two yearly visits bundling physical exam, vaccinations, deworming, and teeth floating."
+            },
+            {
+              "title": "Dental Care",
+              "description": "Teeth floating and dental treatments to support comfort and proper nutrition."
+            },
+            {
+              "title": "Lameness Evaluations",
+              "description": "Diagnostic workups to find and address the source of lameness and performance issues."
+            },
+            {
+              "title": "Advanced Diagnostics",
+              "description": "On-site diagnostic tools to investigate illness and injury accurately."
+            },
+            {
+              "title": "Reproductive Services",
+              "description": "Breeding support including live cover and artificial insemination."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Empire Equine",
+          "items": [
+            {
+              "title": "Led By Dr. Michelle Beko, UC Davis DVM (1992)",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "24-Hour Emergency Service",
+              "body": "When it matters, we move quickly — you won’t be left waiting.",
+              "icon": "clock"
+            },
+            {
+              "title": "Full-Service Equine Care Across Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Member, AAEP & AVMA",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "From Backyard Companions To Upper-Level Sport",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Empire Equine",
+          "body": "Find us at 2318 Olivet Ln. Call (707) 545-3909 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/empire-equine/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 545-3909",
+            "href": "tel:+17075453909"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Dr. Michelle Beko, a UC Davis graduate and lifelong horsewoman, has cared for the area's horses through Empire Equine since 1992.",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Preventative & Wellness Care",
+              "description": "Routine exams, vaccinations, and parasite control to keep your horse healthy year-round."
+            },
+            {
+              "title": "Annual Health Maintenance Program",
+              "description": "Two yearly visits bundling physical exam, vaccinations, deworming, and teeth floating."
+            },
+            {
+              "title": "Dental Care",
+              "description": "Teeth floating and dental treatments to support comfort and proper nutrition."
+            },
+            {
+              "title": "Lameness Evaluations",
+              "description": "Diagnostic workups to find and address the source of lameness and performance issues."
+            },
+            {
+              "title": "Advanced Diagnostics",
+              "description": "On-site diagnostic tools to investigate illness and injury accurately."
+            },
+            {
+              "title": "Reproductive Services",
+              "description": "Breeding support including live cover and artificial insemination."
+            },
+            {
+              "title": "Prepurchase Examinations",
+              "description": "Thorough evaluations to inform your decision before buying a horse."
+            },
+            {
+              "title": "24-Hour Emergency Care",
+              "description": "Round-the-clock urgent care for when your horse needs help right away."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 2318 Olivet Ln."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon, Tue, Thu, Fri: 9am–4:30pm; Wed: 11am–3pm; Sat–Sun: Closed (24hr emergency)."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 545-3909 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 2318 Olivet Ln. Call (707) 545-3909 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/empire-equine/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 545-3909",
+            "href": "tel:+17075453909"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Empire Equine",
+          "heading": "About Empire Equine",
+          "subheading": "Empire Equine was founded decades ago by Dr. Jack Woolsey and Dr. Bob Norrie. Today it is owned by Dr",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Empire Equine",
+          "body": [
+            "Empire Equine was founded decades ago by Dr. Jack Woolsey and Dr. Bob Norrie. Today it is owned by Dr. Michelle Beko, a UC Davis veterinary graduate, former Eventing competitor, and seasoned horse owner who joined the practice in 1992 and continues their legacy of excellence.",
+            "From our base at 2318 Olivet Ln in Santa Rosa, we provide up-to-date, high-quality, and compassionate care to all kinds of horses, donkeys, mules, ponies, and miniatures, ranging from high-performance athletes to pleasure, backyard, and elderly horses. We welcome novice owners with full support and education."
+          ],
+          "highlights": [
+            "Led by Dr. Michelle Beko, UC Davis DVM (1992)",
+            "24-hour emergency service",
+            "Full-service equine care across Sonoma County",
+            "Member, AAEP & AVMA"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Empire Equine",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/empire-equine/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Empire Equine at 2318 Olivet Ln or call (707) 545-3909.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}
