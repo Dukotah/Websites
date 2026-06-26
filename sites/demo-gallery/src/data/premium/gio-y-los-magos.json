@@ -1,0 +1,321 @@
+{
+  "slug": "gio-y-los-magos",
+  "leadId": "85e4936b-a259-4e5d-9a6e-bb348a37d44a",
+  "name": "Gio y Los Magos",
+  "tagline": "Birria, asada, and the best quesatacos in Roseland — fresh off the grill at Santa Rosa’s Mitote Food Park.",
+  "seoDescription": "Gio y Los Magos is a 4.7-star Mexican grill at Mitote Food Park in Santa Rosa, CA — famous for birria, asada tacos, birria fries, and quesatacos served fast in a friendly, casual setting.",
+  "category": "restaurant",
+  "categoryLabel": "Mexican Grill",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 393-9229",
+    "email": "gioylosmagos@gmail.com",
+    "address": "Mitote Food Park, 100 Sebastopol Rd, Santa Rosa, CA 95407"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/gioylosmagos"
+  },
+  "brand": {
+    "color": "#C9501C",
+    "fontId": "modern-grotesk"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Roseland · Mitote Food Park",
+          "heading": "The birria people cross town for",
+          "subheading": "Gio y Los Magos is the Roseland grill that turned a food-park stall into a 4.7-star destination — quesatacos and gordita de birria, asada and carnitas tacos, and birria fries piled high, all served fast by a team that’s genuinely glad you came.",
+          "badges": [
+            "4.7★ on Google",
+            "Mitote Food Park, Santa Rosa",
+            "Birria · Asada · Quesatacos"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gio-y-los-magos/contact"
+          },
+          "secondaryCta": {
+            "label": "Menu",
+            "href": "/s/gio-y-los-magos/menu"
+          },
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A food-park stall with a serious following",
+          "body": [
+            "At Santa Rosa’s Mitote Food Park, Gio y Los Magos has earned the kind of word-of-mouth that fills picnic tables — a 4.7-star reputation built on birria done right and tacos that come out fast and flavorful.",
+            "The draw is simple: bold, fresh Mexican plates, fair prices, and a warm, welcoming team. Regulars come for the quesatacos and the birria fries and stay for the easy, come-as-you-are vibe of the food park."
+          ],
+          "highlights": [
+            "4.7-star Google rating",
+            "Famous for birria and quesatacos",
+            "Fresh asada and carnitas tacos",
+            "Casual food-park dining in Roseland"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4.7★",
+              "label": "Google rating"
+            },
+            {
+              "value": "Birria",
+              "label": "The house specialty"
+            },
+            {
+              "value": "Roseland",
+              "label": "At Mitote Food Park"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the grill",
+          "heading": "What keeps the tables full",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Birria & Quesatacos",
+              "description": "The house specialty — rich, slow-cooked birria and crispy, cheesy quesatacos."
+            },
+            {
+              "title": "Asada & Carnitas Tacos",
+              "description": "Carne asada and carnitas tacos served fast off the grill."
+            },
+            {
+              "title": "Birria Fries",
+              "description": "Fries loaded with birria, cheese, and all the toppings."
+            },
+            {
+              "title": "Gordita de Birria",
+              "description": "A handmade gordita stuffed with the same birria people drive in for."
+            },
+            {
+              "title": "Plates & Sides",
+              "description": "Generous plates and classic sides to round out the meal."
+            },
+            {
+              "title": "Food-Park Dining",
+              "description": "Order at the window and grab a picnic table at Mitote Food Park."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why Roseland keeps coming back",
+          "items": [
+            {
+              "title": "4.7 stars and earned",
+              "body": "A rating built on birria and tacos that deliver.",
+              "icon": "check"
+            },
+            {
+              "title": "The birria is the thing",
+              "body": "Quesatacos, fries, and gorditas all built on it.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Fast and friendly",
+              "body": "Quick off the grill, served by a team glad you came.",
+              "icon": "clock"
+            },
+            {
+              "title": "Easy to find",
+              "body": "At Mitote Food Park on Sebastopol Road in Roseland.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry for real birria?",
+          "body": "Find Gio y Los Magos at Mitote Food Park, 100 Sebastopol Rd, Santa Rosa. Call (707) 393-9229.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gio-y-los-magos/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 393-9229",
+            "href": "tel:+17073939229"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the grill",
+          "heading": "Birria, tacos, and everything off the grill",
+          "subheading": "Gio y Los Magos brings bold, fresh Mexican plates to Santa Rosa’s Mitote Food Park — birria, asada, quesatacos, and loaded birria fries.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What keeps the tables full",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Birria & Quesatacos",
+              "description": "The house specialty — rich, slow-cooked birria and crispy, cheesy quesatacos."
+            },
+            {
+              "title": "Asada & Carnitas Tacos",
+              "description": "Carne asada and carnitas tacos served fast off the grill."
+            },
+            {
+              "title": "Birria Fries",
+              "description": "Fries loaded with birria, cheese, and all the toppings."
+            },
+            {
+              "title": "Gordita de Birria",
+              "description": "A handmade gordita stuffed with the same birria people drive in for."
+            },
+            {
+              "title": "Plates & Sides",
+              "description": "Generous plates and classic sides to round out the meal."
+            },
+            {
+              "title": "Food-Park Dining",
+              "description": "Order at the window and grab a picnic table at Mitote Food Park."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "At Mitote Food Park on Sebastopol Road in the Roseland area of Santa Rosa."
+            },
+            {
+              "q": "What are you known for?",
+              "a": "Birria — in tacos, quesatacos, gorditas, and loaded fries — plus asada and carnitas."
+            },
+            {
+              "q": "Is it casual?",
+              "a": "Yes — order at the window and grab a picnic table at the food park."
+            },
+            {
+              "q": "Can I call ahead?",
+              "a": "Give us a call at (707) 393-9229."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry for real birria?",
+          "body": "Find Gio y Los Magos at Mitote Food Park, 100 Sebastopol Rd, Santa Rosa. Call (707) 393-9229.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gio-y-los-magos/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 393-9229",
+            "href": "tel:+17073939229"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Gio y Los Magos",
+          "heading": "Roseland’s favorite birria stop",
+          "subheading": "Gio y Los Magos turned a Mitote Food Park stall into a 4.7-star Santa Rosa favorite, one plate of birria at a time.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A food-park stall with a serious following",
+          "body": [
+            "At Santa Rosa’s Mitote Food Park, Gio y Los Magos has earned the kind of word-of-mouth that fills picnic tables — a 4.7-star reputation built on birria done right and tacos that come out fast and flavorful.",
+            "The draw is simple: bold, fresh Mexican plates, fair prices, and a warm, welcoming team. Regulars come for the quesatacos and the birria fries and stay for the easy, come-as-you-are vibe of the food park."
+          ],
+          "highlights": [
+            "4.7-star Google rating",
+            "Famous for birria and quesatacos",
+            "Fresh asada and carnitas tacos",
+            "Casual food-park dining in Roseland"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4.7★",
+              "label": "Google rating"
+            },
+            {
+              "value": "Birria",
+              "label": "The house specialty"
+            },
+            {
+              "value": "Roseland",
+              "label": "At Mitote Food Park"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry for real birria?",
+          "body": "Find Gio y Los Magos at Mitote Food Park, 100 Sebastopol Rd, Santa Rosa. Call (707) 393-9229.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gio-y-los-magos/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 393-9229",
+            "href": "tel:+17073939229"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Find Gio y Los Magos at Mitote Food Park, 100 Sebastopol Rd, Santa Rosa, CA 95407. Call (707) 393-9229 or find us on Facebook.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}

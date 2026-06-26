@@ -1,0 +1,359 @@
+{
+  "slug": "glenn-ranch",
+  "leadId": "4bc3945e-8825-4eba-90ce-35161597cd56",
+  "name": "Glenn Ranch",
+  "tagline": "A four-generation family ranch in the Petaluma hills — three barns, rolling Sonoma County views, and your wedding for a full four days.",
+  "seoDescription": "Glenn Ranch is a family-owned wedding and event venue minutes from Petaluma, CA — three barns, rolling Sonoma County views, and four full days of access, with owners who live on-site.",
+  "category": "default",
+  "categoryLabel": "Wedding & Event Venue",
+  "area": "Petaluma, CA",
+  "city": "Petaluma",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 762-7291",
+    "email": "glennranchweddings@gmail.com",
+    "address": "4690 D Street Extension, Petaluma, CA 94952"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/100054628831089"
+  },
+  "brand": {
+    "color": "#4F5E3F",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Petaluma, CA · Family-owned",
+          "heading": "Say your vows on a ranch four generations in the making",
+          "subheading": "Five minutes outside Petaluma, Glenn Ranch offers true rustic charm — three barns, rolling hills that overlook Sonoma County, and a wedding weekend that runs Thursday through Sunday, hosted by owners who live right on the land.",
+          "badges": [
+            "Family-owned for 4 generations",
+            "Three barns + rolling hill views",
+            "Four full days, Thursday–Sunday"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/glenn-ranch/contact"
+          },
+          "secondaryCta": {
+            "label": "The Venue",
+            "href": "/s/glenn-ranch/venue"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Four generations, one beautiful piece of land",
+          "body": [
+            "Glenn Ranch has been in the family for over four generations — and it shows in the care. Owners Lori and Mark live on-site and are known for going completely above and beyond, ready to help with anything and everything your day requires.",
+            "What sets the ranch apart is time: you get the venue for four full days, Thursday through Sunday, so set-up and clean-up happen without a single stressed minute. Three barns — a main barn for the reception and two smaller ones for the couple — sit framed by hills that make the photographs."
+          ],
+          "highlights": [
+            "In the family for 4+ generations",
+            "Owners Lori & Mark live on-site",
+            "Three barns: reception + two getting-ready spaces",
+            "Four-day access — no rushed set-up or clean-up"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4 gen",
+              "label": "Family-owned"
+            },
+            {
+              "value": "4 days",
+              "label": "Thursday–Sunday access"
+            },
+            {
+              "value": "3 barns",
+              "label": "On the property"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "The venue",
+          "heading": "Everything the day needs",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "The Main Barn",
+              "description": "A rustic main barn for your reception, framed by rolling Sonoma County hills."
+            },
+            {
+              "title": "Two Getting-Ready Barns",
+              "description": "Separate smaller barns — one for each side of the wedding party to prepare."
+            },
+            {
+              "title": "Four-Day Access",
+              "description": "The venue is yours Thursday through Sunday, so set-up and clean-up are unhurried."
+            },
+            {
+              "title": "Hilltop Ceremony Views",
+              "description": "Rolling hills that overlook the county — a breathtaking backdrop for vows and photos."
+            },
+            {
+              "title": "On-Site Owners",
+              "description": "Lori and Mark live on the property and are there to help with anything that comes up."
+            },
+            {
+              "title": "Minutes from Petaluma",
+              "description": "True country setting, just five minutes from the city of Petaluma."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "How a Glenn Ranch wedding works",
+          "items": [
+            {
+              "title": "Come see the land",
+              "body": "Tour the barns and the hills and picture the day on the property."
+            },
+            {
+              "title": "Reserve your weekend",
+              "body": "Book your four-day window, Thursday through Sunday."
+            },
+            {
+              "title": "Set up at your pace",
+              "body": "Arrive early in the week to decorate with no clock running."
+            },
+            {
+              "title": "Celebrate, then breathe",
+              "body": "Host the day, and clean up Sunday — never in a rush."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why couples choose Glenn Ranch",
+          "items": [
+            {
+              "title": "A real family ranch",
+              "body": "Four generations of care, with owners who live on-site.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Four full days",
+              "body": "Set-up and clean-up with no stress and no surcharge for time.",
+              "icon": "clock"
+            },
+            {
+              "title": "Views that photograph",
+              "body": "Rolling hills overlooking Sonoma County as your backdrop.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Minutes from town",
+              "body": "Rustic country, five minutes from Petaluma.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What couples say",
+          "items": [
+            {
+              "quote": "Lori and Mark went completely above and beyond to make sure our special day was everything we dreamed of. We couldn’t say enough good things.",
+              "author": "Married at Glenn Ranch"
+            },
+            {
+              "quote": "Having the property for the whole weekend meant we could set up and clean up with zero stress — that’s what set this venue apart.",
+              "author": "Glenn Ranch couple"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Picture your day on the ranch",
+          "body": "Glenn Ranch is on D Street Extension, minutes from Petaluma. Call (707) 762-7291 to tour the property.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/glenn-ranch/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 762-7291",
+            "href": "tel:+17077627291"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "venue",
+      "label": "The Venue",
+      "title": "The Venue",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "The venue",
+          "heading": "Three barns, rolling hills, four full days",
+          "subheading": "Glenn Ranch gives you the whole property for a long wedding weekend — reception barn, two getting-ready barns, and Sonoma County views, with owners on-site to help.",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Everything the day needs",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "The Main Barn",
+              "description": "A rustic main barn for your reception, framed by rolling Sonoma County hills."
+            },
+            {
+              "title": "Two Getting-Ready Barns",
+              "description": "Separate smaller barns — one for each side of the wedding party to prepare."
+            },
+            {
+              "title": "Four-Day Access",
+              "description": "The venue is yours Thursday through Sunday, so set-up and clean-up are unhurried."
+            },
+            {
+              "title": "Hilltop Ceremony Views",
+              "description": "Rolling hills that overlook the county — a breathtaking backdrop for vows and photos."
+            },
+            {
+              "title": "On-Site Owners",
+              "description": "Lori and Mark live on the property and are there to help with anything that comes up."
+            },
+            {
+              "title": "Minutes from Petaluma",
+              "description": "True country setting, just five minutes from the city of Petaluma."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "How long do we have the venue?",
+              "a": "Four full days — Thursday through Sunday — so set-up and clean-up are never rushed."
+            },
+            {
+              "q": "What’s on the property?",
+              "a": "Three barns (a main reception barn plus two smaller getting-ready barns) and rolling hills overlooking Sonoma County."
+            },
+            {
+              "q": "Are the owners involved?",
+              "a": "Yes — Lori and Mark live on-site and are known for going above and beyond for couples."
+            },
+            {
+              "q": "Where is the ranch?",
+              "a": "On D Street Extension, about five minutes outside the city of Petaluma."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Picture your day on the ranch",
+          "body": "Glenn Ranch is on D Street Extension, minutes from Petaluma. Call (707) 762-7291 to tour the property.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/glenn-ranch/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 762-7291",
+            "href": "tel:+17077627291"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Glenn Ranch",
+          "heading": "A Petaluma ranch held by one family for generations",
+          "subheading": "Glenn Ranch pairs a true four-generation country setting with the kind of hands-on hosting that makes a wedding weekend effortless.",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Four generations, one beautiful piece of land",
+          "body": [
+            "Glenn Ranch has been in the family for over four generations — and it shows in the care. Owners Lori and Mark live on-site and are known for going completely above and beyond, ready to help with anything and everything your day requires.",
+            "What sets the ranch apart is time: you get the venue for four full days, Thursday through Sunday, so set-up and clean-up happen without a single stressed minute. Three barns — a main barn for the reception and two smaller ones for the couple — sit framed by hills that make the photographs."
+          ],
+          "highlights": [
+            "In the family for 4+ generations",
+            "Owners Lori & Mark live on-site",
+            "Three barns: reception + two getting-ready spaces",
+            "Four-day access — no rushed set-up or clean-up"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4 gen",
+              "label": "Family-owned"
+            },
+            {
+              "value": "4 days",
+              "label": "Thursday–Sunday access"
+            },
+            {
+              "value": "3 barns",
+              "label": "On the property"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Picture your day on the ranch",
+          "body": "Glenn Ranch is on D Street Extension, minutes from Petaluma. Call (707) 762-7291 to tour the property.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/glenn-ranch/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 762-7291",
+            "href": "tel:+17077627291"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Visit Glenn Ranch at 4690 D Street Extension, Petaluma, CA 94952. Call (707) 762-7291 or email glennranchweddings@gmail.com to schedule a tour.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}

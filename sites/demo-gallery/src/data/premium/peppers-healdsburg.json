@@ -1,0 +1,340 @@
+{
+  "slug": "peppers-healdsburg",
+  "leadId": "8384f174-bc78-4808-8195-72fd6da701b1",
+  "name": "Peppers Healdsburg",
+  "tagline": "Classic American breakfast, lunch, and dinner on Dry Creek Road — hearty plates, friendly service, open every day.",
+  "seoDescription": "Peppers Healdsburg is a casual family restaurant at 200 Dry Creek Rd in Healdsburg, CA, serving classic American breakfast, brunch, burgers, and sandwiches daily from 7am to 9pm.",
+  "category": "restaurant",
+  "categoryLabel": "Family Restaurant",
+  "area": "Healdsburg, CA",
+  "city": "Healdsburg",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 435-3333",
+    "email": "peppershealdsburg@outlook.com",
+    "address": "200 Dry Creek Rd, Healdsburg, CA 95448"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/345358502001490"
+  },
+  "brand": {
+    "color": "#C0392B",
+    "fontId": "warm-humanist"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Healdsburg, CA · Open daily 7am–9pm",
+          "heading": "Classic diner comfort, from first coffee to last call",
+          "subheading": "Peppers Healdsburg serves big American breakfasts, fresh salads, juicy burgers, and a long list of sandwiches on Dry Creek Road — the kind of honest plate that comes to the table hot, every day of the week.",
+          "badges": [
+            "On Dry Creek Road in Healdsburg",
+            "Breakfast · Lunch · Dinner, 7am–9pm",
+            "Gluten-free options available"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/peppers-healdsburg/contact"
+          },
+          "secondaryCta": {
+            "label": "Menu",
+            "href": "/s/peppers-healdsburg/menu"
+          },
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A Healdsburg table that just feels easy",
+          "body": [
+            "Peppers is the unfussy, sit-down spot Healdsburg reaches for when it wants a real meal without the wine-country price tag — a classic diner where the eggs Benedict come out right, the hash browns are crisp, and the waffles are worth the drive.",
+            "It runs on the things that keep a neighborhood restaurant full: fast, friendly service, plates that arrive hot, and a menu wide enough that the whole table finds something. Regulars come for breakfast and end up back for a burger at dinner."
+          ],
+          "highlights": [
+            "Open every day, 7am to 9pm",
+            "Breakfast and brunch served all day",
+            "Burgers, sandwiches, salads, and dinner plates",
+            "Gluten-free options on the menu"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "7am–9pm",
+              "label": "Open every day"
+            },
+            {
+              "value": "All day",
+              "label": "Breakfast & brunch"
+            },
+            {
+              "value": "GF",
+              "label": "Gluten-free options"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "What people come back for",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Breakfast & Brunch",
+              "description": "Eggs Benedict, omelettes, and strawberry waffles, with crisp, well-seasoned hash browns — served all day."
+            },
+            {
+              "title": "Burgers & Sandwiches",
+              "description": "Juicy burgers and a deep sandwich list, including the short-rib sandwich and chili cheese fries regulars rave about."
+            },
+            {
+              "title": "Fresh Salads",
+              "description": "Big, fresh salads for a lighter midday plate or an easy side."
+            },
+            {
+              "title": "Dinner Plates",
+              "description": "Hearty American dinners in a casual, come-as-you-are dining room."
+            },
+            {
+              "title": "Gluten-Free Options",
+              "description": "A kitchen that can take care of gluten-free guests without making it a production."
+            },
+            {
+              "title": "To-Go & Delivery",
+              "description": "The full menu packed up for takeout when you want it at home."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why Healdsburg keeps a table here",
+          "items": [
+            {
+              "title": "Open every single day",
+              "body": "Seven days a week, 7am to 9pm — breakfast through dinner.",
+              "icon": "clock"
+            },
+            {
+              "title": "Food comes out hot",
+              "body": "Plating a cut above casual, and meals that reach the table fast and hot.",
+              "icon": "check"
+            },
+            {
+              "title": "Something for everyone",
+              "body": "A wide menu and gluten-free options, so the whole table is covered.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Right on Dry Creek Road",
+              "body": "Easy to find and easy to park at the gateway to Dry Creek Valley.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What Healdsburg says",
+          "items": [
+            {
+              "quote": "Good American food and friendly service — classic diner style, and the food comes to the table hot.",
+              "author": "Yelp diner · Healdsburg"
+            },
+            {
+              "quote": "The plating is a cut above what I’ve seen in other casual restaurants, and the staff were fast and accommodating.",
+              "author": "Tripadvisor review"
+            },
+            {
+              "quote": "Those strawberry waffles are absolutely to die for, and the eggs Benedict is the reason I keep coming back.",
+              "author": "Healdsburg regular"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry in Healdsburg?",
+          "body": "Find Peppers at 200 Dry Creek Rd, open every day 7am–9pm. Call (707) 435-3333 for to-go orders.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/peppers-healdsburg/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 435-3333",
+            "href": "tel:+17074353333"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "Breakfast to dinner, all in one easy stop",
+          "subheading": "A full American menu in Healdsburg — morning eggs, midday burgers and salads, and hearty dinner plates, every day from 7am to 9pm.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What people come back for",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Breakfast & Brunch",
+              "description": "Eggs Benedict, omelettes, and strawberry waffles, with crisp, well-seasoned hash browns — served all day."
+            },
+            {
+              "title": "Burgers & Sandwiches",
+              "description": "Juicy burgers and a deep sandwich list, including the short-rib sandwich and chili cheese fries regulars rave about."
+            },
+            {
+              "title": "Fresh Salads",
+              "description": "Big, fresh salads for a lighter midday plate or an easy side."
+            },
+            {
+              "title": "Dinner Plates",
+              "description": "Hearty American dinners in a casual, come-as-you-are dining room."
+            },
+            {
+              "title": "Gluten-Free Options",
+              "description": "A kitchen that can take care of gluten-free guests without making it a production."
+            },
+            {
+              "title": "To-Go & Delivery",
+              "description": "The full menu packed up for takeout when you want it at home."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Peppers Healdsburg is open every day from 7am to 9pm."
+            },
+            {
+              "q": "Do you serve breakfast all day?",
+              "a": "Yes — breakfast and brunch favorites are available throughout the day."
+            },
+            {
+              "q": "Do you have gluten-free options?",
+              "a": "We do. Just let your server know and we will take care of you."
+            },
+            {
+              "q": "Where are you located?",
+              "a": "At 200 Dry Creek Rd in Healdsburg, the gateway to Dry Creek Valley."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry in Healdsburg?",
+          "body": "Find Peppers at 200 Dry Creek Rd, open every day 7am–9pm. Call (707) 435-3333 for to-go orders.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/peppers-healdsburg/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 435-3333",
+            "href": "tel:+17074353333"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Peppers Healdsburg",
+          "heading": "The everyday diner on Dry Creek Road",
+          "subheading": "Peppers is Healdsburg’s honest, all-day American restaurant — hot plates, fair prices, and a friendly room that welcomes everyone.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A Healdsburg table that just feels easy",
+          "body": [
+            "Peppers is the unfussy, sit-down spot Healdsburg reaches for when it wants a real meal without the wine-country price tag — a classic diner where the eggs Benedict come out right, the hash browns are crisp, and the waffles are worth the drive.",
+            "It runs on the things that keep a neighborhood restaurant full: fast, friendly service, plates that arrive hot, and a menu wide enough that the whole table finds something. Regulars come for breakfast and end up back for a burger at dinner."
+          ],
+          "highlights": [
+            "Open every day, 7am to 9pm",
+            "Breakfast and brunch served all day",
+            "Burgers, sandwiches, salads, and dinner plates",
+            "Gluten-free options on the menu"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "7am–9pm",
+              "label": "Open every day"
+            },
+            {
+              "value": "All day",
+              "label": "Breakfast & brunch"
+            },
+            {
+              "value": "GF",
+              "label": "Gluten-free options"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry in Healdsburg?",
+          "body": "Find Peppers at 200 Dry Creek Rd, open every day 7am–9pm. Call (707) 435-3333 for to-go orders.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/peppers-healdsburg/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 435-3333",
+            "href": "tel:+17074353333"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Visit Peppers Healdsburg at 200 Dry Creek Rd, Healdsburg, CA 95448, open daily 7am–9pm. Call (707) 435-3333 or email peppershealdsburg@outlook.com.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}

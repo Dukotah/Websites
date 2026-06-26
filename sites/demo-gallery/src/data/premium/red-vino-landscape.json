@@ -1,0 +1,346 @@
+{
+  "slug": "red-vino-landscape",
+  "leadId": "6fbcfdcd-fc7c-420d-bb38-3f06ce90abd6",
+  "name": "Red Vino Landscape",
+  "tagline": "Licensed, bonded Windsor landscaping — design, build, and maintenance from a full crew that shows up seven days a week.",
+  "seoDescription": "Red Vino Landscape is a licensed, bonded landscaping company in Windsor, CA — design, installation, and maintenance from a full crew, ranked in the top 22% of California licensed contractors.",
+  "category": "landscaping",
+  "categoryLabel": "Landscaping & Lawn Care",
+  "area": "Windsor, CA",
+  "city": "Windsor",
+  "state": "CA",
+  "established": "2023",
+  "contact": {
+    "phone": "(707) 328-2327",
+    "email": "info.rv.landscape@gmail.com",
+    "address": "Windsor, CA 95492"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/100084248731249",
+    "instagram": "https://www.instagram.com/rvinolandscape"
+  },
+  "brand": {
+    "color": "#2F6B3D",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Windsor, CA · Licensed & bonded",
+          "heading": "Licensed Windsor landscaping, from the first design to the weekly mow",
+          "subheading": "Red Vino Landscape is a licensed, bonded landscaping company serving Windsor and Sonoma County — design, installation, and maintenance handled by a full crew, with a contractor rating in the top 22% of the state. Owner Danny Gomez runs every job.",
+          "badges": [
+            "Licensed & bonded contractor",
+            "Top 22% of CA licensed contractors",
+            "Open 7 days a week"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/red-vino-landscape/contact"
+          },
+          "secondaryCta": {
+            "label": "Services",
+            "href": "/s/red-vino-landscape/services"
+          },
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "New on the books, serious about the work",
+          "body": [
+            "Founded in 2023, Red Vino Landscape has grown fast for a reason: owner Danny Gomez built it around doing the job properly and standing behind it. The company is fully licensed and bonded, carries a $2 million insurance policy, and ranks in the top 22% of California licensed contractors.",
+            "With a full crew and a seven-day schedule, Red Vino takes on the whole arc of a yard — design, installation, and the ongoing maintenance that keeps it looking the way it did on day one."
+          ],
+          "highlights": [
+            "Founded 2023, owner-run by Danny Gomez",
+            "Licensed and bonded ($2M insured)",
+            "Top 22% of CA licensed contractors (BuildZoom 95)",
+            "Full crew, available seven days a week"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "Licensed",
+              "label": "& bonded contractor"
+            },
+            {
+              "value": "Top 22%",
+              "label": "of CA contractors"
+            },
+            {
+              "value": "7 days",
+              "label": "A week, 6am–5pm"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "From bare dirt to a finished yard",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Landscape Design & Build",
+              "description": "Full design and installation — hardscape, planting, and the layout that ties a yard together."
+            },
+            {
+              "title": "Lawn Care & Maintenance",
+              "description": "Regular mowing, edging, and upkeep that keeps the property sharp year-round."
+            },
+            {
+              "title": "Irrigation",
+              "description": "Efficient irrigation install and repair to keep everything green without waste."
+            },
+            {
+              "title": "Planting & Beds",
+              "description": "Trees, shrubs, and beds chosen and placed to thrive in the North Bay."
+            },
+            {
+              "title": "Hardscape & Cleanups",
+              "description": "Paths, borders, and seasonal cleanups to finish and refresh the space."
+            },
+            {
+              "title": "Commercial & Residential",
+              "description": "A crew large enough for commercial grounds and attentive enough for a home yard."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "How a project runs",
+          "items": [
+            {
+              "title": "Walk the property",
+              "body": "We look at the space, hear what you want, and talk through what’s realistic."
+            },
+            {
+              "title": "A clear plan & bid",
+              "body": "You get a straightforward plan and an honest estimate before work starts."
+            },
+            {
+              "title": "The crew gets to work",
+              "body": "Licensed and bonded, the full crew handles install or maintenance directly."
+            },
+            {
+              "title": "Kept looking right",
+              "body": "Optional ongoing maintenance keeps the finished yard sharp."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why Windsor hires Red Vino",
+          "items": [
+            {
+              "title": "Licensed, bonded, insured",
+              "body": "A $2M policy and a state bond — the work is covered.",
+              "icon": "shield"
+            },
+            {
+              "title": "Top-tier contractor rating",
+              "body": "Ranked in the top 22% of California licensed contractors.",
+              "icon": "check"
+            },
+            {
+              "title": "A real crew",
+              "body": "Enough hands to take on big jobs and keep a schedule.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Available all week",
+              "body": "Open seven days, so projects don’t stall.",
+              "icon": "clock"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready to transform your yard?",
+          "body": "Red Vino Landscape serves Windsor and Sonoma County. Call (707) 328-2327 for a free walk-through and estimate.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/red-vino-landscape/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 328-2327",
+            "href": "tel:+17073282327"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "Design, build, and maintain — all in one crew",
+          "subheading": "Red Vino Landscape handles the whole yard for Windsor and Sonoma County: design and installation, irrigation, planting, hardscape, and ongoing maintenance.",
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "From bare dirt to a finished yard",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Landscape Design & Build",
+              "description": "Full design and installation — hardscape, planting, and the layout that ties a yard together."
+            },
+            {
+              "title": "Lawn Care & Maintenance",
+              "description": "Regular mowing, edging, and upkeep that keeps the property sharp year-round."
+            },
+            {
+              "title": "Irrigation",
+              "description": "Efficient irrigation install and repair to keep everything green without waste."
+            },
+            {
+              "title": "Planting & Beds",
+              "description": "Trees, shrubs, and beds chosen and placed to thrive in the North Bay."
+            },
+            {
+              "title": "Hardscape & Cleanups",
+              "description": "Paths, borders, and seasonal cleanups to finish and refresh the space."
+            },
+            {
+              "title": "Commercial & Residential",
+              "description": "A crew large enough for commercial grounds and attentive enough for a home yard."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Are you licensed and insured?",
+              "a": "Yes — Red Vino is a licensed, bonded California contractor carrying a $2 million insurance policy."
+            },
+            {
+              "q": "Do you do both design and maintenance?",
+              "a": "We do both — full landscape design and installation, plus ongoing lawn care and maintenance."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "Windsor and the surrounding Sonoma County area."
+            },
+            {
+              "q": "How do I get an estimate?",
+              "a": "Call (707) 328-2327 or email us and we’ll come walk the property."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready to transform your yard?",
+          "body": "Red Vino Landscape serves Windsor and Sonoma County. Call (707) 328-2327 for a free walk-through and estimate.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/red-vino-landscape/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 328-2327",
+            "href": "tel:+17073282327"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Red Vino Landscape",
+          "heading": "A licensed Windsor landscaper built to last",
+          "subheading": "Founded in 2023 by Danny Gomez, Red Vino Landscape pairs a full, licensed crew with top-tier credentials and a seven-day schedule.",
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "New on the books, serious about the work",
+          "body": [
+            "Founded in 2023, Red Vino Landscape has grown fast for a reason: owner Danny Gomez built it around doing the job properly and standing behind it. The company is fully licensed and bonded, carries a $2 million insurance policy, and ranks in the top 22% of California licensed contractors.",
+            "With a full crew and a seven-day schedule, Red Vino takes on the whole arc of a yard — design, installation, and the ongoing maintenance that keeps it looking the way it did on day one."
+          ],
+          "highlights": [
+            "Founded 2023, owner-run by Danny Gomez",
+            "Licensed and bonded ($2M insured)",
+            "Top 22% of CA licensed contractors (BuildZoom 95)",
+            "Full crew, available seven days a week"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "Licensed",
+              "label": "& bonded contractor"
+            },
+            {
+              "value": "Top 22%",
+              "label": "of CA contractors"
+            },
+            {
+              "value": "7 days",
+              "label": "A week, 6am–5pm"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready to transform your yard?",
+          "body": "Red Vino Landscape serves Windsor and Sonoma County. Call (707) 328-2327 for a free walk-through and estimate.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/red-vino-landscape/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 328-2327",
+            "href": "tel:+17073282327"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Red Vino Landscape serves Windsor and Sonoma County. Call (707) 328-2327 or email info.rv.landscape@gmail.com for an estimate.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}

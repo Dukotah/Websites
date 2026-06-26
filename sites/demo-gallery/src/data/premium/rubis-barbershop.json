@@ -1,0 +1,321 @@
+{
+  "slug": "rubis-barbershop",
+  "leadId": "c79cd97d-938e-48a0-907c-bf5004b9286b",
+  "name": "Rubi's Barbershop",
+  "tagline": "A clean, cozy Santa Rosa barbershop where Rubi listens, takes her time, and sends you out looking exactly how you wanted.",
+  "seoDescription": "Rubi's Barbershop is a 5-star barbershop at 589 Montecito Center in Santa Rosa, CA — precise cuts and beard trims in a clean, welcoming chair for the whole family.",
+  "category": "barber",
+  "categoryLabel": "Barbershop",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 806-2481",
+    "email": "rcordova3210@gmail.com",
+    "address": "589 Montecito Center, Santa Rosa, CA 95409"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/100054258350511"
+  },
+  "brand": {
+    "color": "#14524A",
+    "fontId": "classic-trad"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Montecito Center",
+          "heading": "A precise cut, a real conversation, a chair you’ll come back to",
+          "subheading": "Rubi’s Barbershop earns its perfect 5-star rating one chair at a time — a skilled barber who actually listens, a clean and airy space, and the kind of warm energy that makes the whole family ask for the same chair next time.",
+          "badges": [
+            "5.0★ on Yelp",
+            "Montecito Center, Santa Rosa",
+            "Cuts & beard trims for the whole family"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/rubis-barbershop/contact"
+          },
+          "secondaryCta": {
+            "label": "Services",
+            "href": "/s/rubis-barbershop/services"
+          },
+          "motif": "/images/library/barber/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "The barber people drive across town for",
+          "body": [
+            "Rubi built her shop on a simple idea: listen first, then cut. Clients describe her as a highly skilled professional with a humbling personality — someone who hears exactly what you want and delivers it, every visit.",
+            "The room matches the work: clean, airy, and light, with an easy energy that makes a haircut feel less like a chore and more like a stop you look forward to. It’s become a go-to for the whole family."
+          ],
+          "highlights": [
+            "Perfect 5.0-star rating",
+            "Skilled, attentive, and easy to talk to",
+            "Clean, airy, comfortable space",
+            "A go-to for the whole family"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "5.0★",
+              "label": "Yelp rating"
+            },
+            {
+              "value": "All ages",
+              "label": "Family-friendly chair"
+            },
+            {
+              "value": "By appt",
+              "label": "Easy online booking"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "In the chair",
+          "heading": "Clean cuts and sharp lines",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Haircuts",
+              "description": "Precise cuts tailored to what you actually asked for — classic to modern."
+            },
+            {
+              "title": "Beard Trims & Shaping",
+              "description": "Beard trims and line-ups that finish the look clean and even."
+            },
+            {
+              "title": "Kids’ Cuts",
+              "description": "Patient, friendly cuts that make the chair easy for the whole family."
+            },
+            {
+              "title": "Fades & Tapers",
+              "description": "Skin fades and tapers blended the way they’re supposed to be."
+            },
+            {
+              "title": "Line-Ups & Detailing",
+              "description": "Crisp edges and the small details that make a cut look finished."
+            },
+            {
+              "title": "Walk-Ins & Booking",
+              "description": "Book ahead online or stop in when there’s a chair open."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why the chair’s always booked",
+          "items": [
+            {
+              "title": "A genuine 5-star reputation",
+              "body": "A perfect rating built on cuts that come out right.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "She listens first",
+              "body": "Tell her what you want — she delivers exactly that.",
+              "icon": "check"
+            },
+            {
+              "title": "Clean, comfortable space",
+              "body": "Airy, light, and welcoming the moment you walk in.",
+              "icon": "shield"
+            },
+            {
+              "title": "Easy to find & book",
+              "body": "Right in Montecito Center, with simple online booking.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready for a cut that’s actually right?",
+          "body": "Find Rubi’s Barbershop at 589 Montecito Center. Call or text (707) 806-2481 to book your chair.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/rubis-barbershop/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 806-2481",
+            "href": "tel:+17078062481"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "In the chair",
+          "heading": "Everything to walk out sharp",
+          "subheading": "Cuts, fades, beard work, and kids’ cuts — all in a clean, welcoming Santa Rosa chair where the details get done right.",
+          "motif": "/images/library/barber/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Clean cuts and sharp lines",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Haircuts",
+              "description": "Precise cuts tailored to what you actually asked for — classic to modern."
+            },
+            {
+              "title": "Beard Trims & Shaping",
+              "description": "Beard trims and line-ups that finish the look clean and even."
+            },
+            {
+              "title": "Kids’ Cuts",
+              "description": "Patient, friendly cuts that make the chair easy for the whole family."
+            },
+            {
+              "title": "Fades & Tapers",
+              "description": "Skin fades and tapers blended the way they’re supposed to be."
+            },
+            {
+              "title": "Line-Ups & Detailing",
+              "description": "Crisp edges and the small details that make a cut look finished."
+            },
+            {
+              "title": "Walk-Ins & Booking",
+              "description": "Book ahead online or stop in when there’s a chair open."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Do you take walk-ins?",
+              "a": "Yes, when a chair is open — and you can book ahead online to lock in a time."
+            },
+            {
+              "q": "Do you cut kids’ hair?",
+              "a": "Absolutely. Rubi’s is family-friendly and great with kids."
+            },
+            {
+              "q": "Where are you located?",
+              "a": "At 589 Montecito Center in Santa Rosa."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Open Monday–Friday 9am–6pm and Saturday 9am–5pm; closed Sunday."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready for a cut that’s actually right?",
+          "body": "Find Rubi’s Barbershop at 589 Montecito Center. Call or text (707) 806-2481 to book your chair.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/rubis-barbershop/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 806-2481",
+            "href": "tel:+17078062481"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Rubi's Barbershop",
+          "heading": "A Santa Rosa chair worth coming back to",
+          "subheading": "Rubi’s Barbershop pairs real skill with a warm, easy room — the reason its rating is a clean 5.0 and its chairs stay full.",
+          "motif": "/images/library/barber/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "The barber people drive across town for",
+          "body": [
+            "Rubi built her shop on a simple idea: listen first, then cut. Clients describe her as a highly skilled professional with a humbling personality — someone who hears exactly what you want and delivers it, every visit.",
+            "The room matches the work: clean, airy, and light, with an easy energy that makes a haircut feel less like a chore and more like a stop you look forward to. It’s become a go-to for the whole family."
+          ],
+          "highlights": [
+            "Perfect 5.0-star rating",
+            "Skilled, attentive, and easy to talk to",
+            "Clean, airy, comfortable space",
+            "A go-to for the whole family"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "5.0★",
+              "label": "Yelp rating"
+            },
+            {
+              "value": "All ages",
+              "label": "Family-friendly chair"
+            },
+            {
+              "value": "By appt",
+              "label": "Easy online booking"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready for a cut that’s actually right?",
+          "body": "Find Rubi’s Barbershop at 589 Montecito Center. Call or text (707) 806-2481 to book your chair.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/rubis-barbershop/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 806-2481",
+            "href": "tel:+17078062481"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Visit Rubi's Barbershop at 589 Montecito Center, Santa Rosa, CA 95409. Call or text (707) 806-2481 to book.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}

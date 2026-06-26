@@ -1,0 +1,322 @@
+{
+  "slug": "the-pooch-parlor",
+  "leadId": "e1f9ed6e-7d5d-40f3-bde7-8e5e80d326a2",
+  "name": "The Pooch Parlor",
+  "tagline": "A family-owned Windsor grooming salon using natural, non-toxic products — gentle, careful, and 100% recommended.",
+  "seoDescription": "The Pooch Parlor is a 5-star, family-owned dog grooming salon in Windsor, CA, using natural and organic products — baths, haircuts, nail trims, and more, gently and carefully done.",
+  "category": "default",
+  "categoryLabel": "Dog Grooming",
+  "area": "Windsor, CA",
+  "city": "Windsor",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 838-1896",
+    "email": "thepoochparlorllc@gmail.com",
+    "address": "10333 Old Redwood Hwy, Windsor, CA 95492"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/thepoochparlorllc",
+    "instagram": "https://www.instagram.com/the_poochparlor"
+  },
+  "brand": {
+    "color": "#2B8C86",
+    "fontId": "warm-humanist"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Windsor, CA · Family-owned",
+          "heading": "Grooming gentle enough for the dog you’d do anything for",
+          "subheading": "The Pooch Parlor is a small, family-owned Windsor grooming salon that does it right every time — trained, careful groomers using natural, non-toxic products on your dog’s sensitive skin. Five stars, and 100% recommended.",
+          "badges": [
+            "5.0★ on Yelp",
+            "Family-owned in Windsor",
+            "Natural, non-toxic products"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-pooch-parlor/contact"
+          },
+          "secondaryCta": {
+            "label": "Services",
+            "href": "/s/the-pooch-parlor/services"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A small shop that treats your dog like their own",
+          "body": [
+            "The Pooch Parlor is family-owned and run, with groomers who are highly trained and experienced — and it shows in the reviews: five stars on Yelp and 100% of clients recommending them.",
+            "What sets them apart is what goes on the dog. They’re committed to natural and organic products, because they understand how much a pet’s sensitive skin matters. Every visit is gentle, careful, and done the way you’d do it yourself if you could."
+          ],
+          "highlights": [
+            "Family-owned and operated",
+            "Perfect 5-star rating, 100% recommended",
+            "Natural, organic, non-toxic products",
+            "Trained, experienced groomers"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "5.0★",
+              "label": "Yelp rating"
+            },
+            {
+              "value": "100%",
+              "label": "Clients recommend"
+            },
+            {
+              "value": "Natural",
+              "label": "Non-toxic products"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "At the parlor",
+          "heading": "Full grooming, gently done",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Bathing",
+              "description": "Warm, thorough baths with natural, non-toxic products kind to sensitive skin."
+            },
+            {
+              "title": "Haircuts & Styling",
+              "description": "Breed-appropriate cuts and tidy styling, done patiently."
+            },
+            {
+              "title": "Nail Trimming",
+              "description": "Careful nail trims to keep paws healthy and comfortable."
+            },
+            {
+              "title": "Ear Cleaning",
+              "description": "Gentle ear cleaning as part of a complete groom."
+            },
+            {
+              "title": "Paw Treatments",
+              "description": "Add-on paw treatments to soothe and protect."
+            },
+            {
+              "title": "Teeth Cleaning",
+              "description": "Add-on teeth cleaning for fresher breath and better health."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why Windsor trusts them with their dogs",
+          "items": [
+            {
+              "title": "A perfect 5-star record",
+              "body": "Five stars on Yelp and 100% of clients recommending.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Natural products only",
+              "body": "Non-toxic, organic products chosen for sensitive skin.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Family-owned care",
+              "body": "A small shop where your dog isn’t just another appointment.",
+              "icon": "shield"
+            },
+            {
+              "title": "Right in Windsor",
+              "body": "On Old Redwood Highway, easy to reach.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Time for a fresh groom?",
+          "body": "The Pooch Parlor is at 10333 Old Redwood Hwy, Windsor. Call (707) 838-1896 to book your dog’s spot.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-pooch-parlor/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 838-1896",
+            "href": "tel:+17078381896"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "At the parlor",
+          "heading": "Baths, cuts, nails — the whole groom",
+          "subheading": "The Pooch Parlor offers complete dog grooming in Windsor with natural products and a gentle hand, plus add-ons like paw treatments and teeth cleaning.",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Full grooming, gently done",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Bathing",
+              "description": "Warm, thorough baths with natural, non-toxic products kind to sensitive skin."
+            },
+            {
+              "title": "Haircuts & Styling",
+              "description": "Breed-appropriate cuts and tidy styling, done patiently."
+            },
+            {
+              "title": "Nail Trimming",
+              "description": "Careful nail trims to keep paws healthy and comfortable."
+            },
+            {
+              "title": "Ear Cleaning",
+              "description": "Gentle ear cleaning as part of a complete groom."
+            },
+            {
+              "title": "Paw Treatments",
+              "description": "Add-on paw treatments to soothe and protect."
+            },
+            {
+              "title": "Teeth Cleaning",
+              "description": "Add-on teeth cleaning for fresher breath and better health."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What products do you use?",
+              "a": "Natural, organic, non-toxic products chosen specifically for dogs’ sensitive skin."
+            },
+            {
+              "q": "What days are you open?",
+              "a": "We groom Tuesday through Saturday."
+            },
+            {
+              "q": "What’s included in a groom?",
+              "a": "Bathing, haircut, nail trim, and ear cleaning, with optional paw treatments and teeth cleaning."
+            },
+            {
+              "q": "Where are you located?",
+              "a": "At 10333 Old Redwood Hwy in Windsor."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Time for a fresh groom?",
+          "body": "The Pooch Parlor is at 10333 Old Redwood Hwy, Windsor. Call (707) 838-1896 to book your dog’s spot.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-pooch-parlor/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 838-1896",
+            "href": "tel:+17078381896"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About The Pooch Parlor",
+          "heading": "A family-owned grooming salon Windsor recommends",
+          "subheading": "The Pooch Parlor pairs trained, gentle groomers with natural products — the reason it holds a perfect rating and a 100% recommend.",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A small shop that treats your dog like their own",
+          "body": [
+            "The Pooch Parlor is family-owned and run, with groomers who are highly trained and experienced — and it shows in the reviews: five stars on Yelp and 100% of clients recommending them.",
+            "What sets them apart is what goes on the dog. They’re committed to natural and organic products, because they understand how much a pet’s sensitive skin matters. Every visit is gentle, careful, and done the way you’d do it yourself if you could."
+          ],
+          "highlights": [
+            "Family-owned and operated",
+            "Perfect 5-star rating, 100% recommended",
+            "Natural, organic, non-toxic products",
+            "Trained, experienced groomers"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "5.0★",
+              "label": "Yelp rating"
+            },
+            {
+              "value": "100%",
+              "label": "Clients recommend"
+            },
+            {
+              "value": "Natural",
+              "label": "Non-toxic products"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Time for a fresh groom?",
+          "body": "The Pooch Parlor is at 10333 Old Redwood Hwy, Windsor. Call (707) 838-1896 to book your dog’s spot.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-pooch-parlor/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 838-1896",
+            "href": "tel:+17078381896"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Visit The Pooch Parlor at 10333 Old Redwood Hwy, Windsor, CA 95492 (Tue–Sat). Call (707) 838-1896 or message us on Instagram.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}

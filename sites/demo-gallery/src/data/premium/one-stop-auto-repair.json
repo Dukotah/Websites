@@ -1,0 +1,344 @@
+{
+  "slug": "one-stop-auto-repair",
+  "leadId": "159df6a0-afe2-43a6-8913-86449c5dea1e",
+  "name": "One Stop Auto Repair",
+  "tagline": "Honest, fair auto repair on Piner Road — the Santa Rosa shop that fixes what you need and nothing you don’t.",
+  "seoDescription": "One Stop Auto Repair is a Santa Rosa, CA auto repair shop at 1688 Piner Rd serving drivers Monday through Saturday with honest, fairly priced service and a 4.5-star rating.",
+  "category": "auto-repair",
+  "categoryLabel": "Auto Repair",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 536-9053",
+    "email": "onestopautorepair00@gmail.com",
+    "address": "1688 Piner Rd, Suite A, Santa Rosa, CA 95403"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/100089956401677"
+  },
+  "brand": {
+    "color": "#1F5C8C",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Mon–Sat",
+          "heading": "The Santa Rosa mechanic that won’t sell you what you don’t need",
+          "subheading": "One Stop Auto Repair on Piner Road has built its reputation the old-fashioned way — honest diagnoses, fair prices, and owners who tell you straight what your car actually needs. 4.5 stars from the people who trust them with it.",
+          "badges": [
+            "On Piner Road in Santa Rosa",
+            "Open Monday–Saturday",
+            "4.5★ — honest & fair"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/one-stop-auto-repair/contact"
+          },
+          "secondaryCta": {
+            "label": "Services",
+            "href": "/s/one-stop-auto-repair/services"
+          },
+          "motif": "/images/library/auto-repair/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A shop built on a straight answer",
+          "body": [
+            "There’s a reason drivers keep coming back to One Stop: you get a straight answer. The owners are known around Santa Rosa as honest and fair — they tell you what’s wrong, what it’ll take to fix it, and what can wait, without the upsell.",
+            "It’s a full-service shop for everyday cars and trucks — oil changes, diagnostics, and the repairs that keep a vehicle on the road — run by people who’d rather earn a repeat customer than win one big ticket."
+          ],
+          "highlights": [
+            "Owner-operated, honest and fair",
+            "4.5-star rated by Santa Rosa drivers",
+            "Full mechanical service and diagnostics",
+            "Open Monday through Saturday"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4.5★",
+              "label": "Customer rating"
+            },
+            {
+              "value": "Mon–Sat",
+              "label": "8:30am–6pm"
+            },
+            {
+              "value": "Honest",
+              "label": "No upsell, ever"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Service that keeps you on the road",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Oil & Routine Maintenance",
+              "description": "Oil changes and scheduled service to keep small things from becoming big ones."
+            },
+            {
+              "title": "Diagnostics",
+              "description": "Straight-talk diagnosis of warning lights, noises, and the things that just feel off."
+            },
+            {
+              "title": "Brakes & Suspension",
+              "description": "Brake service and front-end work so the car stops and rides the way it should."
+            },
+            {
+              "title": "Engine & Drivability",
+              "description": "Repairs for the running problems that strand you — done once, done right."
+            },
+            {
+              "title": "Fleet & Everyday Cars",
+              "description": "Reliable service for daily drivers, trucks, and small fleets around Santa Rosa."
+            },
+            {
+              "title": "Honest Estimates",
+              "description": "A clear estimate before the work starts — what you need, and what can wait."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Tell us what’s going on",
+              "body": "Call or stop by Piner Road and describe what the car is doing."
+            },
+            {
+              "title": "We diagnose it straight",
+              "body": "We find the real problem and tell you plainly what it needs."
+            },
+            {
+              "title": "You approve the work",
+              "body": "A fair estimate up front — nothing happens without your OK."
+            },
+            {
+              "title": "Back on the road",
+              "body": "We fix it right and stand behind the work."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why drivers trust One Stop",
+          "items": [
+            {
+              "title": "Honest by reputation",
+              "body": "Known around Santa Rosa for fair prices and no unnecessary work.",
+              "icon": "shield"
+            },
+            {
+              "title": "4.5 stars and climbing",
+              "body": "A rating earned one straight answer at a time.",
+              "icon": "check"
+            },
+            {
+              "title": "Open six days a week",
+              "body": "Monday through Saturday, so service fits a real schedule.",
+              "icon": "clock"
+            },
+            {
+              "title": "Right on Piner Road",
+              "body": "Easy to reach in northwest Santa Rosa.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Car acting up?",
+          "body": "Bring it to One Stop Auto Repair at 1688 Piner Rd, Suite A. Call (707) 536-9053 for an honest look.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/one-stop-auto-repair/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 536-9053",
+            "href": "tel:+17075369053"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "Full-service repair, no run-around",
+          "subheading": "From oil changes to engine diagnostics, One Stop Auto Repair keeps Santa Rosa drivers moving with honest work at a fair price.",
+          "motif": "/images/library/auto-repair/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Service that keeps you on the road",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Oil & Routine Maintenance",
+              "description": "Oil changes and scheduled service to keep small things from becoming big ones."
+            },
+            {
+              "title": "Diagnostics",
+              "description": "Straight-talk diagnosis of warning lights, noises, and the things that just feel off."
+            },
+            {
+              "title": "Brakes & Suspension",
+              "description": "Brake service and front-end work so the car stops and rides the way it should."
+            },
+            {
+              "title": "Engine & Drivability",
+              "description": "Repairs for the running problems that strand you — done once, done right."
+            },
+            {
+              "title": "Fleet & Everyday Cars",
+              "description": "Reliable service for daily drivers, trucks, and small fleets around Santa Rosa."
+            },
+            {
+              "title": "Honest Estimates",
+              "description": "A clear estimate before the work starts — what you need, and what can wait."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "We’re open Monday through Saturday, 8:30am to 6pm, and closed Sunday."
+            },
+            {
+              "q": "Do I need an appointment?",
+              "a": "Call ahead at (707) 536-9053 and we’ll get you scheduled — drop-ins are welcome too."
+            },
+            {
+              "q": "Will you tell me if something can wait?",
+              "a": "Always. We tell you what needs doing now and what can hold, so you can plan."
+            },
+            {
+              "q": "What kinds of vehicles do you service?",
+              "a": "Everyday cars and trucks, plus small fleets around Santa Rosa."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Car acting up?",
+          "body": "Bring it to One Stop Auto Repair at 1688 Piner Rd, Suite A. Call (707) 536-9053 for an honest look.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/one-stop-auto-repair/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 536-9053",
+            "href": "tel:+17075369053"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About One Stop Auto Repair",
+          "heading": "A Piner Road shop people actually trust",
+          "subheading": "One Stop Auto Repair earned its name and its 4.5 stars the same way — honest work, fair prices, and owners who give it to you straight.",
+          "motif": "/images/library/auto-repair/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "A shop built on a straight answer",
+          "body": [
+            "There’s a reason drivers keep coming back to One Stop: you get a straight answer. The owners are known around Santa Rosa as honest and fair — they tell you what’s wrong, what it’ll take to fix it, and what can wait, without the upsell.",
+            "It’s a full-service shop for everyday cars and trucks — oil changes, diagnostics, and the repairs that keep a vehicle on the road — run by people who’d rather earn a repeat customer than win one big ticket."
+          ],
+          "highlights": [
+            "Owner-operated, honest and fair",
+            "4.5-star rated by Santa Rosa drivers",
+            "Full mechanical service and diagnostics",
+            "Open Monday through Saturday"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4.5★",
+              "label": "Customer rating"
+            },
+            {
+              "value": "Mon–Sat",
+              "label": "8:30am–6pm"
+            },
+            {
+              "value": "Honest",
+              "label": "No upsell, ever"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Car acting up?",
+          "body": "Bring it to One Stop Auto Repair at 1688 Piner Rd, Suite A. Call (707) 536-9053 for an honest look.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/one-stop-auto-repair/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 536-9053",
+            "href": "tel:+17075369053"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Find One Stop Auto Repair at 1688 Piner Rd, Suite A, Santa Rosa, CA 95403, open Mon–Sat 8:30am–6pm. Call (707) 536-9053 or email onestopautorepair00@gmail.com.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}

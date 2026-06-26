@@ -1,0 +1,322 @@
+{
+  "slug": "cup-of-love-coffee",
+  "leadId": "16e98669-e1be-4a24-aa92-3c7890a753f6",
+  "name": "Cup of Love Coffee",
+  "tagline": "A little coffee cart on West Napa Street with a big heart — fast, friendly, and a hand-stuck heart on every cup.",
+  "seoDescription": "Cup of Love Coffee is a beloved coffee cart at 195 W Napa St in Sonoma, CA — owner Amy Granum serves quick, thoughtful coffee and goodies with a 4.9-star rating and a heart on every cup.",
+  "category": "cafe",
+  "categoryLabel": "Coffee Cart",
+  "area": "Sonoma, CA",
+  "city": "Sonoma",
+  "state": "CA",
+  "contact": {
+    "phone": "(707) 260-9741",
+    "email": "cupoflovecoffee@gmail.com",
+    "address": "195 W Napa St, Sonoma, CA 95476"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/cupoflovesonoma",
+    "instagram": "https://www.instagram.com/cupoflovecoffee"
+  },
+  "brand": {
+    "color": "#C25A4E",
+    "fontId": "handcrafted"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sonoma, CA · West Napa Street",
+          "heading": "The little cart that put a heart on Sonoma’s morning",
+          "subheading": "Cup of Love is the coffee cart on the corner of West Napa and Second — where Amy pours fast, thoughtful drinks, sends you off with a heart-shaped sticker on the cup, and keeps one of the last truly social corners in town.",
+          "badges": [
+            "4.9★ from the regulars",
+            "Corner of W Napa & 2nd St W",
+            "A heart on every cup"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/cup-of-love-coffee/contact"
+          },
+          "secondaryCta": {
+            "label": "Menu",
+            "href": "/s/cup-of-love-coffee/menu"
+          },
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Bought with love, run the same way",
+          "body": [
+            "Amy Granum used to stare at the little coffee cart across from the Black Bear Diner where she worked. “When it came up for sale, I came right over and bought it.” That’s Cup of Love — a Sonoma corner she made her own, working alongside Andy.",
+            "Every order goes out with a small heart-shaped sticker on the cup — a nod to her family’s motto. Regulars don’t just come for the coffee; they come for the rare thing it’s become: a genuinely social spot where the person making your drink knows your name."
+          ],
+          "highlights": [
+            "Owner-run by Amy Granum",
+            "4.9-star rating from the regulars",
+            "A hand-stuck heart on every cup",
+            "One of the last truly social corners in town"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4.9★",
+              "label": "Regulars’ rating"
+            },
+            {
+              "value": "6am",
+              "label": "Open early, Mon–Sat"
+            },
+            {
+              "value": "❤",
+              "label": "On every cup"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "Off the cart",
+          "heading": "Coffee, goodies, and good mornings",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Espresso & Drip",
+              "description": "Quick, thoughtful coffee — lattes, espresso, and a proper cup of drip to start the day."
+            },
+            {
+              "title": "Specialty Drinks",
+              "description": "The seasonal and signature drinks Amy makes with care, not in a hurry."
+            },
+            {
+              "title": "Fresh Goodies",
+              "description": "Baked goods and treats to go with your cup."
+            },
+            {
+              "title": "Grab-and-Go",
+              "description": "In and out fast on the way to work — without losing the friendly part."
+            },
+            {
+              "title": "Order Ahead",
+              "description": "Order on the way so it’s ready when you reach the corner."
+            },
+            {
+              "title": "A Heart on Every Cup",
+              "description": "The little heart-shaped sticker that signs off every order."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why Sonoma loves the cart",
+          "items": [
+            {
+              "title": "Fast and thoughtful",
+              "body": "Quick, efficient, and still careful with every drink.",
+              "icon": "check"
+            },
+            {
+              "title": "A real social corner",
+              "body": "One of the last places around with genuine morning conversation.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Open early",
+              "body": "Coffee from 6am, Monday through Saturday.",
+              "icon": "clock"
+            },
+            {
+              "title": "Right on West Napa",
+              "body": "On the corner of West Napa Street and Second Street West.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come find the heart on the corner",
+          "body": "Cup of Love Coffee is at 195 W Napa St, Sonoma, open early Mon–Sat. Call (707) 260-9741 to order ahead.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/cup-of-love-coffee/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 260-9741",
+            "href": "tel:+17072609741"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Off the cart",
+          "heading": "A great cup, signed with a heart",
+          "subheading": "Espresso, drip, specialty drinks, and fresh goodies from Sonoma’s favorite little coffee cart — fast, friendly, and made with care.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Coffee, goodies, and good mornings",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Espresso & Drip",
+              "description": "Quick, thoughtful coffee — lattes, espresso, and a proper cup of drip to start the day."
+            },
+            {
+              "title": "Specialty Drinks",
+              "description": "The seasonal and signature drinks Amy makes with care, not in a hurry."
+            },
+            {
+              "title": "Fresh Goodies",
+              "description": "Baked goods and treats to go with your cup."
+            },
+            {
+              "title": "Grab-and-Go",
+              "description": "In and out fast on the way to work — without losing the friendly part."
+            },
+            {
+              "title": "Order Ahead",
+              "description": "Order on the way so it’s ready when you reach the corner."
+            },
+            {
+              "title": "A Heart on Every Cup",
+              "description": "The little heart-shaped sticker that signs off every order."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where exactly is the cart?",
+              "a": "On the corner of West Napa Street and Second Street West in Sonoma (195 W Napa St)."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Open Monday–Saturday from 6am to noon, and Sunday 7am to noon."
+            },
+            {
+              "q": "Can I order ahead?",
+              "a": "Yes — call ahead at (707) 260-9741 and we’ll have it ready."
+            },
+            {
+              "q": "What’s with the heart on the cup?",
+              "a": "It’s a nod to Amy’s family motto — a little heart sticker on every order."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come find the heart on the corner",
+          "body": "Cup of Love Coffee is at 195 W Napa St, Sonoma, open early Mon–Sat. Call (707) 260-9741 to order ahead.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/cup-of-love-coffee/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 260-9741",
+            "href": "tel:+17072609741"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Cup of Love Coffee",
+          "heading": "The coffee cart Amy couldn’t stop watching",
+          "subheading": "Cup of Love is a Sonoma corner with a story — bought on instinct, run on heart, and beloved for the friendliest cup in town.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Bought with love, run the same way",
+          "body": [
+            "Amy Granum used to stare at the little coffee cart across from the Black Bear Diner where she worked. “When it came up for sale, I came right over and bought it.” That’s Cup of Love — a Sonoma corner she made her own, working alongside Andy.",
+            "Every order goes out with a small heart-shaped sticker on the cup — a nod to her family’s motto. Regulars don’t just come for the coffee; they come for the rare thing it’s become: a genuinely social spot where the person making your drink knows your name."
+          ],
+          "highlights": [
+            "Owner-run by Amy Granum",
+            "4.9-star rating from the regulars",
+            "A hand-stuck heart on every cup",
+            "One of the last truly social corners in town"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4.9★",
+              "label": "Regulars’ rating"
+            },
+            {
+              "value": "6am",
+              "label": "Open early, Mon–Sat"
+            },
+            {
+              "value": "❤",
+              "label": "On every cup"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come find the heart on the corner",
+          "body": "Cup of Love Coffee is at 195 W Napa St, Sonoma, open early Mon–Sat. Call (707) 260-9741 to order ahead.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/cup-of-love-coffee/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 260-9741",
+            "href": "tel:+17072609741"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Find Cup of Love Coffee on the corner of West Napa & Second St W (195 W Napa St), Sonoma, CA 95476. Call (707) 260-9741 or message us on Instagram.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}

@@ -1,0 +1,323 @@
+{
+  "slug": "diamonds-and-curls-salon",
+  "leadId": "0b5dae9c-872a-40c1-be24-dc35018a890e",
+  "name": "Diamonds & Curls Salon",
+  "tagline": "Downtown Santa Rosa’s full-service hair and beauty salon — cuts, color, extensions, and lashes from a team with 15+ years behind the chair.",
+  "seoDescription": "Diamonds & Curls Salon is a downtown Santa Rosa hair and beauty salon at 603 4th St — cuts, color, hair and lash extensions, and waxing, with an A+ BBB rating and 15+ years of experience.",
+  "category": "salon",
+  "categoryLabel": "Hair & Beauty Salon",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2010",
+  "contact": {
+    "phone": "(707) 367-0056",
+    "email": "jannahedeen@gmail.com",
+    "address": "603 4th St, Santa Rosa, CA 95404"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/jannahedeen",
+    "instagram": "https://www.instagram.com/diamondsandcurlssalon"
+  },
+  "brand": {
+    "color": "#8E3B6B",
+    "fontId": "boutique-contrast"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Downtown Santa Rosa · Est. 2010",
+          "heading": "Color, cuts, and lashes that earn a standing appointment",
+          "subheading": "Diamonds & Curls has been a downtown Santa Rosa fixture since 2010 — a full-service salon where experienced stylists handle everything from a fresh cut to a full color transformation, extensions, and lashes, all under one roof.",
+          "badges": [
+            "Downtown Santa Rosa since 2010",
+            "A+ BBB rating",
+            "15+ years of experience"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/diamonds-and-curls-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Services",
+            "href": "/s/diamonds-and-curls-salon/services"
+          },
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Fifteen years of getting it right",
+          "body": [
+            "Diamonds & Curls grew out of Strut Salon, building over more than fifteen years into the full-service downtown shop it is today — more services, better products, and the same focus on sending clients out feeling like themselves, only sharper.",
+            "It’s the kind of place clients recommend without hesitation: experts at cuts, color, and extensions, with an A+ BBB rating and a walk-in-welcome door right on Fourth Street. High-end products, fair pricing, and a team that listens."
+          ],
+          "highlights": [
+            "Downtown Santa Rosa salon since 2010",
+            "A+ Better Business Bureau rating",
+            "15+ years of professional experience",
+            "Walk-ins welcome, wheelchair accessible"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "Est. 2010",
+              "label": "Downtown Santa Rosa"
+            },
+            {
+              "value": "A+",
+              "label": "BBB rating"
+            },
+            {
+              "value": "15+ yrs",
+              "label": "Behind the chair"
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "In the salon",
+          "heading": "Everything for hair and beauty",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Haircuts & Styling",
+              "description": "Precision cuts and styling for every hair type and length."
+            },
+            {
+              "title": "Color Transformations",
+              "description": "Full color, balayage, and corrections from stylists who specialize in it."
+            },
+            {
+              "title": "Hair Extensions",
+              "description": "Quality extensions for length and volume, applied to last."
+            },
+            {
+              "title": "Lash Extensions",
+              "description": "All styles of lash extensions, tailored to the look you want."
+            },
+            {
+              "title": "Facial Waxing",
+              "description": "Clean, careful facial waxing as part of a full beauty visit."
+            },
+            {
+              "title": "High-End Products",
+              "description": "A shelf of professional products to keep the look going at home."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why us",
+          "heading": "Why clients keep coming back",
+          "items": [
+            {
+              "title": "A+ rated and trusted",
+              "body": "An A+ Better Business Bureau rating, earned over years.",
+              "icon": "shield"
+            },
+            {
+              "title": "Truly full-service",
+              "body": "Hair, color, extensions, lashes, and waxing in one visit.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "15+ years of skill",
+              "body": "Experienced stylists who know how to deliver the result you pictured.",
+              "icon": "check"
+            },
+            {
+              "title": "Right downtown",
+              "body": "On Fourth Street in downtown Santa Rosa, walk-ins welcome.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready for a refresh?",
+          "body": "Visit Diamonds & Curls Salon at 603 4th St in downtown Santa Rosa. Call (707) 367-0056 to book.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/diamonds-and-curls-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 367-0056",
+            "href": "tel:+17073670056"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "In the salon",
+          "heading": "Hair and beauty, all under one roof",
+          "subheading": "From a quick cut to a full color, extensions, and lashes — Diamonds & Curls covers it with 15+ years of experience and an A+ reputation.",
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Everything for hair and beauty",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Haircuts & Styling",
+              "description": "Precision cuts and styling for every hair type and length."
+            },
+            {
+              "title": "Color Transformations",
+              "description": "Full color, balayage, and corrections from stylists who specialize in it."
+            },
+            {
+              "title": "Hair Extensions",
+              "description": "Quality extensions for length and volume, applied to last."
+            },
+            {
+              "title": "Lash Extensions",
+              "description": "All styles of lash extensions, tailored to the look you want."
+            },
+            {
+              "title": "Facial Waxing",
+              "description": "Clean, careful facial waxing as part of a full beauty visit."
+            },
+            {
+              "title": "High-End Products",
+              "description": "A shelf of professional products to keep the look going at home."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Do you take walk-ins?",
+              "a": "Yes, walk-ins are welcome, and the salon is wheelchair accessible."
+            },
+            {
+              "q": "Do you do hair and lash extensions?",
+              "a": "We do — quality hair extensions and all styles of lash extensions."
+            },
+            {
+              "q": "How long have you been open?",
+              "a": "Diamonds & Curls has served downtown Santa Rosa since 2010, with 15+ years of combined experience."
+            },
+            {
+              "q": "Where are you located?",
+              "a": "At 603 4th St in downtown Santa Rosa."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready for a refresh?",
+          "body": "Visit Diamonds & Curls Salon at 603 4th St in downtown Santa Rosa. Call (707) 367-0056 to book.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/diamonds-and-curls-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 367-0056",
+            "href": "tel:+17073670056"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Diamonds & Curls Salon",
+          "heading": "A downtown Santa Rosa salon with a track record",
+          "subheading": "Since 2010, Diamonds & Curls has paired full-service hair and beauty with an A+ reputation and stylists clients trust.",
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Fifteen years of getting it right",
+          "body": [
+            "Diamonds & Curls grew out of Strut Salon, building over more than fifteen years into the full-service downtown shop it is today — more services, better products, and the same focus on sending clients out feeling like themselves, only sharper.",
+            "It’s the kind of place clients recommend without hesitation: experts at cuts, color, and extensions, with an A+ BBB rating and a walk-in-welcome door right on Fourth Street. High-end products, fair pricing, and a team that listens."
+          ],
+          "highlights": [
+            "Downtown Santa Rosa salon since 2010",
+            "A+ Better Business Bureau rating",
+            "15+ years of professional experience",
+            "Walk-ins welcome, wheelchair accessible"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "Est. 2010",
+              "label": "Downtown Santa Rosa"
+            },
+            {
+              "value": "A+",
+              "label": "BBB rating"
+            },
+            {
+              "value": "15+ yrs",
+              "label": "Behind the chair"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Ready for a refresh?",
+          "body": "Visit Diamonds & Curls Salon at 603 4th St in downtown Santa Rosa. Call (707) 367-0056 to book.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/diamonds-and-curls-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 367-0056",
+            "href": "tel:+17073670056"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Visit Diamonds & Curls Salon at 603 4th St, Santa Rosa, CA 95404 — walk-ins welcome. Call (707) 367-0056 or message us on Instagram.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": []
+}
