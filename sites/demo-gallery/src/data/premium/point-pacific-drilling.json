@@ -1,0 +1,331 @@
+{
+  "slug": "point-pacific-drilling",
+  "name": "Point Pacific Drilling",
+  "legalName": "Point Pacific Drilling",
+  "tagline": "",
+  "seoDescription": "Point Pacific Drilling — Contractor serving Petaluma, CA.",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Petaluma, CA",
+  "city": "Petaluma",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(415) 455-8249",
+    "email": "chris@pacificcoastdrilling.com",
+    "address": "121 Lakeville St"
+  },
+  "social": {},
+  "brand": {
+    "color": "#c77d2a",
+    "fontId": "rugged-slab"
+  },
+  "images": {
+    "hero": "/images/point-pacific-drilling/hero.jpg",
+    "heroAlt": "Point Pacific Drilling in Petaluma, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Petaluma, CA",
+          "heading": "Contractor for Petaluma, CA, done by people who show up",
+          "subheading": "Our Mission: To deliver detailed and dependable drilling solutions in adverse environments, while building trusted partnerships and achieving unmatched project execution.",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/point-pacific-drilling/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/point-pacific-drilling/services"
+          },
+          "image": {
+            "src": "/images/point-pacific-drilling/hero.jpg",
+            "alt": "Point Pacific Drilling in Petaluma, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Services Pier Drilling",
+              "description": "Services Pier Drilling handled with care, right here in Petaluma, CA."
+            },
+            {
+              "title": "Concrete Pier Installation",
+              "description": "Concrete Pier Installation handled with care, right here in Petaluma, CA."
+            },
+            {
+              "title": "Foundation Repair, Replacement, & Installation",
+              "description": "Foundation Repair, Replacement, & Installation from start to finish across Petaluma, CA — and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Point Pacific Drilling and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Point Pacific Drilling",
+          "body": [
+            "Our Mission: To deliver detailed and dependable drilling solutions in adverse environments, while building trusted partnerships and achieving unmatched project execution.",
+            "\"Good job, the site looks good. On each visit, I have found an excellent controlled site with a strong understanding of the job. Thank you for doing your job, and making mine easier.\""
+          ],
+          "image": {
+            "src": "/images/point-pacific-drilling/story.jpg",
+            "alt": "Inside Point Pacific Drilling",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Point Pacific Drilling",
+          "images": [
+            {
+              "src": "/images/point-pacific-drilling/photo-2.jpg",
+              "alt": "Point Pacific Drilling — photo 1"
+            },
+            {
+              "src": "/images/point-pacific-drilling/photo-3.jpg",
+              "alt": "Point Pacific Drilling — photo 2"
+            },
+            {
+              "src": "/images/point-pacific-drilling/photo-4.jpg",
+              "alt": "Point Pacific Drilling — photo 3"
+            },
+            {
+              "src": "/images/point-pacific-drilling/photo-5.jpg",
+              "alt": "Point Pacific Drilling — photo 4"
+            },
+            {
+              "src": "/images/point-pacific-drilling/photo-6.jpg",
+              "alt": "Point Pacific Drilling — photo 5"
+            },
+            {
+              "src": "/images/point-pacific-drilling/photo-7.jpg",
+              "alt": "Point Pacific Drilling — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Point Pacific Drilling",
+          "body": "Find us at 121 Lakeville St. Call (415) 455-8249 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/point-pacific-drilling/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (415) 455-8249",
+            "href": "tel:+14154558249"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Our Mission: To deliver detailed and dependable drilling solutions in adverse environments, while building trusted partnerships and achieving unmatched project execution.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Services Pier Drilling",
+              "description": "Services Pier Drilling handled with care, right here in Petaluma, CA."
+            },
+            {
+              "title": "Concrete Pier Installation",
+              "description": "Concrete Pier Installation handled with care, right here in Petaluma, CA."
+            },
+            {
+              "title": "Foundation Repair, Replacement, & Installation",
+              "description": "Foundation Repair, Replacement, & Installation from start to finish across Petaluma, CA — and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Point Pacific Drilling and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 121 Lakeville St."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Petaluma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (415) 455-8249 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 121 Lakeville St. Call (415) 455-8249 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/point-pacific-drilling/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (415) 455-8249",
+            "href": "tel:+14154558249"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Point Pacific Drilling",
+          "heading": "About Point Pacific Drilling",
+          "subheading": "Our Mission: To deliver detailed and dependable drilling solutions in adverse environments, while building trusted partnerships and achieving unmatched project execution.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Point Pacific Drilling",
+          "body": [
+            "Our Mission: To deliver detailed and dependable drilling solutions in adverse environments, while building trusted partnerships and achieving unmatched project execution.",
+            "\"Good job, the site looks good. On each visit, I have found an excellent controlled site with a strong understanding of the job. Thank you for doing your job, and making mine easier.\""
+          ],
+          "image": {
+            "src": "/images/point-pacific-drilling/story.jpg",
+            "alt": "Inside Point Pacific Drilling",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/point-pacific-drilling/photo-2.jpg",
+              "alt": "Point Pacific Drilling — photo 1"
+            },
+            {
+              "src": "/images/point-pacific-drilling/photo-3.jpg",
+              "alt": "Point Pacific Drilling — photo 2"
+            },
+            {
+              "src": "/images/point-pacific-drilling/photo-4.jpg",
+              "alt": "Point Pacific Drilling — photo 3"
+            },
+            {
+              "src": "/images/point-pacific-drilling/photo-5.jpg",
+              "alt": "Point Pacific Drilling — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Point Pacific Drilling",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/point-pacific-drilling/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Point Pacific Drilling at 121 Lakeville St or call (415) 455-8249.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Lead website is an aggregator/listing page (g.co) — scrape may be thin; verify facts & source the business’s own photos before sending",
+    "Scraped copy was junk — rewrite from real facts"
+  ],
+  "photoSource": "business-site"
+}

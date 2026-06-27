@@ -1,0 +1,87 @@
+{
+  "slug": "aleman-concrete",
+  "name": "Aleman Concrete",
+  "legalName": "Aleman Concrete",
+  "tagline": "",
+  "seoDescription": "Aleman Concrete — Contractor serving Santa Rosa, CA.",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 775-1497",
+    "email": "dougaleman@yahoo.com",
+    "address": "5023 Algiers Ave"
+  },
+  "social": {},
+  "brand": {
+    "color": "#bb752e",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Contractor that holds up — and people who stand behind it",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/aleman-concrete/contact"
+          },
+          "secondaryCta": {
+            "label": "Contact us",
+            "href": "/s/aleman-concrete/contact"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Aleman Concrete",
+          "body": "Find us at 5023 Algiers Ave. Call (707) 775-1497 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/aleman-concrete/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 775-1497",
+            "href": "tel:+17077751497"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Aleman Concrete at 5023 Algiers Ave or call (707) 775-1497.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Thin research — verify facts & rewrite copy",
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Single-page content — needs more real material for multi-page",
+    "No About content — about page folded",
+    "Audit critical — no real photos and thin layout — not enough composed structure to carry a zero-photo page"
+  ],
+  "photoSource": "library"
+}

@@ -1,0 +1,87 @@
+{
+  "slug": "rainbow-comfort",
+  "name": "Rainbow Comfort",
+  "legalName": "Rainbow Comfort",
+  "tagline": "",
+  "seoDescription": "Rainbow Comfort — Default serving Santa Rosa, CA.",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 484-8777",
+    "email": "jim@rainbowcomfort.com",
+    "address": "1415 Fulton Rd"
+  },
+  "social": {},
+  "brand": {
+    "color": "#365470",
+    "fontId": "clean-sans"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Default for Santa Rosa, CA, the way it should be",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/rainbow-comfort/contact"
+          },
+          "secondaryCta": {
+            "label": "Contact us",
+            "href": "/s/rainbow-comfort/contact"
+          },
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Rainbow Comfort",
+          "body": "Find us at 1415 Fulton Rd. Call (707) 484-8777 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/rainbow-comfort/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 484-8777",
+            "href": "tel:+17074848777"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Rainbow Comfort at 1415 Fulton Rd or call (707) 484-8777.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Thin research — verify facts & rewrite copy",
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Single-page content — needs more real material for multi-page",
+    "No About content — about page folded",
+    "Audit critical — no real photos and thin layout — not enough composed structure to carry a zero-photo page"
+  ],
+  "photoSource": "library"
+}

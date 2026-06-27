@@ -1,0 +1,309 @@
+{
+  "slug": "curoso-plumbing-inc",
+  "name": "Curoso Plumbing Inc.",
+  "legalName": "Curoso Plumbing Inc.",
+  "tagline": "Trusted plumbing & water heater experts in Santa Rosa, CA, and surrounding areas—licensed, 35+ years",
+  "seoDescription": "Trusted plumbing & water heater experts in Santa Rosa, CA, and surrounding areas—licensed, 35+ years of experience. Call for the best emergency service company.",
+  "category": "plumbing",
+  "categoryLabel": "Plumbing",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 545-5017",
+    "email": "jimcuroso06@outlook.com",
+    "address": "1925 Fulton Road, Santa Rosa"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/curosoplumbing/",
+    "instagram": "https://www.instagram.com/curoso2/",
+    "google": "https://goo.gl/maps/99W1zHjMPdkKrpeh7"
+  },
+  "brand": {
+    "color": "#1c5fbf",
+    "fontId": "clean-sans"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Honest plumbing across Santa Rosa, CA",
+          "subheading": "Curoso Plumbing is fully licensed, bonded, insured, and operated by Jim Curoso. Jim was raised in Santa Rosa and attended Santa Rosa High School where he was a three-sport letterman",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/curoso-plumbing-inc/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/curoso-plumbing-inc/services"
+          },
+          "image": {
+            "src": "/images/curoso-plumbing-inc/photo-2.jpg",
+            "alt": "Inside Curoso Plumbing Inc.",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Curoso Plumbing Inc.",
+          "body": [
+            "Curoso Plumbing is fully licensed, bonded, insured, and operated by Jim Curoso. Jim was raised in Santa Rosa and attended Santa Rosa High School where he was a three-sport letterman. He also has a Master’s Degree in Education. His three children, Jordan, James, and Dante are his pride and joy. His father, Jim Curoso Sr, started plumbing in the Navy. Jim’s family has been serving customers in the North Bay for over 40 years.",
+            "If you are in need of water heater services, Curoso Plumbing is here to help. We can provide you with a wide range of services, from repairs to installations and replacements."
+          ],
+          "image": {
+            "src": "/images/curoso-plumbing-inc/photo-2.jpg",
+            "alt": "Inside Curoso Plumbing Inc.",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Plumbing Emergency Plumbing Services",
+              "description": "Real experience behind every plumbing emergency plumbing services job, big or small."
+            },
+            {
+              "title": "Toilet Installation",
+              "description": "Toilet Installation from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Replace Or Install Tubs And Showers",
+              "description": "Replace Or Install Tubs And Showers from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Gas Line Installation",
+              "description": "Gas Line Installation handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Residential Plumbing Repairs",
+              "description": "Real experience behind every residential plumbing repairs job, big or small."
+            },
+            {
+              "title": "Repiping Services",
+              "description": "Repiping Services from start to finish across Santa Rosa, CA — and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Curoso Plumbing Inc. and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Curoso Plumbing Inc.",
+          "body": "Find us at 1925 Fulton Road, Santa Rosa. Call (707) 545-5017 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/curoso-plumbing-inc/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 545-5017",
+            "href": "tel:+17075455017"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Curoso Plumbing is fully licensed, bonded, insured, and operated by Jim Curoso. Jim was raised in Santa Rosa and attended Santa Rosa High School where he was a three-sport",
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Plumbing Emergency Plumbing Services",
+              "description": "Real experience behind every plumbing emergency plumbing services job, big or small."
+            },
+            {
+              "title": "Toilet Installation",
+              "description": "Toilet Installation from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Replace Or Install Tubs And Showers",
+              "description": "Replace Or Install Tubs And Showers from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Gas Line Installation",
+              "description": "Gas Line Installation handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Residential Plumbing Repairs",
+              "description": "Real experience behind every residential plumbing repairs job, big or small."
+            },
+            {
+              "title": "Repiping Services",
+              "description": "Repiping Services from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Drain Cleaning",
+              "description": "Drain Cleaning from start to finish across Santa Rosa, CA — and we stand behind it."
+            },
+            {
+              "title": "Water Heater Gas Water Heater Installation",
+              "description": "Water Heater Gas Water Heater Installation handled with care, right here in Santa Rosa, CA."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Curoso Plumbing Inc. and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 1925 Fulton Road, Santa Rosa."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 545-5017 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 1925 Fulton Road, Santa Rosa. Call (707) 545-5017 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/curoso-plumbing-inc/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 545-5017",
+            "href": "tel:+17075455017"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Curoso Plumbing Inc.",
+          "heading": "About Curoso Plumbing Inc.",
+          "subheading": "Curoso Plumbing is fully licensed, bonded, insured, and operated by Jim Curoso. Jim was raised in Santa Rosa and attended Santa Rosa High School where he was a three-sport",
+          "motif": "/images/library/plumbing/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Curoso Plumbing Inc.",
+          "body": [
+            "Curoso Plumbing is fully licensed, bonded, insured, and operated by Jim Curoso. Jim was raised in Santa Rosa and attended Santa Rosa High School where he was a three-sport letterman. He also has a Master’s Degree in Education. His three children, Jordan, James, and Dante are his pride and joy. His father, Jim Curoso Sr, started plumbing in the Navy. Jim’s family has been serving customers in the North Bay for over 40 years.",
+            "If you are in need of water heater services, Curoso Plumbing is here to help. We can provide you with a wide range of services, from repairs to installations and replacements."
+          ],
+          "image": {
+            "src": "/images/curoso-plumbing-inc/photo-2.jpg",
+            "alt": "Inside Curoso Plumbing Inc.",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Curoso Plumbing Inc.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/curoso-plumbing-inc/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Curoso Plumbing Inc. at 1925 Fulton Road, Santa Rosa or call (707) 545-5017.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "hero photo below resolution floor — text hero used",
+    "Lead website is an aggregator/listing page (g.co) — scrape may be thin; verify facts & source the business’s own photos before sending"
+  ],
+  "photoSource": "business-site:below-floor"
+}

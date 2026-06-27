@@ -1,0 +1,355 @@
+{
+  "slug": "brm-builders",
+  "name": "BRM Builders",
+  "legalName": "BRM Builders",
+  "tagline": "Sonoma County general contractor since 2006",
+  "seoDescription": "Building Repair & Management (BRM Builders) is a Santa Rosa general contractor for custom homes, remodels, additions, and foundation repair. CA Lic. #903189.",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2006",
+  "contact": {
+    "phone": "(707) 481-6228",
+    "email": "chris@brmbuild.com",
+    "address": "1851 Piner Rd"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/BuildingRepairManagementInc/"
+  },
+  "brand": {
+    "color": "#b56f28",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2006",
+          "heading": "From foundation lifts to finished custom homes in the North Bay",
+          "subheading": "Family-rooted Santa Rosa general contractor with 47 years of combined building experience and a CA general contractor license.",
+          "badges": [
+            "Serving since 2006",
+            "Licensed CA general contractor (Lic. #903189)",
+            "BBB Accredited, A+ rating"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/brm-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/brm-builders/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "New Custom Homes",
+              "description": "Ground-up residential construction built to high North Bay standards."
+            },
+            {
+              "title": "Remodels & Additions",
+              "description": "Kitchen, bath, and room additions that expand and update existing homes."
+            },
+            {
+              "title": "Foundation & Structural Repair",
+              "description": "Foundation rebuilds, structural repair, and historic-home restoration."
+            },
+            {
+              "title": "Damage Restoration",
+              "description": "Fire, smoke, and water damage repair and rebuilds."
+            },
+            {
+              "title": "Tenant & Commercial Improvements",
+              "description": "Tenant improvements and commercial build-out projects."
+            },
+            {
+              "title": "Design-Build",
+              "description": "Architectural drawings, engineering, and design coordination through construction."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message BRM Builders and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About BRM Builders",
+          "body": [
+            "BRM Builders is the working name of Building Repair & Management, Inc., a locally owned and operated general contractor serving Santa Rosa and the wider Sonoma County area. President Christian Andersen comes from a North Bay building family — he learned his standards from his father, respected Sonoma County builder Marsh Andersen — and has since built and renovated countless homes across the region.",
+            "The team handles everything from new custom homes and major remodels to structural and foundation repair, including complex restorations like a 1906 Healdsburg historic home that needed its foundation rebuilt while preserving the original character. The company holds California license #903189 and is BBB Accredited with an A+ rating."
+          ],
+          "highlights": [
+            "Licensed CA general contractor (Lic. #903189)",
+            "BBB Accredited, A+ rating",
+            "47 years of combined building experience",
+            "Locally owned and operated in Sonoma County"
+          ]
+        },
+        {
+          "kind": "team",
+          "eyebrow": "The people behind the work",
+          "heading": "Meet Christian Andersen",
+          "members": [
+            {
+              "name": "Christian Andersen",
+              "role": "President",
+              "bio": "A North Bay building family's standards run deep — Christian learned the trade from his father, respected Sonoma County builder Marsh Andersen, and has built and renovated homes across the region ever since."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why BRM Builders",
+          "items": [
+            {
+              "title": "Licensed CA General Contractor (Lic. #903189)",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "BBB Accredited, A+ Rating",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "47 Years Of Combined Building Experience",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Locally Owned And Operated In Sonoma County",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Free Estimates Across Sonoma County",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with BRM Builders",
+          "body": "Find us at 1851 Piner Rd. Call (707) 481-6228 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/brm-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 481-6228",
+            "href": "tel:+17074816228"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Family-rooted Santa Rosa general contractor with 47 years of combined building experience and a CA general contractor license.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "New Custom Homes",
+              "description": "Ground-up residential construction built to high North Bay standards."
+            },
+            {
+              "title": "Remodels & Additions",
+              "description": "Kitchen, bath, and room additions that expand and update existing homes."
+            },
+            {
+              "title": "Foundation & Structural Repair",
+              "description": "Foundation rebuilds, structural repair, and historic-home restoration."
+            },
+            {
+              "title": "Damage Restoration",
+              "description": "Fire, smoke, and water damage repair and rebuilds."
+            },
+            {
+              "title": "Tenant & Commercial Improvements",
+              "description": "Tenant improvements and commercial build-out projects."
+            },
+            {
+              "title": "Design-Build",
+              "description": "Architectural drawings, engineering, and design coordination through construction."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message BRM Builders and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 1851 Piner Rd."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 481-6228 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 1851 Piner Rd. Call (707) 481-6228 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/brm-builders/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 481-6228",
+            "href": "tel:+17074816228"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About BRM Builders",
+          "heading": "About BRM Builders",
+          "subheading": "BRM Builders is the working name of Building Repair & Management, Inc., a locally owned and operated general contractor serving Santa Rosa and the wider Sonoma County area",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About BRM Builders",
+          "body": [
+            "BRM Builders is the working name of Building Repair & Management, Inc., a locally owned and operated general contractor serving Santa Rosa and the wider Sonoma County area. President Christian Andersen comes from a North Bay building family — he learned his standards from his father, respected Sonoma County builder Marsh Andersen — and has since built and renovated countless homes across the region.",
+            "The team handles everything from new custom homes and major remodels to structural and foundation repair, including complex restorations like a 1906 Healdsburg historic home that needed its foundation rebuilt while preserving the original character. The company holds California license #903189 and is BBB Accredited with an A+ rating."
+          ],
+          "highlights": [
+            "Licensed CA general contractor (Lic. #903189)",
+            "BBB Accredited, A+ rating",
+            "47 years of combined building experience",
+            "Locally owned and operated in Sonoma County"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "20+",
+              "label": "Years in business"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see BRM Builders",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/brm-builders/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach BRM Builders at 1851 Piner Rd or call (707) 481-6228.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

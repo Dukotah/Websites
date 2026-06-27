@@ -1,0 +1,87 @@
+{
+  "slug": "superior-deck-service",
+  "name": "Superior Deck Service",
+  "legalName": "Superior Deck Service",
+  "tagline": "",
+  "seoDescription": "Superior Deck Service — Contractor serving Santa Rosa, CA.",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 588-9911",
+    "email": "superiordecks@comcast.net",
+    "address": "3994 Petaluma Hill Rd"
+  },
+  "social": {},
+  "brand": {
+    "color": "#bd762a",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Contractor for Santa Rosa, CA, done by people who show up",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/superior-deck-service/contact"
+          },
+          "secondaryCta": {
+            "label": "Contact us",
+            "href": "/s/superior-deck-service/contact"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Superior Deck Service",
+          "body": "Find us at 3994 Petaluma Hill Rd. Call (707) 588-9911 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/superior-deck-service/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 588-9911",
+            "href": "tel:+17075889911"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Superior Deck Service at 3994 Petaluma Hill Rd or call (707) 588-9911.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Thin research — verify facts & rewrite copy",
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Single-page content — needs more real material for multi-page",
+    "No About content — about page folded",
+    "Audit critical — no real photos and thin layout — not enough composed structure to carry a zero-photo page"
+  ],
+  "photoSource": "library"
+}
