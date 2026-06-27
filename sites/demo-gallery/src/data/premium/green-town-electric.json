@@ -1,0 +1,87 @@
+{
+  "slug": "green-town-electric",
+  "name": "Green Town Electric",
+  "legalName": "Green Town Electric",
+  "tagline": "Electrician Licensed & Reliable Electrical Services.Top-rated Electrician serving Santa Rosa, Rohnert Park",
+  "seoDescription": "Electrician Licensed & Reliable Electrical Services.Top-rated Electrician serving Santa Rosa, Rohnert Park, Petaluma, Windsor, Sebastopol and beyond",
+  "category": "electrician",
+  "categoryLabel": "Electrician",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 490-5605",
+    "email": "greentownelectric@gmail.com",
+    "address": "331 10th St"
+  },
+  "social": {},
+  "brand": {
+    "color": "#cf911e",
+    "fontId": "modern-grotesk"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Electrician that holds up — and people who stand behind it",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/green-town-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Contact us",
+            "href": "/s/green-town-electric/contact"
+          },
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Green Town Electric",
+          "body": "Find us at 331 10th St. Call (707) 490-5605 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/green-town-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 490-5605",
+            "href": "tel:+17074905605"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Green Town Electric at 331 10th St or call (707) 490-5605.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Thin research — verify facts & rewrite copy",
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Single-page content — needs more real material for multi-page",
+    "No About content — about page folded",
+    "Audit critical — no real photos and thin layout — not enough composed structure to carry a zero-photo page"
+  ],
+  "photoSource": "library"
+}

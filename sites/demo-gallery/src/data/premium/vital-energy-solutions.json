@@ -1,0 +1,380 @@
+{
+  "slug": "vital-energy-solutions",
+  "name": "Vital Energy Solutions",
+  "legalName": "Vital Energy Solutions",
+  "tagline": "Experts in solar panel installation, battery storage, and generator systems with 50+ years of experience",
+  "seoDescription": "Experts in solar panel installation, battery storage, and generator systems with 50+ years of experience delivering sustainable energy solutions in California.",
+  "category": "electrician",
+  "categoryLabel": "Electrician",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "1971",
+  "contact": {
+    "phone": "(707) 800-3884",
+    "email": "power@vitalenergysolar.com",
+    "address": "7064 Corline Court, Building B"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/vitalenergysolar",
+    "instagram": "https://www.instagram.com/vitalenergysolutions/"
+  },
+  "brand": {
+    "color": "#d89a22",
+    "fontId": "clean-sans"
+  },
+  "images": {
+    "hero": "/images/vital-energy-solutions/hero.webp",
+    "heroAlt": "Vital Energy Solutions in Sebastopol, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Sebastopol, CA · Est. 1971",
+          "heading": "Vital Energy Solutions, serving Sebastopol, CA since 1971",
+          "subheading": "The zip code you entered isn't in our current service area. Please give us a call if you have any questions.",
+          "badges": [
+            "Serving since 1971"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/vital-energy-solutions/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/vital-energy-solutions/services"
+          },
+          "image": {
+            "src": "/images/vital-energy-solutions/hero.webp",
+            "alt": "Vital Energy Solutions in Sebastopol, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Vital Energy Solutions",
+          "body": [
+            "The zip code you entered isn't in our current service area. Please give us a call if you have any questions.",
+            "Reliable Solar, Battery and Generator Solutions for Homes and Businesses in the North Bay Since 1971"
+          ],
+          "image": {
+            "src": "/images/vital-energy-solutions/story.jpg",
+            "alt": "Inside Vital Energy Solutions",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Residential Services",
+              "description": "Real experience behind every residential residential services job, big or small."
+            },
+            {
+              "title": "Residential Solar Installations",
+              "description": "Residential Solar Installations from start to finish across Sebastopol, CA — and we stand behind it."
+            },
+            {
+              "title": "Maintenance",
+              "description": "Maintenance from start to finish across Sebastopol, CA — and we stand behind it."
+            },
+            {
+              "title": "Commercial Commercial Services",
+              "description": "Commercial Commercial Services from start to finish across Sebastopol, CA — and we stand behind it."
+            },
+            {
+              "title": "Commercial Solar Installations",
+              "description": "Commercial Solar Installations handled with care, right here in Sebastopol, CA."
+            },
+            {
+              "title": "Bodega Bay, CA Solar Installation",
+              "description": "Bodega Bay, CA Solar Installation handled with care, right here in Sebastopol, CA."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Vital Energy Solutions and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Vital Energy Solutions",
+          "images": [
+            {
+              "src": "/images/vital-energy-solutions/photo-3.jpg",
+              "alt": "Vital Energy Solutions — photo 1"
+            },
+            {
+              "src": "/images/vital-energy-solutions/photo-2.jpg",
+              "alt": "Vital Energy Solutions — photo 2"
+            },
+            {
+              "src": "/images/vital-energy-solutions/photo-5.jpg",
+              "alt": "Vital Energy Solutions — photo 3"
+            },
+            {
+              "src": "/images/vital-energy-solutions/photo-4.jpg",
+              "alt": "Vital Energy Solutions — photo 4"
+            },
+            {
+              "src": "/images/vital-energy-solutions/photo-7.jpg",
+              "alt": "Vital Energy Solutions — photo 5"
+            },
+            {
+              "src": "/images/vital-energy-solutions/photo-8.jpg",
+              "alt": "Vital Energy Solutions — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Vital Energy Solutions",
+          "body": "Find us at 7064 Corline Court, Building B. Call (707) 800-3884 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/vital-energy-solutions/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 800-3884",
+            "href": "tel:+17078003884"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "The zip code you entered isn't in our current service area. Please give us a call if you have any questions.",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Residential Services",
+              "description": "Real experience behind every residential residential services job, big or small."
+            },
+            {
+              "title": "Residential Solar Installations",
+              "description": "Residential Solar Installations from start to finish across Sebastopol, CA — and we stand behind it."
+            },
+            {
+              "title": "Maintenance",
+              "description": "Maintenance from start to finish across Sebastopol, CA — and we stand behind it."
+            },
+            {
+              "title": "Commercial Commercial Services",
+              "description": "Commercial Commercial Services from start to finish across Sebastopol, CA — and we stand behind it."
+            },
+            {
+              "title": "Commercial Solar Installations",
+              "description": "Commercial Solar Installations handled with care, right here in Sebastopol, CA."
+            },
+            {
+              "title": "Bodega Bay, CA Solar Installation",
+              "description": "Bodega Bay, CA Solar Installation handled with care, right here in Sebastopol, CA."
+            },
+            {
+              "title": "Calistoga, CA Solar Installation",
+              "description": "Calistoga, CA Solar Installation from start to finish across Sebastopol, CA — and we stand behind it."
+            },
+            {
+              "title": "Fountaingrove, CA Solar Installation",
+              "description": "Real experience behind every fountaingrove, ca solar installation job, big or small."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Vital Energy Solutions and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 7064 Corline Court, Building B."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 800-3884 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 7064 Corline Court, Building B. Call (707) 800-3884 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/vital-energy-solutions/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 800-3884",
+            "href": "tel:+17078003884"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Vital Energy Solutions",
+          "heading": "About Vital Energy Solutions",
+          "subheading": "The zip code you entered isn't in our current service area. Please give us a call if you have any questions.",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Vital Energy Solutions",
+          "body": [
+            "The zip code you entered isn't in our current service area. Please give us a call if you have any questions.",
+            "Reliable Solar, Battery and Generator Solutions for Homes and Businesses in the North Bay Since 1971"
+          ],
+          "image": {
+            "src": "/images/vital-energy-solutions/story.jpg",
+            "alt": "Inside Vital Energy Solutions",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "55+",
+              "label": "Years in business"
+            },
+            {
+              "value": "8",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/vital-energy-solutions/photo-3.jpg",
+              "alt": "Vital Energy Solutions — photo 1"
+            },
+            {
+              "src": "/images/vital-energy-solutions/photo-2.jpg",
+              "alt": "Vital Energy Solutions — photo 2"
+            },
+            {
+              "src": "/images/vital-energy-solutions/photo-5.jpg",
+              "alt": "Vital Energy Solutions — photo 3"
+            },
+            {
+              "src": "/images/vital-energy-solutions/photo-4.jpg",
+              "alt": "Vital Energy Solutions — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Vital Energy Solutions",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/vital-energy-solutions/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Vital Energy Solutions at 7064 Corline Court, Building B or call (707) 800-3884.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending"
+  ],
+  "photoSource": "business-site"
+}

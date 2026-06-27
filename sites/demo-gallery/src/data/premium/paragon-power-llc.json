@@ -1,0 +1,274 @@
+{
+  "slug": "paragon-power-llc",
+  "name": "Paragon Power LLC",
+  "legalName": "Paragon Power LLC",
+  "tagline": "Experienced Electrical Contractor in CA.",
+  "seoDescription": "Experienced Electrical Contractor in CA.",
+  "category": "electrician",
+  "categoryLabel": "Electrician",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 696-9658",
+    "email": "paragonpowerllc@proton.me",
+    "address": "1821 Sansone Dr"
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/paragonpowerllc/"
+  },
+  "brand": {
+    "color": "#e0a11e",
+    "fontId": "clean-sans"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Honest electrician across Santa Rosa, CA",
+          "subheading": "Beauty, honor, and longevity are the pillars that we will continue to build the country upon. From replacing a burnt out receptacle in a home to renovating restaurants to electrifying infrastructure",
+          "badges": [],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/paragon-power-llc/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/paragon-power-llc/services"
+          },
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Paragon Power LLC",
+          "body": [
+            "Beauty, honor, and longevity are the pillars that we will continue to build the country upon. From replacing a burnt out receptacle in a home to renovating restaurants to electrifying infrastructure we will always pursue excellence."
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Electrical Services",
+              "description": "Residential Electrical Services handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Commercial Electrical Services",
+              "description": "Real experience behind every commercial electrical services job, big or small."
+            },
+            {
+              "title": "Emergency Electrical Repairs",
+              "description": "Real experience behind every emergency electrical repairs job, big or small."
+            },
+            {
+              "title": "Lighting Control Installation",
+              "description": "Lighting Control Installation handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Lighting Installation",
+              "description": "Real experience behind every lighting installation job, big or small."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Paragon Power LLC and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Paragon Power LLC",
+          "body": "Find us at 1821 Sansone Dr. Call (707) 696-9658 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/paragon-power-llc/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 696-9658",
+            "href": "tel:+17076969658"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Beauty, honor, and longevity are the pillars that we will continue to build the country upon",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Residential Electrical Services",
+              "description": "Residential Electrical Services handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Commercial Electrical Services",
+              "description": "Real experience behind every commercial electrical services job, big or small."
+            },
+            {
+              "title": "Emergency Electrical Repairs",
+              "description": "Real experience behind every emergency electrical repairs job, big or small."
+            },
+            {
+              "title": "Lighting Control Installation",
+              "description": "Lighting Control Installation handled with care, right here in Santa Rosa, CA."
+            },
+            {
+              "title": "Lighting Installation",
+              "description": "Real experience behind every lighting installation job, big or small."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Paragon Power LLC and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 1821 Sansone Dr."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 696-9658 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 1821 Sansone Dr. Call (707) 696-9658 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/paragon-power-llc/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 696-9658",
+            "href": "tel:+17076969658"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Paragon Power LLC",
+          "heading": "About Paragon Power LLC",
+          "subheading": "Beauty, honor, and longevity are the pillars that we will continue to build the country upon",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Paragon Power LLC",
+          "body": [
+            "Beauty, honor, and longevity are the pillars that we will continue to build the country upon. From replacing a burnt out receptacle in a home to renovating restaurants to electrifying infrastructure we will always pursue excellence."
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Paragon Power LLC",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/paragon-power-llc/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Paragon Power LLC at 1821 Sansone Dr or call (707) 696-9658.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending",
+    "Audit critical — no real photos and no trust signal — add a verified credential, rating, or real testimonial"
+  ],
+  "photoSource": "library"
+}

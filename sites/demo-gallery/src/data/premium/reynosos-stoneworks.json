@@ -1,0 +1,261 @@
+{
+  "slug": "reynosos-stoneworks",
+  "name": "Reynoso's Stoneworks",
+  "legalName": "Reynoso's Stoneworks",
+  "tagline": "Home",
+  "seoDescription": "Home",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2000",
+  "contact": {
+    "phone": "(707) 321-8980",
+    "email": "reynososstoneworks@yahoo.com",
+    "address": "1532 Buckboard Pl"
+  },
+  "social": {},
+  "brand": {
+    "color": "#bd762a",
+    "fontId": "bold-display"
+  },
+  "images": {
+    "hero": "/images/reynosos-stoneworks/hero.jpg",
+    "heroAlt": "Reynoso's Stoneworks in Santa Rosa, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Santa Rosa, CA · Est. 2000",
+          "heading": "Reynoso's Stoneworks, serving Santa Rosa, CA since 2000",
+          "subheading": "Structural and decorative brickwork, CMU block walls, foundations, garden walls, repairs and repointing.",
+          "badges": [
+            "Serving since 2000"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/reynosos-stoneworks/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/reynosos-stoneworks/services"
+          },
+          "image": {
+            "src": "/images/reynosos-stoneworks/hero.jpg",
+            "alt": "Reynoso's Stoneworks in Santa Rosa, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Reynoso's Stoneworks",
+          "body": [
+            "Structural and decorative brickwork, CMU block walls, foundations, garden walls, repairs and repointing.",
+            "Natural and manufactured stone installation for entryways, fireplaces, accent walls and exterior facades."
+          ],
+          "image": {
+            "src": "/images/reynosos-stoneworks/story.jpg",
+            "alt": "Inside Reynoso's Stoneworks",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Services",
+              "description": "Real experience behind every services job, big or small."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Reynoso's Stoneworks and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Reynoso's Stoneworks",
+          "body": "Find us at 1532 Buckboard Pl. Call (707) 321-8980 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/reynosos-stoneworks/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 321-8980",
+            "href": "tel:+17073218980"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Structural and decorative brickwork, CMU block walls, foundations, garden walls, repairs and repointing.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Services",
+              "description": "Real experience behind every services job, big or small."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Reynoso's Stoneworks and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 1532 Buckboard Pl."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 321-8980 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 1532 Buckboard Pl. Call (707) 321-8980 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/reynosos-stoneworks/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 321-8980",
+            "href": "tel:+17073218980"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Reynoso's Stoneworks",
+          "heading": "About Reynoso's Stoneworks",
+          "subheading": "Structural and decorative brickwork, CMU block walls, foundations, garden walls, repairs and repointing.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Reynoso's Stoneworks",
+          "body": [
+            "Structural and decorative brickwork, CMU block walls, foundations, garden walls, repairs and repointing.",
+            "Natural and manufactured stone installation for entryways, fireplaces, accent walls and exterior facades."
+          ],
+          "image": {
+            "src": "/images/reynosos-stoneworks/story.jpg",
+            "alt": "Inside Reynoso's Stoneworks",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Reynoso's Stoneworks",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/reynosos-stoneworks/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Reynoso's Stoneworks at 1532 Buckboard Pl or call (707) 321-8980.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "needs-review",
+  "flags": [
+    "Hours are a generic default (Mon–Fri 8–6) — verify before sending"
+  ],
+  "photoSource": "business-site"
+}
