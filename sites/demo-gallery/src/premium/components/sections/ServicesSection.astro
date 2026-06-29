@@ -15,7 +15,12 @@ interface Props {
   data: SecServices;
   config: PremiumConfig;
 }
-const { data } = Astro.props;
+const { data, config } = Astro.props;
+
+// a11y: a service photo is a REAL content image — give it a meaningful, non-empty
+// alt. Prefer the author's alt, else the service title, else the business name.
+const svcAlt = (item: { title?: string; image?: { alt?: string } }) =>
+  (item.image?.alt && item.image.alt.trim()) || item.title || `${config?.name ?? 'Our'} service`;
 
 const eyebrow = data.eyebrow;
 const heading = data.heading;
@@ -69,7 +74,7 @@ const splitHead = !isRows && !!intro;
                 <div class="media">
                   <SiteImage
                     src={item.image.src}
-                    alt={item.image.alt ?? ''}
+                    alt={svcAlt(item)}
                     objectPosition={item.image.focal}
                     sizes="(min-width: 820px) 48vw, 100vw"
                   />
@@ -96,7 +101,7 @@ const splitHead = !isRows && !!intro;
               <div class="media p-services__card-media">
                 <SiteImage
                   src={item.image.src}
-                  alt={item.image.alt ?? ''}
+                  alt={svcAlt(item)}
                   objectPosition={item.image.focal}
                   sizes="(min-width: 860px) 30vw, (min-width: 560px) 45vw, 100vw"
                 />

@@ -26,6 +26,17 @@ const scrimDir = rangeInt(sig, 0, 2); // 0 bottom-up, 1 corner BL, 2 corner BR
 const glowSide = chance(sig >> 3, 0.5) ? 'r' : 'l';
 
 const img = data.image;
+// a11y: a real content hero image always carries a MEANINGFUL, non-empty alt —
+// never an empty string. When the author didn't supply one we derive it from the
+// business name (+ service area). The full-bleed background lives inside an
+// aria-hidden wrapper (decorative), so a description there is harmless; the split
+// and editorial figures are real content images where this fallback matters.
+const areaStr = Array.isArray(config?.area)
+  ? config.area.filter(Boolean).join(', ')
+  : config?.area;
+const heroAlt = (img?.alt && img.alt.trim())
+  || [config?.name, areaStr].filter(Boolean).join(' — ')
+  || 'Business photo';
 // No image ⇒ editorial regardless of what was requested.
 const variant: NonNullable<SecHero['variant']> = !img
   ? 'editorial'
@@ -90,7 +101,7 @@ const glassCred = isFullbleed && badges.length > 0;
       <div class="p-hero__photo p-hero__photo--treated" data-hero-photo data-hero-parallax="bg">
         <SiteImage
           src={img.src}
-          alt={img.alt ?? ''}
+          alt={heroAlt}
           objectPosition={img.focal}
           loading="eager"
           fetchpriority="high"
@@ -177,7 +188,7 @@ const glassCred = isFullbleed && badges.length > 0;
         <div class="media p-hero__photo p-hero__photo--treated" data-hero-photo>
           <SiteImage
             src={img.src}
-            alt={img.alt ?? ''}
+            alt={heroAlt}
             objectPosition={img.focal}
             loading="eager"
             fetchpriority="high"
@@ -193,7 +204,7 @@ const glassCred = isFullbleed && badges.length > 0;
         <div class="media p-hero__photo" data-hero-photo>
           <SiteImage
             src={img.src}
-            alt={img.alt ?? ''}
+            alt={heroAlt}
             objectPosition={img.focal}
             loading="eager"
             sizes="(min-width: 820px) 38vw, 100vw"

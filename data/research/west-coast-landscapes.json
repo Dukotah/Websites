@@ -1,0 +1,47 @@
+{
+  "slug": "west-coast-landscapes",
+  "confirmed": true,
+  "tagline": "Owner-built hardscape and masonry that transform Sonoma County yards.",
+  "seoDescription": "West Coast Landscapes is an owner-operated Santa Rosa landscape and masonry company — patios, pavers, retaining walls, outdoor kitchens, fire features, and QWEL-certified irrigation across Sonoma County.",
+  "heroHeading": "Hardscape and masonry, built by the owner",
+  "heroSubheading": "Owner Alex and his crew transform Sonoma County yards with stone patios, retaining walls, outdoor kitchens, and fire features — a Neighborhood Fave for clean, careful, high-quality work.",
+  "highlights": [
+    "QWEL-certified irrigation — owner-operated & locally owned",
+    "Nextdoor Neighborhood Fave 2025 winner",
+    "Masonry, concrete, hardscape, carpentry & custom landscaping",
+    "Outdoor kitchens, water features & fire pits",
+    "Santa Rosa — serving Sonoma County"
+  ],
+  "aboutHeading": "One owner, on every job",
+  "aboutBody": [
+    "West Coast Landscapes is owner-operated by Alex, who started the company to raise the standard for outdoor-space transformations in Sonoma County. The crew works across masonry, concrete, carpentry, and custom landscaping — the full toolkit needed to build a backyard, not just plant one.",
+    "Neighbors voted West Coast Landscapes a Nextdoor Neighborhood Fave in 2025, praising work that's done effectively and left clean at the end of the day. From stone pathways and retaining walls to outdoor kitchens, fire pits, and QWEL-certified irrigation, the focus is on durable craftsmanship and beautifully transformed spaces."
+  ],
+  "servicesHeading": "What we build outdoors",
+  "services": [
+    { "title": "Masonry & Concrete", "description": "Stone and concrete work — the structural backbone of patios, walls, and walkways." },
+    { "title": "Hardscape — Patios, Pavers & Walls", "description": "Paver patios, stone pathways, retaining walls, and stairs built to last in Sonoma soil." },
+    { "title": "Outdoor Kitchens & Fire Features", "description": "Outdoor kitchens, fire pits, and gathering spaces that extend the living area outside." },
+    { "title": "Water Features", "description": "Custom water features that bring movement and sound to the garden." },
+    { "title": "QWEL-Certified Irrigation", "description": "Efficient, water-wise irrigation designed and installed by a QWEL-certified crew." },
+    { "title": "Landscape Design & Construction", "description": "Full design-and-build landscaping, plus lighting and exterior details that finish the space." }
+  ],
+  "hours": [],
+  "testimonials": [
+    { "quote": "He works effectively and makes sure he cleans up when finished. They beautifully transformed our outdoor space — high-quality work.", "author": "Verified Nextdoor recommendation · Sonoma County" }
+  ],
+  "social": {},
+  "notes": "VERIFIED 2026-06-29 from Nextdoor (West Coast Landscapes, Santa Rosa). Owner first name: Alex (FLAG: last name not found). Phone (707) 332-1414. Owner-direct email americalandscape@gmail.com. NO website — Nextdoor only (weak-site bar PASSED). Nextdoor Neighborhood Fave 2025. Services verified from the Nextdoor page (masonry/concrete, hardscape, stone pathways/patios/pavers/retaining walls/stairs, irrigation QWEL-certified, outdoor kitchens/water features/fire pits, carpentry, lighting, exterior plumbing). Testimonial drawn from real Nextdoor recommendation language. Founding year not verified — established omitted. Trust = QWEL certification (credential) + Neighborhood Fave + real recommendation.",
+  "_richness": 88,
+  "_source": "verified-manual",
+  "_lead": {
+    "name": "West Coast Landscapes",
+    "category": "landscaping",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 332-1414",
+    "email": "americalandscape@gmail.com",
+    "address": "Santa Rosa, CA",
+    "owner": "Alex"
+  }
+}

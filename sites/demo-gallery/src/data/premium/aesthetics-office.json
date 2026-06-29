@@ -1,0 +1,283 @@
+{
+  "slug": "aesthetics-office",
+  "name": "Aesthetics Office",
+  "legalName": "Aesthetics Office",
+  "tagline": "Physician-overseen, nurse-led aesthetics in the heart of Sonoma County.",
+  "seoDescription": "Aesthetics Office is a Santa Rosa medical spa led by Aesthetic Nurse Specialist Nancie Fox, RN, with physician oversight by Dr",
+  "category": "spa",
+  "categoryLabel": "Spa",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 577-8888",
+    "email": "nursenancie1@gmail.com",
+    "address": "648 Larkfield Center, Santa Rosa, CA 95403"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/aestheticsofficeinc/"
+  },
+  "brand": {
+    "color": "#8266aa",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Nurse-led medical aesthetics in Larkfield",
+          "subheading": "A Santa Rosa clinic led by Aesthetic Nurse Specialist Nancie Fox, RN, with physician oversight by Dr. Adrian de la Torre — personalized injectables, laser, and wellness in the heart of Sonoma County.",
+          "badges": [
+            "Licensed, RN-led medical aesthetics clinic",
+            "Led by Aesthetic Nurse Specialist Nancie Fox, RN",
+            "Treatments overseen by Dr. Adrian de la Torre"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/aesthetics-office/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/aesthetics-office/services"
+          },
+          "motif": "/images/library/spa/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Personalized aesthetics, close to home",
+          "body": [
+            "Aesthetics Office sits in the heart of Sonoma County at Larkfield Center in Santa Rosa, where Aesthetic Nurse Specialist Nancie Fox, RN, and her specially trained team deliver cosmetic and wellness treatments under the oversight of Dr. Adrian de la Torre.",
+            "The practice pairs medical expertise with a personal, unhurried approach — taking time to understand each client's goals before recommending a plan. From injectables and laser therapies to body contouring, IV therapy, and hair regrowth, treatments are tailored to the individual rather than pulled from a fixed menu."
+          ],
+          "highlights": [
+            "Licensed, RN-led medical aesthetics clinic with physician oversight",
+            "Led by Aesthetic Nurse Specialist Nancie Fox, RN",
+            "Treatments overseen by Dr. Adrian de la Torre",
+            "Full menu of injectables, laser, body contouring & wellness"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Treatments tailored to you",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Injectables — BOTOX, Dysport & Fillers",
+              "description": "Neuromodulators and dermal fillers placed with a light, natural hand to soften lines and restore facial balance."
+            },
+            {
+              "title": "Laser Therapies",
+              "description": "Laser hair removal, tattoo removal, and skin-tightening treatments matched to your skin and goals."
+            },
+            {
+              "title": "Body Contouring",
+              "description": "Non-surgical contouring to smooth, tighten, and refine targeted areas."
+            },
+            {
+              "title": "Anti-Aging & Skin Rejuvenation",
+              "description": "Resurfacing and rejuvenation treatments that improve tone, texture, and firmness over time."
+            },
+            {
+              "title": "IV Therapy & Wellness",
+              "description": "IV hydration, red-light therapy, and wellness treatments that support how you feel as well as how you look."
+            },
+            {
+              "title": "Hair Regrowth",
+              "description": "Non-surgical treatments that support thicker, fuller hair."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Aesthetics Office",
+          "items": [
+            {
+              "title": "Licensed, RN-Led Medical Aesthetics Clinic",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Led By Aesthetic Nurse Specialist Nancie Fox, RN",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Treatments Overseen By Dr. Adrian De La Torre",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Full Menu Of Injectables, Laser, Body",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Larkfield Center — Serving Santa Rosa",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Aesthetics Office",
+          "body": "Find us at 648 Larkfield Center, Santa Rosa, CA 95403. Call (707) 577-8888 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/aesthetics-office/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 577-8888",
+            "href": "tel:+17075778888"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "A Santa Rosa clinic led by Aesthetic Nurse Specialist Nancie Fox, RN, with physician oversight by Dr",
+          "motif": "/images/library/spa/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Treatments tailored to you",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Injectables — BOTOX, Dysport & Fillers",
+              "description": "Neuromodulators and dermal fillers placed with a light, natural hand to soften lines and restore facial balance."
+            },
+            {
+              "title": "Laser Therapies",
+              "description": "Laser hair removal, tattoo removal, and skin-tightening treatments matched to your skin and goals."
+            },
+            {
+              "title": "Body Contouring",
+              "description": "Non-surgical contouring to smooth, tighten, and refine targeted areas."
+            },
+            {
+              "title": "Anti-Aging & Skin Rejuvenation",
+              "description": "Resurfacing and rejuvenation treatments that improve tone, texture, and firmness over time."
+            },
+            {
+              "title": "IV Therapy & Wellness",
+              "description": "IV hydration, red-light therapy, and wellness treatments that support how you feel as well as how you look."
+            },
+            {
+              "title": "Hair Regrowth",
+              "description": "Non-surgical treatments that support thicker, fuller hair."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 648 Larkfield Center, Santa Rosa, CA 95403."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 577-8888 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 648 Larkfield Center, Santa Rosa, CA 95403. Call (707) 577-8888 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/aesthetics-office/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 577-8888",
+            "href": "tel:+17075778888"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Aesthetics Office",
+          "heading": "Personalized aesthetics, close to home",
+          "subheading": "Aesthetics Office sits in the heart of Sonoma County at Larkfield Center in Santa Rosa, where Aesthetic Nurse Specialist Nancie Fox, RN, and her specially trained team deliver",
+          "motif": "/images/library/spa/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Personalized aesthetics, close to home",
+          "body": [
+            "Aesthetics Office sits in the heart of Sonoma County at Larkfield Center in Santa Rosa, where Aesthetic Nurse Specialist Nancie Fox, RN, and her specially trained team deliver cosmetic and wellness treatments under the oversight of Dr. Adrian de la Torre.",
+            "The practice pairs medical expertise with a personal, unhurried approach — taking time to understand each client's goals before recommending a plan. From injectables and laser therapies to body contouring, IV therapy, and hair regrowth, treatments are tailored to the individual rather than pulled from a fixed menu."
+          ],
+          "highlights": [
+            "Licensed, RN-led medical aesthetics clinic with physician oversight",
+            "Led by Aesthetic Nurse Specialist Nancie Fox, RN",
+            "Treatments overseen by Dr. Adrian de la Torre",
+            "Full menu of injectables, laser, body contouring & wellness"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Aesthetics Office",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/aesthetics-office/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Aesthetics Office at 648 Larkfield Center, Santa Rosa, CA 95403 or call (707) 577-8888.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

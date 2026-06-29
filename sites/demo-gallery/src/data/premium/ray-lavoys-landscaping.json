@@ -1,0 +1,338 @@
+{
+  "slug": "ray-lavoys-landscaping",
+  "name": "Ray LaVoy's Landscaping",
+  "legalName": "Ray LaVoy's Landscaping",
+  "tagline": "Water-wise, design-built gardens from a Sonoma Valley family with decades in the trade.",
+  "seoDescription": "Ray LaVoy's Landscaping is a family design-build landscaper in Sonoma — pond-less waterfalls, paver patios, rock walls, planting, and water-conscious",
+  "category": "landscaping",
+  "categoryLabel": "Landscaping",
+  "area": "Sonoma, CA",
+  "city": "Sonoma",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 287-6800",
+    "email": "ray@landscape-sonoma.com",
+    "address": "943 Donald St, Sonoma, CA 95476"
+  },
+  "social": {},
+  "brand": {
+    "color": "#2d8a3a",
+    "fontId": "organic-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sonoma, CA",
+          "heading": "Design-built, water-wise gardens for Sonoma Valley",
+          "subheading": "Ray LaVoy and his family build water-conscious landscapes and artisan gardens across Sonoma, Boyes Hot Springs, and Glen Ellen — pond-less waterfalls, paver patios, rock walls, and planting",
+          "badges": [
+            "Decades of design-build landscaping across",
+            "Family-run — Ray, his dad, and their team",
+            "Water-feature and pond-less waterfall specialty"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/ray-lavoys-landscaping/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/ray-lavoys-landscaping/services"
+          },
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Ray LaVoy's Landscaping",
+          "items": [
+            {
+              "title": "Decades Of Design-Build Landscaping Across",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Family-Run — Ray, His Dad, And Their Team",
+              "body": "Rooted right here in Sonoma, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Water-Feature And Pond-Less Waterfall Specialty",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Water-Conscious Design, Planting & Irrigation",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Sonoma, Boyes Hot Springs & Glen Ellen",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Artisan gardens, built to last",
+          "body": [
+            "Ray LaVoy's Landscaping is a family design-build operation based in Sonoma, where founder Ray LaVoy brings knowledge, integrity, and craftsmanship to water-conscious landscapes and artisan gardens. Ray, his dad, and their team have worked the Sonoma Valley, Boyes Hot Springs, and Glen Ellen areas for decades.",
+            "The work is hands-on and design-led: pond-less waterfalls and water features, paver patios, rock and retaining walls, planting, and efficient irrigation, plus practical services like defensible-space management and material delivery. It's the kind of careful, water-wise landscaping that fits Sonoma's climate and lasts."
+          ],
+          "highlights": [
+            "Decades of design-build landscaping across Sonoma Valley",
+            "Family-run — Ray, his dad, and their team",
+            "Water-feature and pond-less waterfall specialty",
+            "Water-conscious design, planting & irrigation"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we design and build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Landscape Design & Build",
+              "description": "Full design-and-build landscaping, from concept to a finished, planted garden."
+            },
+            {
+              "title": "Pond-Less Waterfalls & Water Features",
+              "description": "A specialty — pond-less waterfalls and water features that bring sound and movement without the upkeep."
+            },
+            {
+              "title": "Paver Patios",
+              "description": "Paver patios and pathways that shape how you live in and move through the garden."
+            },
+            {
+              "title": "Rock & Retaining Walls",
+              "description": "Stone and retaining walls that hold a slope and define a space, built to last."
+            },
+            {
+              "title": "Planting & Water-Wise Irrigation",
+              "description": "Climate-appropriate planting paired with efficient, water-conscious irrigation."
+            },
+            {
+              "title": "Defensible Space & Delivery",
+              "description": "Defensible-space management plus plant, tree, soil, and mulch delivery and yard-debris hauling."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Ray LaVoy's Landscaping and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "They do excellent work — they've been in business in the Sonoma, Boyes Hot Springs, and Glen Ellen areas for decades, with water-feature expertise as a specialty.",
+              "author": "Verified Nextdoor recommendation · Sonoma"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Ray LaVoy's Landscaping",
+          "body": "Find us at 943 Donald St, Sonoma, CA 95476. Call (707) 287-6800 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/ray-lavoys-landscaping/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 287-6800",
+            "href": "tel:+17072876800"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Ray LaVoy and his family build water-conscious landscapes and artisan gardens across Sonoma, Boyes Hot Springs, and Glen Ellen — pond-less waterfalls, paver patios, rock walls",
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we design and build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Landscape Design & Build",
+              "description": "Full design-and-build landscaping, from concept to a finished, planted garden."
+            },
+            {
+              "title": "Pond-Less Waterfalls & Water Features",
+              "description": "A specialty — pond-less waterfalls and water features that bring sound and movement without the upkeep."
+            },
+            {
+              "title": "Paver Patios",
+              "description": "Paver patios and pathways that shape how you live in and move through the garden."
+            },
+            {
+              "title": "Rock & Retaining Walls",
+              "description": "Stone and retaining walls that hold a slope and define a space, built to last."
+            },
+            {
+              "title": "Planting & Water-Wise Irrigation",
+              "description": "Climate-appropriate planting paired with efficient, water-conscious irrigation."
+            },
+            {
+              "title": "Defensible Space & Delivery",
+              "description": "Defensible-space management plus plant, tree, soil, and mulch delivery and yard-debris hauling."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Ray LaVoy's Landscaping and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 943 Donald St, Sonoma, CA 95476."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sonoma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 287-6800 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 943 Donald St, Sonoma, CA 95476. Call (707) 287-6800 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/ray-lavoys-landscaping/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 287-6800",
+            "href": "tel:+17072876800"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Ray LaVoy's Landscaping",
+          "heading": "Artisan gardens, built to last",
+          "subheading": "Ray LaVoy's Landscaping is a family design-build operation based in Sonoma, where founder Ray LaVoy brings knowledge, integrity, and craftsmanship to water-conscious landscapes",
+          "motif": "/images/library/landscaping/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Artisan gardens, built to last",
+          "body": [
+            "Ray LaVoy's Landscaping is a family design-build operation based in Sonoma, where founder Ray LaVoy brings knowledge, integrity, and craftsmanship to water-conscious landscapes and artisan gardens. Ray, his dad, and their team have worked the Sonoma Valley, Boyes Hot Springs, and Glen Ellen areas for decades.",
+            "The work is hands-on and design-led: pond-less waterfalls and water features, paver patios, rock and retaining walls, planting, and efficient irrigation, plus practical services like defensible-space management and material delivery. It's the kind of careful, water-wise landscaping that fits Sonoma's climate and lasts."
+          ],
+          "highlights": [
+            "Decades of design-build landscaping across Sonoma Valley",
+            "Family-run — Ray, his dad, and their team",
+            "Water-feature and pond-less waterfall specialty",
+            "Water-conscious design, planting & irrigation"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Ray LaVoy's Landscaping",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/ray-lavoys-landscaping/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Ray LaVoy's Landscaping at 943 Donald St, Sonoma, CA 95476 or call (707) 287-6800.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

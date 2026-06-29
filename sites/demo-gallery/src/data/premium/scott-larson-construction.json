@@ -1,0 +1,340 @@
+{
+  "slug": "scott-larson-construction",
+  "name": "Scott Larson Construction",
+  "legalName": "Scott Larson Construction",
+  "tagline": "A second-generation Santa Rosa builder with skilled crews and fair pricing.",
+  "seoDescription": "Scott Larson Construction is a CSLB-licensed, second-generation general contractor in Santa Rosa — custom building, remodels, additions, and flooring across",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 526-6899",
+    "email": "Scottlarsonconst@sbcglobal.net",
+    "address": "Santa Rosa, CA"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/ScottLarsonConstruction/"
+  },
+  "brand": {
+    "color": "#c77d2a",
+    "fontId": "rugged-slab"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "A second-generation Santa Rosa builder",
+          "subheading": "Scott Larson Construction brings skilled, licensed crews and honest pricing to custom homes, remodels, and additions across Sonoma County — the kind of contractor neighbors actually recommend.",
+          "badges": [
+            "CSLB-licensed General Building contractor —",
+            "Second-generation Santa Rosa builder",
+            "BuildZoom score of 98 — top 16% of California"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/scott-larson-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/scott-larson-construction/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Built by people who do the work",
+          "body": [
+            "Scott Larson Construction is a second-generation general contractor based in Santa Rosa, serving homeowners throughout Sonoma County. Scott runs licensed, skilled crews and is known locally for doing quality work at reasonable prices — the reason so much of the business comes by word of mouth.",
+            "From custom homes and whole-home remodels to room additions, renovations, and flooring, the company holds a CSLB General Building license along with renovation and flooring classifications. An independent BuildZoom score of 98 places Scott Larson Construction in the top 16% of California licensed contractors."
+          ],
+          "highlights": [
+            "CSLB-licensed General Building contractor — licensed & insured",
+            "Second-generation Santa Rosa builder",
+            "BuildZoom score of 98 — top 16% of California contractors",
+            "Custom building, remodels, additions, renovation & flooring"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Custom Home Building",
+              "description": "Ground-up residential construction managed by an owner who's on the job, not just on the paperwork."
+            },
+            {
+              "title": "Whole-Home Remodels",
+              "description": "Thoughtful remodels that respect what works in your home and rebuild what doesn't."
+            },
+            {
+              "title": "Room Additions",
+              "description": "Additions that add real, livable space and blend seamlessly with the existing house."
+            },
+            {
+              "title": "Renovations",
+              "description": "Renovation work that brings older Sonoma County homes up to today's standards."
+            },
+            {
+              "title": "Flooring & Floor Covering",
+              "description": "Flooring and floor-covering installation as a licensed specialty, not a subbed afterthought."
+            },
+            {
+              "title": "Repairs & Improvements",
+              "description": "Smaller projects handled with the same skilled crews and fair pricing as the big ones."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Scott Larson Construction and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Scott Larson Construction",
+          "items": [
+            {
+              "title": "CSLB-Licensed General Building Contractor —",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Second-Generation Santa Rosa Builder",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "BuildZoom Score Of 98 — Top 16% Of California",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Custom Building, Remodels, Additions",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Santa Rosa And Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Scott Larson is a great contractor. He does great work at reasonable prices, his workers are skilled, and he's fully licensed and insured.",
+              "author": "Verified review · Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Scott Larson Construction",
+          "body": "Find us at Santa Rosa, CA. Call (707) 526-6899 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/scott-larson-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 526-6899",
+            "href": "tel:+17075266899"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Scott Larson Construction brings skilled, licensed crews and honest pricing to custom homes, remodels, and additions across Sonoma County — the kind of contractor neighbors",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Custom Home Building",
+              "description": "Ground-up residential construction managed by an owner who's on the job, not just on the paperwork."
+            },
+            {
+              "title": "Whole-Home Remodels",
+              "description": "Thoughtful remodels that respect what works in your home and rebuild what doesn't."
+            },
+            {
+              "title": "Room Additions",
+              "description": "Additions that add real, livable space and blend seamlessly with the existing house."
+            },
+            {
+              "title": "Renovations",
+              "description": "Renovation work that brings older Sonoma County homes up to today's standards."
+            },
+            {
+              "title": "Flooring & Floor Covering",
+              "description": "Flooring and floor-covering installation as a licensed specialty, not a subbed afterthought."
+            },
+            {
+              "title": "Repairs & Improvements",
+              "description": "Smaller projects handled with the same skilled crews and fair pricing as the big ones."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Scott Larson Construction and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at Santa Rosa, CA."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 526-6899 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at Santa Rosa, CA. Call (707) 526-6899 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/scott-larson-construction/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 526-6899",
+            "href": "tel:+17075266899"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Scott Larson Construction",
+          "heading": "Built by people who do the work",
+          "subheading": "Scott Larson Construction is a second-generation general contractor based in Santa Rosa, serving homeowners throughout Sonoma County",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Built by people who do the work",
+          "body": [
+            "Scott Larson Construction is a second-generation general contractor based in Santa Rosa, serving homeowners throughout Sonoma County. Scott runs licensed, skilled crews and is known locally for doing quality work at reasonable prices — the reason so much of the business comes by word of mouth.",
+            "From custom homes and whole-home remodels to room additions, renovations, and flooring, the company holds a CSLB General Building license along with renovation and flooring classifications. An independent BuildZoom score of 98 places Scott Larson Construction in the top 16% of California licensed contractors."
+          ],
+          "highlights": [
+            "CSLB-licensed General Building contractor — licensed & insured",
+            "Second-generation Santa Rosa builder",
+            "BuildZoom score of 98 — top 16% of California contractors",
+            "Custom building, remodels, additions, renovation & flooring"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Scott Larson Construction",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/scott-larson-construction/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Scott Larson Construction at Santa Rosa, CA or call (707) 526-6899.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

@@ -1,0 +1,47 @@
+{
+  "slug": "soco-aesthetics",
+  "confirmed": true,
+  "tagline": "Skin-health-first aesthetics from a registered nurse with 25 years behind her.",
+  "seoDescription": "SoCo Aesthetics is a Petaluma medical spa led by Donna Davis, a registered nurse of 25 years and esthetician — chemical peels, acne care, microchanneling, and skin rejuvenation by appointment.",
+  "heroHeading": "Skin-health aesthetics in Petaluma",
+  "heroSubheading": "Led by Donna Davis — a registered nurse of 25 years and esthetician — SoCo Aesthetics focuses on real skin health: custom chemical peels, acne care, microchanneling, and rejuvenation, one client at a time.",
+  "highlights": [
+    "Licensed registered nurse with 25 years of clinical experience",
+    "Esthetician specializing in chemical peels, acne care & microchanneling",
+    "Personal, by-appointment care — never rushed",
+    "Treatments tailored to your skin, not a fixed menu",
+    "North McDowell, Petaluma — serving Sonoma County"
+  ],
+  "aboutHeading": "A nurse's approach to skin",
+  "aboutBody": [
+    "SoCo Aesthetics is the work of Donna Davis, a registered nurse of 25 years and an esthetician who brings a clinical, skin-health-first mindset to medical aesthetics. The studio sits at North McDowell Boulevard in Petaluma, serving clients across Sonoma County by appointment.",
+    "Rather than push a fixed menu, Donna builds each plan around the client in the chair — whether that's calming active acne, resurfacing with a custom chemical peel, or stimulating collagen with microchanneling. The result is unhurried, one-on-one care focused on healthy, resilient skin over time."
+  ],
+  "servicesHeading": "Skin treatments, tailored to you",
+  "services": [
+    { "title": "Custom Chemical Peels", "description": "Peels matched to your skin type and goals to improve tone, texture, and clarity." },
+    { "title": "Acne Care Programs", "description": "Targeted treatment plans that calm active breakouts and support clearer skin over time." },
+    { "title": "Microchanneling", "description": "Collagen-induction microchanneling that smooths texture and refreshes tired skin." },
+    { "title": "Signature Facials & Dermaplaning", "description": "Deep-cleansing facials and dermaplaning for an immediate, healthy glow." },
+    { "title": "Skin Rejuvenation", "description": "Rejuvenating treatments for aging and sun-affected skin, planned around your goals." }
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "instagram": "https://www.instagram.com/aestheticssoco/",
+    "facebook": "https://www.facebook.com/992107830654013"
+  },
+  "notes": "VERIFIED 2026-06-29 from socoaesthetic.com (resolves to a thin feed-only page), socoaesthetics.glossgenius.com (booking), IMAGE Studios profile, and search. Owner: Donna Davis, registered nurse of 25 years + esthetician of 8 years; specializes in chemical peels, acne care, microchanneling. Phone (707) 329-5101. Address 435 N McDowell Blvd, Ste 24-#123, Petaluma CA 94954 (suite inside IMAGE Studios). NO owner email found publicly — phone/booking only (FLAG: not owner-direct email; acceptable per contact rule). Current 'website' socoaesthetic.com returns only an Atom feed with one vague blog post — effectively no real site (weak-site bar PASSED); booking lives on a GlossGenius subdomain. Trust = licensed RN credential. No verified rating/verbatim review — testimonials empty (not fabricated).",
+  "_richness": 88,
+  "_source": "verified-manual",
+  "_lead": {
+    "name": "SoCo Aesthetics",
+    "category": "spa",
+    "city": "Petaluma",
+    "state": "CA",
+    "phone": "(707) 329-5101",
+    "email": "",
+    "address": "435 N McDowell Blvd, Ste 24-#123, Petaluma, CA 94954",
+    "owner": "Donna Davis, RN"
+  }
+}

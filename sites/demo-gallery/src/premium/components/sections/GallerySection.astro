@@ -13,11 +13,17 @@ interface Props {
   data: SecGallery;
   config: PremiumConfig;
 }
-const { data } = Astro.props;
+const { data, config } = Astro.props;
 const images = (data.images ?? []).slice(0, 10);
 
 const [featured, ...rest] = images;
 const restCount = rest.length;
+// a11y: gallery photos are REAL content images — every one carries a meaningful,
+// non-empty alt. When the author didn't supply one we derive it from the section
+// heading / business name (never an empty string).
+const galleryLabel = (data.heading && data.heading.trim()) || config?.name || 'Gallery';
+const galAlt = (img: { alt?: string } | undefined, n: number) =>
+  (img?.alt && img.alt.trim()) || `${galleryLabel} — photo ${n}`;
 // One photo → solo spotlight. Otherwise a featured tile spanning the grid plus
 // a flowing row of smaller tiles beneath it.
 const solo = images.length === 1;
@@ -37,7 +43,7 @@ const solo = images.length === 1;
         <figure class="p-gal__solo media" style="--ratio: 16 / 9" data-reveal>
           <SiteImage
             src={featured.src}
-            alt={featured.alt ?? ''}
+            alt={galAlt(featured, 1)}
             objectPosition={featured.focal}
             sizes="(min-width: 960px) 72rem, 100vw"
           />
@@ -47,7 +53,7 @@ const solo = images.length === 1;
           <figure class="p-gal__feature media" style="--ratio: 16 / 9" data-reveal>
             <SiteImage
               src={featured.src}
-              alt={featured.alt ?? ''}
+              alt={galAlt(featured, 1)}
               objectPosition={featured.focal}
               sizes="(min-width: 960px) 72rem, 100vw"
             />
@@ -59,7 +65,7 @@ const solo = images.length === 1;
                 <figure class="p-gal__tile media" style="--ratio: 4 / 3" data-reveal="scale" data-reveal-delay={((i % 4) + 1)}>
                   <SiteImage
                     src={img.src}
-                    alt={img.alt ?? ''}
+                    alt={galAlt(img, i + 2)}
                     objectPosition={img.focal}
                     sizes="(min-width: 960px) 24rem, (min-width: 560px) 45vw, 100vw"
                   />

@@ -1,0 +1,338 @@
+{
+  "slug": "kirby-wilkerson",
+  "name": "Kirby Wilkerson",
+  "legalName": "Kirby Wilkerson",
+  "tagline": "A licensed Sonoma County remodeler who takes one project at a time.",
+  "seoDescription": "Kirby Wilkerson is a CSLB-licensed general contractor in Sonoma County with 25+ years of experience — kitchen and bathroom remodels, room additions, decks",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 529-5428",
+    "email": "kirbyw@sonic.net",
+    "address": "Sonoma County, CA"
+  },
+  "social": {},
+  "brand": {
+    "color": "#cd8330",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Kitchen and bath remodels, handled personally",
+          "subheading": "Kirby Wilkerson is a licensed Sonoma County general contractor with 25+ years of experience who takes on one remodel at a time — kitchens, baths, additions, and decks, start to finish.",
+          "badges": [
+            "CSLB-licensed general contractor (License",
+            "More than 25 years remodeling Sonoma County",
+            "Owner-run — one project at a time, start"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/kirby-wilkerson/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/kirby-wilkerson/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "One remodel at a time",
+          "body": [
+            "Kirby Wilkerson is a licensed general contractor who has spent more than 25 years remodeling homes and businesses across Sonoma County. He works closely with each homeowner and, by design, takes on one project at a time — so the person you hire is the person on the job.",
+            "The work runs from kitchens and bathrooms to room additions, full home renovations, decks, and fences, all under a design/build approach that listens first. As one client put it after a master-bath transformation: he listened and respected what they did and didn't want — and delivered."
+          ],
+          "highlights": [
+            "CSLB-licensed general contractor (License #B676873)",
+            "More than 25 years remodeling Sonoma County homes",
+            "Owner-run — one project at a time, start to finish",
+            "Kitchens, baths, additions, renovations & decks"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we remodel",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Bathroom Remodels",
+              "description": "Full bathroom remodels, from dated and cramped to bright, functional, and built to last."
+            },
+            {
+              "title": "Kitchen Remodels",
+              "description": "Kitchen renovations planned around how you actually cook, gather, and live."
+            },
+            {
+              "title": "Room Additions",
+              "description": "Additions that expand your home and blend into the original architecture."
+            },
+            {
+              "title": "Home Renovations",
+              "description": "Whole-home and commercial renovations managed personally from start to finish."
+            },
+            {
+              "title": "Decks & Fences",
+              "description": "Custom decks and fences that extend and define your outdoor space."
+            },
+            {
+              "title": "Design / Build",
+              "description": "A design-build approach that turns ideas into a buildable, on-budget plan."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Kirby Wilkerson and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Kirby Wilkerson",
+          "items": [
+            {
+              "title": "CSLB-Licensed General Contractor (License",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "More Than 25 Years Remodeling Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Owner-Run — One Project At A Time, Start",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Kitchens, Baths, Additions, Renovations & Decks",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Design/Build For Sonoma County, CA",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Kirby oversaw the amazing transformation of our ugly and claustrophobic mid-60's master bath. He listened and respected what we did and didn't want.",
+              "author": "Don L. · Sebastopol"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Kirby Wilkerson",
+          "body": "Find us at Sonoma County, CA. Call (707) 529-5428 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/kirby-wilkerson/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 529-5428",
+            "href": "tel:+17075295428"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Kirby Wilkerson is a licensed Sonoma County general contractor with 25+ years of experience who takes on one remodel at a time — kitchens, baths, additions, and decks, start",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we remodel",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Bathroom Remodels",
+              "description": "Full bathroom remodels, from dated and cramped to bright, functional, and built to last."
+            },
+            {
+              "title": "Kitchen Remodels",
+              "description": "Kitchen renovations planned around how you actually cook, gather, and live."
+            },
+            {
+              "title": "Room Additions",
+              "description": "Additions that expand your home and blend into the original architecture."
+            },
+            {
+              "title": "Home Renovations",
+              "description": "Whole-home and commercial renovations managed personally from start to finish."
+            },
+            {
+              "title": "Decks & Fences",
+              "description": "Custom decks and fences that extend and define your outdoor space."
+            },
+            {
+              "title": "Design / Build",
+              "description": "A design-build approach that turns ideas into a buildable, on-budget plan."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Kirby Wilkerson and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at Sonoma County, CA."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 529-5428 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at Sonoma County, CA. Call (707) 529-5428 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/kirby-wilkerson/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 529-5428",
+            "href": "tel:+17075295428"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Kirby Wilkerson",
+          "heading": "One remodel at a time",
+          "subheading": "Kirby Wilkerson is a licensed general contractor who has spent more than 25 years remodeling homes and businesses across Sonoma County",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "One remodel at a time",
+          "body": [
+            "Kirby Wilkerson is a licensed general contractor who has spent more than 25 years remodeling homes and businesses across Sonoma County. He works closely with each homeowner and, by design, takes on one project at a time — so the person you hire is the person on the job.",
+            "The work runs from kitchens and bathrooms to room additions, full home renovations, decks, and fences, all under a design/build approach that listens first. As one client put it after a master-bath transformation: he listened and respected what they did and didn't want — and delivered."
+          ],
+          "highlights": [
+            "CSLB-licensed general contractor (License #B676873)",
+            "More than 25 years remodeling Sonoma County homes",
+            "Owner-run — one project at a time, start to finish",
+            "Kitchens, baths, additions, renovations & decks"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Kirby Wilkerson",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/kirby-wilkerson/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Kirby Wilkerson at Sonoma County, CA or call (707) 529-5428.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

@@ -1,0 +1,350 @@
+{
+  "slug": "west-coast-fiberglass-pools",
+  "name": "West Coast Fiberglass Pools",
+  "legalName": "West Coast Fiberglass Pools",
+  "tagline": "Sonoma County's fiberglass pool specialists — 1,500+ pools and counting.",
+  "seoDescription": "West Coast Fiberglass Pools is a family-owned, CSLB-licensed swimming pool builder serving Santa Rosa and Sonoma County for over 30 years — fiberglass pool",
+  "category": "contractor",
+  "categoryLabel": "Contractor",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 349-2880",
+    "email": "jeffmail3006@yahoo.com",
+    "address": "2360 Mendocino Ave, Ste A2-387, Santa Rosa, CA 95403"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/westcoastfiberglasspools/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8am–5pm"
+    }
+  ],
+  "rating": {
+    "value": 5,
+    "count": 40,
+    "source": "Birdeye"
+  },
+  "brand": {
+    "color": "#c77d2a",
+    "fontId": "bold-display"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Fiberglass pools, done by people who only build pools",
+          "subheading": "For more than 30 years and over 1,500 installs, the Cerini family has built fiberglass swimming pools across Sonoma, Napa, Lake, and Mendocino — a focused craft, not a sideline.",
+          "badges": [
+            "5★ from 40 reviews",
+            "CSLB-licensed pool builder — top 2% BuildZoom",
+            "Family-owned by the Cerini family — over 30"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/west-coast-fiberglass-pools/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/west-coast-fiberglass-pools/services"
+          },
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Three decades of one craft",
+          "body": [
+            "West Coast Fiberglass Pools is a family-owned business proudly managed and owned by Jeff and Zanne Cerini along with their son, Tyler. For more than 30 years they have specialized exclusively in fiberglass pool installation — and with over 1,500 pools in the ground, the experience shows in every project.",
+            "That focus is the whole point: where many contractors build pools among a dozen other things, the Cerinis do one thing and do it well. The company is CSLB-licensed with a BuildZoom score that ranks in the top 2% of California's licensed contractors, and earns consistent 5-star reviews for craftsmanship and follow-through long after the pool is filled."
+          ],
+          "highlights": [
+            "CSLB-licensed pool builder — top 2% BuildZoom score in California",
+            "Family-owned by the Cerini family — over 30 years in business",
+            "More than 1,500 fiberglass pools installed",
+            "5-star rated across review platforms"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Fiberglass Pool Construction",
+              "description": "Full fiberglass swimming pool installation, from layout and excavation to a finished, swim-ready pool."
+            },
+            {
+              "title": "New Pool Construction",
+              "description": "New backyard pools sized and shaped to your space, your family, and your budget."
+            },
+            {
+              "title": "Spas & Water Features",
+              "description": "Integrated spas and water features that turn a pool into a backyard retreat."
+            },
+            {
+              "title": "Pool Options & Upgrades",
+              "description": "Finishes, decking, lighting, and equipment options matched to how you'll actually use the pool."
+            },
+            {
+              "title": "Pool Renovation",
+              "description": "Updates and renovations that bring an older pool back to life."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message West Coast Fiberglass Pools and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why West Coast Fiberglass Pools",
+          "items": [
+            {
+              "title": "CSLB-Licensed Pool Builder — Top 2% BuildZoom",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Family-Owned By The Cerini Family — Over 30",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "More Than 1,500 Fiberglass Pools Installed",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "5-Star Rated Across Review Platforms",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Serving Sonoma, Napa, Lake & Mendocino Counties",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with West Coast Fiberglass Pools",
+          "body": "Find us at 2360 Mendocino Ave, Ste A2-387, Santa Rosa, CA 95403. Call (707) 349-2880 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/west-coast-fiberglass-pools/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 349-2880",
+            "href": "tel:+17073492880"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "For more than 30 years and over 1,500 installs, the Cerini family has built fiberglass swimming pools across Sonoma, Napa, Lake, and Mendocino — a focused craft, not a sideline.",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we build",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Fiberglass Pool Construction",
+              "description": "Full fiberglass swimming pool installation, from layout and excavation to a finished, swim-ready pool."
+            },
+            {
+              "title": "New Pool Construction",
+              "description": "New backyard pools sized and shaped to your space, your family, and your budget."
+            },
+            {
+              "title": "Spas & Water Features",
+              "description": "Integrated spas and water features that turn a pool into a backyard retreat."
+            },
+            {
+              "title": "Pool Options & Upgrades",
+              "description": "Finishes, decking, lighting, and equipment options matched to how you'll actually use the pool."
+            },
+            {
+              "title": "Pool Renovation",
+              "description": "Updates and renovations that bring an older pool back to life."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message West Coast Fiberglass Pools and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at 2360 Mendocino Ave, Ste A2-387, Santa Rosa, CA 95403."
+            },
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 8am–5pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 349-2880 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at 2360 Mendocino Ave, Ste A2-387, Santa Rosa, CA 95403. Call (707) 349-2880 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/west-coast-fiberglass-pools/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 349-2880",
+            "href": "tel:+17073492880"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About West Coast Fiberglass Pools",
+          "heading": "Three decades of one craft",
+          "subheading": "West Coast Fiberglass Pools is a family-owned business proudly managed and owned by Jeff and Zanne Cerini along with their son, Tyler",
+          "motif": "/images/library/contractor/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "Three decades of one craft",
+          "body": [
+            "West Coast Fiberglass Pools is a family-owned business proudly managed and owned by Jeff and Zanne Cerini along with their son, Tyler. For more than 30 years they have specialized exclusively in fiberglass pool installation — and with over 1,500 pools in the ground, the experience shows in every project.",
+            "That focus is the whole point: where many contractors build pools among a dozen other things, the Cerinis do one thing and do it well. The company is CSLB-licensed with a BuildZoom score that ranks in the top 2% of California's licensed contractors, and earns consistent 5-star reviews for craftsmanship and follow-through long after the pool is filled."
+          ],
+          "highlights": [
+            "CSLB-licensed pool builder — top 2% BuildZoom score in California",
+            "Family-owned by the Cerini family — over 30 years in business",
+            "More than 1,500 fiberglass pools installed",
+            "5-star rated across review platforms"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "5★",
+              "label": "40 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see West Coast Fiberglass Pools",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/west-coast-fiberglass-pools/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach West Coast Fiberglass Pools at 2360 Mendocino Ave, Ste A2-387, Santa Rosa, CA 95403 or call (707) 349-2880.",
+          "showMap": true,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

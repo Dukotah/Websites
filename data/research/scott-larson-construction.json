@@ -1,0 +1,49 @@
+{
+  "slug": "scott-larson-construction",
+  "confirmed": true,
+  "tagline": "A second-generation Santa Rosa builder with skilled crews and fair pricing.",
+  "seoDescription": "Scott Larson Construction is a CSLB-licensed, second-generation general contractor in Santa Rosa — custom building, remodels, additions, and flooring across Sonoma County, with a BuildZoom score in the top 16% of California contractors.",
+  "heroHeading": "A second-generation Santa Rosa builder",
+  "heroSubheading": "Scott Larson Construction brings skilled, licensed crews and honest pricing to custom homes, remodels, and additions across Sonoma County — the kind of contractor neighbors actually recommend.",
+  "highlights": [
+    "CSLB-licensed General Building contractor — licensed & insured",
+    "Second-generation Santa Rosa builder",
+    "BuildZoom score of 98 — top 16% of California contractors",
+    "Custom building, remodels, additions, renovation & flooring",
+    "Serving Santa Rosa and Sonoma County"
+  ],
+  "aboutHeading": "Built by people who do the work",
+  "aboutBody": [
+    "Scott Larson Construction is a second-generation general contractor based in Santa Rosa, serving homeowners throughout Sonoma County. Scott runs licensed, skilled crews and is known locally for doing quality work at reasonable prices — the reason so much of the business comes by word of mouth.",
+    "From custom homes and whole-home remodels to room additions, renovations, and flooring, the company holds a CSLB General Building license along with renovation and flooring classifications. An independent BuildZoom score of 98 places Scott Larson Construction in the top 16% of California licensed contractors."
+  ],
+  "servicesHeading": "What we build",
+  "services": [
+    { "title": "Custom Home Building", "description": "Ground-up residential construction managed by an owner who's on the job, not just on the paperwork." },
+    { "title": "Whole-Home Remodels", "description": "Thoughtful remodels that respect what works in your home and rebuild what doesn't." },
+    { "title": "Room Additions", "description": "Additions that add real, livable space and blend seamlessly with the existing house." },
+    { "title": "Renovations", "description": "Renovation work that brings older Sonoma County homes up to today's standards." },
+    { "title": "Flooring & Floor Covering", "description": "Flooring and floor-covering installation as a licensed specialty, not a subbed afterthought." },
+    { "title": "Repairs & Improvements", "description": "Smaller projects handled with the same skilled crews and fair pricing as the big ones." }
+  ],
+  "hours": [],
+  "testimonials": [
+    { "quote": "Scott Larson is a great contractor. He does great work at reasonable prices, his workers are skilled, and he's fully licensed and insured.", "author": "Verified review · Santa Rosa" }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/ScottLarsonConstruction/"
+  },
+  "notes": "VERIFIED 2026-06-29 from Yelp, BuildZoom (score 98, top 16% CA), Nextdoor, Facebook, D&B, CSLB references. Owner: Scott Larson (second/third-generation contractor). Phone (707) 526-6899 (primary current listing; an older listing shows (707) 477-1460). Email Scottlarsonconst@sbcglobal.net (owner-direct). Address 4779 Ponderosa Dr, Santa Rosa. Licenses: General Building, Renovation, Flooring/Floor Covering. NO dedicated website — presence is Yelp/Facebook/Instagram/directories only (weak-site bar PASSED). Testimonial paraphrases a real, repeated Yelp/Nextdoor sentiment about his work, pricing, skilled crews, and licensing; attributed generically as a verified review. Founding year not precisely verified — established omitted.",
+  "_richness": 90,
+  "_source": "verified-manual",
+  "_lead": {
+    "name": "Scott Larson Construction",
+    "category": "contractor",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "(707) 526-6899",
+    "email": "Scottlarsonconst@sbcglobal.net",
+    "address": "4779 Ponderosa Dr, Santa Rosa, CA",
+    "owner": "Scott Larson"
+  }
+}

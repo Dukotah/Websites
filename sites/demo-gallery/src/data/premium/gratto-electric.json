@@ -1,0 +1,338 @@
+{
+  "slug": "gratto-electric",
+  "name": "Gratto Electric",
+  "legalName": "Gratto Electric",
+  "tagline": "Locally owned Santa Rosa electricians for panels, EV chargers, and remodels.",
+  "seoDescription": "Gratto Electric is a locally owned, licensed electrical contractor in Santa Rosa led by owner Scott — panel upgrades, EV charging stations, generator hookups",
+  "category": "electrician",
+  "categoryLabel": "Electrician",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 338-5259",
+    "email": "",
+    "address": "Santa Rosa, CA 95405"
+  },
+  "social": {},
+  "brand": {
+    "color": "#cf911e",
+    "fontId": "clean-sans"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Santa Rosa electricians, owner on the job",
+          "subheading": "Gratto Electric is a locally owned, licensed electrical contractor handling panel upgrades, EV charging, generators, and remodel wiring across Sonoma County — with owner Scott personally on the work.",
+          "badges": [
+            "Licensed, insured electrical contractor —",
+            "Roughly a decade of electrical experience",
+            "Panel upgrades, EV charging & generator hookups"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gratto-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/gratto-electric/services"
+          },
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "An electrician who answers the phone",
+          "body": [
+            "Gratto Electric is a locally owned and operated electrical contractor based in Santa Rosa, run by owner Scott with roughly a decade of experience in the trade. The work spans everything a Sonoma County home or remodel needs — from a simple lighting circuit to a full panel upgrade.",
+            "Neighbors know Scott for professional, high-quality workmanship and for being a straightforward, trusted resource. As homes add electric vehicles, generators, and hot tubs, Gratto Electric handles the panel capacity, EV charging stations, and transfer switches that make it all work safely."
+          ],
+          "highlights": [
+            "Licensed, insured electrical contractor — locally owned & operated",
+            "Roughly a decade of electrical experience in Sonoma County",
+            "Panel upgrades, EV charging & generator hookups a specialty",
+            "New construction, remodels, lighting & A/C circuits"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Electrical work we handle",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Electrical Panel Upgrades",
+              "description": "Service and panel upgrades that add the capacity modern homes need, done to code and inspected."
+            },
+            {
+              "title": "EV Charging Station Installation",
+              "description": "Level 2 EV charger installs sized and wired correctly for your vehicle and your panel."
+            },
+            {
+              "title": "Generator Hookups & Transfer Switches",
+              "description": "Standby and portable generator hookups with transfer switches so the lights stay on."
+            },
+            {
+              "title": "Lighting Installation",
+              "description": "Interior and exterior lighting, recessed cans, and fixtures installed cleanly."
+            },
+            {
+              "title": "New Construction & Remodel Wiring",
+              "description": "Full wiring for new builds, additions, and kitchen and bath remodels."
+            },
+            {
+              "title": "A/C & Hot Tub Circuits",
+              "description": "Dedicated circuits and hookups for air conditioning and hot tubs."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How it works",
+          "heading": "Working with us is simple",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Gratto Electric and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Gratto Electric",
+          "items": [
+            {
+              "title": "Licensed, Insured Electrical Contractor —",
+              "body": "Properly credentialed, so the work is covered and done to standard.",
+              "icon": "shield"
+            },
+            {
+              "title": "Roughly A Decade Of Electrical Experience",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Panel Upgrades, EV Charging & Generator Hookups",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "New Construction, Remodels, Lighting & A/C",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Santa Rosa — Serving Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Scott is professional and does high-quality workmanship — a trusted resource in the community.",
+              "author": "Verified Nextdoor recommendation · Santa Rosa"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Gratto Electric",
+          "body": "Find us at Santa Rosa, CA 95405. Call (707) 338-5259 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gratto-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 338-5259",
+            "href": "tel:+17073385259"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Gratto Electric is a locally owned, licensed electrical contractor handling panel upgrades, EV charging, generators, and remodel wiring across Sonoma County — with owner Scott",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Electrical work we handle",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Electrical Panel Upgrades",
+              "description": "Service and panel upgrades that add the capacity modern homes need, done to code and inspected."
+            },
+            {
+              "title": "EV Charging Station Installation",
+              "description": "Level 2 EV charger installs sized and wired correctly for your vehicle and your panel."
+            },
+            {
+              "title": "Generator Hookups & Transfer Switches",
+              "description": "Standby and portable generator hookups with transfer switches so the lights stay on."
+            },
+            {
+              "title": "Lighting Installation",
+              "description": "Interior and exterior lighting, recessed cans, and fixtures installed cleanly."
+            },
+            {
+              "title": "New Construction & Remodel Wiring",
+              "description": "Full wiring for new builds, additions, and kitchen and bath remodels."
+            },
+            {
+              "title": "A/C & Hot Tub Circuits",
+              "description": "Dedicated circuits and hookups for air conditioning and hot tubs."
+            }
+          ]
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Our process",
+          "heading": "How it works",
+          "items": [
+            {
+              "title": "Reach out",
+              "body": "Call or message Gratto Electric and tell us what you need."
+            },
+            {
+              "title": "We assess",
+              "body": "We look at the details and talk through the right approach with you."
+            },
+            {
+              "title": "We do the work",
+              "body": "Our team handles it properly, keeping you in the loop along the way."
+            },
+            {
+              "title": "You’re set",
+              "body": "The job’s done right, and we stand behind it."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "Where are you located?",
+              "a": "You'll find us at Santa Rosa, CA 95405."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 338-5259 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Find us at Santa Rosa, CA 95405. Call (707) 338-5259 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gratto-electric/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 338-5259",
+            "href": "tel:+17073385259"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Gratto Electric",
+          "heading": "An electrician who answers the phone",
+          "subheading": "Gratto Electric is a locally owned and operated electrical contractor based in Santa Rosa, run by owner Scott with roughly a decade of experience in the trade",
+          "motif": "/images/library/electrician/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "An electrician who answers the phone",
+          "body": [
+            "Gratto Electric is a locally owned and operated electrical contractor based in Santa Rosa, run by owner Scott with roughly a decade of experience in the trade. The work spans everything a Sonoma County home or remodel needs — from a simple lighting circuit to a full panel upgrade.",
+            "Neighbors know Scott for professional, high-quality workmanship and for being a straightforward, trusted resource. As homes add electric vehicles, generators, and hot tubs, Gratto Electric handles the panel capacity, EV charging stations, and transfer switches that make it all work safely."
+          ],
+          "highlights": [
+            "Licensed, insured electrical contractor — locally owned & operated",
+            "Roughly a decade of electrical experience in Sonoma County",
+            "Panel upgrades, EV charging & generator hookups a specialty",
+            "New construction, remodels, lighting & A/C circuits"
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Gratto Electric",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/gratto-electric/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Gratto Electric at Santa Rosa, CA 95405 or call (707) 338-5259.",
+          "showMap": true,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

@@ -12,7 +12,7 @@ interface Props {
   data: SecStory;
   config: PremiumConfig;
 }
-const { data } = Astro.props;
+const { data, config } = Astro.props;
 
 const eyebrow = data.eyebrow;
 const heading = data.heading;
@@ -20,6 +20,9 @@ const body = data.body?.filter(Boolean) ?? [];
 const highlights = data.highlights?.filter(Boolean) ?? [];
 const img = data.image;
 const signature = data.signature;
+// a11y: meaningful, non-empty alt fallback for the story photo (real content
+// image) — derived from the business name, never an empty string.
+const imgAlt = (img?.alt && img.alt.trim()) || (config?.name ? `Inside ${config.name}` : 'Inside our space');
 
 const hasImage = !!img;
 // Photo-less story with real differentiators (highlights): render the highlights
@@ -75,7 +78,7 @@ const credentials = highlights;
           <div class="media">
             <SiteImage
               src={img.src}
-              alt={img.alt ?? ''}
+              alt={imgAlt}
               objectPosition={img.focal}
               sizes="(min-width: 820px) 44vw, 100vw"
             />
