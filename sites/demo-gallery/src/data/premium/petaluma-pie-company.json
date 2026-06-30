@@ -1,0 +1,283 @@
+{
+  "slug": "petaluma-pie-company",
+  "name": "Petaluma Pie Company",
+  "legalName": "Petaluma Pie Company",
+  "tagline": "Sweet and savory pies, made from scratch in downtown Petaluma",
+  "seoDescription": "Petaluma Pie Company has baked sweet and savory pies from local, organic ingredients in historic downtown Petaluma since 2010 — from shepherd’s pie and chicken",
+  "category": "cafe",
+  "categoryLabel": "Cafe",
+  "area": "Petaluma, CA",
+  "city": "Petaluma",
+  "state": "CA",
+  "established": "2010",
+  "contact": {
+    "phone": "",
+    "email": "pie@petalumapie.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/petalumapiecompany/",
+    "instagram": "https://www.instagram.com/petalumapie/"
+  },
+  "hours": [
+    {
+      "day": "Daily",
+      "hours": "10am–6pm"
+    }
+  ],
+  "rating": {
+    "value": 4.5,
+    "count": 529,
+    "source": "Yelp"
+  },
+  "priceRange": "$",
+  "brand": {
+    "color": "#b5572f",
+    "fontId": "handcrafted"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Petaluma, CA · Est. 2010",
+          "heading": "Handmade Pies, Sweet and Savory",
+          "subheading": "Since 2010, sweet and savory pies baked from local, organic ingredients in historic downtown Petaluma.",
+          "badges": [
+            "Serving since 2010",
+            "4.5★ from 529 reviews",
+            "Sweet & savory hand pies from scratch"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/petaluma-pie-company/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/petaluma-pie-company/menu"
+          },
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Petaluma Pie Company",
+          "body": [
+            "Petaluma Pie Company has been making sweet and savory pies from local and organic ingredients since 2010. Founded by a local Petaluma entrepreneur and his mother, the little shop in Helen Putnam Plaza buys direct from farmers — and even grows some of its own produce — sourcing butter, eggs, cheese, meat, and fruit from Petaluma, Sonoma County, and Northern California.",
+            "The case is split between savory hand pies — shepherd’s pie, chicken pot pie, gyoza — and sweet seasonal fruit and cream pies like strawberry rhubarb, apple, cherry, and chocolate cream. Everything is available hot and ready to eat, or frozen to take and bake at home."
+          ],
+          "highlights": [
+            "Sweet & savory hand pies from scratch",
+            "Local & organic — sourced from Sonoma County farms",
+            "4.5★ from 500+ reviews"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Savory Hand Pies",
+              "description": "Shepherd’s pie, chicken pot pie, gyoza, and other hearty hand pies — hot and ready to eat."
+            },
+            {
+              "title": "Sweet Fruit Pies",
+              "description": "Seasonal fruit pies like strawberry rhubarb, apple, and cherry, made with local fruit."
+            },
+            {
+              "title": "Cream Pies",
+              "description": "Classic cream pies including chocolate cream, made from scratch."
+            },
+            {
+              "title": "Take & Bake",
+              "description": "Frozen pies to bake fresh at home whenever you like."
+            },
+            {
+              "title": "Weddings & Catering",
+              "description": "Pie for events, weddings, and gatherings across Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "light",
+          "items": [
+            {
+              "value": "16+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.5★",
+              "label": "529 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/petaluma-pie-company/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Since 2010, sweet and savory pies baked from local, organic ingredients in historic downtown Petaluma.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Savory Hand Pies",
+              "description": "Shepherd’s pie, chicken pot pie, gyoza, and other hearty hand pies — hot and ready to eat."
+            },
+            {
+              "title": "Sweet Fruit Pies",
+              "description": "Seasonal fruit pies like strawberry rhubarb, apple, and cherry, made with local fruit."
+            },
+            {
+              "title": "Cream Pies",
+              "description": "Classic cream pies including chocolate cream, made from scratch."
+            },
+            {
+              "title": "Take & Bake",
+              "description": "Frozen pies to bake fresh at home whenever you like."
+            },
+            {
+              "title": "Weddings & Catering",
+              "description": "Pie for events, weddings, and gatherings across Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Daily: 10am–6pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Petaluma, CA and the surrounding community."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/petaluma-pie-company/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Petaluma Pie Company",
+          "heading": "About Petaluma Pie Company",
+          "subheading": "Petaluma Pie Company has been making sweet and savory pies from local and organic ingredients since 2010",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Petaluma Pie Company",
+          "body": [
+            "Petaluma Pie Company has been making sweet and savory pies from local and organic ingredients since 2010. Founded by a local Petaluma entrepreneur and his mother, the little shop in Helen Putnam Plaza buys direct from farmers — and even grows some of its own produce — sourcing butter, eggs, cheese, meat, and fruit from Petaluma, Sonoma County, and Northern California.",
+            "The case is split between savory hand pies — shepherd’s pie, chicken pot pie, gyoza — and sweet seasonal fruit and cream pies like strawberry rhubarb, apple, cherry, and chocolate cream. Everything is available hot and ready to eat, or frozen to take and bake at home."
+          ],
+          "highlights": [
+            "Sweet & savory hand pies from scratch",
+            "Local & organic — sourced from Sonoma County farms",
+            "4.5★ from 500+ reviews"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "light",
+          "items": [
+            {
+              "value": "16+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.5★",
+              "label": "529 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Petaluma Pie Company",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/petaluma-pie-company/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

@@ -1,0 +1,311 @@
+{
+  "slug": "mezzeluna",
+  "name": "Mezzeluna",
+  "legalName": "Mezzeluna",
+  "tagline": "Authentic Greek cooking in the heart of Cotati",
+  "seoDescription": "Mezzeluna is a chef-owned Greek restaurant in Cotati, CA serving traditional Hellenic dishes — moussaka, souvlaki, gyros, and house spanakopita — made",
+  "category": "restaurant",
+  "categoryLabel": "Restaurant",
+  "area": "Cotati, CA",
+  "city": "Cotati",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 992-0101",
+    "email": "hi@mezzeluna.com",
+    "address": ""
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/mezzelunacotati/"
+  },
+  "hours": [
+    {
+      "day": "Mon, Wed–Sun",
+      "hours": "Lunch 11:30am–3pm; dinner 5–8:30pm"
+    },
+    {
+      "day": "Tue",
+      "hours": "Closed"
+    }
+  ],
+  "rating": {
+    "value": 4.4,
+    "source": "Tripadvisor"
+  },
+  "brand": {
+    "color": "#9c3b2e",
+    "fontId": "warm-humanist"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Cotati, CA",
+          "heading": "Savor Greece in Every Bite",
+          "subheading": "A chef-owned Greek kitchen in downtown Cotati, where Istanbul-rooted technique meets California ingredients.",
+          "badges": [
+            "4.4★",
+            "Chef-owned, with deep Greek and Mediterranean",
+            "Vegan, vegetarian and gluten-free options"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/mezzeluna/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/mezzeluna/menu"
+          },
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Mezzeluna",
+          "body": [
+            "Named for the crescent moon, Mezzeluna brings authentic Greek cooking to downtown Cotati. Chef and co-founder Ali Çetin grew up in a family of chefs in Istanbul, trained internationally, and completed his culinary studies at Santa Rosa Junior College before opening the restaurant — pairing time-honored Hellenic recipes with the produce and spirit of Sonoma County.",
+            "The kitchen leans on the staples of the Greek table — olive oil, feta, fresh herbs, and honey — to build a menu that welcomes everyone. Vegan, vegetarian and gluten-free dishes sit comfortably alongside the classics, and a short list of Greek wines rounds out the meal."
+          ],
+          "highlights": [
+            "Chef-owned, with deep Greek and Mediterranean roots",
+            "Vegan, vegetarian and gluten-free options on every menu",
+            "Lunch and dinner, six days a week"
+          ]
+        },
+        {
+          "kind": "team",
+          "eyebrow": "The people behind the work",
+          "heading": "Meet Ali Çetin",
+          "members": [
+            {
+              "name": "Ali Çetin",
+              "role": "Chef & Co-Founder",
+              "bio": "Raised in a family of chefs in Istanbul, Ali trained internationally before completing culinary studies at Santa Rosa Junior College and opening Mezzeluna."
+            }
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Spanakopita",
+              "description": "House-made spinach and feta baked in crisp, flaky phyllo — a Greek classic and a regular starter."
+            },
+            {
+              "title": "Moussaka",
+              "description": "Layered eggplant, potato and seasoned meat under a rich bechamel, baked until golden."
+            },
+            {
+              "title": "Souvlaki",
+              "description": "Marinated, char-grilled skewers served the traditional way with warm pita and tzatziki."
+            },
+            {
+              "title": "Gyros",
+              "description": "Slow-roasted, seasoned meat carved to order and wrapped with fresh vegetables and house tzatziki."
+            },
+            {
+              "title": "Mezze & Appetizers",
+              "description": "Tzatziki, dolmades, kalamari and other small plates meant for sharing around the table."
+            },
+            {
+              "title": "Baklava & Greek Sweets",
+              "description": "Honey-soaked phyllo and other traditional desserts to finish the meal."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Mezzeluna",
+          "items": [
+            {
+              "title": "Chef-Owned, With Deep Greek And Mediterranean",
+              "body": "Rooted right here in Cotati, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Vegan, Vegetarian And Gluten-Free Options",
+              "body": "Clear, honest pricing up front — no surprises on the final bill.",
+              "icon": "check"
+            },
+            {
+              "title": "Lunch And Dinner, Six Days A Week",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 992-0101 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/mezzeluna/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 992-0101",
+            "href": "tel:+17079920101"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "A chef-owned Greek kitchen in downtown Cotati, where Istanbul-rooted technique meets California ingredients.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Spanakopita",
+              "description": "House-made spinach and feta baked in crisp, flaky phyllo — a Greek classic and a regular starter."
+            },
+            {
+              "title": "Moussaka",
+              "description": "Layered eggplant, potato and seasoned meat under a rich bechamel, baked until golden."
+            },
+            {
+              "title": "Souvlaki",
+              "description": "Marinated, char-grilled skewers served the traditional way with warm pita and tzatziki."
+            },
+            {
+              "title": "Gyros",
+              "description": "Slow-roasted, seasoned meat carved to order and wrapped with fresh vegetables and house tzatziki."
+            },
+            {
+              "title": "Mezze & Appetizers",
+              "description": "Tzatziki, dolmades, kalamari and other small plates meant for sharing around the table."
+            },
+            {
+              "title": "Baklava & Greek Sweets",
+              "description": "Honey-soaked phyllo and other traditional desserts to finish the meal."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Mon, Wed–Sun: Lunch 11:30am–3pm; dinner 5–8:30pm; Tue: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Cotati, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 992-0101 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 992-0101 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/mezzeluna/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 992-0101",
+            "href": "tel:+17079920101"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Mezzeluna",
+          "heading": "About Mezzeluna",
+          "subheading": "Named for the crescent moon, Mezzeluna brings authentic Greek cooking to downtown Cotati. Chef and co-founder Ali Çetin grew up in a family of chefs in Istanbul, trained",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Mezzeluna",
+          "body": [
+            "Named for the crescent moon, Mezzeluna brings authentic Greek cooking to downtown Cotati. Chef and co-founder Ali Çetin grew up in a family of chefs in Istanbul, trained internationally, and completed his culinary studies at Santa Rosa Junior College before opening the restaurant — pairing time-honored Hellenic recipes with the produce and spirit of Sonoma County.",
+            "The kitchen leans on the staples of the Greek table — olive oil, feta, fresh herbs, and honey — to build a menu that welcomes everyone. Vegan, vegetarian and gluten-free dishes sit comfortably alongside the classics, and a short list of Greek wines rounds out the meal."
+          ],
+          "highlights": [
+            "Chef-owned, with deep Greek and Mediterranean roots",
+            "Vegan, vegetarian and gluten-free options on every menu",
+            "Lunch and dinner, six days a week"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "light",
+          "items": [
+            {
+              "value": "4.4★",
+              "label": "Customer rating"
+            },
+            {
+              "value": "6",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Mezzeluna",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/mezzeluna/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Mezzeluna or call (707) 992-0101.",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}
