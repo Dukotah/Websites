@@ -91,6 +91,18 @@ const wantBudget = args.includes('--budget');
 // --budget implies collecting the performance category (the CWV audits live
 // inside it); --perf alone just reports perf without enforcing the budget.
 const wantPerf = args.includes('--perf') || wantBudget;
+// PERF BUDGET IS OPT-IN AND, FOR FLAGSHIP DEMOS, OPT-OUT-OF-BLOCKING.
+// The SEO + a11y floors are ALWAYS enforced (a search-crawler / screen-reader bar
+// is non-negotiable). The performance/CWV budget is different: the factory now
+// deliberately spends load time on visual richness (WebGL heroes, animated
+// gradients, photo treatments) for flagship demos, so a perf-budget MISS should be
+// reportable WITHOUT failing the gate. Make --budget advisory either way:
+//   • pass --no-budget-fail   • or set LH_BUDGET_NONBLOCKING=1
+// In that mode the per-page perf/LCP/CLS/TBT/weight numbers still print (and still
+// get a ✗ marker so a regression stays visible), but a budget miss alone won't set
+// a non-zero exit — only an SEO/a11y floor miss will. (The default `npm run
+// perf-budget` is unchanged: blocking.)
+const budgetNonBlocking = args.includes('--no-budget-fail') || process.env.LH_BUDGET_NONBLOCKING === '1';
 const filters = args.filter((a) => !a.startsWith('--'));
 
 // ── Minimal static file server for dist/ ───────────────────────────────────────
@@ -338,7 +350,8 @@ async function main() {
   }
   console.log(`Auditing ${targets.length} of ${all.length} built page(s); thresholds: SEO ≥ ${SEO_FLOOR}, a11y ≥ ${A11Y_FLOOR}.`);
   if (wantBudget) {
-    console.log(`Perf budget ON: perf ≥ ${PERF_FLOOR}, LCP ≤ ${LCP_BUDGET}ms, CLS ≤ ${CLS_BUDGET}, TBT ≤ ${TBT_BUDGET}ms, weight ≤ ${Math.round(BYTES_BUDGET / 1024)}KB.`);
+    console.log(`Perf budget ${budgetNonBlocking ? 'ADVISORY (non-blocking — flagship visual richness)' : 'ON'}: perf ≥ ${PERF_FLOOR}, LCP ≤ ${LCP_BUDGET}ms, CLS ≤ ${CLS_BUDGET}, TBT ≤ ${TBT_BUDGET}ms, weight ≤ ${Math.round(BYTES_BUDGET / 1024)}KB.`);
+    if (budgetNonBlocking) console.log('  (Budget misses are reported but will NOT fail the gate; SEO/a11y floors still block.)');
   }
   console.log('');
 
@@ -439,7 +452,9 @@ async function main() {
         cls == null || cls > CLS_BUDGET ||
         tbt == null || tbt > TBT_BUDGET ||
         bytes == null || bytes > BYTES_BUDGET;
-      fail = fail || budgetBad;
+      // In non-blocking mode a budget miss is reported (the row still shows ✗
+      // markers) but does NOT fail the gate — SEO/a11y are the only hard floors.
+      if (!budgetNonBlocking) fail = fail || budgetBad;
     }
     if (fail) failures++;
 

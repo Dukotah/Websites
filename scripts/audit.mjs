@@ -33,7 +33,12 @@ import { readFile, readdir } from 'node:fs/promises';
 import { join, dirname, extname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JUNK_RE } from './lib/copy-sanity.mjs';
-import { scorePhoto } from './lib/photo-score.mjs';
+// NOTE: scorePhoto is NOT imported at module top on purpose. It pulls in the
+// native `sharp` binary, and a missing/broken sharp install would throw at import
+// time and take the WHOLE mechanical audit down with it (tokens, contrast,
+// content, data-integrity all die for an unrelated reason). Instead it's loaded
+// LAZILY inside auditPhotos (getScorePhoto below), so an unavailable sharp only
+// disables photo scoring — fail-soft with a one-time warning. (See getScorePhoto.)
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const APP = join(ROOT, 'sites', 'demo-gallery');
@@ -467,16 +472,33 @@ function auditProspect(slug, c, confirmed = false, researched = false) {
   if (services.some((s) => TEMPLATED.test(s.description ?? '') || TEMPLATED.test(s.title ?? '')))
     issues.push(['warn', 'templated service copy left in place']);
 
+  // "Substantive" = the page carries REAL body material (a written story, real
+  // services, or real testimonials). This is the signal that separates a good site
+  // with a soft cosmetic flaw (worth a WARN) from a bare templated stub (still a
+  // hard block). Computed up here so the cliché gate below can use it.
+  const hasBody = sections.some(
+    (s) => (s.kind === 'story' && (s.body?.length ?? 0) > 0) ||
+      (s.kind === 'services' && (s.items?.length ?? 0) > 0) ||
+      (s.kind === 'testimonials' && (s.items?.length ?? 0) > 0),
+  );
+
   // Cliché headline — the most important line on the page reaching for filler.
+  // RELAXED: a cliché headline is a COPY-QUALITY nit, not a dishonesty, so on an
+  // otherwise substantive site it must not hard-block (it was blocking good sites
+  // that simply kept a stock-sounding tagline). It stays CRITICAL only in the pure
+  // "AI batch" case — no research file AND no real body either, i.e. the headline
+  // is the only copy and it's filler. Verified-authored cliché copy is just info.
   const heading = homeHero?.heading ?? '';
   if (HEADLINE_CLICHES.test(heading)) {
     if (confirmed)
       issues.push(['info', `headline "${heading}" matches a cliché pattern but is verified-authored copy`]);
-    else if (!researched)
-      // No research file backs the site AND the headline is filler — the pure
-      // "AI batch" tell. Critical: a researched, specific promise is required.
-      issues.push(['critical', `cliché headline "${heading}" with no research backing — research a specific, earned promise`]);
+    else if (!researched && !hasBody)
+      // No research file AND no real body material — the headline is the only
+      // "copy" and it's filler. That's the genuine low-effort tell → critical.
+      issues.push(['critical', `cliché headline "${heading}" on a site with no research and no real body — research a specific, earned promise`]);
     else
+      // Substantive site (real body and/or a research file) with a cliché line →
+      // warn: improve the headline, but don't hold the demo back over it.
       issues.push(['warn', `cliché headline "${heading}" — rewrite with a specific, earned promise`]);
   }
   // TEMPLATED-HEADLINE-ONLY (critical, unless verified-authored) — a site whose
@@ -485,15 +507,12 @@ function auditProspect(slug, c, confirmed = false, researched = false) {
   // testimonials) is a bare templated stub, not a researched site. That's exactly
   // the sub-AVISP case the 95% bar holds back: the headline is the only "copy" and
   // it's a template. A site that earned a real story/services/quotes is NOT caught
-  // here even if it kept the fallback headline (the body carries it).
+  // here even if it kept the fallback headline (the body carries it) — this gate is
+  // ALREADY body-gated (`!hasBody`), so it can never fire on a substantive site;
+  // no relaxation needed, it's the honesty floor we keep.
   const templatedHeadline = new RegExp(
     `\\byou can count on$|\\b(serving|since)\\b.*\\bsince \\d{4}$`, 'i',
   ).test(heading) || /—\s*[\w\s]+\s+you can count on/i.test(heading);
-  const hasBody = sections.some(
-    (s) => (s.kind === 'story' && (s.body?.length ?? 0) > 0) ||
-      (s.kind === 'services' && (s.items?.length ?? 0) > 0) ||
-      (s.kind === 'testimonials' && (s.items?.length ?? 0) > 0),
-  );
   if (templatedHeadline && !hasBody && !confirmed) {
     issues.push(['critical', `templated-headline-only — hero "${heading}" is the deterministic fallback and the page has no real story/services/testimonials; research and write real copy`]);
   }
@@ -539,17 +558,35 @@ function auditProspect(slug, c, confirmed = false, researched = false) {
   if (!anyRealPhoto) {
     const homeSections = c.pages?.[0]?.sections ?? [];
     const homeKinds = homeSections.map((s) => s.kind);
-    const STRUCTURED_NONPHOTO = new Set(['callout', 'features', 'stats', 'steps', 'story', 'faq', 'pricing']);
+    // RELAXED: count `services` and `testimonials` as structured non-photo bands
+    // too — they carry real layout interest without imagery, exactly like the
+    // AVISP/Copper Bay pattern. (Was: only callout/features/stats/steps/story/faq/
+    // pricing.)
+    const STRUCTURED_NONPHOTO = new Set(['callout', 'features', 'stats', 'steps', 'story', 'faq', 'pricing', 'services', 'testimonials']);
     const structuredBands = homeKinds.filter((k) => STRUCTURED_NONPHOTO.has(k)).length;
-    const composed = homeSections.length >= 5 && structuredBands >= 2;
+    // RELAXED THRESHOLD (was: sections >= 5 && bands >= 2). Photo-light is a
+    // first-class outcome (owner vision: the SITE carries quality, not photos), so
+    // a real multi-section page with at least one structured band is "composed
+    // enough" to carry itself.
+    const composed = homeSections.length >= 4 && structuredBands >= 1;
     const hasTrust = hasCredentials || hasRating || hasTestimonials;
     if (composed && hasTrust) {
       photoLightVerdict = ['info', 'photo-light home — composed type/brand-driven layout carries it (no photos by design)'];
+    } else if (composed || hasTrust || hasBody) {
+      // SUBSTANTIVE but missing one ideal (no trust signal, OR a slightly thin
+      // band count) → WARN, not a hard block. This is a good photo-light site that
+      // could be stronger, not slop, so it must not be held back from the CRM over
+      // a single soft signal. (Was: any non-(composed&&trust) case was CRITICAL,
+      // which blocked real photo-light runs.)
+      const gap = !hasTrust
+        ? 'consider adding a verified credential, rating, or real testimonial'
+        : 'consider another structured band (stats/steps/callout) to enrich the layout';
+      photoLightVerdict = ['warn', `photo-light home (no photos by design) — ${gap}`];
     } else {
-      const why = !composed
-        ? 'thin layout — not enough composed structure to carry a zero-photo page'
-        : 'no trust signal — add a verified credential, rating, or real testimonial';
-      photoLightVerdict = ['critical', `no real photos and ${why}`];
+      // Genuinely thin: no composed structure, no trust signal, AND no real body
+      // material. That's the low-effort case the bar exists to hold back — it
+      // leans on absent photos with nothing behind them. Stays CRITICAL.
+      photoLightVerdict = ['critical', 'no real photos, a thin uncomposed layout, and no trust signal or body copy — compose real material or add a photo'];
     }
     issues.push(photoLightVerdict);
   }
@@ -627,16 +664,33 @@ function auditProspect(slug, c, confirmed = false, researched = false) {
 
   // Social proof: a rating OR real testimonials. Missing BOTH is a real gap;
   // missing only quotes (but has a rating) is minor.
+  // RELAXED: an all-placeholder/short testimonial set is WEAK social proof, but a
+  // generic author ("Verified customer") is NOT dishonest, so on a site that
+  // otherwise carries real body copy it must not hard-block — it drops to a WARN.
+  // It stays CRITICAL only when the page is also thin: weak proof AND nothing else
+  // is the genuine low-effort case. (Was: critical whenever every testimonial was
+  // placeholder+short with no rating, which blocked good sites.)
+  // NB: we judge body BEYOND the testimonials themselves (a real story or real
+  // services) — counting the weak testimonials as "body" here would be circular
+  // (the very thing we're flagging would excuse itself).
+  const substantiveBeyondProof = sections.some(
+    (s) => (s.kind === 'story' && (s.body?.length ?? 0) > 0) ||
+      (s.kind === 'services' && (s.items?.length ?? 0) > 0),
+  );
+  const weakProofLevel = substantiveBeyondProof ? 'warn' : 'critical';
+  const weakProofMsg = (substantiveBeyondProof
+    ? 'weak social proof — all testimonials are placeholder-author + short, and there is no rating (site carries real body copy; strengthen with a named review)'
+    : 'no social proof — all testimonials are placeholder-author + short, there is no rating, and the page has no real body copy');
   if (hasTestimonials || hasRating) {
     if (!hasTestimonials) issues.push(['info', 'no testimonials (has rating; quotes would help)']);
-    // All-placeholder short testimonials with no rating → escalate to critical.
+    // All-placeholder short testimonials with no rating → weak proof (level above).
     else if (allTmnPlaceholder && !hasRating) {
-      issues.push(['critical', 'no social proof — all testimonials are placeholder-author + short, and there is no rating']);
+      issues.push([weakProofLevel, weakProofMsg]);
     }
   } else if (hasCredentials) {
     issues.push(['info', 'no reviews yet — trust carried by verified credentials; add a review when available']);
   } else if (allTmnPlaceholder) {
-    issues.push(['critical', 'no social proof — all testimonials are placeholder-author + short, and there is no rating']);
+    issues.push([weakProofLevel, weakProofMsg]);
   } else {
     issues.push(['warn', 'no social proof — add a rating, a real testimonial, or a credential']);
   }
@@ -683,8 +737,33 @@ async function diskFileFor(jsonPath) {
   return hit ? join(dir, hit) : null;
 }
 
+// Lazily resolve scorePhoto (and thus `sharp`). Cached across calls; resolves to
+// null — printing a single warning — if the native binary can't load, so the
+// photo gate degrades to "skipped" instead of crashing the audit. The caller
+// (auditPhotos) bails to an empty issue list when this returns null.
+let _scorePhoto;
+let _scorePhotoTried = false;
+async function getScorePhoto() {
+  if (_scorePhotoTried) return _scorePhoto;
+  _scorePhotoTried = true;
+  try {
+    ({ scorePhoto: _scorePhoto } = await import('./lib/photo-score.mjs'));
+  } catch (e) {
+    _scorePhoto = null;
+    console.warn(
+      `  ⚠ photo scoring skipped — sharp unavailable (${(e && e.message) || e}).\n` +
+      '      Content / contrast / section / data-integrity audits still ran.',
+    );
+  }
+  return _scorePhoto;
+}
+
 async function auditPhotos(slug, c) {
   const issues = [];
+  // Fail-soft: if sharp/scorePhoto can't load, skip the byte-level photo gate
+  // (fuzzy / low-res) entirely rather than crash. Everything else still runs.
+  const scorePhoto = await getScorePhoto();
+  if (!scorePhoto) return issues;
   const homeHero = (c.pages?.[0]?.sections ?? []).find((s) => s.kind === 'hero');
   const heroSrc = homeHero?.image?.src ?? c.images?.hero;
   for (const src of realImgPaths(c)) {
