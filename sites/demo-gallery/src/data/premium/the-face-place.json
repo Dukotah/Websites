@@ -1,0 +1,267 @@
+{
+  "slug": "the-face-place",
+  "name": "The Face Place",
+  "legalName": "The Face Place",
+  "tagline": "Sebastopol's boutique skin care studio for over 15 years",
+  "seoDescription": "The Face Place is a boutique skin care studio in the heart of Sebastopol: results-driven facials, expert brows, waxing, and lash services from estheticians",
+  "category": "salon",
+  "categoryLabel": "Salon",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 823-7546",
+    "email": "thefaceplace@hotmail.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/The-Face-Place-123435761034461/",
+    "instagram": "https://www.instagram.com/thefaceplaceskincare/"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#aa427b",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sebastopol, CA",
+          "heading": "Skin Care in the Heart of Sebastopol",
+          "subheading": "Results-driven facials, brows, waxing, and lashes from a team Sebastopol has trusted for years.",
+          "badges": [
+            "A Sebastopol studio for 15+ years",
+            "Facials, brows, waxing and lashes",
+            "Trusted, results-driven skin care"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-face-place/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/the-face-place/services"
+          },
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why The Face Place",
+          "items": [
+            {
+              "title": "A Sebastopol Studio For 15+ Years",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Facials, Brows, Waxing And Lashes",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Trusted, Results-Driven Skin Care",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "shield"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About The Face Place",
+          "body": [
+            "The Face Place is a boutique skin care studio in the heart of Sebastopol, offering the very best in facials, waxing, brows, lashes, and beauty. For more than fifteen years it has been a trusted name for results-driven skin care, the kind of place clients return to for over a decade.",
+            "The team includes estheticians like Sebastopol-raised Ashley Baldwin, who grew up in her mom's longtime local salon and has practiced since 2002, and Meghan, who makes waxing comfortable and accessible for every body. Reviewers describe true pros who learn each client's preferences and keep them coming back."
+          ],
+          "highlights": [
+            "A Sebastopol studio for 15+ years",
+            "Facials, brows, waxing and lashes",
+            "Trusted, results-driven skin care"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Facials",
+              "description": "Results-driven facials tailored to your skin, from a team trained in real skin care."
+            },
+            {
+              "title": "Brows & Lashes",
+              "description": "Expert brow shaping and lash services, a longtime client favorite."
+            },
+            {
+              "title": "Waxing",
+              "description": "Comfortable, accessible waxing for every body."
+            },
+            {
+              "title": "Skin Care & Beauty",
+              "description": "A boutique studio for all of your skin care and beauty needs."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with The Face Place",
+          "body": "Call (707) 823-7546 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-face-place/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 823-7546",
+            "href": "tel:+17078237546"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Results-driven facials, brows, waxing, and lashes from a team Sebastopol has trusted for years.",
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Facials",
+              "description": "Results-driven facials tailored to your skin, from a team trained in real skin care."
+            },
+            {
+              "title": "Brows & Lashes",
+              "description": "Expert brow shaping and lash services, a longtime client favorite."
+            },
+            {
+              "title": "Waxing",
+              "description": "Comfortable, accessible waxing for every body."
+            },
+            {
+              "title": "Skin Care & Beauty",
+              "description": "A boutique studio for all of your skin care and beauty needs."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 823-7546 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Call (707) 823-7546 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-face-place/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 823-7546",
+            "href": "tel:+17078237546"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About The Face Place",
+          "heading": "About The Face Place",
+          "subheading": "The Face Place is a boutique skin care studio in the heart of Sebastopol, offering the very best in facials, waxing, brows, lashes, and beauty",
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About The Face Place",
+          "body": [
+            "The Face Place is a boutique skin care studio in the heart of Sebastopol, offering the very best in facials, waxing, brows, lashes, and beauty. For more than fifteen years it has been a trusted name for results-driven skin care, the kind of place clients return to for over a decade.",
+            "The team includes estheticians like Sebastopol-raised Ashley Baldwin, who grew up in her mom's longtime local salon and has practiced since 2002, and Meghan, who makes waxing comfortable and accessible for every body. Reviewers describe true pros who learn each client's preferences and keep them coming back."
+          ],
+          "highlights": [
+            "A Sebastopol studio for 15+ years",
+            "Facials, brows, waxing and lashes",
+            "Trusted, results-driven skin care"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see The Face Place",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-face-place/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach The Face Place or call (707) 823-7546.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

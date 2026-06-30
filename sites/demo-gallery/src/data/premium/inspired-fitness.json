@@ -1,0 +1,339 @@
+{
+  "slug": "inspired-fitness",
+  "name": "Inspired Fitness",
+  "legalName": "Inspired Fitness",
+  "tagline": "Sebastopol's neighborhood fitness and yoga studio since 2006",
+  "seoDescription": "Inspired Fitness Training Center in Sebastopol offers yoga, pilates, strength and cardio classes, and personal training since 2006, led by gold-medal gymnast",
+  "category": "fitness",
+  "categoryLabel": "Fitness",
+  "area": "Sebastopol, CA",
+  "city": "Sebastopol",
+  "state": "CA",
+  "established": "2006",
+  "contact": {
+    "phone": "(707) 329-6948",
+    "email": "info@inspired2befit.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/inspiredfitnesstrainingcenter",
+    "instagram": "https://www.instagram.com/inspired.fitness.sebastopol/"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#e3430c",
+    "fontId": "mono-grotesk"
+  },
+  "images": {
+    "hero": "/images/inspired-fitness/hero.webp",
+    "heroAlt": "Inspired Fitness in Sebastopol, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Sebastopol, CA · Est. 2006",
+          "heading": "Where Everybody Knows Your Name",
+          "subheading": "Yoga, pilates, strength, cardio, and personal training in Sebastopol since 2006, with a cold-pressed juice bar inside.",
+          "badges": [
+            "Serving since 2006",
+            "In Sebastopol since 2006",
+            "Founded by a gold-medal gymnast"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/inspired-fitness/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/inspired-fitness/services"
+          },
+          "image": {
+            "src": "/images/inspired-fitness/hero.webp",
+            "alt": "Inspired Fitness in Sebastopol, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Inspired Fitness",
+          "body": [
+            "Inspired Fitness Training Center has been Sebastopol's neighborhood fitness home since 2006. It is owned by Jennifer Fujii, a three-time United States gold medalist in aerobic gymnastics, and her husband John, who built it into the kind of gym members call the Cheers of gyms, where the team knows your name and you feel right at home.",
+            "Beyond the classes and one-on-one training, the center is home to Inspired Juice, serving cold-pressed juices, smoothies, avocado toast, and grab-and-go, so a workout and a fresh juice live under one roof."
+          ],
+          "highlights": [
+            "In Sebastopol since 2006",
+            "Founded by a gold-medal gymnast",
+            "Yoga, strength and personal training"
+          ],
+          "image": {
+            "src": "/images/inspired-fitness/story.webp",
+            "alt": "Inside Inspired Fitness",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Programs",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Yoga & Pilates",
+              "description": "A full yoga and pilates program for every level, on the schedule all week."
+            },
+            {
+              "title": "Strength & Cardio Classes",
+              "description": "Fun, motivating group strength and cardio classes."
+            },
+            {
+              "title": "Personal Training",
+              "description": "One-on-one personal training tailored to your goals."
+            },
+            {
+              "title": "Inspired Juice Bar",
+              "description": "Cold-pressed juices, smoothies, avocado toast, and grab-and-go on site."
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "20+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Inspired Fitness",
+          "images": [
+            {
+              "src": "/images/inspired-fitness/photo-5.webp",
+              "alt": "Inspired Fitness — photo 1"
+            },
+            {
+              "src": "/images/inspired-fitness/photo-6.webp",
+              "alt": "Inspired Fitness — photo 2"
+            },
+            {
+              "src": "/images/inspired-fitness/photo-13.webp",
+              "alt": "Inspired Fitness — photo 3"
+            },
+            {
+              "src": "/images/inspired-fitness/photo-2.webp",
+              "alt": "Inspired Fitness — photo 4"
+            },
+            {
+              "src": "/images/inspired-fitness/photo-3.webp",
+              "alt": "Inspired Fitness — photo 5"
+            },
+            {
+              "src": "/images/inspired-fitness/photo-8.webp",
+              "alt": "Inspired Fitness — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Inspired Fitness",
+          "body": "Call (707) 329-6948 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/inspired-fitness/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 329-6948",
+            "href": "tel:+17073296948"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Yoga, pilates, strength, cardio, and personal training in Sebastopol since 2006, with a cold-pressed juice bar inside.",
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Programs",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Yoga & Pilates",
+              "description": "A full yoga and pilates program for every level, on the schedule all week."
+            },
+            {
+              "title": "Strength & Cardio Classes",
+              "description": "Fun, motivating group strength and cardio classes."
+            },
+            {
+              "title": "Personal Training",
+              "description": "One-on-one personal training tailored to your goals."
+            },
+            {
+              "title": "Inspired Juice Bar",
+              "description": "Cold-pressed juices, smoothies, avocado toast, and grab-and-go on site."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sebastopol, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 329-6948 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Call (707) 329-6948 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/inspired-fitness/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 329-6948",
+            "href": "tel:+17073296948"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Inspired Fitness",
+          "heading": "About Inspired Fitness",
+          "subheading": "Inspired Fitness Training Center has been Sebastopol's neighborhood fitness home since 2006. It is owned by Jennifer Fujii, a three-time United States gold medalist in aerobic gymnastics, and her",
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Inspired Fitness",
+          "body": [
+            "Inspired Fitness Training Center has been Sebastopol's neighborhood fitness home since 2006. It is owned by Jennifer Fujii, a three-time United States gold medalist in aerobic gymnastics, and her husband John, who built it into the kind of gym members call the Cheers of gyms, where the team knows your name and you feel right at home.",
+            "Beyond the classes and one-on-one training, the center is home to Inspired Juice, serving cold-pressed juices, smoothies, avocado toast, and grab-and-go, so a workout and a fresh juice live under one roof."
+          ],
+          "highlights": [
+            "In Sebastopol since 2006",
+            "Founded by a gold-medal gymnast",
+            "Yoga, strength and personal training"
+          ],
+          "image": {
+            "src": "/images/inspired-fitness/story.webp",
+            "alt": "Inside Inspired Fitness",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "20+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/inspired-fitness/photo-5.webp",
+              "alt": "Inspired Fitness — photo 1"
+            },
+            {
+              "src": "/images/inspired-fitness/photo-6.webp",
+              "alt": "Inspired Fitness — photo 2"
+            },
+            {
+              "src": "/images/inspired-fitness/photo-13.webp",
+              "alt": "Inspired Fitness — photo 3"
+            },
+            {
+              "src": "/images/inspired-fitness/photo-2.webp",
+              "alt": "Inspired Fitness — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Inspired Fitness",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/inspired-fitness/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Inspired Fitness or call (707) 329-6948.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

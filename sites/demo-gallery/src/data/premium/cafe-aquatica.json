@@ -1,0 +1,264 @@
+{
+  "slug": "cafe-aquatica",
+  "name": "Cafe Aquatica",
+  "legalName": "Cafe Aquatica",
+  "tagline": "Organic coffee and ocean views where the river meets the sea",
+  "seoDescription": "Cafe Aquatica is a coastal cafe in Jenner where the Russian River meets the Pacific: locally roasted organic coffee, fresh sustainable fare, and live music",
+  "category": "cafe",
+  "categoryLabel": "Cafe",
+  "area": "Jenner, CA",
+  "city": "Jenner",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 865-2251",
+    "email": "",
+    "address": ""
+  },
+  "social": {},
+  "priceRange": "$$",
+  "brand": {
+    "color": "#b97936",
+    "fontId": "bitter-warm"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Jenner, CA",
+          "heading": "Where the River Meets the Sea",
+          "subheading": "Locally roasted organic coffee, fresh coastal fare, and live music on the Jenner estuary every weekend.",
+          "badges": [
+            "Where the river meets the sea",
+            "Locally roasted organic coffee",
+            "Live music every weekend"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/cafe-aquatica/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/cafe-aquatica/menu"
+          },
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Locally Roasted Coffee",
+              "description": "Outstanding cappuccinos, mochas, and espresso from locally roasted beans."
+            },
+            {
+              "title": "Coastal Cafe Fare",
+              "description": "Fresh, sustainably sourced breakfast and lunch: poached eggs, smoked-lox bagels, clam chowder."
+            },
+            {
+              "title": "Weekend Live Music",
+              "description": "Live musicians on the deck every Saturday and Sunday, overlooking the estuary."
+            },
+            {
+              "title": "Estuary & Ocean Views",
+              "description": "Deck and patio seating with sweeping views where the river meets the sea."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Cafe Aquatica",
+          "body": [
+            "Cafe Aquatica is a coastal bungalow perched on the shore in Jenner, right where the Russian River meets the Pacific. Under owner Rachel Kulinski, it pours locally roasted organic coffee and serves fresh, sustainably sourced food with some of the best estuary and ocean views on the Sonoma Coast.",
+            "Famed for its cappuccinos, mochas, clam chowder, and house-smoked lox, it is a laid-back beach cafe where fine musicians share their art on the deck every Saturday and Sunday, a local favorite and a coast-road landmark."
+          ],
+          "highlights": [
+            "Where the river meets the sea",
+            "Locally roasted organic coffee",
+            "Live music every weekend"
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Cafe Aquatica",
+          "items": [
+            {
+              "title": "Where The River Meets The Sea",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Locally Roasted Organic Coffee",
+              "body": "Made with care and real ingredients — quality you can taste.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Live Music Every Weekend",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 865-2251 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/cafe-aquatica/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 865-2251",
+            "href": "tel:+17078652251"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Locally roasted organic coffee, fresh coastal fare, and live music on the Jenner estuary every weekend.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Locally Roasted Coffee",
+              "description": "Outstanding cappuccinos, mochas, and espresso from locally roasted beans."
+            },
+            {
+              "title": "Coastal Cafe Fare",
+              "description": "Fresh, sustainably sourced breakfast and lunch: poached eggs, smoked-lox bagels, clam chowder."
+            },
+            {
+              "title": "Weekend Live Music",
+              "description": "Live musicians on the deck every Saturday and Sunday, overlooking the estuary."
+            },
+            {
+              "title": "Estuary & Ocean Views",
+              "description": "Deck and patio seating with sweeping views where the river meets the sea."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Jenner, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 865-2251 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 865-2251 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/cafe-aquatica/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 865-2251",
+            "href": "tel:+17078652251"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Cafe Aquatica",
+          "heading": "About Cafe Aquatica",
+          "subheading": "Cafe Aquatica is a coastal bungalow perched on the shore in Jenner, right where the Russian River meets the Pacific",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Cafe Aquatica",
+          "body": [
+            "Cafe Aquatica is a coastal bungalow perched on the shore in Jenner, right where the Russian River meets the Pacific. Under owner Rachel Kulinski, it pours locally roasted organic coffee and serves fresh, sustainably sourced food with some of the best estuary and ocean views on the Sonoma Coast.",
+            "Famed for its cappuccinos, mochas, clam chowder, and house-smoked lox, it is a laid-back beach cafe where fine musicians share their art on the deck every Saturday and Sunday, a local favorite and a coast-road landmark."
+          ],
+          "highlights": [
+            "Where the river meets the sea",
+            "Locally roasted organic coffee",
+            "Live music every weekend"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Cafe Aquatica",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/cafe-aquatica/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Cafe Aquatica or call (707) 865-2251.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

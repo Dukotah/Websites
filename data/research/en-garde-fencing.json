@@ -1,0 +1,61 @@
+{
+  "slug": "en-garde-fencing",
+  "confirmed": true,
+  "established": "2008",
+  "tagline": "Santa Rosa's fencing club for all ages since 2008",
+  "seoDescription": "En Garde Fencing in Santa Rosa teaches Olympic fencing, Historical European Martial Arts, archery, and more for ages 5 and up, a welcoming sword community founded in 2008.",
+  "heroHeading": "Learn the Art of the Sword",
+  "heroSubheading": "Olympic fencing, Historical European Martial Arts, archery, and more for ages 5 and up, a welcoming community since 2008.",
+  "highlights": [
+    "A fencing club since 2008",
+    "Olympic fencing, HEMA and archery",
+    "Classes for ages 5 and up"
+  ],
+  "aboutHeading": "About En Garde Fencing",
+  "aboutBody": [
+    "En Garde Fencing was founded in 2008 to create a fencing community in Santa Rosa where everyone is welcome to learn the art of the sword. It started in a rented church room, with practice on the altar stage, moved to the Odd Fellows Hall, and now trains at its own studio on Piner Road.",
+    "Owner and coach Jim Liebich is known for the rare balance of strict and silly that makes a great coach, and for making every newcomer feel welcome. The club teaches group classes for ages five and up across Olympic fencing, Historical European Martial Arts, archery, and more, with members who have trained here for the better part of a decade."
+  ],
+  "servicesHeading": "Classes",
+  "services": [
+    {
+      "title": "Olympic Fencing",
+      "description": "Foil, epee, and sabre instruction for competitive and recreational fencers."
+    },
+    {
+      "title": "Historical European Martial Arts",
+      "description": "HEMA classes, including youth HEMA, in historical swordsmanship."
+    },
+    {
+      "title": "Archery & Warbow",
+      "description": "Family archery and warbow classes."
+    },
+    {
+      "title": "Try-It-Out & LED Sabers",
+      "description": "A free half-hour intro class on Wednesdays and Fridays, plus LED-saber classes."
+    }
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/EnGardeFencing",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "Web-verified and authored for the ADA accessibility batch 2 (owner/history, services, awards confirmed from the business site + Yelp/Tripadvisor/press). confirmed:true.",
+  "_richness": 72,
+  "_source": "web-verified",
+  "_lead": {
+    "id": "",
+    "name": "En Garde Fencing",
+    "category": "fitness",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17075963626",
+    "email": "egfencing@gmail.com",
+    "address": "",
+    "owner": ""
+  },
+  "priceRange": "$$"
+}

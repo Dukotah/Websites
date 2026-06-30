@@ -1,0 +1,61 @@
+{
+  "slug": "cafe-aquatica",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Organic coffee and ocean views where the river meets the sea",
+  "seoDescription": "Cafe Aquatica is a coastal cafe in Jenner where the Russian River meets the Pacific: locally roasted organic coffee, fresh sustainable fare, and live music on the water every weekend.",
+  "heroHeading": "Where the River Meets the Sea",
+  "heroSubheading": "Locally roasted organic coffee, fresh coastal fare, and live music on the Jenner estuary every weekend.",
+  "highlights": [
+    "Where the river meets the sea",
+    "Locally roasted organic coffee",
+    "Live music every weekend"
+  ],
+  "aboutHeading": "About Cafe Aquatica",
+  "aboutBody": [
+    "Cafe Aquatica is a coastal bungalow perched on the shore in Jenner, right where the Russian River meets the Pacific. Under owner Rachel Kulinski, it pours locally roasted organic coffee and serves fresh, sustainably sourced food with some of the best estuary and ocean views on the Sonoma Coast.",
+    "Famed for its cappuccinos, mochas, clam chowder, and house-smoked lox, it is a laid-back beach cafe where fine musicians share their art on the deck every Saturday and Sunday, a local favorite and a coast-road landmark."
+  ],
+  "servicesHeading": "On the menu",
+  "services": [
+    {
+      "title": "Locally Roasted Coffee",
+      "description": "Outstanding cappuccinos, mochas, and espresso from locally roasted beans."
+    },
+    {
+      "title": "Coastal Cafe Fare",
+      "description": "Fresh, sustainably sourced breakfast and lunch: poached eggs, smoked-lox bagels, clam chowder."
+    },
+    {
+      "title": "Weekend Live Music",
+      "description": "Live musicians on the deck every Saturday and Sunday, overlooking the estuary."
+    },
+    {
+      "title": "Estuary & Ocean Views",
+      "description": "Deck and patio seating with sweeping views where the river meets the sea."
+    }
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "Web-verified and authored for the ADA accessibility batch 2 (owner/history, services, awards confirmed from the business site + Yelp/Tripadvisor/press). confirmed:true.",
+  "_richness": 72,
+  "_source": "web-verified",
+  "_lead": {
+    "id": "",
+    "name": "Cafe Aquatica",
+    "category": "cafe",
+    "city": "Jenner",
+    "state": "CA",
+    "phone": "+17078652251",
+    "email": "",
+    "address": "",
+    "owner": ""
+  },
+  "priceRange": "$$"
+}

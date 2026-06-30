@@ -1,0 +1,110 @@
+{
+  "slug": "rio-nido-roadhouse",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Russian River pub, pool, and live music in the redwoods",
+  "seoDescription": "Rio Nido Roadhouse is a Russian River institution: classic pub fare, craft beer, a swimming pool, and live music every weekend, tucked in the redwoods near Guerneville.",
+  "heroHeading": "Live Music in the Redwoods",
+  "heroSubheading": "Classic pub fare, craft cocktails, 15 beers on tap, a swimming pool, and live music every weekend on the Russian River.",
+  "highlights": [
+    "A Russian River institution",
+    "15 craft beers on tap",
+    "Live music every weekend"
+  ],
+  "aboutHeading": "About the Roadhouse",
+  "aboutBody": [
+    "The Rio Nido Roadhouse sits in the heart of the redwoods in the Russian River resort area, where bands have played for decades. For 14 years, owners Raena and Brad Jones Metzger have kept the tradition going with classic pub fare, craft cocktails, and a roster of mostly locally brewed beers.",
+    "It is equal parts restaurant, music venue, and summer hangout: great American pub food and daily specials, live music on the weekends, and a swimming pool that makes it a Russian River favorite all season long."
+  ],
+  "servicesHeading": "What's on tap",
+  "services": [
+    {
+      "title": "Classic Pub Kitchen",
+      "description": "Great American pub food and daily specials, served seven days a week."
+    },
+    {
+      "title": "Weekend Breakfast",
+      "description": "A full breakfast served Saturdays and Sundays."
+    },
+    {
+      "title": "Craft Beer & Cocktails",
+      "description": "15 craft beers on tap, mostly locally brewed, plus craft cocktails."
+    },
+    {
+      "title": "Live Music & Pool",
+      "description": "Live music every weekend, with a swimming pool and outdoor seating."
+    },
+    {
+      "title": "Events & Weddings",
+      "description": "Private events and weddings in a one-of-a-kind redwood setting."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Tue-Sun",
+      "hours": "9am-9pm"
+    },
+    {
+      "day": "Mon",
+      "hours": "Closed"
+    }
+  ],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/RioNidoRoadhouse",
+    "instagram": "https://www.instagram.com/rionidoroadhouse/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://static.wixstatic.com/media/7a0b95_43d4a1797ae846f1a798e4e64ed139e8~mv2.jpg",
+    "https://static.wixstatic.com/media/7a0b95_6d1e9fdeea634395bceceaf8209f4c9c%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/7a0b95_6d1e9fdeea634395bceceaf8209f4c9c%7Emv2.jpg",
+    "https://static.wixstatic.com/media/7a0b95_4429a681f40a4a89b6441de69e0de6cd~mv2.jpg/v1/7a0b95_4429a681f40a4a89b6441de69e0de6cd~mv2.jpg",
+    "https://static.wixstatic.com/media/7a0b95_8d05027c2e2548de89f9435a4077c656~mv2_d_2048_1365_s_2.jpg/v1/7a0b95_8d05027c2e2548de89f9435a4077c656~mv2_d_2048_1365_s_2.jpg",
+    "https://static.parastorage.com/services/santa/1.13152.0/node_modules/@wix/santa-galleries/target/StripShowcase/StripShowcase.html?compId=comp-ik54non2&amp;deviceType=desktop&amp;locale=en&amp;viewMode=site",
+    "https://static.parastorage.com/services/editor-elements-library/dist/thunderbolt/media/ironpatern.bb7ea6a2.png",
+    "https://static.wixstatic.com/media/7a0b95_43d4a1797ae846f1a798e4e64ed139e8%7Emv2.jpg/v1/7a0b95_43d4a1797ae846f1a798e4e64ed139e8%7Emv2.jpg",
+    "https://static.wixstatic.com/media/7a0b95_6d1e9fdeea634395bceceaf8209f4c9c%7Emv2.jpg/v1/7a0b95_6d1e9fdeea634395bceceaf8209f4c9c%7Emv2.jpg",
+    "https://static.wixstatic.com/media/0fdef751204647a3bbd7eaa2827ed4f9.png/v1/0fdef751204647a3bbd7eaa2827ed4f9.png",
+    "https://static.wixstatic.com/media/04b15d1b030049d1b3746f8ef5a72955.png/v1/04b15d1b030049d1b3746f8ef5a72955.png",
+    "https://static.wixstatic.com/media/8d13be_683a0b35049a4a42860a62c18093abc1.png/v1/8d13be_683a0b35049a4a42860a62c18093abc1.png",
+    "https://static.wixstatic.com/media/8d13be_a5600796b8e5466db3a0dbd466b4068d.png/v1/8d13be_a5600796b8e5466db3a0dbd466b4068d.png",
+    "https://static.wixstatic.com/media/8d13be_833a02bb8b204a2a9641e573f63d4f3a.png/v1/8d13be_833a02bb8b204a2a9641e573f63d4f3a.png",
+    "https://static.wixstatic.com/media/",
+    "https://browser.sentry-cdn.com/7.120.3/bundle.tracing.es5.min.js",
+    "https://browser.sentry-cdn.com/7.120.3/modulemetadata.es5.min.js",
+    "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/166dd6b46e167b17807deb6f67138957adb85639c23bc936e58e128b/media/menus_side_image.7077f229.jpeg",
+    "https://static.wixstatic.com/media/7a0b95_04766efff73747df9bce143ccfc37fcc~mv2.jpg/v1/7a0b95_04766efff73747df9bce143ccfc37fcc~mv2.jpg",
+    "https://static.wixstatic.com/media/7a0b95_b9594b8d0a5f43b38f7390c6f3a37e69~mv2.png/v1/7a0b95_b9594b8d0a5f43b38f7390c6f3a37e69~mv2.png",
+    "https://static.wixstatic.com/media/7a0b95_7aa7d766a5994ccc88743ad46970a9a7~mv2.jpeg/v1/7a0b95_7aa7d766a5994ccc88743ad46970a9a7~mv2.jpeg",
+    "https://static.wixstatic.com/media/7a0b95_65b0ac623c5f4e9e9d592075350b6650~mv2.jpeg/v1/7a0b95_65b0ac623c5f4e9e9d592075350b6650~mv2.jpeg",
+    "https://static.wixstatic.com/media/7a0b95_d418c11433f346168a81b38e6e806787~mv2.jpeg/v1/7a0b95_d418c11433f346168a81b38e6e806787~mv2.jpeg",
+    "https://static.wixstatic.com/media/7a0b95_9353613434414d2a94ec5f6469246f8e~mv2.jpg/v1/7a0b95_9353613434414d2a94ec5f6469246f8e~mv2.jpg",
+    "https://static.wixstatic.com/media/7a0b95_977657f2400945d9be7a8755ac53b648~mv2.jpeg/v1/7a0b95_977657f2400945d9be7a8755ac53b648~mv2.jpeg",
+    "https://static.parastorage.com/services/santa/1.13152.0/node_modules/@wix/santa-galleries/target/StripSlideshow/StripSlideshow.html?compId=comp-im42guwr&amp;deviceType=desktop&amp;locale=en&amp;viewMode=site",
+    "https://static.wixstatic.com/media/7a0b95_43d4a1797ae846f1a798e4e64ed139e8~mv2.jpg/v1/7a0b95_43d4a1797ae846f1a798e4e64ed139e8~mv2.jpg",
+    "https://static.wixstatic.com/media/7a0b95_78180c9113954cc88ad1369836ffb417~mv2.jpeg/v1/7a0b95_78180c9113954cc88ad1369836ffb417~mv2.jpeg",
+    "https://static.wixstatic.com/media/7a0b95_dc5caafabc0a4813accbd9030cfb0bd3~mv2.jpeg/v1/7a0b95_dc5caafabc0a4813accbd9030cfb0bd3~mv2.jpeg",
+    "https://static.wixstatic.com/media/7a0b95_fe10f453d37b4aad9b6dd608cc990db9~mv2.jpeg/v1/7a0b95_fe10f453d37b4aad9b6dd608cc990db9~mv2.jpeg",
+    "https://static.wixstatic.com/media/7a0b95_fafdaec619cb482d8f73a3e85fc9eb54~mv2.jpg/v1/7a0b95_fafdaec619cb482d8f73a3e85fc9eb54~mv2.jpg",
+    "https://static.wixstatic.com/media/7a0b95_0d4a1f94b7c74d10a7e6a2b0b6a482fb~mv2_d_1658_1968_s_2.jpeg/v1/7a0b95_0d4a1f94b7c74d10a7e6a2b0b6a482fb~mv2_d_1658_1968_s_2.jpeg",
+    "https://static.wixstatic.com/media/7a0b95_aa142ec8e18243f8be9d591053a23a05~mv2.jpeg/v1/7a0b95_aa142ec8e18243f8be9d591053a23a05~mv2.jpeg",
+    "https://static.wixstatic.com/media/7a0b95_36f502fa89c1494bbea871d616eda1d3~mv2.png/v1/7a0b95_36f502fa89c1494bbea871d616eda1d3~mv2.png",
+    "https://static.wixstatic.com/media/7a0b95_aa1c7092bb3946cf99b5c49a505d6729~mv2.png/v1/7a0b95_aa1c7092bb3946cf99b5c49a505d6729~mv2.png",
+    "https://static.wixstatic.com/media/7a0b95_a0507719433f4c3ea4713c737b0b93c7~mv2.jpeg/v1/7a0b95_a0507719433f4c3ea4713c737b0b93c7~mv2.jpeg"
+  ],
+  "notes": "Web-verified and authored for the ADA accessibility batch 2 (owner/history, services, awards confirmed from the business site + Yelp/Tripadvisor/press). confirmed:true.",
+  "_richness": 72,
+  "_source": "web-verified",
+  "_lead": {
+    "id": "",
+    "name": "Rio Nido Roadhouse",
+    "category": "restaurant",
+    "city": "Rio Nido",
+    "state": "CA",
+    "phone": "",
+    "email": "Raena@rionidoroadhouse.com",
+    "address": "",
+    "owner": ""
+  },
+  "priceRange": "$$"
+}

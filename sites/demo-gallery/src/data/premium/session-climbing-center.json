@@ -1,0 +1,351 @@
+{
+  "slug": "session-climbing-center",
+  "name": "Session Climbing Center",
+  "legalName": "Session Climbing Center",
+  "tagline": "Santa Rosa's world-class climbing, yoga, and fitness center",
+  "seoDescription": "Session Climbing is Santa Rosa's state-of-the-art indoor climbing, yoga, and fitness center: 23,000+ sq ft of bouldering and rope walls up to 50 feet, founded",
+  "category": "fitness",
+  "categoryLabel": "Fitness",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2022",
+  "contact": {
+    "phone": "(707) 852-1040",
+    "email": "",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/sessionclimbing/",
+    "instagram": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-15/733172776_18447218194139781_400931271876794019_n.jpg?stp=dst-jpg_e35_tt6&#038;_nc_cat=102&#038;ccb=7-5&#038;_nc_sid=18de74&#038;efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&#038;_nc_ohc=ALZBHqmYvlEQ7kNvwHZTjg2&#038;_nc_oc=AdrGm2m53d0yZGEbXgnrq__2DtbCmN3uAGq8-pXD2S3_NZEjh91TJLe7UZk_W8WJp8M&#038;_nc_zt=23&#038;_nc_ht=scontent-ord5-2.cdninstagram.com&#038;edm=ANo9K5cEAAAA&#038;_nc_gid=AXSOG4bIeWBMRnhxvOMyMg&#038;_nc_tpa=Q5bMBQEVbCFgbhl5hKbkR-OkIMz5kidKcG-BMOnB76pJQksCCMvTlH8sh8LcZYJLyRghXwwNzseUuvT4aA&#038;oh=00_AQATwqwOOeccw0Losl6TCCVjVUYj949JFRHR3qVEohb6QQ&#038;oe=6A494798"
+  },
+  "rating": {
+    "value": 4.6,
+    "source": "Google"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#d84a1c",
+    "fontId": "grotesk-press"
+  },
+  "images": {
+    "hero": "/images/session-climbing-center/hero.jpg",
+    "heroAlt": "Session Climbing Center in Santa Rosa, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Santa Rosa, CA · Est. 2022",
+          "heading": "Time Well Spent, Well Climbed",
+          "subheading": "23,000+ square feet of bouldering and rope walls up to 50 feet, plus yoga and fitness, founded by Dawn Wall climber Kevin Jorgeson.",
+          "badges": [
+            "Serving since 2022",
+            "4.6★",
+            "Founded by Kevin Jorgeson"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/session-climbing-center/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/session-climbing-center/services"
+          },
+          "image": {
+            "src": "/images/session-climbing-center/hero.jpg",
+            "alt": "Session Climbing Center in Santa Rosa, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Session Climbing",
+          "body": [
+            "Session Climbing is a state-of-the-art indoor climbing, yoga, and fitness center in Santa Rosa, founded by world-class climbers Kevin Jorgeson, who free-climbed the Dawn Wall of El Capitan, and Mike Shaffer. Named Best North Bay Recreation Project, the 23,578-square-foot facility opened in 2022 with extensive bouldering terrain and rope walls reaching up to 50 feet.",
+            "Above the climbing floor sit a 1,300-square-foot yoga studio with an open-air balcony looking out to Taylor Mountain and a communal cafe lounge. With classes, coaching, and robust youth camps and teams, Session welcomes everyone from first-time climbers to seasoned athletes, built on the idea that time well spent leads to a life well lived."
+          ],
+          "highlights": [
+            "Founded by Kevin Jorgeson",
+            "50-ft walls, 150+ routes",
+            "Climbing, yoga and youth programs"
+          ],
+          "image": {
+            "src": "/images/session-climbing-center/story.webp",
+            "alt": "Inside Session Climbing Center",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What's inside",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Bouldering & Rope Climbing",
+              "description": "Extensive bouldering plus top-rope, lead, and speed walls up to 50 feet, with 150+ routes in rotation."
+            },
+            {
+              "title": "Yoga & Fitness",
+              "description": "A second-floor yoga studio and fitness facilities with classes all week."
+            },
+            {
+              "title": "Classes & Coaching",
+              "description": "Intro-to-climbing classes and coaching for every level."
+            },
+            {
+              "title": "Youth Programs",
+              "description": "Camps, clubs, and competitive youth teams."
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.6★",
+              "label": "Customer rating"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Session Climbing Center",
+          "images": [
+            {
+              "src": "/images/session-climbing-center/photo-14.jpg",
+              "alt": "Session Climbing Center — photo 1"
+            },
+            {
+              "src": "/images/session-climbing-center/photo-5.webp",
+              "alt": "Session Climbing Center — photo 2"
+            },
+            {
+              "src": "/images/session-climbing-center/photo-4.webp",
+              "alt": "Session Climbing Center — photo 3"
+            },
+            {
+              "src": "/images/session-climbing-center/photo-6.jpg",
+              "alt": "Session Climbing Center — photo 4"
+            },
+            {
+              "src": "/images/session-climbing-center/photo-15.webp",
+              "alt": "Session Climbing Center — photo 5"
+            },
+            {
+              "src": "/images/session-climbing-center/photo-7.webp",
+              "alt": "Session Climbing Center — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Session Climbing Center",
+          "body": "Call (707) 852-1040 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/session-climbing-center/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 852-1040",
+            "href": "tel:+17078521040"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "23,000+ square feet of bouldering and rope walls up to 50 feet, plus yoga and fitness, founded by Dawn Wall climber Kevin Jorgeson.",
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What's inside",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Bouldering & Rope Climbing",
+              "description": "Extensive bouldering plus top-rope, lead, and speed walls up to 50 feet, with 150+ routes in rotation."
+            },
+            {
+              "title": "Yoga & Fitness",
+              "description": "A second-floor yoga studio and fitness facilities with classes all week."
+            },
+            {
+              "title": "Classes & Coaching",
+              "description": "Intro-to-climbing classes and coaching for every level."
+            },
+            {
+              "title": "Youth Programs",
+              "description": "Camps, clubs, and competitive youth teams."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 852-1040 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Call (707) 852-1040 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/session-climbing-center/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 852-1040",
+            "href": "tel:+17078521040"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Session Climbing Center",
+          "heading": "About Session Climbing",
+          "subheading": "Session Climbing is a state-of-the-art indoor climbing, yoga, and fitness center in Santa Rosa, founded by world-class climbers Kevin Jorgeson, who free-climbed the Dawn Wall of El Capitan, and Mike",
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Session Climbing",
+          "body": [
+            "Session Climbing is a state-of-the-art indoor climbing, yoga, and fitness center in Santa Rosa, founded by world-class climbers Kevin Jorgeson, who free-climbed the Dawn Wall of El Capitan, and Mike Shaffer. Named Best North Bay Recreation Project, the 23,578-square-foot facility opened in 2022 with extensive bouldering terrain and rope walls reaching up to 50 feet.",
+            "Above the climbing floor sit a 1,300-square-foot yoga studio with an open-air balcony looking out to Taylor Mountain and a communal cafe lounge. With classes, coaching, and robust youth camps and teams, Session welcomes everyone from first-time climbers to seasoned athletes, built on the idea that time well spent leads to a life well lived."
+          ],
+          "highlights": [
+            "Founded by Kevin Jorgeson",
+            "50-ft walls, 150+ routes",
+            "Climbing, yoga and youth programs"
+          ],
+          "image": {
+            "src": "/images/session-climbing-center/story.webp",
+            "alt": "Inside Session Climbing Center",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.6★",
+              "label": "Customer rating"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/session-climbing-center/photo-14.jpg",
+              "alt": "Session Climbing Center — photo 1"
+            },
+            {
+              "src": "/images/session-climbing-center/photo-5.webp",
+              "alt": "Session Climbing Center — photo 2"
+            },
+            {
+              "src": "/images/session-climbing-center/photo-4.webp",
+              "alt": "Session Climbing Center — photo 3"
+            },
+            {
+              "src": "/images/session-climbing-center/photo-6.jpg",
+              "alt": "Session Climbing Center — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Session Climbing Center",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/session-climbing-center/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Session Climbing Center or call (707) 852-1040.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

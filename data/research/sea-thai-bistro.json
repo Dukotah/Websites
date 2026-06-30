@@ -1,0 +1,72 @@
+{
+  "slug": "sea-thai-bistro",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Sonoma County's award-winning Thai bistro",
+  "seoDescription": "SEA Thai Bistro in Santa Rosa's Montgomery Village is voted Best Thai Restaurant in Sonoma County: chef-owner Tony Ounpamornchai blends authentic Thai with modern California ingredients.",
+  "heroHeading": "Voted Best Thai in Sonoma County",
+  "heroSubheading": "Chef-owner Tony Ounpamornchai blends authentic Thai cooking with modern California ingredients in Montgomery Village.",
+  "highlights": [
+    "Best Thai in Sonoma County",
+    "Chef-owner Tony Ounpamornchai",
+    "Full bar and craft cocktails"
+  ],
+  "aboutHeading": "About SEA Thai Bistro",
+  "aboutBody": [
+    "SEA Thai Bistro is the work of chef-owner Tony Ounpamornchai, whose Thai heritage and modern sensibility come together in a menu that dynamically blends Asian and contemporary American ingredients. The result has been voted Best Thai Restaurant in Sonoma County by The Press Democrat.",
+    "Tucked into Santa Rosa's Montgomery Village, SEA pairs that outstanding food with craft cocktails and attentive service in a lively bistro setting, a longtime local favorite that diners return to again and again."
+  ],
+  "servicesHeading": "The experience",
+  "services": [
+    {
+      "title": "Modern Thai Kitchen",
+      "description": "Authentic Thai dishes blended with modern California ingredients, made to order."
+    },
+    {
+      "title": "Craft Bar & Cocktails",
+      "description": "A full bar with craft cocktails and an extensive drink list."
+    },
+    {
+      "title": "Lunch & Dinner",
+      "description": "Served in Montgomery Village, with patio seating available."
+    },
+    {
+      "title": "Catering & Private Dining",
+      "description": "Catering and private events for gatherings across Sonoma County."
+    }
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/SEAThaiBistro",
+    "instagram": "https://www.instagram.com/seathaibistro/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://static.wixstatic.com/media/85762c_90b61c29aeed4b39b659e26426d73802~mv2.jpg/v1/85762c_90b61c29aeed4b39b659e26426d73802~mv2.jpg",
+    "https://static.wixstatic.com/media/85762c_8d92c348397e48ae9f30648652c4b8ec~mv2.png/v1/85762c_8d92c348397e48ae9f30648652c4b8ec~mv2.png",
+    "https://static.wixstatic.com/media/85762c_3cbcd9ec07494fffa5918b3a6ae96b2a~mv2.png/v1/toppng_edited_edited.png",
+    "https://static.wixstatic.com/media/85762c_73f467bf66b946b1ab78fb48e61e1813~mv2.png/v1/toppng_edited.png",
+    "https://static.wixstatic.com/media/85762c_c77297f61c3941bc973390c2cdd92a56~mv2.png/v1/85762c_c77297f61c3941bc973390c2cdd92a56~mv2.png",
+    "https://static.wixstatic.com/media/85762c_dad4bc2c14ac42588de4da43da89eb2f~mv2.jpg/v1/85762c_dad4bc2c14ac42588de4da43da89eb2f~mv2.jpg",
+    "https://static.parastorage.com/services/editor-elements-library/dist/thunderbolt/media/sloppyframe.3214ce8e.png",
+    "https://static.wixstatic.com/media/",
+    "https://browser.sentry-cdn.com/7.120.3/bundle.tracing.es5.min.js",
+    "https://browser.sentry-cdn.com/7.120.3/modulemetadata.es5.min.js"
+  ],
+  "notes": "Web-verified and authored for the ADA accessibility batch 2 (owner/history, services, awards confirmed from the business site + Yelp/Tripadvisor/press). confirmed:true.",
+  "_richness": 72,
+  "_source": "web-verified",
+  "_lead": {
+    "id": "",
+    "name": "SEA Thai Bistro",
+    "category": "restaurant",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "",
+    "email": "",
+    "address": "",
+    "owner": ""
+  },
+  "priceRange": "$$"
+}

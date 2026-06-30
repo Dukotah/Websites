@@ -1,0 +1,131 @@
+{
+  "slug": "sunflower-caffe",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Honest food and stellar coffee on the historic Sonoma Plaza",
+  "seoDescription": "Sunflower Caffe serves simple, honest breakfast and lunch with stellar coffee on a garden patio in the historic Salvador Vallejo adobe on the Sonoma Plaza.",
+  "heroHeading": "A Garden Cafe on the Sonoma Plaza",
+  "heroSubheading": "Simple, honest food and stellar coffee, served on a beautiful garden patio in the historic Salvador Vallejo adobe.",
+  "highlights": [
+    "On the historic Sonoma Plaza",
+    "Garden patio for breakfast and lunch",
+    "Family-owned, open daily"
+  ],
+  "aboutHeading": "About Sunflower Caffe",
+  "aboutBody": [
+    "Sunflower Caffe sits on the historic Sonoma Plaza in the old adobe home of Salvador Vallejo, California Historical Landmark No. 501. Owners James Hahn and Mila Chaname run it as a family-owned, community-driven cafe where simple, honest food is made with real local ingredients.",
+    "It is the perfect place to start the morning with stellar coffee drinks, breakfast, and lunch on the beautiful garden patio, a quiet green courtyard just steps from the Plaza."
+  ],
+  "servicesHeading": "What we serve",
+  "services": [
+    {
+      "title": "Breakfast & Brunch",
+      "description": "Hearty, made-from-scratch breakfast served daily on the garden patio."
+    },
+    {
+      "title": "Lunch, Sandwiches & Salads",
+      "description": "A fresh lunch menu of sandwiches, salads, and soups built on local Sonoma ingredients."
+    },
+    {
+      "title": "Espresso & Coffee Bar",
+      "description": "Stellar espresso drinks, drip coffee, and house specialties to start the day."
+    },
+    {
+      "title": "The Garden Patio",
+      "description": "A lush, tucked-away courtyard for relaxed dining and gatherings."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Daily",
+      "hours": "8am-3pm"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "★★★★★ This was one THE most pleasant dining experience on our two week vacation of the west coast. Our server was Caden and he was absolutely phenomenal (be sure to request him!) The outside patio was so pleasant, we didn't want to leave and start our wine tasting tour for the day. The menu was diverse with so many healthy yet delicious items, and the food was indescribably delicious.",
+      "author": "Local customer"
+    },
+    {
+      "quote": "★★★★★ We hosted our wedding welcome dinner here and it was such a great venue! Jamie was really great to work with and super accommodating. The staff were incredibly helpful and friendly. The space is super cute and they let us set up our own decor as well. Would highly recommend hosting an event here!",
+      "author": "Local customer"
+    },
+    {
+      "quote": "★★★★★ Wonderful server and the best veg scramble I've ever had and an amazing burrata with beets, grapefruit and pistachios. Perfectly crusty panzanella for dipping in the burrata. Beautiful fresh juices on a happy patio full of well fed people enjoying a splendid repast.",
+      "author": "Local customer"
+    },
+    {
+      "quote": "★★★★★ Wow I loved this place! I got the chicken avocado grilled cheese and it was perfectly melty and delicious. Everything on the menu sounded enticing, I can’t wait to try more items. Super cute outdoor patio with plenty of umbrellas for some shade in the Sonoma summer heat. I will definitely come back next time I’m in town!",
+      "author": "Local customer"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/SunflowerCaffe/",
+    "instagram": "https://www.instagram.com/sunflowercaffe/",
+    "google": "https://maps.googleapis.com"
+  },
+  "realPhotoUrls": [
+    "https://sonomasunflower.com/cdn/shop/files/Brandmark_L.png?v=1699556871",
+    "https://sonomasunflower.com/cdn/shop/files/sunflowercaffenewmerch-03.jpg?v=1700595656",
+    "https://sonomasunflower.com/cdn/shop/files/JAH8127.jpg?v=1705793331",
+    "https://sonomasunflower.com/cdn/shop/files/Sunflower_Homepage_FirstFold_Option2_af8c1dbf-2c06-4b0c-918d-580e3cdfc903.png?v=1774451872",
+    "https://sonomasunflower.com/cdn/shop/files/Sunflower_Homepage_FirstFold_Option2.png?v=1774393878",
+    "https://sonomasunflower.com/cdn/shop/files/Rooster_Our_Food_is_Simple.png?v=1700159924",
+    "https://cdn.shopify.com/s/files/1/0627/1133/3055/files/Menu.png?v=1700086366",
+    "https://cdn.shopify.com/s/files/1/0627/1133/3055/files/SFC_Homepage__Takeout_Button.png?v=1770422346",
+    "https://cdn.shopify.com/s/files/1/0627/1133/3055/files/Shop.png?v=1700086395",
+    "https://sonomasunflower.com/cdn/shop/files/Sonoma_Latte.png?v=1699561443",
+    "https://sonomasunflower.com/cdn/shop/files/Sonoma_Sunflower_Caffe_Menus.png?v=1699561443",
+    "https://sonomasunflower.com/cdn/shop/files/Sonoma_Breakfast_Biscuit.png?v=1699561443",
+    "https://sonomasunflower.com/cdn/shop/files/SFC_Blog_HomeImage_3.png?v=1781041175",
+    "https://sonomasunflower.com/cdn/shop/files/Sunflower_Website_Round_2_SM-11.png?v=1757722023",
+    "https://sonomasunflower.com/cdn/shop/files/Sunflower_Website_Round_2_SM-12.png?v=1757722038",
+    "https://sonomasunflower.com/cdn/shop/files/IMG_6549_1.jpg?v=1754410252",
+    "https://sonomasunflower.com/cdn/shop/files/Asset_5M.png?v=1699564926",
+    "https://sonomasunflower.com/cdn/shop/files/Artboard_15-8.png?v=1700158135",
+    "https://cdn.shopify.com/shopifycloud/shop-js",
+    "https://cdn.shopify.com/shopifycloud/storefront-forms-hcaptcha/ce_storefront_forms_captcha_hcaptcha.v1.5.2.iife.js",
+    "https://cdn.shopify.com/shopifycloud/storefront/assets/storefront/origin_trials-5059b83f.js",
+    "https://cdn.shopify.com/storefront/standard-actions.js",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_event-12.jpg?v=1741796696",
+    "https://sonomasunflower.com/cdn/shop/files/SFC_EventMenu_Revised_260217_ff313418-0819-4d89-95df-5adad50804b4.jpg?v=1771533947",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_event_2024.jpg?v=1739230809",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_event_may-31.jpg?v=1739230817",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_event_2024-7.jpg?v=1739221803",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_event_may-21.jpg?v=1739230946",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_event_may-25.jpg?v=1739230829",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_event_may-27_b6bb9ada-3579-4e3b-8ad5-1f05c75a555b.jpg?v=1739230822",
+    "https://sonomasunflower.com/cdn/shop/files/Sunflower_AboutCollage_Revised_43c6741e-b851-4d79-8349-989ca96d601a.png?v=1768513180",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_fourth_of_july-4_copy_REVISED.jpg?v=1757715394",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_brunch-1.jpg?v=1754414060",
+    "https://sonomasunflower.com/cdn/shop/files/french_toast.jpg?v=1754414095",
+    "https://sonomasunflower.com/cdn/shop/files/3DE4A220-0D17-44E1-BFAC-0A5D231A019F.jpg?v=1754414122",
+    "https://sonomasunflower.com/cdn/shop/files/sfc-4.jpg?v=1757715116",
+    "https://sonomasunflower.com/cdn/shop/files/JAH4603.jpg?v=1754414246",
+    "https://sonomasunflower.com/cdn/shop/files/sfc_chips_and_caviar.jpg?v=1754414264",
+    "https://sonomasunflower.com/cdn/shop/files/SFCfoodmenu_Website_Menu_Button.png?v=1769468889",
+    "https://sonomasunflower.com/cdn/shop/files/SFCfoodmenu_Website_Beverages_Text_Mobile_Our_Mene_Button.png?v=1769468942",
+    "https://sonomasunflower.com/cdn/shop/files/SFC_FoodMenu_Footer_Desktop.png?v=1771877761",
+    "https://sonomasunflower.com/cdn/shop/files/SFC_FoodMenu_Footer_Mobile.png?v=1771877771",
+    "https://sonomasunflower.com/cdn/shop/files/SFCfoodmenu_Website_Beverages_Text.png?v=1768438834",
+    "https://sonomasunflower.com/cdn/shop/files/SFCfoodmenu_Website_Beverages_Text_Mobile_Beverage_Mobile.png?v=1768439165",
+    "https://sonomasunflower.com/cdn/shop/files/Menu_Footer.png?v=1768438240",
+    "https://sonomasunflower.com/cdn/shop/files/Menu_Footer_Mobile.png?v=1768438475",
+    "https://cdn.shopify.com/s/files/1/0627/1133/3055/files/SFC_ONLINE_food_menu_6_19_26.pdf?v=1781888978"
+  ],
+  "notes": "Web-verified and authored for the ADA accessibility batch 2 (owner/history, services, awards confirmed from the business site + Yelp/Tripadvisor/press). confirmed:true.",
+  "_richness": 72,
+  "_source": "web-verified",
+  "_lead": {
+    "id": "",
+    "name": "Sunflower Caffe",
+    "category": "cafe",
+    "city": "Sonoma",
+    "state": "CA",
+    "phone": "",
+    "email": "info@sonomasunflower.com",
+    "address": "",
+    "owner": ""
+  },
+  "priceRange": "$$"
+}

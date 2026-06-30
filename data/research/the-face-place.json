@@ -1,0 +1,88 @@
+{
+  "slug": "the-face-place",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Sebastopol's boutique skin care studio for over 15 years",
+  "seoDescription": "The Face Place is a boutique skin care studio in the heart of Sebastopol: results-driven facials, expert brows, waxing, and lash services from estheticians clients have trusted for over a decade.",
+  "heroHeading": "Skin Care in the Heart of Sebastopol",
+  "heroSubheading": "Results-driven facials, brows, waxing, and lashes from a team Sebastopol has trusted for years.",
+  "highlights": [
+    "A Sebastopol studio for 15+ years",
+    "Facials, brows, waxing and lashes",
+    "Trusted, results-driven skin care"
+  ],
+  "aboutHeading": "About The Face Place",
+  "aboutBody": [
+    "The Face Place is a boutique skin care studio in the heart of Sebastopol, offering the very best in facials, waxing, brows, lashes, and beauty. For more than fifteen years it has been a trusted name for results-driven skin care, the kind of place clients return to for over a decade.",
+    "The team includes estheticians like Sebastopol-raised Ashley Baldwin, who grew up in her mom's longtime local salon and has practiced since 2002, and Meghan, who makes waxing comfortable and accessible for every body. Reviewers describe true pros who learn each client's preferences and keep them coming back."
+  ],
+  "servicesHeading": "Services",
+  "services": [
+    {
+      "title": "Facials",
+      "description": "Results-driven facials tailored to your skin, from a team trained in real skin care."
+    },
+    {
+      "title": "Brows & Lashes",
+      "description": "Expert brow shaping and lash services, a longtime client favorite."
+    },
+    {
+      "title": "Waxing",
+      "description": "Comfortable, accessible waxing for every body."
+    },
+    {
+      "title": "Skin Care & Beauty",
+      "description": "A boutique studio for all of your skin care and beauty needs."
+    }
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/The-Face-Place-123435761034461/",
+    "instagram": "https://www.instagram.com/thefaceplaceskincare/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://www.thefaceplaceskincare.com/quality_auto/9616a8_5f6b643fa8fd4480ba423cd543527af7~mv2.jpg",
+    "https://www.thefaceplaceskincare.com/quality_auto/iStock-1330973449.jpg",
+    "https://www.thefaceplaceskincare.com/quality_auto/9616a8_c220af2ef50d4f77bce9b9f79a91f609~mv2.jpg",
+    "https://www.thefaceplaceskincare.com/quality_auto/9616a8_56ca840a05144cf0bbc278a5caea2ef2~mv2.jpg",
+    "https://www.thefaceplaceskincare.com/quality_auto/iStock-1366405738.jpg",
+    "https://static.wixstatic.com/media/9616a8_5f4904a514b94070acfe3a19c57eeb8b~mv2_d_2000_2000_s_2.jpg/v1/9616a8_5f4904a514b94070acfe3a19c57eeb8b~mv2_d_2000_2000_s_2.jpg",
+    "https://www.thefaceplaceskincare.com/quality_auto/9616a8_19171cb676cd4cef91859307e77dea95~mv2_d_2016_1512_s_2.jpg",
+    "https://static.wixstatic.com/media/11062b_2042bb7351284f0f982e4787d37415e6f000.jpg/v1/11062b_2042bb7351284f0f982e4787d37415e6f000.jpg",
+    "https://static.wixstatic.com/media/35cb8e_162461bb0b004d0ba76cade44c941874%7Emv2.jpg/v1/35cb8e_162461bb0b004d0ba76cade44c941874%7Emv2.jpg",
+    "https://static.wixstatic.com/media/72a44c1b3b7c450287b9f4dd21be1548.png/v1/72a44c1b3b7c450287b9f4dd21be1548.png",
+    "https://static.wixstatic.com/media/d7c95bf7ba7e424d9d590123e67ea834.png/v1/d7c95bf7ba7e424d9d590123e67ea834.png",
+    "https://static.wixstatic.com/media/bee829bad6424aaf87bebda4fa5e07ff.png/v1/bee829bad6424aaf87bebda4fa5e07ff.png",
+    "https://static.wixstatic.com/media/9616a8_5f6b643fa8fd4480ba423cd543527af7~mv2.jpg/v1/fill/w_455,h_457,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/9616a8_5f6b643fa8fd4480ba423cd543527af7~mv2.jpg",
+    "https://static.wixstatic.com/media/9616a8_5f6b643fa8fd4480ba423cd543527af7~mv2.jpg/v1/fill/w_910,h_914,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/9616a8_5f6b643fa8fd4480ba423cd543527af7~mv2.jpg",
+    "https://static.wixstatic.com/media/35cb8e_b53d60a5ef6e481981991f7b522adbc2~mv2.jpg/v1/iStock-1330973449.jpg",
+    "https://static.wixstatic.com/media/9616a8_c220af2ef50d4f77bce9b9f79a91f609~mv2.jpg/v1/9616a8_c220af2ef50d4f77bce9b9f79a91f609~mv2.jpg",
+    "https://static.wixstatic.com/media/9616a8_56ca840a05144cf0bbc278a5caea2ef2~mv2.jpg/v1/9616a8_56ca840a05144cf0bbc278a5caea2ef2~mv2.jpg",
+    "https://static.wixstatic.com/media/35cb8e_6614dda0a51f45a4ac57c75f48578ed4~mv2.jpg/v1/iStock-1366405738.jpg",
+    "https://static.wixstatic.com/media/9616a8_19171cb676cd4cef91859307e77dea95~mv2_d_2016_1512_s_2.jpg/v1/9616a8_19171cb676cd4cef91859307e77dea95~mv2_d_2016_1512_s_2.jpg",
+    "https://static.wixstatic.com/media/9616a8_749bd74d1d3e4235a7935a593fbd786d~mv2.jpg/v1/9616a8_749bd74d1d3e4235a7935a593fbd786d~mv2.jpg",
+    "https://static.wixstatic.com/media/e0678ef25486466ba65ef6ad47b559e1.png/v1/e0678ef25486466ba65ef6ad47b559e1.png",
+    "https://static.wixstatic.com/media/da7ef6dd1302486c9a67baebe4b364bc.png/v1/da7ef6dd1302486c9a67baebe4b364bc.png",
+    "https://static.wixstatic.com/media/046efec37b594017ac59d36499fc32a9.png/v1/046efec37b594017ac59d36499fc32a9.png",
+    "https://static.wixstatic.com/media/",
+    "https://browser.sentry-cdn.com/7.120.3/bundle.tracing.es5.min.js",
+    "https://browser.sentry-cdn.com/7.120.3/modulemetadata.es5.min.js"
+  ],
+  "notes": "Web-verified and authored for the ADA accessibility batch 2 (owner/history, services, awards confirmed from the business site + Yelp/Tripadvisor/press). confirmed:true.",
+  "_richness": 72,
+  "_source": "web-verified",
+  "_lead": {
+    "id": "",
+    "name": "The Face Place",
+    "category": "salon",
+    "city": "Sebastopol",
+    "state": "CA",
+    "phone": "+17078237546",
+    "email": "thefaceplace@hotmail.com",
+    "address": "",
+    "owner": ""
+  },
+  "priceRange": "$$"
+}

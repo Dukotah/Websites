@@ -1,0 +1,61 @@
+{
+  "slug": "maxwell-nails-salon",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Elegant nail care in the heart of Sonoma for over 15 years",
+  "seoDescription": "Maxwell Nails Salon has offered manicures, pedicures, and nail art in Sonoma for over 15 years, with a strict focus on cleanliness and single-use sanitation.",
+  "heroHeading": "Elegant Nail Care in Sonoma",
+  "heroSubheading": "Manicures, pedicures, and stylish nail art in a relaxing Sonoma salon, with strict, single-use sanitation.",
+  "highlights": [
+    "Serving Sonoma for 15+ years",
+    "Manicures, pedicures and nail art",
+    "Strict single-use sanitation"
+  ],
+  "aboutHeading": "About Maxwell Nails Salon",
+  "aboutBody": [
+    "Maxwell Nails Salon has been part of Sonoma for over fifteen years, offering elegant manicures, pedicures, and stylish nail art in a relaxing, well-appointed space with comfortable massage chairs. Clients describe gentle, professional, and welcoming service.",
+    "Cleanliness comes first: every technician is trained to the strictest sanitation standards, buffers and files are used once and discarded, paraffin wax is never recycled, and every pedicure is done with a fresh liner, so each visit is as safe as it is relaxing."
+  ],
+  "servicesHeading": "Services",
+  "services": [
+    {
+      "title": "Manicures",
+      "description": "Classic and gel manicures finished to a polished, elegant look."
+    },
+    {
+      "title": "Pedicures",
+      "description": "Relaxing pedicures in comfortable massage chairs, with fresh single-use liners."
+    },
+    {
+      "title": "Nail Art & Design",
+      "description": "Custom nail art and stylish designs for any occasion."
+    },
+    {
+      "title": "Sanitation First",
+      "description": "Single-use files and buffers, never-recycled paraffin, and strict sanitation throughout."
+    }
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/MaxwellNailsSonoma",
+    "instagram": "https://www.instagram.com/MaxwellNailsSonoma",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "Web-verified and authored for the ADA accessibility batch 2 (owner/history, services, awards confirmed from the business site + Yelp/Tripadvisor/press). confirmed:true.",
+  "_richness": 72,
+  "_source": "web-verified",
+  "_lead": {
+    "id": "",
+    "name": "Maxwell Nails Salon",
+    "category": "salon",
+    "city": "Sonoma",
+    "state": "CA",
+    "phone": "+17079333838",
+    "email": "Utrosario255@gmail.com",
+    "address": "",
+    "owner": ""
+  },
+  "priceRange": "$$"
+}

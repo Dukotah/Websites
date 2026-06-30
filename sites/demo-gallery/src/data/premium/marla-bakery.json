@@ -1,0 +1,339 @@
+{
+  "slug": "marla-bakery",
+  "name": "Marla Bakery",
+  "legalName": "Marla Bakery",
+  "tagline": "A craft bakery and cafe in Santa Rosa's Railroad Square",
+  "seoDescription": "Marla is chef Amy Brown's craft bakery and cafe in Santa Rosa's historic Railroad Square: artisan breads, croissants, pastry, and seasonal cafe fare from",
+  "category": "cafe",
+  "categoryLabel": "Cafe",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 852-4091",
+    "email": "",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/Marla__SR-101050428292746/",
+    "instagram": "https://www.instagram.com/marla__sr/"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#9e6031",
+    "fontId": "editorial-serif"
+  },
+  "images": {
+    "hero": "/images/marla-bakery/hero.jpg",
+    "heroAlt": "Marla Bakery in Santa Rosa, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Craft Bakery in Railroad Square",
+          "subheading": "Artisan breads, croissants, and pastry made from locally farmed, seasonal ingredients by chef Amy Brown.",
+          "badges": [
+            "Chef Amy Brown, formerly of Nopa",
+            "Croissants among Sonoma's best",
+            "Local, organic, seasonal"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/marla-bakery/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/marla-bakery/menu"
+          },
+          "image": {
+            "src": "/images/marla-bakery/hero.jpg",
+            "alt": "Marla Bakery in Santa Rosa, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Marla",
+          "body": [
+            "Marla is the craft bakery and cafe of chef-owner Amy Brown, who spent two decades as a bread baker and pastry chef, most recently running the pastry program at San Francisco's acclaimed Nopa, before opening Marla with her husband and partner Joe Wolf. The name is an acronym of the family members who taught them to cook and bake.",
+            "Now in Santa Rosa's historic Railroad Square, Marla's breads, pastries, cookies, tarts, cakes, and croissants reflect that experience and the abundance of where they live, with menus driven by each season and locally grown organic produce, flours, eggs, and butter."
+          ],
+          "highlights": [
+            "Chef Amy Brown, formerly of Nopa",
+            "Croissants among Sonoma's best",
+            "Local, organic, seasonal"
+          ],
+          "image": {
+            "src": "/images/marla-bakery/story.jpg",
+            "alt": "Inside Marla Bakery",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "From the bakery",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Artisan Breads",
+              "description": "Naturally leavened loaves and baguettes baked fresh, the foundation of the bakery."
+            },
+            {
+              "title": "Croissants & Pastry",
+              "description": "Laminated croissants and morning pastry made from scratch, a Sonoma County favorite."
+            },
+            {
+              "title": "Cookies, Tarts & Cakes",
+              "description": "Seasonal cookies, tarts, and special-occasion cakes from the pastry kitchen."
+            },
+            {
+              "title": "Cafe & Catering",
+              "description": "A seasonal cafe menu and catering built on locally farmed ingredients."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Marla Bakery",
+          "items": [
+            {
+              "title": "Chef Amy Brown, Formerly Of Nopa",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Croissants Among Sonoma'S Best",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Local, Organic, Seasonal",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "leaf"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Marla Bakery",
+          "images": [
+            {
+              "src": "/images/marla-bakery/photo-10.jpg",
+              "alt": "Marla Bakery — photo 1"
+            },
+            {
+              "src": "/images/marla-bakery/photo-5.webp",
+              "alt": "Marla Bakery — photo 2"
+            },
+            {
+              "src": "/images/marla-bakery/photo-4.webp",
+              "alt": "Marla Bakery — photo 3"
+            },
+            {
+              "src": "/images/marla-bakery/photo-8.jpg",
+              "alt": "Marla Bakery — photo 4"
+            },
+            {
+              "src": "/images/marla-bakery/photo-9.jpg",
+              "alt": "Marla Bakery — photo 5"
+            },
+            {
+              "src": "/images/marla-bakery/photo-12.jpg",
+              "alt": "Marla Bakery — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 852-4091 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/marla-bakery/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 852-4091",
+            "href": "tel:+17078524091"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Artisan breads, croissants, and pastry made from locally farmed, seasonal ingredients by chef Amy Brown.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "From the bakery",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Artisan Breads",
+              "description": "Naturally leavened loaves and baguettes baked fresh, the foundation of the bakery."
+            },
+            {
+              "title": "Croissants & Pastry",
+              "description": "Laminated croissants and morning pastry made from scratch, a Sonoma County favorite."
+            },
+            {
+              "title": "Cookies, Tarts & Cakes",
+              "description": "Seasonal cookies, tarts, and special-occasion cakes from the pastry kitchen."
+            },
+            {
+              "title": "Cafe & Catering",
+              "description": "A seasonal cafe menu and catering built on locally farmed ingredients."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 852-4091 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 852-4091 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/marla-bakery/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 852-4091",
+            "href": "tel:+17078524091"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Marla Bakery",
+          "heading": "About Marla",
+          "subheading": "Marla is the craft bakery and cafe of chef-owner Amy Brown, who spent two decades as a bread baker and pastry chef, most recently running the pastry program at San Francisco's acclaimed Nopa, before",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Marla",
+          "body": [
+            "Marla is the craft bakery and cafe of chef-owner Amy Brown, who spent two decades as a bread baker and pastry chef, most recently running the pastry program at San Francisco's acclaimed Nopa, before opening Marla with her husband and partner Joe Wolf. The name is an acronym of the family members who taught them to cook and bake.",
+            "Now in Santa Rosa's historic Railroad Square, Marla's breads, pastries, cookies, tarts, cakes, and croissants reflect that experience and the abundance of where they live, with menus driven by each season and locally grown organic produce, flours, eggs, and butter."
+          ],
+          "highlights": [
+            "Chef Amy Brown, formerly of Nopa",
+            "Croissants among Sonoma's best",
+            "Local, organic, seasonal"
+          ],
+          "image": {
+            "src": "/images/marla-bakery/story.jpg",
+            "alt": "Inside Marla Bakery",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/marla-bakery/photo-10.jpg",
+              "alt": "Marla Bakery — photo 1"
+            },
+            {
+              "src": "/images/marla-bakery/photo-5.webp",
+              "alt": "Marla Bakery — photo 2"
+            },
+            {
+              "src": "/images/marla-bakery/photo-4.webp",
+              "alt": "Marla Bakery — photo 3"
+            },
+            {
+              "src": "/images/marla-bakery/photo-8.jpg",
+              "alt": "Marla Bakery — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Marla Bakery",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/marla-bakery/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Marla Bakery or call (707) 852-4091.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

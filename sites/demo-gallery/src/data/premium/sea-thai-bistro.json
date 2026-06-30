@@ -1,0 +1,267 @@
+{
+  "slug": "sea-thai-bistro",
+  "name": "SEA Thai Bistro",
+  "legalName": "SEA Thai Bistro",
+  "tagline": "Sonoma County's award-winning Thai bistro",
+  "seoDescription": "SEA Thai Bistro in Santa Rosa's Montgomery Village is voted Best Thai Restaurant in Sonoma County: chef-owner Tony Ounpamornchai blends authentic Thai",
+  "category": "restaurant",
+  "categoryLabel": "Restaurant",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 528-8333",
+    "email": "",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/SEAThaiBistro",
+    "instagram": "https://www.instagram.com/seathaibistro/"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#be3420",
+    "fontId": "fraunces-grotesk"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Voted Best Thai in Sonoma County",
+          "subheading": "Chef-owner Tony Ounpamornchai blends authentic Thai cooking with modern California ingredients in Montgomery Village.",
+          "badges": [
+            "Best Thai in Sonoma County",
+            "Chef-owner Tony Ounpamornchai",
+            "Full bar and craft cocktails"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/sea-thai-bistro/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/sea-thai-bistro/menu"
+          },
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "The experience",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Modern Thai Kitchen",
+              "description": "Authentic Thai dishes blended with modern California ingredients, made to order."
+            },
+            {
+              "title": "Craft Bar & Cocktails",
+              "description": "A full bar with craft cocktails and an extensive drink list."
+            },
+            {
+              "title": "Lunch & Dinner",
+              "description": "Served in Montgomery Village, with patio seating available."
+            },
+            {
+              "title": "Catering & Private Dining",
+              "description": "Catering and private events for gatherings across Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About SEA Thai Bistro",
+          "body": [
+            "SEA Thai Bistro is the work of chef-owner Tony Ounpamornchai, whose Thai heritage and modern sensibility come together in a menu that dynamically blends Asian and contemporary American ingredients. The result has been voted Best Thai Restaurant in Sonoma County by The Press Democrat.",
+            "Tucked into Santa Rosa's Montgomery Village, SEA pairs that outstanding food with craft cocktails and attentive service in a lively bistro setting, a longtime local favorite that diners return to again and again."
+          ],
+          "highlights": [
+            "Best Thai in Sonoma County",
+            "Chef-owner Tony Ounpamornchai",
+            "Full bar and craft cocktails"
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why SEA Thai Bistro",
+          "items": [
+            {
+              "title": "Best Thai In Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Chef-Owner Tony Ounpamornchai",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Full Bar And Craft Cocktails",
+              "body": "Made with care and real ingredients — quality you can taste.",
+              "icon": "sparkle"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 528-8333 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/sea-thai-bistro/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 528-8333",
+            "href": "tel:+17075288333"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Chef-owner Tony Ounpamornchai blends authentic Thai cooking with modern California ingredients in Montgomery Village.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "The experience",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Modern Thai Kitchen",
+              "description": "Authentic Thai dishes blended with modern California ingredients, made to order."
+            },
+            {
+              "title": "Craft Bar & Cocktails",
+              "description": "A full bar with craft cocktails and an extensive drink list."
+            },
+            {
+              "title": "Lunch & Dinner",
+              "description": "Served in Montgomery Village, with patio seating available."
+            },
+            {
+              "title": "Catering & Private Dining",
+              "description": "Catering and private events for gatherings across Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 528-8333 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 528-8333 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/sea-thai-bistro/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 528-8333",
+            "href": "tel:+17075288333"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About SEA Thai Bistro",
+          "heading": "About SEA Thai Bistro",
+          "subheading": "SEA Thai Bistro is the work of chef-owner Tony Ounpamornchai, whose Thai heritage and modern sensibility come together in a menu that dynamically blends Asian and contemporary American ingredients",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About SEA Thai Bistro",
+          "body": [
+            "SEA Thai Bistro is the work of chef-owner Tony Ounpamornchai, whose Thai heritage and modern sensibility come together in a menu that dynamically blends Asian and contemporary American ingredients. The result has been voted Best Thai Restaurant in Sonoma County by The Press Democrat.",
+            "Tucked into Santa Rosa's Montgomery Village, SEA pairs that outstanding food with craft cocktails and attentive service in a lively bistro setting, a longtime local favorite that diners return to again and again."
+          ],
+          "highlights": [
+            "Best Thai in Sonoma County",
+            "Chef-owner Tony Ounpamornchai",
+            "Full bar and craft cocktails"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see SEA Thai Bistro",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/sea-thai-bistro/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach SEA Thai Bistro or call (707) 528-8333.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

@@ -1,0 +1,267 @@
+{
+  "slug": "maxwell-nails-salon",
+  "name": "Maxwell Nails Salon",
+  "legalName": "Maxwell Nails Salon",
+  "tagline": "Elegant nail care in the heart of Sonoma for over 15 years",
+  "seoDescription": "Maxwell Nails Salon has offered manicures, pedicures, and nail art in Sonoma for over 15 years, with a strict focus on cleanliness and single-use sanitation.",
+  "category": "salon",
+  "categoryLabel": "Salon",
+  "area": "Sonoma, CA",
+  "city": "Sonoma",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 933-3838",
+    "email": "Utrosario255@gmail.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/MaxwellNailsSonoma",
+    "instagram": "https://www.instagram.com/MaxwellNailsSonoma"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#b03d85",
+    "fontId": "garalde-editorial"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Sonoma, CA",
+          "heading": "Elegant Nail Care in Sonoma",
+          "subheading": "Manicures, pedicures, and stylish nail art in a relaxing Sonoma salon, with strict, single-use sanitation.",
+          "badges": [
+            "Serving Sonoma for 15+ years",
+            "Manicures, pedicures and nail art",
+            "Strict single-use sanitation"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/maxwell-nails-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/maxwell-nails-salon/services"
+          },
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Maxwell Nails Salon",
+          "body": [
+            "Maxwell Nails Salon has been part of Sonoma for over fifteen years, offering elegant manicures, pedicures, and stylish nail art in a relaxing, well-appointed space with comfortable massage chairs. Clients describe gentle, professional, and welcoming service.",
+            "Cleanliness comes first: every technician is trained to the strictest sanitation standards, buffers and files are used once and discarded, paraffin wax is never recycled, and every pedicure is done with a fresh liner, so each visit is as safe as it is relaxing."
+          ],
+          "highlights": [
+            "Serving Sonoma for 15+ years",
+            "Manicures, pedicures and nail art",
+            "Strict single-use sanitation"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Manicures",
+              "description": "Classic and gel manicures finished to a polished, elegant look."
+            },
+            {
+              "title": "Pedicures",
+              "description": "Relaxing pedicures in comfortable massage chairs, with fresh single-use liners."
+            },
+            {
+              "title": "Nail Art & Design",
+              "description": "Custom nail art and stylish designs for any occasion."
+            },
+            {
+              "title": "Sanitation First",
+              "description": "Single-use files and buffers, never-recycled paraffin, and strict sanitation throughout."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Maxwell Nails Salon",
+          "items": [
+            {
+              "title": "Serving Sonoma For 15+ Years",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            },
+            {
+              "title": "Manicures, Pedicures And Nail Art",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Strict Single-Use Sanitation",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with Maxwell Nails Salon",
+          "body": "Call (707) 933-3838 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/maxwell-nails-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 933-3838",
+            "href": "tel:+17079333838"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Manicures, pedicures, and stylish nail art in a relaxing Sonoma salon, with strict, single-use sanitation.",
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Services",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Manicures",
+              "description": "Classic and gel manicures finished to a polished, elegant look."
+            },
+            {
+              "title": "Pedicures",
+              "description": "Relaxing pedicures in comfortable massage chairs, with fresh single-use liners."
+            },
+            {
+              "title": "Nail Art & Design",
+              "description": "Custom nail art and stylish designs for any occasion."
+            },
+            {
+              "title": "Sanitation First",
+              "description": "Single-use files and buffers, never-recycled paraffin, and strict sanitation throughout."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sonoma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 933-3838 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Call (707) 933-3838 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/maxwell-nails-salon/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 933-3838",
+            "href": "tel:+17079333838"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Maxwell Nails Salon",
+          "heading": "About Maxwell Nails Salon",
+          "subheading": "Maxwell Nails Salon has been part of Sonoma for over fifteen years, offering elegant manicures, pedicures, and stylish nail art in a relaxing, well-appointed space with comfortable massage chairs",
+          "motif": "/images/library/salon/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Maxwell Nails Salon",
+          "body": [
+            "Maxwell Nails Salon has been part of Sonoma for over fifteen years, offering elegant manicures, pedicures, and stylish nail art in a relaxing, well-appointed space with comfortable massage chairs. Clients describe gentle, professional, and welcoming service.",
+            "Cleanliness comes first: every technician is trained to the strictest sanitation standards, buffers and files are used once and discarded, paraffin wax is never recycled, and every pedicure is done with a fresh liner, so each visit is as safe as it is relaxing."
+          ],
+          "highlights": [
+            "Serving Sonoma for 15+ years",
+            "Manicures, pedicures and nail art",
+            "Strict single-use sanitation"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Maxwell Nails Salon",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/maxwell-nails-salon/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Maxwell Nails Salon or call (707) 933-3838.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

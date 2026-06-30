@@ -1,0 +1,98 @@
+{
+  "slug": "marla-bakery",
+  "confirmed": true,
+  "established": "",
+  "tagline": "A craft bakery and cafe in Santa Rosa's Railroad Square",
+  "seoDescription": "Marla is chef Amy Brown's craft bakery and cafe in Santa Rosa's historic Railroad Square: artisan breads, croissants, pastry, and seasonal cafe fare from locally farmed ingredients.",
+  "heroHeading": "Craft Bakery in Railroad Square",
+  "heroSubheading": "Artisan breads, croissants, and pastry made from locally farmed, seasonal ingredients by chef Amy Brown.",
+  "highlights": [
+    "Chef Amy Brown, formerly of Nopa",
+    "Croissants among Sonoma's best",
+    "Local, organic, seasonal"
+  ],
+  "aboutHeading": "About Marla",
+  "aboutBody": [
+    "Marla is the craft bakery and cafe of chef-owner Amy Brown, who spent two decades as a bread baker and pastry chef, most recently running the pastry program at San Francisco's acclaimed Nopa, before opening Marla with her husband and partner Joe Wolf. The name is an acronym of the family members who taught them to cook and bake.",
+    "Now in Santa Rosa's historic Railroad Square, Marla's breads, pastries, cookies, tarts, cakes, and croissants reflect that experience and the abundance of where they live, with menus driven by each season and locally grown organic produce, flours, eggs, and butter."
+  ],
+  "servicesHeading": "From the bakery",
+  "services": [
+    {
+      "title": "Artisan Breads",
+      "description": "Naturally leavened loaves and baguettes baked fresh, the foundation of the bakery."
+    },
+    {
+      "title": "Croissants & Pastry",
+      "description": "Laminated croissants and morning pastry made from scratch, a Sonoma County favorite."
+    },
+    {
+      "title": "Cookies, Tarts & Cakes",
+      "description": "Seasonal cookies, tarts, and special-occasion cakes from the pastry kitchen."
+    },
+    {
+      "title": "Cafe & Catering",
+      "description": "A seasonal cafe menu and catering built on locally farmed ingredients."
+    }
+  ],
+  "hours": [],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/Marla__SR-101050428292746/",
+    "instagram": "https://www.instagram.com/marla__sr/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://marlabakery.com/cdn/shop/files/MarlaSR-branding2.png?v=1719351830",
+    "https://marlabakery.com/cdn/shop/files/preview_images/f8f9f2f593744bcd8b3170e0c518b500.thumbnail.0000000000_small.jpg?v=1769354063",
+    "https://marlabakery.com/cdn/shop/files/hero_13a.jpg?v=1676479091",
+    "https://marlabakery.com/cdn/shop/files/hero_09a.jpg?v=1676479317",
+    "https://marlabakery.com/cdn/shop/files/hero_04a.jpg?v=1698348227",
+    "https://marlabakery.com/cdn/shop/files/hero_10b.jpg?v=1698348351",
+    "https://marlabakery.com/cdn/shop/files/hero_01.jpg?v=1698348016",
+    "https://marlabakery.com/cdn/shop/files/french_toast.jpg?v=1698950300",
+    "https://marlabakery.com/cdn/shop/files/04_1024.jpg?v=1701282886",
+    "https://marlabakery.com/cdn/shop/files/croissants.jpg?v=1698950301",
+    "https://marlabakery.com/cdn/shop/files/hotcrossedbuns_601efedd-3970-4e45-8336-ee2d6125562e.jpg?v=1772980497",
+    "https://marlabakery.com/cdn/shop/files/mezze_platter.jpg?v=1726703789",
+    "https://marlabakery.com/cdn/shop/files/bagel_3.jpg?v=1726770382",
+    "https://marlabakery.com/cdn/shop/files/charcuterie_board.jpg?v=1726703738",
+    "https://marlabakery.com/cdn/shop/products/sandwich_platter.png?v=1675916183",
+    "https://marlabakery.com/cdn/shop/files/sweet_treat_platter.jpg?v=1726703929",
+    "https://marlabakery.com/cdn/shop/files/Marla-Bakery-2020-Branding-white-10.png?v=1741128863",
+    "https://marlabakery.com/cdn/shop/files/home_1.png?v=1698354489",
+    "https://marlabakery.com/cdn/shop/files/home_2.png?v=1698354517",
+    "https://marlabakery.com/cdn/shop/files/home_3.png?v=1698354545",
+    "https://marlabakery.com/cdn/shop/products/bread.png?v=1675915213",
+    "https://marlabakery.com/cdn/shop/files/cookie_box_a7b63e07-2aa5-4819-87cc-b8fe3cb30107.png?v=1707352671",
+    "https://marlabakery.com/cdn/shop/files/english_muffin.jpg?v=1720647777",
+    "https://cdn.shopify.com/shopifycloud/shop-js",
+    "https://cdn.shopify.com/shopifycloud/storefront-forms-hcaptcha/ce_storefront_forms_captcha_hcaptcha.v1.5.2.iife.js",
+    "https://cdn.shopify.com/shopifycloud/storefront/assets/storefront/origin_trials-5059b83f.js",
+    "https://cdn.shopify.com/extensions/019f18eb-83a4-7834-b742-22666edf8f56/zapiet-pickup-delivery-1336/assets/storepickup.css",
+    "https://cdn.shopify.com/extensions/019f18eb-83a4-7834-b742-22666edf8f56/zapiet-pickup-delivery-1336/assets/vendor.js",
+    "https://cdn.shopify.com/extensions/019f18eb-83a4-7834-b742-22666edf8f56/zapiet-pickup-delivery-1336/assets/storepickup.js",
+    "https://cdn.shopify.com/extensions/019f18eb-83a4-7834-b742-22666edf8f56/zapiet-pickup-delivery-1336/assets/pickup.js",
+    "https://cdn.shopify.com/extensions/019f18eb-83a4-7834-b742-22666edf8f56/zapiet-pickup-delivery-1336/assets/pickup_map.js",
+    "https://cdn.shopify.com/storefront/standard-actions.js",
+    "https://cdn.shopify.com/s/files/1/0710/5137/8978/files/hero_09b.jpg?v=1697132259",
+    "https://cdn.shopify.com/s/files/1/0710/5137/8978/files/amy.jpg?v=1719946195",
+    "https://cdn.shopify.com/s/files/1/0710/5137/8978/files/joe.jpg?v=1719946195",
+    "https://cdn.shopify.com/s/files/1/0710/5137/8978/files/tink.jpg?v=1720025966"
+  ],
+  "notes": "Web-verified and authored for the ADA accessibility batch 2 (owner/history, services, awards confirmed from the business site + Yelp/Tripadvisor/press). confirmed:true.",
+  "_richness": 72,
+  "_source": "web-verified",
+  "_lead": {
+    "id": "",
+    "name": "Marla Bakery",
+    "category": "cafe",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "+17078524091",
+    "email": "",
+    "address": "",
+    "owner": ""
+  },
+  "priceRange": "$$"
+}

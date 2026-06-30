@@ -1,0 +1,266 @@
+{
+  "slug": "en-garde-fencing",
+  "name": "En Garde Fencing",
+  "legalName": "En Garde Fencing",
+  "tagline": "Santa Rosa's fencing club for all ages since 2008",
+  "seoDescription": "En Garde Fencing in Santa Rosa teaches Olympic fencing, Historical European Martial Arts, archery, and more for ages 5 and up, a welcoming sword community",
+  "category": "fitness",
+  "categoryLabel": "Fitness",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "2008",
+  "contact": {
+    "phone": "(707) 596-3626",
+    "email": "egfencing@gmail.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/EnGardeFencing"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#bc4f1e",
+    "fontId": "figtree-friendly"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 2008",
+          "heading": "Learn the Art of the Sword",
+          "subheading": "Olympic fencing, Historical European Martial Arts, archery, and more for ages 5 and up, a welcoming community since 2008.",
+          "badges": [
+            "Serving since 2008",
+            "A fencing club since 2008",
+            "Olympic fencing, HEMA and archery"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/en-garde-fencing/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/en-garde-fencing/services"
+          },
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "18+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About En Garde Fencing",
+          "body": [
+            "En Garde Fencing was founded in 2008 to create a fencing community in Santa Rosa where everyone is welcome to learn the art of the sword. It started in a rented church room, with practice on the altar stage, moved to the Odd Fellows Hall, and now trains at its own studio on Piner Road.",
+            "Owner and coach Jim Liebich is known for the rare balance of strict and silly that makes a great coach, and for making every newcomer feel welcome. The club teaches group classes for ages five and up across Olympic fencing, Historical European Martial Arts, archery, and more, with members who have trained here for the better part of a decade."
+          ],
+          "highlights": [
+            "A fencing club since 2008",
+            "Olympic fencing, HEMA and archery",
+            "Classes for ages 5 and up"
+          ]
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "Classes",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Olympic Fencing",
+              "description": "Foil, epee, and sabre instruction for competitive and recreational fencers."
+            },
+            {
+              "title": "Historical European Martial Arts",
+              "description": "HEMA classes, including youth HEMA, in historical swordsmanship."
+            },
+            {
+              "title": "Archery & Warbow",
+              "description": "Family archery and warbow classes."
+            },
+            {
+              "title": "Try-It-Out & LED Sabers",
+              "description": "A free half-hour intro class on Wednesdays and Fridays, plus LED-saber classes."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with En Garde Fencing",
+          "body": "Call (707) 596-3626 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/en-garde-fencing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 596-3626",
+            "href": "tel:+17075963626"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "Olympic fencing, Historical European Martial Arts, archery, and more for ages 5 and up, a welcoming community since 2008.",
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "Classes",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Olympic Fencing",
+              "description": "Foil, epee, and sabre instruction for competitive and recreational fencers."
+            },
+            {
+              "title": "Historical European Martial Arts",
+              "description": "HEMA classes, including youth HEMA, in historical swordsmanship."
+            },
+            {
+              "title": "Archery & Warbow",
+              "description": "Family archery and warbow classes."
+            },
+            {
+              "title": "Try-It-Out & LED Sabers",
+              "description": "A free half-hour intro class on Wednesdays and Fridays, plus LED-saber classes."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 596-3626 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "body": "Call (707) 596-3626 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/en-garde-fencing/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 596-3626",
+            "href": "tel:+17075963626"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About En Garde Fencing",
+          "heading": "About En Garde Fencing",
+          "subheading": "En Garde Fencing was founded in 2008 to create a fencing community in Santa Rosa where everyone is welcome to learn the art of the sword",
+          "motif": "/images/library/fitness/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About En Garde Fencing",
+          "body": [
+            "En Garde Fencing was founded in 2008 to create a fencing community in Santa Rosa where everyone is welcome to learn the art of the sword. It started in a rented church room, with practice on the altar stage, moved to the Odd Fellows Hall, and now trains at its own studio on Piner Road.",
+            "Owner and coach Jim Liebich is known for the rare balance of strict and silly that makes a great coach, and for making every newcomer feel welcome. The club teaches group classes for ages five and up across Olympic fencing, Historical European Martial Arts, archery, and more, with members who have trained here for the better part of a decade."
+          ],
+          "highlights": [
+            "A fencing club since 2008",
+            "Olympic fencing, HEMA and archery",
+            "Classes for ages 5 and up"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "18+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see En Garde Fencing",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/en-garde-fencing/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach En Garde Fencing or call (707) 596-3626.",
+          "showMap": false,
+          "showHours": false
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}

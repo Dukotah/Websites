@@ -1,0 +1,307 @@
+{
+  "slug": "rio-nido-roadhouse",
+  "name": "Rio Nido Roadhouse",
+  "legalName": "Rio Nido Roadhouse",
+  "tagline": "Russian River pub, pool, and live music in the redwoods",
+  "seoDescription": "Rio Nido Roadhouse is a Russian River institution: classic pub fare, craft beer, a swimming pool, and live music every weekend, tucked in the redwoods near",
+  "category": "restaurant",
+  "categoryLabel": "Restaurant",
+  "area": "Rio Nido, CA",
+  "city": "Rio Nido",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 869-0821",
+    "email": "Raena@rionidoroadhouse.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/RioNidoRoadhouse",
+    "instagram": "https://www.instagram.com/rionidoroadhouse/"
+  },
+  "hours": [
+    {
+      "day": "Tue-Sun",
+      "hours": "9am-9pm"
+    },
+    {
+      "day": "Mon",
+      "hours": "Closed"
+    }
+  ],
+  "priceRange": "$$",
+  "brand": {
+    "color": "#c01d1b",
+    "fontId": "bricolage-editorial"
+  },
+  "images": {
+    "hero": "/images/rio-nido-roadhouse/hero.jpg",
+    "heroAlt": "Rio Nido Roadhouse in Rio Nido, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Rio Nido, CA",
+          "heading": "Live Music in the Redwoods",
+          "subheading": "Classic pub fare, craft cocktails, 15 beers on tap, a swimming pool, and live music every weekend on the Russian River.",
+          "badges": [
+            "A Russian River institution",
+            "15 craft beers on tap",
+            "Live music every weekend"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/rio-nido-roadhouse/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/rio-nido-roadhouse/menu"
+          },
+          "image": {
+            "src": "/images/rio-nido-roadhouse/hero.jpg",
+            "alt": "Rio Nido Roadhouse in Rio Nido, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "What's on tap",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Classic Pub Kitchen",
+              "description": "Great American pub food and daily specials, served seven days a week."
+            },
+            {
+              "title": "Weekend Breakfast",
+              "description": "A full breakfast served Saturdays and Sundays."
+            },
+            {
+              "title": "Craft Beer & Cocktails",
+              "description": "15 craft beers on tap, mostly locally brewed, plus craft cocktails."
+            },
+            {
+              "title": "Live Music & Pool",
+              "description": "Live music every weekend, with a swimming pool and outdoor seating."
+            },
+            {
+              "title": "Events & Weddings",
+              "description": "Private events and weddings in a one-of-a-kind redwood setting."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About the Roadhouse",
+          "body": [
+            "The Rio Nido Roadhouse sits in the heart of the redwoods in the Russian River resort area, where bands have played for decades. For 14 years, owners Raena and Brad Jones Metzger have kept the tradition going with classic pub fare, craft cocktails, and a roster of mostly locally brewed beers.",
+            "It is equal parts restaurant, music venue, and summer hangout: great American pub food and daily specials, live music on the weekends, and a swimming pool that makes it a Russian River favorite all season long."
+          ],
+          "highlights": [
+            "A Russian River institution",
+            "15 craft beers on tap",
+            "Live music every weekend"
+          ],
+          "image": {
+            "src": "/images/rio-nido-roadhouse/story.jpg",
+            "alt": "Inside Rio Nido Roadhouse",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Rio Nido Roadhouse",
+          "items": [
+            {
+              "title": "A Russian River Institution",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "15 Craft Beers On Tap",
+              "body": "Made with care and real ingredients — quality you can taste.",
+              "icon": "sparkle"
+            },
+            {
+              "title": "Live Music Every Weekend",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 869-0821 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/rio-nido-roadhouse/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 869-0821",
+            "href": "tel:+17078690821"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Classic pub fare, craft cocktails, 15 beers on tap, a swimming pool, and live music every weekend on the Russian River.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What's on tap",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Classic Pub Kitchen",
+              "description": "Great American pub food and daily specials, served seven days a week."
+            },
+            {
+              "title": "Weekend Breakfast",
+              "description": "A full breakfast served Saturdays and Sundays."
+            },
+            {
+              "title": "Craft Beer & Cocktails",
+              "description": "15 craft beers on tap, mostly locally brewed, plus craft cocktails."
+            },
+            {
+              "title": "Live Music & Pool",
+              "description": "Live music every weekend, with a swimming pool and outdoor seating."
+            },
+            {
+              "title": "Events & Weddings",
+              "description": "Private events and weddings in a one-of-a-kind redwood setting."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Tue-Sun: 9am-9pm; Mon: Closed."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Rio Nido, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 869-0821 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 869-0821 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/rio-nido-roadhouse/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 869-0821",
+            "href": "tel:+17078690821"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Rio Nido Roadhouse",
+          "heading": "About the Roadhouse",
+          "subheading": "The Rio Nido Roadhouse sits in the heart of the redwoods in the Russian River resort area, where bands have played for decades",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About the Roadhouse",
+          "body": [
+            "The Rio Nido Roadhouse sits in the heart of the redwoods in the Russian River resort area, where bands have played for decades. For 14 years, owners Raena and Brad Jones Metzger have kept the tradition going with classic pub fare, craft cocktails, and a roster of mostly locally brewed beers.",
+            "It is equal parts restaurant, music venue, and summer hangout: great American pub food and daily specials, live music on the weekends, and a swimming pool that makes it a Russian River favorite all season long."
+          ],
+          "highlights": [
+            "A Russian River institution",
+            "15 craft beers on tap",
+            "Live music every weekend"
+          ],
+          "image": {
+            "src": "/images/rio-nido-roadhouse/story.jpg",
+            "alt": "Inside Rio Nido Roadhouse",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Rio Nido Roadhouse",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/rio-nido-roadhouse/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Rio Nido Roadhouse or call (707) 869-0821.",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

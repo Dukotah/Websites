@@ -1,0 +1,366 @@
+{
+  "slug": "sunflower-caffe",
+  "name": "Sunflower Caffe",
+  "legalName": "Sunflower Caffe",
+  "tagline": "Honest food and stellar coffee on the historic Sonoma Plaza",
+  "seoDescription": "Sunflower Caffe serves simple, honest breakfast and lunch with stellar coffee on a garden patio in the historic Salvador Vallejo adobe on the Sonoma Plaza.",
+  "category": "cafe",
+  "categoryLabel": "Cafe",
+  "area": "Sonoma, CA",
+  "city": "Sonoma",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "(707) 996-3303",
+    "email": "info@sonomasunflower.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/SunflowerCaffe/",
+    "instagram": "https://www.instagram.com/sunflowercaffe/",
+    "google": "https://maps.googleapis.com"
+  },
+  "hours": [
+    {
+      "day": "Daily",
+      "hours": "8am-3pm"
+    }
+  ],
+  "priceRange": "$$",
+  "brand": {
+    "color": "#ad662a",
+    "fontId": "warm-humanist"
+  },
+  "images": {
+    "hero": "/images/sunflower-caffe/hero.jpg",
+    "heroAlt": "Sunflower Caffe in Sonoma, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "fullbleed",
+          "eyebrow": "Sonoma, CA",
+          "heading": "A Garden Cafe on the Sonoma Plaza",
+          "subheading": "Simple, honest food and stellar coffee, served on a beautiful garden patio in the historic Salvador Vallejo adobe.",
+          "badges": [
+            "On the historic Sonoma Plaza",
+            "Garden patio for breakfast and lunch",
+            "Family-owned, open daily"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/sunflower-caffe/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/sunflower-caffe/menu"
+          },
+          "image": {
+            "src": "/images/sunflower-caffe/hero.jpg",
+            "alt": "Sunflower Caffe in Sonoma, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "What we serve",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Breakfast & Brunch",
+              "description": "Hearty, made-from-scratch breakfast served daily on the garden patio."
+            },
+            {
+              "title": "Lunch, Sandwiches & Salads",
+              "description": "A fresh lunch menu of sandwiches, salads, and soups built on local Sonoma ingredients."
+            },
+            {
+              "title": "Espresso & Coffee Bar",
+              "description": "Stellar espresso drinks, drip coffee, and house specialties to start the day."
+            },
+            {
+              "title": "The Garden Patio",
+              "description": "A lush, tucked-away courtyard for relaxed dining and gatherings."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Sunflower Caffe",
+          "body": [
+            "Sunflower Caffe sits on the historic Sonoma Plaza in the old adobe home of Salvador Vallejo, California Historical Landmark No. 501. Owners James Hahn and Mila Chaname run it as a family-owned, community-driven cafe where simple, honest food is made with real local ingredients.",
+            "It is the perfect place to start the morning with stellar coffee drinks, breakfast, and lunch on the beautiful garden patio, a quiet green courtyard just steps from the Plaza."
+          ],
+          "highlights": [
+            "On the historic Sonoma Plaza",
+            "Garden patio for breakfast and lunch",
+            "Family-owned, open daily"
+          ],
+          "image": {
+            "src": "/images/sunflower-caffe/story.jpg",
+            "alt": "Inside Sunflower Caffe",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "★★★★★ This was one THE most pleasant dining experience on our two week vacation of the west coast. Our server was Caden and he was absolutely phenomenal (be sure to request him!) The outside patio was so pleasant, we didn't want to leave and start our wine tasting tour for"
+            },
+            {
+              "quote": "★★★★★ We hosted our wedding welcome dinner here and it was such a great venue! Jamie was really great to work with and super accommodating. The staff were incredibly helpful and friendly. The space is super cute and they let us set up our own decor as well"
+            },
+            {
+              "quote": "★★★★★ Wonderful server and the best veg scramble I've ever had and an amazing burrata with beets, grapefruit and pistachios. Perfectly crusty panzanella for dipping in the burrata. Beautiful fresh juices on a happy patio full of well fed people enjoying a splendid repast."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Sunflower Caffe",
+          "items": [
+            {
+              "title": "On The Historic Sonoma Plaza",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Garden Patio For Breakfast And Lunch",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Family-Owned, Open Daily",
+              "body": "Rooted right here in Sonoma, CA, with a real stake in doing it right.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Sunflower Caffe",
+          "images": [
+            {
+              "src": "/images/sunflower-caffe/photo-2.jpg",
+              "alt": "Sunflower Caffe — photo 1"
+            },
+            {
+              "src": "/images/sunflower-caffe/photo-3.jpg",
+              "alt": "Sunflower Caffe — photo 2"
+            },
+            {
+              "src": "/images/sunflower-caffe/photo-13.jpg",
+              "alt": "Sunflower Caffe — photo 3"
+            },
+            {
+              "src": "/images/sunflower-caffe/photo-14.jpg",
+              "alt": "Sunflower Caffe — photo 4"
+            },
+            {
+              "src": "/images/sunflower-caffe/photo-12.jpg",
+              "alt": "Sunflower Caffe — photo 5"
+            },
+            {
+              "src": "/images/sunflower-caffe/photo-10.jpg",
+              "alt": "Sunflower Caffe — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 996-3303 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/sunflower-caffe/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 996-3303",
+            "href": "tel:+17079963303"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Simple, honest food and stellar coffee, served on a beautiful garden patio in the historic Salvador Vallejo adobe.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we serve",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Breakfast & Brunch",
+              "description": "Hearty, made-from-scratch breakfast served daily on the garden patio."
+            },
+            {
+              "title": "Lunch, Sandwiches & Salads",
+              "description": "A fresh lunch menu of sandwiches, salads, and soups built on local Sonoma ingredients."
+            },
+            {
+              "title": "Espresso & Coffee Bar",
+              "description": "Stellar espresso drinks, drip coffee, and house specialties to start the day."
+            },
+            {
+              "title": "The Garden Patio",
+              "description": "A lush, tucked-away courtyard for relaxed dining and gatherings."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Daily: 8am-3pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sonoma, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 996-3303 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "body": "Call (707) 996-3303 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/sunflower-caffe/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 996-3303",
+            "href": "tel:+17079963303"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Sunflower Caffe",
+          "heading": "About Sunflower Caffe",
+          "subheading": "Sunflower Caffe sits on the historic Sonoma Plaza in the old adobe home of Salvador Vallejo, California Historical Landmark No. 501",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Sunflower Caffe",
+          "body": [
+            "Sunflower Caffe sits on the historic Sonoma Plaza in the old adobe home of Salvador Vallejo, California Historical Landmark No. 501. Owners James Hahn and Mila Chaname run it as a family-owned, community-driven cafe where simple, honest food is made with real local ingredients.",
+            "It is the perfect place to start the morning with stellar coffee drinks, breakfast, and lunch on the beautiful garden patio, a quiet green courtyard just steps from the Plaza."
+          ],
+          "highlights": [
+            "On the historic Sonoma Plaza",
+            "Garden patio for breakfast and lunch",
+            "Family-owned, open daily"
+          ],
+          "image": {
+            "src": "/images/sunflower-caffe/story.jpg",
+            "alt": "Inside Sunflower Caffe",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/sunflower-caffe/photo-2.jpg",
+              "alt": "Sunflower Caffe — photo 1"
+            },
+            {
+              "src": "/images/sunflower-caffe/photo-3.jpg",
+              "alt": "Sunflower Caffe — photo 2"
+            },
+            {
+              "src": "/images/sunflower-caffe/photo-13.jpg",
+              "alt": "Sunflower Caffe — photo 3"
+            },
+            {
+              "src": "/images/sunflower-caffe/photo-14.jpg",
+              "alt": "Sunflower Caffe — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Sunflower Caffe",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/sunflower-caffe/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Sunflower Caffe or call (707) 996-3303.",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}
