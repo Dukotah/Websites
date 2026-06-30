@@ -40,6 +40,12 @@ export function mapScraperRows(rows, { state = '' } = {}) {
       // can still keyword-guess instead of getting a literal "default".
       const norm = normCat(rawCat);
       return {
+      // Stable business id (Overture id) when the scraper supplies one. parseCsv
+      // lowercases headers, so `id` here also matches incoming `ID`/`Id`. Carried
+      // ADDITIVELY: absent in today's CSVs, in which case it stays '' and nothing
+      // downstream changes. Threaded into the research file + outreach manifest so
+      // the CRM can prefer it over fuzzy name-matching.
+      id: pick(row, 'id'),
       name: pick(row, 'business', 'name', 'brokerage'),
       website: pick(row, 'website', 'discovered_website', 'existing_website'),
       category: norm === 'default' ? rawCat : norm,
@@ -63,9 +69,12 @@ export function parseScraperCsv(text, opts) {
   return mapScraperRows(parseCsv(text), opts);
 }
 
-// The 8 columns the generator reads, in order. Extras are intentionally dropped
-// from the emitted CSV — they live in the research file instead.
-export const BUILDER_COLUMNS = ['name', 'website', 'category', 'city', 'state', 'phone', 'email', 'address'];
+// The columns the generator reads, in order. Extras are intentionally dropped
+// from the emitted CSV — they live in the research file instead. `id` (the stable
+// business id) leads the list ADDITIVELY: when the source CSV has no id column it
+// serializes as an empty cell, so the generator (which reads columns by header
+// name, not position) behaves exactly as before.
+export const BUILDER_COLUMNS = ['id', 'name', 'website', 'category', 'city', 'state', 'phone', 'email', 'address'];
 
 const csvCell = (v = '') => {
   const s = String(v ?? '');
