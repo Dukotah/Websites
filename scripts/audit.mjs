@@ -49,6 +49,14 @@ const PUBLIC_IMAGES = join(SRC, 'assets', 'prospects');
 // phrasing there is a real business motto — not the "AI batch" tell.
 const RESEARCH = join(ROOT, 'data', 'research');
 
+// ACCESSIBILITY ENFORCEMENT FLAG — we now pitch WCAG-AA accessibility as the
+// product, so the strict a11y gates must be available. Default OFF so the
+// established gallery build stays green; CI / pitch runs export A11Y_ENFORCE=1
+// to promote the WCAG checks that normally WARN into hard CRITICAL failures
+// (missing alt on real content images, contrast below the 4.5:1 normal-text AA
+// floor). Everything else is unchanged either way.
+const A11Y_ENFORCE = /^(1|true|on|yes)$/i.test(process.env.A11Y_ENFORCE ?? '');
+
 /** True iff a research file exists for this slug AND is confirmed:true.
  *  Guarded: most prospects have no research file — a missing/unparsable file
  *  is simply "not confirmed", never a crash. */
@@ -760,12 +768,90 @@ const CONTRAST_PAIRS = [
 
 function auditContrast(tokens) {
   const issues = [];
+  // WCAG-AA normal text requires 4.5:1. With A11Y_ENFORCE the 4.5 line is a hard
+  // CRITICAL (the accessibility-as-product gate). By default we keep the legacy
+  // split — critical below 3.0, warn below 4.5 — so the existing green build is
+  // unchanged.
+  const critFloor = A11Y_ENFORCE ? 4.5 : 3.0;
   for (const [fg, bg, desc] of CONTRAST_PAIRS) {
     if (!tokens[fg] || !tokens[bg]) continue;
     const r = contrast(tokens[fg], tokens[bg]);
     const at = `(${tokens[fg]} on ${tokens[bg]})`;
-    if (r < 3.0) issues.push(['critical', `contrast ${r.toFixed(2)}:1 — ${desc} ${at}, AA needs 4.5`]);
+    if (r < critFloor) issues.push(['critical', `contrast ${r.toFixed(2)}:1 — ${desc} ${at}, AA needs 4.5`]);
     else if (r < 4.5) issues.push(['warn', `contrast ${r.toFixed(2)}:1 — ${desc} ${at}, below AA 4.5`]);
+  }
+  return issues;
+}
+
+// ── Rendered <img> alt text (WCAG 1.1.1) ─────────────────────────────────────
+// Every REAL content image must carry a non-empty, meaningful alt. Decorative
+// images opt out the WCAG-correct way: alt="" together with aria-hidden (on the
+// tag itself or a wrapping ancestor) or role="presentation"/"none" — those must
+// NOT trip this. Needs the built HTML (dist). Default level is WARN (keeps the
+// established green build); A11Y_ENFORCE promotes a missing/empty content-image
+// alt to a hard CRITICAL.
+function auditImgAlt(html) {
+  const issues = [];
+  const level = A11Y_ENFORCE ? 'critical' : 'warn';
+  for (const m of html.matchAll(/<img\b[^>]*>/gi)) {
+    const tag = m[0];
+    const altM = tag.match(/\balt\s*=\s*("([^"]*)"|'([^']*)')/i);
+    const alt = altM ? (altM[2] ?? altM[3] ?? '') : null; // null = no alt attribute
+    if (alt && alt.trim()) continue; // meaningful alt — fine
+    // Decorative exemption: aria-hidden / role=presentation on the tag itself, or
+    // an aria-hidden wrapper in the markup immediately preceding the tag.
+    const before = html.slice(Math.max(0, m.index - 300), m.index);
+    const decorative =
+      /\baria-hidden\s*=\s*["']?true/i.test(tag) ||
+      /\brole\s*=\s*["']?(presentation|none)\b/i.test(tag) ||
+      /\baria-hidden\s*=\s*["']?true/i.test(before);
+    if (decorative) continue;
+    const why = alt === null ? 'has no alt attribute' : 'has an empty alt';
+    issues.push([level, `content image ${why} (WCAG 1.1.1) — ${tag.slice(0, 88)}…`]);
+  }
+  return issues;
+}
+
+// ── Form controls must be labelled (WCAG 1.3.1 / 3.3.2) ──────────────────────
+// Every input/select/textarea that takes user input needs a programmatic label:
+// a <label for> targeting its id, an aria-label/aria-labelledby, or a title.
+// Buttons/submits/hidden controls are exempt. Warn-level — the generated contact
+// form is already fully labelled; this guards against a regression in the
+// shared section components. Needs the built HTML (dist).
+function auditFormLabels(html) {
+  const issues = [];
+  const labelled = new Set();
+  for (const m of html.matchAll(/<label\b[^>]*\bfor\s*=\s*("([^"]*)"|'([^']*)')/gi)) {
+    labelled.add(m[2] ?? m[3]);
+  }
+  for (const m of html.matchAll(/<(input|select|textarea)\b[^>]*>/gi)) {
+    const tag = m[0];
+    const type = (tag.match(/\btype\s*=\s*("([^"]*)"|'([^']*)')/i) || [])[2] ?? '';
+    if (/^(hidden|submit|button|reset|image)$/i.test(type)) continue;
+    if (/\baria-label\s*=|\baria-labelledby\s*=|\btitle\s*=/i.test(tag)) continue;
+    const id = (tag.match(/\bid\s*=\s*("([^"]*)"|'([^']*)')/i) || [])[2];
+    if (id && labelled.has(id)) continue;
+    issues.push(['warn', `form control without an associated label (WCAG 1.3.1) — ${tag.slice(0, 80)}…`]);
+  }
+  return issues;
+}
+
+// ── Heading order (WCAG 1.3.1) ───────────────────────────────────────────────
+// Each built page should have exactly one <h1> and not skip levels egregiously
+// (e.g. h2 → h4). Warn-level. Needs the built HTML (dist).
+function auditHeadings(html) {
+  const issues = [];
+  const levels = [...html.matchAll(/<h([1-6])\b[^>]*>/gi)].map((m) => Number(m[1]));
+  const h1s = levels.filter((l) => l === 1).length;
+  if (h1s === 0) issues.push(['warn', 'page has no <h1> (WCAG 1.3.1)']);
+  else if (h1s > 1) issues.push(['warn', `page has ${h1s} <h1> elements — exactly one is expected (WCAG 1.3.1)`]);
+  let prev = 0;
+  for (const l of levels) {
+    if (prev && l > prev + 1) {
+      issues.push(['warn', `heading order skips from h${prev} to h${l} — don't skip levels (WCAG 1.3.1)`]);
+      break; // one nudge is enough
+    }
+    prev = l;
   }
   return issues;
 }
@@ -794,6 +880,9 @@ function auditCopyright(html) {
 async function main() {
   let critical = 0;
   console.log('\n🔎 Project audit\n' + '─'.repeat(48));
+  console.log(A11Y_ENFORCE
+    ? '  [a11y] A11Y_ENFORCE=1 — WCAG-AA gates are STRICT (missing content-image alt and contrast < 4.5:1 are CRITICAL).'
+    : '  [a11y] A11Y_ENFORCE off — WCAG-AA gates WARN only (set A11Y_ENFORCE=1 to enforce).');
 
   // 1. Dead tokens (the footer-class bug)
   const dead = await auditTokens();
@@ -834,6 +923,9 @@ async function main() {
     if (distHtml) {
       issues.push(...auditContrast(parseTokens(distHtml)));
       issues.push(...auditCopyright(distHtml)); // (e) copyright end-year renders
+      issues.push(...auditImgAlt(distHtml));     // WCAG 1.1.1 — content-image alt
+      issues.push(...auditFormLabels(distHtml)); // WCAG 1.3.1/3.3.2 — form labels
+      issues.push(...auditHeadings(distHtml));   // WCAG 1.3.1 — heading order
     } else missingDist = true;
     const crit = issues.filter((i) => i[0] === 'critical');
     critical += crit.length;
