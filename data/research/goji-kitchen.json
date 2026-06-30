@@ -1,0 +1,121 @@
+{
+  "slug": "goji-kitchen",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Chinese and Vietnamese favorites in Santa Rosa",
+  "seoDescription": "Goji Kitchen in Santa Rosa brings Chinese classics and Vietnamese favorites together near the Junior College — no MSG, with a wide range of vegetarian and vegan dishes.",
+  "heroHeading": "Two Culinary Worlds, One Kitchen",
+  "heroSubheading": "Chinese classics and Vietnamese favorites on one menu near the Junior College — no MSG, plenty of vegetarian and vegan.",
+  "highlights": [
+    "Chinese and Vietnamese under one roof",
+    "No MSG; many vegetarian & vegan dishes",
+    "Voted Best Asian Restaurant (2025)"
+  ],
+  "aboutHeading": "About Goji Kitchen",
+  "aboutBody": [
+    "On Mendocino Avenue near the Junior College, Goji Kitchen brings together the culinary traditions of China and Vietnam under one roof. The menu runs from bold stir-fries like Kung Pao Chicken and Szechuan Beef to soul-soothing bowls of Pho and Bun — made with premium ingredients and time-honored recipes, and no MSG.",
+    "Goji is built around care as much as cooking: a welcoming room, attentive service, and a deep bench of vegetarian and vegan options so everyone at the table is looked after. Signature dishes like the Roll-It-Yourself Grilled Shrimp on Sugar Cane keep regulars coming back."
+  ],
+  "servicesHeading": "On the menu",
+  "services": [
+    {
+      "title": "Chinese Classics",
+      "description": "Kung Pao Chicken, Szechuan Beef, and the sweet-and-savory stir-fries of traditional Chinese cooking."
+    },
+    {
+      "title": "Vietnamese Favorites",
+      "description": "Pho, Bun, and fresh rolls — the delicate, herb-forward flavors of Vietnam."
+    },
+    {
+      "title": "Signature Specialties",
+      "description": "House favorites like Roll-It-Yourself Grilled Shrimp Paste on Sugar Cane and the Goji Sampler Rolls."
+    },
+    {
+      "title": "Vegetarian & Vegan",
+      "description": "A wide selection of plant-based dishes — cooked without MSG or microwaves."
+    },
+    {
+      "title": "Takeout & Catering",
+      "description": "Order ahead for pickup or let Goji cater your next gathering."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Sun",
+      "hours": "11am–9pm"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "--> --> --> --> --> --> --> --> --> Great mix of chinese and vietnamese food! Would definitely return.😃",
+      "author": "Local customer"
+    },
+    {
+      "quote": "--> --> --> --> Testimonials --> --> --> --> --> --> GOJI Kitchen - North Bay Bohemian --> I eat meat like a ravenous lion in the jungle, but one thing I can't stand is restaurants that don't have squat for my vegetarian and vegan friends. How many times can you accompany your meat-eating friends to a restaurant before you get sick to death of eggplant...",
+      "author": "Local customer"
+    },
+    {
+      "quote": "--> --> Goji Kitchen Offers Two Worlds of Cooking - Press Democrat --> Are you in the mood for the satisfying stir-fries and sweet and sour meats of Chinese cooking, or would you prefer the delicate green flavors of soups and fresh rolls of Vietnam? At Goji Kitchen, near the Junior College in Santa Rosa, you can have both. Goji's menu...",
+      "author": "Local customer"
+    },
+    {
+      "quote": "--> --> Healthy Asian Cuisine on Mendocino Ave. - Press Democrat --> Goji Kitchen, a new Asian restaurant with a focus on healthy food, opened in late April at 1965 Mendocino Ave. in the former Quizno's space near Big Lots. The partners in the restaurant are Kimchi Moyer, a natural-medicine practitioner from Vietnam, and Jennifer and...",
+      "author": "Local customer"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/people/Goji-Kitchen/100063675802920/",
+    "instagram": "https://www.instagram.com/gojikitchen/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://www.gojikitchens.com/assets/new/images/Slide9.jpg",
+    "https://www.gojikitchens.com/assets/new/images/Slide12.jpg",
+    "https://www.gojikitchens.com/assets/new/images/top-shape.webp",
+    "https://www.gojikitchens.com/assets/new/images/Goji-Kitchen-Best-Asian-Restaurant-Award-2025.jpg",
+    "https://www.gojikitchens.com/assets/new/images/benchmark-award-winner.jpg",
+    "https://www.gojikitchens.com/assets/new/images/bottom-shape.png",
+    "https://www.gojikitchens.com/assets/new/images/grey-top.png",
+    "https://www.gojikitchens.com/assets/new/images/PressDemocrat.png",
+    "https://www.gojikitchens.com/assets/new/images/SonomaMagazine.png",
+    "https://www.gojikitchens.com/assets/new/images/grey-bottom.png",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-1.webp",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-2.webp",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-3.webp",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-4.webp",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-5.webp",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-6.webp",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-7.webp",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-8.webp",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
+    "https://www.gojikitchens.com/assets/new/images/page_header.jpg",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-1.jpg",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-2.jpg",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-3.jpg",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-4.jpg",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-5.jpg",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-6.jpg",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-7.jpg",
+    "https://www.gojikitchens.com/assets/new/images/Asian-restaurant-Goji-Kitchen-8.jpg"
+  ],
+  "notes": "Web-verified and authored for the ADA accessibility batch (hours, rating/credential, copy confirmed from the business site + Yelp/OpenTable/press). confirmed:true.",
+  "_richness": 65,
+  "_source": "web-verified",
+  "_lead": {
+    "name": "Goji Kitchen",
+    "category": "restaurant",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "",
+    "email": "gojikitchens@gmail.com",
+    "address": "",
+    "owner": ""
+  },
+  "rating": {
+    "value": 4.4,
+    "count": 799,
+    "source": "Yelp"
+  },
+  "priceRange": "$$"
+}

@@ -1,0 +1,38 @@
+{
+  "slug": "romeo-vineyards-and-cellars",
+  "name": "Romeo Vineyards & Cellars",
+  "confirmed": true,
+  "established": "1996",
+  "tagline": "Sempre Vive — elegant, enduring Napa Valley wines",
+  "seoDescription": "Romeo Vineyards & Cellars is a family-owned Calistoga winery crafting Cabernet Sauvignon and Bordeaux varietals from old-vine estate fruit, with tastings in a restored 1885 carriage house and garden in downtown Calistoga.",
+  "heroHeading": "Old-Vine Napa Valley Wines",
+  "heroSubheading": "Family-owned in Calistoga since 1996, crafting Cabernet and Bordeaux varietals under the Sempre Vive label.",
+  "highlights": [
+    "Estate fruit including 1971-planted old-vine Cabernet",
+    "Family-owned and farmed since 1996",
+    "Tastings in a restored 1885 carriage house and garden"
+  ],
+  "aboutHeading": "About Romeo Vineyards & Cellars",
+  "aboutBody": [
+    "Frank and Eugenia 'Gena' Romeo purchased their Calistoga vineyard in 1996, drawn to a remarkable block of old-vine Cabernet first planted in 1971. They nursed the estate back to health with Bordeaux-clone replanting and released their inaugural Cabernet Sauvignon soon after — the start of a family commitment to elegant, age-worthy Napa Valley wines bottled under the Sempre Vive ('always alive') label.",
+    "In downtown Calistoga, the family restored an 1885 carriage house and opened it as a tasting room, set within gardens shaded by century-old redwoods and cedars. Guests are welcomed through jasmine- and rose-covered arches to taste on the garden patio, with indoor tastings available by request."
+  ],
+  "servicesHeading": "The wines",
+  "services": [
+    { "title": "Cabernet Sauvignon", "description": "The estate's flagship, built on old-vine fruit and crafted in an elegant, age-worthy Napa Valley style." },
+    { "title": "Bordeaux Reds", "description": "Cabernet Franc, Petite Verdot, Merlot and Malbec, made as varietal bottlings and blends under the Sempre Vive label." },
+    { "title": "Estate Whites", "description": "A small production of Sauvignon Blanc, Chardonnay and Muscat to round out the portfolio." },
+    { "title": "Garden Tastings", "description": "Seated tastings on the patio of the restored 1885 carriage house, among century-old redwoods and cedars; indoor tastings by request." }
+  ],
+  "hours": [
+    { "day": "Daily", "hours": "12–7pm (final tasting 5pm)" }
+  ],
+  "testimonials": [
+    { "quote": "Clint and Emma were very accommodating, and by far the best tasting room you will find in all of Napa Valley.", "author": "" }
+  ],
+  "team": [],
+  "social": {},
+  "realPhotoUrls": [],
+  "notes": "Facts verified from romeovineyards.com/visit, Napa Wine Project and Napa Valley Life. IMPORTANT: this business is in Calistoga, NAPA County (1224 Lincoln Ave, Calistoga CA 94515; (707) 942-8239) - NOT Forestville/Sonoma as the lead list suggested; the shortlist CSV had no city. Built accurately as Calistoga. No verbatim review quotes or star rating asserted.",
+  "_source": "web-verified"
+}

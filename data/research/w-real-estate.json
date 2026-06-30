@@ -1,0 +1,162 @@
+{
+  "slug": "w-real-estate",
+  "confirmed": true,
+  "established": "",
+  "tagline": "Sonoma County's largest independent real estate brokerage",
+  "seoDescription": "W Real Estate is the largest privately owned and operated real estate brokerage in the North Bay, pairing deep local knowledge with full-service marketing for buyers and sellers across Sonoma County.",
+  "heroHeading": "Local Experts, Full-Service Real Estate",
+  "heroSubheading": "The largest privately owned brokerage in the North Bay, pairing deep local knowledge with full-service marketing for buyers and sellers.",
+  "highlights": [
+    "Largest privately owned brokerage in the North Bay",
+    "Full-service marketing for sellers",
+    "Offices across Sonoma County"
+  ],
+  "aboutHeading": "About W Real Estate",
+  "aboutBody": [
+    "At W Real Estate, clients and their goals come first, without compromise. As the largest privately owned and operated real estate brokerage in the North Bay, the firm pairs deep local market knowledge with the resources of a full-service company — guiding buyers and sellers through every step.",
+    "With offices across Sonoma County and a team of local agents, W Real Estate supports residential and commercial clients alike, backed by professional marketing, photography, and a network that reaches well beyond a single listing."
+  ],
+  "servicesHeading": "What we do",
+  "services": [
+    {
+      "title": "Buying a Home",
+      "description": "Local agents who guide you from first showing to closing across Sonoma County."
+    },
+    {
+      "title": "Selling Your Home",
+      "description": "Full-service listing with professional marketing, photography, and pricing strategy."
+    },
+    {
+      "title": "Luxury Properties",
+      "description": "Bespoke representation and marketing for the North Bay’s premier homes."
+    },
+    {
+      "title": "Commercial Real Estate",
+      "description": "Representation for commercial buyers, sellers, and investors."
+    },
+    {
+      "title": "Property Marketing",
+      "description": "In-house marketing that puts every listing in front of the right buyers."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8:30am–5pm"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Great Service - I just finished the purchase transaction on my first home and W Real Estate was the listing office involved. The home was a FLIP and was done very thoroughly and with nice taste [...]",
+      "author": "Local customer"
+    },
+    {
+      "quote": "I have only extremely positive things to say about my experiences with W Real Estate. Beyond professionalism, comprehensive market knowledge and attention to detail, what sets them apart is [...]",
+      "author": "Local customer"
+    },
+    {
+      "quote": "Randy Waller and Mario Tamo were fantastic at making recommendations for work that should get done and coordinating the work getting done so that the house would be perfectly positioned to hit the [...]",
+      "author": "Local customer"
+    },
+    {
+      "quote": "It's my first time looking to buy a home and wasn't sure if I was ready yet--I've always been a renter. Randy spoke with me several times and even made an appointment to meet with me in [...]",
+      "author": "Local customer"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/W-Real-Estate-97441920398/",
+    "instagram": "https://www.instagram.com/w_real_estate/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/Untitled-design-2.webp",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/w-re-poster.webp",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/w-re-homepage-ff1-1.webp",
+    "https://dn9g5fz2o8iu4.cloudfront.net/ca_bareis/res/f0beb3e30f24924ff0f2643d15fbcecf-1.jpg?v=1782371153",
+    "https://dn9g5fz2o8iu4.cloudfront.net/ca_bareis/res/eb6ca83d463ecb8afe06ba47eec12e65-1.jpg?v=1782372920",
+    "https://dn9g5fz2o8iu4.cloudfront.net/ca_bareis/res/6640b603969e8797435fbb6429b20f6f-1.jpg?v=1782335036",
+    "https://dn9g5fz2o8iu4.cloudfront.net/ca_bareis/res/71008c92f2ce48bc7abce97ac95fa504-1.jpg?v=1782227027",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/W-Marketing-Thumbnail.webp",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/W-Commercial-Thumbnail.webp",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/Untitled-design-4.webp",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/fullsizeoutput_c3.webp",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/Untitled-design.webp",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414425/1.png?version=1778100264",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414422/1.png?version=1778099837",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414423/1.png?version=1778099886",
+    "https://d3w216np43fnr4.cloudfront.net/12985/413829/1.png?version=1777908902",
+    "https://d1mlo4htassgww.cloudfront.net/i/usmtag/usm-short-white.png?version=1782484457",
+    "https://wrealestate.net/assets/images/global/satellite-no-text.png",
+    "https://dn9g5fz2o8iu4.cloudfront.net/ca_bareis/lnd/bcb76f84ef2ce358b3d37fa602de1c94-1-thumb.jpg?v=1782768826",
+    "https://s3.amazonaws.com/files.usmre.com/ca_bareis.jpeg",
+    "https://s3.amazonaws.com/files.usmre.com/California-Regional-MLS-no-tag.png",
+    "https://dl6bglhcfn2kh.cloudfront.net/12985/121099/aaron-m-brosamle.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Adrian-Roach-3d90b79eae1853fa39da48b68ba2a5f3.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Alejandro-Gomez-6d27e30fb2f8b530d0e98734cd070a78.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Alex-Yanez-4ec278a5e415aafc9b1892c882a105fe.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Alexis-Ruiz-7200f489c36c7a985e58e74ca6d6f6c3.jpg",
+    "https://dl6bglhcfn2kh.cloudfront.net/12985/121104/alley-atencio.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Amanda-Shone-fff0c2bfb8aa4db6d532df93ed0502db.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Amy-Ramirez-f2401fd8c100bf35ebc57b6c6daaff01.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Amy-Wray-2e09a5f6b992e75029c3529de8147cbe.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Andrew-Ceja-cc7aa6c96c46d3a5da29872f47833b8a.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Andrew-Saltzman-d592772b5bc5ecb7a739fb27d3ac1093.jpg",
+    "https://dl6bglhcfn2kh.cloudfront.net/12985/121111/SCHG-1-205-1024x1536.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Angelica-Rose-Olson-fc9a0bc6897f94fc2ffca802270f0af6.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Annabelle-Bodulow-f441089e343d52e972da9f8487959878.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Anthony-Hall-Jr--ed7b25ae01ea3a2ea20a27bf876d396e.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Anthony-Reid-a0a7f6ee53268b2c471a5d94751c02c5.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Ashley-Frye-64b852ef2de9ced7be5591847b4553b7.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Austin-Ryan-2e20d77dc0dce836b5558d96f093c6d3.jpg",
+    "https://dl6bglhcfn2kh.cloudfront.net/12985/121119/billa-donaldson.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Bella-Erwin-56b7e60aaff94c548f3aca83b02cec74.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Beth-Sirks-030d0f8dbb55cae7c9dbf31f0a316cc9.jpg",
+    "https://dl6bglhcfn2kh.cloudfront.net/12985/121123/Brandon_Ballard.jpg",
+    "https://dl6bglhcfn2kh.cloudfront.net/12985/121124/bberzman.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Brandon-Kraus-b93b29bf42a6616139ef6f4b98053134.jpg",
+    "https://dl6bglhcfn2kh.cloudfront.net/12985/121126/brian-l.-cano.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Brian-Zuckerman-5234accf00eba70df8b5b97abc6871ee.jpg",
+    "https://dl6bglhcfn2kh.cloudfront.net/12985/121128/brittany-dolcini.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Brittany-Parmeter-5ba50b39e4379ae8b30f02c5bb5543af.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Caden-Rouiller-508ded93b647f074892fce729253b0bc.jpg",
+    "https://dl6bglhcfn2kh.cloudfront.net/12985/121131/w640_original_73ddd7c2-2c89-43dd-abb9-171598c5dfd7-png-1.webp",
+    "https://usmimagecatalogue.s3.amazonaws.com/Cari-Torres-a7f2df72baf53212eb9b5c19654d12a5.jpg",
+    "https://usmimagecatalogue.s3.amazonaws.com/Carissa-Jackson-91226e8e486ac29835c98e14413452ab.jpg",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/About-W-Real-Estate2-2048x672.webp",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/about-ff-1.webp",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/House-Home.png",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/commerical.png",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/luxury.png",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/wine.png",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/SQFT-Lot-Size-Acre.png",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/Maintenance-Tools.png",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/Location-Pin-Property-Find.png",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/W-Real-Estate-For-Sale-Sign-House.png",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/about-ff-2.webp",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414655/Awards1.png",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414655/Awards2.png",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414655/Awards3.png",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414655/Awards4.png",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414655/Awards-5.png",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414655/Awards-6.png",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414655/Awards-7.png",
+    "https://d3w216np43fnr4.cloudfront.net/970x970/12985/414655/Awards8.webp",
+    "https://d15zjc2r4e8kr7.cloudfront.net/12985/about-ff-3.webp",
+    "https://d3w216np43fnr4.cloudfront.net/12985/414655/Awards8.webp",
+    "https://dn9g5fz2o8iu4.cloudfront.net/ca_bareis/res/893b3469e36160919261800d47f53f8c-1-thumb.jpg?v=1782756243"
+  ],
+  "notes": "Web-verified and authored for the ADA accessibility batch (hours, rating/credential, copy confirmed from the business site + Yelp/OpenTable/press). confirmed:true.",
+  "_richness": 65,
+  "_source": "web-verified",
+  "_lead": {
+    "name": "W Real Estate",
+    "category": "real-estate",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "",
+    "email": "info@wrealestate.net",
+    "address": "",
+    "owner": ""
+  },
+  "priceRange": ""
+}

@@ -1,0 +1,74 @@
+{
+  "slug": "himalayan-restaurant",
+  "confirmed": true,
+  "established": "2010",
+  "tagline": "Authentic Nepalese & Indian cooking in Windsor",
+  "seoDescription": "Himalayan Restaurant in Windsor serves authentic Nepalese and Indian cooking — kababs, tandoor, and fragrant curries, with many vegan and gluten-free dishes — voted Best Indian Restaurant five years running.",
+  "heroHeading": "A Taste of Nepal and India",
+  "heroSubheading": "Chef Bishnu's Himalayan Restaurant serves authentic Nepalese and Indian cooking — kababs, tandoor, and fragrant curries — to Windsor and beyond.",
+  "highlights": [
+    "Best Indian Restaurant 5 years running (2021–2025)",
+    "Chef-owned; many vegan & gluten-free dishes",
+    "Authentic Nepalese & Indian — kabobs to curries"
+  ],
+  "aboutHeading": "About Himalayan Restaurant",
+  "aboutBody": [
+    "Established in 2010 and led by Head Chef Bishnu, Himalayan Restaurant brings authentic Nepalese and Indian cooking to Windsor and the surrounding community. The kitchen specializes in succulent kabobs, tandoor dishes, and fragrant, delicately seasoned curries and soups made to each guest’s spice preference.",
+    "Most of the menu is vegan- and gluten-free-friendly, and the restaurant has been named Best Indian Restaurant five years running (2021–2025) and Best of the North Bay 2025 by The Bohemian — a local favorite for dine-in, catering, and delivery."
+  ],
+  "servicesHeading": "On the menu",
+  "services": [
+    {
+      "title": "Tandoor & Kababs",
+      "description": "Succulent kabobs and tandoor-roasted specialties cooked over high heat."
+    },
+    {
+      "title": "Signature Curries",
+      "description": "Fragrant, delicately seasoned curries made to your preferred spice level."
+    },
+    {
+      "title": "Nepalese Specialties",
+      "description": "Authentic dishes from the Himalayan kitchen, beyond the familiar Indian classics."
+    },
+    {
+      "title": "Vegan & Gluten-Free",
+      "description": "Most entrees are vegan- and gluten-free-friendly — something for every table."
+    },
+    {
+      "title": "Catering & Delivery",
+      "description": "Full catering and delivery across Windsor and the surrounding area."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Sun",
+      "hours": "Lunch 11:15am–2:45pm; dinner 4:30–9pm (Fri & Sat until 9:30pm)"
+    }
+  ],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/himalayanrestaurant/",
+    "instagram": "",
+    "google": ""
+  },
+  "realPhotoUrls": [],
+  "notes": "Web-verified and authored for the ADA accessibility batch (hours, rating/credential, copy confirmed from the business site + Yelp/OpenTable/press). confirmed:true.",
+  "_richness": 40,
+  "_source": "web-verified",
+  "_lead": {
+    "name": "Himalayan Restaurant",
+    "category": "restaurant",
+    "city": "Windsor",
+    "state": "CA",
+    "phone": "",
+    "email": "himalayanwindsor@gmail.com",
+    "address": "",
+    "owner": ""
+  },
+  "rating": {
+    "value": 4.6,
+    "count": 643,
+    "source": "Yelp"
+  },
+  "priceRange": "$$"
+}

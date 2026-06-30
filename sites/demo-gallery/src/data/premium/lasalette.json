@@ -1,0 +1,362 @@
+{
+  "slug": "lasalette",
+  "name": "LaSalette",
+  "legalName": "LaSalette",
+  "tagline": "Inventive Portuguese cuisine in Sonoma wine country",
+  "seoDescription": "LaSalette in Sonoma is Chef Manuel Azevedo’s celebrated \"New Portuguese Cuisine\" — wood-fired seafood, daily-baked breads, and an extensive Port and Madeira",
+  "category": "restaurant",
+  "categoryLabel": "Restaurant",
+  "area": "Sonoma, CA",
+  "city": "Sonoma",
+  "state": "CA",
+  "established": "1998",
+  "contact": {
+    "phone": "",
+    "email": "info@lasaletterestaurant.com",
+    "address": ""
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/lasalette_restaurant/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Tue",
+      "hours": "11:30am–9pm"
+    },
+    {
+      "day": "Wed",
+      "hours": "Closed"
+    },
+    {
+      "day": "Thu–Sun",
+      "hours": "11:30am–9pm"
+    }
+  ],
+  "rating": {
+    "value": 4.5,
+    "count": 1054,
+    "source": "Yelp"
+  },
+  "priceRange": "$$$",
+  "brand": {
+    "color": "#a63a22",
+    "fontId": "handcrafted"
+  },
+  "images": {
+    "hero": "/images/lasalette/hero.webp",
+    "heroAlt": "LaSalette in Sonoma, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "fullbleed",
+          "eyebrow": "Sonoma, CA · Est. 1998",
+          "heading": "New Portuguese Cuisine, Sonoma Roots",
+          "subheading": "Chef Manuel Azevedo's LaSalette celebrates the flavors of his native Portugal with top California ingredients and a wood-fired oven.",
+          "badges": [
+            "Serving since 1998",
+            "4.5★ from 1054 reviews",
+            "Chef Manuel Azevedo's 'New Portuguese Cuisine'"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/lasalette/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/lasalette/menu"
+          },
+          "image": {
+            "src": "/images/lasalette/hero.webp",
+            "alt": "LaSalette in Sonoma, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About LaSalette",
+          "body": [
+            "Established in 1998 on the Sonoma Plaza, LaSalette is Chef Manuel Azevedo’s love letter to his native Portugal. His \"New Portuguese Cuisine\" celebrates the varied, complex flavors of the Portuguese homeland while drawing on the top-quality ingredients of California wine country.",
+            "The kitchen centers on a wood-fired oven and bread baked fresh daily, with hearty seafood dishes, standout desserts, and a concise wine list of Northern California and Portuguese bottles — rounded out by one of the area’s most extensive Port and Madeira selections."
+          ],
+          "highlights": [
+            "Chef Manuel Azevedo's 'New Portuguese Cuisine'",
+            "Wood-fired oven; bread baked daily",
+            "Extensive Port and Madeira list"
+          ],
+          "image": {
+            "src": "/images/lasalette/story.webp",
+            "alt": "Inside LaSalette",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Wood-Fired Specialties",
+              "description": "Hearty dishes from the wood-fired oven that anchors the kitchen."
+            },
+            {
+              "title": "Fresh Seafood",
+              "description": "Signature plates like tender octopus, Fisherman’s Stew, scallops, and sardines."
+            },
+            {
+              "title": "Homemade Breads",
+              "description": "Portuguese breads baked fresh in-house every day."
+            },
+            {
+              "title": "Port, Madeira & Wine",
+              "description": "A curated Northern California and Portuguese wine list with an extensive Port and Madeira selection."
+            },
+            {
+              "title": "Desserts",
+              "description": "Traditional Portuguese sweets and outstanding house desserts to finish the meal."
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "28+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.5★",
+              "label": "1054 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside LaSalette",
+          "images": [
+            {
+              "src": "/images/lasalette/photo-2.webp",
+              "alt": "LaSalette — photo 1"
+            },
+            {
+              "src": "/images/lasalette/photo-3.webp",
+              "alt": "LaSalette — photo 2"
+            },
+            {
+              "src": "/images/lasalette/photo-4.webp",
+              "alt": "LaSalette — photo 3"
+            },
+            {
+              "src": "/images/lasalette/photo-5.webp",
+              "alt": "LaSalette — photo 4"
+            },
+            {
+              "src": "/images/lasalette/photo-7.webp",
+              "alt": "LaSalette — photo 5"
+            },
+            {
+              "src": "/images/lasalette/photo-8.webp",
+              "alt": "LaSalette — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lasalette/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Chef Manuel Azevedo's LaSalette celebrates the flavors of his native Portugal with top California ingredients and a wood-fired oven.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Wood-Fired Specialties",
+              "description": "Hearty dishes from the wood-fired oven that anchors the kitchen."
+            },
+            {
+              "title": "Fresh Seafood",
+              "description": "Signature plates like tender octopus, Fisherman’s Stew, scallops, and sardines."
+            },
+            {
+              "title": "Homemade Breads",
+              "description": "Portuguese breads baked fresh in-house every day."
+            },
+            {
+              "title": "Port, Madeira & Wine",
+              "description": "A curated Northern California and Portuguese wine list with an extensive Port and Madeira selection."
+            },
+            {
+              "title": "Desserts",
+              "description": "Traditional Portuguese sweets and outstanding house desserts to finish the meal."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Tue: 11:30am–9pm; Wed: Closed; Thu–Sun: 11:30am–9pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Sonoma, CA and the surrounding community."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lasalette/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About LaSalette",
+          "heading": "About LaSalette",
+          "subheading": "Established in 1998 on the Sonoma Plaza, LaSalette is Chef Manuel Azevedo’s love letter to his native Portugal",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About LaSalette",
+          "body": [
+            "Established in 1998 on the Sonoma Plaza, LaSalette is Chef Manuel Azevedo’s love letter to his native Portugal. His \"New Portuguese Cuisine\" celebrates the varied, complex flavors of the Portuguese homeland while drawing on the top-quality ingredients of California wine country.",
+            "The kitchen centers on a wood-fired oven and bread baked fresh daily, with hearty seafood dishes, standout desserts, and a concise wine list of Northern California and Portuguese bottles — rounded out by one of the area’s most extensive Port and Madeira selections."
+          ],
+          "highlights": [
+            "Chef Manuel Azevedo's 'New Portuguese Cuisine'",
+            "Wood-fired oven; bread baked daily",
+            "Extensive Port and Madeira list"
+          ],
+          "image": {
+            "src": "/images/lasalette/story.webp",
+            "alt": "Inside LaSalette",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "28+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.5★",
+              "label": "1054 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/lasalette/photo-2.webp",
+              "alt": "LaSalette — photo 1"
+            },
+            {
+              "src": "/images/lasalette/photo-3.webp",
+              "alt": "LaSalette — photo 2"
+            },
+            {
+              "src": "/images/lasalette/photo-4.webp",
+              "alt": "LaSalette — photo 3"
+            },
+            {
+              "src": "/images/lasalette/photo-5.webp",
+              "alt": "LaSalette — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see LaSalette",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/lasalette/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

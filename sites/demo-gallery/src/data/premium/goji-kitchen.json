@@ -1,0 +1,310 @@
+{
+  "slug": "goji-kitchen",
+  "name": "Goji Kitchen",
+  "legalName": "Goji Kitchen",
+  "tagline": "Chinese and Vietnamese favorites in Santa Rosa",
+  "seoDescription": "Goji Kitchen in Santa Rosa brings Chinese classics and Vietnamese favorites together near the Junior College — no MSG, with a wide range of vegetarian",
+  "category": "restaurant",
+  "categoryLabel": "Restaurant",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "",
+    "email": "gojikitchens@gmail.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/people/Goji-Kitchen/100063675802920/",
+    "instagram": "https://www.instagram.com/gojikitchen/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Sun",
+      "hours": "11am–9pm"
+    }
+  ],
+  "rating": {
+    "value": 4.4,
+    "count": 799,
+    "source": "Yelp"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#B0341D",
+    "fontId": "classic-trad"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Two Culinary Worlds, One Kitchen",
+          "subheading": "Chinese classics and Vietnamese favorites on one menu near the Junior College — no MSG, plenty of vegetarian and vegan.",
+          "badges": [
+            "4.4★ from 799 reviews",
+            "Chinese and Vietnamese under one roof",
+            "No MSG; many vegetarian & vegan dishes"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/goji-kitchen/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/goji-kitchen/menu"
+          },
+          "image": {
+            "src": "/images/goji-kitchen/story.jpg",
+            "alt": "Inside Goji Kitchen",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4.4★",
+              "label": "799 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Goji Kitchen",
+          "body": [
+            "On Mendocino Avenue near the Junior College, Goji Kitchen brings together the culinary traditions of China and Vietnam under one roof. The menu runs from bold stir-fries like Kung Pao Chicken and Szechuan Beef to soul-soothing bowls of Pho and Bun — made with premium ingredients and time-honored recipes, and no MSG.",
+            "Goji is built around care as much as cooking: a welcoming room, attentive service, and a deep bench of vegetarian and vegan options so everyone at the table is looked after. Signature dishes like the Roll-It-Yourself Grilled Shrimp on Sugar Cane keep regulars coming back."
+          ],
+          "highlights": [
+            "Chinese and Vietnamese under one roof",
+            "No MSG; many vegetarian & vegan dishes",
+            "Voted Best Asian Restaurant (2025)"
+          ],
+          "image": {
+            "src": "/images/goji-kitchen/story.jpg",
+            "alt": "Inside Goji Kitchen",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Chinese Classics",
+              "description": "Kung Pao Chicken, Szechuan Beef, and the sweet-and-savory stir-fries of traditional Chinese cooking."
+            },
+            {
+              "title": "Vietnamese Favorites",
+              "description": "Pho, Bun, and fresh rolls — the delicate, herb-forward flavors of Vietnam."
+            },
+            {
+              "title": "Signature Specialties",
+              "description": "House favorites like Roll-It-Yourself Grilled Shrimp Paste on Sugar Cane and the Goji Sampler Rolls."
+            },
+            {
+              "title": "Vegetarian & Vegan",
+              "description": "A wide selection of plant-based dishes — cooked without MSG or microwaves."
+            },
+            {
+              "title": "Takeout & Catering",
+              "description": "Order ahead for pickup or let Goji cater your next gathering."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "rating": {
+            "value": 4.4,
+            "count": 799,
+            "source": "Yelp"
+          },
+          "items": [
+            {
+              "quote": "--> --> --> --> --> --> --> --> --> Great mix of chinese and vietnamese food! Would definitely return.😃"
+            },
+            {
+              "quote": "--> --> --> --> Testimonials --> --> --> --> --> --> GOJI Kitchen - North Bay Bohemian --> I eat meat like a ravenous lion in the jungle, but one thing I can't stand is restaurants that don't have squat for my vegetarian and vegan friends"
+            },
+            {
+              "quote": "--> --> Goji Kitchen Offers Two Worlds of Cooking - Press Democrat --> Are you in the mood for the satisfying stir-fries and sweet and sour meats of Chinese cooking, or would you prefer the delicate green flavors of soups and fresh rolls of Vietnam"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/goji-kitchen/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Chinese classics and Vietnamese favorites on one menu near the Junior College — no MSG, plenty of vegetarian and vegan.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Chinese Classics",
+              "description": "Kung Pao Chicken, Szechuan Beef, and the sweet-and-savory stir-fries of traditional Chinese cooking."
+            },
+            {
+              "title": "Vietnamese Favorites",
+              "description": "Pho, Bun, and fresh rolls — the delicate, herb-forward flavors of Vietnam."
+            },
+            {
+              "title": "Signature Specialties",
+              "description": "House favorites like Roll-It-Yourself Grilled Shrimp Paste on Sugar Cane and the Goji Sampler Rolls."
+            },
+            {
+              "title": "Vegetarian & Vegan",
+              "description": "A wide selection of plant-based dishes — cooked without MSG or microwaves."
+            },
+            {
+              "title": "Takeout & Catering",
+              "description": "Order ahead for pickup or let Goji cater your next gathering."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Sun: 11am–9pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/goji-kitchen/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Goji Kitchen",
+          "heading": "About Goji Kitchen",
+          "subheading": "On Mendocino Avenue near the Junior College, Goji Kitchen brings together the culinary traditions of China and Vietnam under one roof",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Goji Kitchen",
+          "body": [
+            "On Mendocino Avenue near the Junior College, Goji Kitchen brings together the culinary traditions of China and Vietnam under one roof. The menu runs from bold stir-fries like Kung Pao Chicken and Szechuan Beef to soul-soothing bowls of Pho and Bun — made with premium ingredients and time-honored recipes, and no MSG.",
+            "Goji is built around care as much as cooking: a welcoming room, attentive service, and a deep bench of vegetarian and vegan options so everyone at the table is looked after. Signature dishes like the Roll-It-Yourself Grilled Shrimp on Sugar Cane keep regulars coming back."
+          ],
+          "highlights": [
+            "Chinese and Vietnamese under one roof",
+            "No MSG; many vegetarian & vegan dishes",
+            "Voted Best Asian Restaurant (2025)"
+          ],
+          "image": {
+            "src": "/images/goji-kitchen/story.jpg",
+            "alt": "Inside Goji Kitchen",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4.4★",
+              "label": "799 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Goji Kitchen",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/goji-kitchen/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied:below-floor"
+}

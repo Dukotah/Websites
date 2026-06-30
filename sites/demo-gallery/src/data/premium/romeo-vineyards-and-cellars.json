@@ -1,0 +1,283 @@
+{
+  "slug": "romeo-vineyards-and-cellars",
+  "name": "Romeo Vineyards & Cellars",
+  "legalName": "Romeo Vineyards & Cellars",
+  "tagline": "Sempre Vive — elegant, enduring Napa Valley wines",
+  "seoDescription": "Romeo Vineyards & Cellars is a family-owned Calistoga winery crafting Cabernet Sauvignon and Bordeaux varietals from old-vine estate fruit, with tastings in a restored 1885 carriage house and garden in downtown Calistoga.",
+  "category": "winery",
+  "categoryLabel": "Winery",
+  "area": "Calistoga, CA",
+  "city": "Calistoga",
+  "state": "CA",
+  "established": "1996",
+  "contact": {
+    "phone": "(707) 942-8239",
+    "email": "info@romeovineyards.com",
+    "address": ""
+  },
+  "social": {},
+  "hours": [
+    {
+      "day": "Daily",
+      "hours": "12–7pm (final tasting 5pm)"
+    }
+  ],
+  "brand": {
+    "color": "#7a2b3a",
+    "fontId": "boutique-contrast"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Calistoga, CA · Est. 1996",
+          "heading": "Old-Vine Napa Valley Wines",
+          "subheading": "Family-owned in Calistoga since 1996, crafting Cabernet and Bordeaux varietals under the Sempre Vive label.",
+          "badges": [
+            "Serving since 1996",
+            "Estate fruit including 1971-planted old-vine",
+            "Family-owned and farmed since 1996"
+          ],
+          "primaryCta": {
+            "label": "See the wines",
+            "href": "/s/romeo-vineyards-and-cellars/menu"
+          },
+          "secondaryCta": {
+            "label": "Plan a visit",
+            "href": "/s/romeo-vineyards-and-cellars/contact"
+          },
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "services",
+          "eyebrow": "Our wines",
+          "heading": "The wines",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Cabernet Sauvignon",
+              "description": "The estate's flagship, built on old-vine fruit and crafted in an elegant, age-worthy Napa Valley style."
+            },
+            {
+              "title": "Bordeaux Reds",
+              "description": "Cabernet Franc, Petite Verdot, Merlot and Malbec, made as varietal bottlings and blends under the Sempre Vive label."
+            },
+            {
+              "title": "Estate Whites",
+              "description": "A small production of Sauvignon Blanc, Chardonnay and Muscat to round out the portfolio."
+            },
+            {
+              "title": "Garden Tastings",
+              "description": "Seated tastings on the patio of the restored 1885 carriage house, among century-old redwoods and cedars; indoor tastings by request."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Romeo Vineyards & Cellars",
+          "body": [
+            "Frank and Eugenia 'Gena' Romeo purchased their Calistoga vineyard in 1996, drawn to a remarkable block of old-vine Cabernet first planted in 1971. They nursed the estate back to health with Bordeaux-clone replanting and released their inaugural Cabernet Sauvignon soon after — the start of a family commitment to elegant, age-worthy Napa Valley wines bottled under the Sempre Vive ('always alive') label.",
+            "In downtown Calistoga, the family restored an 1885 carriage house and opened it as a tasting room, set within gardens shaded by century-old redwoods and cedars. Guests are welcomed through jasmine- and rose-covered arches to taste on the garden patio, with indoor tastings available by request."
+          ],
+          "highlights": [
+            "Estate fruit including 1971-planted old-vine Cabernet",
+            "Family-owned and farmed since 1996",
+            "Tastings in a restored 1885 carriage house and garden"
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Clint and Emma were very accommodating, and by far the best tasting room you will find in all of Napa Valley."
+            }
+          ]
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why Romeo Vineyards & Cellars",
+          "items": [
+            {
+              "title": "Estate Fruit Including 1971-Planted Old-Vine",
+              "body": "Wines built on a remarkable block of old-vine Cabernet first planted in 1971.",
+              "icon": "leaf"
+            },
+            {
+              "title": "Family-Owned And Farmed Since 1996",
+              "body": "Rooted right here in Calistoga, with a real family stake in every vintage.",
+              "icon": "check"
+            },
+            {
+              "title": "Tastings In A Restored 1885 Carriage House",
+              "body": "Taste on the garden patio among century-old redwoods, or indoors by request.",
+              "icon": "sparkle"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Plan a visit",
+          "body": "Call (707) 942-8239 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/romeo-vineyards-and-cellars/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 942-8239",
+            "href": "tel:+17079428239"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Wines",
+      "title": "Wines",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Our wines",
+          "heading": "The wines we make",
+          "subheading": "Family-owned in Calistoga since 1996, crafting Cabernet and Bordeaux varietals under the Sempre Vive label.",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "The wines",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Cabernet Sauvignon",
+              "description": "The estate's flagship, built on old-vine fruit and crafted in an elegant, age-worthy Napa Valley style."
+            },
+            {
+              "title": "Bordeaux Reds",
+              "description": "Cabernet Franc, Petite Verdot, Merlot and Malbec, made as varietal bottlings and blends under the Sempre Vive label."
+            },
+            {
+              "title": "Estate Whites",
+              "description": "A small production of Sauvignon Blanc, Chardonnay and Muscat to round out the portfolio."
+            },
+            {
+              "title": "Garden Tastings",
+              "description": "Seated tastings on the patio of the restored 1885 carriage house, among century-old redwoods and cedars; indoor tastings by request."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Daily: 12–7pm (final tasting 5pm)."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Calistoga, CA and the surrounding community."
+            },
+            {
+              "q": "How do I get in touch?",
+              "a": "Call us at (707) 942-8239 — we're glad to help."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Plan a visit",
+          "body": "Call (707) 942-8239 — we’re glad to help.",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/romeo-vineyards-and-cellars/contact"
+          },
+          "secondaryCta": {
+            "label": "Call (707) 942-8239",
+            "href": "tel:+17079428239"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Romeo Vineyards & Cellars",
+          "heading": "About Romeo Vineyards & Cellars",
+          "subheading": "Frank and Eugenia 'Gena' Romeo purchased their Calistoga vineyard in 1996, drawn to a remarkable block of old-vine Cabernet first planted in 1971",
+          "motif": "/images/library/winery/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Romeo Vineyards & Cellars",
+          "body": [
+            "Frank and Eugenia 'Gena' Romeo purchased their Calistoga vineyard in 1996, drawn to a remarkable block of old-vine Cabernet first planted in 1971. They nursed the estate back to health with Bordeaux-clone replanting and released their inaugural Cabernet Sauvignon soon after — the start of a family commitment to elegant, age-worthy Napa Valley wines bottled under the Sempre Vive ('always alive') label.",
+            "In downtown Calistoga, the family restored an 1885 carriage house and opened it as a tasting room, set within gardens shaded by century-old redwoods and cedars. Guests are welcomed through jasmine- and rose-covered arches to taste on the garden patio, with indoor tastings available by request."
+          ],
+          "highlights": [
+            "Estate fruit including 1971-planted old-vine Cabernet",
+            "Family-owned and farmed since 1996",
+            "Tastings in a restored 1885 carriage house and garden"
+          ]
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "30+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4",
+              "label": "Services offered"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Romeo Vineyards & Cellars",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/romeo-vineyards-and-cellars/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "blurb": "Reach Romeo Vineyards & Cellars or call (707) 942-8239.",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "library"
+}
