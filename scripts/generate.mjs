@@ -11,8 +11,12 @@
  * only the buildConfig/manifest TAIL is the premium author.
  *
  * Usage: node scripts/generate.mjs [path/to/file.csv] [--no-photos]
- *                                   [--no-crm-sync] [--no-claude]
+ *                                   [--no-crm-sync] [--no-claude] [--flagship]
  *                                   [--only <slug>] [--no-manifest]
+ *
+ * --flagship: the high-ceiling authoring tier (Opus + per-section Claude calls +
+ *   fact-driven ordering + loose prose caps). Costs many more tokens; the owner
+ *   accepts that for the flagship demos. Omit it for the cheap batch path.
  *
  * SINGLE-LEAD authoring (agent vision-in-the-loop): pass `--only <slug>` to build
  * exactly one lead from the CSV and `--no-manifest` to leave the SHARED state
@@ -52,6 +56,12 @@ async function main() {
   const skipWikimedia = !useStock;
   const skipOsm = !useStock;
   const useClaude = !process.argv.includes('--no-claude');
+  // FLAGSHIP tier: --flagship turns on the high-ceiling authoring path — Opus
+  // (ANTHROPIC_FLAGSHIP_MODEL, default claude-opus-4-8), big token budgets, a
+  // FOCUSED Claude call per major section (hero/story/each service/FAQ), looser
+  // prose caps, and FACT-DRIVEN section ordering. Without it, behavior matches the
+  // cheap batch path (sonnet, single upgrade call, today's tight caps + hash order).
+  const flagship = process.argv.includes('--flagship');
   // SINGLE-LEAD mode: `--only <slug>` builds just that one lead; `--no-manifest`
   // leaves data/outreach-links.json + the CRM sync untouched (disjoint per-lead).
   const onlyIdx = process.argv.indexOf('--only');
@@ -69,7 +79,8 @@ async function main() {
   const base = (process.env.GALLERY_BASE_URL || 'https://demos.copperbaytech.com').replace(/\/$/, '');
   console.log(
     `Authoring ${rows.length} premium site(s) → /s/<slug>.\n` +
-    `  Copy:   ${useClaude && process.env.ANTHROPIC_API_KEY ? 'Claude upgrade over deterministic skeleton' : 'deterministic (real facts)'}\n` +
+    `  Tier:   ${flagship ? 'FLAGSHIP (Opus, per-section authoring, fact-driven order, loose caps)' : 'batch (sonnet, single upgrade call, today\'s caps)'}\n` +
+    `  Copy:   ${useClaude && process.env.ANTHROPIC_API_KEY ? `AI author (${flagship ? 'flagship' : 'batch'}) over deterministic skeleton` : 'deterministic fallback (no key — real facts only)'}\n` +
     `  Photos: ${useStock ? 'agent-dropped → their site → Wikimedia/OSM → library' : 'OWN only (their site + agent-dropped) — no stock; none → clean photo-less structure'}\n`,
   );
 
@@ -116,7 +127,7 @@ async function main() {
 
     // 2) Author the premium multi-page config from the real facts + media.
     const { config, status, flags } = await authorPremium(slug, row, e, research, media, {
-      photoSource, photoFlags, mismatchName, useClaude,
+      photoSource, photoFlags, mismatchName, useClaude, flagship,
     });
 
     // Carry the lead's EXISTING/source site (the bad/dead/placeholder one the

@@ -22,6 +22,7 @@ import {
   normCat, deriveStatus, clip, titleCase, humanizeCategory, hashStr, formatPhone, PUBLIC_IMAGES,
 } from './lib/facts.mjs';
 import { pickFontId, pickBrandColor } from './lib/brand-seed.mjs';
+import { copyCaps, factDrivenOrder, pickCopyModel } from './lib/compose.mjs';
 import { sanitizeProse, sanitizeTestimonials } from './lib/copy-sanity.mjs';
 import { scorePhoto } from './lib/photo-score.mjs';
 import { auditConfigCriticals } from './audit.mjs';
@@ -130,8 +131,12 @@ async function discoverPhotos(slug) {
 }
 
 // ── deterministic skeleton ─────────────────────────────────────────────────
-async function buildSkeleton(slug, row, e, research, media, { photoSource = '' } = {}) {
+async function buildSkeleton(slug, row, e, research, media, { photoSource = '', flagship = false } = {}) {
   const cat = premiumCat(row.category);
+  // CLIP-CAP governor: the flagship path loosens every prose budget a lot so
+  // Opus-class copy reads full, not truncated; the batch path keeps today's terse
+  // caps (behavior matches today without --flagship). seoDescription stays at 160.
+  const caps = copyCaps(flagship);
   // Track when the scraped-copy guard stripped a field — forces needs-review so
   // a human rewrites from the real facts instead of shipping a hole.
   let copyStripped = false;
@@ -158,7 +163,7 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   // ("Notify me when this product is available") and duplicated-phrase artifacts
   // are dropped, not just clipped. A stripped line flips copyStripped.
   const rawAbout = (research?.aboutBody?.length ? research.aboutBody : (e?.about ?? []))
-    .map((p) => clip(String(p), 600));
+    .map((p) => clip(String(p), caps.about));
   const aboutBody = [];
   for (const p of rawAbout) {
     const clean = sanitizeProse(p);
@@ -174,7 +179,7 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   const rawTestimonials = (research?.testimonials ?? e?.testimonials ?? [])
     .filter((t) => t.quote && t.quote.length > 20);
   const testimonials = sanitizeTestimonials(rawTestimonials)
-    .map((t) => ({ quote: clip(t.quote, 280), ...(t.author ? { author: t.author } : {}) }));
+    .map((t) => ({ quote: clip(t.quote, caps.testimonial), ...(t.author ? { author: t.author } : {}) }));
   if (rawTestimonials.length && !testimonials.length) copyStripped = true;
   // Sanitized hero/story subheading source: prefer a clean research subheading,
   // else the (already-sanitized) first about paragraph. Never a junk clause.
@@ -372,7 +377,7 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
     variant: heroVariant,
     ...(eyebrowLoc ? { eyebrow: eyebrowLoc } : {}),
     heading: research?.heroHeading || defaultHeroHeading(name, cat, area, established),
-    ...(heroSubSrc ? { subheading: clip(heroSubSrc, 200) } : {}),
+    ...(heroSubSrc ? { subheading: clip(heroSubSrc, caps.heroSub) } : {}),
     badges: buildBadges(established, rating, highlights),
     primaryCta: { label: HOSPITALITY.has(cat) ? 'See the menu' : 'Get in touch', href: `/s/${slug}/${HOSPITALITY.has(cat) ? 'menu' : 'contact'}` },
     secondaryCta: { label: HOSPITALITY.has(cat) ? 'Book catering' : (services.length ? 'Our services' : 'Contact us'), href: `/s/${slug}/${services.length ? sp.slug : 'contact'}` },
@@ -405,7 +410,7 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
         kind: 'callout',
         eyebrow: 'Why choose us',
         heading: research?.calloutHeading || `What sets ${name} apart`,
-        ...(aboutBody[0] ? { body: clip(aboutBody[0], 200) } : (heroSubSrc ? { body: clip(heroSubSrc, 200) } : {})),
+        ...(aboutBody[0] ? { body: clip(aboutBody[0], caps.calloutBody) } : (heroSubSrc ? { body: clip(heroSubSrc, caps.calloutBody) } : {})),
         points: calloutPoints,
         primaryCta: { label: HOSPITALITY.has(cat) ? 'See the menu' : 'Get in touch', href: `/s/${slug}/${HOSPITALITY.has(cat) ? 'menu' : 'contact'}` },
       }
@@ -517,13 +522,24 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
   // Section ORDER per variant. New beats (steps/team) are woven in where they
   // read best: steps right after services (the "what" then the "how"), team near
   // the story (the people behind it). Missing sections drop out.
-  const ORDER_VARIANTS = [
-    ['trust', 'story', 'team', 'services', 'steps', 'testimonials', 'gallery'],
-    ['story', 'team', 'services', 'steps', 'trust', 'gallery', 'testimonials'],
-    ['services', 'steps', 'story', 'team', 'testimonials', 'trust', 'gallery'],
-  ];
-  const orderVariant = hashStr(slug + 'order') % ORDER_VARIANTS.length;
-  for (const key of ORDER_VARIANTS[orderVariant]) {
+  // ORDERING governor: the batch path keeps the deterministic hashStr(slug)%3
+  // coin-flip (behavior matches today without --flagship). The FLAGSHIP path
+  // instead orders FACT-DRIVEN — lead with the section whose real evidence is
+  // strongest (factDrivenOrder scores stats/testimonials/services/story/etc. by
+  // the content actually built), so a review-rich site opens on testimonials and a
+  // story-rich site opens on its story, rather than a hash deciding.
+  let orderedKeys;
+  if (flagship) {
+    orderedKeys = factDrivenOrder(byKey);
+  } else {
+    const ORDER_VARIANTS = [
+      ['trust', 'story', 'team', 'services', 'steps', 'testimonials', 'gallery'],
+      ['story', 'team', 'services', 'steps', 'trust', 'gallery', 'testimonials'],
+      ['services', 'steps', 'story', 'team', 'testimonials', 'trust', 'gallery'],
+    ];
+    orderedKeys = ORDER_VARIANTS[hashStr(slug + 'order') % ORDER_VARIANTS.length];
+  }
+  for (const key of orderedKeys) {
     if (byKey[key]) homeSections.push(byKey[key]);
   }
   homeSections.push(homeCta);
@@ -547,7 +563,7 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
         variant: 'editorial',
         eyebrow: servicesEyebrow(cat),
         heading: HOSPITALITY.has(cat) ? 'What we’re serving' : 'How we can help',
-        ...(heroSubSrc ? { subheading: clip(heroSubSrc, 180) } : {}),
+        ...(heroSubSrc ? { subheading: clip(heroSubSrc, caps.heroSub) } : {}),
         motif: categoryMotif(cat),
       },
       {
@@ -592,7 +608,7 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
         variant: 'editorial',
         eyebrow: `About ${name}`,
         heading: research?.aboutHeading ? clip(research.aboutHeading, 70) : `About ${name}`,
-        ...(aboutBody[0] ? { subheading: clip(aboutBody[0], 180) } : {}),
+        ...(aboutBody[0] ? { subheading: clip(aboutBody[0], caps.heroSub) } : {}),
         motif: categoryMotif(cat),
       },
     ];
@@ -642,8 +658,8 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
     slug,
     name,
     legalName: research?.legalName || name,
-    tagline: clip(sanitizeProse(research?.tagline || e?.description || ''), 110),
-    seoDescription: clip(sanitizeProse(research?.seoDescription || e?.description || '') || `${name} — ${categoryLabel(cat)} serving ${area || 'the local area'}.`, 160),
+    tagline: clip(sanitizeProse(research?.tagline || e?.description || ''), caps.tagline),
+    seoDescription: clip(sanitizeProse(research?.seoDescription || e?.description || '') || `${name} — ${categoryLabel(cat)} serving ${area || 'the local area'}.`, caps.seoDescription),
     category: cat,
     categoryLabel: categoryLabel(cat),
     area,
@@ -661,7 +677,7 @@ async function buildSkeleton(slug, row, e, research, media, { photoSource = '' }
     pages,
   };
 
-  return { config, meta: { aboutDropped, realPhotoCount, galleryCount: galleryImgs.length, heroImg, anyRealPhoto: realPhotoCount > 0 || galleryImgs.length > 0, cat, copyStripped, stockHeroSuppressed, suppressReason, usedFallbackHero, hasResearch: Boolean(research), established: Boolean(established) } };
+  return { config, meta: { aboutDropped, realPhotoCount, galleryCount: galleryImgs.length, heroImg, anyRealPhoto: realPhotoCount > 0 || galleryImgs.length > 0, cat, copyStripped, stockHeroSuppressed, suppressReason, usedFallbackHero, hasResearch: Boolean(research), established: Boolean(established), flagship, caps } };
 }
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -820,76 +836,219 @@ function deriveServiceDesc(title, cat, area) {
   return SERVICE_DESC[seed % SERVICE_DESC.length](title, area, cat);
 }
 
-// ── Claude copy upgrade (optional) ─────────────────────────────────────────
-// Upgrades ONLY copy fields from the deterministic skeleton + the same real
-// facts; never invents facts/photos/hours/ratings. On any error, returns the
-// skeleton unchanged. Validated back into the same PremiumConfig shape.
-async function upgradeCopyWithClaude(config, e, research) {
-  if (!process.env.ANTHROPIC_API_KEY) return config;
+// ── Claude copy authoring ──────────────────────────────────────────────────
+// AI is now the DEFAULT copy author whenever ANTHROPIC_API_KEY is set (the old
+// deterministic SERVICE_DESC / hero-rotation templates are the EMERGENCY FALLBACK,
+// used only without a key or on an API error). Two tiers:
+//   • BATCH (default)   — ONE focused call upgrades hero/story/services/cta. Cheap.
+//   • FLAGSHIP (--flag) — Opus + a FOCUSED call PER major section (hero, story,
+//                          EACH service, FAQ), each from that section's real facts,
+//                          so copy reads specific, not templated.
+// HONESTY is non-negotiable in every call: use ONLY the given facts; never invent
+// awards, numbers, services, photos, hours, or ratings.
+
+const HONESTY = 'Use ONLY the facts given — never invent awards, numbers, services, ' +
+  'photos, hours, ratings, or specifics not present in the facts. Voice: warm, concrete, ' +
+  'local, no hype, no emoji, no clichés ("count on us", "your trusted", "done right").';
+
+// One Anthropic call → parsed JSON (throws on any failure so the caller can fall
+// back to the deterministic skeleton field). systemText is cached (ephemeral).
+async function callClaude({ systemText, user, model, maxTokens }) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+    body: JSON.stringify({
+      model,
+      max_tokens: maxTokens,
+      system: [{ type: 'text', text: systemText, cache_control: { type: 'ephemeral' } }],
+      messages: [{ role: 'user', content: user }],
+    }),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  const text = data.content?.map((b) => b.text ?? '').join('').trim();
+  return JSON.parse(text.replace(/^```json\s*|\s*```$/g, ''));
+}
+
+// The shared REAL-FACTS block every copy call grounds itself in.
+function factsBlock(config, e, research) {
+  const aboutSrc = research?.aboutBody?.length
+    ? research.aboutBody.join(' ')
+    : (e?.about?.length ? e.about.join(' ') : '');
+  return [
+    aboutSrc ? `About (verified): ${clip(aboutSrc, 1400)}` : '',
+    e?.description ? `Self-description: ${clip(e.description, 400)}` : '',
+    config.established ? `Established: ${config.established}` : '',
+    config.rating ? `Rating: ${config.rating.value}★${config.rating.count ? ` (${config.rating.count} reviews)` : ''}` : '',
+    config.contact?.address ? `Address: ${config.contact.address}` : '',
+    (config.hours?.length ? `Hours: ${config.hours.map((h) => `${h.day} ${h.hours}`).join('; ')}` : ''),
+    Array.isArray(research?.highlights) && research.highlights.length ? `Highlights: ${research.highlights.join('; ')}` : '',
+  ].filter(Boolean).join('\n');
+}
+
+// ── BATCH tier: one upgrade call (raised budget) ───────────────────────────
+async function upgradeCopyWithClaude(config, e, research, { caps, model, maxTokens } = {}) {
+  if (!process.env.ANTHROPIC_API_KEY) return { config, aiAuthoredHero: false };
+  const C = caps || copyCaps(false);
   try {
-    const facts =
-      (research?.aboutBody?.length ? `\nAbout (verified): ${clip(research.aboutBody.join(' '), 700)}` : '') +
-      (e?.description ? `\nSelf-description: ${clip(e.description, 300)}` : '') +
-      (config.established ? `\nEstablished: ${config.established}` : '') +
-      (config.rating ? `\nRating: ${config.rating.value}★${config.rating.count ? ` (${config.rating.count})` : ''}` : '') +
-      (config.services ? '' : '');
     const services = (config.pages[0].sections.find((s) => s.kind === 'services')?.items ?? []).map((s) => s.title).join('; ');
-    const system = [{
-      type: 'text',
-      text:
-        'You upgrade COPY for a small-business website built from REAL facts. Return ONLY minified JSON: ' +
-        '{"heroHeading":string,"heroSubheading":string,"storyBody":string[2],' +
-        '"services":[{"title":string,"description":string}],"ctaHeading":string,"ctaBody":string}. ' +
-        'Use ONLY the facts given — never invent awards, numbers, services, photos, hours, or ratings. ' +
-        'Keep service titles EXACTLY as given (rewrite only descriptions). Voice: warm, concrete, local, no hype, no emoji. ' +
-        'heroHeading <=10 words.',
-      cache_control: { type: 'ephemeral' },
-    }];
+    const systemText =
+      'You upgrade COPY for a small-business website built from REAL facts. Return ONLY minified JSON: ' +
+      '{"heroHeading":string,"heroSubheading":string,"storyBody":string[2],' +
+      '"services":[{"title":string,"description":string}],"ctaHeading":string,"ctaBody":string}. ' +
+      'Keep service titles EXACTLY as given (rewrite only descriptions). heroHeading <=10 words, a specific earned promise. ' +
+      HONESTY;
     const user =
       `Business: ${config.name}\nCategory: ${config.categoryLabel}\nArea: ${config.area}\n` +
-      `Services: ${services}` + facts;
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: process.env.ANTHROPIC_MODEL ?? 'claude-sonnet-4-6', max_tokens: 1400, system, messages: [{ role: 'user', content: user }] }),
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    const text = data.content?.map((b) => b.text ?? '').join('').trim();
-    const j = JSON.parse(text.replace(/^```json\s*|\s*```$/g, ''));
-    return applyClaudeCopy(config, j);
+      `Services: ${services}\n${factsBlock(config, e, research)}`;
+    const j = await callClaude({ systemText, user, model: model || pickCopyModel(false), maxTokens: maxTokens || 3000 });
+    const aiAuthoredHero = applyClaudeCopy(config, j, C);
+    return { config, aiAuthoredHero };
   } catch (err) {
     console.warn(`  ! Claude premium-copy upgrade failed for ${config.slug} (${err.message}); keeping deterministic copy`);
-    return config;
+    return { config, aiAuthoredHero: false };
   }
 }
 
-// Merge Claude's copy back into the config WITHOUT touching facts/photos/structure.
-function applyClaudeCopy(config, j) {
-  const titleSet = new Set();
+// Merge a batch JSON blob back into the config WITHOUT touching facts/photos/
+// structure. Returns true if the home hero heading was authored by Claude.
+function applyClaudeCopy(config, j, caps) {
+  const C = caps || copyCaps(false);
+  let heroAuthored = false;
   for (const page of config.pages) {
     for (const sec of page.sections) {
       if (sec.kind === 'hero' && page.slug === 'home') {
-        if (j.heroHeading) sec.heading = clip(j.heroHeading, 90);
-        if (j.heroSubheading) sec.subheading = clip(j.heroSubheading, 200);
+        if (j.heroHeading) { sec.heading = clip(j.heroHeading, C.heroHeading); heroAuthored = true; }
+        if (j.heroSubheading) sec.subheading = clip(j.heroSubheading, C.heroSub);
       }
       if (sec.kind === 'story' && Array.isArray(j.storyBody) && j.storyBody.length) {
-        sec.body = j.storyBody.slice(0, 2).map((p) => clip(String(p), 600));
+        sec.body = j.storyBody.slice(0, 2).map((p) => clip(String(p), C.storyBody));
       }
       if (sec.kind === 'services' && Array.isArray(j.services)) {
         // Match by title only; rewrite description, keep facts/titles fixed.
         for (const item of sec.items) {
           const m = j.services.find((s) => s.title && s.title.toLowerCase() === item.title.toLowerCase());
-          if (m?.description) item.description = clip(m.description, 280);
+          if (m?.description) item.description = clip(m.description, C.serviceDesc);
         }
       }
       if (sec.kind === 'cta') {
-        if (j.ctaHeading) sec.heading = clip(j.ctaHeading, 80);
-        if (j.ctaBody) sec.body = clip(j.ctaBody, 200);
+        if (j.ctaHeading) sec.heading = clip(j.ctaHeading, C.ctaHeading);
+        if (j.ctaBody) sec.body = clip(j.ctaBody, C.ctaBody);
       }
     }
   }
-  return config;
+  return heroAuthored;
+}
+
+// ── FLAGSHIP tier: one focused call PER major section, run concurrently ─────
+// Each section is authored from its OWN slice of the real facts so the prose is
+// specific, not a single blob spread thin. Every call is independently guarded:
+// a failure leaves that section's deterministic copy in place (never blocks the
+// others). Returns { config, aiAuthoredHero }.
+async function authorSectionsWithClaude(config, e, research, { caps, model } = {}) {
+  if (!process.env.ANTHROPIC_API_KEY) return { config, aiAuthoredHero: false };
+  const C = caps || copyCaps(true);
+  const mdl = model || pickCopyModel(true);
+  const facts = factsBlock(config, e, research);
+  const head = `Business: ${config.name}\nCategory: ${config.categoryLabel}\nArea: ${config.area}\n${facts}`;
+  const serviceItems = config.pages[0].sections.find((s) => s.kind === 'services')?.items ?? [];
+
+  // HERO + CTA (one call — both are page-framing copy).
+  const heroCall = (async () => {
+    const systemText =
+      'Author the HERO and CTA for a small-business website from REAL facts. Return ONLY minified JSON: ' +
+      '{"heroHeading":string,"heroSubheading":string,"ctaHeading":string,"ctaBody":string}. ' +
+      'heroHeading is a SPECIFIC, earned promise <=12 words naming what is genuinely distinctive about THIS business ' +
+      '(its specialty, history, place) — not a generic category line. heroSubheading is 1-2 sentences. ' + HONESTY;
+    return callClaude({ systemText, user: `${head}\nServices: ${serviceItems.map((s) => s.title).join('; ')}`, model: mdl, maxTokens: 8000 });
+  })();
+
+  // ABOUT / STORY.
+  const hasStory = config.pages.some((p) => p.sections.some((s) => s.kind === 'story'));
+  const storyCall = hasStory ? (async () => {
+    const systemText =
+      'Author the ABOUT/STORY for a small-business website from REAL facts. Return ONLY minified JSON: ' +
+      '{"heading":string,"body":string[2]}. Two warm, concrete paragraphs grounded in the real about text and ' +
+      'facts — the people, the place, what they actually do and how long. ' + HONESTY;
+    return callClaude({ systemText, user: head, model: mdl, maxTokens: 8000 });
+  })() : Promise.resolve(null);
+
+  // FAQ (rewrite tone of the deterministic Q/A; keep every fact verbatim).
+  const faqSec = config.pages.flatMap((p) => p.sections).find((s) => s.kind === 'faq');
+  const faqCall = faqSec?.items?.length ? (async () => {
+    const systemText =
+      'Rewrite these website FAQ answers to be warm and natural for a small business. Return ONLY minified JSON: ' +
+      '{"items":[{"q":string,"a":string}]}. Keep each question, and keep every concrete fact (address, hours, phone, ' +
+      'area) EXACTLY as given — only improve the wording around them. Do not add or remove questions. ' + HONESTY;
+    return callClaude({ systemText, user: `${head}\nFAQ: ${JSON.stringify(faqSec.items)}`, model: mdl, maxTokens: 8000 });
+  })() : Promise.resolve(null);
+
+  // EACH service description — its own focused call (capped to what's on the page).
+  const serviceCalls = serviceItems.slice(0, 6).map((it) => (async () => {
+    const systemText =
+      'Write ONE service description for a small-business website from REAL facts. Return ONLY minified JSON: ' +
+      '{"description":string}. 1-2 concrete sentences specific to THIS service (not generic filler), grounded in the ' +
+      'facts. ' + HONESTY;
+    const j = await callClaude({ systemText, user: `${head}\nService to describe: "${it.title}"`, model: mdl, maxTokens: 2000 });
+    return { title: it.title, description: j?.description };
+  })());
+
+  const [hero, story, faq, ...services] = await Promise.allSettled([heroCall, storyCall, faqCall, ...serviceCalls]);
+
+  let aiAuthoredHero = false;
+  // Apply hero/cta.
+  if (hero.status === 'fulfilled' && hero.value) {
+    const j = hero.value;
+    for (const page of config.pages) {
+      for (const sec of page.sections) {
+        if (sec.kind === 'hero' && page.slug === 'home') {
+          if (j.heroHeading) { sec.heading = clip(j.heroHeading, C.heroHeading); aiAuthoredHero = true; }
+          if (j.heroSubheading) sec.subheading = clip(j.heroSubheading, C.heroSub);
+        }
+        if (sec.kind === 'cta') {
+          if (j.ctaHeading) sec.heading = clip(j.ctaHeading, C.ctaHeading);
+          if (j.ctaBody) sec.body = clip(j.ctaBody, C.ctaBody);
+        }
+      }
+    }
+  } else if (hero.status === 'rejected') {
+    console.warn(`  ! flagship hero copy failed for ${config.slug} (${hero.reason?.message}); keeping deterministic hero`);
+  }
+  // Apply story (heading + body) across every page that has a story section.
+  if (story && story.status === 'fulfilled' && story.value) {
+    const j = story.value;
+    for (const page of config.pages) {
+      for (const sec of page.sections) {
+        if (sec.kind === 'story') {
+          if (j.heading) sec.heading = clip(j.heading, 70);
+          if (Array.isArray(j.body) && j.body.length) sec.body = j.body.slice(0, 2).map((p) => clip(String(p), C.storyBody));
+        }
+      }
+    }
+  } else if (story && story.status === 'rejected') {
+    console.warn(`  ! flagship story copy failed for ${config.slug} (${story.reason?.message}); keeping deterministic story`);
+  }
+  // Apply FAQ (only when shape matches and count is unchanged — keeps facts safe).
+  if (faq && faq.status === 'fulfilled' && faq.value && Array.isArray(faq.value.items) && faqSec) {
+    const items = faq.value.items.filter((x) => x && x.q && x.a);
+    if (items.length === faqSec.items.length) {
+      faqSec.items = items.map((x) => ({ q: clip(String(x.q), 120), a: clip(String(x.a), 400) }));
+    }
+  }
+  // Apply each service description by title match.
+  const svcResults = services.filter((r) => r.status === 'fulfilled' && r.value?.description).map((r) => r.value);
+  if (svcResults.length) {
+    for (const page of config.pages) {
+      for (const sec of page.sections) {
+        if (sec.kind !== 'services') continue;
+        for (const item of sec.items) {
+          const m = svcResults.find((s) => s.title && s.title.toLowerCase() === item.title.toLowerCase());
+          if (m?.description) item.description = clip(String(m.description), C.serviceDesc);
+        }
+      }
+    }
+  }
+  return { config, aiAuthoredHero };
 }
 
 // ── public entry ───────────────────────────────────────────────────────────
@@ -898,12 +1057,22 @@ function applyClaudeCopy(config, j) {
  * @returns { config, status, flags, photoSource }
  */
 export async function authorPremium(slug, row, e, research, media, {
-  photoSource = '', photoFlags = [], mismatchName = '', useClaude = true,
+  photoSource = '', photoFlags = [], mismatchName = '', useClaude = true, flagship = false,
 } = {}) {
-  let { config, meta } = await buildSkeleton(slug, row, e, research, media, { photoSource });
+  let { config, meta } = await buildSkeleton(slug, row, e, research, media, { photoSource, flagship });
 
-  // Optional Claude copy upgrade (deterministic skeleton already shippable).
-  if (useClaude) config = await upgradeCopyWithClaude(config, e, research);
+  // COPY AUTHORING — AI is the DEFAULT author when a key is set (templates are the
+  // emergency fallback). FLAGSHIP authors each major section with its own focused
+  // Opus call; BATCH does one focused upgrade call. Either way the deterministic
+  // skeleton is the floor under any field the model doesn't return / on API error.
+  let aiAuthoredHero = false;
+  if (useClaude && process.env.ANTHROPIC_API_KEY) {
+    const r = flagship
+      ? await authorSectionsWithClaude(config, e, research, { caps: meta.caps })
+      : await upgradeCopyWithClaude(config, e, research, { caps: meta.caps });
+    config = r.config;
+    aiAuthoredHero = r.aiAuthoredHero;
+  }
 
   // Status — reuse deriveStatus verbatim, then layer premium-specific flags.
   const templated = []; // premium author builds from real facts; no template stubs tracked here
@@ -929,7 +1098,11 @@ export async function authorPremium(slug, row, e, research, media, {
   // case the 95% bar holds back; force needs-review so a human researches a real,
   // specific promise. (A site WITH research or a founding year keeps the fallback
   // legitimately and is not flagged here.)
-  if (meta.usedFallbackHero && !meta.hasResearch && !meta.established)
+  // AI is the default author now: if Claude authored the hero from real facts, the
+  // headline is earned even without a research file or founding year, so it is NOT
+  // the generic-template case. Only flag when the DETERMINISTIC rotation actually
+  // wrote the headline (no key / API error) AND nothing anchored it.
+  if (meta.usedFallbackHero && !aiAuthoredHero && !meta.hasResearch && !meta.established)
     flags.push('Generic fallback headline with no research or founding year — research a specific, earned hero line');
   // A distinct flag string per suppression case so the human knows WHY the hero
   // was routed to editorial (off-domain provenance vs washed photo).
