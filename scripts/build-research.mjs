@@ -33,6 +33,12 @@
  *     --no-images         skip the deep photo crawl (faster)
  *     --force             rebuild research files that already exist
  *                         (still never overwrites a confirmed:true file)
+ *     --flagship          DEEP mode for the flagship pipeline: crawl more pages
+ *                         for photos and attach a per-lead web-research BRIEF
+ *                         (_researchTargets: ready-to-open Yelp/Google/FB/BBB/news
+ *                         query URLs) so the agent's enrichment pass is targeted
+ *                         and the file can be web-verified → confirmed:true.
+ *                         Purely additive: default behavior is unchanged.
  */
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { join, dirname, basename } from 'node:path';
@@ -40,16 +46,18 @@ import { fileURLToPath } from 'node:url';
 import { slugify } from './lib/facts.mjs';
 import { parseScraperCsv, toBuilderCsv } from './lib/scraper-csv.mjs';
 import { scrapeSite, collectSiteImages } from './lib/scrape-site.mjs';
+import { buildResearchTargets } from './lib/research-targets.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const RESEARCH_DIR = join(ROOT, 'data', 'research');
 
 // --- tiny arg parser --------------------------------------------------------
 function parseArgs(argv) {
-  const o = { positional: [], concurrency: 6, images: true, force: false, state: '', limit: 0, out: '' };
+  const o = { positional: [], concurrency: 6, images: true, force: false, state: '', limit: 0, out: '', flagship: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--no-images') o.images = false;
+    else if (a === '--flagship') o.flagship = true;
     else if (a === '--force') o.force = true;
     else if (a === '--out') o.out = argv[++i];
     else if (a === '--state') o.state = argv[++i];
@@ -238,7 +246,9 @@ async function main() {
       photoUrls = Array.isArray(e.images) ? [...e.images] : [];
       if (opts.images) {
         try {
-          const more = await collectSiteImages(lead.website);
+          // Flagship deepens the photo crawl (more own-site pages) to maximize
+          // the chance of finding clearly-theirs storefront/work/team shots.
+          const more = await collectSiteImages(lead.website, opts.flagship ? { maxPages: 12 } : {});
           photoUrls = [...new Set([...photoUrls, ...more])];
         } catch { /* best-effort */ }
       }
@@ -251,6 +261,9 @@ async function main() {
     // On a mismatch, write a thin file that carries ONLY the lead's own fields +
     // a loud note — never the foreign site's content.
     const research = researchFromScrape(slug, mismatchName ? null : e, lead, photoUrls, mismatchName);
+    // Flagship: attach a targeted web-research brief so the agent's enrichment
+    // pass knows exactly what to confirm and where (→ promote to confirmed:true).
+    if (opts.flagship) research._researchTargets = buildResearchTargets(lead);
     await writeFile(path, JSON.stringify(research, null, 2) + '\n');
     stats.written++;
   });
