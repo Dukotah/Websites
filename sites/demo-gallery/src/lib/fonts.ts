@@ -1,9 +1,15 @@
 /**
- * Font registry — 10 self-hosted @fontsource pairings (spec §3.2) plus the
- * modular type-scale definitions consumed by tokens.ts.
+ * Font registry — 30 self-hosted @fontsource pairings plus the modular
+ * type-scale definitions consumed by tokens.ts.
  *
  * No Google CDN, no API key. The actual side-effect @fontsource imports live in
  * `font-faces.ts`; this module only describes the families + how to pick one.
+ *
+ * The original 10 pairings (spec §3.2) are kept verbatim (existing built sites
+ * pin those ids); pairings 11–30 are RECOMBINATIONS of the same 17 already-
+ * installed + already-@font-face-imported families, so they render with zero new
+ * deps. The bigger pool + broader per-category affinity is what kills the
+ * "every site in a category looks the same" failure mode.
  */
 
 import { hash, pick, shuffle } from './seed';
@@ -106,7 +112,52 @@ export interface FontPairing {
 const SERIF_FB = `Georgia, 'Times New Roman', serif`;
 const SANS_FB = `system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`;
 
-/** The 10 pairings from spec §3.2. */
+// Per-family CSS stacks (variable face first, then static, then fallback tail).
+// Every family here is installed in package.json AND imported in font-faces.ts,
+// so any pairing built from these constants is guaranteed to actually render.
+const FAM = {
+  fraunces: `'Fraunces Variable', 'Fraunces', ${SERIF_FB}`,
+  newsreader: `'Newsreader Variable', 'Newsreader', ${SERIF_FB}`,
+  sourceSerif: `'Source Serif 4 Variable', 'Source Serif 4', ${SERIF_FB}`,
+  playfair: `'Playfair Display Variable', 'Playfair Display', ${SERIF_FB}`,
+  lora: `'Lora Variable', 'Lora', ${SERIF_FB}`,
+  spectral: `'Spectral', ${SERIF_FB}`,
+  bitter: `'Bitter Variable', 'Bitter', 'Zilla Slab', ${SERIF_FB}`,
+  zilla: `'Zilla Slab', ${SERIF_FB}`,
+  cormorant: `'Cormorant Garamond', ${SERIF_FB}`,
+  space: `'Space Grotesk Variable', 'Space Grotesk', ${SANS_FB}`,
+  inter: `'Inter Variable', 'Inter', ${SANS_FB}`,
+  bricolage: `'Bricolage Grotesque Variable', 'Bricolage Grotesque', ${SANS_FB}`,
+  figtree: `'Figtree Variable', 'Figtree', ${SANS_FB}`,
+  albert: `'Albert Sans Variable', 'Albert Sans', ${SANS_FB}`,
+  archivo: `'Archivo Variable', 'Archivo', ${SANS_FB}`,
+  mulish: `'Mulish Variable', 'Mulish', ${SANS_FB}`,
+  schibsted: `'Schibsted Grotesk Variable', 'Schibsted Grotesk', ${SANS_FB}`,
+} as const;
+
+// npm package names (the display package — [0] in fontsourcePackages — is what
+// getDisplayFontPreloadHref preloads; all are present in _preloadMap).
+const PKG = {
+  fraunces: '@fontsource-variable/fraunces',
+  newsreader: '@fontsource-variable/newsreader',
+  sourceSerif: '@fontsource-variable/source-serif-4',
+  playfair: '@fontsource-variable/playfair-display',
+  lora: '@fontsource-variable/lora',
+  spectral: '@fontsource/spectral',
+  bitter: '@fontsource-variable/bitter',
+  zilla: '@fontsource/zilla-slab',
+  cormorant: '@fontsource/cormorant-garamond',
+  space: '@fontsource-variable/space-grotesk',
+  inter: '@fontsource-variable/inter',
+  bricolage: '@fontsource-variable/bricolage-grotesque',
+  figtree: '@fontsource-variable/figtree',
+  albert: '@fontsource-variable/albert-sans',
+  archivo: '@fontsource-variable/archivo',
+  mulish: '@fontsource-variable/mulish',
+  schibsted: '@fontsource-variable/schibsted-grotesk',
+} as const;
+
+/** 30 pairings — the original 10 (spec §3.2) + 20 recombinations (see file head). */
 export const FONT_REGISTRY: FontPairing[] = [
   {
     id: 'editorial-serif',
@@ -201,6 +252,188 @@ export const FONT_REGISTRY: FontPairing[] = [
     mood: 'crafted, indie',
     categories: ['cafe', 'restaurant', 'barber', 'bakery', 'makers'],
     typeScale: 'friendly',
+  },
+
+  // ── pairings 11–30: recombinations of the same installed families ──────────
+  {
+    id: 'luxe-didone',
+    display: FAM.playfair,
+    body: FAM.sourceSerif,
+    fontsourcePackages: [PKG.playfair, PKG.sourceSerif],
+    mood: 'high-contrast luxe',
+    categories: ['winery', 'salon', 'spa', 'boutique', 'restaurant', 'default'],
+    typeScale: 'editorial',
+  },
+  {
+    id: 'fraunces-soft',
+    display: FAM.fraunces,
+    body: FAM.mulish,
+    fontsourcePackages: [PKG.fraunces, PKG.mulish],
+    mood: 'characterful, soft',
+    categories: ['cafe', 'bakery', 'salon', 'boutique', 'makers', 'default'],
+    typeScale: 'humanist',
+  },
+  {
+    id: 'garalde-editorial',
+    display: FAM.cormorant,
+    body: FAM.lora,
+    fontsourcePackages: [PKG.cormorant, PKG.lora],
+    mood: 'refined garalde',
+    categories: ['winery', 'spa', 'salon', 'medical', 'law', 'restaurant'],
+    typeScale: 'editorial',
+  },
+  {
+    id: 'slab-authority',
+    display: FAM.zilla,
+    body: FAM.inter,
+    fontsourcePackages: [PKG.zilla, PKG.inter],
+    mood: 'authoritative slab',
+    categories: ['contractor', 'construction', 'roofing', 'auto-repair', 'hvac', 'law'],
+    typeScale: 'tight',
+  },
+  {
+    id: 'grotesk-press',
+    display: FAM.archivo,
+    body: FAM.newsreader,
+    fontsourcePackages: [PKG.archivo, PKG.newsreader],
+    mood: 'editorial press',
+    categories: ['restaurant', 'cafe', 'fitness', 'tech', 'makers', 'default'],
+    typeScale: 'geometric',
+  },
+  {
+    id: 'spectral-classic',
+    display: FAM.spectral,
+    body: FAM.sourceSerif,
+    fontsourcePackages: [PKG.spectral, PKG.sourceSerif],
+    mood: 'calm two-serif',
+    categories: ['medical', 'dental', 'wellness', 'spa', 'winery', 'default'],
+    typeScale: 'humanist',
+  },
+  {
+    id: 'figtree-friendly',
+    display: FAM.figtree,
+    body: FAM.inter,
+    fontsourcePackages: [PKG.figtree, PKG.inter],
+    mood: 'approachable geometric',
+    categories: ['cleaning', 'landscaping', 'fitness', 'tech', 'plumbing', 'default'],
+    typeScale: 'friendly',
+  },
+  {
+    id: 'mono-grotesk',
+    display: FAM.space,
+    body: FAM.mulish,
+    fontsourcePackages: [PKG.space, PKG.mulish],
+    mood: 'techy geometric',
+    categories: ['tech', 'electrician', 'fitness', 'auto-repair', 'marina', 'default'],
+    typeScale: 'geometric',
+  },
+  {
+    id: 'bricolage-editorial',
+    display: FAM.bricolage,
+    body: FAM.newsreader,
+    fontsourcePackages: [PKG.bricolage, PKG.newsreader],
+    mood: 'quirky display + serif',
+    categories: ['cafe', 'restaurant', 'bakery', 'makers', 'boutique'],
+    typeScale: 'humanist',
+  },
+  {
+    id: 'newsreader-serif',
+    display: FAM.newsreader,
+    body: FAM.sourceSerif,
+    fontsourcePackages: [PKG.newsreader, PKG.sourceSerif],
+    mood: 'newsroom serif',
+    categories: ['law', 'medical', 'restaurant', 'winery', 'default'],
+    typeScale: 'editorial',
+  },
+  {
+    id: 'bitter-warm',
+    display: FAM.bitter,
+    body: FAM.figtree,
+    fontsourcePackages: [PKG.bitter, PKG.figtree],
+    mood: 'warm slab',
+    categories: ['cafe', 'bakery', 'landscaping', 'cleaning', 'contractor'],
+    typeScale: 'friendly',
+  },
+  {
+    id: 'albert-display',
+    display: FAM.albert,
+    body: FAM.inter,
+    fontsourcePackages: [PKG.albert, PKG.inter],
+    mood: 'clean confident',
+    categories: ['tech', 'plumbing', 'electrician', 'medical', 'dental', 'cleaning', 'default'],
+    typeScale: 'geometric',
+  },
+  {
+    id: 'lora-refined',
+    display: FAM.lora,
+    body: FAM.mulish,
+    fontsourcePackages: [PKG.lora, PKG.mulish],
+    mood: 'gentle serif + sans',
+    categories: ['salon', 'spa', 'wellness', 'medical', 'cafe', 'default'],
+    typeScale: 'humanist',
+  },
+  {
+    id: 'archivo-grotesk',
+    display: FAM.archivo,
+    body: FAM.schibsted,
+    fontsourcePackages: [PKG.archivo, PKG.schibsted],
+    mood: 'bold modern sans',
+    categories: ['fitness', 'auto-repair', 'towing', 'tattoo', 'barber', 'tech'],
+    typeScale: 'tight',
+  },
+  {
+    id: 'playfair-mod',
+    display: FAM.playfair,
+    body: FAM.figtree,
+    fontsourcePackages: [PKG.playfair, PKG.figtree],
+    mood: 'didone + modern sans',
+    categories: ['salon', 'boutique', 'restaurant', 'winery', 'spa'],
+    typeScale: 'editorial',
+  },
+  {
+    id: 'source-clean',
+    display: FAM.sourceSerif,
+    body: FAM.inter,
+    fontsourcePackages: [PKG.sourceSerif, PKG.inter],
+    mood: 'editorial serif + UI',
+    categories: ['medical', 'dental', 'law', 'tech', 'marina', 'default'],
+    typeScale: 'humanist',
+  },
+  {
+    id: 'schibsted-bold',
+    display: FAM.schibsted,
+    body: FAM.mulish,
+    fontsourcePackages: [PKG.schibsted, PKG.mulish],
+    mood: 'scandi grotesk',
+    categories: ['tech', 'cleaning', 'electrician', 'marina', 'plumbing', 'default'],
+    typeScale: 'geometric',
+  },
+  {
+    id: 'cormorant-air',
+    display: FAM.cormorant,
+    body: FAM.figtree,
+    fontsourcePackages: [PKG.cormorant, PKG.figtree],
+    mood: 'airy luxe serif',
+    categories: ['spa', 'salon', 'winery', 'boutique', 'wellness'],
+    typeScale: 'editorial',
+  },
+  {
+    id: 'bitter-slab-bold',
+    display: FAM.bitter,
+    body: FAM.mulish,
+    fontsourcePackages: [PKG.bitter, PKG.mulish],
+    mood: 'bold slab',
+    categories: ['contractor', 'roofing', 'hvac', 'plumbing', 'auto-repair'],
+    typeScale: 'tight',
+  },
+  {
+    id: 'fraunces-grotesk',
+    display: FAM.fraunces,
+    body: FAM.schibsted,
+    fontsourcePackages: [PKG.fraunces, PKG.schibsted],
+    mood: 'expressive serif + grotesk',
+    categories: ['cafe', 'restaurant', 'makers', 'boutique', 'salon', 'default'],
+    typeScale: 'editorial',
   },
 ];
 
