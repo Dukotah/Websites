@@ -1,0 +1,333 @@
+{
+  "slug": "the-tides-wharf-restaurant",
+  "name": "The Tides Wharf Restaurant",
+  "legalName": "The Tides Wharf Restaurant",
+  "tagline": "Fresh seafood and bay views in Bodega Bay",
+  "seoDescription": "The Tides Wharf & Restaurant serves fresh local seafood with sweeping views of the working harbor in Bodega Bay — breakfast, lunch, and dinner, every day",
+  "category": "restaurant",
+  "categoryLabel": "Restaurant",
+  "area": "Bodega Bay, CA",
+  "city": "Bodega Bay",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "",
+    "email": "reservations@innatthetides.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/The-Inn-at-the-Tides-121936925641/"
+  },
+  "hours": [
+    {
+      "day": "Daily",
+      "hours": "8am–9pm (espresso bar from 7am)"
+    }
+  ],
+  "priceRange": "$$",
+  "brand": {
+    "color": "#B0341D",
+    "fontId": "warm-humanist"
+  },
+  "images": {
+    "hero": "/images/the-tides-wharf-restaurant/hero.jpg",
+    "heroAlt": "The Tides Wharf Restaurant in Bodega Bay, CA"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "split",
+          "eyebrow": "Bodega Bay, CA",
+          "heading": "Seafood on Bodega Bay",
+          "subheading": "Fresh local seafood with sweeping views of the working harbor — breakfast, lunch, and dinner, 365 days a year.",
+          "badges": [
+            "Waterfront dining on Bodega Bay",
+            "Fresh local seafood — chowder, crab, cioppino",
+            "A Bodega Bay landmark since the Hitchcock era"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/the-tides-wharf-restaurant/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/the-tides-wharf-restaurant/menu"
+          },
+          "image": {
+            "src": "/images/the-tides-wharf-restaurant/hero.jpg",
+            "alt": "The Tides Wharf Restaurant in Bodega Bay, CA",
+            "focal": "50% 40%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Fresh Local Seafood",
+              "description": "Cioppino, whole Dungeness crab, and the signature clam chowder, sourced from the Sonoma Coast."
+            },
+            {
+              "title": "Breakfast",
+              "description": "A full breakfast menu daily, with the espresso bar opening early at 7am."
+            },
+            {
+              "title": "Lunch & Dinner",
+              "description": "Bay-view dining for lunch and dinner, seven days a week."
+            },
+            {
+              "title": "Fish Market",
+              "description": "An on-site market for fresh fish and shellfish to take home."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About The Tides Wharf",
+          "body": [
+            "Set on a working wharf in Bodega Bay, The Tides Wharf & Restaurant pairs fresh local seafood with sweeping views of the harbor, where guests watch fishing boats come and go and sea lions, otters, and shorebirds work the water. The original Tides Wharf is part of local lore as a filming location for Alfred Hitchcock’s The Birds.",
+            "Open for breakfast, lunch, and dinner every day of the year, the restaurant is a classic Sonoma Coast destination — known for its to-go clam chowder, whole Dungeness crab, and cioppino, plus an espresso bar and an on-site fish market."
+          ],
+          "highlights": [
+            "Waterfront dining on Bodega Bay",
+            "Fresh local seafood — chowder, crab, cioppino",
+            "A Bodega Bay landmark since the Hitchcock era"
+          ],
+          "image": {
+            "src": "/images/the-tides-wharf-restaurant/story.jpg",
+            "alt": "Inside The Tides Wharf Restaurant",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why The Tides Wharf Restaurant",
+          "items": [
+            {
+              "title": "Waterfront Dining On Bodega Bay",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            },
+            {
+              "title": "Fresh Local Seafood — Chowder, Crab, Cioppino",
+              "body": "Rooted right here in Bodega Bay, CA, with a real stake in doing it right.",
+              "icon": "leaf"
+            },
+            {
+              "title": "A Bodega Bay Landmark Since The Hitchcock Era",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "check"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside The Tides Wharf Restaurant",
+          "images": [
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-2.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 1"
+            },
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-4.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 2"
+            },
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-5.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 3"
+            },
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-6.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 4"
+            },
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-7.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 5"
+            },
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-8.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-tides-wharf-restaurant/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "Fresh local seafood with sweeping views of the working harbor — breakfast, lunch, and dinner, 365 days a year.",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "On the menu",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Fresh Local Seafood",
+              "description": "Cioppino, whole Dungeness crab, and the signature clam chowder, sourced from the Sonoma Coast."
+            },
+            {
+              "title": "Breakfast",
+              "description": "A full breakfast menu daily, with the espresso bar opening early at 7am."
+            },
+            {
+              "title": "Lunch & Dinner",
+              "description": "Bay-view dining for lunch and dinner, seven days a week."
+            },
+            {
+              "title": "Fish Market",
+              "description": "An on-site market for fresh fish and shellfish to take home."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Daily: 8am–9pm (espresso bar from 7am)."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Bodega Bay, CA and the surrounding community."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-tides-wharf-restaurant/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About The Tides Wharf Restaurant",
+          "heading": "About The Tides Wharf",
+          "subheading": "Set on a working wharf in Bodega Bay, The Tides Wharf & Restaurant pairs fresh local seafood with sweeping views of the harbor, where guests watch fishing boats come and go",
+          "motif": "/images/library/restaurant/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About The Tides Wharf",
+          "body": [
+            "Set on a working wharf in Bodega Bay, The Tides Wharf & Restaurant pairs fresh local seafood with sweeping views of the harbor, where guests watch fishing boats come and go and sea lions, otters, and shorebirds work the water. The original Tides Wharf is part of local lore as a filming location for Alfred Hitchcock’s The Birds.",
+            "Open for breakfast, lunch, and dinner every day of the year, the restaurant is a classic Sonoma Coast destination — known for its to-go clam chowder, whole Dungeness crab, and cioppino, plus an espresso bar and an on-site fish market."
+          ],
+          "highlights": [
+            "Waterfront dining on Bodega Bay",
+            "Fresh local seafood — chowder, crab, cioppino",
+            "A Bodega Bay landmark since the Hitchcock era"
+          ],
+          "image": {
+            "src": "/images/the-tides-wharf-restaurant/story.jpg",
+            "alt": "Inside The Tides Wharf Restaurant",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "4",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-2.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 1"
+            },
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-4.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 2"
+            },
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-5.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 3"
+            },
+            {
+              "src": "/images/the-tides-wharf-restaurant/photo-6.jpg",
+              "alt": "The Tides Wharf Restaurant — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see The Tides Wharf Restaurant",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/the-tides-wharf-restaurant/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

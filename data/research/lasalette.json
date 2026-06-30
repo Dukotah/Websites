@@ -1,0 +1,125 @@
+{
+  "slug": "lasalette",
+  "confirmed": true,
+  "established": "1998",
+  "tagline": "Inventive Portuguese cuisine in Sonoma wine country",
+  "seoDescription": "LaSalette in Sonoma is Chef Manuel Azevedo’s celebrated \"New Portuguese Cuisine\" — wood-fired seafood, daily-baked breads, and an extensive Port and Madeira list, in the heart of California wine country.",
+  "heroHeading": "New Portuguese Cuisine, Sonoma Roots",
+  "heroSubheading": "Chef Manuel Azevedo's LaSalette celebrates the flavors of his native Portugal with top California ingredients and a wood-fired oven.",
+  "highlights": [
+    "Chef Manuel Azevedo's 'New Portuguese Cuisine'",
+    "Wood-fired oven; bread baked daily",
+    "Extensive Port and Madeira list"
+  ],
+  "aboutHeading": "About LaSalette",
+  "aboutBody": [
+    "Established in 1998 on the Sonoma Plaza, LaSalette is Chef Manuel Azevedo’s love letter to his native Portugal. His \"New Portuguese Cuisine\" celebrates the varied, complex flavors of the Portuguese homeland while drawing on the top-quality ingredients of California wine country.",
+    "The kitchen centers on a wood-fired oven and bread baked fresh daily, with hearty seafood dishes, standout desserts, and a concise wine list of Northern California and Portuguese bottles — rounded out by one of the area’s most extensive Port and Madeira selections."
+  ],
+  "servicesHeading": "On the menu",
+  "services": [
+    {
+      "title": "Wood-Fired Specialties",
+      "description": "Hearty dishes from the wood-fired oven that anchors the kitchen."
+    },
+    {
+      "title": "Fresh Seafood",
+      "description": "Signature plates like tender octopus, Fisherman’s Stew, scallops, and sardines."
+    },
+    {
+      "title": "Homemade Breads",
+      "description": "Portuguese breads baked fresh in-house every day."
+    },
+    {
+      "title": "Port, Madeira & Wine",
+      "description": "A curated Northern California and Portuguese wine list with an extensive Port and Madeira selection."
+    },
+    {
+      "title": "Desserts",
+      "description": "Traditional Portuguese sweets and outstanding house desserts to finish the meal."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Tue",
+      "hours": "11:30am–9pm"
+    },
+    {
+      "day": "Wed",
+      "hours": "Closed"
+    },
+    {
+      "day": "Thu–Sun",
+      "hours": "11:30am–9pm"
+    }
+  ],
+  "testimonials": [],
+  "social": {
+    "facebook": "",
+    "instagram": "https://www.instagram.com/lasalette_restaurant/",
+    "google": ""
+  },
+  "realPhotoUrls": [
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1483418197625-YUHEGISAQ5QU0OK8APUS/Vilan_rabitt.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1512434535481-3UTWEB14FZXHR6WRMWCK/Feijoada_de_marisco.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1478910403635-8177ET7PU9X2412461G9/omlete.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1479173162270-5Q8GOV0HVU67EGIWC3RH/TascaTasca-SonomaMag_32.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/79c7737b-76a5-4b21-bc44-f9257f1d8a73/LS+Cookbook+for+website.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/ddced2d3-bfb2-4dc2-9e62-ddb6892b2599/LS+Gift+Card+for+website.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/bdfd196f-1fd7-4e6c-bef2-a9cc070ee979/LS+eGift+Card+for+website.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572635029-T2NJ045KRHY50ZNNFL6H/Lasalette_oister.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572632434-IKRYX3NO201FZZ117CNZ/Lasalette_sardines.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572637606-W1VGNCWRFK96ZOIOSS4P/Lasalette_tasca_plate.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572639733-HOI1R54L49KBG0L1VSOC/muqueca_brazil_0016_1.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572642014-7TG4ZVMZAQNFYPQP9KGV/Mussels.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572644199-FGSMEF1E74FAI4601967/obrigadinhos_pinapinaple+cropped.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572652201-4QSUTHJ0GU95JMB8FAIA/Queijo_do_topo.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572648084-7X40SFIO6W9LTH2EXZA8/salad.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572652402-3L5WA8EB721HTMVNMI5B/scallopsw-bacon.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572658817-DRM488RSWYKMJBVEHHYT/sopas.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572656939-GI14TJIVLLRPSGBN772R/traditional.jpg",
+    "https://images.squarespace-cdn.com/content/v1/5826432c46c3c4d32c8bb2c4/1648572660717-8C05BWFUOLLIHWLV37M5/watercress_soup.jpg",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.button/dc082915-97d2-4f15-b449-7ddc2e76a124_872/website.components.button.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/f6207aa5-c0a6-4e81-ade9-265b410041ad_874/website.components.form.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/ce92cea9-b35f-4da8-9e97-7bc2f31a1f83_69/website.components.horizontalrule.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/f6207aa5-c0a6-4e81-ade9-265b410041ad_874/website.components.form.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.button/dc082915-97d2-4f15-b449-7ddc2e76a124_872/website.components.button.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.map/67864f8a-c7fc-45aa-ae79-1a26f74102e1_1088/website.components.map.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/ce92cea9-b35f-4da8-9e97-7bc2f31a1f83_69/website.components.horizontalrule.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/ce92cea9-b35f-4da8-9e97-7bc2f31a1f83_69/website.components.horizontalrule.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/ce92cea9-b35f-4da8-9e97-7bc2f31a1f83_69/website.components.horizontalrule.visitor.js&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.button/dc082915-97d2-4f15-b449-7ddc2e76a124_872/website.components.button.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.button/dc082915-97d2-4f15-b449-7ddc2e76a124_872/website.components.button.visitor.js&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/f6207aa5-c0a6-4e81-ade9-265b410041ad_874/website.components.form.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/f6207aa5-c0a6-4e81-ade9-265b410041ad_874/website.components.form.visitor.js&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.map/67864f8a-c7fc-45aa-ae79-1a26f74102e1_1088/website.components.map.visitor.js&quot;]",
+    "https://static1.squarespace.com/static/5826432c46c3c4d32c8bb2c4/t/5eae2a0441f900399bfd28ab/1781530360297/",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/ba7aa0e8-1d02-4f34-b341-579d7565db1b_68/website.components.horizontalrule.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/ba7aa0e8-1d02-4f34-b341-579d7565db1b_68/website.components.horizontalrule.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/ba7aa0e8-1d02-4f34-b341-579d7565db1b_68/website.components.horizontalrule.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/ba7aa0e8-1d02-4f34-b341-579d7565db1b_68/website.components.horizontalrule.visitor.js&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/22985156-4ce3-41a0-8815-c2eeadbdd594_73/website.components.horizontalrule.styles.css",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/22985156-4ce3-41a0-8815-c2eeadbdd594_73/website.components.horizontalrule.visitor.js",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/22985156-4ce3-41a0-8815-c2eeadbdd594_73/website.components.horizontalrule.styles.css&quot;]",
+    "https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.horizontalrule/22985156-4ce3-41a0-8815-c2eeadbdd594_73/website.components.horizontalrule.visitor.js&quot;]"
+  ],
+  "notes": "Web-verified and authored for the ADA accessibility batch (hours, rating/credential, copy confirmed from the business site + Yelp/OpenTable/press). confirmed:true.",
+  "_richness": 60,
+  "_source": "web-verified",
+  "_lead": {
+    "name": "LaSalette",
+    "category": "restaurant",
+    "city": "Sonoma",
+    "state": "CA",
+    "phone": "",
+    "email": "info@lasaletterestaurant.com",
+    "address": "",
+    "owner": ""
+  },
+  "rating": {
+    "value": 4.5,
+    "count": 1054,
+    "source": "Yelp"
+  },
+  "priceRange": "$$$"
+}

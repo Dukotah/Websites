@@ -41,7 +41,7 @@
  */
 
 import { createServer } from 'node:http';
-import { readFile, readdir, stat } from 'node:fs/promises';
+import { readFile, writeFile, readdir, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -272,6 +272,42 @@ async function tryLaunchChrome(launch) {
   }
 }
 
+/**
+ * stampA11yAfter — record each sampled site's MEASURED Lighthouse accessibility
+ * score into the outreach manifest as a numeric `a11yAfter`, so outreach can cite
+ * the rebuilt site's clean accessibility score (the pitch money-piece). Purely
+ * ADDITIVE: it only adds/updates the `a11yAfter` field on entries we measured and
+ * matched by slug, never touches any other field or the manifest schema. The CRM
+ * push (push-to-crm.mjs) sends only {name, link}, so this is invisible to it.
+ * Fail-soft: a missing/locked/unparsable manifest is a no-op, never a gate fail.
+ *
+ * @param {Array<{slug:string,a11y:number|null,error?:string}>} rows
+ */
+async function stampA11yAfter(rows) {
+  const manifestPath = join(ROOT, 'data', 'outreach-links.json');
+  try {
+    if (!existsSync(manifestPath)) return; // manifest not generated yet — nothing to stamp
+    const scoreBySlug = new Map();
+    for (const r of rows) {
+      if (!r.error && typeof r.a11y === 'number') scoreBySlug.set(r.slug, r.a11y);
+    }
+    if (scoreBySlug.size === 0) return;
+    const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+    if (!Array.isArray(manifest)) return;
+    let stamped = 0;
+    for (const entry of manifest) {
+      const score = scoreBySlug.get(entry?.slug);
+      if (typeof score === 'number') { entry.a11yAfter = score; stamped++; }
+    }
+    if (stamped > 0) {
+      await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+      console.log(`\n♿ Stamped a11yAfter on ${stamped} outreach manifest entr${stamped === 1 ? 'y' : 'ies'} (measured this run).`);
+    }
+  } catch (err) {
+    console.log(`\n♿ a11yAfter stamp skipped (${(err && err.message) || err}).`);
+  }
+}
+
 async function main() {
   console.log('# LIGHTHOUSE QA GATE — SEO + accessibility floor (built pages)\n');
 
@@ -417,6 +453,11 @@ async function main() {
   } catch {
     /* best-effort */
   }
+
+  // 6a. Record the measured accessibility score into the outreach manifest
+  //     (additive `a11yAfter`) so outreach can cite the rebuilt site's clean
+  //     score. Additive + fail-soft — never affects the gate verdict.
+  await stampA11yAfter(rows);
 
   // 6. Per-page score table.
   const cell = (v, floor) => {

@@ -1,0 +1,356 @@
+{
+  "slug": "costeaux-french-bakery",
+  "name": "Costeaux French Bakery",
+  "legalName": "Costeaux French Bakery",
+  "tagline": "A Sonoma County baking tradition since 1923",
+  "seoDescription": "Costeaux French Bakery has crafted artisan breads, French pastry, and cafe fare in Sonoma County since 1923 — with a Healdsburg flagship, a Santa Rosa cafe",
+  "category": "cafe",
+  "categoryLabel": "Cafe",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "1923",
+  "contact": {
+    "phone": "",
+    "email": "info@costeaux.com",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/costeaux/",
+    "instagram": "https://www.instagram.com/costeauxfrenchbakery/",
+    "google": "https://goo.gl/maps/o3ZoEffHxnm"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7am–3pm"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "7:30am–12:30pm"
+    }
+  ],
+  "rating": {
+    "value": 4.4,
+    "count": 969,
+    "source": "Yelp"
+  },
+  "priceRange": "$$",
+  "brand": {
+    "color": "#b5572f",
+    "fontId": "editorial-serif"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA · Est. 1923",
+          "heading": "Old-World Baking Since 1923",
+          "subheading": "A century-old Sonoma County bakery crafting artisan sourdough, French pastry, and cafe fare.",
+          "badges": [
+            "Serving since 1923",
+            "4.4★ from 969 reviews",
+            "Family-run Sonoma County bakery since 1923"
+          ],
+          "primaryCta": {
+            "label": "See the menu",
+            "href": "/s/costeaux-french-bakery/menu"
+          },
+          "secondaryCta": {
+            "label": "Book catering",
+            "href": "/s/costeaux-french-bakery/menu"
+          },
+          "image": {
+            "src": "/images/costeaux-french-bakery/story.jpg",
+            "alt": "Inside Costeaux French Bakery",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "On the menu",
+          "heading": "What we bake",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Artisan Breads & Sourdough",
+              "description": "Hand-shaped sourdough, baguettes, and country loaves baked fresh daily — the foundation of the bakery since 1923."
+            },
+            {
+              "title": "Pastry & Viennoiserie",
+              "description": "Croissants, morning pastries, and French patisserie made from scratch each morning."
+            },
+            {
+              "title": "Cafe Breakfast & Lunch",
+              "description": "A sit-down cafe menu of breakfast plates, sandwiches, salads, and WOLF coffee."
+            },
+            {
+              "title": "Custom Cakes",
+              "description": "Wedding and special-occasion cakes designed and decorated to order."
+            },
+            {
+              "title": "Catering & Private Events",
+              "description": "Full-service catering and private-event dining for gatherings across Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Costeaux French Bakery",
+          "body": [
+            "Costeaux French Bakery has been part of Sonoma County life since 1923, growing from a small Healdsburg bakery into a beloved institution known for hand-crafted sourdough, French breads, and pastry. Today the Seppi family carries that century-old tradition forward across the flagship Healdsburg bakery and cafe and a Santa Rosa location.",
+            "Beyond the bread case, Costeaux is a full cafe serving breakfast and lunch, a pastry and cake kitchen for weddings and celebrations, and a catering team for private events — all built on the same old-world craft the bakery was founded on."
+          ],
+          "highlights": [
+            "Family-run Sonoma County bakery since 1923",
+            "Award-winning sourdough and French pastry",
+            "Cafe, catering, and special-occasion cakes"
+          ],
+          "image": {
+            "src": "/images/costeaux-french-bakery/story.jpg",
+            "alt": "Inside Costeaux French Bakery",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "103+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.4★",
+              "label": "969 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside Costeaux French Bakery",
+          "images": [
+            {
+              "src": "/images/costeaux-french-bakery/photo-4.webp",
+              "alt": "Costeaux French Bakery — photo 1"
+            },
+            {
+              "src": "/images/costeaux-french-bakery/photo-5.webp",
+              "alt": "Costeaux French Bakery — photo 2"
+            },
+            {
+              "src": "/images/costeaux-french-bakery/photo-6.jpg",
+              "alt": "Costeaux French Bakery — photo 3"
+            },
+            {
+              "src": "/images/costeaux-french-bakery/photo-7.jpg",
+              "alt": "Costeaux French Bakery — photo 4"
+            },
+            {
+              "src": "/images/costeaux-french-bakery/photo-8.jpg",
+              "alt": "Costeaux French Bakery — photo 5"
+            },
+            {
+              "src": "/images/costeaux-french-bakery/photo-9.jpg",
+              "alt": "Costeaux French Bakery — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/costeaux-french-bakery/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "menu",
+      "label": "Menu",
+      "title": "Menu",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "On the menu",
+          "heading": "What we’re serving",
+          "subheading": "A century-old Sonoma County bakery crafting artisan sourdough, French pastry, and cafe fare.",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we bake",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Artisan Breads & Sourdough",
+              "description": "Hand-shaped sourdough, baguettes, and country loaves baked fresh daily — the foundation of the bakery since 1923."
+            },
+            {
+              "title": "Pastry & Viennoiserie",
+              "description": "Croissants, morning pastries, and French patisserie made from scratch each morning."
+            },
+            {
+              "title": "Cafe Breakfast & Lunch",
+              "description": "A sit-down cafe menu of breakfast plates, sandwiches, salads, and WOLF coffee."
+            },
+            {
+              "title": "Custom Cakes",
+              "description": "Wedding and special-occasion cakes designed and decorated to order."
+            },
+            {
+              "title": "Catering & Private Events",
+              "description": "Full-service catering and private-event dining for gatherings across Sonoma County."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 7am–3pm; Sat–Sun: 7:30am–12:30pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Hungry yet?",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/costeaux-french-bakery/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About Costeaux French Bakery",
+          "heading": "About Costeaux French Bakery",
+          "subheading": "Costeaux French Bakery has been part of Sonoma County life since 1923, growing from a small Healdsburg bakery into a beloved institution known for hand-crafted sourdough, French",
+          "motif": "/images/library/cafe/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About Costeaux French Bakery",
+          "body": [
+            "Costeaux French Bakery has been part of Sonoma County life since 1923, growing from a small Healdsburg bakery into a beloved institution known for hand-crafted sourdough, French breads, and pastry. Today the Seppi family carries that century-old tradition forward across the flagship Healdsburg bakery and cafe and a Santa Rosa location.",
+            "Beyond the bread case, Costeaux is a full cafe serving breakfast and lunch, a pastry and cake kitchen for weddings and celebrations, and a catering team for private events — all built on the same old-world craft the bakery was founded on."
+          ],
+          "highlights": [
+            "Family-run Sonoma County bakery since 1923",
+            "Award-winning sourdough and French pastry",
+            "Cafe, catering, and special-occasion cakes"
+          ],
+          "image": {
+            "src": "/images/costeaux-french-bakery/story.jpg",
+            "alt": "Inside Costeaux French Bakery",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "stats",
+          "tone": "ink",
+          "items": [
+            {
+              "value": "103+",
+              "label": "Years in business"
+            },
+            {
+              "value": "4.4★",
+              "label": "969 reviews"
+            },
+            {
+              "value": "5",
+              "label": "Services offered"
+            },
+            {
+              "value": "$$",
+              "label": "Fairly priced"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/costeaux-french-bakery/photo-4.webp",
+              "alt": "Costeaux French Bakery — photo 1"
+            },
+            {
+              "src": "/images/costeaux-french-bakery/photo-5.webp",
+              "alt": "Costeaux French Bakery — photo 2"
+            },
+            {
+              "src": "/images/costeaux-french-bakery/photo-6.jpg",
+              "alt": "Costeaux French Bakery — photo 3"
+            },
+            {
+              "src": "/images/costeaux-french-bakery/photo-7.jpg",
+              "alt": "Costeaux French Bakery — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see Costeaux French Bakery",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/costeaux-french-bakery/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

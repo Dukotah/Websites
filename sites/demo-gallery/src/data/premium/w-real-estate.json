@@ -1,0 +1,339 @@
+{
+  "slug": "w-real-estate",
+  "name": "W Real Estate",
+  "legalName": "W Real Estate",
+  "tagline": "Sonoma County's largest independent real estate brokerage",
+  "seoDescription": "W Real Estate is the largest privately owned and operated real estate brokerage in the North Bay, pairing deep local knowledge with full-service marketing",
+  "category": "default",
+  "categoryLabel": "Default",
+  "area": "Santa Rosa, CA",
+  "city": "Santa Rosa",
+  "state": "CA",
+  "established": "",
+  "contact": {
+    "phone": "",
+    "email": "info@wrealestate.net",
+    "address": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/W-Real-Estate-97441920398/",
+    "instagram": "https://www.instagram.com/w_real_estate/"
+  },
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "8:30am–5pm"
+    }
+  ],
+  "brand": {
+    "color": "#3b5a78",
+    "fontId": "classic-trad"
+  },
+  "outreach": {
+    "published": false
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "label": "Home",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "Santa Rosa, CA",
+          "heading": "Local Experts, Full-Service Real Estate",
+          "subheading": "The largest privately owned brokerage in the North Bay, pairing deep local knowledge with full-service marketing for buyers and sellers.",
+          "badges": [
+            "Largest privately owned brokerage in the North",
+            "Full-service marketing for sellers",
+            "Offices across Sonoma County"
+          ],
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/w-real-estate/contact"
+          },
+          "secondaryCta": {
+            "label": "Our services",
+            "href": "/s/w-real-estate/services"
+          },
+          "image": {
+            "src": "/images/w-real-estate/story.webp",
+            "alt": "Inside W Real Estate",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "features",
+          "eyebrow": "Why choose us",
+          "heading": "Why W Real Estate",
+          "items": [
+            {
+              "title": "Largest Privately Owned Brokerage In The North",
+              "body": "Rooted right here in Santa Rosa, CA, with a real stake in doing it right.",
+              "icon": "check"
+            },
+            {
+              "title": "Full-Service Marketing For Sellers",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "wrench"
+            },
+            {
+              "title": "Offices Across Sonoma County",
+              "body": "A standard we hold on every job, not just the easy ones.",
+              "icon": "map-pin"
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About W Real Estate",
+          "body": [
+            "At W Real Estate, clients and their goals come first, without compromise. As the largest privately owned and operated real estate brokerage in the North Bay, the firm pairs deep local market knowledge with the resources of a full-service company — guiding buyers and sellers through every step.",
+            "With offices across Sonoma County and a team of local agents, W Real Estate supports residential and commercial clients alike, backed by professional marketing, photography, and a network that reaches well beyond a single listing."
+          ],
+          "highlights": [
+            "Largest privately owned brokerage in the North Bay",
+            "Full-service marketing for sellers",
+            "Offices across Sonoma County"
+          ],
+          "image": {
+            "src": "/images/w-real-estate/story.webp",
+            "alt": "Inside W Real Estate",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "services",
+          "eyebrow": "What we do",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Buying A Home",
+              "description": "Local agents who guide you from first showing to closing across Sonoma County."
+            },
+            {
+              "title": "Selling Your Home",
+              "description": "Full-service listing with professional marketing, photography, and pricing strategy."
+            },
+            {
+              "title": "Luxury Properties",
+              "description": "Bespoke representation and marketing for the North Bay’s premier homes."
+            },
+            {
+              "title": "Commercial Real Estate",
+              "description": "Representation for commercial buyers, sellers, and investors."
+            },
+            {
+              "title": "Property Marketing",
+              "description": "In-house marketing that puts every listing in front of the right buyers."
+            }
+          ]
+        },
+        {
+          "kind": "testimonials",
+          "eyebrow": "In their words",
+          "heading": "What customers say",
+          "items": [
+            {
+              "quote": "Great Service - I just finished the purchase transaction on my first home and W Real Estate was the listing office involved. The home was a FLIP and was done very thoroughly and with nice taste [...]"
+            },
+            {
+              "quote": "I have only extremely positive things to say about my experiences with W Real Estate. Beyond professionalism, comprehensive market knowledge and attention to detail, what sets them apart is [...]"
+            },
+            {
+              "quote": "Randy Waller and Mario Tamo were fantastic at making recommendations for work that should get done and coordinating the work getting done so that the house would be perfectly positioned to hit the [...]"
+            }
+          ]
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Inside W Real Estate",
+          "images": [
+            {
+              "src": "/images/w-real-estate/photo-2.jpg",
+              "alt": "W Real Estate — photo 1"
+            },
+            {
+              "src": "/images/w-real-estate/photo-4.jpg",
+              "alt": "W Real Estate — photo 2"
+            },
+            {
+              "src": "/images/w-real-estate/photo-7.webp",
+              "alt": "W Real Estate — photo 3"
+            },
+            {
+              "src": "/images/w-real-estate/photo-6.webp",
+              "alt": "W Real Estate — photo 4"
+            },
+            {
+              "src": "/images/w-real-estate/photo-8.jpg",
+              "alt": "W Real Estate — photo 5"
+            },
+            {
+              "src": "/images/w-real-estate/photo-11.jpg",
+              "alt": "W Real Estate — photo 6"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Work with W Real Estate",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/w-real-estate/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "label": "Services",
+      "title": "Services",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "What we do",
+          "heading": "How we can help",
+          "subheading": "The largest privately owned brokerage in the North Bay, pairing deep local knowledge with full-service marketing for buyers and sellers.",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "services",
+          "heading": "What we do",
+          "layout": "grid",
+          "items": [
+            {
+              "title": "Buying A Home",
+              "description": "Local agents who guide you from first showing to closing across Sonoma County."
+            },
+            {
+              "title": "Selling Your Home",
+              "description": "Full-service listing with professional marketing, photography, and pricing strategy."
+            },
+            {
+              "title": "Luxury Properties",
+              "description": "Bespoke representation and marketing for the North Bay’s premier homes."
+            },
+            {
+              "title": "Commercial Real Estate",
+              "description": "Representation for commercial buyers, sellers, and investors."
+            },
+            {
+              "title": "Property Marketing",
+              "description": "In-house marketing that puts every listing in front of the right buyers."
+            }
+          ]
+        },
+        {
+          "kind": "faq",
+          "eyebrow": "Good to know",
+          "heading": "Common questions",
+          "items": [
+            {
+              "q": "What are your hours?",
+              "a": "Mon–Fri: 8:30am–5pm."
+            },
+            {
+              "q": "What areas do you serve?",
+              "a": "We proudly serve Santa Rosa, CA and the surrounding community."
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Let’s talk",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/w-real-estate/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About",
+      "title": "About",
+      "sections": [
+        {
+          "kind": "hero",
+          "variant": "editorial",
+          "eyebrow": "About W Real Estate",
+          "heading": "About W Real Estate",
+          "subheading": "At W Real Estate, clients and their goals come first, without compromise. As the largest privately owned and operated real estate brokerage in the North Bay, the firm pairs deep",
+          "motif": "/images/library/default/motif.svg"
+        },
+        {
+          "kind": "story",
+          "eyebrow": "Our story",
+          "heading": "About W Real Estate",
+          "body": [
+            "At W Real Estate, clients and their goals come first, without compromise. As the largest privately owned and operated real estate brokerage in the North Bay, the firm pairs deep local market knowledge with the resources of a full-service company — guiding buyers and sellers through every step.",
+            "With offices across Sonoma County and a team of local agents, W Real Estate supports residential and commercial clients alike, backed by professional marketing, photography, and a network that reaches well beyond a single listing."
+          ],
+          "highlights": [
+            "Largest privately owned brokerage in the North Bay",
+            "Full-service marketing for sellers",
+            "Offices across Sonoma County"
+          ],
+          "image": {
+            "src": "/images/w-real-estate/story.webp",
+            "alt": "Inside W Real Estate",
+            "focal": "50% 50%"
+          }
+        },
+        {
+          "kind": "gallery",
+          "eyebrow": "A closer look",
+          "heading": "Where you'll find us",
+          "images": [
+            {
+              "src": "/images/w-real-estate/photo-2.jpg",
+              "alt": "W Real Estate — photo 1"
+            },
+            {
+              "src": "/images/w-real-estate/photo-4.jpg",
+              "alt": "W Real Estate — photo 2"
+            },
+            {
+              "src": "/images/w-real-estate/photo-7.webp",
+              "alt": "W Real Estate — photo 3"
+            },
+            {
+              "src": "/images/w-real-estate/photo-6.webp",
+              "alt": "W Real Estate — photo 4"
+            }
+          ]
+        },
+        {
+          "kind": "cta",
+          "heading": "Come see W Real Estate",
+          "primaryCta": {
+            "label": "Get in touch",
+            "href": "/s/w-real-estate/contact"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact",
+      "title": "Contact",
+      "sections": [
+        {
+          "kind": "contact",
+          "eyebrow": "Get in touch",
+          "heading": "Get in touch",
+          "showMap": false,
+          "showHours": true
+        }
+      ]
+    }
+  ],
+  "status": "ready",
+  "flags": [],
+  "photoSource": "agent-supplied"
+}

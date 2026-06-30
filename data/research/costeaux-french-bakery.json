@@ -1,0 +1,110 @@
+{
+  "slug": "costeaux-french-bakery",
+  "confirmed": true,
+  "established": "1923",
+  "tagline": "A Sonoma County baking tradition since 1923",
+  "seoDescription": "Costeaux French Bakery has crafted artisan breads, French pastry, and cafe fare in Sonoma County since 1923 — with a Healdsburg flagship, a Santa Rosa cafe, catering, and special-occasion cakes.",
+  "heroHeading": "Old-World Baking Since 1923",
+  "heroSubheading": "A century-old Sonoma County bakery crafting artisan sourdough, French pastry, and cafe fare.",
+  "highlights": [
+    "Family-run Sonoma County bakery since 1923",
+    "Award-winning sourdough and French pastry",
+    "Cafe, catering, and special-occasion cakes"
+  ],
+  "aboutHeading": "About Costeaux French Bakery",
+  "aboutBody": [
+    "Costeaux French Bakery has been part of Sonoma County life since 1923, growing from a small Healdsburg bakery into a beloved institution known for hand-crafted sourdough, French breads, and pastry. Today the Seppi family carries that century-old tradition forward across the flagship Healdsburg bakery and cafe and a Santa Rosa location.",
+    "Beyond the bread case, Costeaux is a full cafe serving breakfast and lunch, a pastry and cake kitchen for weddings and celebrations, and a catering team for private events — all built on the same old-world craft the bakery was founded on."
+  ],
+  "servicesHeading": "What we bake",
+  "services": [
+    {
+      "title": "Artisan Breads & Sourdough",
+      "description": "Hand-shaped sourdough, baguettes, and country loaves baked fresh daily — the foundation of the bakery since 1923."
+    },
+    {
+      "title": "Pastry & Viennoiserie",
+      "description": "Croissants, morning pastries, and French patisserie made from scratch each morning."
+    },
+    {
+      "title": "Cafe Breakfast & Lunch",
+      "description": "A sit-down cafe menu of breakfast plates, sandwiches, salads, and WOLF coffee."
+    },
+    {
+      "title": "Custom Cakes",
+      "description": "Wedding and special-occasion cakes designed and decorated to order."
+    },
+    {
+      "title": "Catering & Private Events",
+      "description": "Full-service catering and private-event dining for gatherings across Sonoma County."
+    }
+  ],
+  "hours": [
+    {
+      "day": "Mon–Fri",
+      "hours": "7am–3pm"
+    },
+    {
+      "day": "Sat–Sun",
+      "hours": "7:30am–12:30pm"
+    }
+  ],
+  "testimonials": [],
+  "social": {
+    "facebook": "https://www.facebook.com/costeaux/",
+    "instagram": "https://www.instagram.com/costeauxfrenchbakery/",
+    "google": "https://goo.gl/maps/o3ZoEffHxnm"
+  },
+  "realPhotoUrls": [
+    "https://www.costeaux.com/wp-content/uploads/2025/03/Short-Rib-1.png",
+    "https://www.costeaux.com/wp-content/themes/costeaux/assets/images/red-banner.png",
+    "https://www.costeaux.com/wp-content/themes/costeaux/assets/images/blue-banner.png",
+    "https://www.costeaux.com/wp-content/themes/costeaux/assets/images/yellow-banner.png",
+    "https://www.costeaux.com/wp-content/themes/costeaux/assets/images/homepage-banner.png",
+    "https://www.costeaux.com/wp-content/uploads/2025/10/Dinner-at-Costeaux_Final-Size.png",
+    "https://www.costeaux.com/wp-content/uploads/2023/10/Mini-Dessert-Web-Banner.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2023/10/Band-Website-Header.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2023/10/Meatball-Header.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2023/09/Catering-Slide.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2026/03/Quiche-Button.png",
+    "https://www.costeaux.com/wp-content/uploads/2026/03/Costeaux-Petaluma-Button.png",
+    "https://www.costeaux.com/wp-content/uploads/2026/03/COTG-Button.png",
+    "https://www.costeaux.com/wp-content/uploads/2026/03/BJM-Button.png",
+    "https://www.costeaux.com/wp-content/uploads/2026/03/TM-Button.png",
+    "https://www.costeaux.com/wp-content/uploads/2023/10/Group-Cheers.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2025/04/Event-Banner.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2025/04/Events-Reference-Quote.png",
+    "https://www.costeaux.com/wp-content/uploads/2023/10/Cheers_Private-Events.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2016/12/4_Costeaux-French-Bakery-Events.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2023/10/Private-Events_Rentals.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2023/02/Event_Entree.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2023/10/Bartender_Private-Events.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2023/10/Fall-Salad-_-Private-Events.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2026/03/March-2026-Dinner-Menu-scaled.png",
+    "https://www.costeaux.com/wp-content/uploads/2025/03/Proscuitto.png",
+    "https://www.costeaux.com/wp-content/uploads/2025/08/Photo-Jun-05-2025-5-41-25-PM-scaled.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2025/08/Will-Approved-scaled.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2016/12/1_COSTEAUX-FRENCH-BAKERY-WILL-SEPPI-OUR-LEGACY-1800x800.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2016/12/2_Costeaux-French-Bakery-Fred-in-front-of-Bakery-2.jpg",
+    "https://www.costeaux.com/wp-content/uploads/2016/12/3_Costeaux-French-Bakery-History-Romeo-Cerris.jpg"
+  ],
+  "notes": "Web-verified and authored for the ADA accessibility batch (hours, rating/credential, copy confirmed from the business site + Yelp/OpenTable/press). confirmed:true.",
+  "_richness": 73,
+  "_source": "web-verified",
+  "_lead": {
+    "name": "Costeaux French Bakery",
+    "category": "cafe",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "phone": "",
+    "email": "info@costeaux.com",
+    "address": "",
+    "owner": ""
+  },
+  "rating": {
+    "value": 4.4,
+    "count": 969,
+    "source": "Yelp"
+  },
+  "priceRange": "$$"
+}
