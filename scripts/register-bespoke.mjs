@@ -137,18 +137,40 @@ function toWslPath(p) {
   const m = /^([A-Za-z]):[\\/](.*)$/.exec(p);
   return m ? `/mnt/${m[1].toLowerCase()}/${m[2].replace(/\\/g, '/')}` : p.replace(/\\/g, '/');
 }
+function sh(cmd) {
+  // Run a shell command, on win32 through WSL Ubuntu (where the _bespoke node_modules
+  // live). Returns { ok, out } and never throws, so callers can inspect the error.
+  const full = process.platform === 'win32'
+    ? `wsl -d Ubuntu -- bash -lc ${JSON.stringify(`cd '${toWslPath(dir)}' && ${cmd}`)}`
+    : cmd;
+  try {
+    const out = execSync(full, { cwd: process.platform === 'win32' ? undefined : dir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    return { ok: true, out };
+  } catch (e) {
+    return { ok: false, out: `${e.stdout || ''}${e.stderr || ''}` };
+  }
+}
+// The npm optional-deps bug (https://github.com/npm/cli/issues/4828) leaves a
+// Windows-installed node_modules missing @rollup/rollup-linux-* under WSL. Detect
+// it so we can self-heal with a clean reinstall rather than failing the whole batch.
+const isNativeDepBug = (out) => /Cannot find module '?@rollup\/rollup-|@esbuild\/|npm has a bug related to optional dependencies/i.test(out || '');
+
 function build() {
   if (SKIP_BUILD && existsSync(join(dir, 'dist', 'index.html'))) { console.log('\n[build] --skip-build: reusing existing dist'); return; }
   const cfg = join(dir, 'astro.config.register.mjs');
   writeFileSync(cfg, `import base from './astro.config.mjs';\nexport default { ...base, base: '/b/${slug}', build: { ...(base.build || {}), assets: '_astro' } };\n`);
+  const BUILD = 'npm run build -- --config astro.config.register.mjs';
   console.log('\n[build] astro build --config astro.config.register.mjs …');
   try {
-    if (process.platform === 'win32') {
-      const wsl = toWslPath(dir);
-      execSync(`wsl -d Ubuntu -- bash -lc ${JSON.stringify(`cd '${wsl}' && npm run build -- --config astro.config.register.mjs`)}`, { stdio: 'inherit' });
-    } else {
-      execSync('npm run build -- --config astro.config.register.mjs', { cwd: dir, stdio: 'inherit' });
+    let r = sh(BUILD);
+    if (!r.ok && isNativeDepBug(r.out)) {
+      console.log('[build] native-dep bug detected (Windows-installed node_modules) — clean reinstalling under WSL and retrying once…');
+      const ri = sh('rm -rf node_modules package-lock.json && npm install --no-audit --no-fund');
+      if (!ri.ok) { process.stdout.write(ri.out.slice(-1500)); throw new Error('clean reinstall failed'); }
+      r = sh(BUILD);
     }
+    if (!r.ok) { process.stdout.write(r.out.slice(-2000)); throw new Error('astro build failed'); }
+    process.stdout.write(r.out.slice(-600));
   } finally {
     try { rmSync(cfg); } catch {}
   }

@@ -1,0 +1,112 @@
+[
+  {
+    "slug": "angel-brothers",
+    "name": "Angel Brothers Lath & Plastering",
+    "link": "https://demos.copperbaytech.com/b/angel-brothers/",
+    "category": "custom",
+    "area": "Windsor, California",
+    "thumbnailUrl": "/thumbnails/angel-brothers.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "cascada",
+    "name": "Cascada Landscape",
+    "link": "https://demos.copperbaytech.com/b/cascada/",
+    "category": "custom",
+    "area": "Santa Rosa, California",
+    "thumbnailUrl": "/thumbnails/cascada.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "california-state-insulation",
+    "name": "California State Insulation & General Contractor",
+    "link": "https://demos.copperbaytech.com/b/california-state-insulation/",
+    "category": "custom",
+    "area": "Santa Rosa, California",
+    "thumbnailUrl": "/thumbnails/california-state-insulation.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "glenn-ranch",
+    "name": "Glenn Ranch",
+    "link": "https://demos.copperbaytech.com/b/glenn-ranch/",
+    "category": "custom",
+    "area": "Petaluma, California",
+    "thumbnailUrl": "/thumbnails/glenn-ranch.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "reynoso-s-stoneworks",
+    "name": "Reynoso's Stoneworks",
+    "link": "https://demos.copperbaytech.com/b/reynoso-s-stoneworks/",
+    "category": "custom",
+    "area": "Santa Rosa",
+    "thumbnailUrl": "/thumbnails/reynoso-s-stoneworks.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "life-of-smiles",
+    "name": "Life of Smiles — Dr. Rob Oliver & Associates",
+    "link": "https://demos.copperbaytech.com/b/life-of-smiles/",
+    "category": "custom",
+    "area": "Sebastopol, CA 95472",
+    "thumbnailUrl": "/thumbnails/life-of-smiles.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "vital-energy",
+    "name": "Vital Energy Solutions",
+    "link": "https://demos.copperbaytech.com/b/vital-energy/",
+    "category": "custom",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/vital-energy.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "sam-s-landscaping",
+    "name": "Sam's Landscaping",
+    "link": "https://demos.copperbaytech.com/b/sam-s-landscaping/",
+    "category": "custom",
+    "area": "Windsor, California",
+    "thumbnailUrl": "/thumbnails/sam-s-landscaping.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "mascarin-family-wines",
+    "name": "Mascarin Family Wines",
+    "link": "https://demos.copperbaytech.com/b/mascarin-family-wines/",
+    "category": "custom",
+    "area": "Healdsburg, California",
+    "thumbnailUrl": "/thumbnails/mascarin-family-wines.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "grech-family-construction",
+    "name": "Grech Family Construction",
+    "link": "https://demos.copperbaytech.com/b/grech-family-construction/",
+    "category": "custom",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/grech-family-construction.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "donna-yock-dmd",
+    "name": "Donna Yock, DMD",
+    "link": "https://demos.copperbaytech.com/b/donna-yock-dmd/",
+    "category": "custom",
+    "area": "Rohnert Park, California",
+    "thumbnailUrl": "/thumbnails/donna-yock-dmd.png",
+    "tier": "bespoke",
+    "status": "ready"
+  }
+]
