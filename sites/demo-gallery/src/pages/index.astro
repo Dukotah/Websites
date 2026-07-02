@@ -12,6 +12,14 @@ const modules = import.meta.glob<PremiumConfig>('../data/premium/*.json', {
   import: 'default',
 });
 
+// Bespoke flagships — hand-built _bespoke-* Astro sites hosted on THIS deploy at
+// /b/<slug>/ (staged into public/b by scripts/register-bespoke.mjs). They aren't
+// PremiumConfig JSON, so they list as their own external-link cards rather than
+// scored /s/ demos. Glob keeps the build green when the registry is absent.
+interface BespokeCard { slug: string; name: string; link: string; category?: string; area?: string; thumbnailUrl?: string; status?: string; }
+const bespokeReg = import.meta.glob('../../../../data/bespoke-registry.json', { eager: true, import: 'default' });
+const bespoke = ((Object.values(bespokeReg)[0] as BespokeCard[] | undefined) ?? []).filter((b) => b?.slug && b?.link);
+
 const isStock = (src?: string) =>
   !src || src.includes('/images/library/') || src.endsWith('.svg');
 
@@ -156,6 +164,28 @@ const reviewCount = prospects.filter((p) => p.config.status === 'needs-review').
         photos, section richness, contact completeness, trust signals & SEO.
         Needs-review surfaces first.
       </p>
+
+      {bespoke.length > 0 && (
+        <section class="bespoke">
+          <p class="eyebrow">Bespoke flagships</p>
+          <h2>{bespoke.length} hand-built site{bespoke.length === 1 ? '' : 's'}</h2>
+          <ul class="grid">
+            {bespoke.map((b) => (
+              <li class="card card--bespoke">
+                <div class="card__body">
+                  <span class="pill grade grade--A">bespoke</span>
+                  <h3 style="margin:.4rem 0 .2rem;">{b.name}</h3>
+                  {b.area && <p class="lede" style="margin:0;">{b.area}{b.category ? ` · ${b.category}` : ''}</p>}
+                  <div class="card__actions">
+                    <a href={b.link}>View flagship →</a>
+                    <code class="card__link">/b/{b.slug}/</code>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <ul class="grid">
         {

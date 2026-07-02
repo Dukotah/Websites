@@ -11,6 +11,7 @@
     "generate": "node scripts/generate.mjs",
     "premium-validate": "node scripts/premium-validate.mjs",
     "push-to-crm": "node scripts/push-to-crm.mjs",
+    "register-bespoke": "node scripts/register-bespoke.mjs",
     "make-thumbnail": "node scripts/make-thumbnail.mjs",
     "sameness-check": "node scripts/sameness-check.mjs",
     "image-qa": "node scripts/image-qa.mjs",
