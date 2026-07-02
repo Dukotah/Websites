@@ -16,7 +16,7 @@
     "image-qa": "node scripts/image-qa.mjs",
     "lighthouse": "node scripts/lighthouse.mjs",
     "perf-budget": "node scripts/lighthouse.mjs --budget",
-    "qa": "npm --prefix sites/demo-gallery run build && node scripts/premium-validate.mjs && node scripts/audit.mjs && npm --prefix sites/demo-gallery run shots -- --no-build && node scripts/sameness-check.mjs && node scripts/image-qa.mjs"
+    "qa": "npm --prefix sites/demo-gallery run build && node scripts/premium-validate.mjs && A11Y_ENFORCE=1 node scripts/audit.mjs && npm --prefix sites/demo-gallery run shots -- --no-build && node scripts/sameness-check.mjs && node scripts/image-qa.mjs"
   },
   "devDependencies": {
     "chrome-launcher": "^1.2.1",
