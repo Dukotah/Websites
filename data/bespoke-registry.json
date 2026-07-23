@@ -248,5 +248,55 @@
     "thumbnailUrl": "/thumbnails/storia-home.png",
     "tier": "bespoke",
     "status": "ready"
+  },
+  {
+    "slug": "amma-touch",
+    "name": "Amma Touch",
+    "link": "https://demos.copperbaytech.com/b/amma-touch/",
+    "category": "massage",
+    "area": "Sonoma, California",
+    "thumbnailUrl": "/thumbnails/amma-touch.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "ceremony-matters",
+    "name": "Your Ceremony Matters",
+    "link": "https://demos.copperbaytech.com/b/ceremony-matters/",
+    "category": "wedding-officiant",
+    "area": "Sonoma, California",
+    "thumbnailUrl": "/thumbnails/ceremony-matters.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "rv-repair-connection",
+    "name": "RV Repair Connection",
+    "link": "https://demos.copperbaytech.com/b/rv-repair-connection/",
+    "category": "rv-repair",
+    "area": "Santa Rosa, California",
+    "thumbnailUrl": "/thumbnails/rv-repair-connection.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "pool-chemical-service",
+    "name": "Pool Chemical Service",
+    "link": "https://demos.copperbaytech.com/b/pool-chemical-service/",
+    "category": "pool-service",
+    "area": "Santa Rosa, California",
+    "thumbnailUrl": "/thumbnails/pool-chemical-service.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "second-chances-used-books",
+    "name": "Second Chances Used Books",
+    "link": "https://demos.copperbaytech.com/b/second-chances-used-books/",
+    "category": "bookstore",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/second-chances-used-books.png",
+    "tier": "bespoke",
+    "status": "ready"
   }
 ]
