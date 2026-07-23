@@ -298,5 +298,55 @@
     "thumbnailUrl": "/thumbnails/second-chances-used-books.png",
     "tier": "bespoke",
     "status": "ready"
+  },
+  {
+    "slug": "community-market",
+    "name": "Community Market Natural Foods",
+    "link": "https://demos.copperbaytech.com/b/community-market/",
+    "category": "natural-foods",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/community-market.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "treehorn-books",
+    "name": "Treehorn Books",
+    "link": "https://demos.copperbaytech.com/b/treehorn-books/",
+    "category": "bookstore",
+    "area": "Santa Rosa, California",
+    "thumbnailUrl": "/thumbnails/treehorn-books.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "dodrill-gallery",
+    "name": "Dodrill Gallery",
+    "link": "https://demos.copperbaytech.com/b/dodrill-gallery/",
+    "category": "art-gallery",
+    "area": "Bodega, California",
+    "thumbnailUrl": "/thumbnails/dodrill-gallery.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "larry-conover-jewelers",
+    "name": "Larry Conover Jewelers",
+    "link": "https://demos.copperbaytech.com/b/larry-conover-jewelers/",
+    "category": "jewelry",
+    "area": "Santa Rosa, California",
+    "thumbnailUrl": "/thumbnails/larry-conover-jewelers.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "woofys-dog-grooming",
+    "name": "Woofy's Dog Grooming Studio",
+    "link": "https://demos.copperbaytech.com/b/woofys-dog-grooming/",
+    "category": "pet-grooming",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/woofys-dog-grooming.png",
+    "tier": "bespoke",
+    "status": "ready"
   }
 ]
