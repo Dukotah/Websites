@@ -108,5 +108,145 @@
     "thumbnailUrl": "/thumbnails/donna-yock-dmd.png",
     "tier": "bespoke",
     "status": "ready"
+  },
+  {
+    "slug": "session-climbing",
+    "name": "Session Climbing Center",
+    "link": "https://demos.copperbaytech.com/b/session-climbing/",
+    "category": "climbing-gym",
+    "area": "Santa Rosa, California",
+    "thumbnailUrl": "/thumbnails/session-climbing.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "sigh",
+    "name": "Sigh",
+    "link": "https://demos.copperbaytech.com/b/sigh/",
+    "category": "wine-bar",
+    "area": "Sonoma, California",
+    "thumbnailUrl": "/thumbnails/sigh.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "beekind",
+    "name": "Beekind",
+    "link": "https://demos.copperbaytech.com/b/beekind/",
+    "category": "honey-apiary",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/beekind.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "spirit-works",
+    "name": "Spirit Works Distillery",
+    "link": "https://demos.copperbaytech.com/b/spirit-works/",
+    "category": "distillery",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/spirit-works.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "calistoga-roastery",
+    "name": "Calistoga Roastery",
+    "link": "https://demos.copperbaytech.com/b/calistoga-roastery/",
+    "category": "cafe",
+    "area": "Calistoga, California",
+    "thumbnailUrl": "/thumbnails/calistoga-roastery.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "sanglier-cellars",
+    "name": "Sanglier Cellars Tasting Room",
+    "link": "https://demos.copperbaytech.com/b/sanglier-cellars/",
+    "category": "winery",
+    "area": "Healdsburg, California",
+    "thumbnailUrl": "/thumbnails/sanglier-cellars.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "coffee-and-moore",
+    "name": "Coffee & Moore",
+    "link": "https://demos.copperbaytech.com/b/coffee-and-moore/",
+    "category": "cafe",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/coffee-and-moore.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "large-leather",
+    "name": "Large Leather",
+    "link": "https://demos.copperbaytech.com/b/large-leather/",
+    "category": "leather-goods",
+    "area": "Sonoma, California",
+    "thumbnailUrl": "/thumbnails/large-leather.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "gina-rachelle-design",
+    "name": "Gina Rachelle Design",
+    "link": "https://demos.copperbaytech.com/b/gina-rachelle-design/",
+    "category": "interior-design",
+    "area": "Sonoma & San Francisco, California",
+    "thumbnailUrl": "/thumbnails/gina-rachelle-design.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "sebastopol-bike-center",
+    "name": "Sebastopol Bike Center",
+    "link": "https://demos.copperbaytech.com/b/sebastopol-bike-center/",
+    "category": "bicycle-shop",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/sebastopol-bike-center.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "climatepro",
+    "name": "ClimatePro",
+    "link": "https://demos.copperbaytech.com/b/climatepro/",
+    "category": "window-film",
+    "area": "Cotati, California",
+    "thumbnailUrl": "/thumbnails/climatepro.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "stanroy-music-center",
+    "name": "Stanroy Music Center",
+    "link": "https://demos.copperbaytech.com/b/stanroy-music-center/",
+    "category": "music-store",
+    "area": "Santa Rosa, California",
+    "thumbnailUrl": "/thumbnails/stanroy-music-center.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "river-s-end",
+    "name": "River's End Restaurant & Inn",
+    "link": "https://demos.copperbaytech.com/b/river-s-end/",
+    "category": "restaurant",
+    "area": "Jenner, California",
+    "thumbnailUrl": "/thumbnails/river-s-end.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "storia-home",
+    "name": "Storia Home",
+    "link": "https://demos.copperbaytech.com/b/storia-home/",
+    "category": "home-goods",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/storia-home.png",
+    "tier": "bespoke",
+    "status": "ready"
   }
 ]
