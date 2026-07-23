@@ -348,5 +348,85 @@
     "thumbnailUrl": "/thumbnails/woofys-dog-grooming.png",
     "tier": "bespoke",
     "status": "ready"
+  },
+  {
+    "slug": "himalayan-tandoori-curry",
+    "name": "Himalayan Tandoori & Curry House",
+    "link": "https://demos.copperbaytech.com/b/himalayan-tandoori-curry/",
+    "category": "restaurant",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/himalayan-tandoori-curry.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "steinhouse-chocolates",
+    "name": "Steinhouse Chocolates & Gourmet Foods",
+    "link": "https://demos.copperbaytech.com/b/steinhouse-chocolates/",
+    "category": "chocolatier",
+    "area": "Santa Rosa, California",
+    "thumbnailUrl": "/thumbnails/steinhouse-chocolates.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "danas-green-cleaners",
+    "name": "Dana's Green Cleaners",
+    "link": "https://demos.copperbaytech.com/b/danas-green-cleaners/",
+    "category": "dry-cleaning",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/danas-green-cleaners.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "colleens-coffee-shop",
+    "name": "Colleen's Coffee Shop",
+    "link": "https://demos.copperbaytech.com/b/colleens-coffee-shop/",
+    "category": "cafe",
+    "area": "Bodega, California",
+    "thumbnailUrl": "/thumbnails/colleens-coffee-shop.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "viva-mexicana",
+    "name": "Viva Mexicana",
+    "link": "https://demos.copperbaytech.com/b/viva-mexicana/",
+    "category": "restaurant",
+    "area": "Sebastopol, California",
+    "thumbnailUrl": "/thumbnails/viva-mexicana.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "two-amigos-wines",
+    "name": "Two Amigos Wines",
+    "link": "https://demos.copperbaytech.com/b/two-amigos-wines/",
+    "category": "winery",
+    "area": "Glen Ellen, California",
+    "thumbnailUrl": "/thumbnails/two-amigos-wines.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "wine-country-connect",
+    "name": "Wine Country Connect",
+    "link": "https://demos.copperbaytech.com/b/wine-country-connect/",
+    "category": "wine-ecommerce",
+    "area": "Sonoma, California",
+    "thumbnailUrl": "/thumbnails/wine-country-connect.png",
+    "tier": "bespoke",
+    "status": "ready"
+  },
+  {
+    "slug": "mr-moons",
+    "name": "Mr. Moon's",
+    "link": "https://demos.copperbaytech.com/b/mr-moons/",
+    "category": "gift-shop",
+    "area": "Healdsburg, California",
+    "thumbnailUrl": "/thumbnails/mr-moons.png",
+    "tier": "bespoke",
+    "status": "ready"
   }
 ]
